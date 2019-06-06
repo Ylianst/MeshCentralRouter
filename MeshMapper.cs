@@ -605,7 +605,7 @@ namespace MeshCentralRouter
                     // Small fragment
                     buf[2] = 130; // Fragment op code (129 = text, 130 = binary)
                     buf[3] = (byte)(len & 0x7F);
-                    try { wsstream.BeginWrite(buf, 2, len + 2, new AsyncCallback(WriteWebSocketAsyncDone), args); } catch (Exception ex) {
+                    try { wsstream.BeginWrite(buf, 2, len + 2, new AsyncCallback(WriteWebSocketAsyncDone), args); } catch (Exception) {
                         parent.ShutdownClients(client, uclient, wc, counter); return; }
                 }
                 else

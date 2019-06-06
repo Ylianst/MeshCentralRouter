@@ -187,16 +187,6 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="warning-small.png" />
-    <None Include="MeshServerLogo.png" />
-    <None Include="MC2-Banner.png" />
-    <None Include="Empty-Banner.png" />
-    <None Include="MC2-Logo.png" />
-    <None Include="MeshCentral.png" />
-    <None Include="icons01.png" />
-    <None Include="MeshIcon50T.png" />
-    <None Include="Folder36.png" />
-    <None Include="Help20.png" />
     <None Include="HelpImages\HelpRelayMap.png" />
     <Content Include="MeshServer.ico" />
   </ItemGroup>
