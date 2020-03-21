@@ -101,6 +101,7 @@
             this.deviceImageList.Images.SetKeyName(3, "icons04.png");
             this.deviceImageList.Images.SetKeyName(4, "icons05.png");
             this.deviceImageList.Images.SetKeyName(5, "icons06.png");
+            this.deviceImageList.Images.SetKeyName(6, "icons07.png");
             // 
             // MapUserControl
             // 
@@ -114,7 +115,7 @@
             this.Controls.Add(this.deviceNameLabel);
             this.Controls.Add(this.devicePictureBox);
             this.Name = "MapUserControl";
-            this.Size = new System.Drawing.Size(441, 63);
+            this.Size = new System.Drawing.Size(441, 60);
             ((System.ComponentModel.ISupportInitialize)(this.devicePictureBox)).EndInit();
             this.ResumeLayout(false);
 

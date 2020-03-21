@@ -12,7 +12,10 @@ namespace MeshCentralRouter
         public int icon;
         public string nodeid;
         public string meshid;
+        public int agentid;
         public int conn;
+        public int rdpport;
+        public DeviceUserControl control;
 
         public override string ToString() { return name; }
     }
@@ -23,6 +26,7 @@ namespace MeshCentralRouter
         public string meshid;
         public string desc;
         public int type;
+        public ulong rights;
 
         public override string ToString() { return name; }
     }

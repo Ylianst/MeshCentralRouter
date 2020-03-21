@@ -94,7 +94,7 @@ namespace MeshCentralRouter
             routingStatusLabel.Text = statemsg;
         }
 
-        private void appButton_Click(object sender, EventArgs e)
+        public void appButton_Click(object sender, EventArgs e)
         {
             if (appId == 1) { System.Diagnostics.Process.Start("http://localhost:" + mapper.localport); }
             if (appId == 2) { System.Diagnostics.Process.Start("https://localhost:" + mapper.localport); }

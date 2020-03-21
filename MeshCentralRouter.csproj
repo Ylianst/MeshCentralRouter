@@ -110,6 +110,12 @@
     <Compile Include="MappingHelpForm.Designer.cs">
       <DependentUpon>MappingHelpForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DeviceUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DeviceUserControl.Designer.cs">
+      <DependentUpon>DeviceUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="MapUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -155,6 +161,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MappingHelpForm.resx">
       <DependentUpon>MappingHelpForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeviceUserControl.resx">
+      <DependentUpon>DeviceUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MapUserControl.resx">
       <DependentUpon>MapUserControl.cs</DependentUpon>

@@ -68,14 +68,19 @@
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.settingsPictureBox = new System.Windows.Forms.PictureBox();
-            this.openWebSiteButton = new System.Windows.Forms.Button();
-            this.helpPictureBox = new System.Windows.Forms.PictureBox();
-            this.addRelayButton = new System.Windows.Forms.Button();
+            this.searchTextBox = new System.Windows.Forms.TextBox();
+            this.devicesTabControl = new System.Windows.Forms.TabControl();
+            this.devicesTabPage = new System.Windows.Forms.TabPage();
+            this.devicesPanel = new System.Windows.Forms.Panel();
+            this.noDevicesLabel = new System.Windows.Forms.Label();
+            this.portMapTabPage = new System.Windows.Forms.TabPage();
             this.mapPanel = new System.Windows.Forms.Panel();
             this.noMapLabel = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.settingsPictureBox = new System.Windows.Forms.PictureBox();
+            this.helpPictureBox = new System.Windows.Forms.PictureBox();
             this.addButton = new System.Windows.Forms.Button();
+            this.addRelayButton = new System.Windows.Forms.Button();
+            this.openWebSiteButton = new System.Windows.Forms.Button();
             this.backButton5 = new System.Windows.Forms.Button();
             this.nextButton5 = new System.Windows.Forms.Button();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
@@ -87,6 +92,7 @@
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.noSearchResultsLabel = new System.Windows.Forms.Label();
             this.panel5.SuspendLayout();
             this.mainPanel.SuspendLayout();
             this.mainTabControl.SuspendLayout();
@@ -103,9 +109,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.tabPage5.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.devicesTabControl.SuspendLayout();
+            this.devicesTabPage.SuspendLayout();
+            this.devicesPanel.SuspendLayout();
+            this.portMapTabPage.SuspendLayout();
+            this.mapPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.settingsPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).BeginInit();
-            this.mapPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.trayIconContextMenuStrip.SuspendLayout();
@@ -313,8 +323,8 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(454, 29);
             this.label1.TabIndex = 6;
-            this.label1.Text = "MeshCentral Router allows mapping of TCP ports on this computer to any computer i" +
-    "n your MeshCentral server account. Start my logging into your account.";
+            this.label1.Text = "MeshCentral Router allows mapping of TCP and UDP ports on this computer to any co" +
+    "mputer in your MeshCentral server account. Start by logging into your account.";
             // 
             // pictureBox2
             // 
@@ -551,13 +561,9 @@
             // 
             // panel4
             // 
-            this.panel4.Controls.Add(this.settingsPictureBox);
+            this.panel4.Controls.Add(this.searchTextBox);
+            this.panel4.Controls.Add(this.devicesTabControl);
             this.panel4.Controls.Add(this.openWebSiteButton);
-            this.panel4.Controls.Add(this.helpPictureBox);
-            this.panel4.Controls.Add(this.addRelayButton);
-            this.panel4.Controls.Add(this.mapPanel);
-            this.panel4.Controls.Add(this.label6);
-            this.panel4.Controls.Add(this.addButton);
             this.panel4.Controls.Add(this.backButton5);
             this.panel4.Controls.Add(this.nextButton5);
             this.panel4.Controls.Add(this.pictureBox7);
@@ -567,17 +573,157 @@
             this.panel4.Size = new System.Drawing.Size(484, 322);
             this.panel4.TabIndex = 8;
             // 
+            // searchTextBox
+            // 
+            this.searchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchTextBox.Location = new System.Drawing.Point(330, 5);
+            this.searchTextBox.Name = "searchTextBox";
+            this.searchTextBox.Size = new System.Drawing.Size(146, 20);
+            this.searchTextBox.TabIndex = 9;
+            this.searchTextBox.TextChanged += new System.EventHandler(this.searchTextBox_TextChanged);
+            this.searchTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.searchTextBox_KeyPress);
+            // 
+            // devicesTabControl
+            // 
+            this.devicesTabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.devicesTabControl.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
+            this.devicesTabControl.Controls.Add(this.devicesTabPage);
+            this.devicesTabControl.Controls.Add(this.portMapTabPage);
+            this.devicesTabControl.Location = new System.Drawing.Point(3, 3);
+            this.devicesTabControl.Name = "devicesTabControl";
+            this.devicesTabControl.SelectedIndex = 0;
+            this.devicesTabControl.Size = new System.Drawing.Size(478, 273);
+            this.devicesTabControl.TabIndex = 55;
+            this.devicesTabControl.SelectedIndexChanged += new System.EventHandler(this.devicesTabControl_SelectedIndexChanged);
+            // 
+            // devicesTabPage
+            // 
+            this.devicesTabPage.BackColor = System.Drawing.SystemColors.Control;
+            this.devicesTabPage.Controls.Add(this.devicesPanel);
+            this.devicesTabPage.Location = new System.Drawing.Point(4, 25);
+            this.devicesTabPage.Name = "devicesTabPage";
+            this.devicesTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.devicesTabPage.Size = new System.Drawing.Size(470, 244);
+            this.devicesTabPage.TabIndex = 0;
+            this.devicesTabPage.Text = "Devices";
+            // 
+            // devicesPanel
+            // 
+            this.devicesPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.devicesPanel.AutoScroll = true;
+            this.devicesPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.devicesPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.devicesPanel.Controls.Add(this.noSearchResultsLabel);
+            this.devicesPanel.Controls.Add(this.noDevicesLabel);
+            this.devicesPanel.Location = new System.Drawing.Point(0, 0);
+            this.devicesPanel.Name = "devicesPanel";
+            this.devicesPanel.Size = new System.Drawing.Size(470, 244);
+            this.devicesPanel.TabIndex = 50;
+            // 
+            // noDevicesLabel
+            // 
+            this.noDevicesLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.noDevicesLabel.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.noDevicesLabel.Location = new System.Drawing.Point(91, 97);
+            this.noDevicesLabel.Name = "noDevicesLabel";
+            this.noDevicesLabel.Size = new System.Drawing.Size(283, 17);
+            this.noDevicesLabel.TabIndex = 4;
+            this.noDevicesLabel.Text = "No Devices";
+            this.noDevicesLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // portMapTabPage
+            // 
+            this.portMapTabPage.BackColor = System.Drawing.SystemColors.Control;
+            this.portMapTabPage.Controls.Add(this.mapPanel);
+            this.portMapTabPage.Controls.Add(this.settingsPictureBox);
+            this.portMapTabPage.Controls.Add(this.helpPictureBox);
+            this.portMapTabPage.Controls.Add(this.addButton);
+            this.portMapTabPage.Controls.Add(this.addRelayButton);
+            this.portMapTabPage.Location = new System.Drawing.Point(4, 25);
+            this.portMapTabPage.Name = "portMapTabPage";
+            this.portMapTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.portMapTabPage.Size = new System.Drawing.Size(470, 244);
+            this.portMapTabPage.TabIndex = 1;
+            this.portMapTabPage.Text = "Mappings";
+            // 
+            // mapPanel
+            // 
+            this.mapPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.mapPanel.AutoScroll = true;
+            this.mapPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.mapPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.mapPanel.Controls.Add(this.noMapLabel);
+            this.mapPanel.Location = new System.Drawing.Point(0, 0);
+            this.mapPanel.Name = "mapPanel";
+            this.mapPanel.Size = new System.Drawing.Size(470, 214);
+            this.mapPanel.TabIndex = 49;
+            // 
+            // noMapLabel
+            // 
+            this.noMapLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.noMapLabel.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.noMapLabel.Location = new System.Drawing.Point(91, 79);
+            this.noMapLabel.Name = "noMapLabel";
+            this.noMapLabel.Size = new System.Drawing.Size(283, 52);
+            this.noMapLabel.TabIndex = 4;
+            this.noMapLabel.Text = "No Port Mappings\r\n\r\nClick \"Add\" to get started.";
+            this.noMapLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // settingsPictureBox
             // 
             this.settingsPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.settingsPictureBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.settingsPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("settingsPictureBox.Image")));
-            this.settingsPictureBox.Location = new System.Drawing.Point(15, 244);
+            this.settingsPictureBox.Location = new System.Drawing.Point(1, 220);
             this.settingsPictureBox.Name = "settingsPictureBox";
             this.settingsPictureBox.Size = new System.Drawing.Size(20, 20);
             this.settingsPictureBox.TabIndex = 54;
             this.settingsPictureBox.TabStop = false;
             this.settingsPictureBox.Click += new System.EventHandler(this.settingsPictureBox_Click);
+            // 
+            // helpPictureBox
+            // 
+            this.helpPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.helpPictureBox.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.helpPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("helpPictureBox.Image")));
+            this.helpPictureBox.Location = new System.Drawing.Point(238, 220);
+            this.helpPictureBox.Name = "helpPictureBox";
+            this.helpPictureBox.Size = new System.Drawing.Size(20, 20);
+            this.helpPictureBox.TabIndex = 5;
+            this.helpPictureBox.TabStop = false;
+            this.helpPictureBox.Click += new System.EventHandler(this.helpPictureBox_Click);
+            // 
+            // addButton
+            // 
+            this.addButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.addButton.Enabled = false;
+            this.addButton.Location = new System.Drawing.Point(370, 218);
+            this.addButton.Name = "addButton";
+            this.addButton.Size = new System.Drawing.Size(100, 23);
+            this.addButton.TabIndex = 50;
+            this.addButton.Text = "Add Map...";
+            this.addButton.UseVisualStyleBackColor = true;
+            this.addButton.Click += new System.EventHandler(this.addButton_Click);
+            // 
+            // addRelayButton
+            // 
+            this.addRelayButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.addRelayButton.Enabled = false;
+            this.addRelayButton.Location = new System.Drawing.Point(264, 218);
+            this.addRelayButton.Name = "addRelayButton";
+            this.addRelayButton.Size = new System.Drawing.Size(100, 23);
+            this.addRelayButton.TabIndex = 52;
+            this.addRelayButton.Text = "Add Relay Map...";
+            this.addRelayButton.UseVisualStyleBackColor = true;
+            this.addRelayButton.Click += new System.EventHandler(this.addRelayMapButton_Click);
             // 
             // openWebSiteButton
             // 
@@ -590,79 +736,6 @@
             this.openWebSiteButton.UseVisualStyleBackColor = true;
             this.openWebSiteButton.Visible = false;
             this.openWebSiteButton.Click += new System.EventHandler(this.openWebSiteButton_Click);
-            // 
-            // helpPictureBox
-            // 
-            this.helpPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.helpPictureBox.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.helpPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("helpPictureBox.Image")));
-            this.helpPictureBox.Location = new System.Drawing.Point(230, 244);
-            this.helpPictureBox.Name = "helpPictureBox";
-            this.helpPictureBox.Size = new System.Drawing.Size(20, 20);
-            this.helpPictureBox.TabIndex = 5;
-            this.helpPictureBox.TabStop = false;
-            this.helpPictureBox.Click += new System.EventHandler(this.helpPictureBox_Click);
-            // 
-            // addRelayButton
-            // 
-            this.addRelayButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.addRelayButton.Enabled = false;
-            this.addRelayButton.Location = new System.Drawing.Point(258, 243);
-            this.addRelayButton.Name = "addRelayButton";
-            this.addRelayButton.Size = new System.Drawing.Size(100, 23);
-            this.addRelayButton.TabIndex = 52;
-            this.addRelayButton.Text = "Add Relay Map...";
-            this.addRelayButton.UseVisualStyleBackColor = true;
-            this.addRelayButton.Click += new System.EventHandler(this.addRelayMapButton_Click);
-            // 
-            // mapPanel
-            // 
-            this.mapPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.mapPanel.AutoScroll = true;
-            this.mapPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.mapPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.mapPanel.Controls.Add(this.noMapLabel);
-            this.mapPanel.Location = new System.Drawing.Point(15, 37);
-            this.mapPanel.Name = "mapPanel";
-            this.mapPanel.Size = new System.Drawing.Size(449, 200);
-            this.mapPanel.TabIndex = 49;
-            // 
-            // noMapLabel
-            // 
-            this.noMapLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.noMapLabel.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.noMapLabel.Location = new System.Drawing.Point(91, 76);
-            this.noMapLabel.Name = "noMapLabel";
-            this.noMapLabel.Size = new System.Drawing.Size(262, 44);
-            this.noMapLabel.TabIndex = 4;
-            this.noMapLabel.Text = "No Port Mappings\r\n\r\nClick \"Add\" to get started.";
-            this.noMapLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label6
-            // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.Location = new System.Drawing.Point(13, 12);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(461, 22);
-            this.label6.TabIndex = 51;
-            this.label6.Text = "Active port mappings";
-            // 
-            // addButton
-            // 
-            this.addButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.addButton.Enabled = false;
-            this.addButton.Location = new System.Drawing.Point(364, 243);
-            this.addButton.Name = "addButton";
-            this.addButton.Size = new System.Drawing.Size(100, 23);
-            this.addButton.TabIndex = 50;
-            this.addButton.Text = "Add Map...";
-            this.addButton.UseVisualStyleBackColor = true;
-            this.addButton.Click += new System.EventHandler(this.addButton_Click);
             // 
             // backButton5
             // 
@@ -753,6 +826,19 @@
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click_1);
             // 
+            // noSearchResultsLabel
+            // 
+            this.noSearchResultsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.noSearchResultsLabel.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.noSearchResultsLabel.Location = new System.Drawing.Point(91, 96);
+            this.noSearchResultsLabel.Name = "noSearchResultsLabel";
+            this.noSearchResultsLabel.Size = new System.Drawing.Size(283, 17);
+            this.noSearchResultsLabel.TabIndex = 5;
+            this.noSearchResultsLabel.Text = "No Search Results";
+            this.noSearchResultsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.noSearchResultsLabel.Visible = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -786,9 +872,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.tabPage5.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            this.devicesTabControl.ResumeLayout(false);
+            this.devicesTabPage.ResumeLayout(false);
+            this.devicesPanel.ResumeLayout(false);
+            this.portMapTabPage.ResumeLayout(false);
+            this.mapPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.settingsPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).EndInit();
-            this.mapPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.trayIconContextMenuStrip.ResumeLayout(false);
@@ -837,7 +928,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel mapPanel;
         private System.Windows.Forms.Label noMapLabel;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.Label stateLabel;
         private System.Windows.Forms.Timer stateClearTimer;
@@ -854,6 +944,13 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.PictureBox settingsPictureBox;
+        private System.Windows.Forms.TabControl devicesTabControl;
+        private System.Windows.Forms.TabPage devicesTabPage;
+        private System.Windows.Forms.TabPage portMapTabPage;
+        private System.Windows.Forms.Panel devicesPanel;
+        private System.Windows.Forms.Label noDevicesLabel;
+        private System.Windows.Forms.TextBox searchTextBox;
+        private System.Windows.Forms.Label noSearchResultsLabel;
     }
 }
 

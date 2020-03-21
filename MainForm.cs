@@ -19,6 +19,7 @@ using System.Net;
 using System.Reflection;
 using System.Collections;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
 using Microsoft.Win32;
 
@@ -26,17 +27,31 @@ namespace MeshCentralRouter
 {
     public partial class MainForm : Form
     {
-        private int currentPanel = 0;
-        private DateTime refreshTime = DateTime.Now;
-        private MeshCentralServer meshcentral = null;
-        private X509Certificate2 lastBadConnectCert = null;
-        private string title;
-        private string[] args;
-        private bool debug = false;
-        private bool autoLogin = false;
-        private bool ignoreCert = false;
-        private bool inaddrany = false;
-        private bool forceExit = false;
+        public int currentPanel = 0;
+        public DateTime refreshTime = DateTime.Now;
+        public MeshCentralServer meshcentral = null;
+        public X509Certificate2 lastBadConnectCert = null;
+        public string title;
+        public string[] args;
+        public bool debug = false;
+        public bool autoLogin = false;
+        public bool ignoreCert = false;
+        public bool inaddrany = false;
+        public bool forceExit = false;
+
+        public class DeviceComparer : IComparer
+        {
+            public int Compare(Object a, Object b)
+            {
+                string ax = ((DeviceUserControl)a).node.name.ToLower();
+                string bx = ((DeviceUserControl)b).node.name.ToLower();
+                return bx.CompareTo(ax);
+            }
+        }
+    
+        private const int EM_SETCUEBANNER = 0x1501;
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        private static extern Int32 SendMessage(IntPtr hWnd, int msg, int wParam, [MarshalAs(UnmanagedType.LPWStr)]string lParam);
 
         public static void saveToRegistry(string name, string value)
         {
@@ -73,6 +88,7 @@ namespace MeshCentralRouter
                 if (arg.Length > 6 && arg.Substring(0, 6).ToLower() == "-host:") { serverNameComboBox.Text = arg.Substring(6); argflags |= 1; }
                 if (arg.Length > 6 && arg.Substring(0, 6).ToLower() == "-user:") { userNameTextBox.Text = arg.Substring(6); argflags |= 2; }
                 if (arg.Length > 6 && arg.Substring(0, 6).ToLower() == "-pass:") { passwordTextBox.Text = arg.Substring(6); argflags |= 4; }
+                if (arg.Length > 8 && arg.Substring(0, 8).ToLower() == "-search:") { searchTextBox.Text = arg.Substring(8); }
             }
             autoLogin = (argflags == 7);
         }
@@ -96,6 +112,7 @@ namespace MeshCentralRouter
             //windowColor = serverNameTextBox.BackColor;
             setPanel(1);
             updatePanel1(null, null);
+            SendMessage(searchTextBox.Handle, EM_SETCUEBANNER, 0, "Search");
 
             // Start the multicast scanner
             //scanner = new MeshDiscovery();
@@ -199,12 +216,102 @@ namespace MeshCentralRouter
                 }
             }
 
+            updateDeviceList(); // Update list of devices
             addArgMappings();
             reconnectUdpMaps();
         }
 
+        private void updateDeviceList()
+        {
+            string search = searchTextBox.Text.ToLower();
+            devicesPanel.SuspendLayout();
+
+            // Untag all devices
+            foreach (Control c in devicesPanel.Controls)
+            {
+                if (c.GetType() == typeof(DeviceUserControl)) { ((DeviceUserControl)c).present = false; }
+            }
+
+            lock (meshcentral.nodes)
+            {
+                // Add any missing devices
+                ArrayList controlsToAdd = new ArrayList();
+                foreach (MeshClass mesh in meshcentral.meshes.Values)
+                {
+                    if (mesh.type == 2)
+                    {
+                        foreach (NodeClass node in meshcentral.nodes.Values)
+                        {
+                            if ((node.control == null) && (node.meshid == mesh.meshid))
+                            {
+                                // Add a new device
+                                DeviceUserControl device = new DeviceUserControl();
+                                device.mesh = mesh;
+                                device.node = node;
+                                device.parent = this;
+                                device.Dock = DockStyle.Top;
+                                device.present = true;
+                                node.control = device;
+                                device.UpdateInfo();
+                                device.Visible = (search == "") || (node.name.ToLower().IndexOf(search) >= 0);
+                                controlsToAdd.Add(device);
+                            }
+                            else
+                            {
+                                // Tag the device as present
+                                if (node.control != null)
+                                {
+                                    node.control.present = true;
+                                    node.control.UpdateInfo();
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // Add all controls at once to make it fast.
+                if (controlsToAdd.Count > 0) { devicesPanel.Controls.AddRange((DeviceUserControl[])controlsToAdd.ToArray(typeof(DeviceUserControl))); }
+            }
+
+            // Clear all untagged devices
+            foreach (Control c in devicesPanel.Controls)
+            {
+                if ((c.GetType() == typeof(DeviceUserControl)) && ((DeviceUserControl)c).present == false) {
+                    devicesPanel.Controls.Remove(c); c.Dispose();
+                }
+            }
+
+            // Filter devices
+            int visibleDevices = 0;
+            foreach (Control c in devicesPanel.Controls)
+            {
+                if (c.GetType() == typeof(DeviceUserControl)) {
+                    NodeClass n = ((DeviceUserControl)c).node;
+                    if ((search == "") || (n.name.ToLower().IndexOf(search) >= 0)) {
+                        c.Visible = true;
+                        visibleDevices++;
+                    } else {
+                        c.Visible = false;
+                    }
+                }
+            }
+
+            // Sort devices
+            ArrayList sortlist = new ArrayList();
+            foreach (Control c in devicesPanel.Controls) { if (c.GetType() == typeof(DeviceUserControl)) { sortlist.Add(c); } }
+            DeviceComparer comp = new DeviceComparer();
+            sortlist.Sort(comp);
+            devicesPanel.Controls.Clear();
+            devicesPanel.Controls.AddRange((DeviceUserControl[])sortlist.ToArray(typeof(DeviceUserControl)));
+
+            devicesPanel.ResumeLayout();
+            noDevicesLabel.Visible = (devicesPanel.Controls.Count == 0);
+            noSearchResultsLabel.Visible = ((devicesPanel.Controls.Count > 0) && (visibleDevices == 0));
+        }
+
         private void Meshcentral_onStateChanged(int state)
         {
+            if (meshcentral == null) return;
             if (this.InvokeRequired) { this.Invoke(new MeshCentralServer.onStateChangedHandler(Meshcentral_onStateChanged), state); return; }
 
             if (state == 0) {
@@ -586,6 +693,79 @@ namespace MeshCentralRouter
                     this.MinimizeBox = true;
                 }
             }
+        }
+
+        private void searchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            // Filter devices
+            int visibleDevices = 0;
+            string search = searchTextBox.Text.ToLower();
+            foreach (Control c in devicesPanel.Controls)
+            {
+                if (c.GetType() == typeof(DeviceUserControl))
+                {
+                    NodeClass n = ((DeviceUserControl)c).node;
+                    if ((search == "") || (n.name.ToLower().IndexOf(search) >= 0))
+                    {
+                        c.Visible = true;
+                        visibleDevices++;
+                    }
+                    else
+                    {
+                        c.Visible = false;
+                    }
+                }
+            }
+
+            noDevicesLabel.Visible = (devicesPanel.Controls.Count == 0);
+            noSearchResultsLabel.Visible = ((devicesPanel.Controls.Count > 0) && (visibleDevices == 0));
+        }
+
+        private void devicesTabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            searchTextBox.Visible = (devicesTabControl.SelectedIndex == 0);
+        }
+
+        private void searchTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 27) { searchTextBox.Text = ""; e.Handled = true; }
+        }
+
+        public void QuickMap(int protocol, int port, int appId, NodeClass node)
+        {
+            // See if we already have the right port mapping
+            foreach (Control c in mapPanel.Controls)
+            {
+                if (c.GetType() == typeof(MapUserControl))
+                {
+                    MapUserControl cc = (MapUserControl)c;
+                    if ((cc.protocol == protocol) && (cc.remotePort == port) && (cc.appId == appId) && (cc.node == node))
+                    {
+                        // Found a match
+                        cc.appButton_Click(this, null);
+                        return;
+                    }
+                }
+            }
+
+            // Add a new port map
+            MapUserControl map = new MapUserControl();
+            map.xdebug = debug;
+            map.inaddrany = false; // Loopback only
+            map.protocol = protocol; // 1 = TCP, 2 = UDP
+            map.localPort = 0; // Any
+            map.remotePort = port; // HTTP
+            map.appId = appId; // 0 = Custom, 1 = HTTP, 2 = HTTPS, 3 = RDP, 4 = PuTTY, 5 = WinSCP
+            map.node = node;
+            map.host = serverNameComboBox.Text;
+            map.authCookie = meshcentral.authCookie;
+            map.certhash = meshcentral.wshash;
+            map.parent = this;
+            map.Dock = DockStyle.Top;
+            map.Start();
+            mapPanel.Controls.Add(map);
+            noMapLabel.Visible = false;
+            map.appButton_Click(this, null);
         }
 
         /*
