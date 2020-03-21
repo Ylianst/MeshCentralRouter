@@ -334,13 +334,18 @@ namespace MeshCentralRouter
 
                 // Clean up all mappings
                 foreach (Control c in mapPanel.Controls) {
-                    if (c.GetType() == typeof(MapUserControl)) {
-                        ((MapUserControl)c).Dispose();
-                        ((MapUserControl)c).Dispose();
-                        mapPanel.Controls.Remove(c);
-                    }
+                    if (c.GetType() == typeof(MapUserControl)) { ((MapUserControl)c).Dispose(); }
                 }
+                mapPanel.Controls.Clear();
                 noMapLabel.Visible = true;
+
+                // Clean up all devices
+                foreach (Control c in devicesPanel.Controls) {
+                    if (c.GetType() == typeof(DeviceUserControl)) { ((DeviceUserControl)c).Dispose(); }
+                }
+                devicesPanel.Controls.Clear();
+                noSearchResultsLabel.Visible = false;
+                noDevicesLabel.Visible = true;
 
                 // Clean up the server
                 cookieRefreshTimer.Enabled = false;
