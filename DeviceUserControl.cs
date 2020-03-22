@@ -89,5 +89,19 @@ namespace MeshCentralRouter
                 parent.meshcentral.setRdpPort(node, form.rdpPort);
             }
         }
+
+        private void toolStripMenuItem1_Click(object sender, System.EventArgs e)
+        {
+            int port = 0, appid = 0;
+            if (altPortContextMenuStrip.SourceControl == httpButton) { appid = 1; port = 80; } // HTTP
+            if (altPortContextMenuStrip.SourceControl == httpsButton) { appid = 2; port = 443; } // HTTPS
+            if (altPortContextMenuStrip.SourceControl == scpButton) { appid = 5; port = 22; } // SCP
+            if (altPortContextMenuStrip.SourceControl == sshButton) { appid = 4; port = 22; } // SSH
+            if (appid == 0) return;
+
+            altPortForm form = new altPortForm();
+            form.altPort = port;
+            if ((form.ShowDialog(this) == DialogResult.OK)) { parent.QuickMap(1, form.altPort, appid, node); }
+        }
     }
 }

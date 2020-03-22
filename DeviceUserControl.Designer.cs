@@ -34,16 +34,19 @@
             this.deviceNameLabel = new System.Windows.Forms.Label();
             this.deviceStatusLabel = new System.Windows.Forms.Label();
             this.rdpButton = new System.Windows.Forms.Button();
+            this.rdpContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.setRDPPortToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deviceImageList = new System.Windows.Forms.ImageList(this.components);
             this.disabledDeviceImageList = new System.Windows.Forms.ImageList(this.components);
             this.httpsButton = new System.Windows.Forms.Button();
+            this.altPortContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.httpButton = new System.Windows.Forms.Button();
             this.scpButton = new System.Windows.Forms.Button();
             this.sshButton = new System.Windows.Forms.Button();
-            this.rdpContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.setRDPPortToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.devicePictureBox)).BeginInit();
             this.rdpContextMenuStrip.SuspendLayout();
+            this.altPortContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // devicePictureBox
@@ -88,6 +91,20 @@
             this.rdpButton.UseVisualStyleBackColor = true;
             this.rdpButton.Click += new System.EventHandler(this.rdpButton_Click);
             // 
+            // rdpContextMenuStrip
+            // 
+            this.rdpContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.setRDPPortToolStripMenuItem});
+            this.rdpContextMenuStrip.Name = "rdpContextMenuStrip";
+            this.rdpContextMenuStrip.Size = new System.Drawing.Size(150, 26);
+            // 
+            // setRDPPortToolStripMenuItem
+            // 
+            this.setRDPPortToolStripMenuItem.Name = "setRDPPortToolStripMenuItem";
+            this.setRDPPortToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.setRDPPortToolStripMenuItem.Text = "Set RDP port...";
+            this.setRDPPortToolStripMenuItem.Click += new System.EventHandler(this.setRDPPortToolStripMenuItem_Click);
+            // 
             // deviceImageList
             // 
             this.deviceImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("deviceImageList.ImageStream")));
@@ -115,6 +132,7 @@
             // httpsButton
             // 
             this.httpsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.httpsButton.ContextMenuStrip = this.altPortContextMenuStrip;
             this.httpsButton.Location = new System.Drawing.Point(311, 6);
             this.httpsButton.Name = "httpsButton";
             this.httpsButton.Size = new System.Drawing.Size(58, 23);
@@ -123,9 +141,24 @@
             this.httpsButton.UseVisualStyleBackColor = true;
             this.httpsButton.Click += new System.EventHandler(this.httpsButton_Click);
             // 
+            // altPortContextMenuStrip
+            // 
+            this.altPortContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1});
+            this.altPortContextMenuStrip.Name = "rdpContextMenuStrip";
+            this.altPortContextMenuStrip.Size = new System.Drawing.Size(179, 48);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(178, 22);
+            this.toolStripMenuItem1.Text = "Use Alternate Port...";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            // 
             // httpButton
             // 
             this.httpButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.httpButton.ContextMenuStrip = this.altPortContextMenuStrip;
             this.httpButton.Location = new System.Drawing.Point(311, 30);
             this.httpButton.Name = "httpButton";
             this.httpButton.Size = new System.Drawing.Size(58, 23);
@@ -137,6 +170,7 @@
             // scpButton
             // 
             this.scpButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.scpButton.ContextMenuStrip = this.altPortContextMenuStrip;
             this.scpButton.Location = new System.Drawing.Point(375, 30);
             this.scpButton.Name = "scpButton";
             this.scpButton.Size = new System.Drawing.Size(58, 23);
@@ -148,6 +182,7 @@
             // sshButton
             // 
             this.sshButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.sshButton.ContextMenuStrip = this.altPortContextMenuStrip;
             this.sshButton.Location = new System.Drawing.Point(375, 6);
             this.sshButton.Name = "sshButton";
             this.sshButton.Size = new System.Drawing.Size(58, 23);
@@ -155,20 +190,6 @@
             this.sshButton.Text = "SSH";
             this.sshButton.UseVisualStyleBackColor = true;
             this.sshButton.Click += new System.EventHandler(this.sshButton_Click);
-            // 
-            // rdpContextMenuStrip
-            // 
-            this.rdpContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.setRDPPortToolStripMenuItem});
-            this.rdpContextMenuStrip.Name = "rdpContextMenuStrip";
-            this.rdpContextMenuStrip.Size = new System.Drawing.Size(153, 48);
-            // 
-            // setRDPPortToolStripMenuItem
-            // 
-            this.setRDPPortToolStripMenuItem.Name = "setRDPPortToolStripMenuItem";
-            this.setRDPPortToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.setRDPPortToolStripMenuItem.Text = "Set RDP port...";
-            this.setRDPPortToolStripMenuItem.Click += new System.EventHandler(this.setRDPPortToolStripMenuItem_Click);
             // 
             // DeviceUserControl
             // 
@@ -188,6 +209,7 @@
             this.Size = new System.Drawing.Size(441, 60);
             ((System.ComponentModel.ISupportInitialize)(this.devicePictureBox)).EndInit();
             this.rdpContextMenuStrip.ResumeLayout(false);
+            this.altPortContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -206,5 +228,7 @@
         private System.Windows.Forms.Button sshButton;
         private System.Windows.Forms.ContextMenuStrip rdpContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem setRDPPortToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip altPortContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
     }
 }

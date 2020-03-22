@@ -133,6 +133,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="altPortForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="altPortForm.Designer.cs">
+      <DependentUpon>altPortForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="rdpPortForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -178,6 +184,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="altPortForm.resx">
+      <DependentUpon>altPortForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="rdpPortForm.resx">
       <DependentUpon>rdpPortForm.cs</DependentUpon>
