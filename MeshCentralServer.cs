@@ -157,6 +157,15 @@ namespace MeshCentralRouter
             }
         }
 
+        public void setRdpPort(NodeClass node, int port)
+        {
+            if (wc != null)
+            {
+                if (debug) { File.AppendAllText("debug.log", "SetRdpPort\r\n"); }
+                wc.WriteStringWebSocket("{\"action\":\"changedevice\",\"nodeid\":\"" + node.nodeid + "\",\"rdpport\":" + port + "}");
+            }
+        }
+
         public void processServerData(string data)
         {
             if (debug) { File.AppendAllText("debug.log", "ServerData-" + data + "\r\n"); }
@@ -246,6 +255,7 @@ namespace MeshCentralRouter
                                             n.name = (string)node["name"];
                                             if (node.ContainsKey("conn")) { n.conn = (int)node["conn"]; }
                                             n.icon = (int)node["icon"];
+                                            if (node.ContainsKey("rdpport")) { n.rdpport = (int)node["rdpport"]; }
                                             nodes[n.nodeid] = n;
                                         }
                                         if (onNodesChanged != null) onNodesChanged();

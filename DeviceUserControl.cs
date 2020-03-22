@@ -77,5 +77,17 @@ namespace MeshCentralRouter
             if (node.rdpport != 0) { rdpport = node.rdpport; }
             parent.QuickMap(1, rdpport, 3, node); // RDP
         }
+
+        private void setRDPPortToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            int rdpport = 3389;
+            if (node.rdpport != 0) { rdpport = node.rdpport; }
+            rdpPortForm form = new rdpPortForm();
+            form.rdpPort = node.rdpport;
+            if ((form.ShowDialog(this) == DialogResult.OK) && (rdpport != form.rdpPort))
+            {
+                parent.meshcentral.setRdpPort(node, form.rdpPort);
+            }
+        }
     }
 }
