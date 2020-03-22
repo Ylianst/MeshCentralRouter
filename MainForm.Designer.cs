@@ -72,6 +72,7 @@
             this.devicesTabControl = new System.Windows.Forms.TabControl();
             this.devicesTabPage = new System.Windows.Forms.TabPage();
             this.devicesPanel = new System.Windows.Forms.Panel();
+            this.noSearchResultsLabel = new System.Windows.Forms.Label();
             this.noDevicesLabel = new System.Windows.Forms.Label();
             this.portMapTabPage = new System.Windows.Forms.TabPage();
             this.mapPanel = new System.Windows.Forms.Panel();
@@ -92,7 +93,8 @@
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.noSearchResultsLabel = new System.Windows.Forms.Label();
+            this.emailTokenButton = new System.Windows.Forms.Button();
+            this.tokenEmailSentLabel = new System.Windows.Forms.Label();
             this.panel5.SuspendLayout();
             this.mainPanel.SuspendLayout();
             this.mainTabControl.SuspendLayout();
@@ -352,6 +354,8 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.tokenEmailSentLabel);
+            this.panel2.Controls.Add(this.emailTokenButton);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.tokenTextBox);
             this.panel2.Controls.Add(this.pictureBox6);
@@ -382,7 +386,9 @@
             this.tokenTextBox.Name = "tokenTextBox";
             this.tokenTextBox.Size = new System.Drawing.Size(213, 20);
             this.tokenTextBox.TabIndex = 18;
+            this.tokenTextBox.TextChanged += new System.EventHandler(this.tokenTextBox_TextChanged);
             this.tokenTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tokenTextBox_KeyPress);
+            this.tokenTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tokenTextBox_KeyUp);
             // 
             // pictureBox6
             // 
@@ -624,6 +630,19 @@
             this.devicesPanel.Size = new System.Drawing.Size(470, 244);
             this.devicesPanel.TabIndex = 50;
             // 
+            // noSearchResultsLabel
+            // 
+            this.noSearchResultsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.noSearchResultsLabel.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.noSearchResultsLabel.Location = new System.Drawing.Point(91, 96);
+            this.noSearchResultsLabel.Name = "noSearchResultsLabel";
+            this.noSearchResultsLabel.Size = new System.Drawing.Size(283, 17);
+            this.noSearchResultsLabel.TabIndex = 5;
+            this.noSearchResultsLabel.Text = "No Search Results";
+            this.noSearchResultsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.noSearchResultsLabel.Visible = false;
+            // 
             // noDevicesLabel
             // 
             this.noDevicesLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -826,18 +845,26 @@
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click_1);
             // 
-            // noSearchResultsLabel
+            // emailTokenButton
             // 
-            this.noSearchResultsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.noSearchResultsLabel.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.noSearchResultsLabel.Location = new System.Drawing.Point(91, 96);
-            this.noSearchResultsLabel.Name = "noSearchResultsLabel";
-            this.noSearchResultsLabel.Size = new System.Drawing.Size(283, 17);
-            this.noSearchResultsLabel.TabIndex = 5;
-            this.noSearchResultsLabel.Text = "No Search Results";
-            this.noSearchResultsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.noSearchResultsLabel.Visible = false;
+            this.emailTokenButton.Location = new System.Drawing.Point(241, 177);
+            this.emailTokenButton.Name = "emailTokenButton";
+            this.emailTokenButton.Size = new System.Drawing.Size(75, 23);
+            this.emailTokenButton.TabIndex = 20;
+            this.emailTokenButton.Text = "Email";
+            this.emailTokenButton.UseVisualStyleBackColor = true;
+            this.emailTokenButton.Visible = false;
+            this.emailTokenButton.Click += new System.EventHandler(this.emailTokenButton_Click);
+            // 
+            // tokenEmailSentLabel
+            // 
+            this.tokenEmailSentLabel.AutoSize = true;
+            this.tokenEmailSentLabel.Location = new System.Drawing.Point(238, 182);
+            this.tokenEmailSentLabel.Name = "tokenEmailSentLabel";
+            this.tokenEmailSentLabel.Size = new System.Drawing.Size(55, 13);
+            this.tokenEmailSentLabel.TabIndex = 21;
+            this.tokenEmailSentLabel.Text = "Email sent";
+            this.tokenEmailSentLabel.Visible = false;
             // 
             // MainForm
             // 
@@ -951,6 +978,8 @@
         private System.Windows.Forms.Label noDevicesLabel;
         private System.Windows.Forms.TextBox searchTextBox;
         private System.Windows.Forms.Label noSearchResultsLabel;
+        private System.Windows.Forms.Button emailTokenButton;
+        private System.Windows.Forms.Label tokenEmailSentLabel;
     }
 }
 

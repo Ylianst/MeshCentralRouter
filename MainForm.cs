@@ -38,6 +38,7 @@ namespace MeshCentralRouter
         public bool ignoreCert = false;
         public bool inaddrany = false;
         public bool forceExit = false;
+        public bool sendEmailToken = false;
 
         public class DeviceComparer : IComparer
         {
@@ -102,6 +103,9 @@ namespace MeshCentralRouter
             panel3.Visible = (newPanel == 3);
             panel4.Visible = (newPanel == 4);
             currentPanel = newPanel;
+
+            // Setup stuff
+            nextButton2.Enabled = (tokenTextBox.Text.Replace(" ", "") != "");
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -315,7 +319,13 @@ namespace MeshCentralRouter
             if (this.InvokeRequired) { this.Invoke(new MeshCentralServer.onStateChangedHandler(Meshcentral_onStateChanged), state); return; }
 
             if (state == 0) {
-                if (meshcentral.disconnectMsg == "tokenrequired") { tokenTextBox.Text = ""; setPanel(2); tokenTextBox.Focus(); } else { setPanel(1); }
+                if (meshcentral.disconnectMsg == "tokenrequired") {
+                    emailTokenButton.Visible = (meshcentral.disconnectEmail2FA == true) && (meshcentral.disconnectEmail2FASent == false);
+                    tokenEmailSentLabel.Visible = (meshcentral.disconnectEmail2FASent == true);
+                    tokenTextBox.Text = "";
+                    setPanel(2);
+                    tokenTextBox.Focus();
+                } else { setPanel(1); }
                 if ((meshcentral.disconnectMsg != null) && meshcentral.disconnectMsg.StartsWith("noauth")) { stateLabel.Text = "Invalid username or password"; stateLabel.Visible = true; stateClearTimer.Enabled = true; serverNameComboBox.Focus(); }
                 else if (meshcentral.disconnectMsg == "cert") {
                     lastBadConnectCert = meshcentral.disconnectCert;
@@ -562,6 +572,8 @@ namespace MeshCentralRouter
 
         private void nextButton2_Click(object sender, EventArgs e)
         {
+            if ((tokenTextBox.Text.Replace(" ", "") == "") && (sendEmailToken == false)) return;
+
             // Attempt to login with token
             addButton.Enabled = false;
             addRelayButton.Enabled = false;
@@ -573,7 +585,15 @@ namespace MeshCentralRouter
             meshcentral.onStateChanged += Meshcentral_onStateChanged;
             meshcentral.onNodesChanged += Meshcentral_onNodesChanged;
             meshcentral.onLoginTokenChanged += Meshcentral_onLoginTokenChanged;
-            meshcentral.connect(serverurl, userNameTextBox.Text, passwordTextBox.Text, tokenTextBox.Text.Replace(" ", ""));
+            if (sendEmailToken == true)
+            {
+                sendEmailToken = false;
+                meshcentral.connect(serverurl, userNameTextBox.Text, passwordTextBox.Text, "**email**");
+            }
+            else
+            {
+                meshcentral.connect(serverurl, userNameTextBox.Text, passwordTextBox.Text, tokenTextBox.Text.Replace(" ", ""));
+            }
         }
 
         private void tokenTextBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -771,6 +791,25 @@ namespace MeshCentralRouter
             mapPanel.Controls.Add(map);
             noMapLabel.Visible = false;
             map.appButton_Click(this, null);
+        }
+
+        private void emailTokenButton_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show(this, "Send token to registered email address?", "Two-factor Authentication", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            {
+                sendEmailToken = true;
+                nextButton2_Click(this, null);
+            }
+        }
+
+        private void tokenTextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            nextButton2.Enabled = (tokenTextBox.Text.Replace(" ","") != "");
+        }
+
+        private void tokenTextBox_TextChanged(object sender, EventArgs e)
+        {
+            nextButton2.Enabled = (tokenTextBox.Text.Replace(" ", "") != "");
         }
 
         /*

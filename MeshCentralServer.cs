@@ -46,6 +46,8 @@ namespace MeshCentralRouter
         public Dictionary<string, MeshClass> meshes = null;
         public string disconnectCause = null;
         public string disconnectMsg = null;
+        public bool disconnectEmail2FA = false;
+        public bool disconnectEmail2FASent = false;
         public X509Certificate2 disconnectCert;
         public string authCookie = null;
         public string loginCookie = null;
@@ -182,6 +184,8 @@ namespace MeshCentralRouter
                     {
                         disconnectCause = jsonAction["cause"].ToString();
                         disconnectMsg = jsonAction["msg"].ToString();
+                        if (jsonAction.ContainsKey("email2fa")) { disconnectEmail2FA = (bool)jsonAction["email2fa"]; } else { disconnectEmail2FA = false; }
+                        if (jsonAction.ContainsKey("email2fasent")) { disconnectEmail2FASent = (bool)jsonAction["email2fasent"]; } else { disconnectEmail2FASent = false; }
                         break;
                     }
                 case "serverinfo":
