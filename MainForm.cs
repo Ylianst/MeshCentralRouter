@@ -40,6 +40,9 @@ namespace MeshCentralRouter
         public bool forceExit = false;
         public bool sendEmailToken = false;
 
+        public void setRegValue(string name, string value) { Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\Open Source\MeshCentral Router", name, value); }
+        public string getRegValue(string name, string value) { return Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\Open Source\MeshCentral Router", name, value).ToString(); }
+
         public class DeviceComparer : IComparer
         {
             public int Compare(Object a, Object b)
@@ -49,7 +52,16 @@ namespace MeshCentralRouter
                 return bx.CompareTo(ax);
             }
         }
-    
+        public class DeviceGroupComparer : IComparer
+        {
+            public int Compare(Object a, Object b)
+            {
+                string ax = ((DeviceUserControl)a).mesh.name.ToLower() + ", " + ((DeviceUserControl)a).node.name.ToLower();
+                string bx = ((DeviceUserControl)a).mesh.name.ToLower() + ", " + ((DeviceUserControl)b).node.name.ToLower();
+                return bx.CompareTo(ax);
+            }
+        }
+
         private const int EM_SETCUEBANNER = 0x1501;
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         private static extern Int32 SendMessage(IntPtr hWnd, int msg, int wParam, [MarshalAs(UnmanagedType.LPWStr)]string lParam);
@@ -110,6 +122,17 @@ namespace MeshCentralRouter
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            // Load registry settings
+            showGroupNamesToolStripMenuItem.Checked = (getRegValue("Show Group Names", "1") == "1");
+            showOfflineDevicesToolStripMenuItem.Checked = (getRegValue("Show Offline Devices", "1") == "1");
+            if (getRegValue("Device Sort", "Name") == "Name") {
+                sortByNameToolStripMenuItem.Checked = true;
+                sortByGroupToolStripMenuItem.Checked = false;
+            } else {
+                sortByNameToolStripMenuItem.Checked = false;
+                sortByGroupToolStripMenuItem.Checked = true;
+            }
+
             //Text += " - v" + Application.ProductVersion;
             //installPathTextBox.Text = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), "Open Source", "MeshCentral");
             //serverModeComboBox.SelectedIndex = 0;
@@ -278,8 +301,7 @@ namespace MeshCentralRouter
             }
 
             // Clear all untagged devices
-            foreach (Control c in devicesPanel.Controls)
-            {
+            foreach (Control c in devicesPanel.Controls) {
                 if ((c.GetType() == typeof(DeviceUserControl)) && ((DeviceUserControl)c).present == false) {
                     devicesPanel.Controls.Remove(c); c.Dispose();
                 }
@@ -287,12 +309,12 @@ namespace MeshCentralRouter
 
             // Filter devices
             int visibleDevices = 0;
-            foreach (Control c in devicesPanel.Controls)
-            {
+            foreach (Control c in devicesPanel.Controls) {
                 if (c.GetType() == typeof(DeviceUserControl)) {
                     NodeClass n = ((DeviceUserControl)c).node;
-                    if ((search == "") || (n.name.ToLower().IndexOf(search) >= 0)) {
-                        c.Visible = true;
+                    bool connVisible = ((showOfflineDevicesToolStripMenuItem.Checked) || ((n.conn & 1) != 0));
+                    if ((search == "") || (n.name.ToLower().IndexOf(search) >= 0) || (showGroupNamesToolStripMenuItem.Checked && (((DeviceUserControl)c).mesh.name.ToLower().IndexOf(search) >= 0))) {
+                        c.Visible = connVisible;
                         visibleDevices++;
                     } else {
                         c.Visible = false;
@@ -303,8 +325,13 @@ namespace MeshCentralRouter
             // Sort devices
             ArrayList sortlist = new ArrayList();
             foreach (Control c in devicesPanel.Controls) { if (c.GetType() == typeof(DeviceUserControl)) { sortlist.Add(c); } }
-            DeviceComparer comp = new DeviceComparer();
-            sortlist.Sort(comp);
+            if (sortByNameToolStripMenuItem.Checked) {
+                DeviceComparer comp = new DeviceComparer();
+                sortlist.Sort(comp);
+            } else {
+                DeviceGroupComparer comp = new DeviceGroupComparer();
+                sortlist.Sort(comp);
+            }
             devicesPanel.Controls.Clear();
             devicesPanel.Controls.AddRange((DeviceUserControl[])sortlist.ToArray(typeof(DeviceUserControl)));
 
@@ -312,6 +339,8 @@ namespace MeshCentralRouter
             noDevicesLabel.Visible = (devicesPanel.Controls.Count == 0);
             noSearchResultsLabel.Visible = ((devicesPanel.Controls.Count > 0) && (visibleDevices == 0));
         }
+
+        public bool getShowGroupNames() { return showGroupNamesToolStripMenuItem.Checked; }
 
         private void Meshcentral_onStateChanged(int state)
         {
@@ -730,13 +759,13 @@ namespace MeshCentralRouter
                 if (c.GetType() == typeof(DeviceUserControl))
                 {
                     NodeClass n = ((DeviceUserControl)c).node;
-                    if ((search == "") || (n.name.ToLower().IndexOf(search) >= 0))
+                    bool connVisible = ((showOfflineDevicesToolStripMenuItem.Checked) || ((n.conn & 1) != 0));
+                    if ((search == "") || (n.name.ToLower().IndexOf(search) >= 0) || (showGroupNamesToolStripMenuItem.Checked && (((DeviceUserControl)c).mesh.name.ToLower().IndexOf(search) >= 0)))
                     {
-                        c.Visible = true;
+                        //if ((search == "") || (n.name.ToLower().IndexOf(search) >= 0)) {
+                        c.Visible = connVisible;
                         visibleDevices++;
-                    }
-                    else
-                    {
+                    } else {
                         c.Visible = false;
                     }
                 }
@@ -748,7 +777,7 @@ namespace MeshCentralRouter
 
         private void devicesTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            searchTextBox.Visible = (devicesTabControl.SelectedIndex == 0);
+            menuLabel.Visible = searchTextBox.Visible = (devicesTabControl.SelectedIndex == 0);
         }
 
         private void searchTextBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -810,6 +839,41 @@ namespace MeshCentralRouter
         private void tokenTextBox_TextChanged(object sender, EventArgs e)
         {
             nextButton2.Enabled = (tokenTextBox.Text.Replace(" ", "") != "");
+        }
+
+        private void menuLabel_Click(object sender, EventArgs e)
+        {
+            mainContextMenuStrip.Show(menuLabel, menuLabel.PointToClient(Cursor.Position));
+        }
+
+        private void showGroupNamesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showGroupNamesToolStripMenuItem.Checked = !showGroupNamesToolStripMenuItem.Checked;
+            setRegValue("Show Group Names", showGroupNamesToolStripMenuItem.Checked ? "1" : "0");
+            updateDeviceList();
+        }
+
+        private void hideOfflineDevicesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showOfflineDevicesToolStripMenuItem.Checked = !showOfflineDevicesToolStripMenuItem.Checked;
+            setRegValue("Show Offline Devices", showOfflineDevicesToolStripMenuItem.Checked?"1":"0");
+            updateDeviceList();
+        }
+
+        private void sortByNameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            sortByNameToolStripMenuItem.Checked = true;
+            sortByGroupToolStripMenuItem.Checked = false;
+            setRegValue("Device Sort", "Name");
+            updateDeviceList();
+        }
+
+        private void sortByGroupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            sortByNameToolStripMenuItem.Checked = false;
+            sortByGroupToolStripMenuItem.Checked = true;
+            setRegValue("Device Sort", "Group");
+            updateDeviceList();
         }
 
         /*

@@ -8,6 +8,13 @@ namespace MeshCentralRouter
         public NodeClass node;
         public MainForm parent;
         public bool present;
+        private bool xShowDeviceGroupName = true;
+
+        public bool showDeviceGroupName
+        {
+            get { return xShowDeviceGroupName; }
+            set { xShowDeviceGroupName = value; }
+        }
 
         public DeviceUserControl()
         {
@@ -16,7 +23,7 @@ namespace MeshCentralRouter
 
         public void UpdateInfo()
         {
-            deviceNameLabel.Text = node.name;
+            if (parent.getShowGroupNames()) { deviceNameLabel.Text = mesh.name + ", " + node.name; } else { deviceNameLabel.Text = node.name; }
             if (node.conn == 0) {
                 devicePictureBox.Image = disabledDeviceImageList.Images[node.icon - 1];
             } else {
@@ -25,9 +32,10 @@ namespace MeshCentralRouter
 
             string status = "";
             if ((node.conn & 1) != 0) { if (status.Length > 0) { status += ", "; }  status += "Agent"; }
-            if ((node.conn & 2) != 0) { if (status.Length > 0) { status += ", "; } status += "AMT"; }
-            if ((node.conn & 4) != 0) { if (status.Length > 0) { status += ", "; } status += "CIRA"; }
-            if ((node.conn & 8) != 0) { if (status.Length > 0) { status += ", "; } status += "MQTT"; }
+            if ((node.conn & 2) != 0) { if (status.Length > 0) { status += ", "; } status += "CIRA"; }
+            if ((node.conn & 4) != 0) { if (status.Length > 0) { status += ", "; } status += "AMT"; }
+            if ((node.conn & 8) != 0) { if (status.Length > 0) { status += ", "; } status += "Relay"; }
+            if ((node.conn & 16) != 0) { if (status.Length > 0) { status += ", "; } status += "MQTT"; }
             if (status == "") { status = "Offline"; }
             deviceStatusLabel.Text = status;
 

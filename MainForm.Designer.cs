@@ -50,6 +50,8 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.tokenEmailSentLabel = new System.Windows.Forms.Label();
+            this.emailTokenButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.tokenTextBox = new System.Windows.Forms.TextBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
@@ -93,8 +95,13 @@
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.emailTokenButton = new System.Windows.Forms.Button();
-            this.tokenEmailSentLabel = new System.Windows.Forms.Label();
+            this.menuLabel = new System.Windows.Forms.Label();
+            this.mainContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.showGroupNamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showOfflineDevicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.sortByNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sortByGroupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel5.SuspendLayout();
             this.mainPanel.SuspendLayout();
             this.mainTabControl.SuspendLayout();
@@ -121,6 +128,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.trayIconContextMenuStrip.SuspendLayout();
+            this.mainContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel5
@@ -369,6 +377,27 @@
             this.panel2.Size = new System.Drawing.Size(478, 316);
             this.panel2.TabIndex = 7;
             // 
+            // tokenEmailSentLabel
+            // 
+            this.tokenEmailSentLabel.AutoSize = true;
+            this.tokenEmailSentLabel.Location = new System.Drawing.Point(238, 182);
+            this.tokenEmailSentLabel.Name = "tokenEmailSentLabel";
+            this.tokenEmailSentLabel.Size = new System.Drawing.Size(55, 13);
+            this.tokenEmailSentLabel.TabIndex = 21;
+            this.tokenEmailSentLabel.Text = "Email sent";
+            this.tokenEmailSentLabel.Visible = false;
+            // 
+            // emailTokenButton
+            // 
+            this.emailTokenButton.Location = new System.Drawing.Point(241, 177);
+            this.emailTokenButton.Name = "emailTokenButton";
+            this.emailTokenButton.Size = new System.Drawing.Size(75, 23);
+            this.emailTokenButton.TabIndex = 20;
+            this.emailTokenButton.Text = "Email";
+            this.emailTokenButton.UseVisualStyleBackColor = true;
+            this.emailTokenButton.Visible = false;
+            this.emailTokenButton.Click += new System.EventHandler(this.emailTokenButton_Click);
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -567,6 +596,7 @@
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.menuLabel);
             this.panel4.Controls.Add(this.searchTextBox);
             this.panel4.Controls.Add(this.devicesTabControl);
             this.panel4.Controls.Add(this.openWebSiteButton);
@@ -582,7 +612,7 @@
             // searchTextBox
             // 
             this.searchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.searchTextBox.Location = new System.Drawing.Point(330, 5);
+            this.searchTextBox.Location = new System.Drawing.Point(306, 5);
             this.searchTextBox.Name = "searchTextBox";
             this.searchTextBox.Size = new System.Drawing.Size(146, 20);
             this.searchTextBox.TabIndex = 9;
@@ -845,26 +875,67 @@
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click_1);
             // 
-            // emailTokenButton
+            // menuLabel
             // 
-            this.emailTokenButton.Location = new System.Drawing.Point(241, 177);
-            this.emailTokenButton.Name = "emailTokenButton";
-            this.emailTokenButton.Size = new System.Drawing.Size(75, 23);
-            this.emailTokenButton.TabIndex = 20;
-            this.emailTokenButton.Text = "Email";
-            this.emailTokenButton.UseVisualStyleBackColor = true;
-            this.emailTokenButton.Visible = false;
-            this.emailTokenButton.Click += new System.EventHandler(this.emailTokenButton_Click);
+            this.menuLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.menuLabel.AutoSize = true;
+            this.menuLabel.ContextMenuStrip = this.mainContextMenuStrip;
+            this.menuLabel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.menuLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menuLabel.Location = new System.Drawing.Point(454, 2);
+            this.menuLabel.Name = "menuLabel";
+            this.menuLabel.Size = new System.Drawing.Size(25, 25);
+            this.menuLabel.TabIndex = 6;
+            this.menuLabel.Text = "≡";
+            this.menuLabel.Click += new System.EventHandler(this.menuLabel_Click);
             // 
-            // tokenEmailSentLabel
+            // mainContextMenuStrip
             // 
-            this.tokenEmailSentLabel.AutoSize = true;
-            this.tokenEmailSentLabel.Location = new System.Drawing.Point(238, 182);
-            this.tokenEmailSentLabel.Name = "tokenEmailSentLabel";
-            this.tokenEmailSentLabel.Size = new System.Drawing.Size(55, 13);
-            this.tokenEmailSentLabel.TabIndex = 21;
-            this.tokenEmailSentLabel.Text = "Email sent";
-            this.tokenEmailSentLabel.Visible = false;
+            this.mainContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showGroupNamesToolStripMenuItem,
+            this.showOfflineDevicesToolStripMenuItem,
+            this.toolStripMenuItem2,
+            this.sortByNameToolStripMenuItem,
+            this.sortByGroupToolStripMenuItem});
+            this.mainContextMenuStrip.Name = "mainContextMenuStrip";
+            this.mainContextMenuStrip.Size = new System.Drawing.Size(186, 120);
+            // 
+            // showGroupNamesToolStripMenuItem
+            // 
+            this.showGroupNamesToolStripMenuItem.Checked = true;
+            this.showGroupNamesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showGroupNamesToolStripMenuItem.Name = "showGroupNamesToolStripMenuItem";
+            this.showGroupNamesToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.showGroupNamesToolStripMenuItem.Text = "Show &Group Names";
+            this.showGroupNamesToolStripMenuItem.Click += new System.EventHandler(this.showGroupNamesToolStripMenuItem_Click);
+            // 
+            // showOfflineDevicesToolStripMenuItem
+            // 
+            this.showOfflineDevicesToolStripMenuItem.Name = "showOfflineDevicesToolStripMenuItem";
+            this.showOfflineDevicesToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.showOfflineDevicesToolStripMenuItem.Text = "Show &Offline Devices";
+            this.showOfflineDevicesToolStripMenuItem.Click += new System.EventHandler(this.hideOfflineDevicesToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(182, 6);
+            // 
+            // sortByNameToolStripMenuItem
+            // 
+            this.sortByNameToolStripMenuItem.Checked = true;
+            this.sortByNameToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.sortByNameToolStripMenuItem.Name = "sortByNameToolStripMenuItem";
+            this.sortByNameToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.sortByNameToolStripMenuItem.Text = "Sort by &Name";
+            this.sortByNameToolStripMenuItem.Click += new System.EventHandler(this.sortByNameToolStripMenuItem_Click);
+            // 
+            // sortByGroupToolStripMenuItem
+            // 
+            this.sortByGroupToolStripMenuItem.Name = "sortByGroupToolStripMenuItem";
+            this.sortByGroupToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.sortByGroupToolStripMenuItem.Text = "Sort by G&roup";
+            this.sortByGroupToolStripMenuItem.Click += new System.EventHandler(this.sortByGroupToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -910,6 +981,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.trayIconContextMenuStrip.ResumeLayout(false);
+            this.mainContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -980,6 +1052,13 @@
         private System.Windows.Forms.Label noSearchResultsLabel;
         private System.Windows.Forms.Button emailTokenButton;
         private System.Windows.Forms.Label tokenEmailSentLabel;
+        private System.Windows.Forms.Label menuLabel;
+        private System.Windows.Forms.ContextMenuStrip mainContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem showGroupNamesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem showOfflineDevicesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem sortByNameToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sortByGroupToolStripMenuItem;
     }
 }
 
