@@ -40,8 +40,12 @@ namespace MeshCentralRouter
         public bool forceExit = false;
         public bool sendEmailToken = false;
 
-        public void setRegValue(string name, string value) { Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\Open Source\MeshCentral Router", name, value); }
-        public string getRegValue(string name, string value) { return Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\Open Source\MeshCentral Router", name, value).ToString(); }
+        public void setRegValue(string name, string value) {
+            try { Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\Open Source\MeshCentral Router", name, value); } catch (Exception) { }
+        }
+        public string getRegValue(string name, string value) {
+            try { return Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\Open Source\MeshCentral Router", name, value).ToString(); } catch (Exception) { return value; }
+        }
 
         public class DeviceComparer : IComparer
         {
@@ -259,6 +263,7 @@ namespace MeshCentralRouter
                 if (c.GetType() == typeof(DeviceUserControl)) { ((DeviceUserControl)c).present = false; }
             }
 
+            /*
             lock (meshcentral.nodes)
             {
                 // Add any missing devices
@@ -299,13 +304,49 @@ namespace MeshCentralRouter
                 // Add all controls at once to make it fast.
                 if (controlsToAdd.Count > 0) { devicesPanel.Controls.AddRange((DeviceUserControl[])controlsToAdd.ToArray(typeof(DeviceUserControl))); }
             }
+            */
 
-            // Clear all untagged devices
-            foreach (Control c in devicesPanel.Controls) {
-                if ((c.GetType() == typeof(DeviceUserControl)) && ((DeviceUserControl)c).present == false) {
-                    devicesPanel.Controls.Remove(c); c.Dispose();
+            ArrayList controlsToAdd = new ArrayList();
+            foreach (NodeClass node in meshcentral.nodes.Values)
+            {
+                if (node.agentid == -1) { continue; }
+                if (node.control == null)
+                {
+                    // Add a new device
+                    DeviceUserControl device = new DeviceUserControl();
+                    if ((node.meshid != null) && meshcentral.meshes.ContainsKey(node.meshid)) { device.mesh = (MeshClass)meshcentral.meshes[node.meshid]; }
+                    device.node = node;
+                    device.parent = this;
+                    device.Dock = DockStyle.Top;
+                    device.present = true;
+                    node.control = device;
+                    device.UpdateInfo();
+                    device.Visible = (search == "") || (node.name.ToLower().IndexOf(search) >= 0);
+                    controlsToAdd.Add(device);
+                }
+                else
+                {
+                    // Tag the device as present
+                    if (node.control != null)
+                    {
+                        node.control.present = true;
+                        node.control.UpdateInfo();
+                    }
                 }
             }
+            // Add all controls at once to make it fast.
+            if (controlsToAdd.Count > 0) { devicesPanel.Controls.AddRange((DeviceUserControl[])controlsToAdd.ToArray(typeof(DeviceUserControl))); }
+
+            // Clear all untagged devices
+            bool removed;
+            do {
+                removed = false;
+                foreach (Control c in devicesPanel.Controls) {
+                    if ((c.GetType() == typeof(DeviceUserControl)) && ((DeviceUserControl)c).present == false) {
+                        devicesPanel.Controls.Remove(c); c.Dispose(); removed = true;
+                    }
+                }
+            } while (removed == true);
 
             // Filter devices
             int visibleDevices = 0;

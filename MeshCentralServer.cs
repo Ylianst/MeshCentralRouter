@@ -16,7 +16,6 @@ limitations under the License.
 
 using System;
 using System.IO;
-using System.Net;
 using System.Web;
 using System.Text;
 using System.Collections;
@@ -226,6 +225,7 @@ namespace MeshCentralRouter
                                     string meshid = ev["meshid"].ToString();
                                     string meshname = (string)ev["name"];
                                     string meshdesc = (string)ev["desc"];
+                                    int meshtype = (int)ev["mtype"];
                                     ulong meshrights = 0;
                                     Dictionary<string, object> links = ((Dictionary<string, object>)ev["links"]);
                                     if (links.ContainsKey(userid))
@@ -239,10 +239,23 @@ namespace MeshCentralRouter
                                     }
 
                                     // Update the mesh
-                                    MeshClass mesh = (MeshClass)meshes[meshid];
-                                    mesh.name = meshname;
-                                    mesh.desc = meshdesc;
-                                    mesh.rights = meshrights;
+                                    if (meshes.ContainsKey(meshid))
+                                    {
+                                        MeshClass mesh = (MeshClass)meshes[meshid];
+                                        mesh.name = meshname;
+                                        mesh.desc = meshdesc;
+                                        mesh.rights = meshrights;
+                                    }
+                                    else
+                                    {
+                                        MeshClass mesh = new MeshClass();
+                                        mesh.name = meshname;
+                                        mesh.desc = meshdesc;
+                                        mesh.rights = meshrights;
+                                        mesh.type = meshtype;
+                                        meshes[meshid] = mesh;
+                                    }
+                                    wc.WriteStringWebSocket("{\"action\":\"nodes\"}");
                                     if (onNodesChanged != null) onNodesChanged();
                                     break;
                                 }
@@ -252,17 +265,39 @@ namespace MeshCentralRouter
                                     string nodeid = (string)node["_id"];
                                     if (nodes.ContainsKey(nodeid))
                                     {
+                                        // Change existing node
                                         lock (nodes)
                                         {
                                             NodeClass n = (NodeClass)nodes[nodeid];
-                                            n.nodeid = (string)node["_id"];
                                             n.name = (string)node["name"];
                                             if (node.ContainsKey("conn")) { n.conn = (int)node["conn"]; }
                                             n.icon = (int)node["icon"];
                                             if (node.ContainsKey("rdpport")) { n.rdpport = (int)node["rdpport"]; }
-                                            nodes[n.nodeid] = n;
+                                            ulong nodeRights = 0;
+                                            if (node.ContainsKey("links"))
+                                            {
+                                                Dictionary<string, object> links = ((Dictionary<string, object>)node["links"]);
+                                                if (links.ContainsKey(userid))
+                                                {
+                                                    Dictionary<string, object> linksEx = ((Dictionary<string, object>)links[userid]);
+                                                    if (linksEx.ContainsKey("rights")) { nodeRights = (ulong)(int)linksEx["rights"]; }
+                                                }
+                                            }
+                                            n.rights = nodeRights;
+
+                                            if ((n.rights == 0) && (meshes.ContainsKey(n.meshid) == false)) {
+                                                // We have no rights to this device, remove it
+                                                nodes.Remove(n.nodeid);
+                                            } else {
+                                                // Update the node
+                                                nodes[n.nodeid] = n;
+                                            }
                                         }
                                         if (onNodesChanged != null) onNodesChanged();
+                                    }
+                                    else
+                                    {
+                                        wc.WriteStringWebSocket("{\"action\":\"nodes\"}");
                                     }
                                     break;
                                 }
@@ -317,7 +352,8 @@ namespace MeshCentralRouter
                     }
                 case "nodes":
                     {
-                        nodes = new Dictionary<string, NodeClass>();
+                        if (nodes == null) { nodes = new Dictionary<string, NodeClass>(); }
+                        Dictionary<string, NodeClass> nodes2 = new Dictionary<string, NodeClass>();
                         lock (nodes)
                         {
                             Dictionary<string, object> groups = (Dictionary<string, object>)jsonAction["nodes"];
@@ -327,18 +363,54 @@ namespace MeshCentralRouter
                                 for (int i = 0; i < nodesinMesh.Count; i++)
                                 {
                                     Dictionary<string, object> node = (Dictionary<string, object>)nodesinMesh[i];
-                                    NodeClass n = new NodeClass();
-                                    n.nodeid = (string)node["_id"];
-                                    n.agentid = (int)((Dictionary<string, object>)node["agent"])["id"];
-                                    n.name = (string)node["name"];
-                                    n.meshid = meshid;
-                                    if (node.ContainsKey("rdpport")) { n.rdpport = (int)node["rdpport"]; } else { n.rdpport = 3389; }
-                                    if (node.ContainsKey("conn")) { n.conn = (int)node["conn"]; } else { n.conn = 0; }
-                                    n.icon = (int)node["icon"];
-                                    nodes[n.nodeid] = n;
+                                    string nodeid = (string)node["_id"];
+                                    if (nodes.ContainsKey(nodeid))
+                                    {
+                                        NodeClass n = (NodeClass)nodes[nodeid];
+                                        n.nodeid = nodeid;
+                                        if (node.ContainsKey("agent")) { n.agentid = (int)((Dictionary<string, object>)node["agent"])["id"]; } else { n.agentid = -1; }
+                                        n.name = (string)node["name"];
+                                        n.meshid = meshid;
+                                        if (node.ContainsKey("rdpport")) { n.rdpport = (int)node["rdpport"]; } else { n.rdpport = 3389; }
+                                        if (node.ContainsKey("conn")) { n.conn = (int)node["conn"]; } else { n.conn = 0; }
+                                        if (node.ContainsKey("icon")) { n.icon = (int)node["icon"]; }
+                                        n.rights = 0;
+                                        if (node.ContainsKey("links"))
+                                        {
+                                            Dictionary<string, object> links = ((Dictionary<string, object>)node["links"]);
+                                            if (links.ContainsKey(userid))
+                                            {
+                                                Dictionary<string, object> linksEx = ((Dictionary<string, object>)links[userid]);
+                                                if (linksEx.ContainsKey("rights")) { n.rights = (ulong)(int)linksEx["rights"]; }
+                                            }
+                                        }
+                                        nodes2[n.nodeid] = n;
+                                    }
+                                    else
+                                    {
+                                        NodeClass n = new NodeClass();
+                                        n.nodeid = nodeid;
+                                        if (node.ContainsKey("agent")) { n.agentid = (int)((Dictionary<string, object>)node["agent"])["id"]; } else { n.agentid = -1; }
+                                        n.name = (string)node["name"];
+                                        n.meshid = meshid;
+                                        if (node.ContainsKey("rdpport")) { n.rdpport = (int)node["rdpport"]; } else { n.rdpport = 3389; }
+                                        if (node.ContainsKey("conn")) { n.conn = (int)node["conn"]; } else { n.conn = 0; }
+                                        if (node.ContainsKey("icon")) { n.icon = (int)node["icon"]; }
+                                        n.rights = 0;
+                                        if (node.ContainsKey("links"))
+                                        {
+                                            Dictionary<string, object> links = ((Dictionary<string, object>)node["links"]);
+                                            if (links.ContainsKey(userid)) {
+                                                Dictionary<string, object> linksEx = ((Dictionary<string, object>)links[userid]);
+                                                if (linksEx.ContainsKey("rights")) { n.rights = (ulong)(int)linksEx["rights"]; }
+                                            }
+                                        }
+                                        nodes2[n.nodeid] = n;
+                                    }
                                 }
                             }
                         }
+                        nodes = nodes2;
                         if (onNodesChanged != null) onNodesChanged();
                         break;
                     }
@@ -675,9 +747,8 @@ namespace MeshCentralRouter
             private void ProcessWsBuffer(byte[] data, int offset, int len, int op)
             {
                 Debug("Websocket got data.");
-                try { parent.processServerData(UTF8Encoding.UTF8.GetString(data, offset, len)); } catch (Exception ex) {
-                    int i = 5;
-                }
+                //try { parent.processServerData(UTF8Encoding.UTF8.GetString(data, offset, len)); } catch (Exception ex) { }
+                parent.processServerData(UTF8Encoding.UTF8.GetString(data, offset, len));
             }
 
             private Dictionary<string, string> ParseHttpHeader(string header)

@@ -136,8 +136,7 @@ namespace MeshCentralRouter
         {
             Debug("stopButton_Click()");
             exit = true;
-            if (listener != null)
-            {
+            if (listener != null) {
                 listener.Stop();
                 listener = null;
             }

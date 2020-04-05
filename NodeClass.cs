@@ -15,6 +15,7 @@ namespace MeshCentralRouter
         public int agentid;
         public int conn;
         public int rdpport;
+        public ulong rights;
         public DeviceUserControl control;
 
         public override string ToString() { return name; }

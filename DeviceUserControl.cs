@@ -23,11 +23,17 @@ namespace MeshCentralRouter
 
         public void UpdateInfo()
         {
-            if (parent.getShowGroupNames()) { deviceNameLabel.Text = mesh.name + ", " + node.name; } else { deviceNameLabel.Text = node.name; }
-            if (node.conn == 0) {
-                devicePictureBox.Image = disabledDeviceImageList.Images[node.icon - 1];
-            } else {
-                devicePictureBox.Image = deviceImageList.Images[node.icon - 1];
+            if (parent.getShowGroupNames() && (mesh != null)) { deviceNameLabel.Text = mesh.name + ", " + node.name; } else { deviceNameLabel.Text = node.name; }
+            if (node.icon > 1)
+            {
+                if (node.conn == 0)
+                {
+                    devicePictureBox.Image = disabledDeviceImageList.Images[node.icon - 1];
+                }
+                else
+                {
+                    devicePictureBox.Image = deviceImageList.Images[node.icon - 1];
+                }
             }
 
             string status = "";
@@ -51,10 +57,17 @@ namespace MeshCentralRouter
                 rdpButton.Visible = false;
             }
 
+            // Compute rights on this device
+            ulong rights = node.rights;
+            if (mesh != null) { rights |= mesh.rights; }
+            
             // Must have remote control rights
-            if ((mesh.rights & 8) != 0) {
+            if ((rights & 8) != 0)
+            {
                 sshButton.Enabled = scpButton.Enabled = rdpButton.Enabled = httpsButton.Enabled = httpButton.Enabled = ((node.conn & 1) != 0);
-            } else {
+            }
+            else
+            {
                 sshButton.Enabled = scpButton.Enabled = rdpButton.Enabled = httpsButton.Enabled = httpButton.Enabled = false;
             }
         }
