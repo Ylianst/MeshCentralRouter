@@ -24,7 +24,7 @@ namespace MeshCentralRouter
         public void UpdateInfo()
         {
             if (parent.getShowGroupNames() && (mesh != null)) { deviceNameLabel.Text = mesh.name + ", " + node.name; } else { deviceNameLabel.Text = node.name; }
-            if (node.icon > 1)
+            if ((node.icon > 0) && (node.icon <= disabledDeviceImageList.Images.Count))
             {
                 if (node.conn == 0)
                 {

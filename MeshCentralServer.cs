@@ -47,6 +47,8 @@ namespace MeshCentralRouter
         public string disconnectMsg = null;
         public bool disconnectEmail2FA = false;
         public bool disconnectEmail2FASent = false;
+        public bool disconnectSms2FA = false;
+        public bool disconnectSms2FASent = false;
         public X509Certificate2 disconnectCert;
         public string authCookie = null;
         public string loginCookie = null;
@@ -185,6 +187,8 @@ namespace MeshCentralRouter
                         disconnectMsg = jsonAction["msg"].ToString();
                         if (jsonAction.ContainsKey("email2fa")) { disconnectEmail2FA = (bool)jsonAction["email2fa"]; } else { disconnectEmail2FA = false; }
                         if (jsonAction.ContainsKey("email2fasent")) { disconnectEmail2FASent = (bool)jsonAction["email2fasent"]; } else { disconnectEmail2FASent = false; }
+                        if (jsonAction.ContainsKey("sms2fa")) { disconnectSms2FA = (bool)jsonAction["sms2fa"]; } else { disconnectSms2FA = false; }
+                        if (jsonAction.ContainsKey("sms2fasent")) { disconnectSms2FASent = (bool)jsonAction["sms2fasent"]; } else { disconnectSms2FASent = false; }
                         break;
                     }
                 case "serverinfo":
@@ -330,7 +334,7 @@ namespace MeshCentralRouter
                             MeshClass m = new MeshClass();
                             m.meshid = (string)mesh["_id"];
                             m.name = (string)mesh["name"];
-                            m.desc = (string)mesh["desc"];
+                            if (mesh.ContainsKey("desc")) { m.desc = (string)mesh["desc"]; }
                             m.rights = 0;
 
                             Dictionary<string, object> links = ((Dictionary<string, object>)mesh["links"]);

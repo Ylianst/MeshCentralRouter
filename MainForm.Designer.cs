@@ -70,6 +70,13 @@
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.menuLabel = new System.Windows.Forms.Label();
+            this.mainContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.showGroupNamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showOfflineDevicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.sortByNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sortByGroupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.searchTextBox = new System.Windows.Forms.TextBox();
             this.devicesTabControl = new System.Windows.Forms.TabControl();
             this.devicesTabPage = new System.Windows.Forms.TabPage();
@@ -95,13 +102,7 @@
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuLabel = new System.Windows.Forms.Label();
-            this.mainContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.showGroupNamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.showOfflineDevicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-            this.sortByNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sortByGroupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.smsTokenButton = new System.Windows.Forms.Button();
             this.panel5.SuspendLayout();
             this.mainPanel.SuspendLayout();
             this.mainTabControl.SuspendLayout();
@@ -118,6 +119,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.tabPage5.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.mainContextMenuStrip.SuspendLayout();
             this.devicesTabControl.SuspendLayout();
             this.devicesTabPage.SuspendLayout();
             this.devicesPanel.SuspendLayout();
@@ -128,7 +130,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.trayIconContextMenuStrip.SuspendLayout();
-            this.mainContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel5
@@ -362,6 +363,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.smsTokenButton);
             this.panel2.Controls.Add(this.tokenEmailSentLabel);
             this.panel2.Controls.Add(this.emailTokenButton);
             this.panel2.Controls.Add(this.label3);
@@ -608,6 +610,68 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(484, 322);
             this.panel4.TabIndex = 8;
+            // 
+            // menuLabel
+            // 
+            this.menuLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.menuLabel.AutoSize = true;
+            this.menuLabel.ContextMenuStrip = this.mainContextMenuStrip;
+            this.menuLabel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.menuLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menuLabel.Location = new System.Drawing.Point(454, 2);
+            this.menuLabel.Name = "menuLabel";
+            this.menuLabel.Size = new System.Drawing.Size(25, 25);
+            this.menuLabel.TabIndex = 6;
+            this.menuLabel.Text = "≡";
+            this.menuLabel.Click += new System.EventHandler(this.menuLabel_Click);
+            // 
+            // mainContextMenuStrip
+            // 
+            this.mainContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showGroupNamesToolStripMenuItem,
+            this.showOfflineDevicesToolStripMenuItem,
+            this.toolStripMenuItem2,
+            this.sortByNameToolStripMenuItem,
+            this.sortByGroupToolStripMenuItem});
+            this.mainContextMenuStrip.Name = "mainContextMenuStrip";
+            this.mainContextMenuStrip.Size = new System.Drawing.Size(186, 98);
+            // 
+            // showGroupNamesToolStripMenuItem
+            // 
+            this.showGroupNamesToolStripMenuItem.Checked = true;
+            this.showGroupNamesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showGroupNamesToolStripMenuItem.Name = "showGroupNamesToolStripMenuItem";
+            this.showGroupNamesToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.showGroupNamesToolStripMenuItem.Text = "Show &Group Names";
+            this.showGroupNamesToolStripMenuItem.Click += new System.EventHandler(this.showGroupNamesToolStripMenuItem_Click);
+            // 
+            // showOfflineDevicesToolStripMenuItem
+            // 
+            this.showOfflineDevicesToolStripMenuItem.Name = "showOfflineDevicesToolStripMenuItem";
+            this.showOfflineDevicesToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.showOfflineDevicesToolStripMenuItem.Text = "Show &Offline Devices";
+            this.showOfflineDevicesToolStripMenuItem.Click += new System.EventHandler(this.hideOfflineDevicesToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(182, 6);
+            // 
+            // sortByNameToolStripMenuItem
+            // 
+            this.sortByNameToolStripMenuItem.Checked = true;
+            this.sortByNameToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.sortByNameToolStripMenuItem.Name = "sortByNameToolStripMenuItem";
+            this.sortByNameToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.sortByNameToolStripMenuItem.Text = "Sort by &Name";
+            this.sortByNameToolStripMenuItem.Click += new System.EventHandler(this.sortByNameToolStripMenuItem_Click);
+            // 
+            // sortByGroupToolStripMenuItem
+            // 
+            this.sortByGroupToolStripMenuItem.Name = "sortByGroupToolStripMenuItem";
+            this.sortByGroupToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.sortByGroupToolStripMenuItem.Text = "Sort by G&roup";
+            this.sortByGroupToolStripMenuItem.Click += new System.EventHandler(this.sortByGroupToolStripMenuItem_Click);
             // 
             // searchTextBox
             // 
@@ -875,67 +939,16 @@
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click_1);
             // 
-            // menuLabel
+            // smsTokenButton
             // 
-            this.menuLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.menuLabel.AutoSize = true;
-            this.menuLabel.ContextMenuStrip = this.mainContextMenuStrip;
-            this.menuLabel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.menuLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.menuLabel.Location = new System.Drawing.Point(454, 2);
-            this.menuLabel.Name = "menuLabel";
-            this.menuLabel.Size = new System.Drawing.Size(25, 25);
-            this.menuLabel.TabIndex = 6;
-            this.menuLabel.Text = "≡";
-            this.menuLabel.Click += new System.EventHandler(this.menuLabel_Click);
-            // 
-            // mainContextMenuStrip
-            // 
-            this.mainContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.showGroupNamesToolStripMenuItem,
-            this.showOfflineDevicesToolStripMenuItem,
-            this.toolStripMenuItem2,
-            this.sortByNameToolStripMenuItem,
-            this.sortByGroupToolStripMenuItem});
-            this.mainContextMenuStrip.Name = "mainContextMenuStrip";
-            this.mainContextMenuStrip.Size = new System.Drawing.Size(186, 120);
-            // 
-            // showGroupNamesToolStripMenuItem
-            // 
-            this.showGroupNamesToolStripMenuItem.Checked = true;
-            this.showGroupNamesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.showGroupNamesToolStripMenuItem.Name = "showGroupNamesToolStripMenuItem";
-            this.showGroupNamesToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
-            this.showGroupNamesToolStripMenuItem.Text = "Show &Group Names";
-            this.showGroupNamesToolStripMenuItem.Click += new System.EventHandler(this.showGroupNamesToolStripMenuItem_Click);
-            // 
-            // showOfflineDevicesToolStripMenuItem
-            // 
-            this.showOfflineDevicesToolStripMenuItem.Name = "showOfflineDevicesToolStripMenuItem";
-            this.showOfflineDevicesToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
-            this.showOfflineDevicesToolStripMenuItem.Text = "Show &Offline Devices";
-            this.showOfflineDevicesToolStripMenuItem.Click += new System.EventHandler(this.hideOfflineDevicesToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(182, 6);
-            // 
-            // sortByNameToolStripMenuItem
-            // 
-            this.sortByNameToolStripMenuItem.Checked = true;
-            this.sortByNameToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.sortByNameToolStripMenuItem.Name = "sortByNameToolStripMenuItem";
-            this.sortByNameToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
-            this.sortByNameToolStripMenuItem.Text = "Sort by &Name";
-            this.sortByNameToolStripMenuItem.Click += new System.EventHandler(this.sortByNameToolStripMenuItem_Click);
-            // 
-            // sortByGroupToolStripMenuItem
-            // 
-            this.sortByGroupToolStripMenuItem.Name = "sortByGroupToolStripMenuItem";
-            this.sortByGroupToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
-            this.sortByGroupToolStripMenuItem.Text = "Sort by G&roup";
-            this.sortByGroupToolStripMenuItem.Click += new System.EventHandler(this.sortByGroupToolStripMenuItem_Click);
+            this.smsTokenButton.Location = new System.Drawing.Point(322, 177);
+            this.smsTokenButton.Name = "smsTokenButton";
+            this.smsTokenButton.Size = new System.Drawing.Size(75, 23);
+            this.smsTokenButton.TabIndex = 22;
+            this.smsTokenButton.Text = "SMS";
+            this.smsTokenButton.UseVisualStyleBackColor = true;
+            this.smsTokenButton.Visible = false;
+            this.smsTokenButton.Click += new System.EventHandler(this.smsTokenButton_Click);
             // 
             // MainForm
             // 
@@ -971,6 +984,7 @@
             this.tabPage5.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            this.mainContextMenuStrip.ResumeLayout(false);
             this.devicesTabControl.ResumeLayout(false);
             this.devicesTabPage.ResumeLayout(false);
             this.devicesPanel.ResumeLayout(false);
@@ -981,7 +995,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.trayIconContextMenuStrip.ResumeLayout(false);
-            this.mainContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1059,6 +1072,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem sortByNameToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sortByGroupToolStripMenuItem;
+        private System.Windows.Forms.Button smsTokenButton;
     }
 }
 

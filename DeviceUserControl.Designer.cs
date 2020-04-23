@@ -116,6 +116,7 @@
             this.deviceImageList.Images.SetKeyName(4, "icons05.png");
             this.deviceImageList.Images.SetKeyName(5, "icons06.png");
             this.deviceImageList.Images.SetKeyName(6, "icons07.png");
+            this.deviceImageList.Images.SetKeyName(7, "icons08.png");
             // 
             // disabledDeviceImageList
             // 
@@ -128,6 +129,7 @@
             this.disabledDeviceImageList.Images.SetKeyName(4, "icons05t.png");
             this.disabledDeviceImageList.Images.SetKeyName(5, "icons06t.png");
             this.disabledDeviceImageList.Images.SetKeyName(6, "icons07t.png");
+            this.disabledDeviceImageList.Images.SetKeyName(7, "icons08t.png");
             // 
             // httpsButton
             // 
@@ -146,7 +148,7 @@
             this.altPortContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem1});
             this.altPortContextMenuStrip.Name = "rdpContextMenuStrip";
-            this.altPortContextMenuStrip.Size = new System.Drawing.Size(179, 48);
+            this.altPortContextMenuStrip.Size = new System.Drawing.Size(179, 26);
             // 
             // toolStripMenuItem1
             // 

@@ -39,6 +39,7 @@ namespace MeshCentralRouter
         public bool inaddrany = false;
         public bool forceExit = false;
         public bool sendEmailToken = false;
+        public bool sendSMSToken = false;
 
         public void setRegValue(string name, string value) {
             try { Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\Open Source\MeshCentral Router", name, value); } catch (Exception) { }
@@ -391,12 +392,33 @@ namespace MeshCentralRouter
             if (state == 0) {
                 if (meshcentral.disconnectMsg == "tokenrequired") {
                     emailTokenButton.Visible = (meshcentral.disconnectEmail2FA == true) && (meshcentral.disconnectEmail2FASent == false);
-                    tokenEmailSentLabel.Visible = (meshcentral.disconnectEmail2FASent == true);
+                    tokenEmailSentLabel.Visible = (meshcentral.disconnectEmail2FASent == true) || (meshcentral.disconnectSms2FASent == true);
+                    smsTokenButton.Visible = ((meshcentral.disconnectSms2FA == true) && (meshcentral.disconnectSms2FASent == false));
+                    if (meshcentral.disconnectEmail2FASent) { tokenEmailSentLabel.Text = "Email sent"; }
+                    if (meshcentral.disconnectSms2FASent) { tokenEmailSentLabel.Text = "SMS sent"; }
+                    if ((meshcentral.disconnectEmail2FA == true) && (meshcentral.disconnectEmail2FASent == false)) {
+                        smsTokenButton.Left = emailTokenButton.Left + emailTokenButton.Width + 5;
+                    } else {
+                        smsTokenButton.Left = emailTokenButton.Left;
+                    }
                     tokenTextBox.Text = "";
                     setPanel(2);
                     tokenTextBox.Focus();
                 } else { setPanel(1); }
-                if ((meshcentral.disconnectMsg != null) && meshcentral.disconnectMsg.StartsWith("noauth")) { stateLabel.Text = "Invalid username or password"; stateLabel.Visible = true; stateClearTimer.Enabled = true; serverNameComboBox.Focus(); }
+
+                if ((meshcentral.disconnectMsg != null) && meshcentral.disconnectMsg.StartsWith("noauth")) {
+                    stateLabel.Text = "Invalid username or password";
+                    stateLabel.Visible = true;
+                    stateClearTimer.Enabled = true;
+                    serverNameComboBox.Focus();
+                }
+                else if ((meshcentral.disconnectMsg != null) && meshcentral.disconnectMsg.StartsWith("emailvalidationrequired"))
+                {
+                    stateLabel.Text = "Email verification required";
+                    stateLabel.Visible = true;
+                    stateClearTimer.Enabled = true;
+                    serverNameComboBox.Focus();
+                }
                 else if (meshcentral.disconnectMsg == "cert") {
                     lastBadConnectCert = meshcentral.disconnectCert;
                     certDetailsTextBox.Text = "---Issuer---\r\n" + lastBadConnectCert.Issuer.Replace(", ", "\r\n") + "\r\n\r\n---Subject---\r\n" + lastBadConnectCert.Subject.Replace(", ", "\r\n");
@@ -642,7 +664,7 @@ namespace MeshCentralRouter
 
         private void nextButton2_Click(object sender, EventArgs e)
         {
-            if ((tokenTextBox.Text.Replace(" ", "") == "") && (sendEmailToken == false)) return;
+            if ((tokenTextBox.Text.Replace(" ", "") == "") && (sendEmailToken == false) && (sendSMSToken == false)) return;
 
             // Attempt to login with token
             addButton.Enabled = false;
@@ -659,6 +681,11 @@ namespace MeshCentralRouter
             {
                 sendEmailToken = false;
                 meshcentral.connect(serverurl, userNameTextBox.Text, passwordTextBox.Text, "**email**");
+            }
+            else if (sendSMSToken == true)
+            {
+                sendSMSToken = false;
+                meshcentral.connect(serverurl, userNameTextBox.Text, passwordTextBox.Text, "**sms**");
             }
             else
             {
@@ -868,6 +895,17 @@ namespace MeshCentralRouter
             if (MessageBox.Show(this, "Send token to registered email address?", "Two-factor Authentication", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
                 sendEmailToken = true;
+                sendSMSToken = false;
+                nextButton2_Click(this, null);
+            }
+        }
+
+        private void smsTokenButton_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show(this, "Send token to registered phone number?", "Two-factor Authentication", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            {
+                sendEmailToken = false;
+                sendSMSToken = true;
                 nextButton2_Click(this, null);
             }
         }

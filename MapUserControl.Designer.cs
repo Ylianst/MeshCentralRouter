@@ -102,6 +102,7 @@
             this.deviceImageList.Images.SetKeyName(4, "icons05.png");
             this.deviceImageList.Images.SetKeyName(5, "icons06.png");
             this.deviceImageList.Images.SetKeyName(6, "icons07.png");
+            this.deviceImageList.Images.SetKeyName(7, "icons08.png");
             // 
             // MapUserControl
             // 
