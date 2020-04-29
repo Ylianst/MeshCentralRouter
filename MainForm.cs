@@ -308,30 +308,33 @@ namespace MeshCentralRouter
             */
 
             ArrayList controlsToAdd = new ArrayList();
-            foreach (NodeClass node in meshcentral.nodes.Values)
+            if (meshcentral.nodes != null)
             {
-                if (node.agentid == -1) { continue; }
-                if (node.control == null)
+                foreach (NodeClass node in meshcentral.nodes.Values)
                 {
-                    // Add a new device
-                    DeviceUserControl device = new DeviceUserControl();
-                    if ((node.meshid != null) && meshcentral.meshes.ContainsKey(node.meshid)) { device.mesh = (MeshClass)meshcentral.meshes[node.meshid]; }
-                    device.node = node;
-                    device.parent = this;
-                    device.Dock = DockStyle.Top;
-                    device.present = true;
-                    node.control = device;
-                    device.UpdateInfo();
-                    device.Visible = (search == "") || (node.name.ToLower().IndexOf(search) >= 0);
-                    controlsToAdd.Add(device);
-                }
-                else
-                {
-                    // Tag the device as present
-                    if (node.control != null)
+                    if (node.agentid == -1) { continue; }
+                    if (node.control == null)
                     {
-                        node.control.present = true;
-                        node.control.UpdateInfo();
+                        // Add a new device
+                        DeviceUserControl device = new DeviceUserControl();
+                        if ((node.meshid != null) && meshcentral.meshes.ContainsKey(node.meshid)) { device.mesh = (MeshClass)meshcentral.meshes[node.meshid]; }
+                        device.node = node;
+                        device.parent = this;
+                        device.Dock = DockStyle.Top;
+                        device.present = true;
+                        node.control = device;
+                        device.UpdateInfo();
+                        device.Visible = (search == "") || (node.name.ToLower().IndexOf(search) >= 0);
+                        controlsToAdd.Add(device);
+                    }
+                    else
+                    {
+                        // Tag the device as present
+                        if (node.control != null)
+                        {
+                            node.control.present = true;
+                            node.control.UpdateInfo();
+                        }
                     }
                 }
             }
@@ -374,12 +377,19 @@ namespace MeshCentralRouter
                 DeviceGroupComparer comp = new DeviceGroupComparer();
                 sortlist.Sort(comp);
             }
-            devicesPanel.Controls.Clear();
+            remoteAllDeviceControls();
             devicesPanel.Controls.AddRange((DeviceUserControl[])sortlist.ToArray(typeof(DeviceUserControl)));
 
             devicesPanel.ResumeLayout();
-            noDevicesLabel.Visible = (devicesPanel.Controls.Count == 0);
-            noSearchResultsLabel.Visible = ((devicesPanel.Controls.Count > 0) && (visibleDevices == 0));
+            noDevicesLabel.Visible = (sortlist.Count == 0);
+            noSearchResultsLabel.Visible = ((sortlist.Count > 0) && (visibleDevices == 0));
+        }
+
+        private void remoteAllDeviceControls()
+        {
+            ArrayList removelist = new ArrayList();
+            foreach (Control c in devicesPanel.Controls) { if (c.GetType() == typeof(DeviceUserControl)) { removelist.Add(c); } }
+            foreach (Control c in removelist) { devicesPanel.Controls.Remove(c); }
         }
 
         public bool getShowGroupNames() { return showGroupNamesToolStripMenuItem.Checked; }
@@ -445,7 +455,7 @@ namespace MeshCentralRouter
                 foreach (Control c in devicesPanel.Controls) {
                     if (c.GetType() == typeof(DeviceUserControl)) { ((DeviceUserControl)c).Dispose(); }
                 }
-                devicesPanel.Controls.Clear();
+                remoteAllDeviceControls();
                 noSearchResultsLabel.Visible = false;
                 noDevicesLabel.Visible = true;
 
@@ -821,11 +831,13 @@ namespace MeshCentralRouter
         {
             // Filter devices
             int visibleDevices = 0;
+            int deviceCount = 0;
             string search = searchTextBox.Text.ToLower();
             foreach (Control c in devicesPanel.Controls)
             {
                 if (c.GetType() == typeof(DeviceUserControl))
                 {
+                    deviceCount++;
                     NodeClass n = ((DeviceUserControl)c).node;
                     bool connVisible = ((showOfflineDevicesToolStripMenuItem.Checked) || ((n.conn & 1) != 0));
                     if ((search == "") || (n.name.ToLower().IndexOf(search) >= 0) || (showGroupNamesToolStripMenuItem.Checked && (((DeviceUserControl)c).mesh.name.ToLower().IndexOf(search) >= 0)))
@@ -839,8 +851,8 @@ namespace MeshCentralRouter
                 }
             }
 
-            noDevicesLabel.Visible = (devicesPanel.Controls.Count == 0);
-            noSearchResultsLabel.Visible = ((devicesPanel.Controls.Count > 0) && (visibleDevices == 0));
+            noDevicesLabel.Visible = (deviceCount == 0);
+            noSearchResultsLabel.Visible = ((deviceCount > 0) && (visibleDevices == 0));
         }
 
         private void devicesTabControl_SelectedIndexChanged(object sender, EventArgs e)

@@ -50,6 +50,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.smsTokenButton = new System.Windows.Forms.Button();
             this.tokenEmailSentLabel = new System.Windows.Forms.Label();
             this.emailTokenButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -102,7 +103,6 @@
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.smsTokenButton = new System.Windows.Forms.Button();
             this.panel5.SuspendLayout();
             this.mainPanel.SuspendLayout();
             this.mainTabControl.SuspendLayout();
@@ -378,6 +378,17 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(478, 316);
             this.panel2.TabIndex = 7;
+            // 
+            // smsTokenButton
+            // 
+            this.smsTokenButton.Location = new System.Drawing.Point(322, 177);
+            this.smsTokenButton.Name = "smsTokenButton";
+            this.smsTokenButton.Size = new System.Drawing.Size(75, 23);
+            this.smsTokenButton.TabIndex = 22;
+            this.smsTokenButton.Text = "SMS";
+            this.smsTokenButton.UseVisualStyleBackColor = true;
+            this.smsTokenButton.Visible = false;
+            this.smsTokenButton.Click += new System.EventHandler(this.smsTokenButton_Click);
             // 
             // tokenEmailSentLabel
             // 
@@ -938,17 +949,6 @@
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click_1);
-            // 
-            // smsTokenButton
-            // 
-            this.smsTokenButton.Location = new System.Drawing.Point(322, 177);
-            this.smsTokenButton.Name = "smsTokenButton";
-            this.smsTokenButton.Size = new System.Drawing.Size(75, 23);
-            this.smsTokenButton.TabIndex = 22;
-            this.smsTokenButton.Text = "SMS";
-            this.smsTokenButton.UseVisualStyleBackColor = true;
-            this.smsTokenButton.Visible = false;
-            this.smsTokenButton.Click += new System.EventHandler(this.smsTokenButton_Click);
             // 
             // MainForm
             // 

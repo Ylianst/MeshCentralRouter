@@ -17,6 +17,7 @@ namespace MeshCentralRouter
         public int rdpport;
         public ulong rights;
         public DeviceUserControl control;
+        public Dictionary<string, ulong> links;
 
         public override string ToString() { return name; }
     }

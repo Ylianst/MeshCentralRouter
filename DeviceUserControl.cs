@@ -58,9 +58,10 @@ namespace MeshCentralRouter
             }
 
             // Compute rights on this device
-            ulong rights = node.rights;
-            if (mesh != null) { rights |= mesh.rights; }
-            
+            ulong rights = node.rights; // Direct device rights
+            if (mesh != null) { rights |= mesh.rights; } // Device group rights
+            foreach (string i in node.links.Keys) { if (parent.meshcentral.userGroups.ContainsKey(i)) { rights |= node.links[i]; } } // Take a look at group rights
+
             // Must have remote control rights
             if ((rights & 8) != 0)
             {

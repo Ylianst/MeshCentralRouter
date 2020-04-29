@@ -57,6 +57,8 @@ namespace MeshCentralRouter
         public bool debug = false;
         public bool ignoreCert = false;
         public string userid = null;
+        public Dictionary<string, int> userRights = null;
+        public Dictionary<string, string> userGroups = null;
 
         // Mesh Rights
         /*
@@ -193,6 +195,7 @@ namespace MeshCentralRouter
                     }
                 case "serverinfo":
                     {
+                        wc.WriteStringWebSocket("{\"action\":\"usergroups\"}");
                         wc.WriteStringWebSocket("{\"action\":\"meshes\"}");
                         wc.WriteStringWebSocket("{\"action\":\"nodes\"}");
                         wc.WriteStringWebSocket("{\"action\":\"authcookie\"}");
@@ -215,6 +218,37 @@ namespace MeshCentralRouter
                     {
                         Dictionary<string, object> userinfo = (Dictionary<string, object>)jsonAction["userinfo"];
                         userid = (string)userinfo["_id"];
+                        userRights = new Dictionary<string, int>();
+                        if (userinfo.ContainsKey("links"))
+                        {
+                            Dictionary<string, object> userLinks = (Dictionary<string, object>)userinfo["links"];
+                            foreach (string i in userLinks.Keys)
+                            {
+                                Dictionary<string, object> userLinksEx = (Dictionary<string, object>)userLinks[i];
+                                if (userLinksEx.ContainsKey("rights"))
+                                {
+                                    userRights[i] = int.Parse(userLinksEx["rights"].ToString());
+                                }
+                            }
+                        }
+                        break;
+                    }
+                case "usergroups":
+                    {
+                        userGroups = new Dictionary<string, string>();
+                        if (jsonAction.ContainsKey("ugroups"))
+                        {
+                            Dictionary<string, object> usergroups = (Dictionary<string, object>)jsonAction["ugroups"];
+                            foreach (string i in usergroups.Keys)
+                            {
+                                Dictionary<string, object> usergroupsEx = (Dictionary<string, object>)usergroups[i];
+                                if (usergroupsEx.ContainsKey("name"))
+                                {
+                                    userGroups.Add(i, usergroupsEx["name"].ToString());
+                                }
+                            }
+                            if (onNodesChanged != null) onNodesChanged();
+                        }
                         break;
                     }
                 case "event":
@@ -286,10 +320,25 @@ namespace MeshCentralRouter
                                                     Dictionary<string, object> linksEx = ((Dictionary<string, object>)links[userid]);
                                                     if (linksEx.ContainsKey("rights")) { nodeRights = (ulong)(int)linksEx["rights"]; }
                                                 }
+
+                                                n.links = new Dictionary<string, ulong>();
+                                                foreach (string j in links.Keys)
+                                                {
+                                                    Dictionary<string, object> linksEx = ((Dictionary<string, object>)links[j]);
+                                                    if (linksEx.ContainsKey("rights"))
+                                                    {
+                                                        n.links.Add(j, ulong.Parse(linksEx["rights"].ToString()));
+                                                    }
+                                                }
                                             }
                                             n.rights = nodeRights;
 
-                                            if ((n.rights == 0) && (meshes.ContainsKey(n.meshid) == false)) {
+                                            // Compute rights on this device
+                                            ulong rights = n.rights; // Direct device rights
+                                            if (meshes.ContainsKey(n.meshid)) { rights |= meshes[n.meshid].rights; } // Device group rights
+                                            foreach (string i in n.links.Keys) { if (userGroups.ContainsKey(i)) { rights |= n.links[i]; } } // Take a look at group rights
+
+                                            if (rights == 0) {
                                                 // We have no rights to this device, remove it
                                                 nodes.Remove(n.nodeid);
                                             } else {
@@ -318,6 +367,12 @@ namespace MeshCentralRouter
                                         }
                                         if (onNodesChanged != null) onNodesChanged();
                                     }
+                                    break;
+                                }
+                            case "usergroupchange":
+                                {
+                                    wc.WriteStringWebSocket("{\"action\":\"usergroups\"}");
+                                    wc.WriteStringWebSocket("{\"action\":\"nodes\"}");
                                     break;
                                 }
                         }
@@ -379,6 +434,7 @@ namespace MeshCentralRouter
                                         if (node.ContainsKey("conn")) { n.conn = (int)node["conn"]; } else { n.conn = 0; }
                                         if (node.ContainsKey("icon")) { n.icon = (int)node["icon"]; }
                                         n.rights = 0;
+                                        n.links = new Dictionary<string, ulong>();
                                         if (node.ContainsKey("links"))
                                         {
                                             Dictionary<string, object> links = ((Dictionary<string, object>)node["links"]);
@@ -386,6 +442,14 @@ namespace MeshCentralRouter
                                             {
                                                 Dictionary<string, object> linksEx = ((Dictionary<string, object>)links[userid]);
                                                 if (linksEx.ContainsKey("rights")) { n.rights = (ulong)(int)linksEx["rights"]; }
+                                            }
+                                            foreach (string j in links.Keys)
+                                            {
+                                                Dictionary<string, object> linksEx = ((Dictionary<string, object>)links[j]);
+                                                if (linksEx.ContainsKey("rights"))
+                                                {
+                                                    n.links.Add(j, ulong.Parse(linksEx["rights"].ToString()));
+                                                }
                                             }
                                         }
                                         nodes2[n.nodeid] = n;
@@ -401,12 +465,22 @@ namespace MeshCentralRouter
                                         if (node.ContainsKey("conn")) { n.conn = (int)node["conn"]; } else { n.conn = 0; }
                                         if (node.ContainsKey("icon")) { n.icon = (int)node["icon"]; }
                                         n.rights = 0;
+                                        n.links = new Dictionary<string, ulong>();
                                         if (node.ContainsKey("links"))
                                         {
                                             Dictionary<string, object> links = ((Dictionary<string, object>)node["links"]);
-                                            if (links.ContainsKey(userid)) {
+                                            if (links.ContainsKey(userid))
+                                            {
                                                 Dictionary<string, object> linksEx = ((Dictionary<string, object>)links[userid]);
                                                 if (linksEx.ContainsKey("rights")) { n.rights = (ulong)(int)linksEx["rights"]; }
+                                            }
+                                            foreach (string j in links.Keys)
+                                            {
+                                                Dictionary<string, object> linksEx = ((Dictionary<string, object>)links[j]);
+                                                if (linksEx.ContainsKey("rights"))
+                                                {
+                                                    n.links.Add(j, ulong.Parse(linksEx["rights"].ToString()));
+                                                }
                                             }
                                         }
                                         nodes2[n.nodeid] = n;
