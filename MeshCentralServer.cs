@@ -23,6 +23,7 @@ using System.Net.Sockets;
 using System.Net.Security;
 using System.Windows.Forms;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Deployment.Application;
 using System.Collections.Specialized;
 using System.Web.Script.Serialization;
@@ -54,10 +55,12 @@ namespace MeshCentralRouter
         public string loginCookie = null;
         public string wshash = null;
         public string okCertHash = null;
+        public string okCertHash2 = null;
         public bool debug = false;
         public bool ignoreCert = false;
         public string userid = null;
-        public Dictionary<string, int> userRights = null;
+        public string username = null;
+        public Dictionary<string, ulong> userRights = null;
         public Dictionary<string, string> userGroups = null;
 
         // Mesh Rights
@@ -218,7 +221,8 @@ namespace MeshCentralRouter
                     {
                         Dictionary<string, object> userinfo = (Dictionary<string, object>)jsonAction["userinfo"];
                         userid = (string)userinfo["_id"];
-                        userRights = new Dictionary<string, int>();
+                        if (userinfo.ContainsKey("name")) { username = (string)userinfo["name"]; }
+                        userRights = new Dictionary<string, ulong>();
                         if (userinfo.ContainsKey("links"))
                         {
                             Dictionary<string, object> userLinks = (Dictionary<string, object>)userinfo["links"];
@@ -227,7 +231,7 @@ namespace MeshCentralRouter
                                 Dictionary<string, object> userLinksEx = (Dictionary<string, object>)userLinks[i];
                                 if (userLinksEx.ContainsKey("rights"))
                                 {
-                                    userRights[i] = int.Parse(userLinksEx["rights"].ToString());
+                                    userRights[i] = ulong.Parse(userLinksEx["rights"].ToString());
                                 }
                             }
                         }
@@ -247,7 +251,7 @@ namespace MeshCentralRouter
                                     userGroups.Add(i, usergroupsEx["name"].ToString());
                                 }
                             }
-                            if (onNodesChanged != null) onNodesChanged();
+                            if ((onNodesChanged != null) && (nodes != null)) onNodesChanged();
                         }
                         break;
                     }
@@ -294,7 +298,7 @@ namespace MeshCentralRouter
                                         meshes[meshid] = mesh;
                                     }
                                     wc.WriteStringWebSocket("{\"action\":\"nodes\"}");
-                                    if (onNodesChanged != null) onNodesChanged();
+                                    if ((onNodesChanged != null) && (nodes != null)) onNodesChanged();
                                     break;
                                 }
                             case "changenode":
@@ -346,7 +350,7 @@ namespace MeshCentralRouter
                                                 nodes[n.nodeid] = n;
                                             }
                                         }
-                                        if (onNodesChanged != null) onNodesChanged();
+                                        if ((onNodesChanged != null) && (nodes != null)) onNodesChanged();
                                     }
                                     else
                                     {
@@ -365,7 +369,7 @@ namespace MeshCentralRouter
                                             if (ev.ContainsKey("conn")) { n.conn = (int)ev["conn"]; }
                                             nodes[n.nodeid] = n;
                                         }
-                                        if (onNodesChanged != null) onNodesChanged();
+                                        if ((onNodesChanged != null) && (nodes != null)) onNodesChanged();
                                     }
                                     break;
                                 }
@@ -489,7 +493,7 @@ namespace MeshCentralRouter
                             }
                         }
                         nodes = nodes2;
-                        if (onNodesChanged != null) onNodesChanged();
+                        if ((onNodesChanged != null) && (nodes != null)) onNodesChanged();
                         break;
                     }
                 default:
@@ -846,6 +850,26 @@ namespace MeshCentralRouter
                 return values;
             }
 
+            // Return a modified base64 SHA384 hash string of the certificate public key
+            public static string GetMeshKeyHash(X509Certificate cert)
+            {
+                return ByteArrayToHexString(new SHA384Managed().ComputeHash(cert.GetPublicKey()));
+            }
+
+            // Return a modified base64 SHA384 hash string of the certificate
+            public static string GetMeshCertHash(X509Certificate cert)
+            {
+                return ByteArrayToHexString(new SHA384Managed().ComputeHash(cert.GetRawCertData()));
+            }
+
+            public static string ByteArrayToHexString(byte[] Bytes)
+            {
+                StringBuilder Result = new StringBuilder(Bytes.Length * 2);
+                string HexAlphabet = "0123456789ABCDEF";
+                foreach (byte B in Bytes) { Result.Append(HexAlphabet[(int)(B >> 4)]); Result.Append(HexAlphabet[(int)(B & 0xF)]); }
+                return Result.ToString();
+            }
+
             private bool VerifyServerCertificate(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
             {
                 if (xignoreCert) return true;
@@ -853,6 +877,9 @@ namespace MeshCentralRouter
 
                 // Check that the remote certificate is the expected one
                 if ((parent.okCertHash != null) && (parent.okCertHash == certificate.GetCertHashString())) return true;
+
+                // Check that the remote certificate is the expected one
+                if ((parent.okCertHash2 != null) && ((parent.okCertHash2 == GetMeshKeyHash(certificate)) || (parent.okCertHash2 == GetMeshCertHash(certificate)))) { return true; }
 
                 parent.disconnectMsg = "cert";
                 parent.disconnectCert = new X509Certificate2(certificate);

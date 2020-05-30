@@ -40,6 +40,7 @@ namespace MeshCentralRouter
         public bool forceExit = false;
         public bool sendEmailToken = false;
         public bool sendSMSToken = false;
+        public Uri authLoginUrl = null;
 
         public void setRegValue(string name, string value) {
             try { Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\Open Source\MeshCentral Router", name, value); } catch (Exception) { }
@@ -47,6 +48,23 @@ namespace MeshCentralRouter
         public string getRegValue(string name, string value) {
             try { return Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\Open Source\MeshCentral Router", name, value).ToString(); } catch (Exception) { return value; }
         }
+
+        public void hookRouter()
+        {
+            try
+            {
+                Registry.SetValue(@"HKEY_CLASSES_ROOT\mcrouter", "", "MeshCentral Router");
+                Registry.SetValue(@"HKEY_CLASSES_ROOT\mcrouter", "URL Protocol", "");
+                Registry.SetValue(@"HKEY_CLASSES_ROOT\mcrouter\shell\open\command", "", "\"" + Assembly.GetEntryAssembly().Location + "\" \"%1\"");
+            }
+            catch (Exception) { }
+        }
+        public void unHookRouter()
+        {
+            try { Registry.ClassesRoot.DeleteSubKeyTree("mcrouter"); } catch (Exception) { }
+        }
+
+        public static void DeleteSubKeyTree(RegistryKey key, string subkey) { if (key.OpenSubKey(subkey) == null) { return; } DeleteSubKeyTree(key, subkey); }
 
         public class DeviceComparer : IComparer
         {
@@ -107,8 +125,12 @@ namespace MeshCentralRouter
                 if (arg.Length > 6 && arg.Substring(0, 6).ToLower() == "-user:") { userNameTextBox.Text = arg.Substring(6); argflags |= 2; }
                 if (arg.Length > 6 && arg.Substring(0, 6).ToLower() == "-pass:") { passwordTextBox.Text = arg.Substring(6); argflags |= 4; }
                 if (arg.Length > 8 && arg.Substring(0, 8).ToLower() == "-search:") { searchTextBox.Text = arg.Substring(8); }
+                if (arg.Length > 11 && arg.Substring(0, 11).ToLower() == "mcrouter://") { authLoginUrl = new Uri(arg); }
             }
             autoLogin = (argflags == 7);
+
+            unHookRouter();
+            //hookRouter();
         }
 
         private void setPanel(int newPanel)
@@ -151,7 +173,7 @@ namespace MeshCentralRouter
             //scanner.OnNotify += Scanner_OnNotify;
             //scanner.MulticastPing();
 
-            if (autoLogin) { nextButton1_Click(null, null); }
+            if (autoLogin || (authLoginUrl != null)) { nextButton1_Click(null, null); }
         }
 
         private void updatePanel1(object sender, EventArgs e)
@@ -193,13 +215,25 @@ namespace MeshCentralRouter
             meshcentral.disconnect();
         }
 
+        private string getValueFromQueryString(string query, string name)
+        {
+            if ((query == null) || (name == null)) return null;
+            int i = query.IndexOf("?" + name + "=");
+            if (i == -1) { i = query.IndexOf("&" + name + "="); }
+            if (i == -1) return null;
+            string r = query.Substring(i + name.Length + 2);
+            i = r.IndexOf("&");
+            if (i >= 0) { r = r.Substring(0, i); }
+            return r;
+        }
+
         private void nextButton1_Click(object sender, EventArgs e)
         {
+            
             // Attempt to login
             addButton.Enabled = false;
             addRelayButton.Enabled = false;
             openWebSiteButton.Visible = false;
-            Uri serverurl = new Uri("wss://" + serverNameComboBox.Text + "/control.ashx");
             meshcentral = new MeshCentralServer();
             meshcentral.debug = debug;
             meshcentral.ignoreCert = ignoreCert;
@@ -207,7 +241,15 @@ namespace MeshCentralRouter
             meshcentral.onNodesChanged += Meshcentral_onNodesChanged;
             meshcentral.onLoginTokenChanged += Meshcentral_onLoginTokenChanged;
             if (lastBadConnectCert != null) { meshcentral.okCertHash = lastBadConnectCert.GetCertHashString(); }
-            meshcentral.connect(serverurl, userNameTextBox.Text, passwordTextBox.Text, null);
+
+            Uri serverurl = new Uri("wss://" + serverNameComboBox.Text + "/control.ashx");
+            if (authLoginUrl != null) {
+                meshcentral.okCertHash2 = getValueFromQueryString(authLoginUrl.Query, "t");
+                serverurl = new Uri("wss://" + authLoginUrl.Host + ":" + ((authLoginUrl.Port > 0) ? authLoginUrl.Port : 443) + authLoginUrl.LocalPath + "?auth=" + getValueFromQueryString(authLoginUrl.Query, "c"));
+                meshcentral.connect(serverurl, null, null, null);
+            } else {
+                meshcentral.connect(serverurl, userNameTextBox.Text, passwordTextBox.Text, null);
+            }
         }
 
         private void nextButton3_Click(object sender, EventArgs e)
@@ -216,7 +258,6 @@ namespace MeshCentralRouter
             addButton.Enabled = false;
             addRelayButton.Enabled = false;
             openWebSiteButton.Visible = false;
-            Uri serverurl = new Uri("wss://" + serverNameComboBox.Text + "/control.ashx");
             meshcentral = new MeshCentralServer();
             meshcentral.debug = debug;
             meshcentral.ignoreCert = ignoreCert;
@@ -224,7 +265,15 @@ namespace MeshCentralRouter
             meshcentral.onNodesChanged += Meshcentral_onNodesChanged;
             meshcentral.onLoginTokenChanged += Meshcentral_onLoginTokenChanged;
             meshcentral.okCertHash = lastBadConnectCert.GetCertHashString();
-            meshcentral.connect(serverurl, userNameTextBox.Text, passwordTextBox.Text, null);
+
+            Uri serverurl = new Uri("wss://" + serverNameComboBox.Text + "/control.ashx");
+            if (authLoginUrl != null) {
+                meshcentral.okCertHash2 = getValueFromQueryString(authLoginUrl.Query, "t");
+                serverurl = new Uri("wss://" + authLoginUrl.Host + ":" + ((authLoginUrl.Port > 0) ? authLoginUrl.Port : 443) + authLoginUrl.LocalPath + "?auth=" + getValueFromQueryString(authLoginUrl.Query, "c"));
+                meshcentral.connect(serverurl, null, null, null);
+            } else {
+                meshcentral.connect(serverurl, userNameTextBox.Text, passwordTextBox.Text, null);
+            }
         }
 
         private void Meshcentral_onLoginTokenChanged()
@@ -477,9 +526,16 @@ namespace MeshCentralRouter
                 stateLabel.Visible = false;
                 setPanel(4);
                 addButton.Focus();
-                saveToRegistry("ServerName", serverNameComboBox.Text);
-                saveToRegistry("UserName", userNameTextBox.Text);
-                this.Text = title + " - " + userNameTextBox.Text;
+                if (authLoginUrl == null)
+                {
+                    saveToRegistry("ServerName", serverNameComboBox.Text);
+                    saveToRegistry("UserName", userNameTextBox.Text);
+                }
+                if (meshcentral.username != null) {
+                    this.Text = title + " - " + meshcentral.username;
+                } else {
+                    this.Text = title + " - " + userNameTextBox.Text;
+                }
                 cookieRefreshTimer.Enabled = true;
             }
         }
