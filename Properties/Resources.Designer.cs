@@ -131,6 +131,16 @@ namespace MeshCentralRouter.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap install {
+            get {
+                object obj = ResourceManager.GetObject("install", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap MC2_Banner {
             get {
                 object obj = ResourceManager.GetObject("MC2-Banner", resourceCulture);

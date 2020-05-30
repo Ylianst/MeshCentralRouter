@@ -118,6 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="MeshIcon50T" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>../Resources/MeshIcon50T.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Empty-Banner" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>../Resources/Empty-Banner.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -130,11 +133,11 @@
   <data name="MC2-Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>../Resources/MC2-Logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Help20" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>../Resources/Help20.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="CertMgrForm_Del" xml:space="preserve">
     <value>Confirm Delete</value>
-  </data>
-  <data name="MC2-Banner" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>../Resources/MC2-Banner.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="MsgBox_Import_Error" xml:space="preserve">
     <value>Incorrect file or password</value>
@@ -148,16 +151,16 @@
   <data name="MeshServerLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>../Resources/MeshServerLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Help20" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>../Resources/Help20.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="HelpRelayMap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>../Resources/HelpRelayMap.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="MsgBox_Import_Cert" xml:space="preserve">
     <value>Cert Import</value>
   </data>
-  <data name="MeshIcon50T" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>../Resources/MeshIcon50T.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="MC2-Banner" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>../Resources/MC2-Banner.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="HelpRelayMap" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>../Resources/HelpRelayMap.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="install" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\install.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

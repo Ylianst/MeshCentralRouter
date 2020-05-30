@@ -31,7 +31,8 @@ namespace MeshCentralRouter
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Properties.Settings.Default.Upgrade();
-            Application.Run(new MainForm(args));
+            MainForm main = new MainForm(args);
+            if (main.forceExit == false) { Application.Run(main); }
         }
 
     }

@@ -18,7 +18,9 @@ using System;
 using System.Net;
 using System.Reflection;
 using System.Collections;
+using System.Diagnostics;
 using System.Windows.Forms;
+using System.Security.Principal;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
 using Microsoft.Win32;
@@ -41,12 +43,26 @@ namespace MeshCentralRouter
         public bool sendEmailToken = false;
         public bool sendSMSToken = false;
         public Uri authLoginUrl = null;
+        public Process installProcess = null;
 
         public void setRegValue(string name, string value) {
             try { Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\Open Source\MeshCentral Router", name, value); } catch (Exception) { }
         }
         public string getRegValue(string name, string value) {
             try { return Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\Open Source\MeshCentral Router", name, value).ToString(); } catch (Exception) { return value; }
+        }
+
+        public bool isRouterHooked()
+        {
+            try
+            {
+                return (
+                    ((string)Registry.GetValue(@"HKEY_CLASSES_ROOT\mcrouter", "", null) == "MeshCentral Router") &&
+                    ((string)Registry.GetValue(@"HKEY_CLASSES_ROOT\mcrouter\shell\open\command", "", null) == "\"" + Assembly.GetEntryAssembly().Location + "\" \"%1\"")
+                );
+            }
+            catch (Exception) { }
+            return false;
         }
 
         public void hookRouter()
@@ -64,7 +80,40 @@ namespace MeshCentralRouter
             try { Registry.ClassesRoot.DeleteSubKeyTree("mcrouter"); } catch (Exception) { }
         }
 
-        public static void DeleteSubKeyTree(RegistryKey key, string subkey) { if (key.OpenSubKey(subkey) == null) { return; } DeleteSubKeyTree(key, subkey); }
+        private void hookRouterEx()
+        {
+            if (IsAdministrator() == false)
+            {
+                // Restart program and run as admin
+                var exeName = System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
+                ProcessStartInfo startInfo = new ProcessStartInfo(exeName, "-install");
+                startInfo.Verb = "runas";
+                try { installProcess = System.Diagnostics.Process.Start(startInfo); } catch (Exception) { return; }
+                installTimer.Enabled = true;
+                installButton.Visible = false;
+            } else {
+                hookRouter();
+                installButton.Visible = !isRouterHooked();
+            }
+        }
+
+        private void installTimer_Tick(object sender, EventArgs e)
+        {
+            if ((installProcess == null) || (installProcess.HasExited == true))
+            {
+                installTimer.Enabled = false;
+                installButton.Visible = !isRouterHooked();
+            }
+        }
+
+        private bool IsAdministrator()
+        {
+            WindowsIdentity identity = WindowsIdentity.GetCurrent();
+            WindowsPrincipal principal = new WindowsPrincipal(identity);
+            return principal.IsInRole(WindowsBuiltInRole.Administrator);
+        }
+
+        public void DeleteSubKeyTree(RegistryKey key, string subkey) { if (key.OpenSubKey(subkey) == null) { return; } DeleteSubKeyTree(key, subkey); }
 
         public class DeviceComparer : IComparer
         {
@@ -116,6 +165,8 @@ namespace MeshCentralRouter
 
             int argflags = 0;
             foreach (string arg in this.args) {
+                if (arg.ToLower() == "-install") { hookRouter(); forceExit = true; return; }
+                if (arg.ToLower() == "-uninstall") { unHookRouter(); forceExit = true; return; }
                 if (arg.ToLower() == "-debug") { debug = true; }
                 if (arg.ToLower() == "-ignorecert") { ignoreCert = true; }
                 if (arg.ToLower() == "-all") { inaddrany = true; }
@@ -129,8 +180,8 @@ namespace MeshCentralRouter
             }
             autoLogin = (argflags == 7);
 
-            unHookRouter();
-            //hookRouter();
+            // Check MeshCentral .mcrouter hook
+            installButton.Visible = !isRouterHooked();
         }
 
         private void setPanel(int newPanel)
@@ -1021,6 +1072,12 @@ namespace MeshCentralRouter
             sortByGroupToolStripMenuItem.Checked = true;
             setRegValue("Device Sort", "Group");
             updateDeviceList();
+        }
+
+        private void installButton_Click(object sender, EventArgs e)
+        {
+            InstallForm form = new InstallForm();
+            if (form.ShowDialog(this) == DialogResult.OK) { hookRouterEx(); }
         }
 
         /*

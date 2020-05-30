@@ -98,6 +98,12 @@
     <Compile Include="AppLaunchForm.Designer.cs">
       <DependentUpon>AppLaunchForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="InstallForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InstallForm.Designer.cs">
+      <DependentUpon>InstallForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -167,6 +173,9 @@
     <EmbeddedResource Include="AppLaunchForm.resx">
       <DependentUpon>AppLaunchForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="InstallForm.resx">
+      <DependentUpon>InstallForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -214,6 +223,7 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\install.png" />
     <None Include="HelpImages\HelpRelayMap.png" />
     <Content Include="MeshServer.ico" />
   </ItemGroup>
@@ -234,9 +244,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

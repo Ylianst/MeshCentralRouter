@@ -35,6 +35,7 @@
             this.mainTabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.installButton = new System.Windows.Forms.Button();
             this.stateLabel = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
@@ -103,6 +104,7 @@
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.installTimer = new System.Windows.Forms.Timer(this.components);
             this.panel5.SuspendLayout();
             this.mainPanel.SuspendLayout();
             this.mainTabControl.SuspendLayout();
@@ -180,6 +182,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.installButton);
             this.panel1.Controls.Add(this.stateLabel);
             this.panel1.Controls.Add(this.label28);
             this.panel1.Controls.Add(this.label27);
@@ -198,6 +201,18 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(478, 316);
             this.panel1.TabIndex = 6;
+            // 
+            // installButton
+            // 
+            this.installButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.installButton.Location = new System.Drawing.Point(6, 285);
+            this.installButton.Name = "installButton";
+            this.installButton.Size = new System.Drawing.Size(75, 23);
+            this.installButton.TabIndex = 20;
+            this.installButton.Text = "Install...";
+            this.installButton.UseVisualStyleBackColor = true;
+            this.installButton.Visible = false;
+            this.installButton.Click += new System.EventHandler(this.installButton_Click);
             // 
             // stateLabel
             // 
@@ -950,6 +965,10 @@
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click_1);
             // 
+            // installTimer
+            // 
+            this.installTimer.Tick += new System.EventHandler(this.installTimer_Tick);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1073,6 +1092,8 @@
         private System.Windows.Forms.ToolStripMenuItem sortByNameToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sortByGroupToolStripMenuItem;
         private System.Windows.Forms.Button smsTokenButton;
+        private System.Windows.Forms.Button installButton;
+        private System.Windows.Forms.Timer installTimer;
     }
 }
 
