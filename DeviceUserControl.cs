@@ -61,6 +61,11 @@ namespace MeshCentralRouter
             ulong rights = node.rights; // Direct device rights
             if (mesh != null) { rights |= mesh.rights; } // Device group rights
             foreach (string i in node.links.Keys) { if (parent.meshcentral.userGroups.ContainsKey(i)) { rights |= node.links[i]; } } // Take a look at group rights
+            foreach (string i in parent.meshcentral.userRights.Keys) {
+                if ((i.StartsWith("ugrp/")) && (mesh.links.ContainsKey(i))) {
+                    rights |= (ulong)mesh.links[i];
+                }
+            }
 
             // Must have remote control rights
             if ((rights & 8) != 0)

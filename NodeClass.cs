@@ -29,6 +29,7 @@ namespace MeshCentralRouter
         public string desc;
         public int type;
         public ulong rights;
+        public Dictionary<string, ulong> links;
 
         public override string ToString() { return name; }
     }

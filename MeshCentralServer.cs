@@ -280,6 +280,17 @@ namespace MeshCentralRouter
                                         }
                                     }
 
+                                    Dictionary<string, ulong> newlinks = new Dictionary<string, ulong>();
+                                    foreach (string j in links.Keys)
+                                    {
+                                        Dictionary<string, object> urights = ((Dictionary<string, object>)links[j]);
+                                        if (urights != null)
+                                        {
+                                            if (urights["rights"].GetType() == typeof(int)) { newlinks[j] = (ulong)((int)urights["rights"]); }
+                                            if (urights["rights"].GetType() == typeof(Int64)) { newlinks[j] = (ulong)((Int64)urights["rights"]); }
+                                        }
+                                    }
+
                                     // Update the mesh
                                     if (meshes.ContainsKey(meshid))
                                     {
@@ -287,6 +298,7 @@ namespace MeshCentralRouter
                                         mesh.name = meshname;
                                         mesh.desc = meshdesc;
                                         mesh.rights = meshrights;
+                                        mesh.links = newlinks;
                                     }
                                     else
                                     {
@@ -295,6 +307,7 @@ namespace MeshCentralRouter
                                         mesh.desc = meshdesc;
                                         mesh.rights = meshrights;
                                         mesh.type = meshtype;
+                                        mesh.links = newlinks;
                                         meshes[meshid] = mesh;
                                     }
                                     wc.WriteStringWebSocket("{\"action\":\"nodes\"}");
@@ -395,6 +408,7 @@ namespace MeshCentralRouter
                             m.name = (string)mesh["name"];
                             if (mesh.ContainsKey("desc")) { m.desc = (string)mesh["desc"]; }
                             m.rights = 0;
+                            m.links = new Dictionary<string, ulong>();
 
                             Dictionary<string, object> links = ((Dictionary<string, object>)mesh["links"]);
                             if (links.ContainsKey(userid))
@@ -406,6 +420,17 @@ namespace MeshCentralRouter
                                     if (urights["rights"].GetType() == typeof(Int64)) { m.rights = (ulong)((Int64)urights["rights"]); }
                                 }
                             }
+
+                            foreach (string j in links.Keys)
+                            {
+                                Dictionary<string, object> urights = ((Dictionary<string, object>)links[j]);
+                                if (urights != null)
+                                {
+                                    if (urights["rights"].GetType() == typeof(int)) { m.links[j] = (ulong)((int)urights["rights"]); }
+                                    if (urights["rights"].GetType() == typeof(Int64)) { m.links[j] = (ulong)((Int64)urights["rights"]); }
+                                }
+                            }
+
                             if (mesh["mtype"].GetType() == typeof(string)) { m.type = int.Parse((string)mesh["mtype"]); }
                             if (mesh["mtype"].GetType() == typeof(int)) { m.type = (int)mesh["mtype"]; }
                             meshes[m.meshid] = m;
