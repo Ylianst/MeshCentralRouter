@@ -280,7 +280,6 @@ namespace MeshCentralRouter
 
         private void nextButton1_Click(object sender, EventArgs e)
         {
-            
             // Attempt to login
             addButton.Enabled = false;
             addRelayButton.Enabled = false;
@@ -293,12 +292,15 @@ namespace MeshCentralRouter
             meshcentral.onLoginTokenChanged += Meshcentral_onLoginTokenChanged;
             if (lastBadConnectCert != null) { meshcentral.okCertHash = lastBadConnectCert.GetCertHashString(); }
 
-            Uri serverurl = new Uri("wss://" + serverNameComboBox.Text + "/control.ashx");
+            Uri serverurl = null;
             if (authLoginUrl != null) {
-                meshcentral.okCertHash2 = getValueFromQueryString(authLoginUrl.Query, "t");
-                serverurl = new Uri("wss://" + authLoginUrl.Host + ":" + ((authLoginUrl.Port > 0) ? authLoginUrl.Port : 443) + authLoginUrl.LocalPath + "?auth=" + getValueFromQueryString(authLoginUrl.Query, "c"));
+                try {
+                    meshcentral.okCertHash2 = getValueFromQueryString(authLoginUrl.Query, "t");
+                    serverurl = new Uri("wss://" + authLoginUrl.Host + ":" + ((authLoginUrl.Port > 0) ? authLoginUrl.Port : 443) + authLoginUrl.LocalPath + "?auth=" + getValueFromQueryString(authLoginUrl.Query, "c"));
+                } catch (Exception) { }
                 meshcentral.connect(serverurl, null, null, null);
             } else {
+                try { serverurl = new Uri("wss://" + serverNameComboBox.Text + "/control.ashx"); } catch (Exception) { }
                 meshcentral.connect(serverurl, userNameTextBox.Text, passwordTextBox.Text, null);
             }
         }
@@ -317,12 +319,13 @@ namespace MeshCentralRouter
             meshcentral.onLoginTokenChanged += Meshcentral_onLoginTokenChanged;
             meshcentral.okCertHash = lastBadConnectCert.GetCertHashString();
 
-            Uri serverurl = new Uri("wss://" + serverNameComboBox.Text + "/control.ashx");
+            Uri serverurl = null;
             if (authLoginUrl != null) {
                 meshcentral.okCertHash2 = getValueFromQueryString(authLoginUrl.Query, "t");
                 serverurl = new Uri("wss://" + authLoginUrl.Host + ":" + ((authLoginUrl.Port > 0) ? authLoginUrl.Port : 443) + authLoginUrl.LocalPath + "?auth=" + getValueFromQueryString(authLoginUrl.Query, "c"));
                 meshcentral.connect(serverurl, null, null, null);
             } else {
+                serverurl = new Uri("wss://" + serverNameComboBox.Text + "/control.ashx");
                 meshcentral.connect(serverurl, userNameTextBox.Text, passwordTextBox.Text, null);
             }
         }
@@ -787,8 +790,16 @@ namespace MeshCentralRouter
             addButton.Enabled = false;
             addRelayButton.Enabled = false;
             openWebSiteButton.Visible = false;
-            Uri serverurl = new Uri("wss://" + serverNameComboBox.Text + "/control.ashx");
+
+            Uri serverurl = null;
+            if (authLoginUrl != null) {
+                serverurl = new Uri("wss://" + authLoginUrl.Host + ":" + ((authLoginUrl.Port > 0) ? authLoginUrl.Port : 443) + authLoginUrl.LocalPath + "?auth=" + getValueFromQueryString(authLoginUrl.Query, "c"));
+            } else {
+                serverurl = new Uri("wss://" + serverNameComboBox.Text + "/control.ashx");
+            }
+
             meshcentral = new MeshCentralServer();
+            meshcentral.debug = debug;
             meshcentral.ignoreCert = ignoreCert;
             if (lastBadConnectCert != null) { meshcentral.okCertHash = lastBadConnectCert.GetCertHashString(); }
             meshcentral.onStateChanged += Meshcentral_onStateChanged;
@@ -886,7 +897,12 @@ namespace MeshCentralRouter
         private void openWebSiteButton_Click(object sender, EventArgs e)
         {
             if (meshcentral.loginCookie != null) {
-                Uri serverurl = new Uri("https://" + serverNameComboBox.Text + "?login=" + meshcentral.loginCookie);
+                Uri serverurl = null;
+                if (authLoginUrl != null) {
+                    serverurl = new Uri("https://" + authLoginUrl.Host + ":" + ((authLoginUrl.Port > 0) ? authLoginUrl.Port : 443) + authLoginUrl.LocalPath + "?login=" + meshcentral.loginCookie);
+                } else {
+                    serverurl = new Uri("https://" + serverNameComboBox.Text + "?login=" + meshcentral.loginCookie);
+                }
                 System.Diagnostics.Process.Start(serverurl.ToString());
             }
         }

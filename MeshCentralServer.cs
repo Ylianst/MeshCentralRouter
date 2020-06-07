@@ -243,15 +243,18 @@ namespace MeshCentralRouter
                         if (jsonAction.ContainsKey("ugroups"))
                         {
                             Dictionary<string, object> usergroups = (Dictionary<string, object>)jsonAction["ugroups"];
-                            foreach (string i in usergroups.Keys)
+                            if (usergroups != null)
                             {
-                                Dictionary<string, object> usergroupsEx = (Dictionary<string, object>)usergroups[i];
-                                if (usergroupsEx.ContainsKey("name"))
+                                foreach (string i in usergroups.Keys)
                                 {
-                                    userGroups.Add(i, usergroupsEx["name"].ToString());
+                                    Dictionary<string, object> usergroupsEx = (Dictionary<string, object>)usergroups[i];
+                                    if (usergroupsEx.ContainsKey("name"))
+                                    {
+                                        userGroups.Add(i, usergroupsEx["name"].ToString());
+                                    }
                                 }
+                                if ((onNodesChanged != null) && (nodes != null)) onNodesChanged();
                             }
-                            if ((onNodesChanged != null) && (nodes != null)) onNodesChanged();
                         }
                         break;
                     }
