@@ -668,7 +668,7 @@ namespace MeshCentralRouter
                         map.remotePort = (int)remotePort;
                         map.appId = appId;
                         map.node = node;
-                        map.host = serverNameComboBox.Text;
+                        if (authLoginUrl != null) { map.host = authLoginUrl.Host + ":" + ((authLoginUrl.Port > 0) ? authLoginUrl.Port : 443); } else { map.host = serverNameComboBox.Text; }
                         map.authCookie = meshcentral.authCookie;
                         map.certhash = meshcentral.wshash;
                         map.parent = this;
@@ -730,7 +730,7 @@ namespace MeshCentralRouter
                         map.remotePort = (int)remotePort;
                         map.appId = appId;
                         map.node = node;
-                        map.host = serverNameComboBox.Text;
+                        if (authLoginUrl != null) { map.host = authLoginUrl.Host + ":" + ((authLoginUrl.Port > 0) ? authLoginUrl.Port : 443); } else { map.host = serverNameComboBox.Text; }
                         map.authCookie = meshcentral.authCookie;
                         map.certhash = meshcentral.wshash;
                         map.parent = this;
@@ -759,7 +759,7 @@ namespace MeshCentralRouter
                 map.remotePort = form.getRemotePort();
                 map.appId = form.getAppId();
                 map.node = form.getNode();
-                map.host = serverNameComboBox.Text;
+                if (authLoginUrl != null) { map.host = authLoginUrl.Host + ":" + ((authLoginUrl.Port > 0) ? authLoginUrl.Port : 443); } else { map.host = serverNameComboBox.Text; }
                 map.authCookie = meshcentral.authCookie;
                 map.certhash = meshcentral.wshash;
                 map.parent = this;
@@ -877,7 +877,7 @@ namespace MeshCentralRouter
                 map.remoteIP = form.getRemoteIP();
                 map.appId = form.getAppId();
                 map.node = form.getNode();
-                map.host = serverNameComboBox.Text;
+                if (authLoginUrl != null) { map.host = authLoginUrl.Host + ":" + ((authLoginUrl.Port > 0) ? authLoginUrl.Port : 443); } else { map.host = serverNameComboBox.Text; }
                 map.authCookie = meshcentral.authCookie;
                 map.certhash = meshcentral.wshash;
                 map.parent = this;
@@ -1014,7 +1014,7 @@ namespace MeshCentralRouter
             map.remotePort = port; // HTTP
             map.appId = appId; // 0 = Custom, 1 = HTTP, 2 = HTTPS, 3 = RDP, 4 = PuTTY, 5 = WinSCP
             map.node = node;
-            map.host = serverNameComboBox.Text;
+            if (authLoginUrl != null) { map.host = authLoginUrl.Host + ":" + ((authLoginUrl.Port > 0) ? authLoginUrl.Port : 443); } else { map.host = serverNameComboBox.Text; }
             map.authCookie = meshcentral.authCookie;
             map.certhash = meshcentral.wshash;
             map.parent = this;
