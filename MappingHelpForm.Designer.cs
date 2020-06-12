@@ -35,26 +35,20 @@
             // 
             // helpPictureBox
             // 
-            this.helpPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            resources.ApplyResources(this.helpPictureBox, "helpPictureBox");
             this.helpPictureBox.Image = global::MeshCentralRouter.Properties.Resources.HelpRelayMap;
-            this.helpPictureBox.Location = new System.Drawing.Point(0, 0);
             this.helpPictureBox.Name = "helpPictureBox";
-            this.helpPictureBox.Size = new System.Drawing.Size(325, 435);
-            this.helpPictureBox.TabIndex = 0;
             this.helpPictureBox.TabStop = false;
             // 
             // MappingHelpForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(325, 435);
             this.Controls.Add(this.helpPictureBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MappingHelpForm";
-            this.Text = "Port Mapping Help";
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).EndInit();
             this.ResumeLayout(false);
 

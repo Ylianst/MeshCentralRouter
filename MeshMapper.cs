@@ -117,8 +117,8 @@ namespace MeshCentralRouter
 
         private void UpdateInfo() {
             string msg = "";
-            if (state == -1) { msg = "Unable to bind to local port"; }
-            else if (state == 0) { msg = "Stopped"; }
+            if (state == -1) { msg = Properties.Resources.UnableToBindToLocalPort; }
+            else if (state == 0) { msg = Properties.Resources.Stopped2; }
             else if (state == 1) {
                 if (remoteip == null)
                 {
@@ -126,8 +126,8 @@ namespace MeshCentralRouter
                 } else {
                     msg = "Port " + localport + " to " + remoteip + ":" + remoteport;
                 }
-                if (totalConnectCounter == 1) { msg += ", 1 connection."; }
-                if (totalConnectCounter > 1) { msg += ", " + totalConnectCounter + " connections."; }
+                if (totalConnectCounter == 1) { msg += Properties.Resources.OneConnection; }
+                if (totalConnectCounter > 1) { msg += string.Format(Properties.Resources.ManyConnections, totalConnectCounter); }
             }
             if (onStateMsgChanged != null) { onStateMsgChanged(msg); }
         }
@@ -400,7 +400,7 @@ namespace MeshCentralRouter
                 catch (Exception ex)
                 {
                     // Disconnect
-                    MessageBox.Show(ex.Message, "MeshRouter");
+                    MessageBox.Show(ex.Message, Properties.Resources.MeshCentralRouter);
                     parent.Debug("#" + counter + ": Websocket TLS failed: " + ex.ToString());
                     parent.ShutdownClients(client, uclient, this, this.counter);
                     return;

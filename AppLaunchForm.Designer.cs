@@ -32,45 +32,35 @@
             this.cancelButton = new System.Windows.Forms.Button();
             this.okButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.appNameLabel = new System.Windows.Forms.Label();
-            this.appPathTextBox = new System.Windows.Forms.TextBox();
-            this.appLinkLabel = new System.Windows.Forms.LinkLabel();
-            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.folderButton = new System.Windows.Forms.Button();
+            this.appNameLabel = new System.Windows.Forms.Label();
+            this.appLinkLabel = new System.Windows.Forms.LinkLabel();
+            this.appPathTextBox = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // cancelButton
             // 
-            this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.cancelButton, "cancelButton");
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(323, 128);
             this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(75, 23);
-            this.cancelButton.TabIndex = 0;
-            this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
             // okButton
             // 
-            this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.okButton.Location = new System.Drawing.Point(242, 128);
+            resources.ApplyResources(this.okButton, "okButton");
             this.okButton.Name = "okButton";
-            this.okButton.Size = new System.Drawing.Size(75, 23);
-            this.okButton.TabIndex = 1;
-            this.okButton.Text = "OK";
             this.okButton.UseVisualStyleBackColor = true;
             this.okButton.Click += new System.EventHandler(this.okButton_Click);
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Controls.Add(this.folderButton);
             this.groupBox1.Controls.Add(this.appNameLabel);
             this.groupBox1.Controls.Add(this.appLinkLabel);
@@ -78,101 +68,68 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(386, 110);
-            this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Application Launch";
             // 
-            // label1
+            // folderButton
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 25);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Name";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 51);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(25, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Site";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 77);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(29, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Path";
+            resources.ApplyResources(this.folderButton, "folderButton");
+            this.folderButton.Image = global::MeshCentralRouter.Properties.Resources.Folder36;
+            this.folderButton.Name = "folderButton";
+            this.folderButton.UseVisualStyleBackColor = true;
+            this.folderButton.Click += new System.EventHandler(this.folderPictureBox_Click);
             // 
             // appNameLabel
             // 
-            this.appNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.appNameLabel.Location = new System.Drawing.Point(83, 25);
+            resources.ApplyResources(this.appNameLabel, "appNameLabel");
             this.appNameLabel.Name = "appNameLabel";
-            this.appNameLabel.Size = new System.Drawing.Size(238, 16);
-            this.appNameLabel.TabIndex = 3;
-            this.appNameLabel.Text = "Application Name";
-            // 
-            // appPathTextBox
-            // 
-            this.appPathTextBox.Location = new System.Drawing.Point(86, 74);
-            this.appPathTextBox.Name = "appPathTextBox";
-            this.appPathTextBox.Size = new System.Drawing.Size(294, 20);
-            this.appPathTextBox.TabIndex = 3;
-            this.appPathTextBox.TextChanged += new System.EventHandler(this.appPathTextBox_TextChanged);
             // 
             // appLinkLabel
             // 
-            this.appLinkLabel.Location = new System.Drawing.Point(83, 49);
+            resources.ApplyResources(this.appLinkLabel, "appLinkLabel");
             this.appLinkLabel.Name = "appLinkLabel";
-            this.appLinkLabel.Size = new System.Drawing.Size(238, 16);
-            this.appLinkLabel.TabIndex = 4;
             this.appLinkLabel.TabStop = true;
-            this.appLinkLabel.Text = "Application Link";
             this.appLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.appLinkLabel_LinkClicked);
+            // 
+            // appPathTextBox
+            // 
+            resources.ApplyResources(this.appPathTextBox, "appPathTextBox");
+            this.appPathTextBox.Name = "appPathTextBox";
+            this.appPathTextBox.TextChanged += new System.EventHandler(this.appPathTextBox_TextChanged);
+            // 
+            // label3
+            // 
+            resources.ApplyResources(this.label3, "label3");
+            this.label3.Name = "label3";
+            // 
+            // label2
+            // 
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.Name = "label2";
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
             // 
             // openFileDialog
             // 
             this.openFileDialog.DefaultExt = "exe";
-            this.openFileDialog.Filter = "Executable (*.exe)|*.exe";
-            this.openFileDialog.Title = "Application Executable";
-            // 
-            // folderButton
-            // 
-            this.folderButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.folderButton.Image = global::MeshCentralRouter.Properties.Resources.Folder36;
-            this.folderButton.Location = new System.Drawing.Point(327, 15);
-            this.folderButton.Name = "folderButton";
-            this.folderButton.Size = new System.Drawing.Size(52, 52);
-            this.folderButton.TabIndex = 5;
-            this.folderButton.UseVisualStyleBackColor = true;
-            this.folderButton.Click += new System.EventHandler(this.folderPictureBox_Click);
+            resources.ApplyResources(this.openFileDialog, "openFileDialog");
             // 
             // AppLaunchForm
             // 
             this.AcceptButton = this.okButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(410, 163);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.cancelButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AppLaunchForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "MeshCentral Router";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

@@ -117,10 +117,139 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="serverInfoLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="serverInfoLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial, 9pt</value>
+  </data>
+  <data name="serverInfoLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>65, 30</value>
+  </data>
+  <data name="serverInfoLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>420, 18</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="serverInfoLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="serverInfoLabel.Text" xml:space="preserve">
+    <value>Server information</value>
+  </data>
+  <data name="&gt;&gt;serverInfoLabel.Name" xml:space="preserve">
+    <value>serverInfoLabel</value>
+  </data>
+  <data name="&gt;&gt;serverInfoLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;serverInfoLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;serverInfoLabel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="serverNameLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="serverNameLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial, 11.25pt, style=Bold</value>
+  </data>
+  <data name="serverNameLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>65, 10</value>
+  </data>
+  <data name="serverNameLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>420, 18</value>
+  </data>
+  <data name="serverNameLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="serverNameLabel.Text" xml:space="preserve">
+    <value>ServerName</value>
+  </data>
+  <data name="&gt;&gt;serverNameLabel.Name" xml:space="preserve">
+    <value>serverNameLabel</value>
+  </data>
+  <data name="&gt;&gt;serverNameLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;serverNameLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;serverNameLabel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="serverPictureBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="serverPictureBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 59</value>
+  </data>
+  <data name="serverPictureBox.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>StretchImage</value>
+  </data>
+  <data name="serverPictureBox.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;serverPictureBox.Name" xml:space="preserve">
+    <value>serverPictureBox</value>
+  </data>
+  <data name="&gt;&gt;serverPictureBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;serverPictureBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;serverPictureBox.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
   <metadata name="serverContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="infoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 22</value>
+  </data>
+  <data name="infoToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Info...</value>
+  </data>
+  <data name="serverContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>105, 26</value>
+  </data>
+  <data name="&gt;&gt;serverContextMenuStrip.Name" xml:space="preserve">
+    <value>serverContextMenuStrip</value>
+  </data>
+  <data name="&gt;&gt;serverContextMenuStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <metadata name="backTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>200, 17</value>
   </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
+    <value>485, 57</value>
+  </data>
+  <data name="&gt;&gt;infoToolStripMenuItem.Name" xml:space="preserve">
+    <value>infoToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;infoToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;backTimer.Name" xml:space="preserve">
+    <value>backTimer</value>
+  </data>
+  <data name="&gt;&gt;backTimer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>ServerUserControl</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

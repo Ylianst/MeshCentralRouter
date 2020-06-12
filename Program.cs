@@ -31,8 +31,21 @@ namespace MeshCentralRouter
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Properties.Settings.Default.Upgrade();
-            MainForm main = new MainForm(args);
-            if (main.forceExit == false) { Application.Run(main); }
+
+            foreach (string arg in args)
+            {
+                if (arg.Length > 3 && string.Compare(arg.Substring(0, 3), "-l:", true) == 0) { try { System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(arg.Substring(3)); } catch (ArgumentException) { } }
+            }
+
+            MainForm main;
+            System.Globalization.CultureInfo currentCulture;
+            do
+            {
+                currentCulture = System.Threading.Thread.CurrentThread.CurrentUICulture;
+                main = new MainForm(args);
+                if (main.forceExit == false) { Application.Run(main); }
+            }
+            while (currentCulture.Equals(System.Threading.Thread.CurrentThread.CurrentUICulture) == false);
         }
 
     }

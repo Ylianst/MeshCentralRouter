@@ -50,7 +50,7 @@ namespace MeshCentralRouter
 
         public void Start()
         {
-            routingStatusLabel.Text = "Starting...";
+            routingStatusLabel.Text = Properties.Resources.Starting;
             appButton.Enabled = (appId != 0);
             mapper = new MeshMapper();
             mapper.xdebug = xdebug;
@@ -71,7 +71,7 @@ namespace MeshCentralRouter
 
         public void Stop()
         {
-            routingStatusLabel.Text = "Stopped.";
+            routingStatusLabel.Text = Properties.Resources.Stopped;
             appButton.Enabled = false;
             mapper.onStateMsgChanged -= Mapper_onStateMsgChanged;
             mapper.stop();
@@ -127,7 +127,7 @@ namespace MeshCentralRouter
                 using (AppLaunchForm f = new AppLaunchForm())
                 {
                     System.Diagnostics.Process proc = null;
-                    f.SetAppName("PuTTY SSH client");
+                    f.SetAppName(Properties.Resources.PuttyAppName);
                     f.SetAppLink("http://www.chiark.greenend.org.uk/~sgtatham/putty/");
                     f.SetAppPath(loadFromRegistry("PuttyPath"));
                     if (f.ShowDialog(this) == DialogResult.OK)
@@ -145,7 +145,7 @@ namespace MeshCentralRouter
                 using (AppLaunchForm f = new AppLaunchForm())
                 {
                     System.Diagnostics.Process proc = null;
-                    f.SetAppName("WinSCP client");
+                    f.SetAppName(Properties.Resources.WinscpAppName);
                     f.SetAppLink("http://winscp.net/");
                     f.SetAppPath(loadFromRegistry("WinSCPPath"));
                     if (f.ShowDialog(this) == DialogResult.OK)

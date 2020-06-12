@@ -217,7 +217,7 @@ namespace MeshCentralRouter
             //windowColor = serverNameTextBox.BackColor;
             setPanel(1);
             updatePanel1(null, null);
-            SendMessage(searchTextBox.Handle, EM_SETCUEBANNER, 0, "Search");
+            SendMessage(searchTextBox.Handle, EM_SETCUEBANNER, 0, Properties.Resources.SearchPlaceHolder);
 
             // Start the multicast scanner
             //scanner = new MeshDiscovery();
@@ -520,14 +520,14 @@ namespace MeshCentralRouter
                 } else { setPanel(1); }
 
                 if ((meshcentral.disconnectMsg != null) && meshcentral.disconnectMsg.StartsWith("noauth")) {
-                    stateLabel.Text = "Invalid username or password";
+                    stateLabel.Text = Properties.Resources.InvalidUsernameOrPassword;
                     stateLabel.Visible = true;
                     stateClearTimer.Enabled = true;
                     serverNameComboBox.Focus();
                 }
                 else if ((meshcentral.disconnectMsg != null) && meshcentral.disconnectMsg.StartsWith("emailvalidationrequired"))
                 {
-                    stateLabel.Text = "Email verification required";
+                    stateLabel.Text = Properties.Resources.EmailVerificationRequired;
                     stateLabel.Visible = true;
                     stateClearTimer.Enabled = true;
                     serverNameComboBox.Focus();
@@ -538,7 +538,7 @@ namespace MeshCentralRouter
                     setPanel(3);
                     certDetailsButton.Focus();
                 }
-                else if (meshcentral.disconnectMsg == null) { stateLabel.Text = "Unable to connect"; stateLabel.Visible = true; stateClearTimer.Enabled = true; serverNameComboBox.Focus(); }
+                else if (meshcentral.disconnectMsg == null) { stateLabel.Text = Properties.Resources.UnableToConnect; stateLabel.Visible = true; stateClearTimer.Enabled = true; serverNameComboBox.Focus(); }
 
                 // Clean up the UI
                 nextButton1.Enabled = true;
@@ -1027,7 +1027,7 @@ namespace MeshCentralRouter
 
         private void emailTokenButton_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show(this, "Send token to registered email address?", "Two-factor Authentication", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            if (MessageBox.Show(this, Properties.Resources.SendTokenEmail, Properties.Resources.TwoFactorAuthentication, MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
                 sendEmailToken = true;
                 sendSMSToken = false;
@@ -1037,7 +1037,7 @@ namespace MeshCentralRouter
 
         private void smsTokenButton_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show(this, "Send token to registered phone number?", "Two-factor Authentication", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            if (MessageBox.Show(this, Properties.Resources.SendTokenSMS, Properties.Resources.TwoFactorAuthentication, MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
                 sendEmailToken = false;
                 sendSMSToken = true;
@@ -1094,6 +1094,16 @@ namespace MeshCentralRouter
         {
             InstallForm form = new InstallForm();
             if (form.ShowDialog(this) == DialogResult.OK) { hookRouterEx(); }
+        }
+
+        private void ChangeLanguage(string lang)
+        {
+            if (System.Threading.Thread.CurrentThread.CurrentUICulture == new System.Globalization.CultureInfo(lang)) return;
+            if (MessageBox.Show(this, Properties.Resources.LanguagesChanging, Properties.Resources.LanguagesTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(lang);
+                Close();
+            }
         }
 
         /*

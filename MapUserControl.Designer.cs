@@ -42,52 +42,31 @@
             // devicePictureBox
             // 
             this.devicePictureBox.Image = global::MeshCentralRouter.Properties.Resources.icons01;
-            this.devicePictureBox.Location = new System.Drawing.Point(6, 3);
+            resources.ApplyResources(this.devicePictureBox, "devicePictureBox");
             this.devicePictureBox.Name = "devicePictureBox";
-            this.devicePictureBox.Size = new System.Drawing.Size(50, 50);
-            this.devicePictureBox.TabIndex = 0;
             this.devicePictureBox.TabStop = false;
             // 
             // deviceNameLabel
             // 
-            this.deviceNameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.deviceNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deviceNameLabel.Location = new System.Drawing.Point(62, 12);
+            resources.ApplyResources(this.deviceNameLabel, "deviceNameLabel");
             this.deviceNameLabel.Name = "deviceNameLabel";
-            this.deviceNameLabel.Size = new System.Drawing.Size(290, 15);
-            this.deviceNameLabel.TabIndex = 1;
-            this.deviceNameLabel.Text = "ComputerName";
             // 
             // routingStatusLabel
             // 
-            this.routingStatusLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.routingStatusLabel.Location = new System.Drawing.Point(62, 32);
+            resources.ApplyResources(this.routingStatusLabel, "routingStatusLabel");
             this.routingStatusLabel.Name = "routingStatusLabel";
-            this.routingStatusLabel.Size = new System.Drawing.Size(290, 15);
-            this.routingStatusLabel.TabIndex = 2;
-            this.routingStatusLabel.Text = "Routing Status";
             // 
             // appButton
             // 
-            this.appButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.appButton.Location = new System.Drawing.Point(358, 6);
+            resources.ApplyResources(this.appButton, "appButton");
             this.appButton.Name = "appButton";
-            this.appButton.Size = new System.Drawing.Size(75, 23);
-            this.appButton.TabIndex = 3;
-            this.appButton.Text = "Open...";
             this.appButton.UseVisualStyleBackColor = true;
             this.appButton.Click += new System.EventHandler(this.appButton_Click);
             // 
             // closeButton
             // 
-            this.closeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.closeButton.Location = new System.Drawing.Point(358, 30);
+            resources.ApplyResources(this.closeButton, "closeButton");
             this.closeButton.Name = "closeButton";
-            this.closeButton.Size = new System.Drawing.Size(75, 23);
-            this.closeButton.TabIndex = 4;
-            this.closeButton.Text = "Remove";
             this.closeButton.UseVisualStyleBackColor = true;
             this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
             // 
@@ -106,7 +85,7 @@
             // 
             // MapUserControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -116,7 +95,6 @@
             this.Controls.Add(this.deviceNameLabel);
             this.Controls.Add(this.devicePictureBox);
             this.Name = "MapUserControl";
-            this.Size = new System.Drawing.Size(441, 60);
             ((System.ComponentModel.ISupportInitialize)(this.devicePictureBox)).EndInit();
             this.ResumeLayout(false);
 

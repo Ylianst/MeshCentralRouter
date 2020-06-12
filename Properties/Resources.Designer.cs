@@ -61,29 +61,20 @@ namespace MeshCentralRouter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Confirm Delete.
+        ///   Looks up a localized string similar to Email verification required.
         /// </summary>
-        internal static string CertMgrForm_Del {
+        internal static string EmailVerificationRequired {
             get {
-                return ResourceManager.GetString("CertMgrForm_Del", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Delete Selected Certificate?.
-        /// </summary>
-        internal static string CertMgrForm_DelStr {
-            get {
-                return ResourceManager.GetString("CertMgrForm_DelStr", resourceCulture);
+                return ResourceManager.GetString("EmailVerificationRequired", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Empty_Banner {
+        internal static System.Drawing.Bitmap EmptyBanner {
             get {
-                object obj = ResourceManager.GetObject("Empty-Banner", resourceCulture);
+                object obj = ResourceManager.GetObject("EmptyBanner", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -139,11 +130,47 @@ namespace MeshCentralRouter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid username or password.
+        /// </summary>
+        internal static string InvalidUsernameOrPassword {
+            get {
+                return ResourceManager.GetString("InvalidUsernameOrPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Changing language will close this tool. Are you sure?.
+        /// </summary>
+        internal static string LanguagesChanging {
+            get {
+                return ResourceManager.GetString("LanguagesChanging", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Languages.
+        /// </summary>
+        internal static string LanguagesTitle {
+            get {
+                return ResourceManager.GetString("LanguagesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to , {0} connections..
+        /// </summary>
+        internal static string ManyConnections {
+            get {
+                return ResourceManager.GetString("ManyConnections", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap MC2_Banner {
+        internal static System.Drawing.Bitmap MC2Banner {
             get {
-                object obj = ResourceManager.GetObject("MC2-Banner", resourceCulture);
+                object obj = ResourceManager.GetObject("MC2Banner", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -151,9 +178,9 @@ namespace MeshCentralRouter.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap MC2_Logo {
+        internal static System.Drawing.Bitmap MC2Logo {
             get {
-                object obj = ResourceManager.GetObject("MC2-Logo", resourceCulture);
+                object obj = ResourceManager.GetObject("MC2Logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -165,6 +192,24 @@ namespace MeshCentralRouter.Properties {
             get {
                 object obj = ResourceManager.GetObject("MeshCentral", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MeshCentral Router.
+        /// </summary>
+        internal static string MeshCentralRouter {
+            get {
+                return ResourceManager.GetString("MeshCentralRouter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MeshCentral.
+        /// </summary>
+        internal static string MeshCentralTitle {
+            get {
+                return ResourceManager.GetString("MeshCentralTitle", resourceCulture);
             }
         }
         
@@ -189,20 +234,110 @@ namespace MeshCentralRouter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cert Import.
+        ///   Looks up a localized string similar to , 1 connection..
         /// </summary>
-        internal static string MsgBox_Import_Cert {
+        internal static string OneConnection {
             get {
-                return ResourceManager.GetString("MsgBox_Import_Cert", resourceCulture);
+                return ResourceManager.GetString("OneConnection", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Incorrect file or password.
+        ///   Looks up a localized string similar to PuTTY SSH client.
         /// </summary>
-        internal static string MsgBox_Import_Error {
+        internal static string PuttyAppName {
             get {
-                return ResourceManager.GetString("MsgBox_Import_Error", resourceCulture);
+                return ResourceManager.GetString("PuttyAppName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        internal static string SearchPlaceHolder {
+            get {
+                return ResourceManager.GetString("SearchPlaceHolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send token to registered email address?.
+        /// </summary>
+        internal static string SendTokenEmail {
+            get {
+                return ResourceManager.GetString("SendTokenEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send token to registered phone number?.
+        /// </summary>
+        internal static string SendTokenSMS {
+            get {
+                return ResourceManager.GetString("SendTokenSMS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Starting....
+        /// </summary>
+        internal static string Starting {
+            get {
+                return ResourceManager.GetString("Starting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stopped..
+        /// </summary>
+        internal static string Stopped {
+            get {
+                return ResourceManager.GetString("Stopped", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stopped.
+        /// </summary>
+        internal static string Stopped2 {
+            get {
+                return ResourceManager.GetString("Stopped2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Two-factor Authentication.
+        /// </summary>
+        internal static string TwoFactorAuthentication {
+            get {
+                return ResourceManager.GetString("TwoFactorAuthentication", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to bind to local port.
+        /// </summary>
+        internal static string UnableToBindToLocalPort {
+            get {
+                return ResourceManager.GetString("UnableToBindToLocalPort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to connect.
+        /// </summary>
+        internal static string UnableToConnect {
+            get {
+                return ResourceManager.GetString("UnableToConnect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to WinSCP client.
+        /// </summary>
+        internal static string WinscpAppName {
+            get {
+                return ResourceManager.GetString("WinscpAppName", resourceCulture);
             }
         }
     }
