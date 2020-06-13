@@ -126,10 +126,10 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="installButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 285</value>
+    <value>11, 285</value>
   </data>
   <data name="installButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+    <value>95, 23</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="installButton.TabIndex" type="System.Int32, mscorlib">
@@ -351,14 +351,11 @@
   <data name="licenseLinkLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
-  <data name="licenseLinkLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="licenseLinkLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>307, 260</value>
+    <value>173, 260</value>
   </data>
   <data name="licenseLinkLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>171, 13</value>
+    <value>303, 13</value>
   </data>
   <data name="licenseLinkLabel.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -415,10 +412,10 @@
     <value>Bottom, Right</value>
   </data>
   <data name="nextButton1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>391, 285</value>
+    <value>371, 285</value>
   </data>
   <data name="nextButton1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+    <value>95, 23</value>
   </data>
   <data name="nextButton1.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -570,11 +567,38 @@
   <data name="&gt;&gt;tabPage1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="emailTokenButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>241, 177</value>
+  </data>
+  <data name="emailTokenButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>95, 23</value>
+  </data>
+  <data name="emailTokenButton.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="emailTokenButton.Text" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="emailTokenButton.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;emailTokenButton.Name" xml:space="preserve">
+    <value>emailTokenButton</value>
+  </data>
+  <data name="&gt;&gt;emailTokenButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;emailTokenButton.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;emailTokenButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="smsTokenButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>322, 177</value>
+    <value>342, 177</value>
   </data>
   <data name="smsTokenButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+    <value>95, 23</value>
   </data>
   <data name="smsTokenButton.TabIndex" type="System.Int32, mscorlib">
     <value>22</value>
@@ -595,7 +619,7 @@
     <value>panel2</value>
   </data>
   <data name="&gt;&gt;smsTokenButton.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="tokenEmailSentLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -625,33 +649,6 @@
     <value>panel2</value>
   </data>
   <data name="&gt;&gt;tokenEmailSentLabel.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="emailTokenButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>241, 177</value>
-  </data>
-  <data name="emailTokenButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="emailTokenButton.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
-  </data>
-  <data name="emailTokenButton.Text" xml:space="preserve">
-    <value>Email</value>
-  </data>
-  <data name="emailTokenButton.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;emailTokenButton.Name" xml:space="preserve">
-    <value>emailTokenButton</value>
-  </data>
-  <data name="&gt;&gt;emailTokenButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;emailTokenButton.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;emailTokenButton.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
   <data name="label3.AutoSize" type="System.Boolean, mscorlib">
@@ -736,10 +733,10 @@
     <value>Bottom, Right</value>
   </data>
   <data name="backButton2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>310, 285</value>
+    <value>270, 285</value>
   </data>
   <data name="backButton2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+    <value>95, 23</value>
   </data>
   <data name="backButton2.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -763,10 +760,10 @@
     <value>Bottom, Right</value>
   </data>
   <data name="nextButton2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>391, 285</value>
+    <value>371, 285</value>
   </data>
   <data name="nextButton2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+    <value>95, 23</value>
   </data>
   <data name="nextButton2.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -928,7 +925,7 @@
     <value>14, 251</value>
   </data>
   <data name="certDetailsButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 23</value>
+    <value>188, 23</value>
   </data>
   <data name="certDetailsButton.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
@@ -1012,10 +1009,10 @@
     <value>Bottom, Right</value>
   </data>
   <data name="backButton3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>316, 291</value>
+    <value>276, 291</value>
   </data>
   <data name="backButton3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+    <value>95, 23</value>
   </data>
   <data name="backButton3.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
@@ -1039,10 +1036,10 @@
     <value>Bottom, Right</value>
   </data>
   <data name="nextButton3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>397, 291</value>
+    <value>377, 291</value>
   </data>
   <data name="nextButton3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+    <value>95, 23</value>
   </data>
   <data name="nextButton3.TabIndex" type="System.Int32, mscorlib">
     <value>21</value>
@@ -1255,7 +1252,7 @@
     <value>91, 96</value>
   </data>
   <data name="noSearchResultsLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>283, 17</value>
+    <value>271, 17</value>
   </data>
   <data name="noSearchResultsLabel.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -1291,7 +1288,7 @@
     <value>91, 97</value>
   </data>
   <data name="noDevicesLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>283, 17</value>
+    <value>271, 17</value>
   </data>
   <data name="noDevicesLabel.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -1378,7 +1375,7 @@
     <value>91, 79</value>
   </data>
   <data name="noMapLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>283, 52</value>
+    <value>271, 52</value>
   </data>
   <data name="noMapLabel.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -1647,10 +1644,10 @@ Click "Add" to get started.</value>
     <value>Bottom, Right</value>
   </data>
   <data name="backButton5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>316, 291</value>
+    <value>276, 291</value>
   </data>
   <data name="backButton5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+    <value>95, 23</value>
   </data>
   <data name="backButton5.TabIndex" type="System.Int32, mscorlib">
     <value>35</value>
@@ -1674,10 +1671,10 @@ Click "Add" to get started.</value>
     <value>Bottom, Right</value>
   </data>
   <data name="nextButton5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>397, 291</value>
+    <value>377, 291</value>
   </data>
   <data name="nextButton5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+    <value>95, 23</value>
   </data>
   <data name="nextButton5.TabIndex" type="System.Int32, mscorlib">
     <value>36</value>

@@ -34,7 +34,9 @@ namespace MeshCentralRouter
 
             foreach (string arg in args)
             {
-                if (arg.Length > 3 && string.Compare(arg.Substring(0, 3), "-l:", true) == 0) { try { System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(arg.Substring(3)); } catch (ArgumentException) { } }
+                if (arg.Length > 3 && string.Compare(arg.Substring(0, 3), "-l:", true) == 0) {
+                    try { System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(arg.Substring(3)); } catch (ArgumentException) { }
+                }
             }
 
             MainForm main;

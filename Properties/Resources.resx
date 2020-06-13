@@ -208,4 +208,28 @@
   <data name="WinscpAppName" xml:space="preserve">
     <value>WinSCP client</value>
   </data>
+  <data name="Agent" xml:space="preserve">
+    <value>Agent</value>
+  </data>
+  <data name="AMT" xml:space="preserve">
+    <value>AMT</value>
+  </data>
+  <data name="CIRA" xml:space="preserve">
+    <value>CIRA</value>
+  </data>
+  <data name="EmailSent" xml:space="preserve">
+    <value>Email sent</value>
+  </data>
+  <data name="MQTT" xml:space="preserve">
+    <value>MQTT</value>
+  </data>
+  <data name="Offline" xml:space="preserve">
+    <value>Offline</value>
+  </data>
+  <data name="Relay" xml:space="preserve">
+    <value>Relay</value>
+  </data>
+  <data name="SmsSent" xml:space="preserve">
+    <value>SMS sent</value>
+  </data>
 </root>

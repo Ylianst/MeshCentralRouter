@@ -112,31 +112,124 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="MsgBox_Import_Cert" xml:space="preserve">
-    <value>Cert Import</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="MeshIcon50T" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>../Resources/MeshIcon50T.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="CertMgrForm_DelStr" xml:space="preserve">
-    <value>删除选中的证书？</value>
+  <data name="EmptyBanner" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>../Resources/Empty-Banner.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="MsgBox_Import_Error" xml:space="preserve">
-    <value>Incorrect file or password</value>
+  <data name="MeshCentral" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>../Resources/MeshCentral.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\logo.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Folder36" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>../Resources/Folder36.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="CertMgrForm_Del" xml:space="preserve">
-    <value>确认删除</value>
+  <data name="MC2Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>../Resources/MC2-Logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Padlock" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Padlock.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Help20" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>../Resources/Help20.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Padlock2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Padlock2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icons01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>../Resources/icons01.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MeshServerLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>../Resources/MeshServerLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HelpRelayMap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>../Resources/HelpRelayMap.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MC2Banner" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>../Resources/MC2-Banner.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="install" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\install.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LanguagesChanging" xml:space="preserve">
+    <value>更改语言将关闭此工具。 你确定吗？</value>
+  </data>
+  <data name="LanguagesTitle" xml:space="preserve">
+    <value>语言能力</value>
+  </data>
+  <data name="SearchPlaceHolder" xml:space="preserve">
+    <value>搜索</value>
+  </data>
+  <data name="EmailVerificationRequired" xml:space="preserve">
+    <value>需要电子邮件验证</value>
+  </data>
+  <data name="InvalidUsernameOrPassword" xml:space="preserve">
+    <value>用户名或密码无效</value>
+  </data>
+  <data name="SendTokenEmail" xml:space="preserve">
+    <value>将令牌发送到注册的电子邮件地址？</value>
+  </data>
+  <data name="SendTokenSMS" xml:space="preserve">
+    <value>将令牌发送到注册的电话号码？</value>
+  </data>
+  <data name="TwoFactorAuthentication" xml:space="preserve">
+    <value>两因素验证</value>
+  </data>
+  <data name="UnableToConnect" xml:space="preserve">
+    <value>无法连接</value>
+  </data>
+  <data name="ManyConnections" xml:space="preserve">
+    <value>，{0}个连接。</value>
+  </data>
+  <data name="MeshCentralRouter" xml:space="preserve">
+    <value>MeshCentral路由器</value>
+  </data>
+  <data name="MeshCentralTitle" xml:space="preserve">
+    <value>网格中心</value>
+  </data>
+  <data name="OneConnection" xml:space="preserve">
+    <value>，1个连接。</value>
+  </data>
+  <data name="PuttyAppName" xml:space="preserve">
+    <value>PuTTY SSH客户端</value>
+  </data>
+  <data name="Starting" xml:space="preserve">
+    <value>开始...</value>
+  </data>
+  <data name="Stopped" xml:space="preserve">
+    <value>停了</value>
+  </data>
+  <data name="Stopped2" xml:space="preserve">
+    <value>已停止</value>
+  </data>
+  <data name="UnableToBindToLocalPort" xml:space="preserve">
+    <value>无法绑定到本地端口</value>
+  </data>
+  <data name="WinscpAppName" xml:space="preserve">
+    <value>WinSCP客户端</value>
+  </data>
+  <data name="Agent" xml:space="preserve">
+    <value>代理商</value>
+  </data>
+  <data name="AMT" xml:space="preserve">
+    <value>AMT</value>
+  </data>
+  <data name="CIRA" xml:space="preserve">
+    <value>CIRA</value>
+  </data>
+  <data name="EmailSent" xml:space="preserve">
+    <value>邮件已发送</value>
+  </data>
+  <data name="MQTT" xml:space="preserve">
+    <value>MQTT</value>
+  </data>
+  <data name="Offline" xml:space="preserve">
+    <value>离线</value>
+  </data>
+  <data name="Relay" xml:space="preserve">
+    <value>中继</value>
+  </data>
+  <data name="SmsSent" xml:space="preserve">
+    <value>短信发送</value>
   </data>
 </root>

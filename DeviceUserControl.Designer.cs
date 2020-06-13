@@ -52,42 +52,25 @@
             // devicePictureBox
             // 
             this.devicePictureBox.Image = global::MeshCentralRouter.Properties.Resources.icons01;
-            this.devicePictureBox.Location = new System.Drawing.Point(6, 3);
+            resources.ApplyResources(this.devicePictureBox, "devicePictureBox");
             this.devicePictureBox.Name = "devicePictureBox";
-            this.devicePictureBox.Size = new System.Drawing.Size(50, 50);
-            this.devicePictureBox.TabIndex = 0;
             this.devicePictureBox.TabStop = false;
             // 
             // deviceNameLabel
             // 
-            this.deviceNameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.deviceNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deviceNameLabel.Location = new System.Drawing.Point(62, 12);
+            resources.ApplyResources(this.deviceNameLabel, "deviceNameLabel");
             this.deviceNameLabel.Name = "deviceNameLabel";
-            this.deviceNameLabel.Size = new System.Drawing.Size(243, 15);
-            this.deviceNameLabel.TabIndex = 1;
-            this.deviceNameLabel.Text = "ComputerName";
             // 
             // deviceStatusLabel
             // 
-            this.deviceStatusLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.deviceStatusLabel.Location = new System.Drawing.Point(62, 32);
+            resources.ApplyResources(this.deviceStatusLabel, "deviceStatusLabel");
             this.deviceStatusLabel.Name = "deviceStatusLabel";
-            this.deviceStatusLabel.Size = new System.Drawing.Size(243, 15);
-            this.deviceStatusLabel.TabIndex = 2;
-            this.deviceStatusLabel.Text = "Device Status";
             // 
             // rdpButton
             // 
-            this.rdpButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.rdpButton, "rdpButton");
             this.rdpButton.ContextMenuStrip = this.rdpContextMenuStrip;
-            this.rdpButton.Location = new System.Drawing.Point(375, 6);
             this.rdpButton.Name = "rdpButton";
-            this.rdpButton.Size = new System.Drawing.Size(58, 47);
-            this.rdpButton.TabIndex = 3;
-            this.rdpButton.Text = "RDP";
             this.rdpButton.UseVisualStyleBackColor = true;
             this.rdpButton.Click += new System.EventHandler(this.rdpButton_Click);
             // 
@@ -96,13 +79,12 @@
             this.rdpContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.setRDPPortToolStripMenuItem});
             this.rdpContextMenuStrip.Name = "rdpContextMenuStrip";
-            this.rdpContextMenuStrip.Size = new System.Drawing.Size(150, 26);
+            resources.ApplyResources(this.rdpContextMenuStrip, "rdpContextMenuStrip");
             // 
             // setRDPPortToolStripMenuItem
             // 
             this.setRDPPortToolStripMenuItem.Name = "setRDPPortToolStripMenuItem";
-            this.setRDPPortToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
-            this.setRDPPortToolStripMenuItem.Text = "Set RDP port...";
+            resources.ApplyResources(this.setRDPPortToolStripMenuItem, "setRDPPortToolStripMenuItem");
             this.setRDPPortToolStripMenuItem.Click += new System.EventHandler(this.setRDPPortToolStripMenuItem_Click);
             // 
             // deviceImageList
@@ -133,13 +115,9 @@
             // 
             // httpsButton
             // 
-            this.httpsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.httpsButton, "httpsButton");
             this.httpsButton.ContextMenuStrip = this.altPortContextMenuStrip;
-            this.httpsButton.Location = new System.Drawing.Point(311, 6);
             this.httpsButton.Name = "httpsButton";
-            this.httpsButton.Size = new System.Drawing.Size(58, 23);
-            this.httpsButton.TabIndex = 4;
-            this.httpsButton.Text = "HTTPS";
             this.httpsButton.UseVisualStyleBackColor = true;
             this.httpsButton.Click += new System.EventHandler(this.httpsButton_Click);
             // 
@@ -148,54 +126,41 @@
             this.altPortContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem1});
             this.altPortContextMenuStrip.Name = "rdpContextMenuStrip";
-            this.altPortContextMenuStrip.Size = new System.Drawing.Size(179, 26);
+            resources.ApplyResources(this.altPortContextMenuStrip, "altPortContextMenuStrip");
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(178, 22);
-            this.toolStripMenuItem1.Text = "Use Alternate Port...";
+            resources.ApplyResources(this.toolStripMenuItem1, "toolStripMenuItem1");
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // httpButton
             // 
-            this.httpButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.httpButton, "httpButton");
             this.httpButton.ContextMenuStrip = this.altPortContextMenuStrip;
-            this.httpButton.Location = new System.Drawing.Point(311, 30);
             this.httpButton.Name = "httpButton";
-            this.httpButton.Size = new System.Drawing.Size(58, 23);
-            this.httpButton.TabIndex = 5;
-            this.httpButton.Text = "HTTP";
             this.httpButton.UseVisualStyleBackColor = true;
             this.httpButton.Click += new System.EventHandler(this.httpButton_Click);
             // 
             // scpButton
             // 
-            this.scpButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.scpButton, "scpButton");
             this.scpButton.ContextMenuStrip = this.altPortContextMenuStrip;
-            this.scpButton.Location = new System.Drawing.Point(375, 30);
             this.scpButton.Name = "scpButton";
-            this.scpButton.Size = new System.Drawing.Size(58, 23);
-            this.scpButton.TabIndex = 7;
-            this.scpButton.Text = "SCP";
             this.scpButton.UseVisualStyleBackColor = true;
             this.scpButton.Click += new System.EventHandler(this.scpButton_Click);
             // 
             // sshButton
             // 
-            this.sshButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.sshButton, "sshButton");
             this.sshButton.ContextMenuStrip = this.altPortContextMenuStrip;
-            this.sshButton.Location = new System.Drawing.Point(375, 6);
             this.sshButton.Name = "sshButton";
-            this.sshButton.Size = new System.Drawing.Size(58, 23);
-            this.sshButton.TabIndex = 6;
-            this.sshButton.Text = "SSH";
             this.sshButton.UseVisualStyleBackColor = true;
             this.sshButton.Click += new System.EventHandler(this.sshButton_Click);
             // 
             // DeviceUserControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -208,7 +173,6 @@
             this.Controls.Add(this.deviceNameLabel);
             this.Controls.Add(this.devicePictureBox);
             this.Name = "DeviceUserControl";
-            this.Size = new System.Drawing.Size(441, 60);
             ((System.ComponentModel.ISupportInitialize)(this.devicePictureBox)).EndInit();
             this.rdpContextMenuStrip.ResumeLayout(false);
             this.altPortContextMenuStrip.ResumeLayout(false);

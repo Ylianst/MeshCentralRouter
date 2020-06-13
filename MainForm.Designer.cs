@@ -47,12 +47,13 @@
             this.versionLabel = new System.Windows.Forms.Label();
             this.nextButton1 = new System.Windows.Forms.Button();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.emailTokenButton = new System.Windows.Forms.Button();
             this.smsTokenButton = new System.Windows.Forms.Button();
             this.tokenEmailSentLabel = new System.Windows.Forms.Label();
-            this.emailTokenButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.tokenTextBox = new System.Windows.Forms.TextBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
@@ -104,7 +105,6 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.installTimer = new System.Windows.Forms.Timer(this.components);
-            this.label1 = new System.Windows.Forms.Label();
             this.panel5.SuspendLayout();
             this.mainPanel.SuspendLayout();
             this.mainTabControl.SuspendLayout();
@@ -264,6 +264,12 @@
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.TabStop = false;
             // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
+            this.label1.UseMnemonic = false;
+            // 
             // pictureBox2
             // 
             resources.ApplyResources(this.pictureBox2, "pictureBox2");
@@ -280,9 +286,9 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.emailTokenButton);
             this.panel2.Controls.Add(this.smsTokenButton);
             this.panel2.Controls.Add(this.tokenEmailSentLabel);
-            this.panel2.Controls.Add(this.emailTokenButton);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.tokenTextBox);
             this.panel2.Controls.Add(this.pictureBox6);
@@ -292,6 +298,13 @@
             this.panel2.Controls.Add(this.label2);
             resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Name = "panel2";
+            // 
+            // emailTokenButton
+            // 
+            resources.ApplyResources(this.emailTokenButton, "emailTokenButton");
+            this.emailTokenButton.Name = "emailTokenButton";
+            this.emailTokenButton.UseVisualStyleBackColor = true;
+            this.emailTokenButton.Click += new System.EventHandler(this.emailTokenButton_Click);
             // 
             // smsTokenButton
             // 
@@ -304,13 +317,6 @@
             // 
             resources.ApplyResources(this.tokenEmailSentLabel, "tokenEmailSentLabel");
             this.tokenEmailSentLabel.Name = "tokenEmailSentLabel";
-            // 
-            // emailTokenButton
-            // 
-            resources.ApplyResources(this.emailTokenButton, "emailTokenButton");
-            this.emailTokenButton.Name = "emailTokenButton";
-            this.emailTokenButton.UseVisualStyleBackColor = true;
-            this.emailTokenButton.Click += new System.EventHandler(this.emailTokenButton_Click);
             // 
             // label3
             // 
@@ -671,12 +677,6 @@
             // installTimer
             // 
             this.installTimer.Tick += new System.EventHandler(this.installTimer_Tick);
-            // 
-            // label1
-            // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.Name = "label1";
-            this.label1.UseMnemonic = false;
             // 
             // MainForm
             // 

@@ -61,6 +61,42 @@ namespace MeshCentralRouter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agent.
+        /// </summary>
+        internal static string Agent {
+            get {
+                return ResourceManager.GetString("Agent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AMT.
+        /// </summary>
+        internal static string AMT {
+            get {
+                return ResourceManager.GetString("AMT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CIRA.
+        /// </summary>
+        internal static string CIRA {
+            get {
+                return ResourceManager.GetString("CIRA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email sent.
+        /// </summary>
+        internal static string EmailSent {
+            get {
+                return ResourceManager.GetString("EmailSent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email verification required.
         /// </summary>
         internal static string EmailVerificationRequired {
@@ -234,6 +270,24 @@ namespace MeshCentralRouter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MQTT.
+        /// </summary>
+        internal static string MQTT {
+            get {
+                return ResourceManager.GetString("MQTT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Offline.
+        /// </summary>
+        internal static string Offline {
+            get {
+                return ResourceManager.GetString("Offline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to , 1 connection..
         /// </summary>
         internal static string OneConnection {
@@ -248,6 +302,15 @@ namespace MeshCentralRouter.Properties {
         internal static string PuttyAppName {
             get {
                 return ResourceManager.GetString("PuttyAppName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Relay.
+        /// </summary>
+        internal static string Relay {
+            get {
+                return ResourceManager.GetString("Relay", resourceCulture);
             }
         }
         
@@ -275,6 +338,15 @@ namespace MeshCentralRouter.Properties {
         internal static string SendTokenSMS {
             get {
                 return ResourceManager.GetString("SendTokenSMS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SMS sent.
+        /// </summary>
+        internal static string SmsSent {
+            get {
+                return ResourceManager.GetString("SmsSent", resourceCulture);
             }
         }
         

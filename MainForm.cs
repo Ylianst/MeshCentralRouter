@@ -507,8 +507,8 @@ namespace MeshCentralRouter
                     emailTokenButton.Visible = (meshcentral.disconnectEmail2FA == true) && (meshcentral.disconnectEmail2FASent == false);
                     tokenEmailSentLabel.Visible = (meshcentral.disconnectEmail2FASent == true) || (meshcentral.disconnectSms2FASent == true);
                     smsTokenButton.Visible = ((meshcentral.disconnectSms2FA == true) && (meshcentral.disconnectSms2FASent == false));
-                    if (meshcentral.disconnectEmail2FASent) { tokenEmailSentLabel.Text = "Email sent"; }
-                    if (meshcentral.disconnectSms2FASent) { tokenEmailSentLabel.Text = "SMS sent"; }
+                    if (meshcentral.disconnectEmail2FASent) { tokenEmailSentLabel.Text = Properties.Resources.EmailSent; }
+                    if (meshcentral.disconnectSms2FASent) { tokenEmailSentLabel.Text = Properties.Resources.SmsSent; }
                     if ((meshcentral.disconnectEmail2FA == true) && (meshcentral.disconnectEmail2FASent == false)) {
                         smsTokenButton.Left = emailTokenButton.Left + emailTokenButton.Width + 5;
                     } else {
@@ -538,7 +538,7 @@ namespace MeshCentralRouter
                     setPanel(3);
                     certDetailsButton.Focus();
                 }
-                else if (meshcentral.disconnectMsg == null) { stateLabel.Text = Properties.Resources.UnableToConnect; stateLabel.Visible = true; stateClearTimer.Enabled = true; serverNameComboBox.Focus(); }
+                else if (meshcentral.disconnectMsg == null) { stateLabel.Text =  Properties.Resources.UnableToConnect; stateLabel.Visible = true; stateClearTimer.Enabled = true; serverNameComboBox.Focus(); }
 
                 // Clean up the UI
                 nextButton1.Enabled = true;

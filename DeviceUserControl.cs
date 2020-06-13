@@ -37,12 +37,12 @@ namespace MeshCentralRouter
             }
 
             string status = "";
-            if ((node.conn & 1) != 0) { if (status.Length > 0) { status += ", "; }  status += "Agent"; }
-            if ((node.conn & 2) != 0) { if (status.Length > 0) { status += ", "; } status += "CIRA"; }
-            if ((node.conn & 4) != 0) { if (status.Length > 0) { status += ", "; } status += "AMT"; }
-            if ((node.conn & 8) != 0) { if (status.Length > 0) { status += ", "; } status += "Relay"; }
-            if ((node.conn & 16) != 0) { if (status.Length > 0) { status += ", "; } status += "MQTT"; }
-            if (status == "") { status = "Offline"; }
+            if ((node.conn & 1) != 0) { if (status.Length > 0) { status += ", "; }  status += Properties.Resources.Agent; }
+            if ((node.conn & 2) != 0) { if (status.Length > 0) { status += ", "; } status += Properties.Resources.CIRA; }
+            if ((node.conn & 4) != 0) { if (status.Length > 0) { status += ", "; } status += Properties.Resources.AMT; }
+            if ((node.conn & 8) != 0) { if (status.Length > 0) { status += ", "; } status += Properties.Resources.Relay; }
+            if ((node.conn & 16) != 0) { if (status.Length > 0) { status += ", "; } status += Properties.Resources.MQTT; }
+            if (status == "") { status = Properties.Resources.Offline; }
             deviceStatusLabel.Text = status;
 
             if (node.agentid < 6) {
