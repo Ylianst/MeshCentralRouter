@@ -51,7 +51,6 @@
             // 
             // devicePictureBox
             // 
-            this.devicePictureBox.Image = global::MeshCentralRouter.Properties.Resources.icons01;
             resources.ApplyResources(this.devicePictureBox, "devicePictureBox");
             this.devicePictureBox.Name = "devicePictureBox";
             this.devicePictureBox.TabStop = false;

@@ -128,6 +128,16 @@ namespace MeshCentralRouter.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Gear20 {
+            get {
+                object obj = ResourceManager.GetObject("Gear20", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Help20 {
             get {
                 object obj = ResourceManager.GetObject("Help20", resourceCulture);
@@ -151,16 +161,6 @@ namespace MeshCentralRouter.Properties {
         internal static System.Drawing.Bitmap icons01 {
             get {
                 object obj = ResourceManager.GetObject("icons01", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap install {
-            get {
-                object obj = ResourceManager.GetObject("install", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -214,16 +214,6 @@ namespace MeshCentralRouter.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap MC2Logo {
-            get {
-                object obj = ResourceManager.GetObject("MC2Logo", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap MeshCentral {
             get {
                 object obj = ResourceManager.GetObject("MeshCentral", resourceCulture);
@@ -246,26 +236,6 @@ namespace MeshCentralRouter.Properties {
         internal static string MeshCentralTitle {
             get {
                 return ResourceManager.GetString("MeshCentralTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap MeshIcon50T {
-            get {
-                object obj = ResourceManager.GetObject("MeshIcon50T", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap MeshServerLogo {
-            get {
-                object obj = ResourceManager.GetObject("MeshServerLogo", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -410,6 +380,16 @@ namespace MeshCentralRouter.Properties {
         internal static string WinscpAppName {
             get {
                 return ResourceManager.GetString("WinscpAppName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap xinstall {
+            get {
+                object obj = ResourceManager.GetObject("xinstall", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }

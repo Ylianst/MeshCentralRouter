@@ -40,7 +40,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::MeshCentralRouter.Properties.Resources.install;
+            this.pictureBox1.Image = global::MeshCentralRouter.Properties.Resources.xinstall;
             resources.ApplyResources(this.pictureBox1, "pictureBox1");
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.TabStop = false;

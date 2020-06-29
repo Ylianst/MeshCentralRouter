@@ -124,6 +124,9 @@
   <data name="installButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
   </data>
+  <data name="installButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="installButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>11, 285</value>
@@ -162,6 +165,9 @@
   <data name="stateLabel.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
   </data>
+  <data name="stateLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="stateLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>241, 225</value>
   </data>
@@ -192,6 +198,9 @@
   <data name="label28.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="label28.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label28.Location" type="System.Drawing.Point, System.Drawing">
     <value>238, 176</value>
   </data>
@@ -219,6 +228,9 @@
   <data name="label27.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="label27.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label27.Location" type="System.Drawing.Point, System.Drawing">
     <value>238, 135</value>
   </data>
@@ -245,6 +257,9 @@
   </data>
   <data name="label26.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="label26.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label26.Location" type="System.Drawing.Point, System.Drawing">
     <value>238, 92</value>
@@ -351,6 +366,9 @@
   <data name="licenseLinkLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
+  <data name="licenseLinkLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="licenseLinkLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>173, 260</value>
   </data>
@@ -384,6 +402,9 @@
   <data name="versionLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="versionLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="versionLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 260</value>
   </data>
@@ -410,6 +431,9 @@
   </data>
   <data name="nextButton1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
+  </data>
+  <data name="nextButton1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="nextButton1.Location" type="System.Drawing.Point, System.Drawing">
     <value>371, 285</value>
@@ -438,6 +462,9 @@
   <data name="pictureBox3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
   </data>
+  <data name="pictureBox3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="pictureBox3.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 276</value>
   </data>
@@ -465,11 +492,14 @@
   <data name="label1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
+  <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 9</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>454, 29</value>
+    <value>454, 56</value>
   </data>
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -491,6 +521,9 @@
   </data>
   <data name="pictureBox2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="pictureBox2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="pictureBox2.Location" type="System.Drawing.Point, System.Drawing">
     <value>15, 68</value>
@@ -567,6 +600,9 @@
   <data name="&gt;&gt;tabPage1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="emailTokenButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="emailTokenButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>241, 177</value>
   </data>
@@ -593,6 +629,9 @@
   </data>
   <data name="&gt;&gt;emailTokenButton.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="smsTokenButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="smsTokenButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>342, 177</value>
@@ -624,6 +663,9 @@
   <data name="tokenEmailSentLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="tokenEmailSentLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="tokenEmailSentLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>238, 182</value>
   </data>
@@ -653,6 +695,9 @@
   </data>
   <data name="label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="label3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
     <value>238, 135</value>
@@ -705,6 +750,9 @@
   <data name="pictureBox6.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
+  <data name="pictureBox6.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="pictureBox6.Location" type="System.Drawing.Point, System.Drawing">
     <value>15, 68</value>
   </data>
@@ -731,6 +779,9 @@
   </data>
   <data name="backButton2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
+  </data>
+  <data name="backButton2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="backButton2.Location" type="System.Drawing.Point, System.Drawing">
     <value>270, 285</value>
@@ -759,6 +810,9 @@
   <data name="nextButton2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
+  <data name="nextButton2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="nextButton2.Location" type="System.Drawing.Point, System.Drawing">
     <value>371, 285</value>
   </data>
@@ -785,6 +839,9 @@
   </data>
   <data name="pictureBox4.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
+  </data>
+  <data name="pictureBox4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="pictureBox4.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 276</value>
@@ -813,11 +870,14 @@
   <data name="label2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
+  <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 9</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>454, 32</value>
+    <value>454, 56</value>
   </data>
   <data name="label2.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -921,6 +981,9 @@
   <data name="certDetailsButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
   </data>
+  <data name="certDetailsButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="certDetailsButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>14, 251</value>
   </data>
@@ -950,6 +1013,9 @@
   </data>
   <data name="label4.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt, style=Bold</value>
+  </data>
+  <data name="label4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 6</value>
@@ -981,6 +1047,9 @@
   <data name="label5.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
+  <data name="label5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 34</value>
   </data>
@@ -1007,6 +1076,9 @@
   </data>
   <data name="backButton3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
+  </data>
+  <data name="backButton3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="backButton3.Location" type="System.Drawing.Point, System.Drawing">
     <value>276, 291</value>
@@ -1035,6 +1107,9 @@
   <data name="nextButton3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
+  <data name="nextButton3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="nextButton3.Location" type="System.Drawing.Point, System.Drawing">
     <value>377, 291</value>
   </data>
@@ -1061,6 +1136,9 @@
   </data>
   <data name="pictureBox5.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
+  </data>
+  <data name="pictureBox5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="pictureBox5.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 282</value>
@@ -1182,6 +1260,9 @@
   <data name="menuLabel.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 15.75pt, style=Bold</value>
   </data>
+  <data name="menuLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="menuLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>454, 2</value>
   </data>
@@ -1248,11 +1329,14 @@
   <data name="noSearchResultsLabel.Font" type="System.Drawing.Font, System.Drawing">
     <value>Arial, 8.25pt, style=Bold</value>
   </data>
+  <data name="noSearchResultsLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="noSearchResultsLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>91, 96</value>
   </data>
   <data name="noSearchResultsLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>271, 17</value>
+    <value>243, 17</value>
   </data>
   <data name="noSearchResultsLabel.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -1284,11 +1368,14 @@
   <data name="noDevicesLabel.Font" type="System.Drawing.Font, System.Drawing">
     <value>Arial, 8.25pt, style=Bold</value>
   </data>
+  <data name="noDevicesLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="noDevicesLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>91, 97</value>
   </data>
   <data name="noDevicesLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>271, 17</value>
+    <value>243, 17</value>
   </data>
   <data name="noDevicesLabel.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -1371,11 +1458,14 @@
   <data name="noMapLabel.Font" type="System.Drawing.Font, System.Drawing">
     <value>Arial, 8.25pt, style=Bold</value>
   </data>
+  <data name="noMapLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="noMapLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>91, 79</value>
   </data>
   <data name="noMapLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>271, 52</value>
+    <value>243, 52</value>
   </data>
   <data name="noMapLabel.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -1424,22 +1514,8 @@ Haga clic en "Agregar" para comenzar.</value>
   <data name="settingsPictureBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
   </data>
-  <data name="settingsPictureBox.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wgAADsIBFShKgAAAABh0RVh0U29mdHdhcmUAcGFpbnQubmV0IDQuMC45bDN+TgAAAmRJREFUOE99VN9r
-        E0EQPn8V/zEfxSIogVya2AffFBVR+nSCgkL7og8Ve5cLVartWUFaWxTBUESFWtTW7OVH06SxTdukNUrF
-        akjbcWazZ3YvuX7wcbAz33c7O7OrdYKRhKMxO3MqbLm2bjE3Zrv1WNyt6yZjfM1On6QckX4wUHwibLIs
-        Eg5mKtubyHQLWTvOOM6RmJ2+3VkczGjc7TcM47CwaUE2wzL598LjLAy8KsH4XAUm5zdh+P063JwsKoZE
-        rGpA2DShN8tUku4nVyEIb9I1JZeIpqe5GR0unYcc7H9ZEtJgTHzZVAyxqqLhQBeWit2UAsRkpsZFjd19
-        Xra33vcsz9cJu3v7iobYm3BDWthitj+Q2/gtZADXx/NKbHR2A6YWtnjZaKDEIiZ7otGcyYtESvbQwJ3M
-        ZH+A9bYMl0ZzSp6fEYsVtMjQfN0f6IkzWN76IyxV5Ks7MDRTVvJbOhc0nKM2Q4/Ox0qg8dhspS0/YqEh
-        1p3xB/y89nQRht+twafStrBrwn8EWPKShtsckRcvY9Lzz1V+jnRucoz4EIfbwyDOqhzDfoxoUWy1vHhl
-        LCfSAarbdUVApPPz4P+hbn0NaUaieBxfkW9yYKX2V0gAXrPvcGd6GS7iPD76sA4/dxoiAsqMokf5/IO5
-        Y/y2RBOsWza8MVEQkmBM4yzKmnNxdpabeeix3btywq0XRVhY+SXkLazi7mmncm7UcgeFTQv0BOEFvycn
-        Euk2XHUWsdPqjfHIzQAOCZt20KuB7V/rJJapm6kyXgC1zCAYTqoL/xyiu4niAr2PnCZbotGgbv5vgAJN
-        +weFjgeDvNsCGAAAAABJRU5ErkJggg==
-</value>
+  <data name="settingsPictureBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="settingsPictureBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>1, 220</value>
@@ -1465,21 +1541,8 @@ Haga clic en "Agregar" para comenzar.</value>
   <data name="helpPictureBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
-  <data name="helpPictureBox.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wwAADsMBx2+oZAAAABh0RVh0U29mdHdhcmUAcGFpbnQubmV0IDQuMC45bDN+TgAAAjtJREFUOE+VVF1r
-        E0EUHb+Kf8xHsQhKIJsPg4o/QlmhBQVFUKGiu9m1lCLsi4pRUJQWrfpgQaLZyQabpKQ2sVLbaoka0+R6
-        7+7sZpJMAj1wHnbmnDN7584MU0FfgMNpyzsRN7mlmS5PW7yVzvKWZriuP2YVj5NGyMcDzcfihltCwngW
-        ShnbmxS2YZxynENpq3hFNl1+XIGnnzZhefUXfKztwruVHbj/tgHnZr1Ik8rya7quHxQxPchhWCa85Fsw
-        CtvNNlx8WI5CsarrIiaAFpQZCcw3dWEdDQrN2EU59KQfRptL+yEHbvxsCVsAKtd8XYctDJFx+9Va5MGq
-        qroDE1gqdlMKuzDnQavdERaAvU4Xzs4Gf7LobYvRAPZSPfIRMzaPsbjpWvJgSAqmfbr6bNX/nnpShb/S
-        Ql3kpUeVPk/CcB8wOmfyoIo3XtSgvUcRPVDTBnUJ062wxL18a3BC5lSuCp1uf9jzwg+lNpnlwPAcjQ0s
-        fWuKmABz7xtKHTFhYiDW7akmiST486+3byvffyt1IbHkMsPfnFdNEilwZuEr3FkMOJ0LGjSK2I95lsJW
-        qyaJdHDza7sRc/lNpS6kZn6OMd2uHsVXpKYS0J2VUWw0hzQhMWP9/N3lI/5tSdnupEq0n8AzWfe0HxYi
-        afGbQyIseenLTkTnw0bffMiUyWdETA/0BOEFv6UyjKMfBnBAxAyDXg1sf11llqkZhfXkYJmjoDuFCVw5
-        RncTzRV6H30abpmOBnUzakAfGPsPoCH77EfzJ24AAAAASUVORK5CYII=
-</value>
+  <data name="helpPictureBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="helpPictureBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>238, 220</value>
@@ -1507,6 +1570,9 @@ Haga clic en "Agregar" para comenzar.</value>
   </data>
   <data name="addButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
+  </data>
+  <data name="addButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="addButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>370, 218</value>
@@ -1537,6 +1603,9 @@ Haga clic en "Agregar" para comenzar.</value>
   </data>
   <data name="addRelayButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
+  </data>
+  <data name="addRelayButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="addRelayButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>264, 218</value>
@@ -1613,6 +1682,9 @@ Haga clic en "Agregar" para comenzar.</value>
   <data name="openWebSiteButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
   </data>
+  <data name="openWebSiteButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="openWebSiteButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>15, 291</value>
   </data>
@@ -1643,6 +1715,9 @@ Haga clic en "Agregar" para comenzar.</value>
   <data name="backButton5.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
+  <data name="backButton5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="backButton5.Location" type="System.Drawing.Point, System.Drawing">
     <value>276, 291</value>
   </data>
@@ -1670,6 +1745,9 @@ Haga clic en "Agregar" para comenzar.</value>
   <data name="nextButton5.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
+  <data name="nextButton5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="nextButton5.Location" type="System.Drawing.Point, System.Drawing">
     <value>377, 291</value>
   </data>
@@ -1696,6 +1774,9 @@ Haga clic en "Agregar" para comenzar.</value>
   </data>
   <data name="pictureBox7.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
+  </data>
+  <data name="pictureBox7.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="pictureBox7.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 282</value>
@@ -1825,6 +1906,9 @@ Haga clic en "Agregar" para comenzar.</value>
   </data>
   <data name="pictureBox1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
+  </data>
+  <data name="pictureBox1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>

@@ -260,7 +260,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAAy
-        mgAAAk1TRnQBSQFMAgEBCAEAASgBAAEoAQABMgEAATIBAAT/AREBAAj/AUIBTQE2BwABNgMAASgDAAHI
+        mgAAAk1TRnQBSQFMAgEBCAEAATgBAAE4AQABMgEAATIBAAT/AREBAAj/AUIBTQE2BwABNgMAASgDAAHI
         AwABlgMAAQEBAAEQBQABYAHq/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A
         /wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A
         /wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A
@@ -927,7 +927,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>441, 60</value>
+    <value>433, 52</value>
   </data>
   <data name="&gt;&gt;deviceImageList.Name" xml:space="preserve">
     <value>deviceImageList</value>

@@ -571,6 +571,7 @@
             // 
             resources.ApplyResources(this.settingsPictureBox, "settingsPictureBox");
             this.settingsPictureBox.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.settingsPictureBox.Image = global::MeshCentralRouter.Properties.Resources.Gear20;
             this.settingsPictureBox.Name = "settingsPictureBox";
             this.settingsPictureBox.TabStop = false;
             this.settingsPictureBox.Click += new System.EventHandler(this.settingsPictureBox_Click);
@@ -579,6 +580,7 @@
             // 
             resources.ApplyResources(this.helpPictureBox, "helpPictureBox");
             this.helpPictureBox.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.helpPictureBox.Image = global::MeshCentralRouter.Properties.Resources.Help20;
             this.helpPictureBox.Name = "helpPictureBox";
             this.helpPictureBox.TabStop = false;
             this.helpPictureBox.Click += new System.EventHandler(this.helpPictureBox_Click);

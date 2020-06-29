@@ -538,7 +538,7 @@ namespace MeshCentralRouter
                     setPanel(3);
                     certDetailsButton.Focus();
                 }
-                else if (meshcentral.disconnectMsg == null) { stateLabel.Text =  Properties.Resources.UnableToConnect; stateLabel.Visible = true; stateClearTimer.Enabled = true; serverNameComboBox.Focus(); }
+                else if (meshcentral.disconnectMsg == null) { stateLabel.Text = Properties.Resources.UnableToConnect; stateLabel.Visible = true; stateClearTimer.Enabled = true; serverNameComboBox.Focus(); }
 
                 // Clean up the UI
                 nextButton1.Enabled = true;
