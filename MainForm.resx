@@ -1336,7 +1336,7 @@
     <value>2, 88</value>
   </data>
   <data name="noSearchResultsLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>462, 52</value>
+    <value>458, 52</value>
   </data>
   <data name="noSearchResultsLabel.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -1375,7 +1375,7 @@
     <value>2, 88</value>
   </data>
   <data name="noDevicesLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>462, 52</value>
+    <value>458, 52</value>
   </data>
   <data name="noDevicesLabel.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -1465,7 +1465,7 @@
     <value>2, 79</value>
   </data>
   <data name="noMapLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>462, 52</value>
+    <value>458, 52</value>
   </data>
   <data name="noMapLabel.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>

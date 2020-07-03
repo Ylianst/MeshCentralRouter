@@ -182,7 +182,7 @@ namespace MeshCentralRouter
                 if (arg.Length > 6 && arg.Substring(0, 6).ToLower() == "-pass:") { passwordTextBox.Text = arg.Substring(6); argflags |= 4; }
                 if (arg.Length > 8 && arg.Substring(0, 8).ToLower() == "-search:") { searchTextBox.Text = arg.Substring(8); }
                 if (arg.Length > 11 && arg.Substring(0, 11).ToLower() == "mcrouter://") { authLoginUrl = new Uri(arg); }
-                if ((arg.Length > 1) && (arg[0] != '-') && (arg.ToLower().EndsWith(".mcrouter"))) { try { argflags |= loadMappingFile(File.ReadAllText(arg)); } catch (Exception) { } }
+                if ((arg.Length > 1) && (arg[0] != '-') && (arg.ToLower().EndsWith(".mcrouter"))) { try { argflags |= loadMappingFile(File.ReadAllText(arg), 1); } catch (Exception) { } }
             }
             autoLogin = (argflags == 7);
 
@@ -1132,27 +1132,30 @@ namespace MeshCentralRouter
         {
             if (openMapFileDialog.ShowDialog(this) == DialogResult.OK)
             {
-                string text = null;
-                try { text = File.ReadAllText(openMapFileDialog.FileName); } catch (Exception) { }
-                if (text != null) { loadMappingFile(text); }
+                try { loadMappingFile(File.ReadAllText(openMapFileDialog.FileName), 2); } catch (Exception) { }
             }
         }
 
-        private int loadMappingFile(string data)
+        private int loadMappingFile(string data, int mode)
         {
             int argFlags = 3;
             Dictionary<string, object> jsonAction = new Dictionary<string, object>();
             jsonAction = new JavaScriptSerializer().Deserialize<Dictionary<string, object>>(data);
             if ((jsonAction == null) || (jsonAction["hostname"].GetType() != typeof(string)) || (jsonAction["username"].GetType() != typeof(string)) || (jsonAction["certhash"].GetType() != typeof(string))) return 0;
-            serverNameComboBox.Text = jsonAction["hostname"].ToString();
-            userNameTextBox.Text = jsonAction["username"].ToString();
-            if (jsonAction.ContainsKey("password")) { passwordTextBox.Text = jsonAction["password"].ToString(); argFlags |= 4; }
-            acceptableCertHash = jsonAction["certhash"].ToString();
-
+            if (mode == 1)
+            {
+                serverNameComboBox.Text = jsonAction["hostname"].ToString();
+                userNameTextBox.Text = jsonAction["username"].ToString();
+                if (jsonAction.ContainsKey("password")) { passwordTextBox.Text = jsonAction["password"].ToString(); argFlags |= 4; }
+                acceptableCertHash = jsonAction["certhash"].ToString();
+            }
             if (jsonAction["mappings"] != null)
             {
                 ArrayList mappings = (ArrayList)jsonAction["mappings"];
-                if (mappings.Count > 0) { mappingsToSetup = mappings; }
+                if (mappings.Count > 0) {
+                    mappingsToSetup = mappings;
+                    if (mode == 2) { setupMappings(); }
+                }
             }
             return argFlags;
         }
@@ -1187,7 +1190,13 @@ namespace MeshCentralRouter
                 noMapLabel.Visible = false;
 
                 // Launch any executable
-                if (x.ContainsKey("launch")) { try { System.Diagnostics.Process.Start((string)x["launch"]); } catch (Exception) { } }
+                if (x.ContainsKey("launch")) {
+                    try {
+                        string lanuchString = (string)x["launch"];
+                        lanuchString = lanuchString.Replace("{port}", x["localPort"].ToString());
+                        System.Diagnostics.Process.Start(lanuchString);
+                    } catch (Exception) { }
+                }
             }
             mappingsToSetup = null;
         }
@@ -1218,6 +1227,22 @@ namespace MeshCentralRouter
                 if (mapCounter > 0) { text += "\r\n  ]\r\n}"; } else { text += "  ]\r\n}"; }
                 File.WriteAllText(saveMapFileDialog.FileName, text);
             }
+        }
+
+        private void mapPanel_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop) == false) return;
+            string[] s = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            if ((s.Length != 1) || (s[0].ToLower().EndsWith(".mcrouter") == false)) return;
+            e.Effect = DragDropEffects.All;
+        }
+
+        private void mapPanel_DragDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop) == false) return;
+            string[] s = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            if ((s.Length != 1) || (s[0].ToLower().EndsWith(".mcrouter") == false)) return;
+            try { loadMappingFile(File.ReadAllText(s[0]), 2); } catch (Exception) { }
         }
 
         /*

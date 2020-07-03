@@ -562,11 +562,14 @@
             // 
             // mapPanel
             // 
+            this.mapPanel.AllowDrop = true;
             resources.ApplyResources(this.mapPanel, "mapPanel");
             this.mapPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.mapPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.mapPanel.Controls.Add(this.noMapLabel);
             this.mapPanel.Name = "mapPanel";
+            this.mapPanel.DragDrop += new System.Windows.Forms.DragEventHandler(this.mapPanel_DragDrop);
+            this.mapPanel.DragEnter += new System.Windows.Forms.DragEventHandler(this.mapPanel_DragEnter);
             // 
             // noMapLabel
             // 
