@@ -15,13 +15,16 @@ limitations under the License.
 */
 
 using System;
+using System.IO;
 using System.Net;
 using System.Reflection;
 using System.Collections;
 using System.Diagnostics;
 using System.Windows.Forms;
 using System.Security.Principal;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using System.Web.Script.Serialization;
 using System.Security.Cryptography.X509Certificates;
 using Microsoft.Win32;
 
@@ -44,6 +47,8 @@ namespace MeshCentralRouter
         public bool sendSMSToken = false;
         public Uri authLoginUrl = null;
         public Process installProcess = null;
+        public string acceptableCertHash = null;
+        public ArrayList mappingsToSetup = null;
 
         public void setRegValue(string name, string value) {
             try { Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\Open Source\MeshCentral Router", name, value); } catch (Exception) { }
@@ -177,6 +182,7 @@ namespace MeshCentralRouter
                 if (arg.Length > 6 && arg.Substring(0, 6).ToLower() == "-pass:") { passwordTextBox.Text = arg.Substring(6); argflags |= 4; }
                 if (arg.Length > 8 && arg.Substring(0, 8).ToLower() == "-search:") { searchTextBox.Text = arg.Substring(8); }
                 if (arg.Length > 11 && arg.Substring(0, 11).ToLower() == "mcrouter://") { authLoginUrl = new Uri(arg); }
+                if ((arg.Length > 1) && (arg[0] != '-') && (arg.ToLower().EndsWith(".mcrouter"))) { try { argflags |= loadMappingFile(File.ReadAllText(arg)); } catch (Exception) { } }
             }
             autoLogin = (argflags == 7);
 
@@ -287,6 +293,7 @@ namespace MeshCentralRouter
             meshcentral = new MeshCentralServer();
             meshcentral.debug = debug;
             meshcentral.ignoreCert = ignoreCert;
+            if (acceptableCertHash != null) { meshcentral.okCertHash2 = acceptableCertHash; }
             meshcentral.onStateChanged += Meshcentral_onStateChanged;
             meshcentral.onNodesChanged += Meshcentral_onNodesChanged;
             meshcentral.onLoginTokenChanged += Meshcentral_onLoginTokenChanged;
@@ -336,9 +343,9 @@ namespace MeshCentralRouter
             openWebSiteButton.Visible = true;
         }
 
-        private void Meshcentral_onNodesChanged()
+        private void Meshcentral_onNodesChanged(bool fullRefresh)
         {
-            if (this.InvokeRequired) { this.Invoke(new MeshCentralServer.onNodeListChangedHandler(Meshcentral_onNodesChanged)); return; }
+            if (this.InvokeRequired) { this.Invoke(new MeshCentralServer.onNodeListChangedHandler(Meshcentral_onNodesChanged), fullRefresh); return; }
             addRelayButton.Enabled = addButton.Enabled = ((meshcentral.nodes != null) && (meshcentral.nodes.Count > 0));
 
             // Update any active mappings
@@ -354,6 +361,9 @@ namespace MeshCentralRouter
             updateDeviceList(); // Update list of devices
             addArgMappings();
             reconnectUdpMaps();
+
+            // Setup any automatic mappings
+            if ((fullRefresh == true) && (mappingsToSetup != null)) { setupMappings(); }
         }
 
         private void updateDeviceList()
@@ -980,7 +990,12 @@ namespace MeshCentralRouter
 
         private void devicesTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            menuLabel.Visible = searchTextBox.Visible = (devicesTabControl.SelectedIndex == 0);
+            searchTextBox.Visible = (devicesTabControl.SelectedIndex == 0);
+            if (devicesTabControl.SelectedIndex == 0) {
+                menuLabel.ContextMenuStrip = mainContextMenuStrip;
+            } else {
+                menuLabel.ContextMenuStrip = mappingsContextMenuStrip;
+            }
         }
 
         private void searchTextBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -1057,7 +1072,14 @@ namespace MeshCentralRouter
 
         private void menuLabel_Click(object sender, EventArgs e)
         {
-            mainContextMenuStrip.Show(menuLabel, menuLabel.PointToClient(Cursor.Position));
+            if (devicesTabControl.SelectedIndex == 0)
+            {
+                mainContextMenuStrip.Show(menuLabel, menuLabel.PointToClient(Cursor.Position));
+            }
+            else
+            {
+                mappingsContextMenuStrip.Show(menuLabel, menuLabel.PointToClient(Cursor.Position));
+            }
         }
 
         private void showGroupNamesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1103,6 +1125,98 @@ namespace MeshCentralRouter
             {
                 System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(lang);
                 Close();
+            }
+        }
+
+        private void openMappingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (openMapFileDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                string text = null;
+                try { text = File.ReadAllText(openMapFileDialog.FileName); } catch (Exception) { }
+                if (text != null) { loadMappingFile(text); }
+            }
+        }
+
+        private int loadMappingFile(string data)
+        {
+            int argFlags = 3;
+            Dictionary<string, object> jsonAction = new Dictionary<string, object>();
+            jsonAction = new JavaScriptSerializer().Deserialize<Dictionary<string, object>>(data);
+            if ((jsonAction == null) || (jsonAction["hostname"].GetType() != typeof(string)) || (jsonAction["username"].GetType() != typeof(string)) || (jsonAction["certhash"].GetType() != typeof(string))) return 0;
+            serverNameComboBox.Text = jsonAction["hostname"].ToString();
+            userNameTextBox.Text = jsonAction["username"].ToString();
+            if (jsonAction.ContainsKey("password")) { passwordTextBox.Text = jsonAction["password"].ToString(); argFlags |= 4; }
+            acceptableCertHash = jsonAction["certhash"].ToString();
+
+            if (jsonAction["mappings"] != null)
+            {
+                ArrayList mappings = (ArrayList)jsonAction["mappings"];
+                if (mappings.Count > 0) { mappingsToSetup = mappings; }
+            }
+            return argFlags;
+        }
+
+        private void setupMappings()
+        {
+            foreach (Dictionary<string, object> x in mappingsToSetup)
+            {
+                // Find the node
+                string nodeId = (string)x["nodeId"];
+                NodeClass node = meshcentral.nodes[nodeId];
+                if (node == null) continue;
+
+                // Add a new port map
+                MapUserControl map = new MapUserControl();
+                map.xdebug = debug;
+                map.inaddrany = inaddrany;
+                map.protocol = (int)x["protocol"];
+                map.localPort = (int)x["localPort"];
+                if (x.ContainsKey("remoteIP")) { map.remoteIP = (string)x["remoteIP"]; }
+                map.remotePort = (int)x["remotePort"];
+                map.appId = (int)x["appId"];
+                map.node = node;
+                if (authLoginUrl != null) { map.host = authLoginUrl.Host + ":" + ((authLoginUrl.Port > 0) ? authLoginUrl.Port : 443); } else { map.host = serverNameComboBox.Text; }
+                map.authCookie = meshcentral.authCookie;
+                map.certhash = meshcentral.wshash;
+                map.parent = this;
+                map.Dock = DockStyle.Top;
+                map.Start();
+
+                mapPanel.Controls.Add(map);
+                noMapLabel.Visible = false;
+
+                // Launch any executable
+                if (x.ContainsKey("launch")) { try { System.Diagnostics.Process.Start((string)x["launch"]); } catch (Exception) { } }
+            }
+            mappingsToSetup = null;
+        }
+
+        private void saveMappingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (saveMapFileDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                string text = "{\r\n  \"hostname\": \"" + serverNameComboBox.Text + "\",\r\n  \"username\": \"" + userNameTextBox.Text + "\",\r\n  \"certhash\": \"" + meshcentral.certHash + "\",\r\n  \"mappings\":[\r\n";
+                var mapCounter = 0;
+                foreach (Control c in mapPanel.Controls)
+                {
+                    if (c.GetType() != typeof(MapUserControl)) continue;
+                    MapUserControl mapCtrl = (MapUserControl)c;
+                    MeshMapper map = ((MapUserControl)c).mapper;
+                    if (mapCounter == 0) { text += "    {\r\n"; } else { text += ",\r\n    {\r\n"; }
+                    text += "      \"nodeName\": \"" + mapCtrl.node.name + "\",\r\n";
+                    text += "      \"meshId\": \"" + mapCtrl.node.meshid + "\",\r\n";
+                    text += "      \"nodeId\": \"" + mapCtrl.node.nodeid + "\",\r\n";
+                    text += "      \"appId\": " + mapCtrl.appId + ",\r\n";
+                    text += "      \"protocol\": " + map.protocol + ",\r\n";
+                    text += "      \"localPort\": " + map.localport + ",\r\n";
+                    if (map.remoteip != null) { text += "      \"remoteIP\": \"" + map.remoteip + "\",\r\n"; }
+                    text += "      \"remotePort\": " + map.remoteport + "\r\n";
+                    text += "    }";
+                    mapCounter++;
+                }
+                if (mapCounter > 0) { text += "\r\n  ]\r\n}"; } else { text += "  ]\r\n}"; }
+                File.WriteAllText(saveMapFileDialog.FileName, text);
             }
         }
 

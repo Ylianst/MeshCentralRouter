@@ -105,6 +105,11 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.installTimer = new System.Windows.Forms.Timer(this.components);
+            this.mappingsContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.openMappingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveMappingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openMapFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.saveMapFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.panel5.SuspendLayout();
             this.mainPanel.SuspendLayout();
             this.mainTabControl.SuspendLayout();
@@ -132,6 +137,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.trayIconContextMenuStrip.SuspendLayout();
+            this.mappingsContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel5
@@ -680,6 +686,36 @@
             // 
             this.installTimer.Tick += new System.EventHandler(this.installTimer_Tick);
             // 
+            // mappingsContextMenuStrip
+            // 
+            this.mappingsContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openMappingsToolStripMenuItem,
+            this.saveMappingsToolStripMenuItem});
+            this.mappingsContextMenuStrip.Name = "mappingsContextMenuStrip";
+            resources.ApplyResources(this.mappingsContextMenuStrip, "mappingsContextMenuStrip");
+            // 
+            // openMappingsToolStripMenuItem
+            // 
+            this.openMappingsToolStripMenuItem.Name = "openMappingsToolStripMenuItem";
+            resources.ApplyResources(this.openMappingsToolStripMenuItem, "openMappingsToolStripMenuItem");
+            this.openMappingsToolStripMenuItem.Click += new System.EventHandler(this.openMappingsToolStripMenuItem_Click);
+            // 
+            // saveMappingsToolStripMenuItem
+            // 
+            this.saveMappingsToolStripMenuItem.Name = "saveMappingsToolStripMenuItem";
+            resources.ApplyResources(this.saveMappingsToolStripMenuItem, "saveMappingsToolStripMenuItem");
+            this.saveMappingsToolStripMenuItem.Click += new System.EventHandler(this.saveMappingsToolStripMenuItem_Click);
+            // 
+            // openMapFileDialog
+            // 
+            this.openMapFileDialog.DefaultExt = "mcrouter";
+            resources.ApplyResources(this.openMapFileDialog, "openMapFileDialog");
+            // 
+            // saveMapFileDialog
+            // 
+            this.saveMapFileDialog.DefaultExt = "mcrouter";
+            resources.ApplyResources(this.saveMapFileDialog, "saveMapFileDialog");
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -722,6 +758,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.trayIconContextMenuStrip.ResumeLayout(false);
+            this.mappingsContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -802,6 +839,11 @@
         private System.Windows.Forms.Button smsTokenButton;
         private System.Windows.Forms.Button installButton;
         private System.Windows.Forms.Timer installTimer;
+        private System.Windows.Forms.ContextMenuStrip mappingsContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem openMappingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveMappingsToolStripMenuItem;
+        private System.Windows.Forms.OpenFileDialog openMapFileDialog;
+        private System.Windows.Forms.SaveFileDialog saveMapFileDialog;
     }
 }
 

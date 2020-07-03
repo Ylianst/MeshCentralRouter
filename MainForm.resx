@@ -1333,10 +1333,10 @@
     <value>NoControl</value>
   </data>
   <data name="noSearchResultsLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>91, 96</value>
+    <value>2, 88</value>
   </data>
   <data name="noSearchResultsLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>243, 17</value>
+    <value>462, 52</value>
   </data>
   <data name="noSearchResultsLabel.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -1372,10 +1372,10 @@
     <value>NoControl</value>
   </data>
   <data name="noDevicesLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>91, 97</value>
+    <value>2, 88</value>
   </data>
   <data name="noDevicesLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>243, 17</value>
+    <value>462, 52</value>
   </data>
   <data name="noDevicesLabel.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -1402,7 +1402,7 @@
     <value>0, 0</value>
   </data>
   <data name="devicesPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>470, 244</value>
+    <value>470, 250</value>
   </data>
   <data name="devicesPanel.TabIndex" type="System.Int32, mscorlib">
     <value>50</value>
@@ -1426,7 +1426,7 @@
     <value>3, 3, 3, 3</value>
   </data>
   <data name="devicesTabPage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>470, 244</value>
+    <value>470, 250</value>
   </data>
   <data name="devicesTabPage.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1462,10 +1462,10 @@
     <value>NoControl</value>
   </data>
   <data name="noMapLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>91, 79</value>
+    <value>2, 79</value>
   </data>
   <data name="noMapLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>243, 52</value>
+    <value>462, 52</value>
   </data>
   <data name="noMapLabel.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -1494,7 +1494,7 @@ Click "Add" to get started.</value>
     <value>0, 0</value>
   </data>
   <data name="mapPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>470, 214</value>
+    <value>470, 220</value>
   </data>
   <data name="mapPanel.TabIndex" type="System.Int32, mscorlib">
     <value>49</value>
@@ -1518,7 +1518,7 @@ Click "Add" to get started.</value>
     <value>NoControl</value>
   </data>
   <data name="settingsPictureBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1, 220</value>
+    <value>1, 226</value>
   </data>
   <data name="settingsPictureBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>20, 20</value>
@@ -1545,7 +1545,7 @@ Click "Add" to get started.</value>
     <value>NoControl</value>
   </data>
   <data name="helpPictureBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>238, 220</value>
+    <value>238, 226</value>
   </data>
   <data name="helpPictureBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>20, 20</value>
@@ -1575,7 +1575,7 @@ Click "Add" to get started.</value>
     <value>NoControl</value>
   </data>
   <data name="addButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>370, 218</value>
+    <value>370, 224</value>
   </data>
   <data name="addButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 23</value>
@@ -1608,7 +1608,7 @@ Click "Add" to get started.</value>
     <value>NoControl</value>
   </data>
   <data name="addRelayButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>264, 218</value>
+    <value>264, 224</value>
   </data>
   <data name="addRelayButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 23</value>
@@ -1638,7 +1638,7 @@ Click "Add" to get started.</value>
     <value>3, 3, 3, 3</value>
   </data>
   <data name="portMapTabPage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>470, 244</value>
+    <value>470, 250</value>
   </data>
   <data name="portMapTabPage.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -1662,7 +1662,7 @@ Click "Add" to get started.</value>
     <value>3, 3</value>
   </data>
   <data name="devicesTabControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>478, 273</value>
+    <value>478, 279</value>
   </data>
   <data name="devicesTabControl.TabIndex" type="System.Int32, mscorlib">
     <value>55</value>
@@ -1953,7 +1953,7 @@ Click "Add" to get started.</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;panel5.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <metadata name="stateClearTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -3691,6 +3691,48 @@ Click "Add" to get started.</value>
   <metadata name="installTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>791, 17</value>
   </metadata>
+  <metadata name="mappingsContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>905, 17</value>
+  </metadata>
+  <data name="openMappingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>168, 22</value>
+  </data>
+  <data name="openMappingsToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Open Mappings...</value>
+  </data>
+  <data name="saveMappingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>168, 22</value>
+  </data>
+  <data name="saveMappingsToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Save Mappings...</value>
+  </data>
+  <data name="mappingsContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>169, 48</value>
+  </data>
+  <data name="&gt;&gt;mappingsContextMenuStrip.Name" xml:space="preserve">
+    <value>mappingsContextMenuStrip</value>
+  </data>
+  <data name="&gt;&gt;mappingsContextMenuStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <metadata name="openMapFileDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>1110, 17</value>
+  </metadata>
+  <data name="openMapFileDialog.Filter" xml:space="preserve">
+    <value>Router Mapping|*.mcrouter</value>
+  </data>
+  <data name="openMapFileDialog.Title" xml:space="preserve">
+    <value>Open Port Mappings</value>
+  </data>
+  <metadata name="saveMapFileDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>1268, 17</value>
+  </metadata>
+  <data name="saveMapFileDialog.Filter" xml:space="preserve">
+    <value>Router Mapping|*.mcrouter</value>
+  </data>
+  <data name="saveMapFileDialog.Title" xml:space="preserve">
+    <value>Save Port Mappings</value>
+  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -5468,6 +5510,30 @@ Click "Add" to get started.</value>
   </data>
   <data name="&gt;&gt;installTimer.Type" xml:space="preserve">
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;openMappingsToolStripMenuItem.Name" xml:space="preserve">
+    <value>openMappingsToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;openMappingsToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;saveMappingsToolStripMenuItem.Name" xml:space="preserve">
+    <value>saveMappingsToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;saveMappingsToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;openMapFileDialog.Name" xml:space="preserve">
+    <value>openMapFileDialog</value>
+  </data>
+  <data name="&gt;&gt;openMapFileDialog.Type" xml:space="preserve">
+    <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;saveMapFileDialog.Name" xml:space="preserve">
+    <value>saveMapFileDialog</value>
+  </data>
+  <data name="&gt;&gt;saveMapFileDialog.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SaveFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>

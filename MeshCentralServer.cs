@@ -54,6 +54,7 @@ namespace MeshCentralRouter
         public string authCookie = null;
         public string loginCookie = null;
         public string wshash = null;
+        public string certHash = null;
         public string okCertHash = null;
         public string okCertHash2 = null;
         public bool debug = false;
@@ -141,7 +142,7 @@ namespace MeshCentralRouter
             wc = new xwebclient();
             //Debug("#" + counter + ": Connecting web socket to: " + wsurl.ToString());
             wc.Start(this, wsurl, user, pass, token, wshash);
-            if (debug) { File.AppendAllText("debug.log", "Connect-" + wsurl + "\r\n"); }
+            if (debug) { try { File.AppendAllText("debug.log", "Connect-" + wsurl + "\r\n"); } catch (Exception) { } }
             wc.xdebug = debug;
             wc.xignoreCert = ignoreCert;
         }
@@ -152,14 +153,14 @@ namespace MeshCentralRouter
             {
                 wc.Dispose();
                 wc = null;
-                if (debug) { File.AppendAllText("debug.log", "Disconnect\r\n"); }
+                if (debug) { try { File.AppendAllText("debug.log", "Disconnect\r\n"); } catch (Exception) { } }
             }
         }
 
         public void refreshCookies()
         {
             if (wc != null) {
-                if (debug) { File.AppendAllText("debug.log", "RefreshCookies\r\n"); }
+                if (debug) { try { File.AppendAllText("debug.log", "RefreshCookies\r\n"); } catch (Exception) { } }
                 wc.WriteStringWebSocket("{\"action\":\"authcookie\"}");
                 wc.WriteStringWebSocket("{\"action\":\"logincookie\"}");
             }
@@ -169,14 +170,14 @@ namespace MeshCentralRouter
         {
             if (wc != null)
             {
-                if (debug) { File.AppendAllText("debug.log", "SetRdpPort\r\n"); }
+                if (debug) { try { File.AppendAllText("debug.log", "SetRdpPort\r\n"); } catch (Exception) { } }
                 wc.WriteStringWebSocket("{\"action\":\"changedevice\",\"nodeid\":\"" + node.nodeid + "\",\"rdpport\":" + port + "}");
             }
         }
 
         public void processServerData(string data)
         {
-            if (debug) { File.AppendAllText("debug.log", "ServerData-" + data + "\r\n"); }
+            if (debug) { try { File.AppendAllText("debug.log", "ServerData-" + data + "\r\n"); } catch (Exception) { } }
 
             // Parse the received JSON
             Dictionary<string, object> jsonAction = new Dictionary<string, object>();
@@ -253,7 +254,7 @@ namespace MeshCentralRouter
                                         userGroups.Add(i, usergroupsEx["name"].ToString());
                                     }
                                 }
-                                if ((onNodesChanged != null) && (nodes != null)) onNodesChanged();
+                                if ((onNodesChanged != null) && (nodes != null)) onNodesChanged(false);
                             }
                         }
                         break;
@@ -314,7 +315,7 @@ namespace MeshCentralRouter
                                         meshes[meshid] = mesh;
                                     }
                                     wc.WriteStringWebSocket("{\"action\":\"nodes\"}");
-                                    if ((onNodesChanged != null) && (nodes != null)) onNodesChanged();
+                                    if ((onNodesChanged != null) && (nodes != null)) onNodesChanged(false);
                                     break;
                                 }
                             case "changenode":
@@ -366,7 +367,7 @@ namespace MeshCentralRouter
                                                 nodes[n.nodeid] = n;
                                             }
                                         }
-                                        if ((onNodesChanged != null) && (nodes != null)) onNodesChanged();
+                                        if ((onNodesChanged != null) && (nodes != null)) onNodesChanged(false);
                                     }
                                     else
                                     {
@@ -385,7 +386,7 @@ namespace MeshCentralRouter
                                             if (ev.ContainsKey("conn")) { n.conn = (int)ev["conn"]; }
                                             nodes[n.nodeid] = n;
                                         }
-                                        if ((onNodesChanged != null) && (nodes != null)) onNodesChanged();
+                                        if ((onNodesChanged != null) && (nodes != null)) onNodesChanged(false);
                                     }
                                     break;
                                 }
@@ -521,7 +522,7 @@ namespace MeshCentralRouter
                             }
                         }
                         nodes = nodes2;
-                        if ((onNodesChanged != null) && (nodes != null)) onNodesChanged();
+                        if ((onNodesChanged != null) && (nodes != null)) onNodesChanged(true);
                         break;
                     }
                 default:
@@ -535,7 +536,7 @@ namespace MeshCentralRouter
         public event onStateChangedHandler onStateChanged;
         public void changeState(int newState) { if (constate != newState) { constate = newState; if (onStateChanged != null) { onStateChanged(constate); } } }
 
-        public delegate void onNodeListChangedHandler();
+        public delegate void onNodeListChangedHandler(bool fullRefresh);
         public event onNodeListChangedHandler onNodesChanged;
         public delegate void onLoginTokenChangedHandler();
         public event onLoginTokenChangedHandler onLoginTokenChanged;
@@ -900,6 +901,7 @@ namespace MeshCentralRouter
 
             private bool VerifyServerCertificate(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
             {
+                parent.certHash = GetMeshKeyHash(certificate);
                 if (xignoreCert) return true;
                 if (chain.Build(new X509Certificate2(certificate)) == true) return true;
 
@@ -909,6 +911,7 @@ namespace MeshCentralRouter
                 // Check that the remote certificate is the expected one
                 if ((parent.okCertHash2 != null) && ((parent.okCertHash2 == GetMeshKeyHash(certificate)) || (parent.okCertHash2 == GetMeshCertHash(certificate)))) { return true; }
 
+                parent.certHash = null;
                 parent.disconnectMsg = "cert";
                 parent.disconnectCert = new X509Certificate2(certificate);
                 return false;
