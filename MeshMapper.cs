@@ -521,10 +521,12 @@ namespace MeshCentralRouter
 
             private void ProcessWsBuffer(byte[] data, int offset, int len, int op)
             {
-                //parent.Debug("#" + counter + ": Websocket frag data: " + acclen);
-                if ((tunneling == false) && (data[offset] == 'c'))
+                int opcode = op & 0x0F; // 1 == String, 2 == Binary
+
+                parent.Debug("#" + counter + ": Websocket frag data: " + acclen + ", opcode: " + opcode);
+                if ((tunneling == false) && (opcode == 1) && (data[offset] == 'c'))
                 {
-                    parent.Debug("#" + counter + ": Websocket get server 'c' confirmation.");
+                    parent.Debug("#" + counter + ": Websocket got server 'c' confirmation.");
 
                     // Server confirmed connection, start reading the TCP stream
                     //Console.Write("WS-Relay Connect\r\n");
@@ -541,7 +543,12 @@ namespace MeshCentralRouter
                         tunneling = true;
                     }
                 }
-                else
+                else if ((tunneling == true) && (opcode == 1))
+                {
+                    string text = UTF8Encoding.UTF8.GetString(data, offset, len);
+                    parent.Debug("#" + counter + ": Websocket got text frame: " + text);
+                }
+                else if ((tunneling == true) && (opcode == 2))
                 {
                     if (client != null)
                     {
@@ -552,10 +559,14 @@ namespace MeshCentralRouter
                     else if (uclient != null)
                     {
                         // Write: WS --> UDP
-                        if (uendpoint != null) {
-                            if (offset == 0) {
+                        if (uendpoint != null)
+                        {
+                            if (offset == 0)
+                            {
                                 try { uclient.Send(data, len, uendpoint); } catch (Exception) { }
-                            } else {
+                            }
+                            else
+                            {
                                 byte[] data2 = new byte[len];
                                 Array.Copy(data, offset, data2, 0, len);
                                 try { uclient.Send(data2, len, uendpoint); } catch (Exception) { }

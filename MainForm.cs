@@ -49,6 +49,7 @@ namespace MeshCentralRouter
         public Process installProcess = null;
         public string acceptableCertHash = null;
         public ArrayList mappingsToSetup = null;
+        public bool deviceListViewMode = true;
 
         public void setRegValue(string name, string value) {
             try { Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\Open Source\MeshCentral Router", name, value); } catch (Exception) { }
@@ -170,6 +171,7 @@ namespace MeshCentralRouter
 
             int argflags = 0;
             foreach (string arg in this.args) {
+                if (arg.ToLower() == "-oldstyle") { deviceListViewMode = false; }
                 if (arg.ToLower() == "-install") { hookRouter(); forceExit = true; return; }
                 if (arg.ToLower() == "-uninstall") { unHookRouter(); forceExit = true; return; }
                 if (arg.ToLower() == "-debug") { debug = true; }
@@ -231,6 +233,20 @@ namespace MeshCentralRouter
             //scanner.MulticastPing();
 
             if (autoLogin || (authLoginUrl != null)) { nextButton1_Click(null, null); }
+
+            // Setup the device list view panel
+            if (deviceListViewMode)
+            {
+                devicesListView.Top = 0;
+                devicesListView.Left = 0;
+                devicesListView.Width = devicesPanel.Width;
+                devicesListView.Height = devicesPanel.Height;
+                devicesListView.Visible = true;
+                devicesPanel.AutoScroll = false;
+                toolStripMenuItem2.Visible = false;
+                sortByNameToolStripMenuItem.Visible = false;
+                sortByGroupToolStripMenuItem.Visible = false;
+            }
         }
 
         private void updatePanel1(object sender, EventArgs e)
@@ -369,133 +385,193 @@ namespace MeshCentralRouter
         private void updateDeviceList()
         {
             string search = searchTextBox.Text.ToLower();
-            devicesPanel.SuspendLayout();
-
-            // Untag all devices
-            foreach (Control c in devicesPanel.Controls)
+            if (deviceListViewMode)
             {
-                if (c.GetType() == typeof(DeviceUserControl)) { ((DeviceUserControl)c).present = false; }
-            }
+                devicesListView.SuspendLayout();
+                devicesListView.Items.Clear();
 
-            /*
-            lock (meshcentral.nodes)
-            {
-                // Add any missing devices
                 ArrayList controlsToAdd = new ArrayList();
-                foreach (MeshClass mesh in meshcentral.meshes.Values)
+                if (meshcentral.nodes != null)
                 {
-                    if (mesh.type == 2)
+                    foreach (NodeClass node in meshcentral.nodes.Values)
                     {
-                        foreach (NodeClass node in meshcentral.nodes.Values)
+                        if (node.agentid == -1) { continue; }
+                        ListViewItem device;
+                        if (node.listitem == null)
                         {
-                            if ((node.control == null) && (node.meshid == mesh.meshid))
+                            device = new ListViewItem(node.name);
+                            device.SubItems.Add(node.getStateString());
+                            device.Tag = node;
+                            node.listitem = device;
+                        } else {
+                            device = node.listitem;
+                            device.SubItems[0].Text = node.name;
+                            device.SubItems[1].Text = node.getStateString();
+                        }
+
+                        if ((node.meshid != null) && meshcentral.meshes.ContainsKey(node.meshid)) { node.mesh = (MeshClass)meshcentral.meshes[node.meshid]; }
+                        if ((showGroupNamesToolStripMenuItem.Checked) && (node.mesh != null)) {
+                            device.SubItems[0].Text = node.mesh.name + " - " + node.name;
+                        } else {
+                            device.SubItems[0].Text = node.name;
+                        }
+
+                        bool connVisible = ((showOfflineDevicesToolStripMenuItem.Checked) || ((node.conn & 1) != 0));
+                        int imageIndex = (node.icon - 1) * 2;
+                        if ((node.conn & 1) == 0) { imageIndex++; }
+                        device.ImageIndex = imageIndex;
+                        if (connVisible && ((search == "") || (device.SubItems[0].Text.ToLower().IndexOf(search) >= 0))) { controlsToAdd.Add(device); }
+                    }
+
+                    // Add all controls at once to make it fast.
+                    if (controlsToAdd.Count > 0) {
+                        devicesListView.Items.AddRange((ListViewItem[])controlsToAdd.ToArray(typeof(ListViewItem)));
+                    }
+                }
+
+                devicesListView.ResumeLayout();
+            }
+            else
+            {
+                devicesPanel.SuspendLayout();
+
+                // Untag all devices
+                foreach (Control c in devicesPanel.Controls)
+                {
+                    if (c.GetType() == typeof(DeviceUserControl)) { ((DeviceUserControl)c).present = false; }
+                }
+
+                /*
+                lock (meshcentral.nodes)
+                {
+                    // Add any missing devices
+                    ArrayList controlsToAdd = new ArrayList();
+                    foreach (MeshClass mesh in meshcentral.meshes.Values)
+                    {
+                        if (mesh.type == 2)
+                        {
+                            foreach (NodeClass node in meshcentral.nodes.Values)
                             {
-                                // Add a new device
-                                DeviceUserControl device = new DeviceUserControl();
-                                device.mesh = mesh;
-                                device.node = node;
-                                device.parent = this;
-                                device.Dock = DockStyle.Top;
-                                device.present = true;
-                                node.control = device;
-                                device.UpdateInfo();
-                                device.Visible = (search == "") || (node.name.ToLower().IndexOf(search) >= 0);
-                                controlsToAdd.Add(device);
-                            }
-                            else
-                            {
-                                // Tag the device as present
-                                if (node.control != null)
+                                if ((node.control == null) && (node.meshid == mesh.meshid))
                                 {
-                                    node.control.present = true;
-                                    node.control.UpdateInfo();
+                                    // Add a new device
+                                    DeviceUserControl device = new DeviceUserControl();
+                                    device.mesh = mesh;
+                                    device.node = node;
+                                    device.parent = this;
+                                    device.Dock = DockStyle.Top;
+                                    device.present = true;
+                                    node.control = device;
+                                    device.UpdateInfo();
+                                    device.Visible = (search == "") || (node.name.ToLower().IndexOf(search) >= 0);
+                                    controlsToAdd.Add(device);
+                                }
+                                else
+                                {
+                                    // Tag the device as present
+                                    if (node.control != null)
+                                    {
+                                        node.control.present = true;
+                                        node.control.UpdateInfo();
+                                    }
                                 }
                             }
                         }
                     }
+
+                    // Add all controls at once to make it fast.
+                    if (controlsToAdd.Count > 0) { devicesPanel.Controls.AddRange((DeviceUserControl[])controlsToAdd.ToArray(typeof(DeviceUserControl))); }
                 }
+                */
 
-                // Add all controls at once to make it fast.
-                if (controlsToAdd.Count > 0) { devicesPanel.Controls.AddRange((DeviceUserControl[])controlsToAdd.ToArray(typeof(DeviceUserControl))); }
-            }
-            */
-
-            ArrayList controlsToAdd = new ArrayList();
-            if (meshcentral.nodes != null)
-            {
-                foreach (NodeClass node in meshcentral.nodes.Values)
+                ArrayList controlsToAdd = new ArrayList();
+                if (meshcentral.nodes != null)
                 {
-                    if (node.agentid == -1) { continue; }
-                    if (node.control == null)
+                    foreach (NodeClass node in meshcentral.nodes.Values)
                     {
-                        // Add a new device
-                        DeviceUserControl device = new DeviceUserControl();
-                        if ((node.meshid != null) && meshcentral.meshes.ContainsKey(node.meshid)) { device.mesh = (MeshClass)meshcentral.meshes[node.meshid]; }
-                        device.node = node;
-                        device.parent = this;
-                        device.Dock = DockStyle.Top;
-                        device.present = true;
-                        node.control = device;
-                        device.UpdateInfo();
-                        device.Visible = (search == "") || (node.name.ToLower().IndexOf(search) >= 0);
-                        controlsToAdd.Add(device);
-                    }
-                    else
-                    {
-                        // Tag the device as present
-                        if (node.control != null)
+                        if (node.agentid == -1) { continue; }
+                        if (node.control == null)
                         {
-                            node.control.present = true;
-                            node.control.UpdateInfo();
+                            // Add a new device
+                            DeviceUserControl device = new DeviceUserControl();
+                            if ((node.meshid != null) && meshcentral.meshes.ContainsKey(node.meshid)) { device.mesh = (MeshClass)meshcentral.meshes[node.meshid]; }
+                            device.node = node;
+                            device.parent = this;
+                            device.Dock = DockStyle.Top;
+                            device.present = true;
+                            node.control = device;
+                            device.UpdateInfo();
+                            device.Visible = (search == "") || (node.name.ToLower().IndexOf(search) >= 0);
+                            controlsToAdd.Add(device);
+                        }
+                        else
+                        {
+                            // Tag the device as present
+                            if (node.control != null)
+                            {
+                                node.control.present = true;
+                                node.control.UpdateInfo();
+                            }
                         }
                     }
                 }
-            }
-            // Add all controls at once to make it fast.
-            if (controlsToAdd.Count > 0) { devicesPanel.Controls.AddRange((DeviceUserControl[])controlsToAdd.ToArray(typeof(DeviceUserControl))); }
+                // Add all controls at once to make it fast.
+                if (controlsToAdd.Count > 0) { devicesPanel.Controls.AddRange((DeviceUserControl[])controlsToAdd.ToArray(typeof(DeviceUserControl))); }
 
-            // Clear all untagged devices
-            bool removed;
-            do {
-                removed = false;
-                foreach (Control c in devicesPanel.Controls) {
-                    if ((c.GetType() == typeof(DeviceUserControl)) && ((DeviceUserControl)c).present == false) {
-                        devicesPanel.Controls.Remove(c); c.Dispose(); removed = true;
+                // Clear all untagged devices
+                bool removed;
+                do
+                {
+                    removed = false;
+                    foreach (Control c in devicesPanel.Controls)
+                    {
+                        if ((c.GetType() == typeof(DeviceUserControl)) && ((DeviceUserControl)c).present == false)
+                        {
+                            devicesPanel.Controls.Remove(c); c.Dispose(); removed = true;
+                        }
+                    }
+                } while (removed == true);
+
+                // Filter devices
+                int visibleDevices = 0;
+                foreach (Control c in devicesPanel.Controls)
+                {
+                    if (c.GetType() == typeof(DeviceUserControl))
+                    {
+                        NodeClass n = ((DeviceUserControl)c).node;
+                        bool connVisible = ((showOfflineDevicesToolStripMenuItem.Checked) || ((n.conn & 1) != 0));
+                        if ((search == "") || (n.name.ToLower().IndexOf(search) >= 0) || (showGroupNamesToolStripMenuItem.Checked && (((DeviceUserControl)c).mesh.name.ToLower().IndexOf(search) >= 0)))
+                        {
+                            c.Visible = connVisible;
+                            visibleDevices++;
+                        }
+                        else
+                        {
+                            c.Visible = false;
+                        }
                     }
                 }
-            } while (removed == true);
 
-            // Filter devices
-            int visibleDevices = 0;
-            foreach (Control c in devicesPanel.Controls) {
-                if (c.GetType() == typeof(DeviceUserControl)) {
-                    NodeClass n = ((DeviceUserControl)c).node;
-                    bool connVisible = ((showOfflineDevicesToolStripMenuItem.Checked) || ((n.conn & 1) != 0));
-                    if ((search == "") || (n.name.ToLower().IndexOf(search) >= 0) || (showGroupNamesToolStripMenuItem.Checked && (((DeviceUserControl)c).mesh.name.ToLower().IndexOf(search) >= 0))) {
-                        c.Visible = connVisible;
-                        visibleDevices++;
-                    } else {
-                        c.Visible = false;
-                    }
+                // Sort devices
+                ArrayList sortlist = new ArrayList();
+                foreach (Control c in devicesPanel.Controls) { if (c.GetType() == typeof(DeviceUserControl)) { sortlist.Add(c); } }
+                if (sortByNameToolStripMenuItem.Checked)
+                {
+                    DeviceComparer comp = new DeviceComparer();
+                    sortlist.Sort(comp);
                 }
-            }
+                else
+                {
+                    DeviceGroupComparer comp = new DeviceGroupComparer();
+                    sortlist.Sort(comp);
+                }
+                remoteAllDeviceControls();
+                devicesPanel.Controls.AddRange((DeviceUserControl[])sortlist.ToArray(typeof(DeviceUserControl)));
 
-            // Sort devices
-            ArrayList sortlist = new ArrayList();
-            foreach (Control c in devicesPanel.Controls) { if (c.GetType() == typeof(DeviceUserControl)) { sortlist.Add(c); } }
-            if (sortByNameToolStripMenuItem.Checked) {
-                DeviceComparer comp = new DeviceComparer();
-                sortlist.Sort(comp);
-            } else {
-                DeviceGroupComparer comp = new DeviceGroupComparer();
-                sortlist.Sort(comp);
+                devicesPanel.ResumeLayout();
+                noDevicesLabel.Visible = (sortlist.Count == 0);
+                noSearchResultsLabel.Visible = ((sortlist.Count > 0) && (visibleDevices == 0));
             }
-            remoteAllDeviceControls();
-            devicesPanel.Controls.AddRange((DeviceUserControl[])sortlist.ToArray(typeof(DeviceUserControl)));
-
-            devicesPanel.ResumeLayout();
-            noDevicesLabel.Visible = (sortlist.Count == 0);
-            noSearchResultsLabel.Visible = ((sortlist.Count > 0) && (visibleDevices == 0));
         }
 
         private void remoteAllDeviceControls()
@@ -758,6 +834,16 @@ namespace MeshCentralRouter
         private void addButton_Click(object sender, EventArgs e)
         {
             AddPortMapForm form = new AddPortMapForm(meshcentral);
+
+            if (sender == null)
+            {
+                if (devicesListView.SelectedItems.Count != 1) { return; }
+                ListViewItem selecteditem = devicesListView.SelectedItems[0];
+                NodeClass node = (NodeClass)selecteditem.Tag;
+                if ((node.conn & 1) == 0) { return; } // Agent not connected on this device
+                form.setNode(node);
+            }
+
             if (form.ShowDialog(this) == DialogResult.OK)
             {
                 // Add a new port map
@@ -875,6 +961,16 @@ namespace MeshCentralRouter
         private void addRelayMapButton_Click(object sender, EventArgs e)
         {
             AddRelayMapForm form = new AddRelayMapForm(meshcentral);
+
+            if (sender == null)
+            {
+                if (devicesListView.SelectedItems.Count != 1) { return; }
+                ListViewItem selecteditem = devicesListView.SelectedItems[0];
+                NodeClass node = (NodeClass)selecteditem.Tag;
+                if ((node.conn & 1) == 0) { return; } // Agent not connected on this device
+                form.setNode(node);
+            }
+
             if (form.ShowDialog(this) == DialogResult.OK)
             {
                 // Add a new port map
@@ -962,30 +1058,37 @@ namespace MeshCentralRouter
 
         private void searchTextBox_TextChanged(object sender, EventArgs e)
         {
-            // Filter devices
-            int visibleDevices = 0;
-            int deviceCount = 0;
-            string search = searchTextBox.Text.ToLower();
-            foreach (Control c in devicesPanel.Controls)
-            {
-                if (c.GetType() == typeof(DeviceUserControl))
+            if (deviceListViewMode) {
+                // Filter devices
+                updateDeviceList();
+            } else {
+                // Filter devices
+                int visibleDevices = 0;
+                int deviceCount = 0;
+                string search = searchTextBox.Text.ToLower();
+                foreach (Control c in devicesPanel.Controls)
                 {
-                    deviceCount++;
-                    NodeClass n = ((DeviceUserControl)c).node;
-                    bool connVisible = ((showOfflineDevicesToolStripMenuItem.Checked) || ((n.conn & 1) != 0));
-                    if ((search == "") || (n.name.ToLower().IndexOf(search) >= 0) || (showGroupNamesToolStripMenuItem.Checked && (((DeviceUserControl)c).mesh.name.ToLower().IndexOf(search) >= 0)))
+                    if (c.GetType() == typeof(DeviceUserControl))
                     {
-                        //if ((search == "") || (n.name.ToLower().IndexOf(search) >= 0)) {
-                        c.Visible = connVisible;
-                        visibleDevices++;
-                    } else {
-                        c.Visible = false;
+                        deviceCount++;
+                        NodeClass n = ((DeviceUserControl)c).node;
+                        bool connVisible = ((showOfflineDevicesToolStripMenuItem.Checked) || ((n.conn & 1) != 0));
+                        if ((search == "") || (n.name.ToLower().IndexOf(search) >= 0) || (showGroupNamesToolStripMenuItem.Checked && (((DeviceUserControl)c).mesh.name.ToLower().IndexOf(search) >= 0)))
+                        {
+                            //if ((search == "") || (n.name.ToLower().IndexOf(search) >= 0)) {
+                            c.Visible = connVisible;
+                            visibleDevices++;
+                        }
+                        else
+                        {
+                            c.Visible = false;
+                        }
                     }
                 }
-            }
 
-            noDevicesLabel.Visible = (deviceCount == 0);
-            noSearchResultsLabel.Visible = ((deviceCount > 0) && (visibleDevices == 0));
+                noDevicesLabel.Visible = (deviceCount == 0);
+                noSearchResultsLabel.Visible = ((deviceCount > 0) && (visibleDevices == 0));
+            }
         }
 
         private void devicesTabControl_SelectedIndexChanged(object sender, EventArgs e)
@@ -1166,7 +1269,8 @@ namespace MeshCentralRouter
             {
                 // Find the node
                 string nodeId = (string)x["nodeId"];
-                NodeClass node = meshcentral.nodes[nodeId];
+                NodeClass node = null;
+                try { node = meshcentral.nodes[nodeId]; } catch (Exception) { }
                 if (node == null) continue;
 
                 // Add a new port map
@@ -1243,6 +1347,102 @@ namespace MeshCentralRouter
             string[] s = (string[])e.Data.GetData(DataFormats.FileDrop, false);
             if ((s.Length != 1) || (s[0].ToLower().EndsWith(".mcrouter") == false)) return;
             try { loadMappingFile(File.ReadAllText(s[0]), 2); } catch (Exception) { }
+        }
+
+        private void devicesContextMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (devicesListView.SelectedItems.Count != 1) { e.Cancel = true; return; } // Device not selected
+            ListViewItem selecteditem = devicesListView.SelectedItems[0];
+            NodeClass node = (NodeClass)selecteditem.Tag;
+            if ((node.conn & 1) == 0) { e.Cancel = true; return; } // Agent not connected on this device
+            if (node.agentid < 6)
+            {
+                // Windows OS
+                sshToolStripMenuItem.Visible = false;
+                scpToolStripMenuItem.Visible = false;
+                rdpToolStripMenuItem.Visible = true;
+            }
+            else
+            {
+                // Other OS
+                sshToolStripMenuItem.Visible = true;
+                scpToolStripMenuItem.Visible = true;
+                rdpToolStripMenuItem.Visible = false;
+            }
+        }
+
+        private void httpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (devicesListView.SelectedItems.Count != 1) { return; }
+            ListViewItem selecteditem = devicesListView.SelectedItems[0];
+            NodeClass node = (NodeClass)selecteditem.Tag;
+            if ((node.conn & 1) == 0) { return; } // Agent not connected on this device
+            QuickMap(1, 80, 1, node); // HTTP
+        }
+
+        private void httpsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (devicesListView.SelectedItems.Count != 1) { return; }
+            ListViewItem selecteditem = devicesListView.SelectedItems[0];
+            NodeClass node = (NodeClass)selecteditem.Tag;
+            if ((node.conn & 1) == 0) { return; } // Agent not connected on this device
+            QuickMap(1, 443, 2, node); // HTTPS
+        }
+
+        private void rdpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (devicesListView.SelectedItems.Count != 1) { return; }
+            ListViewItem selecteditem = devicesListView.SelectedItems[0];
+            NodeClass node = (NodeClass)selecteditem.Tag;
+            if ((node.conn & 1) == 0) { return; } // Agent not connected on this device
+            int rdpport = 3389;
+            if (node.rdpport != 0) { rdpport = node.rdpport; }
+            QuickMap(1, rdpport, 3, node); // RDP
+        }
+
+        private void sshToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (devicesListView.SelectedItems.Count != 1) { return; }
+            ListViewItem selecteditem = devicesListView.SelectedItems[0];
+            NodeClass node = (NodeClass)selecteditem.Tag;
+            if ((node.conn & 1) == 0) { return; } // Agent not connected on this device
+            QuickMap(1, 22, 4, node); // Putty
+        }
+
+        private void scpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (devicesListView.SelectedItems.Count != 1) { return; }
+            ListViewItem selecteditem = devicesListView.SelectedItems[0];
+            NodeClass node = (NodeClass)selecteditem.Tag;
+            if ((node.conn & 1) == 0) { return; } // Agent not connected on this device
+            QuickMap(1, 22, 5, node); // WinSCP
+        }
+
+        private void addMapToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (devicesListView.SelectedItems.Count != 1) { return; }
+            ListViewItem selecteditem = devicesListView.SelectedItems[0];
+            NodeClass node = (NodeClass)selecteditem.Tag;
+            if ((node.conn & 1) == 0) { return; } // Agent not connected on this device
+            addButton_Click(null, null);
+        }
+
+        private void addRelayMapToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (devicesListView.SelectedItems.Count != 1) { return; }
+            ListViewItem selecteditem = devicesListView.SelectedItems[0];
+            NodeClass node = (NodeClass)selecteditem.Tag;
+            if ((node.conn & 1) == 0) { return; } // Agent not connected on this device
+            addRelayMapButton_Click(null, null);
+        }
+
+        private void devicesListView_DoubleClick(object sender, EventArgs e)
+        {
+            if (devicesListView.SelectedItems.Count != 1) { return; }
+            ListViewItem selecteditem = devicesListView.SelectedItems[0];
+            NodeClass node = (NodeClass)selecteditem.Tag;
+            if ((node.conn & 1) == 0) { return; } // Agent not connected on this device
+            addButton_Click(null, null);
         }
 
         /*

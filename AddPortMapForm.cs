@@ -13,6 +13,7 @@ namespace MeshCentralRouter
     public partial class AddPortMapForm : Form
     {
         private MeshCentralServer meshcentral;
+        private NodeClass selectedNode = null;
 
         public AddPortMapForm(MeshCentralServer meshcentral)
         {
@@ -25,34 +26,48 @@ namespace MeshCentralRouter
         public int getRemotePort() { return (int)remoteNumericUpDown.Value; }
         public int getAppId() { return (int)appComboBox.SelectedIndex; }
         public NodeClass getNode() { return (NodeClass)nodeComboBox.SelectedItem; }
+        public void setNode(NodeClass node) { selectedNode = node; }
 
         private void AddPortMapForm_Load(object sender, EventArgs e)
         {
-            // Fill the groups
-            groupComboBox.Items.Clear();
-            foreach (string meshid in meshcentral.meshes.Keys)
+            if (selectedNode == null)
             {
-                MeshClass mesh = meshcentral.meshes[meshid];
-                if (mesh.type == 2)
+                // Fill the groups
+                groupComboBox.Items.Clear();
+                foreach (string meshid in meshcentral.meshes.Keys)
                 {
-                    int nodeCount = 0;
-                    foreach (string nodeid in meshcentral.nodes.Keys)
+                    MeshClass mesh = meshcentral.meshes[meshid];
+                    if (mesh.type == 2)
                     {
-                        NodeClass node = meshcentral.nodes[nodeid];
-                        if ((node.meshid == mesh.meshid) && ((node.conn & 1) != 0)) { nodeCount++; }
+                        int nodeCount = 0;
+                        foreach (string nodeid in meshcentral.nodes.Keys)
+                        {
+                            NodeClass node = meshcentral.nodes[nodeid];
+                            if ((node.meshid == mesh.meshid) && ((node.conn & 1) != 0)) { nodeCount++; }
+                        }
+                        if (nodeCount > 0) { groupComboBox.Items.Add(mesh); }
                     }
-                    if (nodeCount > 0) { groupComboBox.Items.Add(mesh); }
                 }
-            }
 
-            // Set default selection
-            if (groupComboBox.Items.Count > 0) { groupComboBox.SelectedIndex = 0; }
-            appComboBox.SelectedIndex = 1;
-            fillNodesInDropDown();
+                // Set default selection
+                if (groupComboBox.Items.Count > 0) { groupComboBox.SelectedIndex = 0; }
+                appComboBox.SelectedIndex = 1;
+                fillNodesInDropDown();
+            } else {
+                groupComboBox.Items.Add(selectedNode.mesh);
+                groupComboBox.SelectedIndex = 0;
+                groupComboBox.Enabled = false;
+                nodeComboBox.Items.Add(selectedNode);
+                nodeComboBox.SelectedIndex = 0;
+                nodeComboBox.Enabled = false;
+                appComboBox.SelectedIndex = 1;
+            }
         }
 
         private void fillNodesInDropDown()
         {
+            if (selectedNode != null) return;
+
             MeshClass mesh = (MeshClass)groupComboBox.SelectedItem;
 
             // Fill the nodes dropdown
