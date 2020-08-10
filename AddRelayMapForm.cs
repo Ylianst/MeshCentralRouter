@@ -23,6 +23,7 @@ namespace MeshCentralRouter
             updateInfo();
         }
 
+        public string getRuleName() { return ruleNameTextBox.Text; }
         public int getProtocol() { return (int)(tcpRadioButton.Checked ? 1 : 2); }
         public int getLocalPort() { return (int)localNumericUpDown.Value; }
         public int getRemotePort() { return (int)remoteNumericUpDown.Value; }
