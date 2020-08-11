@@ -66,6 +66,7 @@ namespace MeshCentralRouter
             InitTouch = 14,
             Touch = 15,
             Message = 16,
+            Jumbo = 27,
             Disconnect = 59,
             Alert = 65,
             MouseCursor = 88
@@ -124,13 +125,26 @@ namespace MeshCentralRouter
 
         public int ProcessData(byte[] buffer, int off, int len)
         {
+            int jumboHeaderSize = 0;
+
             if (len == 0) return 0;
             if (len >= 4)
             {
+                // Decode the command header
                 KvmCommands btype = (KvmCommands)IPAddress.NetworkToHostOrder((short)BitConverter.ToUInt16(buffer, off));
-                ushort blen = (ushort)IPAddress.NetworkToHostOrder((short)BitConverter.ToUInt16(buffer, off + 2));
+                int blen = (int)IPAddress.NetworkToHostOrder((short)BitConverter.ToUInt16(buffer, off + 2));
                 if (len < blen) return 0;
 
+                // Handle JUMBO command
+                if ((btype == KvmCommands.Jumbo) && (blen == 8))
+                {
+                    jumboHeaderSize = 8;
+                    blen = (int)IPAddress.NetworkToHostOrder((int)BitConverter.ToUInt32(buffer, off + 4));
+                    off += 8;
+                    btype = (KvmCommands)IPAddress.NetworkToHostOrder((short)BitConverter.ToUInt16(buffer, off));
+                }
+
+                // Process the command
                 switch (btype)
                 {
                     case KvmCommands.Screen:
@@ -149,7 +163,7 @@ namespace MeshCentralRouter
                             SendMouse(2, KvmMouseButtonCommands.MOUSEEVENTF_LEFTUP);
                             SendMouse(2, KvmMouseButtonCommands.MOUSEEVENTF_MIDDLEUP);
                             SendMouse(2, KvmMouseButtonCommands.MOUSEEVENTF_RIGHTUP);
-                            return blen;
+                            return blen + jumboHeaderSize;
                         }
                     case KvmCommands.Picture:
                         {
@@ -176,7 +190,7 @@ namespace MeshCentralRouter
                                 if (scalefactor == 1) Invalidate(r, false); else Invalidate(r3, false);
                             }
 
-                            return blen;
+                            return blen + jumboHeaderSize;
                         }
                     case KvmCommands.Copy:
                         {
@@ -207,7 +221,7 @@ namespace MeshCentralRouter
                                 tilecopy++;
                             }
 
-                            return blen;
+                            return blen + jumboHeaderSize;
                         }
                     case KvmCommands.GetDisplays:
                         {
@@ -251,7 +265,7 @@ namespace MeshCentralRouter
                             return 0;
                         }
                 }
-                return blen;
+                return blen + jumboHeaderSize;
             }
             return 0;
         }
