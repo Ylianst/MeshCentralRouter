@@ -1342,52 +1342,58 @@
     <value>Segoe UI, 9pt, style=Bold</value>
   </data>
   <data name="addMapToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>163, 22</value>
+    <value>170, 22</value>
   </data>
   <data name="addMapToolStripMenuItem.Text" xml:space="preserve">
     <value>Add &amp;Map...</value>
   </data>
   <data name="addRelayMapToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>163, 22</value>
+    <value>170, 22</value>
   </data>
   <data name="addRelayMapToolStripMenuItem.Text" xml:space="preserve">
     <value>Add &amp;Relay Map...</value>
   </data>
   <data name="toolStripMenuItem3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 6</value>
+    <value>167, 6</value>
+  </data>
+  <data name="remoteDesktopToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>170, 22</value>
+  </data>
+  <data name="remoteDesktopToolStripMenuItem.Text" xml:space="preserve">
+    <value>Remote Desktop...</value>
   </data>
   <data name="httpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>163, 22</value>
+    <value>170, 22</value>
   </data>
   <data name="httpToolStripMenuItem.Text" xml:space="preserve">
     <value>HTTP</value>
   </data>
   <data name="httpsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>163, 22</value>
+    <value>170, 22</value>
   </data>
   <data name="httpsToolStripMenuItem.Text" xml:space="preserve">
     <value>HTTPS</value>
   </data>
   <data name="rdpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>163, 22</value>
+    <value>170, 22</value>
   </data>
   <data name="rdpToolStripMenuItem.Text" xml:space="preserve">
     <value>RDP</value>
   </data>
   <data name="sshToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>163, 22</value>
+    <value>170, 22</value>
   </data>
   <data name="sshToolStripMenuItem.Text" xml:space="preserve">
     <value>SSH</value>
   </data>
   <data name="scpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>163, 22</value>
+    <value>170, 22</value>
   </data>
   <data name="scpToolStripMenuItem.Text" xml:space="preserve">
     <value>SCP</value>
   </data>
   <data name="devicesContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>164, 164</value>
+    <value>171, 208</value>
   </data>
   <data name="&gt;&gt;devicesContextMenuStrip.Name" xml:space="preserve">
     <value>devicesContextMenuStrip</value>
@@ -1403,7 +1409,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAADg
-        HQAAAk1TRnQBSQFMAgEBEAEAARgBAAEIAQABEAEAARABAAT/ARkBAAj/AUIBTQE2BwABNgMAASgDAAFA
+        HQAAAk1TRnQBSQFMAgEBEAEAATABAAEQAQABEAEAARABAAT/ARkBAAj/AUIBTQE2BwABNgMAASgDAAFA
         AwABUAMAAQEBAAEYBgABPP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AJYAA/0D+AP3A/sD/yEAA/0D+gP5
         A/wD/xgAAfoB+wH6A/4qAAP9A/8tAAP7A88D1QPbA88D1AO+A9QYAAP8A90D4APjA90D4APUA+MSAAP8
         AZEBjwF9AU4BaAEhAfQB9QH0JAAD/gPRA8YD+ioAAcYCxwHPAtAB2ALZA90DywPBA68DmgP3FQAD2APd
@@ -1570,7 +1576,7 @@
     <value>2, 88</value>
   </data>
   <data name="noSearchResultsLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>454, 52</value>
+    <value>450, 52</value>
   </data>
   <data name="noSearchResultsLabel.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -1609,7 +1615,7 @@
     <value>2, 88</value>
   </data>
   <data name="noDevicesLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>454, 52</value>
+    <value>450, 52</value>
   </data>
   <data name="noDevicesLabel.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -1699,7 +1705,7 @@
     <value>2, 79</value>
   </data>
   <data name="noMapLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>454, 52</value>
+    <value>450, 52</value>
   </data>
   <data name="noMapLabel.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -5703,6 +5709,72 @@ Click "Add" to get started.</value>
   <data name="&gt;&gt;sortByGroupToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;nameColumnHeader.Name" xml:space="preserve">
+    <value>nameColumnHeader</value>
+  </data>
+  <data name="&gt;&gt;nameColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;stateColumnHeader.Name" xml:space="preserve">
+    <value>stateColumnHeader</value>
+  </data>
+  <data name="&gt;&gt;stateColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;addMapToolStripMenuItem.Name" xml:space="preserve">
+    <value>addMapToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;addMapToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;addRelayMapToolStripMenuItem.Name" xml:space="preserve">
+    <value>addRelayMapToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;addRelayMapToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem3.Name" xml:space="preserve">
+    <value>toolStripMenuItem3</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;httpToolStripMenuItem.Name" xml:space="preserve">
+    <value>httpToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;httpToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;httpsToolStripMenuItem.Name" xml:space="preserve">
+    <value>httpsToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;httpsToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rdpToolStripMenuItem.Name" xml:space="preserve">
+    <value>rdpToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;rdpToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;sshToolStripMenuItem.Name" xml:space="preserve">
+    <value>sshToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;sshToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;scpToolStripMenuItem.Name" xml:space="preserve">
+    <value>scpToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;scpToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;devicesImageList.Name" xml:space="preserve">
+    <value>devicesImageList</value>
+  </data>
+  <data name="&gt;&gt;devicesImageList.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ImageList, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;stateClearTimer.Name" xml:space="preserve">
     <value>stateClearTimer</value>
   </data>
@@ -5769,70 +5841,10 @@ Click "Add" to get started.</value>
   <data name="&gt;&gt;saveMapFileDialog.Type" xml:space="preserve">
     <value>System.Windows.Forms.SaveFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;devicesImageList.Name" xml:space="preserve">
-    <value>devicesImageList</value>
+  <data name="&gt;&gt;remoteDesktopToolStripMenuItem.Name" xml:space="preserve">
+    <value>remoteDesktopToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;devicesImageList.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ImageList, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nameColumnHeader.Name" xml:space="preserve">
-    <value>nameColumnHeader</value>
-  </data>
-  <data name="&gt;&gt;nameColumnHeader.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;stateColumnHeader.Name" xml:space="preserve">
-    <value>stateColumnHeader</value>
-  </data>
-  <data name="&gt;&gt;stateColumnHeader.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;httpToolStripMenuItem.Name" xml:space="preserve">
-    <value>httpToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;httpToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;httpsToolStripMenuItem.Name" xml:space="preserve">
-    <value>httpsToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;httpsToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rdpToolStripMenuItem.Name" xml:space="preserve">
-    <value>rdpToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;rdpToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;sshToolStripMenuItem.Name" xml:space="preserve">
-    <value>sshToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;sshToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;scpToolStripMenuItem.Name" xml:space="preserve">
-    <value>scpToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;scpToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItem3.Name" xml:space="preserve">
-    <value>toolStripMenuItem3</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItem3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;addMapToolStripMenuItem.Name" xml:space="preserve">
-    <value>addMapToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;addMapToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;addRelayMapToolStripMenuItem.Name" xml:space="preserve">
-    <value>addRelayMapToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;addRelayMapToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;remoteDesktopToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">

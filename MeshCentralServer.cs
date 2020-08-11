@@ -35,7 +35,7 @@ namespace MeshCentralRouter
 
     public class MeshCentralServer
     {
-        private Uri wsurl = null;
+        public Uri wsurl = null;
         private string user = null;
         private string pass = null;
         private string token = null;
@@ -52,6 +52,7 @@ namespace MeshCentralRouter
         public bool disconnectSms2FASent = false;
         public X509Certificate2 disconnectCert;
         public string authCookie = null;
+        public string rauthCookie = null;
         public string loginCookie = null;
         public string wshash = null;
         public string certHash = null;
@@ -157,6 +158,15 @@ namespace MeshCentralRouter
             }
         }
 
+        public void sendCommand(string cmd)
+        {
+            if (wc != null)
+            {
+                if (debug) { try { File.AppendAllText("debug.log", "sendCommand: " + cmd + "\r\n"); } catch (Exception) { } }
+                wc.WriteStringWebSocket(cmd);
+            }
+        }
+
         public void refreshCookies()
         {
             if (wc != null) {
@@ -209,6 +219,7 @@ namespace MeshCentralRouter
                 case "authcookie":
                     {
                         authCookie = jsonAction["cookie"].ToString();
+                        rauthCookie = jsonAction["rcookie"].ToString();
                         changeState(2);
                         break;
                     }
@@ -541,7 +552,7 @@ namespace MeshCentralRouter
         public delegate void onLoginTokenChangedHandler();
         public event onLoginTokenChangedHandler onLoginTokenChanged;
 
-        private class xwebclient : IDisposable
+        public class xwebclient : IDisposable
         {
             private MeshCentralServer parent = null;
             private TcpClient wsclient = null;

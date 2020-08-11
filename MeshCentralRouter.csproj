@@ -106,6 +106,30 @@
     <Compile Include="InstallForm.Designer.cs">
       <DependentUpon>InstallForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="KVMControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="KVMControl.Designer.cs">
+      <DependentUpon>KVMControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KVMResizeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="KVMResizeControl.Designer.cs">
+      <DependentUpon>KVMResizeControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KVMSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KVMSettingsForm.Designer.cs">
+      <DependentUpon>KVMSettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KVMViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KVMViewer.Designer.cs">
+      <DependentUpon>KVMViewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -394,6 +418,18 @@
     <EmbeddedResource Include="InstallForm.zh-chs.resx">
       <DependentUpon>InstallForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="KVMControl.resx">
+      <DependentUpon>KVMControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KVMResizeControl.resx">
+      <DependentUpon>KVMResizeControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KVMSettingsForm.resx">
+      <DependentUpon>KVMSettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KVMViewer.resx">
+      <DependentUpon>KVMViewer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.cs.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -667,6 +703,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MeshServer.ico" />
+    <None Include="Resources\50-Computer.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

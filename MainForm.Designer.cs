@@ -83,6 +83,19 @@
             this.devicesTabControl = new System.Windows.Forms.TabControl();
             this.devicesTabPage = new System.Windows.Forms.TabPage();
             this.devicesPanel = new System.Windows.Forms.Panel();
+            this.devicesListView = new System.Windows.Forms.ListView();
+            this.nameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.stateColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.devicesContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.addMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addRelayMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
+            this.httpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.httpsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rdpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.scpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.devicesImageList = new System.Windows.Forms.ImageList(this.components);
             this.noSearchResultsLabel = new System.Windows.Forms.Label();
             this.noDevicesLabel = new System.Windows.Forms.Label();
             this.portMapTabPage = new System.Windows.Forms.TabPage();
@@ -110,19 +123,7 @@
             this.saveMappingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openMapFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveMapFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.devicesListView = new System.Windows.Forms.ListView();
-            this.devicesImageList = new System.Windows.Forms.ImageList(this.components);
-            this.nameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.stateColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.devicesContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.httpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.httpsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.rdpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.scpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
-            this.addMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addRelayMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.remoteDesktopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel5.SuspendLayout();
             this.mainPanel.SuspendLayout();
             this.mainTabControl.SuspendLayout();
@@ -143,6 +144,7 @@
             this.devicesTabControl.SuspendLayout();
             this.devicesTabPage.SuspendLayout();
             this.devicesPanel.SuspendLayout();
+            this.devicesContextMenuStrip.SuspendLayout();
             this.portMapTabPage.SuspendLayout();
             this.mapPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.settingsPictureBox)).BeginInit();
@@ -151,7 +153,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.trayIconContextMenuStrip.SuspendLayout();
             this.mappingsContextMenuStrip.SuspendLayout();
-            this.devicesContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel5
@@ -554,6 +555,118 @@
             this.devicesPanel.Controls.Add(this.noDevicesLabel);
             this.devicesPanel.Name = "devicesPanel";
             // 
+            // devicesListView
+            // 
+            this.devicesListView.BackColor = System.Drawing.SystemColors.Window;
+            this.devicesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.nameColumnHeader,
+            this.stateColumnHeader});
+            this.devicesListView.ContextMenuStrip = this.devicesContextMenuStrip;
+            this.devicesListView.FullRowSelect = true;
+            this.devicesListView.GridLines = true;
+            this.devicesListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.devicesListView.LargeImageList = this.devicesImageList;
+            resources.ApplyResources(this.devicesListView, "devicesListView");
+            this.devicesListView.MultiSelect = false;
+            this.devicesListView.Name = "devicesListView";
+            this.devicesListView.SmallImageList = this.devicesImageList;
+            this.devicesListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.devicesListView.UseCompatibleStateImageBehavior = false;
+            this.devicesListView.View = System.Windows.Forms.View.Details;
+            this.devicesListView.DoubleClick += new System.EventHandler(this.devicesListView_DoubleClick);
+            // 
+            // nameColumnHeader
+            // 
+            resources.ApplyResources(this.nameColumnHeader, "nameColumnHeader");
+            // 
+            // stateColumnHeader
+            // 
+            resources.ApplyResources(this.stateColumnHeader, "stateColumnHeader");
+            // 
+            // devicesContextMenuStrip
+            // 
+            this.devicesContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addMapToolStripMenuItem,
+            this.addRelayMapToolStripMenuItem,
+            this.toolStripMenuItem3,
+            this.remoteDesktopToolStripMenuItem,
+            this.httpToolStripMenuItem,
+            this.httpsToolStripMenuItem,
+            this.rdpToolStripMenuItem,
+            this.sshToolStripMenuItem,
+            this.scpToolStripMenuItem});
+            this.devicesContextMenuStrip.Name = "devicesContextMenuStrip";
+            resources.ApplyResources(this.devicesContextMenuStrip, "devicesContextMenuStrip");
+            this.devicesContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.devicesContextMenuStrip_Opening);
+            // 
+            // addMapToolStripMenuItem
+            // 
+            resources.ApplyResources(this.addMapToolStripMenuItem, "addMapToolStripMenuItem");
+            this.addMapToolStripMenuItem.Name = "addMapToolStripMenuItem";
+            this.addMapToolStripMenuItem.Click += new System.EventHandler(this.addMapToolStripMenuItem_Click);
+            // 
+            // addRelayMapToolStripMenuItem
+            // 
+            this.addRelayMapToolStripMenuItem.Name = "addRelayMapToolStripMenuItem";
+            resources.ApplyResources(this.addRelayMapToolStripMenuItem, "addRelayMapToolStripMenuItem");
+            this.addRelayMapToolStripMenuItem.Click += new System.EventHandler(this.addRelayMapToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            resources.ApplyResources(this.toolStripMenuItem3, "toolStripMenuItem3");
+            // 
+            // httpToolStripMenuItem
+            // 
+            this.httpToolStripMenuItem.Name = "httpToolStripMenuItem";
+            resources.ApplyResources(this.httpToolStripMenuItem, "httpToolStripMenuItem");
+            this.httpToolStripMenuItem.Click += new System.EventHandler(this.httpToolStripMenuItem_Click);
+            // 
+            // httpsToolStripMenuItem
+            // 
+            this.httpsToolStripMenuItem.Name = "httpsToolStripMenuItem";
+            resources.ApplyResources(this.httpsToolStripMenuItem, "httpsToolStripMenuItem");
+            this.httpsToolStripMenuItem.Click += new System.EventHandler(this.httpsToolStripMenuItem_Click);
+            // 
+            // rdpToolStripMenuItem
+            // 
+            this.rdpToolStripMenuItem.Name = "rdpToolStripMenuItem";
+            resources.ApplyResources(this.rdpToolStripMenuItem, "rdpToolStripMenuItem");
+            this.rdpToolStripMenuItem.Click += new System.EventHandler(this.rdpToolStripMenuItem_Click);
+            // 
+            // sshToolStripMenuItem
+            // 
+            this.sshToolStripMenuItem.Name = "sshToolStripMenuItem";
+            resources.ApplyResources(this.sshToolStripMenuItem, "sshToolStripMenuItem");
+            this.sshToolStripMenuItem.Click += new System.EventHandler(this.sshToolStripMenuItem_Click);
+            // 
+            // scpToolStripMenuItem
+            // 
+            this.scpToolStripMenuItem.Name = "scpToolStripMenuItem";
+            resources.ApplyResources(this.scpToolStripMenuItem, "scpToolStripMenuItem");
+            this.scpToolStripMenuItem.Click += new System.EventHandler(this.scpToolStripMenuItem_Click);
+            // 
+            // devicesImageList
+            // 
+            this.devicesImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("devicesImageList.ImageStream")));
+            this.devicesImageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.devicesImageList.Images.SetKeyName(0, "icons01.png");
+            this.devicesImageList.Images.SetKeyName(1, "icons01t.png");
+            this.devicesImageList.Images.SetKeyName(2, "icons02.png");
+            this.devicesImageList.Images.SetKeyName(3, "icons02t.png");
+            this.devicesImageList.Images.SetKeyName(4, "icons03.png");
+            this.devicesImageList.Images.SetKeyName(5, "icons03t.png");
+            this.devicesImageList.Images.SetKeyName(6, "icons04.png");
+            this.devicesImageList.Images.SetKeyName(7, "icons04t.png");
+            this.devicesImageList.Images.SetKeyName(8, "icons05.png");
+            this.devicesImageList.Images.SetKeyName(9, "icons05t.png");
+            this.devicesImageList.Images.SetKeyName(10, "icons06.png");
+            this.devicesImageList.Images.SetKeyName(11, "icons06t.png");
+            this.devicesImageList.Images.SetKeyName(12, "icons07.png");
+            this.devicesImageList.Images.SetKeyName(13, "icons07t.png");
+            this.devicesImageList.Images.SetKeyName(14, "icons08.png");
+            this.devicesImageList.Images.SetKeyName(15, "icons08t.png");
+            // 
             // noSearchResultsLabel
             // 
             resources.ApplyResources(this.noSearchResultsLabel, "noSearchResultsLabel");
@@ -734,116 +847,11 @@
             this.saveMapFileDialog.DefaultExt = "mcrouter";
             resources.ApplyResources(this.saveMapFileDialog, "saveMapFileDialog");
             // 
-            // devicesListView
+            // remoteDesktopToolStripMenuItem
             // 
-            this.devicesListView.BackColor = System.Drawing.SystemColors.Window;
-            this.devicesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.nameColumnHeader,
-            this.stateColumnHeader});
-            this.devicesListView.ContextMenuStrip = this.devicesContextMenuStrip;
-            this.devicesListView.FullRowSelect = true;
-            this.devicesListView.GridLines = true;
-            this.devicesListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.devicesListView.LargeImageList = this.devicesImageList;
-            resources.ApplyResources(this.devicesListView, "devicesListView");
-            this.devicesListView.MultiSelect = false;
-            this.devicesListView.Name = "devicesListView";
-            this.devicesListView.SmallImageList = this.devicesImageList;
-            this.devicesListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this.devicesListView.UseCompatibleStateImageBehavior = false;
-            this.devicesListView.View = System.Windows.Forms.View.Details;
-            this.devicesListView.DoubleClick += new System.EventHandler(this.devicesListView_DoubleClick);
-            // 
-            // devicesImageList
-            // 
-            this.devicesImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("devicesImageList.ImageStream")));
-            this.devicesImageList.TransparentColor = System.Drawing.Color.Transparent;
-            this.devicesImageList.Images.SetKeyName(0, "icons01.png");
-            this.devicesImageList.Images.SetKeyName(1, "icons01t.png");
-            this.devicesImageList.Images.SetKeyName(2, "icons02.png");
-            this.devicesImageList.Images.SetKeyName(3, "icons02t.png");
-            this.devicesImageList.Images.SetKeyName(4, "icons03.png");
-            this.devicesImageList.Images.SetKeyName(5, "icons03t.png");
-            this.devicesImageList.Images.SetKeyName(6, "icons04.png");
-            this.devicesImageList.Images.SetKeyName(7, "icons04t.png");
-            this.devicesImageList.Images.SetKeyName(8, "icons05.png");
-            this.devicesImageList.Images.SetKeyName(9, "icons05t.png");
-            this.devicesImageList.Images.SetKeyName(10, "icons06.png");
-            this.devicesImageList.Images.SetKeyName(11, "icons06t.png");
-            this.devicesImageList.Images.SetKeyName(12, "icons07.png");
-            this.devicesImageList.Images.SetKeyName(13, "icons07t.png");
-            this.devicesImageList.Images.SetKeyName(14, "icons08.png");
-            this.devicesImageList.Images.SetKeyName(15, "icons08t.png");
-            // 
-            // nameColumnHeader
-            // 
-            resources.ApplyResources(this.nameColumnHeader, "nameColumnHeader");
-            // 
-            // stateColumnHeader
-            // 
-            resources.ApplyResources(this.stateColumnHeader, "stateColumnHeader");
-            // 
-            // devicesContextMenuStrip
-            // 
-            this.devicesContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addMapToolStripMenuItem,
-            this.addRelayMapToolStripMenuItem,
-            this.toolStripMenuItem3,
-            this.httpToolStripMenuItem,
-            this.httpsToolStripMenuItem,
-            this.rdpToolStripMenuItem,
-            this.sshToolStripMenuItem,
-            this.scpToolStripMenuItem});
-            this.devicesContextMenuStrip.Name = "devicesContextMenuStrip";
-            resources.ApplyResources(this.devicesContextMenuStrip, "devicesContextMenuStrip");
-            this.devicesContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.devicesContextMenuStrip_Opening);
-            // 
-            // httpToolStripMenuItem
-            // 
-            this.httpToolStripMenuItem.Name = "httpToolStripMenuItem";
-            resources.ApplyResources(this.httpToolStripMenuItem, "httpToolStripMenuItem");
-            this.httpToolStripMenuItem.Click += new System.EventHandler(this.httpToolStripMenuItem_Click);
-            // 
-            // httpsToolStripMenuItem
-            // 
-            this.httpsToolStripMenuItem.Name = "httpsToolStripMenuItem";
-            resources.ApplyResources(this.httpsToolStripMenuItem, "httpsToolStripMenuItem");
-            this.httpsToolStripMenuItem.Click += new System.EventHandler(this.httpsToolStripMenuItem_Click);
-            // 
-            // rdpToolStripMenuItem
-            // 
-            this.rdpToolStripMenuItem.Name = "rdpToolStripMenuItem";
-            resources.ApplyResources(this.rdpToolStripMenuItem, "rdpToolStripMenuItem");
-            this.rdpToolStripMenuItem.Click += new System.EventHandler(this.rdpToolStripMenuItem_Click);
-            // 
-            // sshToolStripMenuItem
-            // 
-            this.sshToolStripMenuItem.Name = "sshToolStripMenuItem";
-            resources.ApplyResources(this.sshToolStripMenuItem, "sshToolStripMenuItem");
-            this.sshToolStripMenuItem.Click += new System.EventHandler(this.sshToolStripMenuItem_Click);
-            // 
-            // scpToolStripMenuItem
-            // 
-            this.scpToolStripMenuItem.Name = "scpToolStripMenuItem";
-            resources.ApplyResources(this.scpToolStripMenuItem, "scpToolStripMenuItem");
-            this.scpToolStripMenuItem.Click += new System.EventHandler(this.scpToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            resources.ApplyResources(this.toolStripMenuItem3, "toolStripMenuItem3");
-            // 
-            // addMapToolStripMenuItem
-            // 
-            resources.ApplyResources(this.addMapToolStripMenuItem, "addMapToolStripMenuItem");
-            this.addMapToolStripMenuItem.Name = "addMapToolStripMenuItem";
-            this.addMapToolStripMenuItem.Click += new System.EventHandler(this.addMapToolStripMenuItem_Click);
-            // 
-            // addRelayMapToolStripMenuItem
-            // 
-            this.addRelayMapToolStripMenuItem.Name = "addRelayMapToolStripMenuItem";
-            resources.ApplyResources(this.addRelayMapToolStripMenuItem, "addRelayMapToolStripMenuItem");
-            this.addRelayMapToolStripMenuItem.Click += new System.EventHandler(this.addRelayMapToolStripMenuItem_Click);
+            this.remoteDesktopToolStripMenuItem.Name = "remoteDesktopToolStripMenuItem";
+            resources.ApplyResources(this.remoteDesktopToolStripMenuItem, "remoteDesktopToolStripMenuItem");
+            this.remoteDesktopToolStripMenuItem.Click += new System.EventHandler(this.remoteDesktopToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -880,6 +888,7 @@
             this.devicesTabControl.ResumeLayout(false);
             this.devicesTabPage.ResumeLayout(false);
             this.devicesPanel.ResumeLayout(false);
+            this.devicesContextMenuStrip.ResumeLayout(false);
             this.portMapTabPage.ResumeLayout(false);
             this.mapPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.settingsPictureBox)).EndInit();
@@ -888,7 +897,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.trayIconContextMenuStrip.ResumeLayout(false);
             this.mappingsContextMenuStrip.ResumeLayout(false);
-            this.devicesContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -987,6 +995,7 @@
         private System.Windows.Forms.ToolStripMenuItem addMapToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addRelayMapToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem remoteDesktopToolStripMenuItem;
     }
 }
 

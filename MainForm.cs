@@ -1445,6 +1445,22 @@ namespace MeshCentralRouter
             addButton_Click(null, null);
         }
 
+        private void remoteDesktopToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (devicesListView.SelectedItems.Count != 1) { return; }
+            ListViewItem selecteditem = devicesListView.SelectedItems[0];
+            NodeClass node = (NodeClass)selecteditem.Tag;
+            if ((node.conn & 1) == 0) { return; } // Agent not connected on this device
+            if (node.desktopViewer == null)
+            {
+                node.desktopViewer = new KVMViewer(meshcentral, node);
+                node.desktopViewer.Show();
+                node.desktopViewer.MenuItemConnect_Click(null, null);
+            } else {
+                node.desktopViewer.Focus();
+            }
+        }
+
         /*
         private delegate void displayMessageHandler(string msg, int buttons, string extra, int progress);
         private void displayMessage(string msg, int buttons = 0, string extra = "", int progress = 0)
