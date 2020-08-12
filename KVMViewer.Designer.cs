@@ -86,11 +86,8 @@ namespace MeshCentralRouter
             this.toolStripMenuItem2,
             this.viewToolStripMenuItem,
             this.actionsToolStripMenuItem});
-            this.mainMenu.Location = new System.Drawing.Point(0, 0);
+            resources.ApplyResources(this.mainMenu, "mainMenu");
             this.mainMenu.Name = "mainMenu";
-            this.mainMenu.Size = new System.Drawing.Size(1227, 24);
-            this.mainMenu.TabIndex = 1;
-            this.mainMenu.Text = "menuStrip1";
             // 
             // toolStripMenuItem2
             // 
@@ -102,46 +99,41 @@ namespace MeshCentralRouter
             this.toolStripMenuItem1,
             this.MenuItemExit});
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(59, 20);
-            this.toolStripMenuItem2.Text = "&Control";
+            resources.ApplyResources(this.toolStripMenuItem2, "toolStripMenuItem2");
             this.toolStripMenuItem2.DropDownOpening += new System.EventHandler(this.toolStripMenuItem2_DropDownOpening);
             // 
             // MenuItemConnect
             // 
             this.MenuItemConnect.Name = "MenuItemConnect";
-            this.MenuItemConnect.Size = new System.Drawing.Size(167, 22);
-            this.MenuItemConnect.Text = "&Connect...";
+            resources.ApplyResources(this.MenuItemConnect, "MenuItemConnect");
             this.MenuItemConnect.Click += new System.EventHandler(this.MenuItemConnect_Click);
             // 
             // MenuItemDisconnect
             // 
             this.MenuItemDisconnect.Name = "MenuItemDisconnect";
-            this.MenuItemDisconnect.Size = new System.Drawing.Size(167, 22);
-            this.MenuItemDisconnect.Text = "&Disconnect";
+            resources.ApplyResources(this.MenuItemDisconnect, "MenuItemDisconnect");
             this.MenuItemDisconnect.Click += new System.EventHandler(this.MenuItemDisconnect_Click);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(164, 6);
+            resources.ApplyResources(this.toolStripMenuItem5, "toolStripMenuItem5");
             // 
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
-            this.settingsToolStripMenuItem.Text = "Session Settings...";
+            resources.ApplyResources(this.settingsToolStripMenuItem, "settingsToolStripMenuItem");
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(164, 6);
+            resources.ApplyResources(this.toolStripMenuItem1, "toolStripMenuItem1");
             // 
             // MenuItemExit
             // 
             this.MenuItemExit.Name = "MenuItemExit";
-            this.MenuItemExit.Size = new System.Drawing.Size(167, 22);
-            this.MenuItemExit.Text = "E&xit";
+            resources.ApplyResources(this.MenuItemExit, "MenuItemExit");
             this.MenuItemExit.Click += new System.EventHandler(this.MenuItemExit_Click);
             // 
             // viewToolStripMenuItem
@@ -154,16 +146,14 @@ namespace MeshCentralRouter
             this.refreshToolStripMenuItem,
             this.pauseToolStripMenuItem});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.viewToolStripMenuItem.Text = "&View";
+            resources.ApplyResources(this.viewToolStripMenuItem, "viewToolStripMenuItem");
             this.viewToolStripMenuItem.DropDownOpening += new System.EventHandler(this.viewToolStripMenuItem_DropDownOpening);
             // 
             // zoomtofitToolStripMenuItem
             // 
             this.zoomtofitToolStripMenuItem.CheckOnClick = true;
             this.zoomtofitToolStripMenuItem.Name = "zoomtofitToolStripMenuItem";
-            this.zoomtofitToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
-            this.zoomtofitToolStripMenuItem.Text = "&Zoom-to-fit";
+            resources.ApplyResources(this.zoomtofitToolStripMenuItem, "zoomtofitToolStripMenuItem");
             this.zoomtofitToolStripMenuItem.CheckStateChanged += new System.EventHandler(this.zoomtofitToolStripMenuItem_CheckStateChanged);
             // 
             // statusToolStripMenuItem
@@ -172,50 +162,42 @@ namespace MeshCentralRouter
             this.statusToolStripMenuItem.CheckOnClick = true;
             this.statusToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.statusToolStripMenuItem.Name = "statusToolStripMenuItem";
-            this.statusToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
-            this.statusToolStripMenuItem.Text = "&Status";
+            resources.ApplyResources(this.statusToolStripMenuItem, "statusToolStripMenuItem");
             this.statusToolStripMenuItem.CheckedChanged += new System.EventHandler(this.statusToolStripMenuItem_CheckedChanged);
             // 
             // debugToolStripMenuItem
             // 
             this.debugToolStripMenuItem.CheckOnClick = true;
             this.debugToolStripMenuItem.Name = "debugToolStripMenuItem";
-            this.debugToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
-            this.debugToolStripMenuItem.Text = "&Debug";
+            resources.ApplyResources(this.debugToolStripMenuItem, "debugToolStripMenuItem");
             this.debugToolStripMenuItem.Click += new System.EventHandler(this.debugToolStripMenuItem_Click);
             // 
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(135, 6);
+            resources.ApplyResources(this.toolStripMenuItem6, "toolStripMenuItem6");
             // 
             // refreshToolStripMenuItem
             // 
             this.refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
-            this.refreshToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
-            this.refreshToolStripMenuItem.Text = "&Refresh";
+            resources.ApplyResources(this.refreshToolStripMenuItem, "refreshToolStripMenuItem");
             // 
             // pauseToolStripMenuItem
             // 
             this.pauseToolStripMenuItem.Name = "pauseToolStripMenuItem";
-            this.pauseToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F7;
-            this.pauseToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
-            this.pauseToolStripMenuItem.Text = "&Pause";
+            resources.ApplyResources(this.pauseToolStripMenuItem, "pauseToolStripMenuItem");
             // 
             // actionsToolStripMenuItem
             // 
             this.actionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.sendCtrlAltDelToolStripMenuItem});
             this.actionsToolStripMenuItem.Name = "actionsToolStripMenuItem";
-            this.actionsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
-            this.actionsToolStripMenuItem.Text = "Actions";
+            resources.ApplyResources(this.actionsToolStripMenuItem, "actionsToolStripMenuItem");
             // 
             // sendCtrlAltDelToolStripMenuItem
             // 
             this.sendCtrlAltDelToolStripMenuItem.Name = "sendCtrlAltDelToolStripMenuItem";
-            this.sendCtrlAltDelToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.sendCtrlAltDelToolStripMenuItem.Text = "Send &Ctrl-Alt-Del";
+            resources.ApplyResources(this.sendCtrlAltDelToolStripMenuItem, "sendCtrlAltDelToolStripMenuItem");
             this.sendCtrlAltDelToolStripMenuItem.Click += new System.EventHandler(this.sendCtrlAltDelToolStripMenuItem_Click);
             // 
             // mainStatusStrip
@@ -224,26 +206,19 @@ namespace MeshCentralRouter
             this.mainStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mainToolStripStatusLabel,
             this.toolStripStatusLabel1});
-            this.mainStatusStrip.Location = new System.Drawing.Point(0, 787);
+            resources.ApplyResources(this.mainStatusStrip, "mainStatusStrip");
             this.mainStatusStrip.Name = "mainStatusStrip";
-            this.mainStatusStrip.Size = new System.Drawing.Size(1227, 22);
-            this.mainStatusStrip.TabIndex = 9;
-            this.mainStatusStrip.Text = "statusStrip1";
             // 
             // mainToolStripStatusLabel
             // 
             this.mainToolStripStatusLabel.Name = "mainToolStripStatusLabel";
-            this.mainToolStripStatusLabel.Size = new System.Drawing.Size(1212, 17);
+            resources.ApplyResources(this.mainToolStripStatusLabel, "mainToolStripStatusLabel");
             this.mainToolStripStatusLabel.Spring = true;
-            this.mainToolStripStatusLabel.Text = "---";
-            this.mainToolStripStatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(13, 17);
-            this.toolStripStatusLabel1.Text = "v";
-            this.toolStripStatusLabel1.Visible = false;
+            resources.ApplyResources(this.toolStripStatusLabel1, "toolStripStatusLabel1");
             // 
             // updateTimer
             // 
@@ -259,95 +234,68 @@ namespace MeshCentralRouter
             this.topPanel.Controls.Add(this.zoomButton);
             this.topPanel.Controls.Add(this.cadButton);
             this.topPanel.Controls.Add(this.connectButton);
-            this.topPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.topPanel.Location = new System.Drawing.Point(0, 24);
+            resources.ApplyResources(this.topPanel, "topPanel");
             this.topPanel.Name = "topPanel";
-            this.topPanel.Size = new System.Drawing.Size(1227, 32);
-            this.topPanel.TabIndex = 11;
-            this.topPanel.Visible = false;
             // 
             // displaySelectComboBox
             // 
             this.displaySelectComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.displaySelectComboBox.Location = new System.Drawing.Point(383, 5);
+            resources.ApplyResources(this.displaySelectComboBox, "displaySelectComboBox");
             this.displaySelectComboBox.Name = "displaySelectComboBox";
-            this.displaySelectComboBox.Size = new System.Drawing.Size(128, 21);
-            this.displaySelectComboBox.TabIndex = 6;
             this.displaySelectComboBox.TabStop = false;
-            this.displaySelectComboBox.Visible = false;
             this.displaySelectComboBox.SelectionChangeCommitted += new System.EventHandler(this.displaySelectComboBox_SelectionChangeCommitted);
             // 
             // settingsButton
             // 
-            this.settingsButton.Location = new System.Drawing.Point(288, 3);
+            resources.ApplyResources(this.settingsButton, "settingsButton");
             this.settingsButton.Name = "settingsButton";
-            this.settingsButton.Size = new System.Drawing.Size(89, 26);
-            this.settingsButton.TabIndex = 5;
             this.settingsButton.TabStop = false;
-            this.settingsButton.Text = "Settings";
             this.settingsButton.UseVisualStyleBackColor = true;
             this.settingsButton.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
             // zoomButton
             // 
-            this.zoomButton.Location = new System.Drawing.Point(193, 3);
+            resources.ApplyResources(this.zoomButton, "zoomButton");
             this.zoomButton.Name = "zoomButton";
-            this.zoomButton.Size = new System.Drawing.Size(89, 26);
-            this.zoomButton.TabIndex = 4;
             this.zoomButton.TabStop = false;
-            this.zoomButton.Text = "Zoom-to-Fit";
             this.zoomButton.UseVisualStyleBackColor = true;
             this.zoomButton.Click += new System.EventHandler(this.zoomButton_Click);
             // 
             // cadButton
             // 
-            this.cadButton.Location = new System.Drawing.Point(98, 3);
+            resources.ApplyResources(this.cadButton, "cadButton");
             this.cadButton.Name = "cadButton";
-            this.cadButton.Size = new System.Drawing.Size(89, 26);
-            this.cadButton.TabIndex = 1;
             this.cadButton.TabStop = false;
-            this.cadButton.Text = "Ctrl-Alt-Del";
             this.cadButton.UseVisualStyleBackColor = true;
             this.cadButton.Click += new System.EventHandler(this.sendCtrlAltDelToolStripMenuItem_Click);
             // 
             // connectButton
             // 
-            this.connectButton.Location = new System.Drawing.Point(3, 3);
+            resources.ApplyResources(this.connectButton, "connectButton");
             this.connectButton.Name = "connectButton";
-            this.connectButton.Size = new System.Drawing.Size(89, 26);
-            this.connectButton.TabIndex = 0;
             this.connectButton.TabStop = false;
-            this.connectButton.Text = "Connect";
             this.connectButton.UseVisualStyleBackColor = true;
             this.connectButton.Click += new System.EventHandler(this.MenuItemDisconnect_Click);
             // 
             // resizeKvmControl
             // 
             this.resizeKvmControl.BackColor = System.Drawing.Color.Gray;
-            this.resizeKvmControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.resizeKvmControl.Location = new System.Drawing.Point(0, 56);
+            resources.ApplyResources(this.resizeKvmControl, "resizeKvmControl");
             this.resizeKvmControl.Name = "resizeKvmControl";
-            this.resizeKvmControl.Size = new System.Drawing.Size(1227, 731);
-            this.resizeKvmControl.TabIndex = 10;
             this.resizeKvmControl.ZoomToFit = false;
             this.resizeKvmControl.StateChanged += new System.EventHandler(this.kvmControl_StateChanged);
             this.resizeKvmControl.DisplaysReceived += new System.EventHandler(this.resizeKvmControl_DisplaysReceived);
             // 
             // KVMViewer
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gray;
-            this.ClientSize = new System.Drawing.Size(1227, 809);
             this.Controls.Add(this.resizeKvmControl);
             this.Controls.Add(this.topPanel);
             this.Controls.Add(this.mainStatusStrip);
             this.Controls.Add(this.mainMenu);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "KVMViewer";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Remote Desktop";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.Resize += new System.EventHandler(this.MainForm_Resize);

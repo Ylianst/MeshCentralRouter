@@ -14,6 +14,7 @@ namespace MeshCentralRouter
         public string nodeid;
         public string meshid;
         public int agentid;
+        public int agentcaps;
         public int conn;
         public int rdpport;
         public ulong rights;

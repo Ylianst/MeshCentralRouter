@@ -331,6 +331,7 @@ namespace MeshCentralRouter
                                 }
                             case "changenode":
                                 {
+                                    if (nodes == null) return;
                                     Dictionary<string, object> node = (Dictionary<string, object>)ev["node"];
                                     string nodeid = (string)node["_id"];
                                     if (nodes.ContainsKey(nodeid))
@@ -340,6 +341,11 @@ namespace MeshCentralRouter
                                         {
                                             NodeClass n = (NodeClass)nodes[nodeid];
                                             n.name = (string)node["name"];
+                                            if (node.ContainsKey("agent"))
+                                            {
+                                                n.agentid = (int)((Dictionary<string, object>)node["agent"])["id"];
+                                                n.agentcaps = (int)((Dictionary<string, object>)node["agent"])["caps"];
+                                            }
                                             if (node.ContainsKey("conn")) { n.conn = (int)node["conn"]; }
                                             n.icon = (int)node["icon"];
                                             if (node.ContainsKey("rdpport")) { n.rdpport = (int)node["rdpport"]; }
@@ -471,7 +477,13 @@ namespace MeshCentralRouter
                                     {
                                         NodeClass n = (NodeClass)nodes[nodeid];
                                         n.nodeid = nodeid;
-                                        if (node.ContainsKey("agent")) { n.agentid = (int)((Dictionary<string, object>)node["agent"])["id"]; } else { n.agentid = -1; }
+                                        if (node.ContainsKey("agent")) {
+                                            n.agentid = (int)((Dictionary<string, object>)node["agent"])["id"];
+                                            n.agentcaps = (int)((Dictionary<string, object>)node["agent"])["caps"];
+                                        } else {
+                                            n.agentid = -1;
+                                            n.agentcaps = 0;
+                                        }
                                         n.name = (string)node["name"];
                                         n.meshid = meshid;
                                         if (node.ContainsKey("rdpport")) { n.rdpport = (int)node["rdpport"]; } else { n.rdpport = 3389; }
@@ -502,7 +514,13 @@ namespace MeshCentralRouter
                                     {
                                         NodeClass n = new NodeClass();
                                         n.nodeid = nodeid;
-                                        if (node.ContainsKey("agent")) { n.agentid = (int)((Dictionary<string, object>)node["agent"])["id"]; } else { n.agentid = -1; }
+                                        if (node.ContainsKey("agent")) {
+                                            n.agentid = (int)((Dictionary<string, object>)node["agent"])["id"];
+                                            n.agentcaps = (int)((Dictionary<string, object>)node["agent"])["caps"];
+                                        } else {
+                                            n.agentid = -1;
+                                            n.agentcaps = 0;
+                                        }
                                         n.name = (string)node["name"];
                                         n.meshid = meshid;
                                         if (node.ContainsKey("rdpport")) { n.rdpport = (int)node["rdpport"]; } else { n.rdpport = 3389; }

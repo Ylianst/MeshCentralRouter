@@ -19,10 +19,39 @@
       ]
     },
     {
+      "en": "&Connect...",
+      "fr": "&Relier...",
+      "xloc": [
+        "KVMViewer.resx%MenuItemConnect.Text"
+      ]
+    },
+    {
+      "en": "&Control",
+      "fr": "&Contrôle",
+      "xloc": [
+        "KVMViewer.resx%toolStripMenuItem2.Text"
+      ]
+    },
+    {
+      "en": "&Debug",
+      "fr": "&Déboguer",
+      "xloc": [
+        "KVMViewer.resx%debugToolStripMenuItem.Text"
+      ]
+    },
+    {
+      "en": "&Disconnect",
+      "fr": "& Déconnecter",
+      "xloc": [
+        "KVMViewer.resx%MenuItemDisconnect.Text"
+      ]
+    },
+    {
       "cs": "& Informace ...",
       "de": "&Die Info...",
       "en": "&Info...",
       "es": "& Info ...",
+      "fr": "&Info...",
       "hi": "और जानकारी ...",
       "it": "&Informazioni...",
       "ja": "情報...",
@@ -37,6 +66,7 @@
     },
     {
       "en": "&Open Mappings...",
+      "fr": "& Ouvrir les mappages ...",
       "xloc": [
         "MainForm.resx%openMappingsToolStripMenuItem.Text"
       ]
@@ -59,9 +89,45 @@
       ]
     },
     {
+      "en": "&Pause",
+      "fr": "&Pause",
+      "xloc": [
+        "KVMViewer.resx%pauseToolStripMenuItem.Text"
+      ]
+    },
+    {
+      "en": "&Refresh",
+      "fr": "&Rafraîchir",
+      "xloc": [
+        "KVMViewer.resx%refreshToolStripMenuItem.Text"
+      ]
+    },
+    {
       "en": "&Save Mappings...",
+      "fr": "& Enregistrer les mappages ...",
       "xloc": [
         "MainForm.resx%saveMappingsToolStripMenuItem.Text"
+      ]
+    },
+    {
+      "en": "&Status",
+      "fr": "&Statut",
+      "xloc": [
+        "KVMViewer.resx%statusToolStripMenuItem.Text"
+      ]
+    },
+    {
+      "en": "&View",
+      "fr": "&Vue",
+      "xloc": [
+        "KVMViewer.resx%viewToolStripMenuItem.Text"
+      ]
+    },
+    {
+      "en": "&Zoom-to-fit",
+      "fr": "& Zoomer pour ajuster",
+      "xloc": [
+        "KVMViewer.resx%zoomtofitToolStripMenuItem.Text"
       ]
     },
     {
@@ -101,17 +167,47 @@
       ]
     },
     {
+      "en": "---",
+      "fr": "---",
+      "xloc": [
+        "KVMViewer.resx%mainToolStripStatusLabel.Text"
+      ]
+    },
+    {
       "cs": "127,0,0,1",
       "en": "127.0.0.1",
+      "fr": "127.0.0.1",
       "xloc": [
         "AddRelayMapForm.resx%remoteIpTextBox.Text"
       ]
     },
     {
       "en": "AMT",
+      "fr": "AMT",
       "hi": "एएमटी",
       "xloc": [
         "Properties%Resources.resx%AMT"
+      ]
+    },
+    {
+      "en": "Actions",
+      "fr": "Actions",
+      "xloc": [
+        "KVMViewer.resx%actionsToolStripMenuItem.Text"
+      ]
+    },
+    {
+      "en": "Add &Map...",
+      "fr": "Ajouter une & carte ...",
+      "xloc": [
+        "MainForm.resx%addMapToolStripMenuItem.Text"
+      ]
+    },
+    {
+      "en": "Add &Relay Map...",
+      "fr": "Ajouter une carte de & relais ...",
+      "xloc": [
+        "MainForm.resx%addRelayMapToolStripMenuItem.Text"
       ]
     },
     {
@@ -154,6 +250,7 @@
       "cs": "Činidlo",
       "en": "Agent",
       "es": "Agente",
+      "fr": "Agent",
       "hi": "एजेंट",
       "it": "Agente",
       "ja": "エージェント",
@@ -190,6 +287,7 @@
       "de": "Anwendung",
       "en": "Application",
       "es": "Solicitud",
+      "fr": "Application",
       "hi": "आवेदन",
       "it": "Applicazione",
       "ja": "応用",
@@ -296,6 +394,7 @@
     },
     {
       "en": "CIRA",
+      "fr": "CIRA",
       "hi": "सीआईआरए",
       "ja": "チラ",
       "ko": "시라",
@@ -322,6 +421,7 @@
         "AddRelayMapForm.resx%cancelButton.Text",
         "AppLaunchForm.resx%cancelButton.Text",
         "InstallForm.resx%cancelButton.Text",
+        "KVMSettingsForm.resx%cancelButton.Text",
         "SettingsForm.resx%cancelButton.Text",
         "altPortForm.resx%cancelButton.Text",
         "rdpPortForm.resx%cancelButton.Text"
@@ -400,6 +500,13 @@
       ]
     },
     {
+      "en": "Compression Settings",
+      "fr": "Paramètres de compression",
+      "xloc": [
+        "KVMSettingsForm.resx%groupBox1.Text"
+      ]
+    },
+    {
       "cs": "Název_počítače",
       "de": "Computername",
       "en": "ComputerName",
@@ -419,6 +526,13 @@
       ]
     },
     {
+      "en": "Connect",
+      "fr": "Relier",
+      "xloc": [
+        "KVMViewer.resx%connectButton.Text"
+      ]
+    },
+    {
       "cs": "Spojení",
       "de": "Verbindung",
       "en": "Connection",
@@ -434,6 +548,13 @@
       "zh-chs": "连接",
       "xloc": [
         "altPortForm.resx%groupBox1.Text"
+      ]
+    },
+    {
+      "en": "Ctrl-Alt-Del",
+      "fr": "Ctrl-Alt-Suppr",
+      "xloc": [
+        "KVMViewer.resx%cadButton.Text"
       ]
     },
     {
@@ -506,6 +627,7 @@
       "ru": "Выход",
       "zh-chs": "出口",
       "xloc": [
+        "KVMViewer.resx%MenuItemExit.Text",
         "MainForm.resx%exitToolStripMenuItem.Text"
       ]
     },
@@ -513,6 +635,7 @@
       "cs": "E-mailem",
       "en": "Email",
       "es": "Correo electrónico",
+      "fr": "Email",
       "hi": "ईमेल",
       "it": "E-mail",
       "ja": "Eメール",
@@ -617,16 +740,27 @@
       ]
     },
     {
+      "en": "Frame rate",
+      "fr": "Fréquence d'images",
+      "xloc": [
+        "KVMSettingsForm.resx%label2.Text"
+      ]
+    },
+    {
       "en": "HTTP",
+      "fr": "HTTP",
       "hi": "एचटीटीपी",
       "xloc": [
-        "DeviceUserControl.resx%httpButton.Text"
+        "DeviceUserControl.resx%httpButton.Text",
+        "MainForm.resx%httpToolStripMenuItem.Text"
       ]
     },
     {
       "en": "HTTPS",
+      "fr": "HTTPS",
       "xloc": [
-        "DeviceUserControl.resx%httpsButton.Text"
+        "DeviceUserControl.resx%httpsButton.Text",
+        "MainForm.resx%httpsToolStripMenuItem.Text"
       ]
     },
     {
@@ -669,6 +803,7 @@
       "cs": "Instalace",
       "en": "Installation",
       "es": "Instalación",
+      "fr": "Installation",
       "hi": "स्थापना",
       "it": "Installazione",
       "ja": "取り付け",
@@ -775,6 +910,7 @@
     },
     {
       "en": "MQTT",
+      "fr": "MQTT",
       "xloc": [
         "Properties%Resources.resx%MQTT"
       ]
@@ -800,6 +936,7 @@
     },
     {
       "en": "MeshCentral",
+      "fr": "MeshCentral",
       "zh-chs": "网格中心",
       "xloc": [
         "Properties%Resources.resx%MeshCentralTitle"
@@ -871,7 +1008,8 @@
       "ru": "имя",
       "zh-chs": "名称",
       "xloc": [
-        "AppLaunchForm.resx%label1.Text"
+        "AppLaunchForm.resx%label1.Text",
+        "MainForm.resx%nameColumnHeader.Text"
       ]
     },
     {
@@ -961,6 +1099,7 @@
         "AddRelayMapForm.resx%okButton.Text",
         "AppLaunchForm.resx%okButton.Text",
         "InstallForm.resx%okButton.Text",
+        "KVMSettingsForm.resx%okButton.Text",
         "SettingsForm.resx%okButton.Text",
         "altPortForm.resx%okButton.Text",
         "rdpPortForm.resx%okButton.Text"
@@ -1140,10 +1279,19 @@
       ]
     },
     {
+      "en": "Quality",
+      "fr": "Qualité",
+      "xloc": [
+        "KVMSettingsForm.resx%label3.Text"
+      ]
+    },
+    {
       "en": "RDP",
+      "fr": "RDP",
       "hi": "आरडीपी",
       "xloc": [
-        "DeviceUserControl.resx%rdpButton.Text"
+        "DeviceUserControl.resx%rdpButton.Text",
+        "MainForm.resx%rdpToolStripMenuItem.Text"
       ]
     },
     {
@@ -1220,6 +1368,27 @@
       ]
     },
     {
+      "en": "Remote Desktop",
+      "fr": "Bureau à distance",
+      "xloc": [
+        "KVMViewer.resx%$this.Text"
+      ]
+    },
+    {
+      "en": "Remote Desktop Settings",
+      "fr": "Paramètres du bureau à distance",
+      "xloc": [
+        "KVMSettingsForm.resx%$this.Text"
+      ]
+    },
+    {
+      "en": "Remote Desktop...",
+      "fr": "Bureau à distance...",
+      "xloc": [
+        "MainForm.resx%remoteDesktopToolStripMenuItem.Text"
+      ]
+    },
+    {
       "cs": "Vzdálené zařízení",
       "de": "Remote-Gerät",
       "en": "Remote Device",
@@ -1275,6 +1444,13 @@
       ]
     },
     {
+      "en": "Remote desktop quality, scaling and frame rate settings. These can be adjusted depending on the quality of the network connection.",
+      "fr": "Paramètres de qualité, de mise à l'échelle et de fréquence d'images du bureau à distance Ceux-ci peuvent être ajustés en fonction de la qualité de la connexion réseau.",
+      "xloc": [
+        "KVMSettingsForm.resx%label4.Text"
+      ]
+    },
+    {
       "cs": "Odstranit",
       "de": "Entfernen",
       "en": "Remove",
@@ -1312,12 +1488,15 @@
     },
     {
       "en": "SCP",
+      "fr": "SCP",
       "xloc": [
-        "DeviceUserControl.resx%scpButton.Text"
+        "DeviceUserControl.resx%scpButton.Text",
+        "MainForm.resx%scpToolStripMenuItem.Text"
       ]
     },
     {
       "en": "SMS",
+      "fr": "SMS",
       "hi": "एसएमएस",
       "it": "sms",
       "nl": "sms",
@@ -1347,9 +1526,18 @@
     },
     {
       "en": "SSH",
+      "fr": "SSH",
       "zh-chs": "SSH协议",
       "xloc": [
-        "DeviceUserControl.resx%sshButton.Text"
+        "DeviceUserControl.resx%sshButton.Text",
+        "MainForm.resx%sshToolStripMenuItem.Text"
+      ]
+    },
+    {
+      "en": "Scaling",
+      "fr": "Mise à l'échelle",
+      "xloc": [
+        "KVMSettingsForm.resx%label1.Text"
       ]
     },
     {
@@ -1368,6 +1556,13 @@
       "zh-chs": "搜索",
       "xloc": [
         "Properties%Resources.resx%SearchPlaceHolder"
+      ]
+    },
+    {
+      "en": "Send &Ctrl-Alt-Del",
+      "fr": "Envoyer & Ctrl-Alt-Suppr",
+      "xloc": [
+        "KVMViewer.resx%sendCtrlAltDelToolStripMenuItem.Text"
       ]
     },
     {
@@ -1458,6 +1653,13 @@
       ]
     },
     {
+      "en": "Session Settings...",
+      "fr": "Paramètres de session ...",
+      "xloc": [
+        "KVMViewer.resx%settingsToolStripMenuItem.Text"
+      ]
+    },
+    {
       "cs": "Nastavit port RDP ...",
       "de": "RDP-Port einstellen ...",
       "en": "Set RDP port...",
@@ -1490,6 +1692,7 @@
       "ru": "настройки",
       "zh-chs": "设定值",
       "xloc": [
+        "KVMViewer.resx%settingsButton.Text",
         "SettingsForm.resx%$this.Text",
         "SettingsForm.resx%groupBox1.Text",
         "rdpPortForm.resx%groupBox1.Text"
@@ -1554,6 +1757,7 @@
       "de": "Seite? ˅",
       "en": "Site",
       "es": "Sitio",
+      "fr": "Site",
       "hi": "साइट",
       "it": "Luogo",
       "ja": "地点",
@@ -1620,6 +1824,13 @@
       ]
     },
     {
+      "en": "State",
+      "fr": "Etat",
+      "xloc": [
+        "MainForm.resx%stateColumnHeader.Text"
+      ]
+    },
+    {
       "cs": "Zastavil",
       "de": "Gestoppt",
       "en": "Stopped",
@@ -1657,6 +1868,7 @@
     },
     {
       "en": "TCP",
+      "fr": "TCP",
       "hi": "टीसीपी",
       "zh-chs": "TCP协议",
       "xloc": [
@@ -1720,6 +1932,7 @@
     },
     {
       "en": "UDP",
+      "fr": "UDP",
       "hi": "यूडीपी",
       "zh-chs": "UDP协议",
       "xloc": [
@@ -1854,7 +2067,35 @@
       ]
     },
     {
+      "en": "Zoom-to-Fit",
+      "fr": "Ajustement Zoom",
+      "xloc": [
+        "KVMViewer.resx%zoomButton.Text"
+      ]
+    },
+    {
+      "en": "menuStrip1",
+      "fr": "menuStrip1",
+      "xloc": [
+        "KVMViewer.resx%mainMenu.Text"
+      ]
+    },
+    {
+      "en": "statusStrip1",
+      "fr": "statusStrip1",
+      "xloc": [
+        "KVMViewer.resx%mainStatusStrip.Text"
+      ]
+    },
+    {
+      "en": "v",
+      "xloc": [
+        "KVMViewer.resx%toolStripStatusLabel1.Text"
+      ]
+    },
+    {
       "en": "v0.8.0",
+      "fr": "v0.8.0",
       "xloc": [
         "MainForm.resx%versionLabel.Text"
       ]

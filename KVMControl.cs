@@ -125,14 +125,15 @@ namespace MeshCentralRouter
 
         public int ProcessData(byte[] buffer, int off, int len)
         {
+            //Console.Write("ProcessData " + off + ", " + len + "\r\n");
             int jumboHeaderSize = 0;
 
             if (len == 0) return 0;
             if (len >= 4)
             {
                 // Decode the command header
-                KvmCommands btype = (KvmCommands)IPAddress.NetworkToHostOrder((short)BitConverter.ToUInt16(buffer, off));
-                int blen = (int)IPAddress.NetworkToHostOrder((short)BitConverter.ToUInt16(buffer, off + 2));
+                KvmCommands btype = (KvmCommands)((buffer[off] << 8) + buffer[off + 1]);
+                int blen = (buffer[off + 2] << 8) + buffer[off + 3];
                 if (len < blen) return 0;
 
                 // Handle JUMBO command
@@ -141,7 +142,7 @@ namespace MeshCentralRouter
                     jumboHeaderSize = 8;
                     blen = (int)IPAddress.NetworkToHostOrder((int)BitConverter.ToUInt32(buffer, off + 4));
                     off += 8;
-                    btype = (KvmCommands)IPAddress.NetworkToHostOrder((short)BitConverter.ToUInt16(buffer, off));
+                    btype = (KvmCommands)((buffer[off] << 8) + buffer[off + 1]);
                 }
 
                 // Process the command
@@ -150,8 +151,8 @@ namespace MeshCentralRouter
                     case KvmCommands.Screen:
                         {
                             if (blen != 8) return blen;
-                            uint w = (ushort)IPAddress.NetworkToHostOrder((short)BitConverter.ToUInt16(buffer, off + 4));
-                            uint h = (ushort)IPAddress.NetworkToHostOrder((short)BitConverter.ToUInt16(buffer, off + 6));
+                            uint w = (ushort)((buffer[off + 4] << 8) + buffer[off + 5]);
+                            uint h = (ushort)((buffer[off + 6] << 8) + buffer[off + 7]);
                             if (screenWidth == w && screenHeight == h) break;
                             screenWidth = w;
                             screenHeight = h;
@@ -160,16 +161,16 @@ namespace MeshCentralRouter
                             SendCompressionLevel();
                             Invoke(new SetSizeHandler(SetSize));
                             SendPause(false);
-                            SendMouse(2, KvmMouseButtonCommands.MOUSEEVENTF_LEFTUP);
-                            SendMouse(2, KvmMouseButtonCommands.MOUSEEVENTF_MIDDLEUP);
-                            SendMouse(2, KvmMouseButtonCommands.MOUSEEVENTF_RIGHTUP);
+                            //SendMouse(2, KvmMouseButtonCommands.MOUSEEVENTF_LEFTUP);
+                            //SendMouse(2, KvmMouseButtonCommands.MOUSEEVENTF_MIDDLEUP);
+                            //SendMouse(2, KvmMouseButtonCommands.MOUSEEVENTF_RIGHTUP);
                             return blen + jumboHeaderSize;
                         }
                     case KvmCommands.Picture:
                         {
                             Image newtile;
-                            ushort tile_x = (ushort)IPAddress.NetworkToHostOrder((short)BitConverter.ToUInt16(buffer, off + 4));
-                            ushort tile_y = (ushort)IPAddress.NetworkToHostOrder((short)BitConverter.ToUInt16(buffer, off + 6));
+                            ushort tile_x = (ushort)((buffer[off + 4] << 8) + buffer[off + 5]);
+                            ushort tile_y = (ushort)((buffer[off + 6] << 8) + buffer[off + 7]);
                             try { newtile = Image.FromStream(new System.IO.MemoryStream(buffer, off + 8, blen - 8)); } catch (Exception) { return blen; }
                             Rectangle r = new Rectangle((int)tile_x, (int)tile_y, newtile.Width, newtile.Height);
                             Rectangle r3 = new Rectangle((int)((double)tile_x / (double)scalefactor) - 2, (int)((double)tile_y / (double)scalefactor) - 2, (int)((double)newtile.Width / (double)scalefactor) + 4, (int)((double)newtile.Height / (double)scalefactor) + 4);
@@ -194,13 +195,12 @@ namespace MeshCentralRouter
                         }
                     case KvmCommands.Copy:
                         {
-                            ushort sourcex = (ushort)IPAddress.NetworkToHostOrder((short)BitConverter.ToUInt16(buffer, off + 4));
-                            ushort sourcey = (ushort)IPAddress.NetworkToHostOrder((short)BitConverter.ToUInt16(buffer, off + 6));
-                            ushort targetx = (ushort)IPAddress.NetworkToHostOrder((short)BitConverter.ToUInt16(buffer, off + 8));
-                            ushort targety = (ushort)IPAddress.NetworkToHostOrder((short)BitConverter.ToUInt16(buffer, off + 10));
-                            ushort tilew   = (ushort)IPAddress.NetworkToHostOrder((short)BitConverter.ToUInt16(buffer, off + 12));
-                            ushort tileh   = (ushort)IPAddress.NetworkToHostOrder((short)BitConverter.ToUInt16(buffer, off + 14));
-
+                            ushort sourcex = (ushort)((buffer[off + 4] << 8) + buffer[off + 5]);
+                            ushort sourcey = (ushort)((buffer[off + 6] << 8) + buffer[off + 7]);
+                            ushort targetx = (ushort)((buffer[off + 8] << 8) + buffer[off + 9]);
+                            ushort targety = (ushort)((buffer[off + 10] << 8) + buffer[off + 11]);
+                            ushort tilew   = (ushort)((buffer[off + 12] << 8) + buffer[off + 13]);
+                            ushort tileh   = (ushort)((buffer[off + 14] << 8) + buffer[off + 15]);
                             Rectangle r1 = new Rectangle((int)sourcex, (int)sourcey, (int)tilew, (int)tileh);
                             Rectangle r2 = new Rectangle((int)targetx, (int)targety, (int)tilew, (int)tileh);
                             Rectangle r3 = new Rectangle((int)((double)targetx / (double)scalefactor) - 2, (int)((double)targety / (double)scalefactor) - 2, (int)((double)tilew / (double)scalefactor) + 4, (int)((double)tileh / (double)scalefactor) + 4);
@@ -226,13 +226,13 @@ namespace MeshCentralRouter
                     case KvmCommands.GetDisplays:
                         {
                             int i = 0;
-                            ushort length = (ushort)IPAddress.NetworkToHostOrder((short)BitConverter.ToUInt16(buffer, off + 4));
+                            ushort length = (ushort)((buffer[off + 4] << 8) + buffer[off + 5]);
                             displays.Clear();
                             if (length > 0)
                             {
                                 for (i = 0; i < length; i++)
                                 {
-                                    ushort num = (ushort)IPAddress.NetworkToHostOrder((short)BitConverter.ToUInt16(buffer, off + 6 + i * 2));
+                                    ushort num = (ushort)((buffer[off + 6 + i * 2] << 8) + buffer[off + 7 + i * 2]);
                                     if (num == 0xFFFF)
                                     {
                                         displays.Add("All Displays");
@@ -243,13 +243,13 @@ namespace MeshCentralRouter
                                     }
                                 }
                             }
-                            currentDisp = (ushort)IPAddress.NetworkToHostOrder((short)BitConverter.ToUInt16(buffer, off + 6 + i * 2));
+                            currentDisp = (ushort)((buffer[off + 6 + i * 2] << 8) + buffer[off + 7 + i * 2]);
                             if (DisplaysReceived != null) DisplaysReceived(this, null);
                             break;
                         }
                     case KvmCommands.SetDisplay:
                         {
-                            currentDisp = (ushort)IPAddress.NetworkToHostOrder((short)BitConverter.ToUInt16(buffer, off + 4));
+                            currentDisp = (ushort)((buffer[off + 4] << 8) + buffer[off + 5]);
                             break;
                         }
                     case KvmCommands.MouseCursor:
@@ -482,7 +482,7 @@ namespace MeshCentralRouter
             //if (state == ConnectState.Disconnected) return;
             try
             {
-                parent.wc.WriteBinaryWebSocket(buffer, 0, buffer.Length);
+                parent.wc.SendBinary(buffer, 0, buffer.Length);
                 bytesent += buffer.Length;
             }
             catch (Exception) { }
@@ -493,7 +493,7 @@ namespace MeshCentralRouter
             //if (state == ConnectState.Disconnected) return;
             try
             {
-                parent.wc.WriteStringWebSocket(str);
+                parent.wc.SendString(str);
                 bytesent += str.Length;
             }
             catch (Exception) { }
@@ -504,7 +504,7 @@ namespace MeshCentralRouter
             //if (state == ConnectState.Disconnected) { RecycleBinaryWriter(bw); return; }
             try
             {
-                parent.wc.WriteBinaryWebSocket(((MemoryStream)bw.BaseStream).GetBuffer(), 0, (int)((MemoryStream)bw.BaseStream).Length);
+                parent.wc.SendBinary(((MemoryStream)bw.BaseStream).GetBuffer(), 0, (int)((MemoryStream)bw.BaseStream).Length);
                 bytesent += (int)((MemoryStream)bw.BaseStream).Length;
             }
             catch (Exception) { }

@@ -189,6 +189,7 @@
     <Compile Include="SettingsForm.Designer.cs">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="WebSocketClient.cs" />
     <Compile Include="Win32Api.cs" />
     <EmbeddedResource Include="AddPortMapForm.cs.resx">
       <DependentUpon>AddPortMapForm.cs</DependentUpon>

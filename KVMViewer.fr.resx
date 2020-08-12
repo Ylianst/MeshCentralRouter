@@ -125,13 +125,13 @@
     <value>167, 22</value>
   </data>
   <data name="MenuItemConnect.Text" xml:space="preserve">
-    <value>&amp;Connect...</value>
+    <value>&amp;Relier...</value>
   </data>
   <data name="MenuItemDisconnect.Size" type="System.Drawing.Size, System.Drawing">
     <value>167, 22</value>
   </data>
   <data name="MenuItemDisconnect.Text" xml:space="preserve">
-    <value>&amp;Disconnect</value>
+    <value>&amp; Déconnecter</value>
   </data>
   <data name="toolStripMenuItem5.Size" type="System.Drawing.Size, System.Drawing">
     <value>164, 6</value>
@@ -140,7 +140,7 @@
     <value>167, 22</value>
   </data>
   <data name="settingsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Session Settings...</value>
+    <value>Paramètres de session ...</value>
   </data>
   <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
     <value>164, 6</value>
@@ -149,31 +149,31 @@
     <value>167, 22</value>
   </data>
   <data name="MenuItemExit.Text" xml:space="preserve">
-    <value>E&amp;xit</value>
+    <value>Sortie</value>
   </data>
   <data name="toolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
     <value>59, 20</value>
   </data>
   <data name="toolStripMenuItem2.Text" xml:space="preserve">
-    <value>&amp;Control</value>
+    <value>&amp;Contrôle</value>
   </data>
   <data name="zoomtofitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>138, 22</value>
   </data>
   <data name="zoomtofitToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Zoom-to-fit</value>
+    <value>&amp; Zoomer pour ajuster</value>
   </data>
   <data name="statusToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>138, 22</value>
   </data>
   <data name="statusToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Status</value>
+    <value>&amp;Statut</value>
   </data>
   <data name="debugToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>138, 22</value>
   </data>
   <data name="debugToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Debug</value>
+    <value>&amp;Déboguer</value>
   </data>
   <data name="toolStripMenuItem6.Size" type="System.Drawing.Size, System.Drawing">
     <value>135, 6</value>
@@ -186,7 +186,7 @@
     <value>138, 22</value>
   </data>
   <data name="refreshToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Refresh</value>
+    <value>&amp;Rafraîchir</value>
   </data>
   <data name="pauseToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>F7</value>
@@ -201,13 +201,13 @@
     <value>44, 20</value>
   </data>
   <data name="viewToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;View</value>
+    <value>&amp;Vue</value>
   </data>
   <data name="sendCtrlAltDelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>164, 22</value>
   </data>
   <data name="sendCtrlAltDelToolStripMenuItem.Text" xml:space="preserve">
-    <value>Send &amp;Ctrl-Alt-Del</value>
+    <value>Envoyer &amp; Ctrl-Alt-Suppr</value>
   </data>
   <data name="actionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>59, 20</value>
@@ -322,7 +322,7 @@
     <value>5</value>
   </data>
   <data name="settingsButton.Text" xml:space="preserve">
-    <value>Settings</value>
+    <value>Réglages</value>
   </data>
   <data name="&gt;&gt;settingsButton.Name" xml:space="preserve">
     <value>settingsButton</value>
@@ -346,7 +346,7 @@
     <value>4</value>
   </data>
   <data name="zoomButton.Text" xml:space="preserve">
-    <value>Zoom-to-Fit</value>
+    <value>Ajustement Zoom</value>
   </data>
   <data name="&gt;&gt;zoomButton.Name" xml:space="preserve">
     <value>zoomButton</value>
@@ -370,7 +370,7 @@
     <value>1</value>
   </data>
   <data name="cadButton.Text" xml:space="preserve">
-    <value>Ctrl-Alt-Del</value>
+    <value>Ctrl-Alt-Suppr</value>
   </data>
   <data name="&gt;&gt;cadButton.Name" xml:space="preserve">
     <value>cadButton</value>
@@ -394,7 +394,7 @@
     <value>0</value>
   </data>
   <data name="connectButton.Text" xml:space="preserve">
-    <value>Connect</value>
+    <value>Relier</value>
   </data>
   <data name="&gt;&gt;connectButton.Name" xml:space="preserve">
     <value>connectButton</value>
@@ -900,7 +900,7 @@
     <value>CenterScreen</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Remote Desktop</value>
+    <value>Bureau à distance</value>
   </data>
   <data name="&gt;&gt;toolStripMenuItem2.Name" xml:space="preserve">
     <value>toolStripMenuItem2</value>

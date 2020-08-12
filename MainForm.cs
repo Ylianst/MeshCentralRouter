@@ -441,49 +441,6 @@ namespace MeshCentralRouter
                     if (c.GetType() == typeof(DeviceUserControl)) { ((DeviceUserControl)c).present = false; }
                 }
 
-                /*
-                lock (meshcentral.nodes)
-                {
-                    // Add any missing devices
-                    ArrayList controlsToAdd = new ArrayList();
-                    foreach (MeshClass mesh in meshcentral.meshes.Values)
-                    {
-                        if (mesh.type == 2)
-                        {
-                            foreach (NodeClass node in meshcentral.nodes.Values)
-                            {
-                                if ((node.control == null) && (node.meshid == mesh.meshid))
-                                {
-                                    // Add a new device
-                                    DeviceUserControl device = new DeviceUserControl();
-                                    device.mesh = mesh;
-                                    device.node = node;
-                                    device.parent = this;
-                                    device.Dock = DockStyle.Top;
-                                    device.present = true;
-                                    node.control = device;
-                                    device.UpdateInfo();
-                                    device.Visible = (search == "") || (node.name.ToLower().IndexOf(search) >= 0);
-                                    controlsToAdd.Add(device);
-                                }
-                                else
-                                {
-                                    // Tag the device as present
-                                    if (node.control != null)
-                                    {
-                                        node.control.present = true;
-                                        node.control.UpdateInfo();
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    // Add all controls at once to make it fast.
-                    if (controlsToAdd.Count > 0) { devicesPanel.Controls.AddRange((DeviceUserControl[])controlsToAdd.ToArray(typeof(DeviceUserControl))); }
-                }
-                */
-
                 ArrayList controlsToAdd = new ArrayList();
                 if (meshcentral.nodes != null)
                 {
@@ -640,13 +597,20 @@ namespace MeshCentralRouter
                 mapPanel.Controls.Clear();
                 noMapLabel.Visible = true;
 
-                // Clean up all devices
+                // Clean up all devices (old style)
                 foreach (Control c in devicesPanel.Controls) {
                     if (c.GetType() == typeof(DeviceUserControl)) { ((DeviceUserControl)c).Dispose(); }
                 }
                 remoteAllDeviceControls();
+
+                // Clean up all devices (new style)
+                devicesListView.Items.Clear();
                 noSearchResultsLabel.Visible = false;
                 noDevicesLabel.Visible = true;
+                if ((meshcentral != null) && (meshcentral.nodes != null))
+                {
+                    foreach (NodeClass n in meshcentral.nodes.Values) { if (n.desktopViewer != null) { n.desktopViewer.Close(); } }
+                }
 
                 // Clean up the server
                 cookieRefreshTimer.Enabled = false;
@@ -1369,6 +1333,7 @@ namespace MeshCentralRouter
                 scpToolStripMenuItem.Visible = true;
                 rdpToolStripMenuItem.Visible = false;
             }
+            remoteDesktopToolStripMenuItem.Visible = ((node.agentcaps & 1) != 0); // Only display remote desktop if it's supported by the agent
         }
 
         private void httpToolStripMenuItem_Click(object sender, EventArgs e)
