@@ -19,6 +19,7 @@ using System.IO;
 using System.Text;
 using System.Net.Sockets;
 using System.Net.Security;
+using System.IO.Compression;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
@@ -45,6 +46,11 @@ namespace MeshCentralRouter
         public bool xdebug = false;
         public bool xignoreCert = false;
         public string extraHeaders = null;
+        private MemoryStream inflateMemory;
+        private DeflateStream inflate;
+        private MemoryStream deflateMemory;
+        private static byte[] inflateEnd = { 0x00, 0x00, 0xff, 0xff };
+        private static byte[] inflateStart = { 0x00, 0x00, 0x00, 0x00 };
 
         public enum ConnectionStates
         {
@@ -128,6 +134,7 @@ namespace MeshCentralRouter
                 wsclient = new TcpClient();
                 wsclient.BeginConnect(url.Host, url.Port, new AsyncCallback(OnConnectSink), this);
             }
+
             return true;
         }
 
@@ -245,7 +252,9 @@ namespace MeshCentralRouter
 
             // Send the HTTP headers
             Debug("Websocket TLS setup, sending HTTP header...");
-            string header = "GET " + url.PathAndQuery + " HTTP/1.1\r\nHost: " + url.Host + "\r\nUpgrade: websocket\r\nConnection: Upgrade\r\nSec-WebSocket-Key: dGhlIHNhbXBsZSBub25jZQ==\r\nSec-WebSocket-Version: 13\r\n" + extraHeaders + "\r\n";
+            //string header = "GET " + url.PathAndQuery + " HTTP/1.1\r\nHost: " + url.Host + "\r\nUpgrade: websocket\r\nConnection: Upgrade\r\nSec-WebSocket-Key: dGhlIHNhbXBsZSBub25jZQ==\r\nSec-WebSocket-Version: 13\r\n" + extraHeaders + "\r\n";
+            //string header = "GET " + url.PathAndQuery + " HTTP/1.1\r\nHost: " + url.Host + "\r\nUpgrade: websocket\r\nConnection: Upgrade\r\nSec-WebSocket-Key: dGhlIHNhbXBsZSBub25jZQ==\r\nSec-WebSocket-Version: 13\r\nSec-WebSocket-Extensions: permessage-deflate; client_no_context_takeover; server_no_context_takeover\r\n" + extraHeaders + "\r\n";
+            string header = "GET " + url.PathAndQuery + " HTTP/1.1\r\nHost: " + url.Host + "\r\nUpgrade: websocket\r\nConnection: Upgrade\r\nSec-WebSocket-Key: dGhlIHNhbXBsZSBub25jZQ==\r\nSec-WebSocket-Version: 13\r\nSec-WebSocket-Extensions: permessage-deflate; client_no_context_takeover\r\n" + extraHeaders + "\r\n";
             wsstream.Write(UTF8Encoding.UTF8.GetBytes(header));
 
             // Start receiving data
@@ -313,6 +322,14 @@ namespace MeshCentralRouter
                 if ((parsedHeader == null) || (parsedHeader["_Path"] != "101")) { Debug("Websocket bad header."); return -1; } // Bad header, close the connection
                 Debug("Websocket got setup upgrade header.");
                 SetState(ConnectionStates.Connected);
+
+                if ((parsedHeader.ContainsKey("sec-websocket-extensions") && (parsedHeader["sec-websocket-extensions"].IndexOf("permessage-deflate") >= 0)))
+                {
+                    inflateMemory = new MemoryStream();
+                    inflate = new DeflateStream(inflateMemory, CompressionMode.Decompress);
+                    deflateMemory = new MemoryStream();
+                }
+
                 fragmentParsingState = 1;
                 return len; // TODO: Technically we need to return the header length before UTF8 convert.
             }
@@ -371,13 +388,32 @@ namespace MeshCentralRouter
 
         private void ProcessWsBuffer(byte[] data, int offset, int len, int op)
         {
+            MemoryStream mem = null;
+            if (((op & 0x40) != 0) && (inflateMemory != null))
+            {
+                // This is a deflate compressed frame
+                inflateMemory.SetLength(0);
+                inflateMemory.Write(data, offset, len);
+                inflateMemory.Write(inflateEnd, 0, 4);
+                inflateMemory.Seek(0, SeekOrigin.Begin);
+                MemoryStream memoryStream = new MemoryStream();
+                inflate.CopyTo(memoryStream);
+                data = memoryStream.GetBuffer();
+                offset = 0;
+                len = (int)memoryStream.Length;
+            }
+
             if ((op & 1) == 0) {
+                // This is a birnay frame
                 Debug("Websocket got binary data, len = " + len);
                 if (onBinaryData != null) { onBinaryData(data, offset, len); }
             } else {
+                // This is a string frame
                 Debug("Websocket got string data, len = " + len);
                 if (onStringData != null) { onStringData(UTF8Encoding.UTF8.GetString(data, offset, len)); }
             }
+
+            if (mem != null) { mem.Dispose(); mem = null; }
         }
 
         private Dictionary<string, string> ParseHttpHeader(string header)
@@ -425,47 +461,47 @@ namespace MeshCentralRouter
         public void SendString(string data)
         {
             if (state != ConnectionStates.Connected) return;
-
-            // Convert the string into a buffer with 4 byte of header space.
-            int len = UTF8Encoding.UTF8.GetByteCount(data);
-            byte[] buf = new byte[4 + len];
-            UTF8Encoding.UTF8.GetBytes(data, 0, data.Length, buf, 4);
-            len = buf.Length - 4;
-
-            // Check that everything is ok
-            if ((len < 1) || (len > 65535)) { Dispose(); return; }
-
-            //Console.Write("Length: " + len + "\r\n");
-            //System.Threading.Thread.Sleep(0);
-
-            if (len < 126)
-            {
-                // Small fragment
-                buf[2] = 129; // Fragment op code (129 = text, 130 = binary)
-                buf[3] = (byte)(len & 0x7F);
-                //try { wsstream.BeginWrite(buf, 2, len + 2, new AsyncCallback(WriteWebSocketAsyncDone), args); } catch (Exception) { Dispose(); return; }
-                wsstream.Write(buf, 2, len + 2);
-            }
-            else
-            {
-                // Large fragment
-                buf[0] = 129; // Fragment op code (129 = text, 130 = binary)
-                buf[1] = 126;
-                buf[2] = (byte)((len >> 8) & 0xFF);
-                buf[3] = (byte)(len & 0xFF);
-                //try { wsstream.BeginWrite(buf, 0, len + 4, new AsyncCallback(WriteWebSocketAsyncDone), args); } catch (Exception) { Dispose(); return; }
-                wsstream.Write(buf, 0, len + 4);
-            }
+            byte[] buf = UTF8Encoding.UTF8.GetBytes(data);
+            SendFragment(buf, 0, buf.Length, 129);
         }
 
-        public void SendBinary(byte[] data, int offset, int len)
+        public void SendBinary(byte[] data, int offset, int len) { SendFragment(data, offset, len, 130); }
+
+        // Fragment op code (129 = text, 130 = binary)
+        public void SendFragment(byte[] data, int offset, int len, byte op)
         {
             if (state != ConnectionStates.Connected) return;
+            byte[] buf;
 
-            // Convert the string into a buffer with 4 byte of header space.
-            byte[] buf = new byte[4 + len];
-            Array.Copy(data, offset, buf, 4, len);
-            len = buf.Length - 4;
+            // If deflate is active, attempt to compress the data here.
+            if ((deflateMemory != null) && (len > 32))
+            {
+                deflateMemory.SetLength(0);
+                deflateMemory.Write(inflateStart, 0, 4);
+                DeflateStream deflate = new DeflateStream(deflateMemory, CompressionMode.Compress, true);
+                deflate.Write(data, offset, len);
+                deflate.Dispose();
+                deflate = null;
+                if (deflateMemory.Length < len)
+                {
+                    // Use the compressed data
+                    int newlen = (int)deflateMemory.Length;
+                    buf = deflateMemory.GetBuffer();
+                    len = newlen - 4;
+                    op |= 0x40; // Add compression op
+                } else {
+                    // Don't use the compress data
+                    // Convert the string into a buffer with 4 byte of header space.
+                    buf = new byte[4 + len];
+                    Array.Copy(data, offset, buf, 4, len);
+                }
+            }
+            else
+            {
+                // Convert the string into a buffer with 4 byte of header space.
+                buf = new byte[4 + len];
+                Array.Copy(data, offset, buf, 4, len);
+            }
 
             // Check that everything is ok
             if ((len < 1) || (len > 65535)) { Dispose(); return; }
@@ -476,7 +512,7 @@ namespace MeshCentralRouter
             if (len < 126)
             {
                 // Small fragment
-                buf[2] = 130; // Fragment op code (129 = text, 130 = binary)
+                buf[2] = op;
                 buf[3] = (byte)(len & 0x7F);
                 //try { wsstream.BeginWrite(buf, 2, len + 2, new AsyncCallback(WriteWebSocketAsyncDone), args); } catch (Exception) { Dispose(); return; }
                 wsstream.Write(buf, 2, len + 2);
@@ -484,7 +520,7 @@ namespace MeshCentralRouter
             else
             {
                 // Large fragment
-                buf[0] = 130; // Fragment op code (129 = text, 130 = binary)
+                buf[0] = op;
                 buf[1] = 126;
                 buf[2] = (byte)((len >> 8) & 0xFF);
                 buf[3] = (byte)(len & 0xFF);

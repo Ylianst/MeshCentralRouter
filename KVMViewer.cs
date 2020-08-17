@@ -15,15 +15,11 @@ limitations under the License.
 */
 
 using System;
-using System.IO;
-using System.Text;
 using System.Drawing;
-using System.Net.Sockets;
-using System.Net.Security;
 using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Security.Cryptography;
-using System.Security.Cryptography.X509Certificates;
+using System.Web.Script.Serialization;
 using Microsoft.Win32;
 
 namespace MeshCentralRouter
@@ -36,7 +32,9 @@ namespace MeshCentralRouter
         private int state = 0;
         private RandomNumberGenerator rand = RandomNumberGenerator.Create();
         private string randomIdHex = null;
+        private bool sessionIsRecorded = false;
         public webSocketClient wc = null;
+        public Dictionary<string, int> userSessions = null;
 
         public KVMViewer(MeshCentralServer server, NodeClass node)
         {
@@ -46,9 +44,15 @@ namespace MeshCentralRouter
             this.server = server;
             kvmControl = resizeKvmControl.KVM;
             kvmControl.parent = this;
+            kvmControl.DesktopSizeChanged += KvmControl_DesktopSizeChanged;
             resizeKvmControl.ZoomToFit = true;
             UpdateStatus();
             this.MouseWheel += MainForm_MouseWheel;
+        }
+
+        private void KvmControl_DesktopSizeChanged(object sender, EventArgs e)
+        {
+            kvmControl.Visible = true;
         }
 
         private void Server_onStateChanged(int state)
@@ -65,7 +69,6 @@ namespace MeshCentralRouter
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            this.Controls.Remove(mainMenu);
             this.Size = new Size(820, 480);
             resizeKvmControl.CenterKvmControl(false);
             topPanel.Visible = true;
@@ -113,6 +116,7 @@ namespace MeshCentralRouter
                 case webSocketClient.ConnectionStates.Connecting:
                     {
                         state = 1;
+                        displayMessage(null);
                         break;
                     }
                 case webSocketClient.ConnectionStates.Connected:
@@ -120,6 +124,7 @@ namespace MeshCentralRouter
                         state = 2;
                         string u = "*/meshrelay.ashx?p=2&nodeid=" + node.nodeid + "&id=" + randomIdHex + "&rauth=" + server.rauthCookie;
                         server.sendCommand("{ \"action\": \"msg\", \"type\": \"tunnel\", \"nodeid\": \"" + node.nodeid + "\", \"value\": \"" + u.ToString() + "\", \"usage\": 2 }");
+                        displayMessage(null);
                         break;
                     }
             }
@@ -130,15 +135,50 @@ namespace MeshCentralRouter
         {
             if ((state == 2) && ((data == "c") || (data == "cr")))
             {
+                if (data == "cr") { sessionIsRecorded = true; }
                 state = 3;
                 kvmControl.Send("2");
                 kvmControl.SendCompressionLevel();
                 kvmControl.SendPause(false);
                 kvmControl.SendRefresh();
                 UpdateStatus();
+                displayMessage(null);
                 return;
             }
             if (state != 3) return;
+            
+            // Parse the received JSON
+            Dictionary<string, object> jsonAction = new Dictionary<string, object>();
+            jsonAction = new JavaScriptSerializer().Deserialize<Dictionary<string, object>>(data);
+            if ((jsonAction == null) || (jsonAction.ContainsKey("type") == false) || (jsonAction["type"].GetType() != typeof(string))) return;
+
+            string action = jsonAction["type"].ToString();
+            switch (action)
+            {
+                case "metadata":
+                    {
+                        if ((jsonAction.ContainsKey("users") == false) || (jsonAction["users"] == null)) return;
+                        Dictionary <string, object> usersex = (Dictionary<string, object>)jsonAction["users"];
+                        userSessions = new Dictionary<string, int>();
+                        foreach (string user in usersex.Keys) { userSessions.Add(user, (int)usersex[user]); }
+                        UpdateStatus();
+                        break;
+                    }
+                case "console":
+                    {
+                        string msg = null;
+                        int msgid = -1;
+                        if ((jsonAction.ContainsKey("msg")) && (jsonAction["msg"] != null)) { msg = jsonAction["msg"].ToString(); }
+                        if (jsonAction.ContainsKey("msgid")) { msgid = (int)jsonAction["msgid"]; }
+                        if (msgid == 1) { msg = "Waiting for user to grant access..."; }
+                        if (msgid == 2) { msg = "Denied"; }
+                        if (msgid == 3) { msg = "Failed to start remote terminal session"; } // , {0} ({1})
+                        if (msgid == 4) { msg = "Timeout"; }
+                        if (msgid == 5) { msg = "Received invalid network data"; }
+                        displayMessage(msg);
+                        break;
+                    }
+            }
         }
 
         private void Wc_onBinaryData(byte[] data, int offset, int length)
@@ -162,6 +202,7 @@ namespace MeshCentralRouter
                 // Connect
                 MenuItemConnect_Click(null, null);
             }
+            displayMessage(null);
         }
 
 
@@ -178,6 +219,8 @@ namespace MeshCentralRouter
                     mainToolStripStatusLabel.Text = "Disconnected";
                     displaySelectComboBox.Visible = false;
                     kvmControl.Visible = false;
+                    kvmControl.screenWidth = 0;
+                    kvmControl.screenHeight = 0;
                     connectButton.Text = "Connect";
                     break;
                 case 1: // Connecting
@@ -193,15 +236,17 @@ namespace MeshCentralRouter
                     connectButton.Text = "Disconnect";
                     break;
                 case 3: // Connected
-                    //string extras = ".";
-                    //if (kvmControl.touchEnabled) extras = ", touch enabled.";
-                    //mainToolStripStatusLabel.Text = string.Format("Connected. {0} tiles received, {1} tiles copied, {2} received, {3} sent{4}", kvmControl.tilecount, kvmControl.tilecopy, MeshUtils.GetKiloShortString((ulong)kvmControl.byterecv), MeshUtils.GetKiloShortString((ulong)kvmControl.bytesent), extras);
-                    mainToolStripStatusLabel.Text = "Connected.";
-                    kvmControl.Visible = true;
+                    string label = "Connected";
+                    if (sessionIsRecorded) { label += ", Recorded Session"; }
+                    if ((userSessions != null) && (userSessions.Count > 1)) { label += string.Format(", {0} users", userSessions.Count); }
+                    label += ".";
+                    mainToolStripStatusLabel.Text = label;
                     connectButton.Text = "Disconnect";
                     kvmControl.SendCompressionLevel();
                     break;
             }
+
+            cadButton.Enabled = (state == 3);
         }
 
         private void updateTimer_Tick(object sender, EventArgs e)
@@ -222,28 +267,12 @@ namespace MeshCentralRouter
             node.desktopViewer = null;
         }
 
-        private void statusToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
-        {
-            mainStatusStrip.Visible = statusToolStripMenuItem.Checked;
-        }
-
         private void toolStripMenuItem2_DropDownOpening(object sender, EventArgs e)
         {
             //MenuItemConnect.Enabled = (kvmControl.State == KVMControl.ConnectState.Disconnected);
             //MenuItemDisconnect.Enabled = (kvmControl.State != KVMControl.ConnectState.Disconnected);
             //serverConnectToolStripMenuItem.Enabled = (server == null && kvmControl.State == KVMControl.ConnectState.Disconnected);
             //serviceDisconnectToolStripMenuItem.Enabled = (server != null && server.CurrentState != MeshSwarmServer.State.Disconnected);
-        }
-
-        private void viewToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
-        {
-            debugToolStripMenuItem.Checked = kvmControl.debugmode;
-            //pauseToolStripMenuItem.Checked = kvmControl.Pause;
-        }
-
-        private void debugToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (kvmControl != null) kvmControl.debugmode = debugToolStripMenuItem.Checked;
         }
 
         private void kvmControl_StateChanged(object sender, EventArgs e)
@@ -269,11 +298,6 @@ namespace MeshCentralRouter
         private void MainForm_Resize(object sender, EventArgs e)
         {
             if (kvmControl != null) kvmControl.SendPause(WindowState == FormWindowState.Minimized);
-        }
-
-        private void zoomtofitToolStripMenuItem_CheckStateChanged(object sender, EventArgs e)
-        {
-            resizeKvmControl.ZoomToFit = zoomtofitToolStripMenuItem.Checked;
         }
 
         private void sendCtrlAltDelToolStripMenuItem_Click(object sender, EventArgs e)
@@ -323,7 +347,7 @@ namespace MeshCentralRouter
             if (displayText == "All Displays") displaynum = 0xFFFF;
             if (displaynum != 0 || int.TryParse(displayText.Substring(8), out displaynum))
             {
-                //if (kvmControl != null) kvmControl.SendDisplay(displaynum);
+                if (kvmControl != null) kvmControl.SendDisplay(displaynum);
             }
         }
 
@@ -372,5 +396,27 @@ namespace MeshCentralRouter
             try { return Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\OpenSource\MeshRouter", name, "").ToString(); } catch (Exception) { return ""; }
         }
 
+        public delegate void displayMessageHandler(string msg);
+        public void displayMessage(string msg)
+        {
+            if (this.InvokeRequired) { this.Invoke(new displayMessageHandler(displayMessage), msg); return; }
+            if (msg == null)
+            {
+                consoleMessage.Visible = false;
+                consoleTimer.Enabled = false;
+            }
+            else
+            {
+                consoleMessage.Text = msg;
+                consoleMessage.Visible = true;
+                //consoleTimer.Enabled = true;
+            }
+        }
+
+        private void consoleTimer_Tick(object sender, EventArgs e)
+        {
+            consoleMessage.Visible = false;
+            consoleTimer.Enabled = false;
+        }
     }
 }

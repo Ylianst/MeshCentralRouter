@@ -30,8 +30,8 @@ namespace MeshCentralRouter
         private bool remotepause = true;
         private Bitmap desktop = null;
         private Graphics desktopGraphics = null;
-        private uint screenWidth = 0;
-        private uint screenHeight = 0;
+        public uint screenWidth = 0;
+        public uint screenHeight = 0;
         private Pen RedPen = new Pen(System.Drawing.Color.Red);
         private Font DebugFont = new Font(FontFamily.GenericSansSerif, 14);
         private int compressionlevel = 60; // 60% compression
@@ -502,12 +502,15 @@ namespace MeshCentralRouter
         public void Send(BinaryWriter bw)
         {
             //if (state == ConnectState.Disconnected) { RecycleBinaryWriter(bw); return; }
-            try
+            //try
+            //{
+            if ((parent != null) && (parent.wc != null))
             {
                 parent.wc.SendBinary(((MemoryStream)bw.BaseStream).GetBuffer(), 0, (int)((MemoryStream)bw.BaseStream).Length);
                 bytesent += (int)((MemoryStream)bw.BaseStream).Length;
             }
-            catch (Exception) { }
+            //}
+            //catch (Exception) { }
             RecycleBinaryWriter(bw);
         }
         
