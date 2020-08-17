@@ -482,7 +482,8 @@ namespace MeshCentralRouter
             //if (state == ConnectState.Disconnected) return;
             try
             {
-                parent.wc.SendBinary(buffer, 0, buffer.Length);
+                parent.bytesOut += buffer.Length;
+                parent.bytesOutCompressed += parent.wc.SendBinary(buffer, 0, buffer.Length);
                 bytesent += buffer.Length;
             }
             catch (Exception) { }
@@ -493,7 +494,8 @@ namespace MeshCentralRouter
             //if (state == ConnectState.Disconnected) return;
             try
             {
-                parent.wc.SendString(str);
+                parent.bytesOut += str.Length;
+                parent.bytesOutCompressed += parent.wc.SendString(str);
                 bytesent += str.Length;
             }
             catch (Exception) { }
@@ -506,7 +508,8 @@ namespace MeshCentralRouter
             {
                 try
                 {
-                    parent.wc.SendBinary(((MemoryStream)bw.BaseStream).GetBuffer(), 0, (int)((MemoryStream)bw.BaseStream).Length);
+                    parent.bytesOut += (int)((MemoryStream)bw.BaseStream).Length;
+                    parent.bytesOutCompressed += parent.wc.SendBinary(((MemoryStream)bw.BaseStream).GetBuffer(), 0, (int)((MemoryStream)bw.BaseStream).Length);
                     bytesent += (int)((MemoryStream)bw.BaseStream).Length;
                 }
                 catch (Exception) { }

@@ -225,6 +225,18 @@ namespace MeshCentralRouter
         private void Wc_onStateChanged(webSocketClient sender, webSocketClient.ConnectionStates state)
         {
             Debug("#" + sender.id + ": Websocket mapping, connected to server.");
+            switch (state)
+            {
+                case webSocketClient.ConnectionStates.Disconnected:
+                    {
+                        if (sender.tag.GetType() == typeof(TcpClient)) {
+                            ShutdownClients((TcpClient)sender.tag, null, sender, sender.id);
+                        } else if (sender.tag.GetType() == typeof(UdpClient)) {
+                            ShutdownClients(null, (UdpClient)sender.tag, sender, sender.id);
+                        }
+                        break;
+                    }
+            }
         }
 
         private void Wc_onStringData(webSocketClient sender, string data, int orglen)
@@ -318,7 +330,7 @@ namespace MeshCentralRouter
                 // Forward the data & read again
                 try
                 {
-                    mm.bytesToServer += buf.Length;
+                    mm.bytesToServer += len;
                     mm.bytesToServerCompressed += wc.SendBinary(buf, 0, len); // TODO: Do Async
                     try { client.GetStream().BeginRead(buf, 0, buf.Length, new AsyncCallback(ClientEndReadWS), new object[] { mm, wc, client, buf }); } catch (Exception) { }
                 }

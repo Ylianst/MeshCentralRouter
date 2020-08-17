@@ -27,6 +27,7 @@ namespace MeshCentralRouter
         public string certhash;
         public bool xdebug = false;
         public bool inaddrany = false;
+        public MappingStats stats = null;
 
         public static void saveToRegistry(string name, string value)
         {
@@ -73,9 +74,8 @@ namespace MeshCentralRouter
         {
             routingStatusLabel.Text = Properties.Resources.Stopped;
             appButton.Enabled = false;
-            mapper.onStateMsgChanged -= Mapper_onStateMsgChanged;
-            mapper.stop();
-            mapper = null;
+            if (mapper != null) { mapper.onStateMsgChanged -= Mapper_onStateMsgChanged; mapper.stop(); mapper = null; }
+            if (stats != null) { stats.Close(); stats = null; }
         }
 
         private void Mapper_onStateMsgChanged(string statemsg)
@@ -162,12 +162,26 @@ namespace MeshCentralRouter
 
         private void closeButton_Click(object sender, EventArgs e)
         {
-            if (mapper != null)
-            {
-                mapper.stop();
-                mapper = null;
-            }
+            if (stats != null) { stats.Close(); stats = null; }
+            if (mapper != null) { mapper.stop(); mapper = null; }
             parent.removeMap(this);
+        }
+
+        private void statsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (stats == null) {
+                stats = new MappingStats(this);
+                stats.Show(this);
+            } else {
+                stats.Focus();
+            }
+        }
+
+        public void closeStats()
+        {
+            if (stats == null) return;
+            stats.Close();
+            stats = null;
         }
     }
 }

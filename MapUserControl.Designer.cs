@@ -36,7 +36,10 @@
             this.appButton = new System.Windows.Forms.Button();
             this.closeButton = new System.Windows.Forms.Button();
             this.deviceImageList = new System.Windows.Forms.ImageList(this.components);
+            this.mainContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.statsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.devicePictureBox)).BeginInit();
+            this.mainContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // devicePictureBox
@@ -83,12 +86,26 @@
             this.deviceImageList.Images.SetKeyName(6, "icons07.png");
             this.deviceImageList.Images.SetKeyName(7, "icons08.png");
             // 
+            // mainContextMenuStrip
+            // 
+            this.mainContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statsToolStripMenuItem});
+            this.mainContextMenuStrip.Name = "mainContextMenuStrip";
+            resources.ApplyResources(this.mainContextMenuStrip, "mainContextMenuStrip");
+            // 
+            // statsToolStripMenuItem
+            // 
+            this.statsToolStripMenuItem.Name = "statsToolStripMenuItem";
+            resources.ApplyResources(this.statsToolStripMenuItem, "statsToolStripMenuItem");
+            this.statsToolStripMenuItem.Click += new System.EventHandler(this.statsToolStripMenuItem_Click);
+            // 
             // MapUserControl
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.ContextMenuStrip = this.mainContextMenuStrip;
             this.Controls.Add(this.closeButton);
             this.Controls.Add(this.appButton);
             this.Controls.Add(this.routingStatusLabel);
@@ -96,6 +113,7 @@
             this.Controls.Add(this.devicePictureBox);
             this.Name = "MapUserControl";
             ((System.ComponentModel.ISupportInitialize)(this.devicePictureBox)).EndInit();
+            this.mainContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -108,5 +126,7 @@
         private System.Windows.Forms.Button appButton;
         private System.Windows.Forms.Button closeButton;
         private System.Windows.Forms.ImageList deviceImageList;
+        private System.Windows.Forms.ContextMenuStrip mainContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem statsToolStripMenuItem;
     }
 }

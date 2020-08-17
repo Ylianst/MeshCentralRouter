@@ -27,6 +27,7 @@ namespace MeshCentralRouter
     public partial class KVMViewer : Form
     {
         private KVMControl kvmControl = null;
+        private KVMStats kvmStats = null;
         private MeshCentralServer server = null;
         private NodeClass node = null;
         private int state = 0;
@@ -35,6 +36,12 @@ namespace MeshCentralRouter
         private bool sessionIsRecorded = false;
         public webSocketClient wc = null;
         public Dictionary<string, int> userSessions = null;
+
+        // Stats
+        public long bytesIn = 0;
+        public long bytesInCompressed = 0;
+        public long bytesOut = 0;
+        public long bytesOutCompressed = 0;
 
         public KVMViewer(MeshCentralServer server, NodeClass node)
         {
@@ -82,6 +89,7 @@ namespace MeshCentralRouter
         private void MenuItemExit_Click(object sender, EventArgs e)
         {
             node.desktopViewer = null;
+            closeKvmStats();
             Close();
         }
 
@@ -121,6 +129,12 @@ namespace MeshCentralRouter
                     }
                 case webSocketClient.ConnectionStates.Connected:
                     {
+                        // Reset stats
+                        bytesIn = 0;
+                        bytesInCompressed = 0;
+                        bytesOut = 0;
+                        bytesOutCompressed = 0;
+
                         state = 2;
                         string u = "*/meshrelay.ashx?p=2&nodeid=" + node.nodeid + "&id=" + randomIdHex + "&rauth=" + server.rauthCookie;
                         server.sendCommand("{ \"action\": \"msg\", \"type\": \"tunnel\", \"nodeid\": \"" + node.nodeid + "\", \"value\": \"" + u.ToString() + "\", \"usage\": 2 }");
@@ -133,6 +147,9 @@ namespace MeshCentralRouter
 
         private void Wc_onStringData(webSocketClient sender, string data, int orglen)
         {
+            bytesIn += data.Length;
+            bytesInCompressed += orglen;
+
             if ((state == 2) && ((data == "c") || (data == "cr")))
             {
                 if (data == "cr") { sessionIsRecorded = true; }
@@ -183,6 +200,9 @@ namespace MeshCentralRouter
 
         private void Wc_onBinaryData(webSocketClient sender, byte[] data, int offset, int length, int orglen)
         {
+            bytesIn += length;
+            bytesInCompressed += orglen;
+
             if (state != 3) return;
             kvmControl.ProcessData(data, offset, length);
         }
@@ -265,6 +285,7 @@ namespace MeshCentralRouter
                 UpdateStatus();
             }
             node.desktopViewer = null;
+            closeKvmStats();
         }
 
         private void toolStripMenuItem2_DropDownOpening(object sender, EventArgs e)
@@ -417,6 +438,25 @@ namespace MeshCentralRouter
         {
             consoleMessage.Visible = false;
             consoleTimer.Enabled = false;
+        }
+
+        private void statsButton_Click(object sender, EventArgs e)
+        {
+            if (kvmStats == null)
+            {
+                kvmStats = new KVMStats(this);
+                kvmStats.Show(this);
+            } else
+            {
+                kvmStats.Focus();
+            }
+        }
+
+        public void closeKvmStats()
+        {
+            if (kvmStats == null) return;
+            kvmStats.Close();
+            kvmStats = null;
         }
     }
 }

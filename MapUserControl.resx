@@ -138,7 +138,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;devicePictureBox.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="deviceNameLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
@@ -172,7 +172,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;deviceNameLabel.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="routingStatusLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -202,7 +202,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;routingStatusLabel.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="appButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -229,7 +229,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;appButton.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="closeButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -256,7 +256,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;closeButton.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <metadata name="deviceImageList.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -266,7 +266,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAAy
-        mgAAAk1TRnQBSQFMAgEBCAEAAUABAAFAAQABMgEAATIBAAT/AREBAAj/AUIBTQE2BwABNgMAASgDAAHI
+        mgAAAk1TRnQBSQFMAgEBCAEAAUgBAAFIAQABMgEAATIBAAT/AREBAAj/AUIBTQE2BwABNgMAASgDAAHI
         AwABlgMAAQEBAAEQBQABYAHq/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A
         /wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A
         /wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A
@@ -926,6 +926,24 @@
         Df8B/AMAAT8H/wMADf8B/AMAAT8H/wMADf8B/gMACP8DAA7/AgABDwj/AwAO/wH8AT8J/wMAGf8DAAs=
 </value>
   </data>
+  <metadata name="mainContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>156, 17</value>
+  </metadata>
+  <data name="statsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="statsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Stats...</value>
+  </data>
+  <data name="mainContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>153, 48</value>
+  </data>
+  <data name="&gt;&gt;mainContextMenuStrip.Name" xml:space="preserve">
+    <value>mainContextMenuStrip</value>
+  </data>
+  <data name="&gt;&gt;mainContextMenuStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -933,13 +951,19 @@
     <value>6, 13</value>
   </data>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>433, 60</value>
+    <value>429, 56</value>
   </data>
   <data name="&gt;&gt;deviceImageList.Name" xml:space="preserve">
     <value>deviceImageList</value>
   </data>
   <data name="&gt;&gt;deviceImageList.Type" xml:space="preserve">
     <value>System.Windows.Forms.ImageList, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;statsToolStripMenuItem.Name" xml:space="preserve">
+    <value>statsToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;statsToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MapUserControl</value>

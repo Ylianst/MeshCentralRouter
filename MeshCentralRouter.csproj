@@ -124,6 +124,18 @@
     <Compile Include="KVMSettingsForm.Designer.cs">
       <DependentUpon>KVMSettingsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MappingStats.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MappingStats.Designer.cs">
+      <DependentUpon>MappingStats.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KVMStats.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KVMStats.Designer.cs">
+      <DependentUpon>KVMStats.cs</DependentUpon>
+    </Compile>
     <Compile Include="KVMViewer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -427,6 +439,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="KVMSettingsForm.resx">
       <DependentUpon>KVMSettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MappingStats.resx">
+      <DependentUpon>MappingStats.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KVMStats.resx">
+      <DependentUpon>KVMStats.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KVMViewer.resx">
       <DependentUpon>KVMViewer.cs</DependentUpon>

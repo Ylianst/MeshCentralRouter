@@ -167,6 +167,37 @@
   <metadata name="updateTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>264, 17</value>
   </metadata>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="statsButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="statsButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="statsButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>989, 3</value>
+  </data>
+  <data name="statsButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>52, 26</value>
+  </data>
+  <data name="statsButton.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="statsButton.Text" xml:space="preserve">
+    <value>Stats</value>
+  </data>
+  <data name="&gt;&gt;statsButton.Name" xml:space="preserve">
+    <value>statsButton</value>
+  </data>
+  <data name="&gt;&gt;statsButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;statsButton.Parent" xml:space="preserve">
+    <value>topPanel</value>
+  </data>
+  <data name="&gt;&gt;statsButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="displaySelectComboBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>383, 5</value>
   </data>
@@ -189,9 +220,8 @@
     <value>topPanel</value>
   </data>
   <data name="&gt;&gt;displaySelectComboBox.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="settingsButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -217,7 +247,7 @@
     <value>topPanel</value>
   </data>
   <data name="&gt;&gt;settingsButton.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="zoomButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -244,7 +274,7 @@
     <value>topPanel</value>
   </data>
   <data name="&gt;&gt;zoomButton.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="cadButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -271,7 +301,7 @@
     <value>topPanel</value>
   </data>
   <data name="&gt;&gt;cadButton.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="connectButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -298,7 +328,7 @@
     <value>topPanel</value>
   </data>
   <data name="&gt;&gt;connectButton.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="topPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -363,6 +393,9 @@
   <data name="&gt;&gt;consoleMessage.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <metadata name="consoleTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>385, 17</value>
+  </metadata>
   <data name="resizeKvmControl.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
@@ -379,7 +412,7 @@
     <value>resizeKvmControl</value>
   </data>
   <data name="&gt;&gt;resizeKvmControl.Type" xml:space="preserve">
-    <value>MeshCentralRouter.KVMResizeControl, MeshCentralRouter, Version=1.0.7531.27756, Culture=neutral, PublicKeyToken=null</value>
+    <value>MeshCentralRouter.KVMResizeControl, MeshCentralRouter, Version=1.0.7533.35016, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;resizeKvmControl.Parent" xml:space="preserve">
     <value>$this</value>
@@ -387,9 +420,6 @@
   <data name="&gt;&gt;resizeKvmControl.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <metadata name="consoleTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>385, 17</value>
-  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>

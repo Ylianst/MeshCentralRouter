@@ -57,8 +57,9 @@ namespace MeshCentralRouter
             this.cadButton = new System.Windows.Forms.Button();
             this.connectButton = new System.Windows.Forms.Button();
             this.consoleMessage = new System.Windows.Forms.Label();
-            this.resizeKvmControl = new MeshCentralRouter.KVMResizeControl();
             this.consoleTimer = new System.Windows.Forms.Timer(this.components);
+            this.statsButton = new System.Windows.Forms.Button();
+            this.resizeKvmControl = new MeshCentralRouter.KVMResizeControl();
             this.mainStatusStrip.SuspendLayout();
             this.topPanel.SuspendLayout();
             this.SuspendLayout();
@@ -92,6 +93,7 @@ namespace MeshCentralRouter
             // topPanel
             // 
             this.topPanel.BackColor = System.Drawing.SystemColors.Control;
+            this.topPanel.Controls.Add(this.statsButton);
             this.topPanel.Controls.Add(this.displaySelectComboBox);
             this.topPanel.Controls.Add(this.settingsButton);
             this.topPanel.Controls.Add(this.zoomButton);
@@ -146,6 +148,19 @@ namespace MeshCentralRouter
             this.consoleMessage.ForeColor = System.Drawing.Color.Black;
             this.consoleMessage.Name = "consoleMessage";
             // 
+            // consoleTimer
+            // 
+            this.consoleTimer.Interval = 5000;
+            this.consoleTimer.Tick += new System.EventHandler(this.consoleTimer_Tick);
+            // 
+            // statsButton
+            // 
+            resources.ApplyResources(this.statsButton, "statsButton");
+            this.statsButton.Name = "statsButton";
+            this.statsButton.TabStop = false;
+            this.statsButton.UseVisualStyleBackColor = true;
+            this.statsButton.Click += new System.EventHandler(this.statsButton_Click);
+            // 
             // resizeKvmControl
             // 
             this.resizeKvmControl.BackColor = System.Drawing.Color.Gray;
@@ -154,11 +169,6 @@ namespace MeshCentralRouter
             this.resizeKvmControl.ZoomToFit = false;
             this.resizeKvmControl.StateChanged += new System.EventHandler(this.kvmControl_StateChanged);
             this.resizeKvmControl.DisplaysReceived += new System.EventHandler(this.resizeKvmControl_DisplaysReceived);
-            // 
-            // consoleTimer
-            // 
-            this.consoleTimer.Interval = 5000;
-            this.consoleTimer.Tick += new System.EventHandler(this.consoleTimer_Tick);
             // 
             // KVMViewer
             // 
@@ -195,6 +205,7 @@ namespace MeshCentralRouter
         private ComboBox displaySelectComboBox;
         private Label consoleMessage;
         private Timer consoleTimer;
+        private Button statsButton;
     }
 }
 
