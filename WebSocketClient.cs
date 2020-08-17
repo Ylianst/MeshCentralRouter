@@ -16,6 +16,7 @@ limitations under the License.
 
 using System;
 using System.IO;
+using System.Net;
 using System.Text;
 using System.Net.Sockets;
 using System.Net.Security;
@@ -52,6 +53,12 @@ namespace MeshCentralRouter
         private static byte[] inflateEnd = { 0x00, 0x00, 0xff, 0xff };
         private static byte[] inflateStart = { 0x00, 0x00, 0x00, 0x00 };
 
+        // Outside variables
+        public object tag = null;
+        public int id = 0;
+        public bool tunneling = false;
+        public IPEndPoint endpoint;
+
         public enum ConnectionStates
         {
             Disconnected = 0,
@@ -64,13 +71,13 @@ namespace MeshCentralRouter
             NoError = 0
         }
 
-        public delegate void onBinaryDataHandler(byte[] data, int offset, int length);
+        public delegate void onBinaryDataHandler(webSocketClient sender, byte[] data, int offset, int length, int orglen);
         public event onBinaryDataHandler onBinaryData;
-        public delegate void onStringDataHandler(string data);
+        public delegate void onStringDataHandler(webSocketClient sender, string data, int orglen);
         public event onStringDataHandler onStringData;
-        public delegate void onDebugMessageHandler(string msg);
+        public delegate void onDebugMessageHandler(webSocketClient sender, string msg);
         public event onDebugMessageHandler onDebugMessage;
-        public delegate void onStateChangedHandler(ConnectionStates state);
+        public delegate void onStateChangedHandler(webSocketClient sender, ConnectionStates state);
         public event onStateChangedHandler onStateChanged;
 
         public ConnectionStates State { get { return state; } }
@@ -79,7 +86,7 @@ namespace MeshCentralRouter
         {
             if (state == newstate) return;
             state = newstate;
-            if (onStateChanged != null) { onStateChanged(state); }
+            if (onStateChanged != null) { onStateChanged(this, state); }
         }
 
         public void Dispose()
@@ -89,7 +96,7 @@ namespace MeshCentralRouter
             SetState(ConnectionStates.Disconnected);
         }
 
-        public void Debug(string msg) { if (onDebugMessage != null) { onDebugMessage(msg); } if (xdebug) { try { File.AppendAllText("debug.log", "Debug-" + msg + "\r\n"); } catch (Exception) { } } }
+        public void Debug(string msg) { if (onDebugMessage != null) { onDebugMessage(this, msg); } if (xdebug) { try { File.AppendAllText("debug.log", "Debug-" + msg + "\r\n"); } catch (Exception) { } } }
 
         public bool Start(Uri url, string tlsCertFingerprint)
         {
@@ -252,8 +259,6 @@ namespace MeshCentralRouter
 
             // Send the HTTP headers
             Debug("Websocket TLS setup, sending HTTP header...");
-            //string header = "GET " + url.PathAndQuery + " HTTP/1.1\r\nHost: " + url.Host + "\r\nUpgrade: websocket\r\nConnection: Upgrade\r\nSec-WebSocket-Key: dGhlIHNhbXBsZSBub25jZQ==\r\nSec-WebSocket-Version: 13\r\n" + extraHeaders + "\r\n";
-            //string header = "GET " + url.PathAndQuery + " HTTP/1.1\r\nHost: " + url.Host + "\r\nUpgrade: websocket\r\nConnection: Upgrade\r\nSec-WebSocket-Key: dGhlIHNhbXBsZSBub25jZQ==\r\nSec-WebSocket-Version: 13\r\nSec-WebSocket-Extensions: permessage-deflate; client_no_context_takeover; server_no_context_takeover\r\n" + extraHeaders + "\r\n";
             string header = "GET " + url.PathAndQuery + " HTTP/1.1\r\nHost: " + url.Host + "\r\nUpgrade: websocket\r\nConnection: Upgrade\r\nSec-WebSocket-Key: dGhlIHNhbXBsZSBub25jZQ==\r\nSec-WebSocket-Version: 13\r\nSec-WebSocket-Extensions: permessage-deflate; client_no_context_takeover\r\n" + extraHeaders + "\r\n";
             wsstream.Write(UTF8Encoding.UTF8.GetBytes(header));
 
@@ -388,6 +393,7 @@ namespace MeshCentralRouter
 
         private void ProcessWsBuffer(byte[] data, int offset, int len, int op)
         {
+            int orglen = len;
             MemoryStream mem = null;
             if (((op & 0x40) != 0) && (inflateMemory != null))
             {
@@ -406,11 +412,11 @@ namespace MeshCentralRouter
             if ((op & 1) == 0) {
                 // This is a birnay frame
                 Debug("Websocket got binary data, len = " + len);
-                if (onBinaryData != null) { onBinaryData(data, offset, len); }
+                if (onBinaryData != null) { onBinaryData(this, data, offset, len, orglen); }
             } else {
                 // This is a string frame
                 Debug("Websocket got string data, len = " + len);
-                if (onStringData != null) { onStringData(UTF8Encoding.UTF8.GetString(data, offset, len)); }
+                if (onStringData != null) { onStringData(this, UTF8Encoding.UTF8.GetString(data, offset, len), orglen); }
             }
 
             if (mem != null) { mem.Dispose(); mem = null; }
@@ -458,19 +464,19 @@ namespace MeshCentralRouter
             return ((tlsCertFingerprint == GetMeshKeyHash(certificate)) || (tlsCertFingerprint == certificate.GetCertHashString()));
         }
 
-        public void SendString(string data)
+        public int SendString(string data)
         {
-            if (state != ConnectionStates.Connected) return;
+            if (state != ConnectionStates.Connected) return 0;
             byte[] buf = UTF8Encoding.UTF8.GetBytes(data);
-            SendFragment(buf, 0, buf.Length, 129);
+            return SendFragment(buf, 0, buf.Length, 129);
         }
 
-        public void SendBinary(byte[] data, int offset, int len) { SendFragment(data, offset, len, 130); }
+        public int SendBinary(byte[] data, int offset, int len) { return SendFragment(data, offset, len, 130); }
 
         // Fragment op code (129 = text, 130 = binary)
-        public void SendFragment(byte[] data, int offset, int len, byte op)
+        public int SendFragment(byte[] data, int offset, int len, byte op)
         {
-            if (state != ConnectionStates.Connected) return;
+            if (state != ConnectionStates.Connected) return 0;
             byte[] buf;
 
             // If deflate is active, attempt to compress the data here.
@@ -504,7 +510,7 @@ namespace MeshCentralRouter
             }
 
             // Check that everything is ok
-            if ((len < 1) || (len > 65535)) { Dispose(); return; }
+            if ((len < 1) || (len > 65535)) { Dispose(); return 0; }
 
             //Console.Write("Length: " + len + "\r\n");
             //System.Threading.Thread.Sleep(0);
@@ -527,6 +533,8 @@ namespace MeshCentralRouter
                 //try { wsstream.BeginWrite(buf, 0, len + 4, new AsyncCallback(WriteWebSocketAsyncDone), args); } catch (Exception) { Dispose(); return; }
                 wsstream.Write(buf, 0, len + 4);
             }
+
+            return len;
         }
 
         public static string GetProxyForUrlUsingPac(string DestinationUrl, string PacUri)

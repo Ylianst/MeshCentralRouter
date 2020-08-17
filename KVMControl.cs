@@ -502,15 +502,15 @@ namespace MeshCentralRouter
         public void Send(BinaryWriter bw)
         {
             //if (state == ConnectState.Disconnected) { RecycleBinaryWriter(bw); return; }
-            //try
-            //{
             if ((parent != null) && (parent.wc != null))
             {
-                parent.wc.SendBinary(((MemoryStream)bw.BaseStream).GetBuffer(), 0, (int)((MemoryStream)bw.BaseStream).Length);
-                bytesent += (int)((MemoryStream)bw.BaseStream).Length;
+                try
+                {
+                    parent.wc.SendBinary(((MemoryStream)bw.BaseStream).GetBuffer(), 0, (int)((MemoryStream)bw.BaseStream).Length);
+                    bytesent += (int)((MemoryStream)bw.BaseStream).Length;
+                }
+                catch (Exception) { }
             }
-            //}
-            //catch (Exception) { }
             RecycleBinaryWriter(bw);
         }
         

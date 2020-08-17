@@ -101,7 +101,7 @@ namespace MeshCentralRouter
             wc.Start(u, server.wshash);
         }
 
-        private void Wc_onStateChanged(webSocketClient.ConnectionStates wsstate)
+        private void Wc_onStateChanged(webSocketClient sender, webSocketClient.ConnectionStates wsstate)
         {
             switch (wsstate)
             {
@@ -131,7 +131,7 @@ namespace MeshCentralRouter
             UpdateStatus();
         }
 
-        private void Wc_onStringData(string data)
+        private void Wc_onStringData(webSocketClient sender, string data, int orglen)
         {
             if ((state == 2) && ((data == "c") || (data == "cr")))
             {
@@ -181,7 +181,7 @@ namespace MeshCentralRouter
             }
         }
 
-        private void Wc_onBinaryData(byte[] data, int offset, int length)
+        private void Wc_onBinaryData(webSocketClient sender, byte[] data, int offset, int length, int orglen)
         {
             if (state != 3) return;
             kvmControl.ProcessData(data, offset, length);
