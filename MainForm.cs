@@ -285,6 +285,7 @@ namespace MeshCentralRouter
 
         private void backButton5_Click(object sender, EventArgs e)
         {
+            authLoginUrl = null;
             meshcentral.disconnect();
         }
 
