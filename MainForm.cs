@@ -815,6 +815,7 @@ namespace MeshCentralRouter
                 MapUserControl map = new MapUserControl();
                 map.xdebug = debug;
                 map.inaddrany = inaddrany;
+                map.ruleName = form.getRuleName();
                 map.protocol = form.getProtocol();
                 map.localPort = form.getLocalPort();
                 map.remotePort = form.getRemotePort();
@@ -942,6 +943,7 @@ namespace MeshCentralRouter
                 MapUserControl map = new MapUserControl();
                 map.xdebug = debug;
                 map.inaddrany = inaddrany;
+                map.ruleName = form.getRuleName();
                 map.protocol = form.getProtocol();
                 map.localPort = form.getLocalPort();
                 map.remotePort = form.getRemotePort();
@@ -1242,6 +1244,7 @@ namespace MeshCentralRouter
                 MapUserControl map = new MapUserControl();
                 map.xdebug = debug;
                 map.inaddrany = inaddrany;
+                map.ruleName = x["ruleName"].ToString();
                 map.protocol = (int)x["protocol"];
                 map.localPort = (int)x["localPort"];
                 if (x.ContainsKey("remoteIP")) { map.remoteIP = (string)x["remoteIP"]; }
@@ -1283,6 +1286,7 @@ namespace MeshCentralRouter
                     MeshMapper map = ((MapUserControl)c).mapper;
                     if (mapCounter == 0) { text += "    {\r\n"; } else { text += ",\r\n    {\r\n"; }
                     text += "      \"nodeName\": \"" + mapCtrl.node.name + "\",\r\n";
+                    text += "      \"ruleName\": \"" + mapCtrl.ruleName + "\",\r\n";
                     text += "      \"meshId\": \"" + mapCtrl.node.meshid + "\",\r\n";
                     text += "      \"nodeId\": \"" + mapCtrl.node.nodeid + "\",\r\n";
                     text += "      \"appId\": " + mapCtrl.appId + ",\r\n";

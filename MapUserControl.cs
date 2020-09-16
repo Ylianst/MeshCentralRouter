@@ -14,6 +14,7 @@ namespace MeshCentralRouter
 {
     public partial class MapUserControl : UserControl
     {
+        public string ruleName;
         public int protocol;
         public int localPort;
         public string remoteIP = null;
@@ -45,7 +46,14 @@ namespace MeshCentralRouter
 
         public void UpdateInfo()
         {
-            deviceNameLabel.Text = node.name;
+            if(this.ruleName != null)
+            {
+                deviceNameLabel.Text = node.name + ": " + this.ruleName;
+            }
+            else
+            {
+                deviceNameLabel.Text = node.name;
+            }
             devicePictureBox.Image = deviceImageList.Images[node.icon - 1];
         }
 
