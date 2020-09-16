@@ -168,10 +168,39 @@ namespace MeshCentralRouter.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icon_clipboard_in {
+            get {
+                object obj = ResourceManager.GetObject("icon-clipboard-in", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_clipboard_out {
+            get {
+                object obj = ResourceManager.GetObject("icon-clipboard-out", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons01 {
             get {
                 object obj = ResourceManager.GetObject("icons01", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (Individual Devices).
+        /// </summary>
+        internal static string IndividualDevices {
+            get {
+                return ResourceManager.GetString("IndividualDevices", resourceCulture);
             }
         }
         
@@ -399,6 +428,16 @@ namespace MeshCentralRouter.Properties {
         internal static System.Drawing.Bitmap xinstall {
             get {
                 object obj = ResourceManager.GetObject("xinstall", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ZoomToFit {
+            get {
+                object obj = ResourceManager.GetObject("ZoomToFit", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MeshCentralRouter
@@ -21,7 +14,7 @@ namespace MeshCentralRouter
             InitializeComponent();
         }
 
-        public string getRuleName() { return ruleNameTextBox.Text; }
+        public string getName() { return nameTextBox.Text; }
         public int getProtocol() { return (int)(tcpRadioButton.Checked?1:2); }
         public int getLocalPort() { return (int)localNumericUpDown.Value; }
         public int getRemotePort() { return (int)remoteNumericUpDown.Value; }
@@ -50,12 +43,34 @@ namespace MeshCentralRouter
                     }
                 }
 
+                // If the user has indivitual device rights, add an extra device group
+                if (meshcentral.userRights != null)
+                {
+                    bool indivitualDevices = false;
+                    foreach (string id in meshcentral.userRights.Keys) { if (id.StartsWith("node/")) { indivitualDevices = true; } }
+                    if (indivitualDevices)
+                    {
+                        MeshClass m = new MeshClass();
+                        m.name = Properties.Resources.IndividualDevices;
+                        groupComboBox.Items.Add(m);
+                    }
+                }
+
                 // Set default selection
                 if (groupComboBox.Items.Count > 0) { groupComboBox.SelectedIndex = 0; }
                 appComboBox.SelectedIndex = 1;
                 fillNodesInDropDown();
             } else {
-                groupComboBox.Items.Add(selectedNode.mesh);
+                if (selectedNode.mesh == null)
+                {
+                    MeshClass m = new MeshClass();
+                    m.name = Properties.Resources.IndividualDevices;
+                    groupComboBox.Items.Add(m);
+                }
+                else
+                {
+                    groupComboBox.Items.Add(selectedNode.mesh);
+                }
                 groupComboBox.SelectedIndex = 0;
                 groupComboBox.Enabled = false;
                 nodeComboBox.Items.Add(selectedNode);
@@ -63,6 +78,7 @@ namespace MeshCentralRouter
                 nodeComboBox.Enabled = false;
                 appComboBox.SelectedIndex = 1;
             }
+            nameTextBox.Focus();
         }
 
         private void fillNodesInDropDown()
@@ -73,10 +89,13 @@ namespace MeshCentralRouter
 
             // Fill the nodes dropdown
             nodeComboBox.Items.Clear();
-            foreach (string nodeid in meshcentral.nodes.Keys)
+            if (meshcentral.nodes != null)
             {
-                NodeClass node = meshcentral.nodes[nodeid];
-                if ((node.meshid == mesh.meshid) && ((node.conn & 1) != 0)) { nodeComboBox.Items.Add(node); }
+                foreach (string nodeid in meshcentral.nodes.Keys)
+                {
+                    NodeClass node = meshcentral.nodes[nodeid];
+                    if (((node.meshid == mesh.meshid) || ((mesh.meshid == null) && (meshcentral.userRights.ContainsKey(node.nodeid)))) && ((node.conn & 1) != 0)) { nodeComboBox.Items.Add(node); }
+                }
             }
 
             if (nodeComboBox.Items.Count > 0) { nodeComboBox.SelectedIndex = 0; }

@@ -119,7 +119,7 @@
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="devicePictureBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 3</value>
+    <value>5, 3</value>
   </data>
   <data name="devicePictureBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>50, 50</value>
@@ -151,10 +151,10 @@
     <value>NoControl</value>
   </data>
   <data name="deviceNameLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>62, 12</value>
+    <value>60, 11</value>
   </data>
   <data name="deviceNameLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>294, 15</value>
+    <value>280, 15</value>
   </data>
   <data name="deviceNameLabel.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -181,10 +181,10 @@
     <value>NoControl</value>
   </data>
   <data name="routingStatusLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>62, 32</value>
+    <value>60, 31</value>
   </data>
   <data name="routingStatusLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>294, 15</value>
+    <value>280, 15</value>
   </data>
   <data name="routingStatusLabel.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -208,7 +208,7 @@
     <value>Top, Right</value>
   </data>
   <data name="appButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>348, 6</value>
+    <value>346, 4</value>
   </data>
   <data name="appButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -235,7 +235,7 @@
     <value>Top, Right</value>
   </data>
   <data name="closeButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>348, 30</value>
+    <value>346, 28</value>
   </data>
   <data name="closeButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -266,7 +266,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAAy
-        mgAAAk1TRnQBSQFMAgEBCAEAAUgBAAFIAQABMgEAATIBAAT/AREBAAj/AUIBTQE2BwABNgMAASgDAAHI
+        mgAAAk1TRnQBSQFMAgEBCAEAAVABAAFQAQABMgEAATIBAAT/AREBAAj/AUIBTQE2BwABNgMAASgDAAHI
         AwABlgMAAQEBAAEQBQABYAHq/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A
         /wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A
         /wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A
@@ -929,20 +929,20 @@
   <metadata name="mainContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>156, 17</value>
   </metadata>
-  <data name="statsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
-  </data>
-  <data name="statsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Stats...</value>
-  </data>
   <data name="mainContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 48</value>
+    <value>109, 26</value>
   </data>
   <data name="&gt;&gt;mainContextMenuStrip.Name" xml:space="preserve">
     <value>mainContextMenuStrip</value>
   </data>
   <data name="&gt;&gt;mainContextMenuStrip.Type" xml:space="preserve">
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="statsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>108, 22</value>
+  </data>
+  <data name="statsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Stats...</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -951,7 +951,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>429, 56</value>
+    <value>425, 58</value>
   </data>
   <data name="&gt;&gt;deviceImageList.Name" xml:space="preserve">
     <value>deviceImageList</value>

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddRelayMapForm));
             this.cancelButton = new System.Windows.Forms.Button();
             this.okButton = new System.Windows.Forms.Button();
@@ -46,8 +47,9 @@
             this.udpRadioButton = new System.Windows.Forms.RadioButton();
             this.tcpRadioButton = new System.Windows.Forms.RadioButton();
             this.label7 = new System.Windows.Forms.Label();
-            this.ruleNameTextBox = new System.Windows.Forms.TextBox();
+            this.nameTextBox = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.mainToolTip = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.localNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.remoteNumericUpDown)).BeginInit();
             this.SuspendLayout();
@@ -183,15 +185,17 @@
             resources.ApplyResources(this.label7, "label7");
             this.label7.Name = "label7";
             // 
-            // ruleNameTextBox
+            // nameTextBox
             // 
-            resources.ApplyResources(this.ruleNameTextBox, "ruleNameTextBox");
-            this.ruleNameTextBox.Name = "ruleNameTextBox";
+            resources.ApplyResources(this.nameTextBox, "nameTextBox");
+            this.nameTextBox.Name = "nameTextBox";
+            this.mainToolTip.SetToolTip(this.nameTextBox, resources.GetString("nameTextBox.ToolTip"));
             // 
             // label8
             // 
             resources.ApplyResources(this.label8, "label8");
             this.label8.Name = "label8";
+            this.mainToolTip.SetToolTip(this.label8, resources.GetString("label8.ToolTip"));
             // 
             // AddRelayMapForm
             // 
@@ -199,7 +203,7 @@
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
-            this.Controls.Add(this.ruleNameTextBox);
+            this.Controls.Add(this.nameTextBox);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.udpRadioButton);
             this.Controls.Add(this.tcpRadioButton);
@@ -249,7 +253,8 @@
         private System.Windows.Forms.RadioButton udpRadioButton;
         private System.Windows.Forms.RadioButton tcpRadioButton;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox ruleNameTextBox;
+        private System.Windows.Forms.TextBox nameTextBox;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ToolTip mainToolTip;
     }
 }

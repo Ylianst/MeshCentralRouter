@@ -123,7 +123,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="cancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>288, 194</value>
+    <value>288, 200</value>
   </data>
   <data name="cancelButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -151,7 +151,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="okButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>207, 194</value>
+    <value>207, 200</value>
   </data>
   <data name="okButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -178,7 +178,7 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="localNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>157, 60</value>
+    <value>157, 63</value>
   </data>
   <data name="localNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>206, 20</value>
@@ -205,7 +205,7 @@
     <value>True</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 62</value>
+    <value>12, 65</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 13</value>
@@ -232,7 +232,7 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="nodeComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>157, 113</value>
+    <value>157, 116</value>
   </data>
   <data name="nodeComboBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>206, 21</value>
@@ -256,7 +256,7 @@
     <value>True</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 116</value>
+    <value>12, 119</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>81, 13</value>
@@ -283,7 +283,7 @@
     <value>True</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 169</value>
+    <value>12, 172</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
     <value>66, 13</value>
@@ -310,7 +310,7 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="remoteNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>157, 167</value>
+    <value>157, 170</value>
   </data>
   <data name="remoteNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>206, 20</value>
@@ -337,7 +337,7 @@
     <value>True</value>
   </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 143</value>
+    <value>12, 146</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
     <value>59, 13</value>
@@ -382,7 +382,7 @@
     <value>WinSCP</value>
   </data>
   <data name="appComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>157, 140</value>
+    <value>157, 143</value>
   </data>
   <data name="appComboBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>206, 21</value>
@@ -406,7 +406,7 @@
     <value>True</value>
   </data>
   <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 89</value>
+    <value>12, 92</value>
   </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
     <value>73, 13</value>
@@ -433,7 +433,7 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="groupComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>157, 86</value>
+    <value>157, 89</value>
   </data>
   <data name="groupComboBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>206, 21</value>
@@ -457,7 +457,7 @@
     <value>True</value>
   </data>
   <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 36</value>
+    <value>12, 39</value>
   </data>
   <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
     <value>46, 13</value>
@@ -484,7 +484,7 @@
     <value>True</value>
   </data>
   <data name="tcpRadioButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>157, 36</value>
+    <value>157, 39</value>
   </data>
   <data name="tcpRadioButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>46, 17</value>
@@ -511,7 +511,7 @@
     <value>True</value>
   </data>
   <data name="udpRadioButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>209, 36</value>
+    <value>209, 39</value>
   </data>
   <data name="udpRadioButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 17</value>
@@ -534,30 +534,39 @@
   <data name="&gt;&gt;udpRadioButton.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="ruleNameTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="nameTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
-  <data name="ruleNameTextBox.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="nameTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>157, 10</value>
   </data>
-  <data name="ruleNameTextBox.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="nameTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>206, 20</value>
   </data>
-  <data name="ruleNameTextBox.TabIndex" type="System.Int32, mscorlib">
+  <data name="nameTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
   </data>
-  <data name="&gt;&gt;ruleNameTextBox.Name" xml:space="preserve">
-    <value>ruleNameTextBox</value>
+  <metadata name="mainToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="nameTextBox.ToolTip" xml:space="preserve">
+    <value>Optional mapping name</value>
   </data>
-  <data name="&gt;&gt;ruleNameTextBox.Type" xml:space="preserve">
+  <data name="&gt;&gt;nameTextBox.Name" xml:space="preserve">
+    <value>nameTextBox</value>
+  </data>
+  <data name="&gt;&gt;nameTextBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;ruleNameTextBox.Parent" xml:space="preserve">
+  <data name="&gt;&gt;nameTextBox.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;ruleNameTextBox.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;nameTextBox.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <metadata name="mainToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <data name="label8.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -568,13 +577,16 @@
     <value>12, 13</value>
   </data>
   <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 13</value>
+    <value>35, 13</value>
   </data>
   <data name="label8.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
   </data>
   <data name="label8.Text" xml:space="preserve">
-    <value>Rule Name</value>
+    <value>Name</value>
+  </data>
+  <data name="label8.ToolTip" xml:space="preserve">
+    <value>Optional mapping name</value>
   </data>
   <data name="&gt;&gt;label8.Name" xml:space="preserve">
     <value>label8</value>
@@ -595,7 +607,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>375, 229</value>
+    <value>375, 235</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -2296,6 +2308,12 @@
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Port Mapping</value>
+  </data>
+  <data name="&gt;&gt;mainToolTip.Name" xml:space="preserve">
+    <value>mainToolTip</value>
+  </data>
+  <data name="&gt;&gt;mainToolTip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>AddPortMapForm</value>

@@ -948,6 +948,36 @@
   <data name="&gt;&gt;tabPage2.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="rememberCertCheckBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="rememberCertCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="rememberCertCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>208, 255</value>
+  </data>
+  <data name="rememberCertCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>145, 17</value>
+  </data>
+  <data name="rememberCertCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
+  </data>
+  <data name="rememberCertCheckBox.Text" xml:space="preserve">
+    <value>Remember this certificate</value>
+  </data>
+  <data name="&gt;&gt;rememberCertCheckBox.Name" xml:space="preserve">
+    <value>rememberCertCheckBox</value>
+  </data>
+  <data name="&gt;&gt;rememberCertCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rememberCertCheckBox.Parent" xml:space="preserve">
+    <value>panel3</value>
+  </data>
+  <data name="&gt;&gt;rememberCertCheckBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="certDetailsTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
@@ -976,7 +1006,7 @@
     <value>panel3</value>
   </data>
   <data name="&gt;&gt;certDetailsTextBox.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="certDetailsButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
@@ -1006,7 +1036,7 @@
     <value>panel3</value>
   </data>
   <data name="&gt;&gt;certDetailsButton.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="label4.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -1042,7 +1072,7 @@
     <value>panel3</value>
   </data>
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="label5.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -1072,7 +1102,7 @@
     <value>panel3</value>
   </data>
   <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="backButton3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -1102,7 +1132,7 @@
     <value>panel3</value>
   </data>
   <data name="&gt;&gt;backButton3.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="nextButton3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -1132,7 +1162,7 @@
     <value>panel3</value>
   </data>
   <data name="&gt;&gt;nextButton3.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="pictureBox5.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
@@ -1162,7 +1192,7 @@
     <value>panel3</value>
   </data>
   <data name="&gt;&gt;pictureBox5.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="panel3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -1393,7 +1423,7 @@
     <value>SCP</value>
   </data>
   <data name="devicesContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>171, 208</value>
+    <value>171, 186</value>
   </data>
   <data name="&gt;&gt;devicesContextMenuStrip.Name" xml:space="preserve">
     <value>devicesContextMenuStrip</value>
@@ -1409,7 +1439,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAADg
-        HQAAAk1TRnQBSQFMAgEBEAEAATABAAEQAQABEAEAARABAAT/ARkBAAj/AUIBTQE2BwABNgMAASgDAAFA
+        HQAAAk1TRnQBSQFMAgEBEAEAARgBAAEYAQABEAEAARABAAT/ARkBAAj/AUIBTQE2BwABNgMAASgDAAFA
         AwABUAMAAQEBAAEYBgABPP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AJYAA/0D+AP3A/sD/yEAA/0D+gP5
         A/wD/xgAAfoB+wH6A/4qAAP9A/8tAAP7A88D1QPbA88D1AO+A9QYAAP8A90D4APjA90D4APUA+MSAAP8
         AZEBjwF9AU4BaAEhAfQB9QH0JAAD/gPRA8YD+ioAAcYCxwHPAtAB2ALZA90DywPBA68DmgP3FQAD2APd
@@ -1576,7 +1606,7 @@
     <value>2, 88</value>
   </data>
   <data name="noSearchResultsLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>450, 52</value>
+    <value>446, 52</value>
   </data>
   <data name="noSearchResultsLabel.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -1615,7 +1645,7 @@
     <value>2, 88</value>
   </data>
   <data name="noDevicesLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>450, 52</value>
+    <value>446, 52</value>
   </data>
   <data name="noDevicesLabel.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -1705,7 +1735,7 @@
     <value>2, 79</value>
   </data>
   <data name="noMapLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>450, 52</value>
+    <value>446, 52</value>
   </data>
   <data name="noMapLabel.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -5739,6 +5769,12 @@ Click "Add" to get started.</value>
   <data name="&gt;&gt;toolStripMenuItem3.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;remoteDesktopToolStripMenuItem.Name" xml:space="preserve">
+    <value>remoteDesktopToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;remoteDesktopToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;httpToolStripMenuItem.Name" xml:space="preserve">
     <value>httpToolStripMenuItem</value>
   </data>
@@ -5840,12 +5876,6 @@ Click "Add" to get started.</value>
   </data>
   <data name="&gt;&gt;saveMapFileDialog.Type" xml:space="preserve">
     <value>System.Windows.Forms.SaveFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;remoteDesktopToolStripMenuItem.Name" xml:space="preserve">
-    <value>remoteDesktopToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;remoteDesktopToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>

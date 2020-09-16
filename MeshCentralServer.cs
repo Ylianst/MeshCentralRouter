@@ -554,6 +554,21 @@ namespace MeshCentralRouter
                         if ((onNodesChanged != null) && (nodes != null)) onNodesChanged(true);
                         break;
                     }
+                case "msg":
+                    {
+                        if (jsonAction.ContainsKey("type"))
+                        {
+                            string type = (string)jsonAction["type"];
+                            if ((type == "getclip") && (jsonAction.ContainsKey("data")) && (jsonAction.ContainsKey("nodeid")))
+                            {
+                                // We requested the remote clipboard
+                                string nodeid = (string)jsonAction["nodeid"];
+                                string clipData = (string)jsonAction["data"];
+                                if (onClipboardData != null) { onClipboardData(nodeid, clipData); }
+                            }
+                        }
+                        break;
+                    }
                 default:
                     {
                         break;
@@ -569,6 +584,8 @@ namespace MeshCentralRouter
         public event onNodeListChangedHandler onNodesChanged;
         public delegate void onLoginTokenChangedHandler();
         public event onLoginTokenChangedHandler onLoginTokenChanged;
+        public delegate void onClipboardDataHandler(string nodeid, string data);
+        public event onClipboardDataHandler onClipboardData;
 
         public class xwebclient : IDisposable
         {

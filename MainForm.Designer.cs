@@ -90,6 +90,7 @@
             this.addMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addRelayMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
+            this.remoteDesktopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.httpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.httpsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rdpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -123,7 +124,7 @@
             this.saveMappingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openMapFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveMapFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.remoteDesktopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rememberCertCheckBox = new System.Windows.Forms.CheckBox();
             this.panel5.SuspendLayout();
             this.mainPanel.SuspendLayout();
             this.mainTabControl.SuspendLayout();
@@ -394,6 +395,7 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.rememberCertCheckBox);
             this.panel3.Controls.Add(this.certDetailsTextBox);
             this.panel3.Controls.Add(this.certDetailsButton);
             this.panel3.Controls.Add(this.label4);
@@ -615,6 +617,12 @@
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
             resources.ApplyResources(this.toolStripMenuItem3, "toolStripMenuItem3");
+            // 
+            // remoteDesktopToolStripMenuItem
+            // 
+            this.remoteDesktopToolStripMenuItem.Name = "remoteDesktopToolStripMenuItem";
+            resources.ApplyResources(this.remoteDesktopToolStripMenuItem, "remoteDesktopToolStripMenuItem");
+            this.remoteDesktopToolStripMenuItem.Click += new System.EventHandler(this.remoteDesktopToolStripMenuItem_Click);
             // 
             // httpToolStripMenuItem
             // 
@@ -847,11 +855,11 @@
             this.saveMapFileDialog.DefaultExt = "mcrouter";
             resources.ApplyResources(this.saveMapFileDialog, "saveMapFileDialog");
             // 
-            // remoteDesktopToolStripMenuItem
+            // rememberCertCheckBox
             // 
-            this.remoteDesktopToolStripMenuItem.Name = "remoteDesktopToolStripMenuItem";
-            resources.ApplyResources(this.remoteDesktopToolStripMenuItem, "remoteDesktopToolStripMenuItem");
-            this.remoteDesktopToolStripMenuItem.Click += new System.EventHandler(this.remoteDesktopToolStripMenuItem_Click);
+            resources.ApplyResources(this.rememberCertCheckBox, "rememberCertCheckBox");
+            this.rememberCertCheckBox.Name = "rememberCertCheckBox";
+            this.rememberCertCheckBox.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -996,6 +1004,7 @@
         private System.Windows.Forms.ToolStripMenuItem addRelayMapToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem remoteDesktopToolStripMenuItem;
+        private System.Windows.Forms.CheckBox rememberCertCheckBox;
     }
 }
 

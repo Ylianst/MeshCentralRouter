@@ -722,6 +722,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MeshServer.ico" />
+    <None Include="Resources\ZoomToFit.png" />
+    <None Include="Resources\icon-clipboard-out.png" />
+    <None Include="Resources\icon-clipboard-in.png" />
     <None Include="Resources\50-Computer.png" />
   </ItemGroup>
   <ItemGroup>

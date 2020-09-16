@@ -285,7 +285,6 @@ namespace MeshCentralRouter
 
         private void backButton5_Click(object sender, EventArgs e)
         {
-            authLoginUrl = null;
             meshcentral.disconnect();
         }
 
@@ -314,7 +313,16 @@ namespace MeshCentralRouter
             meshcentral.onStateChanged += Meshcentral_onStateChanged;
             meshcentral.onNodesChanged += Meshcentral_onNodesChanged;
             meshcentral.onLoginTokenChanged += Meshcentral_onLoginTokenChanged;
-            if (lastBadConnectCert != null) { meshcentral.okCertHash = lastBadConnectCert.GetCertHashString(); }
+            meshcentral.onClipboardData += Meshcentral_onClipboardData;
+            if (lastBadConnectCert != null)
+            {
+                meshcentral.okCertHash = lastBadConnectCert.GetCertHashString();
+            }
+            else
+            {
+                string ignoreCert = loadFromRegistry("IgnoreCert");
+                if (ignoreCert != null) { meshcentral.okCertHash = ignoreCert; }
+            }
 
             Uri serverurl = null;
             if (authLoginUrl != null) {
@@ -329,8 +337,17 @@ namespace MeshCentralRouter
             }
         }
 
+        private void Meshcentral_onClipboardData(string nodeid, string data)
+        {
+            if (this.InvokeRequired) { this.Invoke(new MeshCentralServer.onClipboardDataHandler(Meshcentral_onClipboardData), nodeid, data); return; }
+            Clipboard.SetData(DataFormats.Text, (Object)data);
+        }
+
         private void nextButton3_Click(object sender, EventArgs e)
         {
+            // If we need to remember this certificate
+            if (rememberCertCheckBox.Checked) { saveToRegistry("IgnoreCert", lastBadConnectCert.GetCertHashString()); }
+
             // Attempt to login, ignore bad cert.
             addButton.Enabled = false;
             addRelayButton.Enabled = false;
@@ -341,6 +358,7 @@ namespace MeshCentralRouter
             meshcentral.onStateChanged += Meshcentral_onStateChanged;
             meshcentral.onNodesChanged += Meshcentral_onNodesChanged;
             meshcentral.onLoginTokenChanged += Meshcentral_onLoginTokenChanged;
+            meshcentral.onClipboardData += Meshcentral_onClipboardData;
             meshcentral.okCertHash = lastBadConnectCert.GetCertHashString();
 
             Uri serverurl = null;
@@ -618,6 +636,7 @@ namespace MeshCentralRouter
                 meshcentral.onStateChanged -= Meshcentral_onStateChanged;
                 meshcentral.onNodesChanged -= Meshcentral_onNodesChanged;
                 meshcentral = null;
+                authLoginUrl = null;
             } else if (state == 1) {
                 stateLabel.Visible = false;
                 //setPanel(1);
@@ -815,7 +834,7 @@ namespace MeshCentralRouter
                 MapUserControl map = new MapUserControl();
                 map.xdebug = debug;
                 map.inaddrany = inaddrany;
-                map.ruleName = form.getRuleName();
+                map.name = form.getName();
                 map.protocol = form.getProtocol();
                 map.localPort = form.getLocalPort();
                 map.remotePort = form.getRemotePort();
@@ -863,10 +882,16 @@ namespace MeshCentralRouter
             meshcentral = new MeshCentralServer();
             meshcentral.debug = debug;
             meshcentral.ignoreCert = ignoreCert;
-            if (lastBadConnectCert != null) { meshcentral.okCertHash = lastBadConnectCert.GetCertHashString(); }
+            if (lastBadConnectCert != null) {
+                meshcentral.okCertHash = lastBadConnectCert.GetCertHashString();
+            } else {
+                string ignoreCert = loadFromRegistry("IgnoreCert");
+                if (ignoreCert != null) { meshcentral.okCertHash = ignoreCert; }
+            }
             meshcentral.onStateChanged += Meshcentral_onStateChanged;
             meshcentral.onNodesChanged += Meshcentral_onNodesChanged;
             meshcentral.onLoginTokenChanged += Meshcentral_onLoginTokenChanged;
+            meshcentral.onClipboardData += Meshcentral_onClipboardData;
             if (sendEmailToken == true)
             {
                 sendEmailToken = false;
@@ -943,7 +968,7 @@ namespace MeshCentralRouter
                 MapUserControl map = new MapUserControl();
                 map.xdebug = debug;
                 map.inaddrany = inaddrany;
-                map.ruleName = form.getRuleName();
+                map.name = form.getName();
                 map.protocol = form.getProtocol();
                 map.localPort = form.getLocalPort();
                 map.remotePort = form.getRemotePort();
@@ -1244,7 +1269,7 @@ namespace MeshCentralRouter
                 MapUserControl map = new MapUserControl();
                 map.xdebug = debug;
                 map.inaddrany = inaddrany;
-                map.ruleName = x["ruleName"].ToString();
+                if (x.ContainsKey("name")) { map.name = x["name"].ToString(); } else { map.name = ""; }
                 map.protocol = (int)x["protocol"];
                 map.localPort = (int)x["localPort"];
                 if (x.ContainsKey("remoteIP")) { map.remoteIP = (string)x["remoteIP"]; }
@@ -1286,7 +1311,7 @@ namespace MeshCentralRouter
                     MeshMapper map = ((MapUserControl)c).mapper;
                     if (mapCounter == 0) { text += "    {\r\n"; } else { text += ",\r\n    {\r\n"; }
                     text += "      \"nodeName\": \"" + mapCtrl.node.name + "\",\r\n";
-                    text += "      \"ruleName\": \"" + mapCtrl.ruleName + "\",\r\n";
+                    if ((mapCtrl.name != null) && (mapCtrl.name != "")) { text += "      \"name\": \"" + mapCtrl.name + "\",\r\n"; }
                     text += "      \"meshId\": \"" + mapCtrl.node.meshid + "\",\r\n";
                     text += "      \"nodeId\": \"" + mapCtrl.node.nodeid + "\",\r\n";
                     text += "      \"appId\": " + mapCtrl.appId + ",\r\n";

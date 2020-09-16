@@ -545,6 +545,7 @@ namespace MeshCentralRouter
 
         private void KVMControl_KeyDown(object sender, KeyEventArgs e)
         {
+            if ((e.KeyCode == Keys.LWin) || (e.KeyCode == Keys.RWin)) return; // Don't process the Windows key
             SendKey(e, 0);
             e.Handled = true;
         }

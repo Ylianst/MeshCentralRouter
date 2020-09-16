@@ -101,7 +101,10 @@ namespace MeshCentralRouter
             randomIdHex = BitConverter.ToString(randomid).Replace("-", string.Empty);
 
             state = 1;
-            Uri u = new Uri(server.wsurl.ToString().Replace("/control.ashx", "/") + "meshrelay.ashx?browser=1&p=2&nodeid=" + node.nodeid + "&id=" + randomIdHex + "&auth=" + server.authCookie);
+            string ux = server.wsurl.ToString().Replace("/control.ashx", "/");
+            int i = ux.IndexOf("?");
+            if (i >= 0) { ux = ux.Substring(0, i); }
+            Uri u = new Uri(ux + "meshrelay.ashx?browser=1&p=2&nodeid=" + node.nodeid + "&id=" + randomIdHex + "&auth=" + server.authCookie);
             wc = new webSocketClient();
             wc.onStateChanged += Wc_onStateChanged;
             wc.onBinaryData += Wc_onBinaryData;
@@ -267,6 +270,8 @@ namespace MeshCentralRouter
             }
 
             cadButton.Enabled = (state == 3);
+            clipInboundButton.Enabled = (state == 3);
+            clipOutboundButton.Enabled = (state == 3);
         }
 
         private void updateTimer_Tick(object sender, EventArgs e)
@@ -457,6 +462,23 @@ namespace MeshCentralRouter
             if (kvmStats == null) return;
             kvmStats.Close();
             kvmStats = null;
+        }
+
+        private void clipInboundButton_Click(object sender, EventArgs e)
+        {
+            //string textData = "abc";
+            //Clipboard.SetData(DataFormats.Text, (Object)textData);
+            server.sendCommand("{\"action\":\"msg\",\"type\":\"getclip\",\"nodeid\":\"" + node.nodeid + "\"}");
+        }
+
+        private void clipOutboundButton_Click(object sender, EventArgs e)
+        {
+            string textData = (string)Clipboard.GetData(DataFormats.Text);
+            if (textData != null)
+            {
+                textData = textData.Replace("\\", "\\\\").Replace("\"", "\\\"");
+                server.sendCommand("{\"action\":\"msg\",\"type\":\"setclip\",\"nodeid\":\"" + node.nodeid + "\",\"data\":\"" + textData + "\"}");
+            }
         }
     }
 }

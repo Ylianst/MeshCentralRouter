@@ -51,6 +51,9 @@ namespace MeshCentralRouter
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.updateTimer = new System.Windows.Forms.Timer(this.components);
             this.topPanel = new System.Windows.Forms.Panel();
+            this.clipOutboundButton = new System.Windows.Forms.Button();
+            this.clipInboundButton = new System.Windows.Forms.Button();
+            this.statsButton = new System.Windows.Forms.Button();
             this.displaySelectComboBox = new System.Windows.Forms.ComboBox();
             this.settingsButton = new System.Windows.Forms.Button();
             this.zoomButton = new System.Windows.Forms.Button();
@@ -58,7 +61,7 @@ namespace MeshCentralRouter
             this.connectButton = new System.Windows.Forms.Button();
             this.consoleMessage = new System.Windows.Forms.Label();
             this.consoleTimer = new System.Windows.Forms.Timer(this.components);
-            this.statsButton = new System.Windows.Forms.Button();
+            this.mainToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.resizeKvmControl = new MeshCentralRouter.KVMResizeControl();
             this.mainStatusStrip.SuspendLayout();
             this.topPanel.SuspendLayout();
@@ -93,6 +96,8 @@ namespace MeshCentralRouter
             // topPanel
             // 
             this.topPanel.BackColor = System.Drawing.SystemColors.Control;
+            this.topPanel.Controls.Add(this.clipOutboundButton);
+            this.topPanel.Controls.Add(this.clipInboundButton);
             this.topPanel.Controls.Add(this.statsButton);
             this.topPanel.Controls.Add(this.displaySelectComboBox);
             this.topPanel.Controls.Add(this.settingsButton);
@@ -101,6 +106,35 @@ namespace MeshCentralRouter
             this.topPanel.Controls.Add(this.connectButton);
             resources.ApplyResources(this.topPanel, "topPanel");
             this.topPanel.Name = "topPanel";
+            // 
+            // clipOutboundButton
+            // 
+            resources.ApplyResources(this.clipOutboundButton, "clipOutboundButton");
+            this.clipOutboundButton.Image = global::MeshCentralRouter.Properties.Resources.icon_clipboard_out;
+            this.clipOutboundButton.Name = "clipOutboundButton";
+            this.clipOutboundButton.TabStop = false;
+            this.mainToolTip.SetToolTip(this.clipOutboundButton, resources.GetString("clipOutboundButton.ToolTip"));
+            this.clipOutboundButton.UseVisualStyleBackColor = true;
+            this.clipOutboundButton.Click += new System.EventHandler(this.clipOutboundButton_Click);
+            // 
+            // clipInboundButton
+            // 
+            resources.ApplyResources(this.clipInboundButton, "clipInboundButton");
+            this.clipInboundButton.Image = global::MeshCentralRouter.Properties.Resources.icon_clipboard_in;
+            this.clipInboundButton.Name = "clipInboundButton";
+            this.clipInboundButton.TabStop = false;
+            this.mainToolTip.SetToolTip(this.clipInboundButton, resources.GetString("clipInboundButton.ToolTip"));
+            this.clipInboundButton.UseVisualStyleBackColor = true;
+            this.clipInboundButton.Click += new System.EventHandler(this.clipInboundButton_Click);
+            // 
+            // statsButton
+            // 
+            resources.ApplyResources(this.statsButton, "statsButton");
+            this.statsButton.Name = "statsButton";
+            this.statsButton.TabStop = false;
+            this.mainToolTip.SetToolTip(this.statsButton, resources.GetString("statsButton.ToolTip"));
+            this.statsButton.UseVisualStyleBackColor = true;
+            this.statsButton.Click += new System.EventHandler(this.statsButton_Click);
             // 
             // displaySelectComboBox
             // 
@@ -115,14 +149,17 @@ namespace MeshCentralRouter
             resources.ApplyResources(this.settingsButton, "settingsButton");
             this.settingsButton.Name = "settingsButton";
             this.settingsButton.TabStop = false;
+            this.mainToolTip.SetToolTip(this.settingsButton, resources.GetString("settingsButton.ToolTip"));
             this.settingsButton.UseVisualStyleBackColor = true;
             this.settingsButton.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
             // zoomButton
             // 
             resources.ApplyResources(this.zoomButton, "zoomButton");
+            this.zoomButton.Image = global::MeshCentralRouter.Properties.Resources.ZoomToFit;
             this.zoomButton.Name = "zoomButton";
             this.zoomButton.TabStop = false;
+            this.mainToolTip.SetToolTip(this.zoomButton, resources.GetString("zoomButton.ToolTip"));
             this.zoomButton.UseVisualStyleBackColor = true;
             this.zoomButton.Click += new System.EventHandler(this.zoomButton_Click);
             // 
@@ -131,6 +168,7 @@ namespace MeshCentralRouter
             resources.ApplyResources(this.cadButton, "cadButton");
             this.cadButton.Name = "cadButton";
             this.cadButton.TabStop = false;
+            this.mainToolTip.SetToolTip(this.cadButton, resources.GetString("cadButton.ToolTip"));
             this.cadButton.UseVisualStyleBackColor = true;
             this.cadButton.Click += new System.EventHandler(this.sendCtrlAltDelToolStripMenuItem_Click);
             // 
@@ -139,6 +177,7 @@ namespace MeshCentralRouter
             resources.ApplyResources(this.connectButton, "connectButton");
             this.connectButton.Name = "connectButton";
             this.connectButton.TabStop = false;
+            this.mainToolTip.SetToolTip(this.connectButton, resources.GetString("connectButton.ToolTip"));
             this.connectButton.UseVisualStyleBackColor = true;
             this.connectButton.Click += new System.EventHandler(this.MenuItemDisconnect_Click);
             // 
@@ -152,14 +191,6 @@ namespace MeshCentralRouter
             // 
             this.consoleTimer.Interval = 5000;
             this.consoleTimer.Tick += new System.EventHandler(this.consoleTimer_Tick);
-            // 
-            // statsButton
-            // 
-            resources.ApplyResources(this.statsButton, "statsButton");
-            this.statsButton.Name = "statsButton";
-            this.statsButton.TabStop = false;
-            this.statsButton.UseVisualStyleBackColor = true;
-            this.statsButton.Click += new System.EventHandler(this.statsButton_Click);
             // 
             // resizeKvmControl
             // 
@@ -206,6 +237,9 @@ namespace MeshCentralRouter
         private Label consoleMessage;
         private Timer consoleTimer;
         private Button statsButton;
+        private Button clipInboundButton;
+        private Button clipOutboundButton;
+        private ToolTip mainToolTip;
     }
 }
 

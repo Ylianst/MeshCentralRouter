@@ -167,7 +167,70 @@
   <metadata name="updateTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>264, 17</value>
   </metadata>
+  <data name="clipOutboundButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="clipOutboundButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="clipOutboundButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>324, 3</value>
+  </data>
+  <data name="clipOutboundButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 26</value>
+  </data>
+  <data name="clipOutboundButton.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <metadata name="mainToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>509, 17</value>
+  </metadata>
+  <data name="clipOutboundButton.ToolTip" xml:space="preserve">
+    <value>Push local clipboard to remote device</value>
+  </data>
+  <data name="&gt;&gt;clipOutboundButton.Name" xml:space="preserve">
+    <value>clipOutboundButton</value>
+  </data>
+  <data name="&gt;&gt;clipOutboundButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;clipOutboundButton.Parent" xml:space="preserve">
+    <value>topPanel</value>
+  </data>
+  <data name="&gt;&gt;clipOutboundButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="clipInboundButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="clipInboundButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="clipInboundButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>288, 3</value>
+  </data>
+  <data name="clipInboundButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 26</value>
+  </data>
+  <data name="clipInboundButton.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="clipInboundButton.ToolTip" xml:space="preserve">
+    <value>Pull clipboard from remote device</value>
+  </data>
+  <data name="&gt;&gt;clipInboundButton.Name" xml:space="preserve">
+    <value>clipInboundButton</value>
+  </data>
+  <data name="&gt;&gt;clipInboundButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;clipInboundButton.Parent" xml:space="preserve">
+    <value>topPanel</value>
+  </data>
+  <data name="&gt;&gt;clipInboundButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="statsButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
@@ -186,6 +249,9 @@
   <data name="statsButton.Text" xml:space="preserve">
     <value>Stats</value>
   </data>
+  <data name="statsButton.ToolTip" xml:space="preserve">
+    <value>Display connection statistics</value>
+  </data>
   <data name="&gt;&gt;statsButton.Name" xml:space="preserve">
     <value>statsButton</value>
   </data>
@@ -196,10 +262,10 @@
     <value>topPanel</value>
   </data>
   <data name="&gt;&gt;statsButton.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="displaySelectComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>383, 5</value>
+    <value>360, 5</value>
   </data>
   <data name="displaySelectComboBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>128, 21</value>
@@ -220,13 +286,13 @@
     <value>topPanel</value>
   </data>
   <data name="&gt;&gt;displaySelectComboBox.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="settingsButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="settingsButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>288, 3</value>
+    <value>193, 3</value>
   </data>
   <data name="settingsButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>89, 26</value>
@@ -236,6 +302,9 @@
   </data>
   <data name="settingsButton.Text" xml:space="preserve">
     <value>Settings</value>
+  </data>
+  <data name="settingsButton.ToolTip" xml:space="preserve">
+    <value>Change remote desktop settings</value>
   </data>
   <data name="&gt;&gt;settingsButton.Name" xml:space="preserve">
     <value>settingsButton</value>
@@ -247,22 +316,25 @@
     <value>topPanel</value>
   </data>
   <data name="&gt;&gt;settingsButton.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
+  </data>
+  <data name="zoomButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
   </data>
   <data name="zoomButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="zoomButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>193, 3</value>
+    <value>953, 3</value>
   </data>
   <data name="zoomButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>89, 26</value>
+    <value>30, 26</value>
   </data>
   <data name="zoomButton.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
-  <data name="zoomButton.Text" xml:space="preserve">
-    <value>Zoom-to-Fit</value>
+  <data name="zoomButton.ToolTip" xml:space="preserve">
+    <value>Toggle zoom-to-fit mode</value>
   </data>
   <data name="&gt;&gt;zoomButton.Name" xml:space="preserve">
     <value>zoomButton</value>
@@ -274,7 +346,10 @@
     <value>topPanel</value>
   </data>
   <data name="&gt;&gt;zoomButton.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
+  </data>
+  <data name="cadButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="cadButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -291,6 +366,9 @@
   <data name="cadButton.Text" xml:space="preserve">
     <value>Ctrl-Alt-Del</value>
   </data>
+  <data name="cadButton.ToolTip" xml:space="preserve">
+    <value>Send Ctrl-Alt-Del to remote device</value>
+  </data>
   <data name="&gt;&gt;cadButton.Name" xml:space="preserve">
     <value>cadButton</value>
   </data>
@@ -301,7 +379,7 @@
     <value>topPanel</value>
   </data>
   <data name="&gt;&gt;cadButton.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="connectButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -318,6 +396,9 @@
   <data name="connectButton.Text" xml:space="preserve">
     <value>Connect</value>
   </data>
+  <data name="connectButton.ToolTip" xml:space="preserve">
+    <value>Toggle remote desktop connection</value>
+  </data>
   <data name="&gt;&gt;connectButton.Name" xml:space="preserve">
     <value>connectButton</value>
   </data>
@@ -328,7 +409,7 @@
     <value>topPanel</value>
   </data>
   <data name="&gt;&gt;connectButton.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="topPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -412,7 +493,7 @@
     <value>resizeKvmControl</value>
   </data>
   <data name="&gt;&gt;resizeKvmControl.Type" xml:space="preserve">
-    <value>MeshCentralRouter.KVMResizeControl, MeshCentralRouter, Version=1.0.7533.35016, Culture=neutral, PublicKeyToken=null</value>
+    <value>MeshCentralRouter.KVMResizeControl, MeshCentralRouter, Version=1.0.7564.25887, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;resizeKvmControl.Parent" xml:space="preserve">
     <value>$this</value>
@@ -886,6 +967,12 @@
   </data>
   <data name="&gt;&gt;consoleTimer.Type" xml:space="preserve">
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mainToolTip.Name" xml:space="preserve">
+    <value>mainToolTip</value>
+  </data>
+  <data name="&gt;&gt;mainToolTip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>KVMViewer</value>
