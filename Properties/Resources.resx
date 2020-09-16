@@ -166,7 +166,7 @@
   <data name="MeshCentral" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\MeshCentral.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icon-clipboard-out" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="iconClipboardOut" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon-clipboard-out.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Offline" xml:space="preserve">
@@ -205,7 +205,7 @@
   <data name="Starting" xml:space="preserve">
     <value>Starting...</value>
   </data>
-  <data name="50-Computer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Computer50" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\50-Computer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="IndividualDevices" xml:space="preserve">
@@ -232,7 +232,7 @@
   <data name="UnableToBindToLocalPort" xml:space="preserve">
     <value>Unable to bind to local port</value>
   </data>
-  <data name="icon-clipboard-in" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="iconClipboardIn" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon-clipboard-in.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="InvalidUsernameOrPassword" xml:space="preserve">
@@ -240,5 +240,8 @@
   </data>
   <data name="ZoomToFit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ZoomToFit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DontAskXDays" xml:space="preserve">
+    <value>Don't ask for {0} days.</value>
   </data>
 </root>

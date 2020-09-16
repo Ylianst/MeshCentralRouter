@@ -19,39 +19,10 @@
       ]
     },
     {
-      "en": "&Connect...",
-      "fr": "&Relier...",
-      "xloc": [
-        "KVMViewer.resx%MenuItemConnect.Text"
-      ]
-    },
-    {
-      "en": "&Control",
-      "fr": "&Contrôle",
-      "xloc": [
-        "KVMViewer.resx%toolStripMenuItem2.Text"
-      ]
-    },
-    {
-      "en": "&Debug",
-      "fr": "&Déboguer",
-      "xloc": [
-        "KVMViewer.resx%debugToolStripMenuItem.Text"
-      ]
-    },
-    {
-      "en": "&Disconnect",
-      "fr": "& Déconnecter",
-      "xloc": [
-        "KVMViewer.resx%MenuItemDisconnect.Text"
-      ]
-    },
-    {
       "cs": "& Informace ...",
       "de": "&Die Info...",
       "en": "&Info...",
       "es": "& Info ...",
-      "fr": "&Info...",
       "hi": "और जानकारी ...",
       "it": "&Informazioni...",
       "ja": "情報...",
@@ -66,7 +37,6 @@
     },
     {
       "en": "&Open Mappings...",
-      "fr": "& Ouvrir les mappages ...",
       "xloc": [
         "MainForm.resx%openMappingsToolStripMenuItem.Text"
       ]
@@ -89,45 +59,15 @@
       ]
     },
     {
-      "en": "&Pause",
-      "fr": "&Pause",
-      "xloc": [
-        "KVMViewer.resx%pauseToolStripMenuItem.Text"
-      ]
-    },
-    {
-      "en": "&Refresh",
-      "fr": "&Rafraîchir",
-      "xloc": [
-        "KVMViewer.resx%refreshToolStripMenuItem.Text"
-      ]
-    },
-    {
       "en": "&Save Mappings...",
-      "fr": "& Enregistrer les mappages ...",
       "xloc": [
         "MainForm.resx%saveMappingsToolStripMenuItem.Text"
       ]
     },
     {
-      "en": "&Status",
-      "fr": "&Statut",
+      "en": "(Individual Devices)",
       "xloc": [
-        "KVMViewer.resx%statusToolStripMenuItem.Text"
-      ]
-    },
-    {
-      "en": "&View",
-      "fr": "&Vue",
-      "xloc": [
-        "KVMViewer.resx%viewToolStripMenuItem.Text"
-      ]
-    },
-    {
-      "en": "&Zoom-to-fit",
-      "fr": "& Zoomer pour ajuster",
-      "xloc": [
-        "KVMViewer.resx%zoomtofitToolStripMenuItem.Text"
+        "Properties%Resources.resx%IndividualDevices"
       ]
     },
     {
@@ -168,44 +108,54 @@
     },
     {
       "en": "---",
-      "fr": "---",
       "xloc": [
         "KVMViewer.resx%mainToolStripStatusLabel.Text"
       ]
     },
     {
+      "en": "0 Bytes",
+      "xloc": [
+        "KVMStats.resx%kvmCompInBytesLabel.Text",
+        "KVMStats.resx%kvmCompOutBytesLabel.Text",
+        "KVMStats.resx%kvmInBytesLabel.Text",
+        "KVMStats.resx%kvmOutBytesLabel.Text",
+        "MappingStats.resx%kvmCompInBytesLabel.Text",
+        "MappingStats.resx%kvmCompOutBytesLabel.Text",
+        "MappingStats.resx%kvmInBytesLabel.Text",
+        "MappingStats.resx%kvmOutBytesLabel.Text"
+      ]
+    },
+    {
+      "en": "0%",
+      "xloc": [
+        "KVMStats.resx%inRatioLabel.Text",
+        "KVMStats.resx%outRatioLabel.Text",
+        "MappingStats.resx%inRatioLabel.Text",
+        "MappingStats.resx%outRatioLabel.Text"
+      ]
+    },
+    {
       "cs": "127,0,0,1",
       "en": "127.0.0.1",
-      "fr": "127.0.0.1",
       "xloc": [
         "AddRelayMapForm.resx%remoteIpTextBox.Text"
       ]
     },
     {
       "en": "AMT",
-      "fr": "AMT",
       "hi": "एएमटी",
       "xloc": [
         "Properties%Resources.resx%AMT"
       ]
     },
     {
-      "en": "Actions",
-      "fr": "Actions",
-      "xloc": [
-        "KVMViewer.resx%actionsToolStripMenuItem.Text"
-      ]
-    },
-    {
       "en": "Add &Map...",
-      "fr": "Ajouter une & carte ...",
       "xloc": [
         "MainForm.resx%addMapToolStripMenuItem.Text"
       ]
     },
     {
       "en": "Add &Relay Map...",
-      "fr": "Ajouter une carte de & relais ...",
       "xloc": [
         "MainForm.resx%addRelayMapToolStripMenuItem.Text"
       ]
@@ -250,7 +200,6 @@
       "cs": "Činidlo",
       "en": "Agent",
       "es": "Agente",
-      "fr": "Agent",
       "hi": "एजेंट",
       "it": "Agente",
       "ja": "エージェント",
@@ -287,7 +236,6 @@
       "de": "Anwendung",
       "en": "Application",
       "es": "Solicitud",
-      "fr": "Application",
       "hi": "आवेदन",
       "it": "Applicazione",
       "ja": "応用",
@@ -394,7 +342,6 @@
     },
     {
       "en": "CIRA",
-      "fr": "CIRA",
       "hi": "सीआईआरए",
       "ja": "チラ",
       "ko": "시라",
@@ -497,6 +444,13 @@
       "zh-chs": "关",
       "xloc": [
         "MainForm.resx%nextButton5.Text"
+      ]
+    },
+    {
+      "en": "Compressed Network Traffic",
+      "xloc": [
+        "KVMStats.resx%groupBox1.Text",
+        "MappingStats.resx%groupBox1.Text"
       ]
     },
     {
@@ -613,6 +567,13 @@
       ]
     },
     {
+      "en": "Don't ask for {0} days.",
+      "xloc": [
+        "MainForm.resx%tokenRememberCheckBox.Text",
+        "Properties%Resources.resx%DontAskXDays"
+      ]
+    },
+    {
       "cs": "Výstup",
       "de": "Ausgang",
       "en": "E&xit",
@@ -627,7 +588,6 @@
       "ru": "Выход",
       "zh-chs": "出口",
       "xloc": [
-        "KVMViewer.resx%MenuItemExit.Text",
         "MainForm.resx%exitToolStripMenuItem.Text"
       ]
     },
@@ -635,7 +595,6 @@
       "cs": "E-mailem",
       "en": "Email",
       "es": "Correo electrónico",
-      "fr": "Email",
       "hi": "ईमेल",
       "it": "E-mail",
       "ja": "Eメール",
@@ -748,7 +707,6 @@
     },
     {
       "en": "HTTP",
-      "fr": "HTTP",
       "hi": "एचटीटीपी",
       "xloc": [
         "DeviceUserControl.resx%httpButton.Text",
@@ -757,7 +715,6 @@
     },
     {
       "en": "HTTPS",
-      "fr": "HTTPS",
       "xloc": [
         "DeviceUserControl.resx%httpsButton.Text",
         "MainForm.resx%httpsToolStripMenuItem.Text"
@@ -782,6 +739,22 @@
       ]
     },
     {
+      "en": "Incoming Bytes",
+      "xloc": [
+        "KVMStats.resx%label12.Text",
+        "KVMStats.resx%label4.Text",
+        "MappingStats.resx%label12.Text",
+        "MappingStats.resx%label4.Text"
+      ]
+    },
+    {
+      "en": "Incoming Compression",
+      "xloc": [
+        "KVMStats.resx%label11.Text",
+        "MappingStats.resx%label11.Text"
+      ]
+    },
+    {
       "cs": "Nainstalujte...",
       "de": "Installieren...",
       "en": "Install...",
@@ -803,7 +776,6 @@
       "cs": "Instalace",
       "en": "Installation",
       "es": "Instalación",
-      "fr": "Installation",
       "hi": "स्थापना",
       "it": "Installazione",
       "ja": "取り付け",
@@ -910,7 +882,6 @@
     },
     {
       "en": "MQTT",
-      "fr": "MQTT",
       "xloc": [
         "Properties%Resources.resx%MQTT"
       ]
@@ -936,7 +907,6 @@
     },
     {
       "en": "MeshCentral",
-      "fr": "MeshCentral",
       "zh-chs": "网格中心",
       "xloc": [
         "Properties%Resources.resx%MeshCentralTitle"
@@ -1008,6 +978,8 @@
       "ru": "имя",
       "zh-chs": "名称",
       "xloc": [
+        "AddPortMapForm.resx%label8.Text",
+        "AddRelayMapForm.resx%label8.Text",
         "AppLaunchForm.resx%label1.Text",
         "MainForm.resx%nameColumnHeader.Text"
       ]
@@ -1100,6 +1072,8 @@
         "AppLaunchForm.resx%okButton.Text",
         "InstallForm.resx%okButton.Text",
         "KVMSettingsForm.resx%okButton.Text",
+        "KVMStats.resx%okButton.Text",
+        "MappingStats.resx%okButton.Text",
         "SettingsForm.resx%okButton.Text",
         "altPortForm.resx%okButton.Text",
         "rdpPortForm.resx%okButton.Text"
@@ -1171,6 +1145,22 @@
       "zh-chs": "打开...",
       "xloc": [
         "MapUserControl.resx%appButton.Text"
+      ]
+    },
+    {
+      "en": "Outgoing Bytes",
+      "xloc": [
+        "KVMStats.resx%label2.Text",
+        "KVMStats.resx%label3.Text",
+        "MappingStats.resx%label2.Text",
+        "MappingStats.resx%label3.Text"
+      ]
+    },
+    {
+      "en": "Outgoing Compression",
+      "xloc": [
+        "KVMStats.resx%label10.Text",
+        "MappingStats.resx%label10.Text"
       ]
     },
     {
@@ -1287,7 +1277,6 @@
     },
     {
       "en": "RDP",
-      "fr": "RDP",
       "hi": "आरडीपी",
       "xloc": [
         "DeviceUserControl.resx%rdpButton.Text",
@@ -1368,10 +1357,22 @@
       ]
     },
     {
+      "en": "Remember this certificate",
+      "xloc": [
+        "MainForm.resx%rememberCertCheckBox.Text"
+      ]
+    },
+    {
       "en": "Remote Desktop",
       "fr": "Bureau à distance",
       "xloc": [
         "KVMViewer.resx%$this.Text"
+      ]
+    },
+    {
+      "en": "Remote Desktop Data",
+      "xloc": [
+        "KVMStats.resx%groupBox2.Text"
       ]
     },
     {
@@ -1382,8 +1383,13 @@
       ]
     },
     {
+      "en": "Remote Desktop Stats",
+      "xloc": [
+        "KVMStats.resx%$this.Text"
+      ]
+    },
+    {
       "en": "Remote Desktop...",
-      "fr": "Bureau à distance...",
       "xloc": [
         "MainForm.resx%remoteDesktopToolStripMenuItem.Text"
       ]
@@ -1469,6 +1475,12 @@
       ]
     },
     {
+      "en": "Routing Stats",
+      "xloc": [
+        "MappingStats.resx%$this.Text"
+      ]
+    },
+    {
       "cs": "Stav směrování",
       "de": "Routing-Status",
       "en": "Routing Status",
@@ -1488,7 +1500,6 @@
     },
     {
       "en": "SCP",
-      "fr": "SCP",
       "xloc": [
         "DeviceUserControl.resx%scpButton.Text",
         "MainForm.resx%scpToolStripMenuItem.Text"
@@ -1496,7 +1507,6 @@
     },
     {
       "en": "SMS",
-      "fr": "SMS",
       "hi": "एसएमएस",
       "it": "sms",
       "nl": "sms",
@@ -1526,7 +1536,6 @@
     },
     {
       "en": "SSH",
-      "fr": "SSH",
       "zh-chs": "SSH协议",
       "xloc": [
         "DeviceUserControl.resx%sshButton.Text",
@@ -1556,13 +1565,6 @@
       "zh-chs": "搜索",
       "xloc": [
         "Properties%Resources.resx%SearchPlaceHolder"
-      ]
-    },
-    {
-      "en": "Send &Ctrl-Alt-Del",
-      "fr": "Envoyer & Ctrl-Alt-Suppr",
-      "xloc": [
-        "KVMViewer.resx%sendCtrlAltDelToolStripMenuItem.Text"
       ]
     },
     {
@@ -1650,13 +1652,6 @@
       "zh-chs": "服务器名称",
       "xloc": [
         "ServerUserControl.resx%serverNameLabel.Text"
-      ]
-    },
-    {
-      "en": "Session Settings...",
-      "fr": "Paramètres de session ...",
-      "xloc": [
-        "KVMViewer.resx%settingsToolStripMenuItem.Text"
       ]
     },
     {
@@ -1757,7 +1752,6 @@
       "de": "Seite? ˅",
       "en": "Site",
       "es": "Sitio",
-      "fr": "Site",
       "hi": "साइट",
       "it": "Luogo",
       "ja": "地点",
@@ -1825,9 +1819,20 @@
     },
     {
       "en": "State",
-      "fr": "Etat",
       "xloc": [
         "MainForm.resx%stateColumnHeader.Text"
+      ]
+    },
+    {
+      "en": "Stats",
+      "xloc": [
+        "KVMViewer.resx%statsButton.Text"
+      ]
+    },
+    {
+      "en": "Stats...",
+      "xloc": [
+        "MapUserControl.resx%statsToolStripMenuItem.Text"
       ]
     },
     {
@@ -1868,7 +1873,6 @@
     },
     {
       "en": "TCP",
-      "fr": "TCP",
       "hi": "टीसीपी",
       "zh-chs": "TCP协议",
       "xloc": [
@@ -1913,6 +1917,12 @@
       ]
     },
     {
+      "en": "Tunnelling Data",
+      "xloc": [
+        "MappingStats.resx%groupBox2.Text"
+      ]
+    },
+    {
       "cs": "Dvoufaktorové ověření",
       "de": "Zwei-Faktor-Authentifizierung",
       "en": "Two-factor Authentication",
@@ -1932,7 +1942,6 @@
     },
     {
       "en": "UDP",
-      "fr": "UDP",
       "hi": "यूडीपी",
       "zh-chs": "UDP协议",
       "xloc": [
@@ -2067,22 +2076,13 @@
       ]
     },
     {
-      "en": "Zoom-to-Fit",
-      "fr": "Ajustement Zoom",
+      "en": "label1",
       "xloc": [
-        "KVMViewer.resx%zoomButton.Text"
-      ]
-    },
-    {
-      "en": "menuStrip1",
-      "fr": "menuStrip1",
-      "xloc": [
-        "KVMViewer.resx%mainMenu.Text"
+        "KVMViewer.resx%consoleMessage.Text"
       ]
     },
     {
       "en": "statusStrip1",
-      "fr": "statusStrip1",
       "xloc": [
         "KVMViewer.resx%mainStatusStrip.Text"
       ]
@@ -2095,7 +2095,6 @@
     },
     {
       "en": "v0.8.0",
-      "fr": "v0.8.0",
       "xloc": [
         "MainForm.resx%versionLabel.Text"
       ]

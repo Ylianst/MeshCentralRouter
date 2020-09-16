@@ -51,13 +51,6 @@ namespace MeshCentralRouter
         public ArrayList mappingsToSetup = null;
         public bool deviceListViewMode = true;
 
-        public void setRegValue(string name, string value) {
-            try { Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\Open Source\MeshCentral Router", name, value); } catch (Exception) { }
-        }
-        public string getRegValue(string name, string value) {
-            try { return Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\Open Source\MeshCentral Router", name, value).ToString(); } catch (Exception) { return value; }
-        }
-
         public bool isRouterHooked()
         {
             try
@@ -144,13 +137,13 @@ namespace MeshCentralRouter
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         private static extern Int32 SendMessage(IntPtr hWnd, int msg, int wParam, [MarshalAs(UnmanagedType.LPWStr)]string lParam);
 
-        public static void saveToRegistry(string name, string value)
+        public void setRegValue(string name, string value)
         {
-            try { Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\OpenSource\MeshRouter", name, value); } catch (Exception) { }
+            try { Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\Open Source\MeshCentral Router", name, value); } catch (Exception) { }
         }
-        public static string loadFromRegistry(string name)
+        public string getRegValue(string name, string value)
         {
-            try { return Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\OpenSource\MeshRouter", name, "").ToString(); } catch (Exception) { return ""; }
+            try { return Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\Open Source\MeshCentral Router", name, value).ToString(); } catch (Exception) { return value; }
         }
 
         public MainForm(string[] args)
@@ -165,8 +158,8 @@ namespace MeshCentralRouter
             Version version = Assembly.GetEntryAssembly().GetName().Version;
             versionLabel.Text = "v" + version.Major + "." + version.Minor + "." + version.Build;
 
-            serverNameComboBox.Text = loadFromRegistry("ServerName");
-            userNameTextBox.Text = loadFromRegistry("UserName");
+            serverNameComboBox.Text = getRegValue("ServerName", "");
+            userNameTextBox.Text = getRegValue("UserName", "");
             title = this.Text;
 
             int argflags = 0;
@@ -203,6 +196,7 @@ namespace MeshCentralRouter
             currentPanel = newPanel;
 
             // Setup stuff
+            if (newPanel == 1) { tokenRememberCheckBox.Checked = false; }
             nextButton2.Enabled = (tokenTextBox.Text.Replace(" ", "") != "");
         }
 
@@ -314,15 +308,20 @@ namespace MeshCentralRouter
             meshcentral.onNodesChanged += Meshcentral_onNodesChanged;
             meshcentral.onLoginTokenChanged += Meshcentral_onLoginTokenChanged;
             meshcentral.onClipboardData += Meshcentral_onClipboardData;
+            meshcentral.onTwoFactorCookie += Meshcentral_onTwoFactorCookie;
             if (lastBadConnectCert != null)
             {
                 meshcentral.okCertHash = lastBadConnectCert.GetCertHashString();
             }
             else
             {
-                string ignoreCert = loadFromRegistry("IgnoreCert");
+                string ignoreCert = getRegValue("IgnoreCert", null);
                 if (ignoreCert != null) { meshcentral.okCertHash = ignoreCert; }
             }
+
+            // Load two factor cookie if present
+            string twoFactorCookie = getRegValue("TwoFactorCookie", null);
+            if ((twoFactorCookie != null) && (twoFactorCookie != "")) { twoFactorCookie = "cookie=" + twoFactorCookie; } else { twoFactorCookie = null; }
 
             Uri serverurl = null;
             if (authLoginUrl != null) {
@@ -333,7 +332,7 @@ namespace MeshCentralRouter
                 meshcentral.connect(serverurl, null, null, null);
             } else {
                 try { serverurl = new Uri("wss://" + serverNameComboBox.Text + "/control.ashx"); } catch (Exception) { }
-                meshcentral.connect(serverurl, userNameTextBox.Text, passwordTextBox.Text, null);
+                meshcentral.connect(serverurl, userNameTextBox.Text, passwordTextBox.Text, twoFactorCookie);
             }
         }
 
@@ -343,10 +342,16 @@ namespace MeshCentralRouter
             Clipboard.SetData(DataFormats.Text, (Object)data);
         }
 
+        private void Meshcentral_onTwoFactorCookie(string cookie)
+        {
+            if (this.InvokeRequired) { this.Invoke(new MeshCentralServer.twoFactorCookieHandler(Meshcentral_onTwoFactorCookie), cookie); return; }
+            setRegValue("TwoFactorCookie", cookie);
+        }
+
         private void nextButton3_Click(object sender, EventArgs e)
         {
             // If we need to remember this certificate
-            if (rememberCertCheckBox.Checked) { saveToRegistry("IgnoreCert", lastBadConnectCert.GetCertHashString()); }
+            if (rememberCertCheckBox.Checked) { setRegValue("IgnoreCert", lastBadConnectCert.GetCertHashString()); }
 
             // Attempt to login, ignore bad cert.
             addButton.Enabled = false;
@@ -359,6 +364,7 @@ namespace MeshCentralRouter
             meshcentral.onNodesChanged += Meshcentral_onNodesChanged;
             meshcentral.onLoginTokenChanged += Meshcentral_onLoginTokenChanged;
             meshcentral.onClipboardData += Meshcentral_onClipboardData;
+            meshcentral.onTwoFactorCookie += Meshcentral_onTwoFactorCookie;
             meshcentral.okCertHash = lastBadConnectCert.GetCertHashString();
 
             Uri serverurl = null;
@@ -367,8 +373,11 @@ namespace MeshCentralRouter
                 serverurl = new Uri("wss://" + authLoginUrl.Host + ":" + ((authLoginUrl.Port > 0) ? authLoginUrl.Port : 443) + authLoginUrl.LocalPath + "?auth=" + getValueFromQueryString(authLoginUrl.Query, "c"));
                 meshcentral.connect(serverurl, null, null, null);
             } else {
+                // Load two factor cookie if present
+                string twoFactorCookie = getRegValue("TwoFactorCookie", null);
+                if ((twoFactorCookie != null) && (twoFactorCookie != "")) { twoFactorCookie = "cookie=" + twoFactorCookie; } else { twoFactorCookie = null; }
                 serverurl = new Uri("wss://" + serverNameComboBox.Text + "/control.ashx");
-                meshcentral.connect(serverurl, userNameTextBox.Text, passwordTextBox.Text, null);
+                meshcentral.connect(serverurl, userNameTextBox.Text, passwordTextBox.Text, twoFactorCookie);
             }
         }
 
@@ -577,6 +586,13 @@ namespace MeshCentralRouter
                         smsTokenButton.Left = emailTokenButton.Left;
                     }
                     tokenTextBox.Text = "";
+                    if (meshcentral.twoFactorCookieDays > 0) {
+                        tokenRememberCheckBox.Visible = true;
+                        tokenRememberCheckBox.Text = string.Format(Properties.Resources.DontAskXDays, meshcentral.twoFactorCookieDays);
+                    } else {
+                        tokenRememberCheckBox.Visible = false;
+                    }
+
                     setPanel(2);
                     tokenTextBox.Focus();
                 } else { setPanel(1); }
@@ -652,8 +668,8 @@ namespace MeshCentralRouter
                 addButton.Focus();
                 if (authLoginUrl == null)
                 {
-                    saveToRegistry("ServerName", serverNameComboBox.Text);
-                    saveToRegistry("UserName", userNameTextBox.Text);
+                    setRegValue("ServerName", serverNameComboBox.Text);
+                    setRegValue("UserName", userNameTextBox.Text);
                 }
                 if (meshcentral.username != null) {
                     this.Text = title + " - " + meshcentral.username;
@@ -661,6 +677,9 @@ namespace MeshCentralRouter
                     this.Text = title + " - " + userNameTextBox.Text;
                 }
                 cookieRefreshTimer.Enabled = true;
+
+                // If we need to remember the 2nd factor, ask for a cookie now.
+                if (tokenRememberCheckBox.Checked) { meshcentral.sendCommand("{\"action\":\"twoFactorCookie\"}"); }
             }
         }
 
@@ -885,13 +904,14 @@ namespace MeshCentralRouter
             if (lastBadConnectCert != null) {
                 meshcentral.okCertHash = lastBadConnectCert.GetCertHashString();
             } else {
-                string ignoreCert = loadFromRegistry("IgnoreCert");
+                string ignoreCert = getRegValue("IgnoreCert", null);
                 if (ignoreCert != null) { meshcentral.okCertHash = ignoreCert; }
             }
             meshcentral.onStateChanged += Meshcentral_onStateChanged;
             meshcentral.onNodesChanged += Meshcentral_onNodesChanged;
             meshcentral.onLoginTokenChanged += Meshcentral_onLoginTokenChanged;
             meshcentral.onClipboardData += Meshcentral_onClipboardData;
+            meshcentral.onTwoFactorCookie += Meshcentral_onTwoFactorCookie;
             if (sendEmailToken == true)
             {
                 sendEmailToken = false;

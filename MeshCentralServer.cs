@@ -62,6 +62,7 @@ namespace MeshCentralRouter
         public bool ignoreCert = false;
         public string userid = null;
         public string username = null;
+        public int twoFactorCookieDays = 0;
         public Dictionary<string, ulong> userRights = null;
         public Dictionary<string, string> userGroups = null;
 
@@ -205,6 +206,7 @@ namespace MeshCentralRouter
                         if (jsonAction.ContainsKey("email2fasent")) { disconnectEmail2FASent = (bool)jsonAction["email2fasent"]; } else { disconnectEmail2FASent = false; }
                         if (jsonAction.ContainsKey("sms2fa")) { disconnectSms2FA = (bool)jsonAction["sms2fa"]; } else { disconnectSms2FA = false; }
                         if (jsonAction.ContainsKey("sms2fasent")) { disconnectSms2FASent = (bool)jsonAction["sms2fasent"]; } else { disconnectSms2FASent = false; }
+                        if (jsonAction.ContainsKey("twoFactorCookieDays") && (jsonAction["twoFactorCookieDays"].GetType() == typeof(int))) { twoFactorCookieDays = (int)jsonAction["twoFactorCookieDays"]; }
                         break;
                     }
                 case "serverinfo":
@@ -569,6 +571,15 @@ namespace MeshCentralRouter
                         }
                         break;
                     }
+                case "twoFactorCookie":
+                    {
+                        if (jsonAction.ContainsKey("cookie"))
+                        {
+                            string cookie = (string)jsonAction["cookie"];
+                            if (onTwoFactorCookie != null) { onTwoFactorCookie(cookie); }
+                        }
+                        break;
+                    }
                 default:
                     {
                         break;
@@ -586,6 +597,8 @@ namespace MeshCentralRouter
         public event onLoginTokenChangedHandler onLoginTokenChanged;
         public delegate void onClipboardDataHandler(string nodeid, string data);
         public event onClipboardDataHandler onClipboardData;
+        public delegate void twoFactorCookieHandler(string cookie);
+        public event twoFactorCookieHandler onTwoFactorCookie;
 
         public class xwebclient : IDisposable
         {

@@ -61,16 +61,6 @@ namespace MeshCentralRouter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap _50_Computer {
-            get {
-                object obj = ResourceManager.GetObject("50-Computer", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Agent.
         /// </summary>
         internal static string Agent {
@@ -94,6 +84,25 @@ namespace MeshCentralRouter.Properties {
         internal static string CIRA {
             get {
                 return ResourceManager.GetString("CIRA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Computer50 {
+            get {
+                object obj = ResourceManager.GetObject("Computer50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Don&apos;t ask for {0} days..
+        /// </summary>
+        internal static string DontAskXDays {
+            get {
+                return ResourceManager.GetString("DontAskXDays", resourceCulture);
             }
         }
         
@@ -168,9 +177,9 @@ namespace MeshCentralRouter.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icon_clipboard_in {
+        internal static System.Drawing.Bitmap iconClipboardIn {
             get {
-                object obj = ResourceManager.GetObject("icon-clipboard-in", resourceCulture);
+                object obj = ResourceManager.GetObject("iconClipboardIn", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -178,9 +187,9 @@ namespace MeshCentralRouter.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icon_clipboard_out {
+        internal static System.Drawing.Bitmap iconClipboardOut {
             get {
-                object obj = ResourceManager.GetObject("icon-clipboard-out", resourceCulture);
+                object obj = ResourceManager.GetObject("iconClipboardOut", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

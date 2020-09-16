@@ -110,7 +110,7 @@ namespace MeshCentralRouter
             // clipOutboundButton
             // 
             resources.ApplyResources(this.clipOutboundButton, "clipOutboundButton");
-            this.clipOutboundButton.Image = global::MeshCentralRouter.Properties.Resources.icon_clipboard_out;
+            this.clipOutboundButton.Image = global::MeshCentralRouter.Properties.Resources.iconClipboardOut;
             this.clipOutboundButton.Name = "clipOutboundButton";
             this.clipOutboundButton.TabStop = false;
             this.mainToolTip.SetToolTip(this.clipOutboundButton, resources.GetString("clipOutboundButton.ToolTip"));
@@ -120,7 +120,7 @@ namespace MeshCentralRouter
             // clipInboundButton
             // 
             resources.ApplyResources(this.clipInboundButton, "clipInboundButton");
-            this.clipInboundButton.Image = global::MeshCentralRouter.Properties.Resources.icon_clipboard_in;
+            this.clipInboundButton.Image = global::MeshCentralRouter.Properties.Resources.iconClipboardIn;
             this.clipInboundButton.Name = "clipInboundButton";
             this.clipInboundButton.TabStop = false;
             this.mainToolTip.SetToolTip(this.clipInboundButton, resources.GetString("clipInboundButton.ToolTip"));

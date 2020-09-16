@@ -63,6 +63,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.rememberCertCheckBox = new System.Windows.Forms.CheckBox();
             this.certDetailsTextBox = new System.Windows.Forms.TextBox();
             this.certDetailsButton = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
@@ -124,7 +125,7 @@
             this.saveMappingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openMapFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveMapFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.rememberCertCheckBox = new System.Windows.Forms.CheckBox();
+            this.tokenRememberCheckBox = new System.Windows.Forms.CheckBox();
             this.panel5.SuspendLayout();
             this.mainPanel.SuspendLayout();
             this.mainTabControl.SuspendLayout();
@@ -308,6 +309,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.tokenRememberCheckBox);
             this.panel2.Controls.Add(this.emailTokenButton);
             this.panel2.Controls.Add(this.smsTokenButton);
             this.panel2.Controls.Add(this.tokenEmailSentLabel);
@@ -405,6 +407,12 @@
             this.panel3.Controls.Add(this.pictureBox5);
             resources.ApplyResources(this.panel3, "panel3");
             this.panel3.Name = "panel3";
+            // 
+            // rememberCertCheckBox
+            // 
+            resources.ApplyResources(this.rememberCertCheckBox, "rememberCertCheckBox");
+            this.rememberCertCheckBox.Name = "rememberCertCheckBox";
+            this.rememberCertCheckBox.UseVisualStyleBackColor = true;
             // 
             // certDetailsTextBox
             // 
@@ -855,11 +863,11 @@
             this.saveMapFileDialog.DefaultExt = "mcrouter";
             resources.ApplyResources(this.saveMapFileDialog, "saveMapFileDialog");
             // 
-            // rememberCertCheckBox
+            // tokenRememberCheckBox
             // 
-            resources.ApplyResources(this.rememberCertCheckBox, "rememberCertCheckBox");
-            this.rememberCertCheckBox.Name = "rememberCertCheckBox";
-            this.rememberCertCheckBox.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.tokenRememberCheckBox, "tokenRememberCheckBox");
+            this.tokenRememberCheckBox.Name = "tokenRememberCheckBox";
+            this.tokenRememberCheckBox.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -1005,6 +1013,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem remoteDesktopToolStripMenuItem;
         private System.Windows.Forms.CheckBox rememberCertCheckBox;
+        private System.Windows.Forms.CheckBox tokenRememberCheckBox;
     }
 }
 
