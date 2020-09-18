@@ -328,12 +328,26 @@ namespace MeshCentralRouter
             if (authLoginUrl != null) {
                 try {
                     meshcentral.okCertHash2 = getValueFromQueryString(authLoginUrl.Query, "t");
-                    serverurl = new Uri("wss://" + authLoginUrl.Host + ":" + ((authLoginUrl.Port > 0) ? authLoginUrl.Port : 443) + authLoginUrl.LocalPath + "?auth=" + getValueFromQueryString(authLoginUrl.Query, "c"));
+                    string loginkey = getValueFromQueryString(authLoginUrl.Query, "key");
+                    string urlstring = "wss://" + authLoginUrl.Host + ":" + ((authLoginUrl.Port > 0) ? authLoginUrl.Port : 443) + authLoginUrl.LocalPath + "?auth=" + getValueFromQueryString(authLoginUrl.Query, "c");
+                    if (loginkey != null) { urlstring += ("&key=" + loginkey); }
+                    serverurl = new Uri(urlstring);
                 } catch (Exception) { }
                 meshcentral.connect(serverurl, null, null, null);
             } else {
-                try { serverurl = new Uri("wss://" + serverNameComboBox.Text + "/control.ashx"); } catch (Exception) { }
-                meshcentral.connect(serverurl, userNameTextBox.Text, passwordTextBox.Text, twoFactorCookie);
+                int keyIndex = serverNameComboBox.Text.IndexOf("?key=");
+                if (keyIndex >= 0)
+                {
+                    string hostname = serverNameComboBox.Text.Substring(0, keyIndex);
+                    string loginkey = serverNameComboBox.Text.Substring(keyIndex + 5);
+                    try { serverurl = new Uri("wss://" + hostname + "/control.ashx?key=" + loginkey); } catch (Exception) { }
+                    meshcentral.connect(serverurl, userNameTextBox.Text, passwordTextBox.Text, twoFactorCookie);
+                }
+                else
+                {
+                    try { serverurl = new Uri("wss://" + serverNameComboBox.Text + "/control.ashx"); } catch (Exception) { }
+                    meshcentral.connect(serverurl, userNameTextBox.Text, passwordTextBox.Text, twoFactorCookie);
+                }
             }
         }
 
