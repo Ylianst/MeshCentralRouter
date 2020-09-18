@@ -117,255 +117,30 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="mainStatusStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>127, 17</value>
-  </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="mainToolStripStatusLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1029, 17</value>
-  </data>
-  <data name="mainToolStripStatusLabel.Text" xml:space="preserve">
-    <value>---</value>
-  </data>
-  <data name="mainToolStripStatusLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="toolStripStatusLabel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>13, 17</value>
-  </data>
-  <data name="toolStripStatusLabel1.Text" xml:space="preserve">
-    <value>v</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="toolStripStatusLabel1.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="mainStatusStrip.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 772</value>
-  </data>
-  <data name="mainStatusStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1044, 22</value>
-  </data>
-  <data name="mainStatusStrip.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="mainStatusStrip.Text" xml:space="preserve">
-    <value>statusStrip1</value>
-  </data>
-  <data name="&gt;&gt;mainStatusStrip.Name" xml:space="preserve">
-    <value>mainStatusStrip</value>
-  </data>
-  <data name="&gt;&gt;mainStatusStrip.Type" xml:space="preserve">
-    <value>System.Windows.Forms.StatusStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mainStatusStrip.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;mainStatusStrip.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
   <metadata name="updateTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>264, 17</value>
+    <value>17, 17</value>
   </metadata>
-  <data name="&gt;&gt;clipOutboundButton.Name" xml:space="preserve">
-    <value>clipOutboundButton</value>
-  </data>
-  <data name="&gt;&gt;clipOutboundButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;clipOutboundButton.Parent" xml:space="preserve">
-    <value>topPanel</value>
-  </data>
-  <data name="&gt;&gt;clipOutboundButton.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;clipInboundButton.Name" xml:space="preserve">
-    <value>clipInboundButton</value>
-  </data>
-  <data name="&gt;&gt;clipInboundButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;clipInboundButton.Parent" xml:space="preserve">
-    <value>topPanel</value>
-  </data>
-  <data name="&gt;&gt;clipInboundButton.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;statsButton.Name" xml:space="preserve">
-    <value>statsButton</value>
-  </data>
-  <data name="&gt;&gt;statsButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;statsButton.Parent" xml:space="preserve">
-    <value>topPanel</value>
-  </data>
-  <data name="&gt;&gt;statsButton.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;displaySelectComboBox.Name" xml:space="preserve">
-    <value>displaySelectComboBox</value>
-  </data>
-  <data name="&gt;&gt;displaySelectComboBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;displaySelectComboBox.Parent" xml:space="preserve">
-    <value>topPanel</value>
-  </data>
-  <data name="&gt;&gt;displaySelectComboBox.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;settingsButton.Name" xml:space="preserve">
-    <value>settingsButton</value>
-  </data>
-  <data name="&gt;&gt;settingsButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;settingsButton.Parent" xml:space="preserve">
-    <value>topPanel</value>
-  </data>
-  <data name="&gt;&gt;settingsButton.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;zoomButton.Name" xml:space="preserve">
-    <value>zoomButton</value>
-  </data>
-  <data name="&gt;&gt;zoomButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;zoomButton.Parent" xml:space="preserve">
-    <value>topPanel</value>
-  </data>
-  <data name="&gt;&gt;zoomButton.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;cadButton.Name" xml:space="preserve">
-    <value>cadButton</value>
-  </data>
-  <data name="&gt;&gt;cadButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cadButton.Parent" xml:space="preserve">
-    <value>topPanel</value>
-  </data>
-  <data name="&gt;&gt;cadButton.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;connectButton.Name" xml:space="preserve">
-    <value>connectButton</value>
-  </data>
-  <data name="&gt;&gt;connectButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;connectButton.Parent" xml:space="preserve">
-    <value>topPanel</value>
-  </data>
-  <data name="&gt;&gt;connectButton.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="topPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="topPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="topPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1044, 32</value>
-  </data>
-  <data name="topPanel.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="topPanel.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;topPanel.Name" xml:space="preserve">
-    <value>topPanel</value>
-  </data>
-  <data name="&gt;&gt;topPanel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;topPanel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;topPanel.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
+  <metadata name="consoleTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>138, 17</value>
+  </metadata>
   <metadata name="mainToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>509, 17</value>
+    <value>262, 17</value>
   </metadata>
-  <data name="clipOutboundButton.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="clipOutboundButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="clipOutboundButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>288, 3</value>
-  </data>
-  <data name="clipOutboundButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>30, 26</value>
-  </data>
-  <data name="clipOutboundButton.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="clipOutboundButton.ToolTip" xml:space="preserve">
-    <value>Push local clipboard to remote device</value>
-  </data>
-  <data name="&gt;&gt;clipOutboundButton.Name" xml:space="preserve">
-    <value>clipOutboundButton</value>
-  </data>
-  <data name="&gt;&gt;clipOutboundButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;clipOutboundButton.Parent" xml:space="preserve">
-    <value>topPanel</value>
-  </data>
-  <data name="&gt;&gt;clipOutboundButton.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="clipInboundButton.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="clipInboundButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="clipInboundButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>324, 3</value>
-  </data>
-  <data name="clipInboundButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>30, 26</value>
-  </data>
-  <data name="clipInboundButton.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="clipInboundButton.ToolTip" xml:space="preserve">
-    <value>Pull clipboard from remote device</value>
-  </data>
-  <data name="&gt;&gt;clipInboundButton.Name" xml:space="preserve">
-    <value>clipInboundButton</value>
-  </data>
-  <data name="&gt;&gt;clipInboundButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;clipInboundButton.Parent" xml:space="preserve">
-    <value>topPanel</value>
-  </data>
-  <data name="&gt;&gt;clipInboundButton.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="statsButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
   <data name="statsButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="statsButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>989, 3</value>
+    <value>635, 3</value>
   </data>
   <data name="statsButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 26</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="statsButton.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
@@ -375,6 +150,9 @@
   <data name="statsButton.ToolTip" xml:space="preserve">
     <value>Display connection statistics</value>
   </data>
+  <data name="statsButton.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="&gt;&gt;statsButton.Name" xml:space="preserve">
     <value>statsButton</value>
   </data>
@@ -385,124 +163,7 @@
     <value>topPanel</value>
   </data>
   <data name="&gt;&gt;statsButton.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="displaySelectComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>360, 5</value>
-  </data>
-  <data name="displaySelectComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>128, 21</value>
-  </data>
-  <data name="displaySelectComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="displaySelectComboBox.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;displaySelectComboBox.Name" xml:space="preserve">
-    <value>displaySelectComboBox</value>
-  </data>
-  <data name="&gt;&gt;displaySelectComboBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;displaySelectComboBox.Parent" xml:space="preserve">
-    <value>topPanel</value>
-  </data>
-  <data name="&gt;&gt;displaySelectComboBox.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="settingsButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="settingsButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>193, 3</value>
-  </data>
-  <data name="settingsButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>89, 26</value>
-  </data>
-  <data name="settingsButton.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="settingsButton.Text" xml:space="preserve">
-    <value>Settings</value>
-  </data>
-  <data name="settingsButton.ToolTip" xml:space="preserve">
-    <value>Change remote desktop settings</value>
-  </data>
-  <data name="&gt;&gt;settingsButton.Name" xml:space="preserve">
-    <value>settingsButton</value>
-  </data>
-  <data name="&gt;&gt;settingsButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;settingsButton.Parent" xml:space="preserve">
-    <value>topPanel</value>
-  </data>
-  <data name="&gt;&gt;settingsButton.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="zoomButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="zoomButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="zoomButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>953, 3</value>
-  </data>
-  <data name="zoomButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>30, 26</value>
-  </data>
-  <data name="zoomButton.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="zoomButton.ToolTip" xml:space="preserve">
-    <value>Toggle zoom-to-fit mode</value>
-  </data>
-  <data name="&gt;&gt;zoomButton.Name" xml:space="preserve">
-    <value>zoomButton</value>
-  </data>
-  <data name="&gt;&gt;zoomButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;zoomButton.Parent" xml:space="preserve">
-    <value>topPanel</value>
-  </data>
-  <data name="&gt;&gt;zoomButton.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="cadButton.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="cadButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="cadButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>98, 3</value>
-  </data>
-  <data name="cadButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>89, 26</value>
-  </data>
-  <data name="cadButton.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="cadButton.Text" xml:space="preserve">
-    <value>Ctrl-Alt-Del</value>
-  </data>
-  <data name="cadButton.ToolTip" xml:space="preserve">
-    <value>Send Ctrl-Alt-Del to remote device</value>
-  </data>
-  <data name="&gt;&gt;cadButton.Name" xml:space="preserve">
-    <value>cadButton</value>
-  </data>
-  <data name="&gt;&gt;cadButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cadButton.Parent" xml:space="preserve">
-    <value>topPanel</value>
-  </data>
-  <data name="&gt;&gt;cadButton.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>0</value>
   </data>
   <data name="connectButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -532,7 +193,70 @@
     <value>topPanel</value>
   </data>
   <data name="&gt;&gt;connectButton.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>1</value>
+  </data>
+  <data name="topPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="topPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="topPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>690, 32</value>
+  </data>
+  <data name="topPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;topPanel.Name" xml:space="preserve">
+    <value>topPanel</value>
+  </data>
+  <data name="&gt;&gt;topPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;topPanel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;topPanel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>381, 17</value>
+  </metadata>
+  <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 503</value>
+  </data>
+  <data name="statusStrip1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>690, 22</value>
+  </data>
+  <data name="statusStrip1.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="statusStrip1.Text" xml:space="preserve">
+    <value>statusStrip1</value>
+  </data>
+  <data name="&gt;&gt;statusStrip1.Name" xml:space="preserve">
+    <value>statusStrip1</value>
+  </data>
+  <data name="&gt;&gt;statusStrip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.StatusStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;statusStrip1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;statusStrip1.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="mainToolStripStatusLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>675, 17</value>
+  </data>
+  <data name="mainToolStripStatusLabel.Text" xml:space="preserve">
+    <value>---</value>
+  </data>
+  <data name="mainToolStripStatusLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="consoleMessage.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
   </data>
   <data name="consoleMessage.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -544,13 +268,13 @@
     <value>NoControl</value>
   </data>
   <data name="consoleMessage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 59</value>
+    <value>17, 393</value>
   </data>
   <data name="consoleMessage.Size" type="System.Drawing.Size, System.Drawing">
     <value>70, 25</value>
   </data>
   <data name="consoleMessage.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
+    <value>14</value>
   </data>
   <data name="consoleMessage.Text" xml:space="preserve">
     <value>label1</value>
@@ -565,40 +289,452 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;consoleMessage.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>leftPanel</value>
   </data>
   <data name="&gt;&gt;consoleMessage.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <metadata name="consoleTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>385, 17</value>
-  </metadata>
-  <metadata name="mainToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>509, 17</value>
-  </metadata>
-  <data name="resizeKvmControl.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="mainTableLayoutPanel.ColumnCount" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="panel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="resizeKvmControl.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>338, 3</value>
+  </data>
+  <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>14, 465</value>
+  </data>
+  <data name="panel1.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;panel1.Name" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel1.Parent" xml:space="preserve">
+    <value>mainTableLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="columnHeader3.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="columnHeader3.Width" type="System.Int32, mscorlib">
+    <value>220</value>
+  </data>
+  <data name="columnHeader4.Text" xml:space="preserve">
+    <value>Size</value>
+  </data>
+  <data name="columnHeader4.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="columnHeader4.Width" type="System.Int32, mscorlib">
+    <value>80</value>
+  </data>
+  <data name="rightListView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="rightListView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 50</value>
+  </data>
+  <data name="rightListView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>325, 411</value>
+  </data>
+  <metadata name="fileIconImageList.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>497, 17</value>
+  </metadata>
+  <data name="fileIconImageList.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
+        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
+        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAC+
+        CQAAAk1TRnQBSQFMAgEBAwEAARABAAEQAQABEAEAARABAAT/AREBAAj/AUIBTQE2BwABNgMAASgDAAFA
+        AwABEAMAAQEBAAEQBgABCDoAATABcwHKAWYBygFmAbUBexIAARABQgEQAUIBEAFCARABQgEQAUIBEAFC
+        ARABQgEQAUIBEAFCARABQgEQAUIBEAFCARABQkYAAcoBZgHKAWYBygFmAcoBZgHKAWYBygFmAcoBZgHK
+        AWYBygFmAcoBZgHKAWYBygFmATABcwYAARABQgHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7
+        Ad4BewHeAXsB3gF7ARABQkYAATABcwEwAXMBMAFzATABcwEwAXMBygFmAcoBZgHKAWYBygFmAcoBZgHK
+        AWYBygFmAcoBZgYAARABQgHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7
+        ARABQkYAATABcwEwAXMBMAFzATABcwEwAXMBygFmAcoBZgHKAWYBygFmAcoBZgHKAWYBygFmAcoBZgYA
+        ARABQgHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7ARABQiQAAVsBawFR
+        AUYBUQFGAVEBRgFRAUYBUQFGAVEBRgFRAUYBUQFGAVEBRgFRAUYBUQFGAVEBRgFRAUYBUQFGAVsBawIA
+        ATABcwEwAXMBMAFzATABcwEwAXMBygFmAcoBZgHKAWYBygFmAcoBZgHKAWYBygFmAcoBZgYAAfcBXgHe
+        AXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7AfcBXiQAAVEBRgFRAUYBUQFG
+        AVEBRgFRAUYBUQFGAVEBRgFRAUYBUQFGAVEBRgFRAUYBUQFGAVsBawFRAUYBUQFGAVEBRgIAATABcwG1
+        AXsBMAFzATABcwEwAXMBygFmAcoBZgHKAWYBMAFzAcoBZgHKAWYBtQF7AcoBZgYAAfcBXgHeAXsB3gF7
+        Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7AfcBXiQAAVEBRgFRAUYBWwFrAVsBawFb
+        AWsBWwFrAVsBawFbAWsBWwFrAVsBawFbAWsBUQFGAVEBRgFRAUYBUQFGAVEBRgIAATABcwG1AXsBtQF7
+        ATABcwEwAXMBygFmAcoBZgHKAWYBMAFzATABcwEwAXMBtQF7AcoBZgYAAfcBXgHeAXsB3gF7Ad4BewHe
+        AXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7AfcBXiQAAVEBRgFRAUYBWwFrAVsBawFbAWsBWwFr
+        AVsBawFbAWsBWwFrAVsBawFbAWsBUQFGAVEBRgFRAUYBUQFGAVEBRgIAATABcwG1AXsBtQF7AbUBewEw
+        AXMBygFmAcoBZgHKAWYBMAFzATABcwEwAXMBtQF7AcoBZgYAAfcBXgHeAXsB3gF7Ad4BewHeAXsB3gF7
+        Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7AfcBXiQAAVEBRgFbAWsBWwFrAVsBawFbAWsBWwFrAVsBawFb
+        AWsBWwFrAVsBawFbAWsBUQFGAVEBRgFRAUYBUQFGAVEBRgIAATABcwG1AXsBtQF7AbUBewG1AXsBygFm
+        AcoBZgHKAWYBMAFzATABcwEwAXMBMAFzAcoBZgYAAfcBXgHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHe
+        AXsB3gF7Ad4BewHeAXsB3gF7AfcBXiQAAVEBRgFbAWsBWwFrAf4BewH+AXsB/gF7Af4BewH+AXsB/gF7
+        Af4BewH+AXsB/gF7Af4BewFbAWsBWwFrAVEBRgIAATABcwG1AXsBtQF7AbUBewG1AXsBygFmAcoBZgHK
+        AWYBtQF7ATABcwEwAXMBygFmATABcwYAAfcBXgHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7
+        Ad4BewHeAXsB3gF7AfcBXiQAAVsBawFbAWsBUQFGAVEBRgFRAUYBUQFGAVEBRgFRAUYBUQFGAVEBRgFR
+        AUYBUQFGAVEBRgFRAUYBWwFrAVsBawIAATABcwG1AXsBtQF7AbUBewG1AXsBygFmATABcwEwAXMBtQF7
+        AbUBewG1AXsBygFmCAAB9wFeAd4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHe
+        AXsB9wFeJgABWwFrAVsBawFbAWsBWwFrAf4BewH+AXsB/gF7Af4BewH+AXsB/gF7AVsBawFbAWsBWwFr
+        AVsBawQAATABcwG1AXsBtQF7AbUBewG1AXsBygFmATABcwEwAXMBtQF7AbUBewG1AXsBygFmCAAB9wFe
+        Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB9wFeLAABWwFrAVsBawFb
+        AWsBWwFrAVsBawFbAWsBWwFrAVsBawoAATABcwG1AXsBtQF7AbUBewG1AXsBygFmATABcwEwAXMBtQF7
+        AbUBewG1AXsBygFmCAAB9wFeAd4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB9wFeAfcBXgH3
+        AV4B9wFeRgABMAFzAbUBewG1AXsBtQF7ATABcwHKAWYBMAFzAbUBewG1AXsBtQF7AbUBewHKAWYIAAH3
+        AV4B3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewH3AV4B3gF7AfcBXkgAATABcwG1AXsBMAFz
+        ATABcwG1AXsBMAFzAbUBewG1AXsBtQF7AbUBewG1AXsBMAFzCAAB9wFeAd4BewHeAXsB3gF7Ad4BewHe
+        AXsB3gF7Ad4BewHeAXsB9wFeAfcBXkoAATABcwEwAXMBMAFzATABcwEwAXMBMAFzATABcwEwAXMBMAFz
+        AcoBZgEwAXMBtQF7CAAB9wFeAfcBXgH3AV4B9wFeAfcBXgH3AV4B9wFeAfcBXgH3AV4B9wFeKgABQgFN
+        AT4HAAE+AwABKAMAAUADAAEQAwABAQEAAQEFAAGAFwAD/wEAAv8B8AH/AYABAwIAAv8BgAEDAYABAwIA
+        Av8BgAEDAYABAwIAAv8BgAEDAYABAwQAAYABAwGAAQMEAAGAAQMBgAEDBAABgAEDAYABAwQAAYABAwGA
+        AQMEAAGAAQMBgAEDBAABgAEDAYABAwQAAYABBwGAAQMCAAGAAQEBgAEHAYABAwIAAfABDwGAAQcBgAED
+        AgAC/wGAAQcBgAEHAgAC/wGAAQcBgAEPAgAC/wGAAQcBgAEfAgAL
+</value>
+  </data>
+  <data name="rightListView.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;rightListView.Name" xml:space="preserve">
+    <value>rightListView</value>
+  </data>
+  <data name="&gt;&gt;rightListView.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rightListView.Parent" xml:space="preserve">
+    <value>rightPanel</value>
+  </data>
+  <data name="&gt;&gt;rightListView.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="remoteUpButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="remoteUpButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="remoteUpButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 21</value>
+  </data>
+  <data name="remoteUpButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>46, 23</value>
+  </data>
+  <data name="remoteUpButton.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="remoteUpButton.Text" xml:space="preserve">
+    <value>Up</value>
+  </data>
+  <data name="&gt;&gt;remoteUpButton.Name" xml:space="preserve">
+    <value>remoteUpButton</value>
+  </data>
+  <data name="&gt;&gt;remoteUpButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;remoteUpButton.Parent" xml:space="preserve">
+    <value>rightTopPanel</value>
+  </data>
+  <data name="&gt;&gt;remoteUpButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="remoteLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="remoteLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="remoteLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="remoteLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>315, 13</value>
+  </data>
+  <data name="remoteLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="remoteLabel.Text" xml:space="preserve">
+    <value>Remote</value>
+  </data>
+  <data name="&gt;&gt;remoteLabel.Name" xml:space="preserve">
+    <value>remoteLabel</value>
+  </data>
+  <data name="&gt;&gt;remoteLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;remoteLabel.Parent" xml:space="preserve">
+    <value>rightTopPanel</value>
+  </data>
+  <data name="&gt;&gt;remoteLabel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="rightTopPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="rightTopPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="rightTopPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>325, 50</value>
+  </data>
+  <data name="rightTopPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;rightTopPanel.Name" xml:space="preserve">
+    <value>rightTopPanel</value>
+  </data>
+  <data name="&gt;&gt;rightTopPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rightTopPanel.Parent" xml:space="preserve">
+    <value>rightPanel</value>
+  </data>
+  <data name="&gt;&gt;rightTopPanel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="rightPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="rightPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>358, 3</value>
+  </data>
+  <data name="rightPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>329, 465</value>
+  </data>
+  <data name="rightPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;rightPanel.Name" xml:space="preserve">
+    <value>rightPanel</value>
+  </data>
+  <data name="&gt;&gt;rightPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rightPanel.Parent" xml:space="preserve">
+    <value>mainTableLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;rightPanel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;leftListView.Name" xml:space="preserve">
+    <value>leftListView</value>
+  </data>
+  <data name="&gt;&gt;leftListView.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;leftListView.Parent" xml:space="preserve">
+    <value>leftPanel</value>
+  </data>
+  <data name="&gt;&gt;leftListView.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;leftTopPanel.Name" xml:space="preserve">
+    <value>leftTopPanel</value>
+  </data>
+  <data name="&gt;&gt;leftTopPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;leftTopPanel.Parent" xml:space="preserve">
+    <value>leftPanel</value>
+  </data>
+  <data name="&gt;&gt;leftTopPanel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="leftPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="leftPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="leftPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>329, 465</value>
+  </data>
+  <data name="leftPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;leftPanel.Name" xml:space="preserve">
+    <value>leftPanel</value>
+  </data>
+  <data name="&gt;&gt;leftPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;leftPanel.Parent" xml:space="preserve">
+    <value>mainTableLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;leftPanel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="mainTableLayoutPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="mainTableLayoutPanel.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 32</value>
   </data>
-  <data name="resizeKvmControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1044, 740</value>
+  <data name="mainTableLayoutPanel.RowCount" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
-  <data name="resizeKvmControl.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
+  <data name="mainTableLayoutPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>690, 471</value>
   </data>
-  <data name="&gt;&gt;resizeKvmControl.Name" xml:space="preserve">
-    <value>resizeKvmControl</value>
+  <data name="mainTableLayoutPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
   </data>
-  <data name="&gt;&gt;resizeKvmControl.Type" xml:space="preserve">
-    <value>MeshCentralRouter.KVMResizeControl, MeshCentralRouter, Version=1.0.7565.29854, Culture=neutral, PublicKeyToken=null</value>
+  <data name="&gt;&gt;mainTableLayoutPanel.Name" xml:space="preserve">
+    <value>mainTableLayoutPanel</value>
   </data>
-  <data name="&gt;&gt;resizeKvmControl.Parent" xml:space="preserve">
+  <data name="&gt;&gt;mainTableLayoutPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mainTableLayoutPanel.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;resizeKvmControl.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;mainTableLayoutPanel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="mainTableLayoutPanel.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="panel1" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="rightPanel" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="leftPanel" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,50,Absolute,20,Percent,50" /&gt;&lt;Rows Styles="Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="columnHeader1.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="columnHeader1.Width" type="System.Int32, mscorlib">
+    <value>220</value>
+  </data>
+  <data name="columnHeader2.Text" xml:space="preserve">
+    <value>Size</value>
+  </data>
+  <data name="columnHeader2.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="columnHeader2.Width" type="System.Int32, mscorlib">
+    <value>80</value>
+  </data>
+  <data name="leftListView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="leftListView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 50</value>
+  </data>
+  <data name="leftListView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>325, 411</value>
+  </data>
+  <data name="leftListView.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;leftListView.Name" xml:space="preserve">
+    <value>leftListView</value>
+  </data>
+  <data name="&gt;&gt;leftListView.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;leftListView.Parent" xml:space="preserve">
+    <value>leftPanel</value>
+  </data>
+  <data name="&gt;&gt;leftListView.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="&gt;&gt;localUpButton.Name" xml:space="preserve">
+    <value>localUpButton</value>
+  </data>
+  <data name="&gt;&gt;localUpButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;localUpButton.Parent" xml:space="preserve">
+    <value>leftTopPanel</value>
+  </data>
+  <data name="&gt;&gt;localUpButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;localLabel.Name" xml:space="preserve">
+    <value>localLabel</value>
+  </data>
+  <data name="&gt;&gt;localLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;localLabel.Parent" xml:space="preserve">
+    <value>leftTopPanel</value>
+  </data>
+  <data name="&gt;&gt;localLabel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="leftTopPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="leftTopPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="leftTopPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>325, 50</value>
+  </data>
+  <data name="leftTopPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;leftTopPanel.Name" xml:space="preserve">
+    <value>leftTopPanel</value>
+  </data>
+  <data name="&gt;&gt;leftTopPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;leftTopPanel.Parent" xml:space="preserve">
+    <value>leftPanel</value>
+  </data>
+  <data name="&gt;&gt;leftTopPanel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="localLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="localLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="localLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>319, 13</value>
+  </data>
+  <data name="localLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="localLabel.Text" xml:space="preserve">
+    <value>Local</value>
+  </data>
+  <data name="&gt;&gt;localLabel.Name" xml:space="preserve">
+    <value>localLabel</value>
+  </data>
+  <data name="&gt;&gt;localLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;localLabel.Parent" xml:space="preserve">
+    <value>leftTopPanel</value>
+  </data>
+  <data name="&gt;&gt;localLabel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="localUpButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 21</value>
+  </data>
+  <data name="localUpButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>46, 23</value>
+  </data>
+  <data name="localUpButton.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="localUpButton.Text" xml:space="preserve">
+    <value>Up</value>
+  </data>
+  <data name="&gt;&gt;localUpButton.Name" xml:space="preserve">
+    <value>localUpButton</value>
+  </data>
+  <data name="&gt;&gt;localUpButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;localUpButton.Parent" xml:space="preserve">
+    <value>leftTopPanel</value>
+  </data>
+  <data name="&gt;&gt;localUpButton.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -607,7 +743,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1044, 794</value>
+    <value>690, 525</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1037,23 +1173,14 @@
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
   </data>
+  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>700, 400</value>
+  </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Remote Desktop</value>
-  </data>
-  <data name="&gt;&gt;mainToolStripStatusLabel.Name" xml:space="preserve">
-    <value>mainToolStripStatusLabel</value>
-  </data>
-  <data name="&gt;&gt;mainToolStripStatusLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripStatusLabel1.Name" xml:space="preserve">
-    <value>toolStripStatusLabel1</value>
-  </data>
-  <data name="&gt;&gt;toolStripStatusLabel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>Remote Files</value>
   </data>
   <data name="&gt;&gt;updateTimer.Name" xml:space="preserve">
     <value>updateTimer</value>
@@ -1073,8 +1200,44 @@
   <data name="&gt;&gt;mainToolTip.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;mainToolStripStatusLabel.Name" xml:space="preserve">
+    <value>mainToolStripStatusLabel</value>
+  </data>
+  <data name="&gt;&gt;mainToolStripStatusLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;columnHeader3.Name" xml:space="preserve">
+    <value>columnHeader3</value>
+  </data>
+  <data name="&gt;&gt;columnHeader3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;columnHeader4.Name" xml:space="preserve">
+    <value>columnHeader4</value>
+  </data>
+  <data name="&gt;&gt;columnHeader4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;fileIconImageList.Name" xml:space="preserve">
+    <value>fileIconImageList</value>
+  </data>
+  <data name="&gt;&gt;fileIconImageList.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ImageList, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;columnHeader1.Name" xml:space="preserve">
+    <value>columnHeader1</value>
+  </data>
+  <data name="&gt;&gt;columnHeader1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;columnHeader2.Name" xml:space="preserve">
+    <value>columnHeader2</value>
+  </data>
+  <data name="&gt;&gt;columnHeader2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>KVMViewer</value>
+    <value>FileViewer</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

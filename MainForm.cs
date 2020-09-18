@@ -178,6 +178,7 @@ namespace MeshCentralRouter
                 if (arg.Length > 8 && arg.Substring(0, 8).ToLower() == "-search:") { searchTextBox.Text = arg.Substring(8); }
                 if (arg.Length > 11 && arg.Substring(0, 11).ToLower() == "mcrouter://") { authLoginUrl = new Uri(arg); }
                 if ((arg.Length > 1) && (arg[0] != '-') && (arg.ToLower().EndsWith(".mcrouter"))) { try { argflags |= loadMappingFile(File.ReadAllText(arg), 1); } catch (Exception) { } }
+                if (arg.ToLower() == "-localfiles") { FileViewer fileViewer = new FileViewer(meshcentral, null); fileViewer.Show(); }
             }
             autoLogin = (argflags == 7);
 
@@ -1473,6 +1474,24 @@ namespace MeshCentralRouter
                 node.desktopViewer.MenuItemConnect_Click(null, null);
             } else {
                 node.desktopViewer.Focus();
+            }
+        }
+
+        private void remoteFilesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (devicesListView.SelectedItems.Count != 1) { return; }
+            ListViewItem selecteditem = devicesListView.SelectedItems[0];
+            NodeClass node = (NodeClass)selecteditem.Tag;
+            if ((node.conn & 1) == 0) { return; } // Agent not connected on this device
+            if (node.fileViewer == null)
+            {
+                node.fileViewer = new FileViewer(meshcentral, node);
+                node.fileViewer.Show();
+                node.fileViewer.MenuItemConnect_Click(null, null);
+            }
+            else
+            {
+                node.fileViewer.Focus();
             }
         }
 

@@ -22,6 +22,7 @@ namespace MeshCentralRouter
         public ListViewItem listitem;
         public DeviceUserControl control;
         public KVMViewer desktopViewer;
+        public FileViewer fileViewer;
         public Dictionary<string, ulong> links;
 
         public override string ToString() { return name; }

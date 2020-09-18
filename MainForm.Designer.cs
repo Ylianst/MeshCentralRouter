@@ -51,6 +51,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.tokenRememberCheckBox = new System.Windows.Forms.CheckBox();
             this.emailTokenButton = new System.Windows.Forms.Button();
             this.smsTokenButton = new System.Windows.Forms.Button();
             this.tokenEmailSentLabel = new System.Windows.Forms.Label();
@@ -125,7 +126,7 @@
             this.saveMappingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openMapFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveMapFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.tokenRememberCheckBox = new System.Windows.Forms.CheckBox();
+            this.remoteFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel5.SuspendLayout();
             this.mainPanel.SuspendLayout();
             this.mainTabControl.SuspendLayout();
@@ -322,6 +323,12 @@
             this.panel2.Controls.Add(this.label2);
             resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Name = "panel2";
+            // 
+            // tokenRememberCheckBox
+            // 
+            resources.ApplyResources(this.tokenRememberCheckBox, "tokenRememberCheckBox");
+            this.tokenRememberCheckBox.Name = "tokenRememberCheckBox";
+            this.tokenRememberCheckBox.UseVisualStyleBackColor = true;
             // 
             // emailTokenButton
             // 
@@ -600,6 +607,7 @@
             this.addRelayMapToolStripMenuItem,
             this.toolStripMenuItem3,
             this.remoteDesktopToolStripMenuItem,
+            this.remoteFilesToolStripMenuItem,
             this.httpToolStripMenuItem,
             this.httpsToolStripMenuItem,
             this.rdpToolStripMenuItem,
@@ -863,11 +871,11 @@
             this.saveMapFileDialog.DefaultExt = "mcrouter";
             resources.ApplyResources(this.saveMapFileDialog, "saveMapFileDialog");
             // 
-            // tokenRememberCheckBox
+            // remoteFilesToolStripMenuItem
             // 
-            resources.ApplyResources(this.tokenRememberCheckBox, "tokenRememberCheckBox");
-            this.tokenRememberCheckBox.Name = "tokenRememberCheckBox";
-            this.tokenRememberCheckBox.UseVisualStyleBackColor = true;
+            this.remoteFilesToolStripMenuItem.Name = "remoteFilesToolStripMenuItem";
+            resources.ApplyResources(this.remoteFilesToolStripMenuItem, "remoteFilesToolStripMenuItem");
+            this.remoteFilesToolStripMenuItem.Click += new System.EventHandler(this.remoteFilesToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -1014,6 +1022,7 @@
         private System.Windows.Forms.ToolStripMenuItem remoteDesktopToolStripMenuItem;
         private System.Windows.Forms.CheckBox rememberCertCheckBox;
         private System.Windows.Forms.CheckBox tokenRememberCheckBox;
+        private System.Windows.Forms.ToolStripMenuItem remoteFilesToolStripMenuItem;
     }
 }
 
