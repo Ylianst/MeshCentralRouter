@@ -71,6 +71,7 @@ namespace MeshCentralRouter
                     }
                     localUpButton.Enabled = false;
                     localLabel.Text = "Local";
+                    mainToolTip.SetToolTip(localLabel, "Local");
                 }
                 catch (Exception) { return false; }
             }
@@ -98,6 +99,7 @@ namespace MeshCentralRouter
                     }
                     localUpButton.Enabled = true;
                     localLabel.Text = "Local - " + localFolder.FullName;
+                    mainToolTip.SetToolTip(localLabel, "Local - " + localFolder.FullName);
                 }
                 catch (Exception) { return false; }
             }
@@ -112,17 +114,21 @@ namespace MeshCentralRouter
 
             if ((remoteFolder == null) || (remoteFolder == "")) {
                 remoteLabel.Text = "Remote";
+                mainToolTip.SetToolTip(remoteLabel, "Remote");
             } else {
                 if (node.agentid < 5)
                 {
                     remoteLabel.Text = "Remote - " + remoteFolder.Replace("/", "\\");
+                    mainToolTip.SetToolTip(remoteLabel, "Remote - " + remoteFolder.Replace("/", "\\"));
                 }
                 else
                 {
                     remoteLabel.Text = "Remote - " + remoteFolder;
+                    mainToolTip.SetToolTip(remoteLabel, "Remote - " + remoteFolder);
                 }
             }
 
+            remoteRefreshButton.Enabled = true;
             remoteUpButton.Enabled = !((remoteFolder == null) || (remoteFolder == ""));
 
             if (remoteFolderList != null)
@@ -270,9 +276,8 @@ namespace MeshCentralRouter
                 byte[] bincmd = UTF8Encoding.UTF8.GetBytes(cmd);
                 wc.SendBinary(bincmd, 0, bincmd.Length);
 
+                // Ask for root level
                 requestRemoteFolder("");
-                //requestRemoteFolder("C:\\");
-
                 return;
             }
             if (state != 3) return;
@@ -367,6 +372,8 @@ namespace MeshCentralRouter
                 case 0: // Disconnected
                     mainToolStripStatusLabel.Text = "Disconnected";
                     connectButton.Text = "Connect";
+                    remoteRefreshButton.Enabled = false;
+                    remoteUpButton.Enabled = false;
                     break;
                 case 1: // Connecting
                     mainToolStripStatusLabel.Text = "Connecting...";
@@ -458,6 +465,48 @@ namespace MeshCentralRouter
         {
             localFolder = localFolder.Parent;
             updateLocalFileView();
+        }
+
+        private void rightListView_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            ListViewItem item = rightListView.GetItemAt(e.X, e.Y);
+            if (item != null)
+            {
+                string r = remoteFolder;
+                if ((item.ImageIndex == 0) || (item.ImageIndex == 1)) {
+                    if ((r == null) || (r == "")) {
+                        r = item.Text;
+                    } else {
+                        if (remoteFolder.EndsWith("/")) { r = remoteFolder + item.Text; } else { r = remoteFolder + "/" + item.Text; }
+                    }
+                    requestRemoteFolder(r);
+                }
+            }
+        }
+
+        private void remoteUpButton_Click(object sender, EventArgs e)
+        {
+            string r = remoteFolder;
+            if (r.EndsWith("/")) { r = r.Substring(0, r.Length - 1); }
+            int i = r.LastIndexOf("/");
+            if (i >= 0)
+            {
+                r = r.Substring(0, i + 1);
+            } else
+            {
+                r = "";
+            }
+            requestRemoteFolder(r);
+        }
+
+        private void leftRefreshButton_Click(object sender, EventArgs e)
+        {
+            updateLocalFileView();
+        }
+
+        private void rightRefreshButton_Click(object sender, EventArgs e)
+        {
+            requestRemoteFolder(remoteFolder);
         }
     }
 }

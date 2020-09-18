@@ -59,6 +59,8 @@ namespace MeshCentralRouter
             this.localLabel = new System.Windows.Forms.Label();
             this.localUpButton = new System.Windows.Forms.Button();
             this.remoteUpButton = new System.Windows.Forms.Button();
+            this.localRefreshButton = new System.Windows.Forms.Button();
+            this.remoteRefreshButton = new System.Windows.Forms.Button();
             this.topPanel.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.mainTableLayoutPanel.SuspendLayout();
@@ -154,6 +156,7 @@ namespace MeshCentralRouter
             this.rightListView.SmallImageList = this.fileIconImageList;
             this.rightListView.UseCompatibleStateImageBehavior = false;
             this.rightListView.View = System.Windows.Forms.View.Details;
+            this.rightListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.rightListView_MouseDoubleClick);
             // 
             // columnHeader3
             // 
@@ -173,6 +176,7 @@ namespace MeshCentralRouter
             // 
             // rightTopPanel
             // 
+            this.rightTopPanel.Controls.Add(this.remoteRefreshButton);
             this.rightTopPanel.Controls.Add(this.remoteUpButton);
             this.rightTopPanel.Controls.Add(this.remoteLabel);
             resources.ApplyResources(this.rightTopPanel, "rightTopPanel");
@@ -215,6 +219,7 @@ namespace MeshCentralRouter
             // 
             // leftTopPanel
             // 
+            this.leftTopPanel.Controls.Add(this.localRefreshButton);
             this.leftTopPanel.Controls.Add(this.localUpButton);
             this.leftTopPanel.Controls.Add(this.localLabel);
             resources.ApplyResources(this.leftTopPanel, "leftTopPanel");
@@ -237,6 +242,21 @@ namespace MeshCentralRouter
             resources.ApplyResources(this.remoteUpButton, "remoteUpButton");
             this.remoteUpButton.Name = "remoteUpButton";
             this.remoteUpButton.UseVisualStyleBackColor = true;
+            this.remoteUpButton.Click += new System.EventHandler(this.remoteUpButton_Click);
+            // 
+            // localRefreshButton
+            // 
+            resources.ApplyResources(this.localRefreshButton, "localRefreshButton");
+            this.localRefreshButton.Name = "localRefreshButton";
+            this.localRefreshButton.UseVisualStyleBackColor = true;
+            this.localRefreshButton.Click += new System.EventHandler(this.leftRefreshButton_Click);
+            // 
+            // remoteRefreshButton
+            // 
+            resources.ApplyResources(this.remoteRefreshButton, "remoteRefreshButton");
+            this.remoteRefreshButton.Name = "remoteRefreshButton";
+            this.remoteRefreshButton.UseVisualStyleBackColor = true;
+            this.remoteRefreshButton.Click += new System.EventHandler(this.rightRefreshButton_Click);
             // 
             // FileViewer
             // 
@@ -255,9 +275,11 @@ namespace MeshCentralRouter
             this.mainTableLayoutPanel.ResumeLayout(false);
             this.rightPanel.ResumeLayout(false);
             this.rightTopPanel.ResumeLayout(false);
+            this.rightTopPanel.PerformLayout();
             this.leftPanel.ResumeLayout(false);
             this.leftPanel.PerformLayout();
             this.leftTopPanel.ResumeLayout(false);
+            this.leftTopPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -290,6 +312,8 @@ namespace MeshCentralRouter
         private ColumnHeader columnHeader2;
         private Button remoteUpButton;
         private Button localUpButton;
+        private Button localRefreshButton;
+        private Button remoteRefreshButton;
     }
 }
 
