@@ -100,6 +100,24 @@
     <Compile Include="AppLaunchForm.Designer.cs">
       <DependentUpon>AppLaunchForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FileDeletePromptForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FileDeletePromptForm.Designer.cs">
+      <DependentUpon>FileDeletePromptForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FilenamePromptForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FilenamePromptForm.Designer.cs">
+      <DependentUpon>FilenamePromptForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FileTransferStatusForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FileTransferStatusForm.Designer.cs">
+      <DependentUpon>FileTransferStatusForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FileViewer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -397,6 +415,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DeviceUserControl.zh-chs.resx">
       <DependentUpon>DeviceUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FileDeletePromptForm.resx">
+      <DependentUpon>FileDeletePromptForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FilenamePromptForm.resx">
+      <DependentUpon>FilenamePromptForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FileTransferStatusForm.resx">
+      <DependentUpon>FileTransferStatusForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FileViewer.resx">
       <DependentUpon>FileViewer.cs</DependentUpon>
@@ -731,6 +758,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MeshServer.ico" />
+    <None Include="Resources\arrowleft16.png" />
+    <None Include="Resources\arrowright16.png" />
+    <None Include="Resources\delete16.png" />
+    <None Include="Resources\folderroot16.png" />
+    <None Include="Resources\foldernew16.png" />
+    <None Include="Resources\refresh16.png" />
+    <None Include="Resources\folderup16.png" />
     <None Include="Resources\ZoomToFit.png" />
     <None Include="Resources\icon-clipboard-out.png" />
     <None Include="Resources\icon-clipboard-in.png" />

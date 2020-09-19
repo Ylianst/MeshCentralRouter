@@ -38,16 +38,30 @@ namespace MeshCentralRouter
             this.mainToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.statsButton = new System.Windows.Forms.Button();
             this.connectButton = new System.Windows.Forms.Button();
+            this.remoteRefreshButton = new System.Windows.Forms.Button();
+            this.remoteUpButton = new System.Windows.Forms.Button();
+            this.localRefreshButton = new System.Windows.Forms.Button();
+            this.localUpButton = new System.Windows.Forms.Button();
+            this.remoteNewFolderButton = new System.Windows.Forms.Button();
+            this.remoteRootButton = new System.Windows.Forms.Button();
+            this.localRootButton = new System.Windows.Forms.Button();
+            this.remoteDeleteButton = new System.Windows.Forms.Button();
             this.topPanel = new System.Windows.Forms.Panel();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.mainToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.consoleMessage = new System.Windows.Forms.Label();
             this.mainTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.downloadButton = new System.Windows.Forms.Button();
+            this.uploadButton = new System.Windows.Forms.Button();
             this.rightPanel = new System.Windows.Forms.Panel();
             this.rightListView = new System.Windows.Forms.ListView();
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.remoteContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.renameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fileIconImageList = new System.Windows.Forms.ImageList(this.components);
             this.rightTopPanel = new System.Windows.Forms.Panel();
             this.remoteLabel = new System.Windows.Forms.Label();
@@ -57,14 +71,12 @@ namespace MeshCentralRouter
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.leftTopPanel = new System.Windows.Forms.Panel();
             this.localLabel = new System.Windows.Forms.Label();
-            this.localUpButton = new System.Windows.Forms.Button();
-            this.remoteUpButton = new System.Windows.Forms.Button();
-            this.localRefreshButton = new System.Windows.Forms.Button();
-            this.remoteRefreshButton = new System.Windows.Forms.Button();
             this.topPanel.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
+            this.statusStrip.SuspendLayout();
             this.mainTableLayoutPanel.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.rightPanel.SuspendLayout();
+            this.remoteContextMenuStrip.SuspendLayout();
             this.rightTopPanel.SuspendLayout();
             this.leftPanel.SuspendLayout();
             this.leftTopPanel.SuspendLayout();
@@ -72,8 +84,7 @@ namespace MeshCentralRouter
             // 
             // updateTimer
             // 
-            this.updateTimer.Enabled = true;
-            this.updateTimer.Interval = 1000;
+            this.updateTimer.Tick += new System.EventHandler(this.updateTimer_Tick);
             // 
             // consoleTimer
             // 
@@ -97,6 +108,78 @@ namespace MeshCentralRouter
             this.connectButton.UseVisualStyleBackColor = true;
             this.connectButton.Click += new System.EventHandler(this.connectButton_Click);
             // 
+            // remoteRefreshButton
+            // 
+            resources.ApplyResources(this.remoteRefreshButton, "remoteRefreshButton");
+            this.remoteRefreshButton.Image = global::MeshCentralRouter.Properties.Resources.refresh16;
+            this.remoteRefreshButton.Name = "remoteRefreshButton";
+            this.mainToolTip.SetToolTip(this.remoteRefreshButton, resources.GetString("remoteRefreshButton.ToolTip"));
+            this.remoteRefreshButton.UseVisualStyleBackColor = true;
+            this.remoteRefreshButton.Click += new System.EventHandler(this.rightRefreshButton_Click);
+            // 
+            // remoteUpButton
+            // 
+            resources.ApplyResources(this.remoteUpButton, "remoteUpButton");
+            this.remoteUpButton.Image = global::MeshCentralRouter.Properties.Resources.folderup16;
+            this.remoteUpButton.Name = "remoteUpButton";
+            this.mainToolTip.SetToolTip(this.remoteUpButton, resources.GetString("remoteUpButton.ToolTip"));
+            this.remoteUpButton.UseVisualStyleBackColor = true;
+            this.remoteUpButton.Click += new System.EventHandler(this.remoteUpButton_Click);
+            // 
+            // localRefreshButton
+            // 
+            this.localRefreshButton.Image = global::MeshCentralRouter.Properties.Resources.refresh16;
+            resources.ApplyResources(this.localRefreshButton, "localRefreshButton");
+            this.localRefreshButton.Name = "localRefreshButton";
+            this.mainToolTip.SetToolTip(this.localRefreshButton, resources.GetString("localRefreshButton.ToolTip"));
+            this.localRefreshButton.UseVisualStyleBackColor = true;
+            this.localRefreshButton.Click += new System.EventHandler(this.leftRefreshButton_Click);
+            // 
+            // localUpButton
+            // 
+            resources.ApplyResources(this.localUpButton, "localUpButton");
+            this.localUpButton.Image = global::MeshCentralRouter.Properties.Resources.folderup16;
+            this.localUpButton.Name = "localUpButton";
+            this.mainToolTip.SetToolTip(this.localUpButton, resources.GetString("localUpButton.ToolTip"));
+            this.localUpButton.UseVisualStyleBackColor = true;
+            this.localUpButton.Click += new System.EventHandler(this.localUpButton_Click);
+            // 
+            // remoteNewFolderButton
+            // 
+            resources.ApplyResources(this.remoteNewFolderButton, "remoteNewFolderButton");
+            this.remoteNewFolderButton.Image = global::MeshCentralRouter.Properties.Resources.foldernew16;
+            this.remoteNewFolderButton.Name = "remoteNewFolderButton";
+            this.mainToolTip.SetToolTip(this.remoteNewFolderButton, resources.GetString("remoteNewFolderButton.ToolTip"));
+            this.remoteNewFolderButton.UseVisualStyleBackColor = true;
+            this.remoteNewFolderButton.Click += new System.EventHandler(this.remoteNewFolderButton_Click);
+            // 
+            // remoteRootButton
+            // 
+            resources.ApplyResources(this.remoteRootButton, "remoteRootButton");
+            this.remoteRootButton.Image = global::MeshCentralRouter.Properties.Resources.folderroot16;
+            this.remoteRootButton.Name = "remoteRootButton";
+            this.mainToolTip.SetToolTip(this.remoteRootButton, resources.GetString("remoteRootButton.ToolTip"));
+            this.remoteRootButton.UseVisualStyleBackColor = true;
+            this.remoteRootButton.Click += new System.EventHandler(this.remoteRootButton_Click);
+            // 
+            // localRootButton
+            // 
+            resources.ApplyResources(this.localRootButton, "localRootButton");
+            this.localRootButton.Image = global::MeshCentralRouter.Properties.Resources.folderroot16;
+            this.localRootButton.Name = "localRootButton";
+            this.mainToolTip.SetToolTip(this.localRootButton, resources.GetString("localRootButton.ToolTip"));
+            this.localRootButton.UseVisualStyleBackColor = true;
+            this.localRootButton.Click += new System.EventHandler(this.localRootButton_Click);
+            // 
+            // remoteDeleteButton
+            // 
+            resources.ApplyResources(this.remoteDeleteButton, "remoteDeleteButton");
+            this.remoteDeleteButton.Image = global::MeshCentralRouter.Properties.Resources.delete16;
+            this.remoteDeleteButton.Name = "remoteDeleteButton";
+            this.mainToolTip.SetToolTip(this.remoteDeleteButton, resources.GetString("remoteDeleteButton.ToolTip"));
+            this.remoteDeleteButton.UseVisualStyleBackColor = true;
+            this.remoteDeleteButton.Click += new System.EventHandler(this.remoteDeleteButton_Click);
+            // 
             // topPanel
             // 
             this.topPanel.BackColor = System.Drawing.SystemColors.Control;
@@ -105,12 +188,12 @@ namespace MeshCentralRouter
             resources.ApplyResources(this.topPanel, "topPanel");
             this.topPanel.Name = "topPanel";
             // 
-            // statusStrip1
+            // statusStrip
             // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mainToolStripStatusLabel});
-            resources.ApplyResources(this.statusStrip1, "statusStrip1");
-            this.statusStrip1.Name = "statusStrip1";
+            resources.ApplyResources(this.statusStrip, "statusStrip");
+            this.statusStrip.Name = "statusStrip";
             // 
             // mainToolStripStatusLabel
             // 
@@ -134,8 +217,27 @@ namespace MeshCentralRouter
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.downloadButton);
+            this.panel1.Controls.Add(this.uploadButton);
             resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Name = "panel1";
+            // 
+            // downloadButton
+            // 
+            resources.ApplyResources(this.downloadButton, "downloadButton");
+            this.downloadButton.Image = global::MeshCentralRouter.Properties.Resources.arrowleft16;
+            this.downloadButton.Name = "downloadButton";
+            this.mainToolTip.SetToolTip(this.downloadButton, resources.GetString("downloadButton.ToolTip"));
+            this.downloadButton.UseVisualStyleBackColor = true;
+            // 
+            // uploadButton
+            // 
+            resources.ApplyResources(this.uploadButton, "uploadButton");
+            this.uploadButton.Image = global::MeshCentralRouter.Properties.Resources.arrowright16;
+            this.uploadButton.Name = "uploadButton";
+            this.mainToolTip.SetToolTip(this.uploadButton, resources.GetString("uploadButton.ToolTip"));
+            this.uploadButton.UseVisualStyleBackColor = true;
+            this.uploadButton.Click += new System.EventHandler(this.uploadButton_Click);
             // 
             // rightPanel
             // 
@@ -150,13 +252,18 @@ namespace MeshCentralRouter
             this.rightListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader3,
             this.columnHeader4});
+            this.rightListView.ContextMenuStrip = this.remoteContextMenuStrip;
             resources.ApplyResources(this.rightListView, "rightListView");
             this.rightListView.FullRowSelect = true;
+            this.rightListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.rightListView.Name = "rightListView";
             this.rightListView.SmallImageList = this.fileIconImageList;
             this.rightListView.UseCompatibleStateImageBehavior = false;
             this.rightListView.View = System.Windows.Forms.View.Details;
+            this.rightListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.rightListView_ColumnWidthChanged);
+            this.rightListView.SelectedIndexChanged += new System.EventHandler(this.rightListView_SelectedIndexChanged);
             this.rightListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.rightListView_MouseDoubleClick);
+            this.rightListView.Resize += new System.EventHandler(this.rightListView_Resize);
             // 
             // columnHeader3
             // 
@@ -165,6 +272,33 @@ namespace MeshCentralRouter
             // columnHeader4
             // 
             resources.ApplyResources(this.columnHeader4, "columnHeader4");
+            // 
+            // remoteContextMenuStrip
+            // 
+            this.remoteContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.renameToolStripMenuItem,
+            this.toolStripMenuItem1,
+            this.refreshToolStripMenuItem});
+            this.remoteContextMenuStrip.Name = "remoteContextMenuStrip";
+            resources.ApplyResources(this.remoteContextMenuStrip, "remoteContextMenuStrip");
+            this.remoteContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.remoteContextMenuStrip_Opening);
+            // 
+            // renameToolStripMenuItem
+            // 
+            this.renameToolStripMenuItem.Name = "renameToolStripMenuItem";
+            resources.ApplyResources(this.renameToolStripMenuItem, "renameToolStripMenuItem");
+            this.renameToolStripMenuItem.Click += new System.EventHandler(this.renameToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            resources.ApplyResources(this.toolStripMenuItem1, "toolStripMenuItem1");
+            // 
+            // refreshToolStripMenuItem
+            // 
+            this.refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
+            resources.ApplyResources(this.refreshToolStripMenuItem, "refreshToolStripMenuItem");
+            this.refreshToolStripMenuItem.Click += new System.EventHandler(this.rightRefreshButton_Click);
             // 
             // fileIconImageList
             // 
@@ -176,6 +310,9 @@ namespace MeshCentralRouter
             // 
             // rightTopPanel
             // 
+            this.rightTopPanel.Controls.Add(this.remoteDeleteButton);
+            this.rightTopPanel.Controls.Add(this.remoteRootButton);
+            this.rightTopPanel.Controls.Add(this.remoteNewFolderButton);
             this.rightTopPanel.Controls.Add(this.remoteRefreshButton);
             this.rightTopPanel.Controls.Add(this.remoteUpButton);
             this.rightTopPanel.Controls.Add(this.remoteLabel);
@@ -203,11 +340,15 @@ namespace MeshCentralRouter
             this.columnHeader2});
             resources.ApplyResources(this.leftListView, "leftListView");
             this.leftListView.FullRowSelect = true;
+            this.leftListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.leftListView.Name = "leftListView";
             this.leftListView.SmallImageList = this.fileIconImageList;
             this.leftListView.UseCompatibleStateImageBehavior = false;
             this.leftListView.View = System.Windows.Forms.View.Details;
+            this.leftListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.leftListView_ColumnWidthChanged);
+            this.leftListView.SelectedIndexChanged += new System.EventHandler(this.leftListView_SelectedIndexChanged);
             this.leftListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.leftListView_MouseDoubleClick);
+            this.leftListView.Resize += new System.EventHandler(this.leftListView_Resize);
             // 
             // columnHeader1
             // 
@@ -219,6 +360,7 @@ namespace MeshCentralRouter
             // 
             // leftTopPanel
             // 
+            this.leftTopPanel.Controls.Add(this.localRootButton);
             this.leftTopPanel.Controls.Add(this.localRefreshButton);
             this.leftTopPanel.Controls.Add(this.localUpButton);
             this.leftTopPanel.Controls.Add(this.localLabel);
@@ -230,34 +372,6 @@ namespace MeshCentralRouter
             resources.ApplyResources(this.localLabel, "localLabel");
             this.localLabel.Name = "localLabel";
             // 
-            // localUpButton
-            // 
-            resources.ApplyResources(this.localUpButton, "localUpButton");
-            this.localUpButton.Name = "localUpButton";
-            this.localUpButton.UseVisualStyleBackColor = true;
-            this.localUpButton.Click += new System.EventHandler(this.localUpButton_Click);
-            // 
-            // remoteUpButton
-            // 
-            resources.ApplyResources(this.remoteUpButton, "remoteUpButton");
-            this.remoteUpButton.Name = "remoteUpButton";
-            this.remoteUpButton.UseVisualStyleBackColor = true;
-            this.remoteUpButton.Click += new System.EventHandler(this.remoteUpButton_Click);
-            // 
-            // localRefreshButton
-            // 
-            resources.ApplyResources(this.localRefreshButton, "localRefreshButton");
-            this.localRefreshButton.Name = "localRefreshButton";
-            this.localRefreshButton.UseVisualStyleBackColor = true;
-            this.localRefreshButton.Click += new System.EventHandler(this.leftRefreshButton_Click);
-            // 
-            // remoteRefreshButton
-            // 
-            resources.ApplyResources(this.remoteRefreshButton, "remoteRefreshButton");
-            this.remoteRefreshButton.Name = "remoteRefreshButton";
-            this.remoteRefreshButton.UseVisualStyleBackColor = true;
-            this.remoteRefreshButton.Click += new System.EventHandler(this.rightRefreshButton_Click);
-            // 
             // FileViewer
             // 
             resources.ApplyResources(this, "$this");
@@ -265,15 +379,17 @@ namespace MeshCentralRouter
             this.BackColor = System.Drawing.SystemColors.Control;
             this.Controls.Add(this.mainTableLayoutPanel);
             this.Controls.Add(this.topPanel);
-            this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.statusStrip);
             this.Name = "FileViewer";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.topPanel.ResumeLayout(false);
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
+            this.statusStrip.ResumeLayout(false);
+            this.statusStrip.PerformLayout();
             this.mainTableLayoutPanel.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.rightPanel.ResumeLayout(false);
+            this.remoteContextMenuStrip.ResumeLayout(false);
             this.rightTopPanel.ResumeLayout(false);
             this.rightTopPanel.PerformLayout();
             this.leftPanel.ResumeLayout(false);
@@ -292,7 +408,7 @@ namespace MeshCentralRouter
         private Panel topPanel;
         private Button statsButton;
         private Button connectButton;
-        private StatusStrip statusStrip1;
+        private StatusStrip statusStrip;
         private ToolStripStatusLabel mainToolStripStatusLabel;
         private Label consoleMessage;
         private TableLayoutPanel mainTableLayoutPanel;
@@ -314,6 +430,16 @@ namespace MeshCentralRouter
         private Button localUpButton;
         private Button localRefreshButton;
         private Button remoteRefreshButton;
+        private Button remoteNewFolderButton;
+        private Button remoteRootButton;
+        private Button localRootButton;
+        private Button remoteDeleteButton;
+        private ContextMenuStrip remoteContextMenuStrip;
+        private ToolStripMenuItem renameToolStripMenuItem;
+        private ToolStripSeparator toolStripMenuItem1;
+        private ToolStripMenuItem refreshToolStripMenuItem;
+        private Button uploadButton;
+        private Button downloadButton;
     }
 }
 

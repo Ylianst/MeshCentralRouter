@@ -47,6 +47,18 @@ namespace MeshCentralRouter
         public long bytesOut = 0;
         public long bytesOutCompressed = 0;
 
+        // Upload state
+        public FileTransferStatusForm transferStatusForm = null;
+        public bool uploadActive = false;
+        public bool uploadStop = false;
+        public int uploadFileArrayPtr = -1;
+        public ArrayList uploadFileArray;
+        public DirectoryInfo uploadLocalPath;
+        public string uploadRemotePath;
+        public FileStream uploadFileStream = null;
+        public long uploadFilePtr = 0;
+        public long uploadFileSize = 0;
+
         public FileViewer(MeshCentralServer server, NodeClass node)
         {
             InitializeComponent();
@@ -54,6 +66,8 @@ namespace MeshCentralRouter
             this.node = node;
             this.server = server;
             UpdateStatus();
+
+            rightListView.Columns[0].Width = rightListView.Width - rightListView.Columns[1].Width - 22;
         }
 
         public bool updateLocalFileView()
@@ -61,7 +75,9 @@ namespace MeshCentralRouter
             leftListView.Items.Clear();
             if (localFolder == null)
             {
-                try {
+                localRootButton.Enabled = false;
+                try
+                {
                     DriveInfo[] drives = DriveInfo.GetDrives();
                     foreach (DriveInfo drive in drives)
                     {
@@ -77,6 +93,7 @@ namespace MeshCentralRouter
             }
             else
             {
+                localRootButton.Enabled = true;
                 try
                 {
                     DirectoryInfo[] directories = localFolder.GetDirectories();
@@ -103,6 +120,7 @@ namespace MeshCentralRouter
                 }
                 catch (Exception) { return false; }
             }
+            updateTransferButtons();
             return true;
         }
 
@@ -129,7 +147,15 @@ namespace MeshCentralRouter
             }
 
             remoteRefreshButton.Enabled = true;
+            remoteRootButton.Enabled = !((remoteFolder == null) || (remoteFolder == ""));
             remoteUpButton.Enabled = !((remoteFolder == null) || (remoteFolder == ""));
+            if (node.agentid < 5) {
+                remoteNewFolderButton.Enabled = !((remoteFolder == null) || (remoteFolder == ""));
+                remoteDeleteButton.Enabled = (!((remoteFolder == null) || (remoteFolder == ""))) && (rightListView.SelectedItems.Count > 0);
+            } else {
+                remoteNewFolderButton.Enabled = true;
+                remoteDeleteButton.Enabled = (rightListView.SelectedItems.Count > 0);
+            }
 
             if (remoteFolderList != null)
             {
@@ -179,6 +205,7 @@ namespace MeshCentralRouter
                     }
                 }
             }
+            updateTransferButtons();
         }
 
         private void Server_onStateChanged(int state)
@@ -249,12 +276,39 @@ namespace MeshCentralRouter
                     }
             }
             UpdateStatus();
+            updateTransferButtons();
         }
 
         private void requestRemoteFolder(string path)
         {
-            // Send initial LS command
+            // Send LS command
             string cmd = "{\"action\":\"ls\",\"reqid\":1,\"path\":\"" + path.Replace("\\","/") + "\"}";
+            byte[] bincmd = UTF8Encoding.UTF8.GetBytes(cmd);
+            wc.SendBinary(bincmd, 0, bincmd.Length);
+        }
+
+        private void requestCreateFolder(string path)
+        {
+            // Send MKDIR command
+            string cmd = "{\"action\":\"mkdir\",\"reqid\":2,\"path\":\"" + path.Replace("\\", "/") + "\"}";
+            byte[] bincmd = UTF8Encoding.UTF8.GetBytes(cmd);
+            wc.SendBinary(bincmd, 0, bincmd.Length);
+        }
+
+        private void requestRename(string path, string oldname, string newname)
+        {
+            // Send RENAME command
+            string cmd = "{\"action\":\"rename\",\"reqid\":3,\"path\":\"" + path.Replace("\\", "/") + "\",\"oldname\":\"" + oldname + "\",\"newname\":\"" + newname + "\"}";
+            byte[] bincmd = UTF8Encoding.UTF8.GetBytes(cmd);
+            wc.SendBinary(bincmd, 0, bincmd.Length);
+        }
+
+        private void requestDelete(string path, string[] files, bool recursive)
+        {
+            // Send RM command
+            string delfiles = "";
+            foreach (string file in files) { if (delfiles.Length != 0) { delfiles += ","; } delfiles += "\"" + file + "\""; }
+            string cmd = "{\"action\":\"rm\",\"reqid\":4,\"path\":\"" + path.Replace("\\", "/") + "\",\"rec\":" + recursive.ToString().ToLower() + ",\"delfiles\":[" + delfiles + "]}";
             byte[] bincmd = UTF8Encoding.UTF8.GetBytes(cmd);
             wc.SendBinary(bincmd, 0, bincmd.Length);
         }
@@ -330,15 +384,66 @@ namespace MeshCentralRouter
                 if (jsonAction == null) return;
                 int reqid = 0;
                 if (jsonAction.ContainsKey("reqid")) { reqid = (int)jsonAction["reqid"]; }
+                string action = null;
+                if (jsonAction.ContainsKey("action")) { action = (string)jsonAction["action"]; }
 
-                // Result of a LS command
-                if (reqid == 1)
+                if (action == "uploadstart")
                 {
+                    if (uploadStop) { uploadCancel(); return; }
+                    uploadNextPart(false);
+                    for (var i = 0; i < 8; i++) { uploadNextPart(true); }
+                }
+                else if (action == "uploadack")
+                {
+                    if (uploadStop) { uploadCancel(); return; }
+                    uploadNextPart(false);
+                }
+                else if (action == "uploaddone")
+                {
+                    if (uploadFileArray.Count > uploadFileArrayPtr + 1)
+                    {
+                        // Upload the next file
+                        uploadFilePtr = 0;
+                        uploadFileSize = 0;
+                        if (uploadFileStream != null) { uploadFileStream.Close(); uploadFileStream = null; }
+                        uploadFileArrayPtr++;
+                        uploadNextFile();
+                    }
+                    else
+                    {
+                        // Done with all files
+                        uploadActive = false;
+                        uploadStop = false;
+                        uploadFileArrayPtr = -1;
+                        uploadFileArray = null;
+                        uploadLocalPath = null;
+                        uploadRemotePath = null;
+                        uploadFilePtr = 0;
+                        uploadFileSize = 0;
+                        closeTransferDialog();
+                        remoteRefresh();
+                    }
+                }
+                else if (action == "uploaderror")
+                {
+                    uploadCancel();
+                }
+                else if (reqid == 1)
+                {
+                    // Result of a LS command
                     if (jsonAction.ContainsKey("path")) { remoteFolder = (string)jsonAction["path"]; }
                     if (jsonAction.ContainsKey("dir")) { remoteFolderList = (ArrayList)jsonAction["dir"]; }
                     updateRemoteFileView();
                 }
             }
+        }
+
+        private delegate void remoteRefreshHandler();
+
+        private void remoteRefresh()
+        {
+            if (this.InvokeRequired) { this.Invoke(new remoteRefreshHandler(remoteRefresh)); return; }
+            updateTimer.Enabled = true;
         }
 
         private void MenuItemDisconnect_Click(object sender, EventArgs e)
@@ -374,6 +479,10 @@ namespace MeshCentralRouter
                     connectButton.Text = "Connect";
                     remoteRefreshButton.Enabled = false;
                     remoteUpButton.Enabled = false;
+                    remoteRootButton.Enabled = false;
+                    remoteNewFolderButton.Enabled = false;
+                    remoteDeleteButton.Enabled = false;
+                    remoteFolder = null;
                     break;
                 case 1: // Connecting
                     mainToolStripStatusLabel.Text = "Connecting...";
@@ -399,7 +508,15 @@ namespace MeshCentralRouter
 
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
-
+            if (wc != null)
+            {
+                // Disconnect
+                state = 0;
+                wc.Dispose();
+                wc = null;
+                UpdateStatus();
+            }
+            node.fileViewer = null;
         }
 
         public delegate void displayMessageHandler(string msg);
@@ -508,5 +625,241 @@ namespace MeshCentralRouter
         {
             requestRemoteFolder(remoteFolder);
         }
+
+        private void remoteNewFolderButton_Click(object sender, EventArgs e)
+        {
+            if (remoteFolder == null) return;
+            FilenamePromptForm f = new FilenamePromptForm("Create Folder", "");
+            if (f.ShowDialog(this) == DialogResult.OK)
+            {
+                string r;
+                if (remoteFolder.EndsWith("/")) { r = remoteFolder + f.filename; } else { r = remoteFolder + "/" + f.filename; }
+                requestCreateFolder(r);
+                updateTimer.Enabled = true;
+            }
+        }
+
+        private void localRootButton_Click(object sender, EventArgs e)
+        {
+            localFolder = null;
+            updateLocalFileView();
+        }
+
+        private void remoteRootButton_Click(object sender, EventArgs e)
+        {
+            requestRemoteFolder("");
+        }
+
+        private void rightListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (node.agentid < 5)
+            {
+                remoteDeleteButton.Enabled = (!((remoteFolder == null) || (remoteFolder == ""))) && (rightListView.SelectedItems.Count > 0);
+            }
+            else
+            {
+                remoteDeleteButton.Enabled = (rightListView.SelectedItems.Count > 0);
+            }
+            updateTransferButtons();
+        }
+
+        private void rightListView_Resize(object sender, EventArgs e)
+        {
+            if (rightListView.Columns[0].Width != (rightListView.Width - rightListView.Columns[1].Width - 22))
+            {
+                rightListView.Columns[0].Width = rightListView.Width - rightListView.Columns[1].Width - 22;
+            }
+        }
+
+        private void rightListView_ColumnWidthChanged(object sender, ColumnWidthChangedEventArgs e)
+        {
+            if (rightListView.Columns[0].Width != (rightListView.Width - rightListView.Columns[1].Width - 22))
+            {
+                rightListView.Columns[0].Width = rightListView.Width - rightListView.Columns[1].Width - 22;
+            }
+        }
+
+        private void leftListView_Resize(object sender, EventArgs e)
+        {
+            if (leftListView.Columns[0].Width != (leftListView.Width - leftListView.Columns[1].Width - 22))
+            {
+                leftListView.Columns[0].Width = leftListView.Width - leftListView.Columns[1].Width - 22;
+            }
+        }
+
+        private void leftListView_ColumnWidthChanged(object sender, ColumnWidthChangedEventArgs e)
+        {
+            if (leftListView.Columns[0].Width != (leftListView.Width - leftListView.Columns[1].Width - 22))
+            {
+                leftListView.Columns[0].Width = leftListView.Width - leftListView.Columns[1].Width - 22;
+            }
+        }
+
+        private void updateTimer_Tick(object sender, EventArgs e)
+        {
+            updateTimer.Enabled = false;
+            if (remoteFolder != null) { requestRemoteFolder(remoteFolder); }
+        }
+
+        private void remoteDeleteButton_Click(object sender, EventArgs e)
+        {
+            ArrayList filesArray = new ArrayList();
+            foreach (ListViewItem l in rightListView.SelectedItems) { filesArray.Add(l.Text); }
+            string[] files = (string[])filesArray.ToArray(typeof(string));
+            string msg = string.Format("Confirm removal of {0} items?", files.Length);
+            if (files.Length == 1) { msg = "Confirm removal of 1 item?"; }
+            FileDeletePromptForm f = new FileDeletePromptForm(msg);
+            if (f.ShowDialog(this) == DialogResult.OK)
+            {
+                requestDelete(remoteFolder, files, f.recursive);
+                updateTimer.Enabled = true;
+            }
+        }
+
+        private void remoteContextMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (node.agentid < 5)
+            {
+                toolStripMenuItem1.Visible = renameToolStripMenuItem.Visible = (rightListView.SelectedItems.Count == 1) && (remoteFolder != "") && (remoteFolder != null);
+            }
+            else
+            {
+                toolStripMenuItem1.Visible = renameToolStripMenuItem.Visible = (rightListView.SelectedItems.Count == 1);
+            }
+        }
+
+        private void renameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string oldname = rightListView.SelectedItems[0].Text;
+            if ((rightListView.SelectedItems.Count != 1) || (remoteFolder == null)) return;
+            FilenamePromptForm f = new FilenamePromptForm("Rename", oldname);
+            if (f.ShowDialog(this) == DialogResult.OK)
+            {
+                if (oldname == f.filename) return;
+                //string r;
+                //if (remoteFolder.EndsWith("/")) { r = remoteFolder + f.filename; } else { r = remoteFolder + "/" + f.filename; }
+                requestRename(remoteFolder, oldname, f.filename);
+                updateTimer.Enabled = true;
+            }
+        }
+
+        private delegate void updateTransferButtonsHandler();
+
+        private void updateTransferButtons()
+        {
+            if (this.InvokeRequired) { this.Invoke(new updateTransferButtonsHandler(updateTransferButtons)); return; }
+            if ((wc == null) || (wc.State != webSocketClient.ConnectionStates.Connected))
+            {
+                uploadButton.Enabled = false;
+                downloadButton.Enabled = false;
+            }
+            else
+            {
+                // Set upload button
+                bool uploadAllowed = true;
+                if (localFolder == null) { uploadAllowed = false; }
+                if (leftListView.SelectedItems.Count == 0) { uploadAllowed = false; }
+                foreach (ListViewItem l in leftListView.SelectedItems) { if (l.ImageIndex != 2) { uploadAllowed = false; } }
+                if ((node.agentid < 5) && ((remoteFolder == null) || (remoteFolder == ""))) { uploadAllowed = false; }
+                uploadButton.Enabled = uploadAllowed;
+
+                // Set download button
+                bool downloadAllowed = true;
+                if (localFolder == null) { downloadAllowed = false; }
+                if (rightListView.SelectedItems.Count == 0) { downloadAllowed = false; }
+                foreach (ListViewItem l in rightListView.SelectedItems) { if (l.ImageIndex != 2) { downloadAllowed = false; } }
+                if ((node.agentid < 5) && ((remoteFolder == null) || (remoteFolder == ""))) { downloadAllowed = false; }
+                downloadButton.Enabled = downloadAllowed;
+            }
+        }
+
+        private void leftListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            updateTransferButtons();
+        }
+
+        private void uploadButton_Click(object sender, EventArgs e)
+        {
+            if (uploadActive) return;
+            uploadFileArrayPtr = 0;
+            uploadFileArray = new ArrayList();
+            foreach (ListViewItem l in leftListView.SelectedItems) { if (l.ImageIndex == 2) { uploadFileArray.Add(l.Text); } }
+            uploadLocalPath = localFolder;
+            uploadRemotePath = remoteFolder;
+            uploadActive = true;
+            uploadStop = false;
+            uploadNextFile();
+
+            // Show transfer status dialog
+            transferStatusForm = new FileTransferStatusForm(this);
+            transferStatusForm.Show(this);
+    }
+
+        private void uploadNextFile()
+        {
+            string localFilePath;
+            localFilePath = Path.Combine(uploadLocalPath.FullName, (string)uploadFileArray[uploadFileArrayPtr]);
+            uploadFileStream = File.OpenRead(localFilePath);
+            uploadFileSize = new FileInfo(localFilePath).Length;
+            uploadFilePtr = 0;
+
+            // Send UPLOAD command
+            string cmd = "{\"action\":\"upload\",\"reqid\":" + (uploadFileArrayPtr + 1000) + ",\"path\":\"" + uploadRemotePath + "\",\"name\":\"" + uploadFileArray[uploadFileArrayPtr] + "\",\"size\":" + uploadFileSize + "}";
+            byte[] bincmd = UTF8Encoding.UTF8.GetBytes(cmd);
+            wc.SendBinary(bincmd, 0, bincmd.Length);
+        }
+
+        public void uploadCancel()
+        {
+            if (uploadActive == false) return;
+
+            // Send UPLOADCANCEL command
+            string cmd = "{\"action\":\"uploadcancel\",\"reqid\":" + (uploadFileArrayPtr + 1000) + "}";
+            byte[] bincmd = UTF8Encoding.UTF8.GetBytes(cmd);
+            wc.SendBinary(bincmd, 0, bincmd.Length);
+
+            // Clear state
+            uploadActive = false;
+            uploadStop = false;
+            uploadFileArrayPtr = -1;
+            uploadFileArray = null;
+            uploadLocalPath = null;
+            uploadRemotePath = null;
+            uploadFilePtr = 0;
+            uploadFileSize = 0;
+            if (uploadFileStream != null) { uploadFileStream.Close(); uploadFileStream = null; }
+            closeTransferDialog();
+            updateTimer.Enabled = true;
+        }
+
+        private void uploadNextPart(bool dataPriming)
+        {
+            if (uploadActive == false) return;
+            byte[] buffer = new byte[16385];
+            int len = uploadFileStream.Read(buffer, 1, buffer.Length - 1);
+            if (dataPriming && (len == 0)) return;
+            uploadFilePtr += len;
+
+            if (len == 0) {
+                // Send UPLOADDONE command
+                string cmd = "{\"action\":\"uploaddone\",\"reqid\":" + (uploadFileArrayPtr + 1000) + "}";
+                byte[] bincmd = UTF8Encoding.UTF8.GetBytes(cmd);
+                wc.SendBinary(bincmd, 0, bincmd.Length);
+            } else {
+                // Send part of the file
+                // If starts with 0 or {, add a zero char at the start of the send, this will indicate that it's not a JSON command.
+                if ((buffer[1] == 123) || (buffer[1] == 0)) { wc.SendBinary(buffer, 0, len + 1); } else { wc.SendBinary(buffer, 1, len); }
+            }
+        }
+
+        private delegate void closeTransferDialogHandler();
+
+        private void closeTransferDialog()
+        {
+            if (transferStatusForm == null) return;
+            if (this.InvokeRequired) { this.Invoke(new closeTransferDialogHandler(closeTransferDialog)); return; }
+            transferStatusForm.Close(); transferStatusForm = null;
+        }
+
     }
 }

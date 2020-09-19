@@ -195,6 +195,240 @@
   <data name="&gt;&gt;connectButton.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="remoteRefreshButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="remoteRefreshButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="remoteRefreshButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>78, 21</value>
+  </data>
+  <data name="remoteRefreshButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 23</value>
+  </data>
+  <data name="remoteRefreshButton.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="remoteRefreshButton.ToolTip" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="&gt;&gt;remoteRefreshButton.Name" xml:space="preserve">
+    <value>remoteRefreshButton</value>
+  </data>
+  <data name="&gt;&gt;remoteRefreshButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;remoteRefreshButton.Parent" xml:space="preserve">
+    <value>rightTopPanel</value>
+  </data>
+  <data name="&gt;&gt;remoteRefreshButton.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="remoteUpButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="remoteUpButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="remoteUpButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 21</value>
+  </data>
+  <data name="remoteUpButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 23</value>
+  </data>
+  <data name="remoteUpButton.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="remoteUpButton.ToolTip" xml:space="preserve">
+    <value>Go to parent folder</value>
+  </data>
+  <data name="&gt;&gt;remoteUpButton.Name" xml:space="preserve">
+    <value>remoteUpButton</value>
+  </data>
+  <data name="&gt;&gt;remoteUpButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;remoteUpButton.Parent" xml:space="preserve">
+    <value>rightTopPanel</value>
+  </data>
+  <data name="&gt;&gt;remoteUpButton.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="localRefreshButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="localRefreshButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>78, 21</value>
+  </data>
+  <data name="localRefreshButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 23</value>
+  </data>
+  <data name="localRefreshButton.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="localRefreshButton.ToolTip" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="&gt;&gt;localRefreshButton.Name" xml:space="preserve">
+    <value>localRefreshButton</value>
+  </data>
+  <data name="&gt;&gt;localRefreshButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;localRefreshButton.Parent" xml:space="preserve">
+    <value>leftTopPanel</value>
+  </data>
+  <data name="&gt;&gt;localRefreshButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="localUpButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="localUpButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 21</value>
+  </data>
+  <data name="localUpButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 23</value>
+  </data>
+  <data name="localUpButton.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="localUpButton.ToolTip" xml:space="preserve">
+    <value>Go to parent folder</value>
+  </data>
+  <data name="&gt;&gt;localUpButton.Name" xml:space="preserve">
+    <value>localUpButton</value>
+  </data>
+  <data name="&gt;&gt;localUpButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;localUpButton.Parent" xml:space="preserve">
+    <value>leftTopPanel</value>
+  </data>
+  <data name="&gt;&gt;localUpButton.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="remoteNewFolderButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="remoteNewFolderButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="remoteNewFolderButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>114, 21</value>
+  </data>
+  <data name="remoteNewFolderButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 23</value>
+  </data>
+  <data name="remoteNewFolderButton.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="remoteNewFolderButton.ToolTip" xml:space="preserve">
+    <value>New Folder</value>
+  </data>
+  <data name="&gt;&gt;remoteNewFolderButton.Name" xml:space="preserve">
+    <value>remoteNewFolderButton</value>
+  </data>
+  <data name="&gt;&gt;remoteNewFolderButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;remoteNewFolderButton.Parent" xml:space="preserve">
+    <value>rightTopPanel</value>
+  </data>
+  <data name="&gt;&gt;remoteNewFolderButton.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="remoteRootButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="remoteRootButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="remoteRootButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>42, 21</value>
+  </data>
+  <data name="remoteRootButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 23</value>
+  </data>
+  <data name="remoteRootButton.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="remoteRootButton.ToolTip" xml:space="preserve">
+    <value>Go to root</value>
+  </data>
+  <data name="&gt;&gt;remoteRootButton.Name" xml:space="preserve">
+    <value>remoteRootButton</value>
+  </data>
+  <data name="&gt;&gt;remoteRootButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;remoteRootButton.Parent" xml:space="preserve">
+    <value>rightTopPanel</value>
+  </data>
+  <data name="&gt;&gt;remoteRootButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="localRootButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="localRootButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="localRootButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>42, 21</value>
+  </data>
+  <data name="localRootButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 23</value>
+  </data>
+  <data name="localRootButton.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="localRootButton.ToolTip" xml:space="preserve">
+    <value>Go to root</value>
+  </data>
+  <data name="&gt;&gt;localRootButton.Name" xml:space="preserve">
+    <value>localRootButton</value>
+  </data>
+  <data name="&gt;&gt;localRootButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;localRootButton.Parent" xml:space="preserve">
+    <value>leftTopPanel</value>
+  </data>
+  <data name="&gt;&gt;localRootButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="remoteDeleteButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="remoteDeleteButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="remoteDeleteButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>150, 21</value>
+  </data>
+  <data name="remoteDeleteButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 23</value>
+  </data>
+  <data name="remoteDeleteButton.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="remoteDeleteButton.ToolTip" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="&gt;&gt;remoteDeleteButton.Name" xml:space="preserve">
+    <value>remoteDeleteButton</value>
+  </data>
+  <data name="&gt;&gt;remoteDeleteButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;remoteDeleteButton.Parent" xml:space="preserve">
+    <value>rightTopPanel</value>
+  </data>
+  <data name="&gt;&gt;remoteDeleteButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="topPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
   </data>
@@ -217,34 +451,34 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;topPanel.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
-  <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="statusStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>381, 17</value>
   </metadata>
-  <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 503</value>
+  <data name="statusStrip.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 480</value>
   </data>
-  <data name="statusStrip1.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="statusStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>690, 22</value>
   </data>
-  <data name="statusStrip1.TabIndex" type="System.Int32, mscorlib">
+  <data name="statusStrip.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
   </data>
-  <data name="statusStrip1.Text" xml:space="preserve">
+  <data name="statusStrip.Text" xml:space="preserve">
     <value>statusStrip1</value>
   </data>
-  <data name="&gt;&gt;statusStrip1.Name" xml:space="preserve">
-    <value>statusStrip1</value>
+  <data name="&gt;&gt;statusStrip.Name" xml:space="preserve">
+    <value>statusStrip</value>
   </data>
-  <data name="&gt;&gt;statusStrip1.Type" xml:space="preserve">
+  <data name="&gt;&gt;statusStrip.Type" xml:space="preserve">
     <value>System.Windows.Forms.StatusStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;statusStrip1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;statusStrip.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;statusStrip1.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="&gt;&gt;statusStrip.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="mainToolStripStatusLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>675, 17</value>
@@ -268,7 +502,7 @@
     <value>NoControl</value>
   </data>
   <data name="consoleMessage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 393</value>
+    <value>17, 370</value>
   </data>
   <data name="consoleMessage.Size" type="System.Drawing.Size, System.Drawing">
     <value>70, 25</value>
@@ -297,14 +531,71 @@
   <data name="mainTableLayoutPanel.ColumnCount" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
+  <data name="downloadButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="downloadButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="downloadButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 132</value>
+  </data>
+  <data name="downloadButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 38</value>
+  </data>
+  <data name="downloadButton.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="downloadButton.ToolTip" xml:space="preserve">
+    <value>Download Files</value>
+  </data>
+  <data name="&gt;&gt;downloadButton.Name" xml:space="preserve">
+    <value>downloadButton</value>
+  </data>
+  <data name="&gt;&gt;downloadButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;downloadButton.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;downloadButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="uploadButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="uploadButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 88</value>
+  </data>
+  <data name="uploadButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 38</value>
+  </data>
+  <data name="uploadButton.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="uploadButton.ToolTip" xml:space="preserve">
+    <value>Upload files</value>
+  </data>
+  <data name="&gt;&gt;uploadButton.Name" xml:space="preserve">
+    <value>uploadButton</value>
+  </data>
+  <data name="&gt;&gt;uploadButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;uploadButton.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;uploadButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="panel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
   <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>338, 3</value>
+    <value>333, 3</value>
   </data>
   <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>14, 465</value>
+    <value>24, 442</value>
   </data>
   <data name="panel1.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -321,6 +612,132 @@
   <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="&gt;&gt;rightListView.Name" xml:space="preserve">
+    <value>rightListView</value>
+  </data>
+  <data name="&gt;&gt;rightListView.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rightListView.Parent" xml:space="preserve">
+    <value>rightPanel</value>
+  </data>
+  <data name="&gt;&gt;rightListView.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;rightTopPanel.Name" xml:space="preserve">
+    <value>rightTopPanel</value>
+  </data>
+  <data name="&gt;&gt;rightTopPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rightTopPanel.Parent" xml:space="preserve">
+    <value>rightPanel</value>
+  </data>
+  <data name="&gt;&gt;rightTopPanel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="rightPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="rightPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>363, 3</value>
+  </data>
+  <data name="rightPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>324, 442</value>
+  </data>
+  <data name="rightPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;rightPanel.Name" xml:space="preserve">
+    <value>rightPanel</value>
+  </data>
+  <data name="&gt;&gt;rightPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rightPanel.Parent" xml:space="preserve">
+    <value>mainTableLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;rightPanel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;leftListView.Name" xml:space="preserve">
+    <value>leftListView</value>
+  </data>
+  <data name="&gt;&gt;leftListView.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;leftListView.Parent" xml:space="preserve">
+    <value>leftPanel</value>
+  </data>
+  <data name="&gt;&gt;leftListView.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;leftTopPanel.Name" xml:space="preserve">
+    <value>leftTopPanel</value>
+  </data>
+  <data name="&gt;&gt;leftTopPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;leftTopPanel.Parent" xml:space="preserve">
+    <value>leftPanel</value>
+  </data>
+  <data name="&gt;&gt;leftTopPanel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="leftPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="leftPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="leftPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>324, 442</value>
+  </data>
+  <data name="leftPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;leftPanel.Name" xml:space="preserve">
+    <value>leftPanel</value>
+  </data>
+  <data name="&gt;&gt;leftPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;leftPanel.Parent" xml:space="preserve">
+    <value>mainTableLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;leftPanel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="mainTableLayoutPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="mainTableLayoutPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 32</value>
+  </data>
+  <data name="mainTableLayoutPanel.RowCount" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="mainTableLayoutPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>690, 448</value>
+  </data>
+  <data name="mainTableLayoutPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;mainTableLayoutPanel.Name" xml:space="preserve">
+    <value>mainTableLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;mainTableLayoutPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mainTableLayoutPanel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mainTableLayoutPanel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="mainTableLayoutPanel.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="panel1" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="rightPanel" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="leftPanel" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,50,Absolute,30,Percent,50" /&gt;&lt;Rows Styles="Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
   <data name="columnHeader3.Text" xml:space="preserve">
     <value>Name</value>
   </data>
@@ -336,6 +753,18 @@
   <data name="columnHeader4.Width" type="System.Int32, mscorlib">
     <value>80</value>
   </data>
+  <metadata name="remoteContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>640, 17</value>
+  </metadata>
+  <data name="remoteContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>118, 54</value>
+  </data>
+  <data name="&gt;&gt;remoteContextMenuStrip.Name" xml:space="preserve">
+    <value>remoteContextMenuStrip</value>
+  </data>
+  <data name="&gt;&gt;remoteContextMenuStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="rightListView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
@@ -343,7 +772,7 @@
     <value>0, 50</value>
   </data>
   <data name="rightListView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>325, 411</value>
+    <value>320, 388</value>
   </data>
   <metadata name="fileIconImageList.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>497, 17</value>
@@ -353,7 +782,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAC+
-        CQAAAk1TRnQBSQFMAgEBAwEAARABAAEQAQABEAEAARABAAT/AREBAAj/AUIBTQE2BwABNgMAASgDAAFA
+        CQAAAk1TRnQBSQFMAgEBAwEAAWABAAFgAQABEAEAARABAAT/AREBAAj/AUIBTQE2BwABNgMAASgDAAFA
         AwABEAMAAQEBAAEQBgABCDoAATABcwHKAWYBygFmAbUBexIAARABQgEQAUIBEAFCARABQgEQAUIBEAFC
         ARABQgEQAUIBEAFCARABQgEQAUIBEAFCARABQkYAAcoBZgHKAWYBygFmAcoBZgHKAWYBygFmAcoBZgHK
         AWYBygFmAcoBZgHKAWYBygFmATABcwYAARABQgHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7
@@ -412,61 +841,55 @@
   <data name="&gt;&gt;rightListView.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="remoteRefreshButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="renameToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 22</value>
   </data>
-  <data name="remoteRefreshButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>58, 21</value>
+  <data name="renameToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Rename</value>
   </data>
-  <data name="remoteRefreshButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 23</value>
+  <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>114, 6</value>
   </data>
-  <data name="remoteRefreshButton.TabIndex" type="System.Int32, mscorlib">
+  <data name="refreshToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 22</value>
+  </data>
+  <data name="refreshToolStripMenuItem.Text" xml:space="preserve">
+    <value>R&amp;efresh</value>
+  </data>
+  <data name="&gt;&gt;remoteLabel.Name" xml:space="preserve">
+    <value>remoteLabel</value>
+  </data>
+  <data name="&gt;&gt;remoteLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;remoteLabel.Parent" xml:space="preserve">
+    <value>rightTopPanel</value>
+  </data>
+  <data name="&gt;&gt;remoteLabel.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="remoteRefreshButton.Text" xml:space="preserve">
-    <value>Refresh</value>
+  <data name="rightTopPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
   </data>
-  <data name="&gt;&gt;remoteRefreshButton.Name" xml:space="preserve">
-    <value>remoteRefreshButton</value>
+  <data name="rightTopPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
   </data>
-  <data name="&gt;&gt;remoteRefreshButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="rightTopPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>320, 50</value>
   </data>
-  <data name="&gt;&gt;remoteRefreshButton.Parent" xml:space="preserve">
+  <data name="rightTopPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;rightTopPanel.Name" xml:space="preserve">
     <value>rightTopPanel</value>
   </data>
-  <data name="&gt;&gt;remoteRefreshButton.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="&gt;&gt;rightTopPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="remoteUpButton.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="&gt;&gt;rightTopPanel.Parent" xml:space="preserve">
+    <value>rightPanel</value>
   </data>
-  <data name="remoteUpButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="remoteUpButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 21</value>
-  </data>
-  <data name="remoteUpButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>46, 23</value>
-  </data>
-  <data name="remoteUpButton.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="remoteUpButton.Text" xml:space="preserve">
-    <value>Up</value>
-  </data>
-  <data name="&gt;&gt;remoteUpButton.Name" xml:space="preserve">
-    <value>remoteUpButton</value>
-  </data>
-  <data name="&gt;&gt;remoteUpButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;remoteUpButton.Parent" xml:space="preserve">
-    <value>rightTopPanel</value>
-  </data>
-  <data name="&gt;&gt;remoteUpButton.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;rightTopPanel.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
   <data name="remoteLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
@@ -500,55 +923,7 @@
     <value>rightTopPanel</value>
   </data>
   <data name="&gt;&gt;remoteLabel.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="rightTopPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="rightTopPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="rightTopPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>325, 50</value>
-  </data>
-  <data name="rightTopPanel.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;rightTopPanel.Name" xml:space="preserve">
-    <value>rightTopPanel</value>
-  </data>
-  <data name="&gt;&gt;rightTopPanel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rightTopPanel.Parent" xml:space="preserve">
-    <value>rightPanel</value>
-  </data>
-  <data name="&gt;&gt;rightTopPanel.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="rightPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="rightPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>358, 3</value>
-  </data>
-  <data name="rightPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>329, 465</value>
-  </data>
-  <data name="rightPanel.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;rightPanel.Name" xml:space="preserve">
-    <value>rightPanel</value>
-  </data>
-  <data name="&gt;&gt;rightPanel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rightPanel.Parent" xml:space="preserve">
-    <value>mainTableLayoutPanel</value>
-  </data>
-  <data name="&gt;&gt;rightPanel.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>5</value>
   </data>
   <data name="columnHeader1.Text" xml:space="preserve">
     <value>Name</value>
@@ -572,7 +947,7 @@
     <value>0, 50</value>
   </data>
   <data name="leftListView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>325, 411</value>
+    <value>320, 388</value>
   </data>
   <data name="leftListView.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -589,56 +964,41 @@
   <data name="&gt;&gt;leftListView.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="localRefreshButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="&gt;&gt;localLabel.Name" xml:space="preserve">
+    <value>localLabel</value>
   </data>
-  <data name="localRefreshButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>58, 21</value>
+  <data name="&gt;&gt;localLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="localRefreshButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 23</value>
-  </data>
-  <data name="localRefreshButton.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="localRefreshButton.Text" xml:space="preserve">
-    <value>Refresh</value>
-  </data>
-  <data name="&gt;&gt;localRefreshButton.Name" xml:space="preserve">
-    <value>localRefreshButton</value>
-  </data>
-  <data name="&gt;&gt;localRefreshButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;localRefreshButton.Parent" xml:space="preserve">
+  <data name="&gt;&gt;localLabel.Parent" xml:space="preserve">
     <value>leftTopPanel</value>
   </data>
-  <data name="&gt;&gt;localRefreshButton.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="localUpButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 21</value>
-  </data>
-  <data name="localUpButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>46, 23</value>
-  </data>
-  <data name="localUpButton.TabIndex" type="System.Int32, mscorlib">
+  <data name="&gt;&gt;localLabel.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="localUpButton.Text" xml:space="preserve">
-    <value>Up</value>
+  <data name="leftTopPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
   </data>
-  <data name="&gt;&gt;localUpButton.Name" xml:space="preserve">
-    <value>localUpButton</value>
+  <data name="leftTopPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
   </data>
-  <data name="&gt;&gt;localUpButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="leftTopPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>320, 50</value>
   </data>
-  <data name="&gt;&gt;localUpButton.Parent" xml:space="preserve">
+  <data name="leftTopPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;leftTopPanel.Name" xml:space="preserve">
     <value>leftTopPanel</value>
   </data>
-  <data name="&gt;&gt;localUpButton.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="&gt;&gt;leftTopPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;leftTopPanel.Parent" xml:space="preserve">
+    <value>leftPanel</value>
+  </data>
+  <data name="&gt;&gt;leftTopPanel.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="localLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -668,85 +1028,7 @@
     <value>leftTopPanel</value>
   </data>
   <data name="&gt;&gt;localLabel.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="leftTopPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="leftTopPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="leftTopPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>325, 50</value>
-  </data>
-  <data name="leftTopPanel.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;leftTopPanel.Name" xml:space="preserve">
-    <value>leftTopPanel</value>
-  </data>
-  <data name="&gt;&gt;leftTopPanel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;leftTopPanel.Parent" xml:space="preserve">
-    <value>leftPanel</value>
-  </data>
-  <data name="&gt;&gt;leftTopPanel.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="leftPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="leftPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
-  </data>
-  <data name="leftPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>329, 465</value>
-  </data>
-  <data name="leftPanel.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;leftPanel.Name" xml:space="preserve">
-    <value>leftPanel</value>
-  </data>
-  <data name="&gt;&gt;leftPanel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;leftPanel.Parent" xml:space="preserve">
-    <value>mainTableLayoutPanel</value>
-  </data>
-  <data name="&gt;&gt;leftPanel.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="mainTableLayoutPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="mainTableLayoutPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 32</value>
-  </data>
-  <data name="mainTableLayoutPanel.RowCount" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="mainTableLayoutPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>690, 471</value>
-  </data>
-  <data name="mainTableLayoutPanel.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="&gt;&gt;mainTableLayoutPanel.Name" xml:space="preserve">
-    <value>mainTableLayoutPanel</value>
-  </data>
-  <data name="&gt;&gt;mainTableLayoutPanel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mainTableLayoutPanel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;mainTableLayoutPanel.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="mainTableLayoutPanel.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="panel1" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="rightPanel" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="leftPanel" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,50,Absolute,20,Percent,50" /&gt;&lt;Rows Styles="Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>3</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -755,7 +1037,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>690, 525</value>
+    <value>690, 502</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1229,6 +1511,24 @@
   </data>
   <data name="&gt;&gt;columnHeader4.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;renameToolStripMenuItem.Name" xml:space="preserve">
+    <value>renameToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;renameToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem1.Name" xml:space="preserve">
+    <value>toolStripMenuItem1</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;refreshToolStripMenuItem.Name" xml:space="preserve">
+    <value>refreshToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;refreshToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;fileIconImageList.Name" xml:space="preserve">
     <value>fileIconImageList</value>

@@ -659,7 +659,10 @@ namespace MeshCentralRouter
                 noDevicesLabel.Visible = true;
                 if ((meshcentral != null) && (meshcentral.nodes != null))
                 {
-                    foreach (NodeClass n in meshcentral.nodes.Values) { if (n.desktopViewer != null) { n.desktopViewer.Close(); } }
+                    foreach (NodeClass n in meshcentral.nodes.Values) {
+                        if (n.desktopViewer != null) { n.desktopViewer.Close(); }
+                        if (n.fileViewer != null) { n.fileViewer.Close(); }
+                    }
                 }
 
                 // Clean up the server

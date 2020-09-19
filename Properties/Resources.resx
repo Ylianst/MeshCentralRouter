@@ -117,24 +117,30 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="EmailVerificationRequired" xml:space="preserve">
+    <value>Email verification required</value>
+  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="arrowright16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrowright16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Help20" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Help20.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Folder36" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Folder36.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="LanguagesTitle" xml:space="preserve">
-    <value>Languages</value>
   </data>
   <data name="SearchPlaceHolder" xml:space="preserve">
     <value>Search</value>
   </data>
+  <data name="foldernew16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\foldernew16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="MC2Banner" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\MC2-Banner.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="PuttyAppName" xml:space="preserve">
-    <value>PuTTY SSH client</value>
+  <data name="iconClipboardIn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon-clipboard-in.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Stopped2" xml:space="preserve">
+    <value>Stopped</value>
   </data>
   <data name="WinscpAppName" xml:space="preserve">
     <value>WinSCP client</value>
@@ -148,6 +154,9 @@
   <data name="LanguagesChanging" xml:space="preserve">
     <value>Changing language will close this tool. Are you sure?</value>
   </data>
+  <data name="PuttyAppName" xml:space="preserve">
+    <value>PuTTY SSH client</value>
+  </data>
   <data name="UnableToConnect" xml:space="preserve">
     <value>Unable to connect</value>
   </data>
@@ -160,17 +169,17 @@
   <data name="Agent" xml:space="preserve">
     <value>Agent</value>
   </data>
+  <data name="iconClipboardOut" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon-clipboard-out.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Stopped" xml:space="preserve">
     <value>Stopped.</value>
   </data>
   <data name="MeshCentral" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\MeshCentral.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="iconClipboardOut" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon-clipboard-out.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Offline" xml:space="preserve">
-    <value>Offline</value>
+  <data name="xinstall" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\xinstall.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SmsSent" xml:space="preserve">
     <value>SMS sent</value>
@@ -181,14 +190,17 @@
   <data name="Relay" xml:space="preserve">
     <value>Relay</value>
   </data>
-  <data name="xinstall" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\xinstall.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="folderroot16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\folderroot16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Computer50" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\50-Computer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="EmailSent" xml:space="preserve">
     <value>Email sent</value>
   </data>
-  <data name="EmailVerificationRequired" xml:space="preserve">
-    <value>Email verification required</value>
+  <data name="Offline" xml:space="preserve">
+    <value>Offline</value>
   </data>
   <data name="SendTokenSMS" xml:space="preserve">
     <value>Send token to registered phone number?</value>
@@ -196,17 +208,14 @@
   <data name="MeshCentralRouter" xml:space="preserve">
     <value>MeshCentral Router</value>
   </data>
-  <data name="Stopped2" xml:space="preserve">
-    <value>Stopped</value>
+  <data name="refresh16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\refresh16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ManyConnections" xml:space="preserve">
-    <value>, {0} connections.</value>
+  <data name="ZoomToFit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ZoomToFit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Starting" xml:space="preserve">
     <value>Starting...</value>
-  </data>
-  <data name="Computer50" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\50-Computer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="IndividualDevices" xml:space="preserve">
     <value>(Individual Devices)</value>
@@ -214,11 +223,17 @@
   <data name="TwoFactorAuthentication" xml:space="preserve">
     <value>Two-factor Authentication</value>
   </data>
-  <data name="MeshCentralTitle" xml:space="preserve">
-    <value>MeshCentral</value>
+  <data name="DontAskXDays" xml:space="preserve">
+    <value>Don't ask for {0} days.</value>
   </data>
   <data name="MQTT" xml:space="preserve">
     <value>MQTT</value>
+  </data>
+  <data name="MeshCentralTitle" xml:space="preserve">
+    <value>MeshCentral</value>
+  </data>
+  <data name="LanguagesTitle" xml:space="preserve">
+    <value>Languages</value>
   </data>
   <data name="EmptyBanner" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Empty-Banner.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -226,22 +241,28 @@
   <data name="icons01" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons01.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="OneConnection" xml:space="preserve">
-    <value>, 1 connection.</value>
+  <data name="delete16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\delete16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folderup16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\folderup16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="UnableToBindToLocalPort" xml:space="preserve">
     <value>Unable to bind to local port</value>
   </data>
-  <data name="iconClipboardIn" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon-clipboard-in.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ManyConnections" xml:space="preserve">
+    <value>, {0} connections.</value>
+  </data>
+  <data name="Folder36" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Folder36.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="InvalidUsernameOrPassword" xml:space="preserve">
     <value>Invalid username or password</value>
   </data>
-  <data name="ZoomToFit" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ZoomToFit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="OneConnection" xml:space="preserve">
+    <value>, 1 connection.</value>
   </data>
-  <data name="DontAskXDays" xml:space="preserve">
-    <value>Don't ask for {0} days.</value>
+  <data name="arrowleft16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrowleft16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -79,6 +79,26 @@ namespace MeshCentralRouter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap arrowleft16 {
+            get {
+                object obj = ResourceManager.GetObject("arrowleft16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap arrowright16 {
+            get {
+                object obj = ResourceManager.GetObject("arrowright16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to CIRA.
         /// </summary>
         internal static string CIRA {
@@ -93,6 +113,16 @@ namespace MeshCentralRouter.Properties {
         internal static System.Drawing.Bitmap Computer50 {
             get {
                 object obj = ResourceManager.GetObject("Computer50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap delete16 {
+            get {
+                object obj = ResourceManager.GetObject("delete16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -140,6 +170,36 @@ namespace MeshCentralRouter.Properties {
         internal static System.Drawing.Bitmap Folder36 {
             get {
                 object obj = ResourceManager.GetObject("Folder36", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap foldernew16 {
+            get {
+                object obj = ResourceManager.GetObject("foldernew16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap folderroot16 {
+            get {
+                object obj = ResourceManager.GetObject("folderroot16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap folderup16 {
+            get {
+                object obj = ResourceManager.GetObject("folderup16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -320,6 +380,16 @@ namespace MeshCentralRouter.Properties {
         internal static string PuttyAppName {
             get {
                 return ResourceManager.GetString("PuttyAppName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap refresh16 {
+            get {
+                object obj = ResourceManager.GetObject("refresh16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
