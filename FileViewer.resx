@@ -280,7 +280,7 @@
     <value>leftTopPanel</value>
   </data>
   <data name="&gt;&gt;localRefreshButton.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="localUpButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -307,7 +307,7 @@
     <value>leftTopPanel</value>
   </data>
   <data name="&gt;&gt;localUpButton.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="remoteNewFolderButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -397,7 +397,7 @@
     <value>leftTopPanel</value>
   </data>
   <data name="&gt;&gt;localRootButton.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="remoteDeleteButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -428,6 +428,63 @@
   </data>
   <data name="&gt;&gt;remoteDeleteButton.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="downloadButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="downloadButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="downloadButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 132</value>
+  </data>
+  <data name="downloadButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 38</value>
+  </data>
+  <data name="downloadButton.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="downloadButton.ToolTip" xml:space="preserve">
+    <value>Download Files</value>
+  </data>
+  <data name="&gt;&gt;downloadButton.Name" xml:space="preserve">
+    <value>downloadButton</value>
+  </data>
+  <data name="&gt;&gt;downloadButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;downloadButton.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;downloadButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="uploadButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="uploadButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 88</value>
+  </data>
+  <data name="uploadButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 38</value>
+  </data>
+  <data name="uploadButton.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="uploadButton.ToolTip" xml:space="preserve">
+    <value>Upload files</value>
+  </data>
+  <data name="&gt;&gt;uploadButton.Name" xml:space="preserve">
+    <value>uploadButton</value>
+  </data>
+  <data name="&gt;&gt;uploadButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;uploadButton.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;uploadButton.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="topPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -531,63 +588,6 @@
   <data name="mainTableLayoutPanel.ColumnCount" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
-  <data name="downloadButton.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="downloadButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="downloadButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 132</value>
-  </data>
-  <data name="downloadButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>24, 38</value>
-  </data>
-  <data name="downloadButton.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="downloadButton.ToolTip" xml:space="preserve">
-    <value>Download Files</value>
-  </data>
-  <data name="&gt;&gt;downloadButton.Name" xml:space="preserve">
-    <value>downloadButton</value>
-  </data>
-  <data name="&gt;&gt;downloadButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;downloadButton.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;downloadButton.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="uploadButton.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="uploadButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 88</value>
-  </data>
-  <data name="uploadButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>24, 38</value>
-  </data>
-  <data name="uploadButton.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="uploadButton.ToolTip" xml:space="preserve">
-    <value>Upload files</value>
-  </data>
-  <data name="&gt;&gt;uploadButton.Name" xml:space="preserve">
-    <value>uploadButton</value>
-  </data>
-  <data name="&gt;&gt;uploadButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;uploadButton.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;uploadButton.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
   <data name="panel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
@@ -660,6 +660,85 @@
   <data name="&gt;&gt;rightPanel.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="columnHeader1.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="columnHeader1.Width" type="System.Int32, mscorlib">
+    <value>220</value>
+  </data>
+  <data name="columnHeader2.Text" xml:space="preserve">
+    <value>Size</value>
+  </data>
+  <data name="columnHeader2.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="columnHeader2.Width" type="System.Int32, mscorlib">
+    <value>80</value>
+  </data>
+  <data name="leftListView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="leftListView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 50</value>
+  </data>
+  <data name="leftListView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>320, 388</value>
+  </data>
+  <metadata name="fileIconImageList.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>497, 17</value>
+  </metadata>
+  <data name="fileIconImageList.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
+        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
+        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAC+
+        CQAAAk1TRnQBSQFMAgEBAwEAAWgBAAFoAQABEAEAARABAAT/AREBAAj/AUIBTQE2BwABNgMAASgDAAFA
+        AwABEAMAAQEBAAEQBgABCDoAATABcwHKAWYBygFmAbUBexIAARABQgEQAUIBEAFCARABQgEQAUIBEAFC
+        ARABQgEQAUIBEAFCARABQgEQAUIBEAFCARABQkYAAcoBZgHKAWYBygFmAcoBZgHKAWYBygFmAcoBZgHK
+        AWYBygFmAcoBZgHKAWYBygFmATABcwYAARABQgHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7
+        Ad4BewHeAXsB3gF7ARABQkYAATABcwEwAXMBMAFzATABcwEwAXMBygFmAcoBZgHKAWYBygFmAcoBZgHK
+        AWYBygFmAcoBZgYAARABQgHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7
+        ARABQkYAATABcwEwAXMBMAFzATABcwEwAXMBygFmAcoBZgHKAWYBygFmAcoBZgHKAWYBygFmAcoBZgYA
+        ARABQgHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7ARABQiQAAVsBawFR
+        AUYBUQFGAVEBRgFRAUYBUQFGAVEBRgFRAUYBUQFGAVEBRgFRAUYBUQFGAVEBRgFRAUYBUQFGAVsBawIA
+        ATABcwEwAXMBMAFzATABcwEwAXMBygFmAcoBZgHKAWYBygFmAcoBZgHKAWYBygFmAcoBZgYAAfcBXgHe
+        AXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7AfcBXiQAAVEBRgFRAUYBUQFG
+        AVEBRgFRAUYBUQFGAVEBRgFRAUYBUQFGAVEBRgFRAUYBUQFGAVsBawFRAUYBUQFGAVEBRgIAATABcwG1
+        AXsBMAFzATABcwEwAXMBygFmAcoBZgHKAWYBMAFzAcoBZgHKAWYBtQF7AcoBZgYAAfcBXgHeAXsB3gF7
+        Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7AfcBXiQAAVEBRgFRAUYBWwFrAVsBawFb
+        AWsBWwFrAVsBawFbAWsBWwFrAVsBawFbAWsBUQFGAVEBRgFRAUYBUQFGAVEBRgIAATABcwG1AXsBtQF7
+        ATABcwEwAXMBygFmAcoBZgHKAWYBMAFzATABcwEwAXMBtQF7AcoBZgYAAfcBXgHeAXsB3gF7Ad4BewHe
+        AXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7AfcBXiQAAVEBRgFRAUYBWwFrAVsBawFbAWsBWwFr
+        AVsBawFbAWsBWwFrAVsBawFbAWsBUQFGAVEBRgFRAUYBUQFGAVEBRgIAATABcwG1AXsBtQF7AbUBewEw
+        AXMBygFmAcoBZgHKAWYBMAFzATABcwEwAXMBtQF7AcoBZgYAAfcBXgHeAXsB3gF7Ad4BewHeAXsB3gF7
+        Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7AfcBXiQAAVEBRgFbAWsBWwFrAVsBawFbAWsBWwFrAVsBawFb
+        AWsBWwFrAVsBawFbAWsBUQFGAVEBRgFRAUYBUQFGAVEBRgIAATABcwG1AXsBtQF7AbUBewG1AXsBygFm
+        AcoBZgHKAWYBMAFzATABcwEwAXMBMAFzAcoBZgYAAfcBXgHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHe
+        AXsB3gF7Ad4BewHeAXsB3gF7AfcBXiQAAVEBRgFbAWsBWwFrAf4BewH+AXsB/gF7Af4BewH+AXsB/gF7
+        Af4BewH+AXsB/gF7Af4BewFbAWsBWwFrAVEBRgIAATABcwG1AXsBtQF7AbUBewG1AXsBygFmAcoBZgHK
+        AWYBtQF7ATABcwEwAXMBygFmATABcwYAAfcBXgHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7
+        Ad4BewHeAXsB3gF7AfcBXiQAAVsBawFbAWsBUQFGAVEBRgFRAUYBUQFGAVEBRgFRAUYBUQFGAVEBRgFR
+        AUYBUQFGAVEBRgFRAUYBWwFrAVsBawIAATABcwG1AXsBtQF7AbUBewG1AXsBygFmATABcwEwAXMBtQF7
+        AbUBewG1AXsBygFmCAAB9wFeAd4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHe
+        AXsB9wFeJgABWwFrAVsBawFbAWsBWwFrAf4BewH+AXsB/gF7Af4BewH+AXsB/gF7AVsBawFbAWsBWwFr
+        AVsBawQAATABcwG1AXsBtQF7AbUBewG1AXsBygFmATABcwEwAXMBtQF7AbUBewG1AXsBygFmCAAB9wFe
+        Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB9wFeLAABWwFrAVsBawFb
+        AWsBWwFrAVsBawFbAWsBWwFrAVsBawoAATABcwG1AXsBtQF7AbUBewG1AXsBygFmATABcwEwAXMBtQF7
+        AbUBewG1AXsBygFmCAAB9wFeAd4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB9wFeAfcBXgH3
+        AV4B9wFeRgABMAFzAbUBewG1AXsBtQF7ATABcwHKAWYBMAFzAbUBewG1AXsBtQF7AbUBewHKAWYIAAH3
+        AV4B3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewH3AV4B3gF7AfcBXkgAATABcwG1AXsBMAFz
+        ATABcwG1AXsBMAFzAbUBewG1AXsBtQF7AbUBewG1AXsBMAFzCAAB9wFeAd4BewHeAXsB3gF7Ad4BewHe
+        AXsB3gF7Ad4BewHeAXsB9wFeAfcBXkoAATABcwEwAXMBMAFzATABcwEwAXMBMAFzATABcwEwAXMBMAFz
+        AcoBZgEwAXMBtQF7CAAB9wFeAfcBXgH3AV4B9wFeAfcBXgH3AV4B9wFeAfcBXgH3AV4B9wFeKgABQgFN
+        AT4HAAE+AwABKAMAAUADAAEQAwABAQEAAQEFAAGAFwAD/wEAAv8B8AH/AYABAwIAAv8BgAEDAYABAwIA
+        Av8BgAEDAYABAwIAAv8BgAEDAYABAwQAAYABAwGAAQMEAAGAAQMBgAEDBAABgAEDAYABAwQAAYABAwGA
+        AQMEAAGAAQMBgAEDBAABgAEDAYABAwQAAYABBwGAAQMCAAGAAQEBgAEHAYABAwIAAfABDwGAAQcBgAED
+        AgAC/wGAAQcBgAEHAgAC/wGAAQcBgAEPAgAC/wGAAQcBgAEfAgAL
+</value>
+  </data>
+  <data name="leftListView.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
   <data name="&gt;&gt;leftListView.Name" xml:space="preserve">
     <value>leftListView</value>
   </data>
@@ -670,6 +749,108 @@
     <value>leftPanel</value>
   </data>
   <data name="&gt;&gt;leftListView.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="localDeleteButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="localDeleteButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="localDeleteButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>150, 21</value>
+  </data>
+  <data name="localDeleteButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 23</value>
+  </data>
+  <data name="localDeleteButton.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="localDeleteButton.ToolTip" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="&gt;&gt;localDeleteButton.Name" xml:space="preserve">
+    <value>localDeleteButton</value>
+  </data>
+  <data name="&gt;&gt;localDeleteButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;localDeleteButton.Parent" xml:space="preserve">
+    <value>leftTopPanel</value>
+  </data>
+  <data name="&gt;&gt;localDeleteButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="localNewFolderButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="localNewFolderButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="localNewFolderButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>114, 21</value>
+  </data>
+  <data name="localNewFolderButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 23</value>
+  </data>
+  <data name="localNewFolderButton.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="localNewFolderButton.ToolTip" xml:space="preserve">
+    <value>New Folder</value>
+  </data>
+  <data name="&gt;&gt;localNewFolderButton.Name" xml:space="preserve">
+    <value>localNewFolderButton</value>
+  </data>
+  <data name="&gt;&gt;localNewFolderButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;localNewFolderButton.Parent" xml:space="preserve">
+    <value>leftTopPanel</value>
+  </data>
+  <data name="&gt;&gt;localNewFolderButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="localLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="localLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="localLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="localLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>33, 13</value>
+  </data>
+  <data name="localLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="localLabel.Text" xml:space="preserve">
+    <value>Local</value>
+  </data>
+  <data name="&gt;&gt;localLabel.Name" xml:space="preserve">
+    <value>localLabel</value>
+  </data>
+  <data name="&gt;&gt;localLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;localLabel.Parent" xml:space="preserve">
+    <value>leftTopPanel</value>
+  </data>
+  <data name="&gt;&gt;localLabel.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="leftTopPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="leftTopPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="leftTopPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>320, 50</value>
+  </data>
+  <data name="leftTopPanel.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
   <data name="&gt;&gt;leftTopPanel.Name" xml:space="preserve">
@@ -774,58 +955,6 @@
   <data name="rightListView.Size" type="System.Drawing.Size, System.Drawing">
     <value>320, 388</value>
   </data>
-  <metadata name="fileIconImageList.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>497, 17</value>
-  </metadata>
-  <data name="fileIconImageList.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
-    <value>
-        AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
-        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
-        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAC+
-        CQAAAk1TRnQBSQFMAgEBAwEAAWABAAFgAQABEAEAARABAAT/AREBAAj/AUIBTQE2BwABNgMAASgDAAFA
-        AwABEAMAAQEBAAEQBgABCDoAATABcwHKAWYBygFmAbUBexIAARABQgEQAUIBEAFCARABQgEQAUIBEAFC
-        ARABQgEQAUIBEAFCARABQgEQAUIBEAFCARABQkYAAcoBZgHKAWYBygFmAcoBZgHKAWYBygFmAcoBZgHK
-        AWYBygFmAcoBZgHKAWYBygFmATABcwYAARABQgHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7
-        Ad4BewHeAXsB3gF7ARABQkYAATABcwEwAXMBMAFzATABcwEwAXMBygFmAcoBZgHKAWYBygFmAcoBZgHK
-        AWYBygFmAcoBZgYAARABQgHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7
-        ARABQkYAATABcwEwAXMBMAFzATABcwEwAXMBygFmAcoBZgHKAWYBygFmAcoBZgHKAWYBygFmAcoBZgYA
-        ARABQgHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7ARABQiQAAVsBawFR
-        AUYBUQFGAVEBRgFRAUYBUQFGAVEBRgFRAUYBUQFGAVEBRgFRAUYBUQFGAVEBRgFRAUYBUQFGAVsBawIA
-        ATABcwEwAXMBMAFzATABcwEwAXMBygFmAcoBZgHKAWYBygFmAcoBZgHKAWYBygFmAcoBZgYAAfcBXgHe
-        AXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7AfcBXiQAAVEBRgFRAUYBUQFG
-        AVEBRgFRAUYBUQFGAVEBRgFRAUYBUQFGAVEBRgFRAUYBUQFGAVsBawFRAUYBUQFGAVEBRgIAATABcwG1
-        AXsBMAFzATABcwEwAXMBygFmAcoBZgHKAWYBMAFzAcoBZgHKAWYBtQF7AcoBZgYAAfcBXgHeAXsB3gF7
-        Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7AfcBXiQAAVEBRgFRAUYBWwFrAVsBawFb
-        AWsBWwFrAVsBawFbAWsBWwFrAVsBawFbAWsBUQFGAVEBRgFRAUYBUQFGAVEBRgIAATABcwG1AXsBtQF7
-        ATABcwEwAXMBygFmAcoBZgHKAWYBMAFzATABcwEwAXMBtQF7AcoBZgYAAfcBXgHeAXsB3gF7Ad4BewHe
-        AXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7AfcBXiQAAVEBRgFRAUYBWwFrAVsBawFbAWsBWwFr
-        AVsBawFbAWsBWwFrAVsBawFbAWsBUQFGAVEBRgFRAUYBUQFGAVEBRgIAATABcwG1AXsBtQF7AbUBewEw
-        AXMBygFmAcoBZgHKAWYBMAFzATABcwEwAXMBtQF7AcoBZgYAAfcBXgHeAXsB3gF7Ad4BewHeAXsB3gF7
-        Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7AfcBXiQAAVEBRgFbAWsBWwFrAVsBawFbAWsBWwFrAVsBawFb
-        AWsBWwFrAVsBawFbAWsBUQFGAVEBRgFRAUYBUQFGAVEBRgIAATABcwG1AXsBtQF7AbUBewG1AXsBygFm
-        AcoBZgHKAWYBMAFzATABcwEwAXMBMAFzAcoBZgYAAfcBXgHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHe
-        AXsB3gF7Ad4BewHeAXsB3gF7AfcBXiQAAVEBRgFbAWsBWwFrAf4BewH+AXsB/gF7Af4BewH+AXsB/gF7
-        Af4BewH+AXsB/gF7Af4BewFbAWsBWwFrAVEBRgIAATABcwG1AXsBtQF7AbUBewG1AXsBygFmAcoBZgHK
-        AWYBtQF7ATABcwEwAXMBygFmATABcwYAAfcBXgHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7
-        Ad4BewHeAXsB3gF7AfcBXiQAAVsBawFbAWsBUQFGAVEBRgFRAUYBUQFGAVEBRgFRAUYBUQFGAVEBRgFR
-        AUYBUQFGAVEBRgFRAUYBWwFrAVsBawIAATABcwG1AXsBtQF7AbUBewG1AXsBygFmATABcwEwAXMBtQF7
-        AbUBewG1AXsBygFmCAAB9wFeAd4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHe
-        AXsB9wFeJgABWwFrAVsBawFbAWsBWwFrAf4BewH+AXsB/gF7Af4BewH+AXsB/gF7AVsBawFbAWsBWwFr
-        AVsBawQAATABcwG1AXsBtQF7AbUBewG1AXsBygFmATABcwEwAXMBtQF7AbUBewG1AXsBygFmCAAB9wFe
-        Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB9wFeLAABWwFrAVsBawFb
-        AWsBWwFrAVsBawFbAWsBWwFrAVsBawoAATABcwG1AXsBtQF7AbUBewG1AXsBygFmATABcwEwAXMBtQF7
-        AbUBewG1AXsBygFmCAAB9wFeAd4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB9wFeAfcBXgH3
-        AV4B9wFeRgABMAFzAbUBewG1AXsBtQF7ATABcwHKAWYBMAFzAbUBewG1AXsBtQF7AbUBewHKAWYIAAH3
-        AV4B3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewH3AV4B3gF7AfcBXkgAATABcwG1AXsBMAFz
-        ATABcwG1AXsBMAFzAbUBewG1AXsBtQF7AbUBewG1AXsBMAFzCAAB9wFeAd4BewHeAXsB3gF7Ad4BewHe
-        AXsB3gF7Ad4BewHeAXsB9wFeAfcBXkoAATABcwEwAXMBMAFzATABcwEwAXMBMAFzATABcwEwAXMBMAFz
-        AcoBZgEwAXMBtQF7CAAB9wFeAfcBXgH3AV4B9wFeAfcBXgH3AV4B9wFeAfcBXgH3AV4B9wFeKgABQgFN
-        AT4HAAE+AwABKAMAAUADAAEQAwABAQEAAQEFAAGAFwAD/wEAAv8B8AH/AYABAwIAAv8BgAEDAYABAwIA
-        Av8BgAEDAYABAwIAAv8BgAEDAYABAwQAAYABAwGAAQMEAAGAAQMBgAEDBAABgAEDAYABAwQAAYABAwGA
-        AQMEAAGAAQMBgAEDBAABgAEDAYABAwQAAYABBwGAAQMCAAGAAQEBgAEHAYABAwIAAfABDwGAAQcBgAED
-        AgAC/wGAAQcBgAEHAgAC/wGAAQcBgAEPAgAC/wGAAQcBgAEfAgAL
-</value>
-  </data>
   <data name="rightListView.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
@@ -924,111 +1053,6 @@
   </data>
   <data name="&gt;&gt;remoteLabel.ZOrder" xml:space="preserve">
     <value>5</value>
-  </data>
-  <data name="columnHeader1.Text" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="columnHeader1.Width" type="System.Int32, mscorlib">
-    <value>220</value>
-  </data>
-  <data name="columnHeader2.Text" xml:space="preserve">
-    <value>Size</value>
-  </data>
-  <data name="columnHeader2.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="columnHeader2.Width" type="System.Int32, mscorlib">
-    <value>80</value>
-  </data>
-  <data name="leftListView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="leftListView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 50</value>
-  </data>
-  <data name="leftListView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>320, 388</value>
-  </data>
-  <data name="leftListView.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;leftListView.Name" xml:space="preserve">
-    <value>leftListView</value>
-  </data>
-  <data name="&gt;&gt;leftListView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;leftListView.Parent" xml:space="preserve">
-    <value>leftPanel</value>
-  </data>
-  <data name="&gt;&gt;leftListView.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;localLabel.Name" xml:space="preserve">
-    <value>localLabel</value>
-  </data>
-  <data name="&gt;&gt;localLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;localLabel.Parent" xml:space="preserve">
-    <value>leftTopPanel</value>
-  </data>
-  <data name="&gt;&gt;localLabel.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="leftTopPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="leftTopPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="leftTopPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>320, 50</value>
-  </data>
-  <data name="leftTopPanel.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;leftTopPanel.Name" xml:space="preserve">
-    <value>leftTopPanel</value>
-  </data>
-  <data name="&gt;&gt;leftTopPanel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;leftTopPanel.Parent" xml:space="preserve">
-    <value>leftPanel</value>
-  </data>
-  <data name="&gt;&gt;leftTopPanel.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="localLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="localLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="localLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
-  </data>
-  <data name="localLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>33, 13</value>
-  </data>
-  <data name="localLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="localLabel.Text" xml:space="preserve">
-    <value>Local</value>
-  </data>
-  <data name="&gt;&gt;localLabel.Name" xml:space="preserve">
-    <value>localLabel</value>
-  </data>
-  <data name="&gt;&gt;localLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;localLabel.Parent" xml:space="preserve">
-    <value>leftTopPanel</value>
-  </data>
-  <data name="&gt;&gt;localLabel.ZOrder" xml:space="preserve">
-    <value>3</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

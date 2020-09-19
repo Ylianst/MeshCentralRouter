@@ -46,14 +46,14 @@ namespace MeshCentralRouter
             this.remoteRootButton = new System.Windows.Forms.Button();
             this.localRootButton = new System.Windows.Forms.Button();
             this.remoteDeleteButton = new System.Windows.Forms.Button();
+            this.downloadButton = new System.Windows.Forms.Button();
+            this.uploadButton = new System.Windows.Forms.Button();
             this.topPanel = new System.Windows.Forms.Panel();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.mainToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.consoleMessage = new System.Windows.Forms.Label();
             this.mainTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.downloadButton = new System.Windows.Forms.Button();
-            this.uploadButton = new System.Windows.Forms.Button();
             this.rightPanel = new System.Windows.Forms.Panel();
             this.rightListView = new System.Windows.Forms.ListView();
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -71,6 +71,8 @@ namespace MeshCentralRouter
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.leftTopPanel = new System.Windows.Forms.Panel();
             this.localLabel = new System.Windows.Forms.Label();
+            this.localDeleteButton = new System.Windows.Forms.Button();
+            this.localNewFolderButton = new System.Windows.Forms.Button();
             this.topPanel.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.mainTableLayoutPanel.SuspendLayout();
@@ -180,6 +182,24 @@ namespace MeshCentralRouter
             this.remoteDeleteButton.UseVisualStyleBackColor = true;
             this.remoteDeleteButton.Click += new System.EventHandler(this.remoteDeleteButton_Click);
             // 
+            // downloadButton
+            // 
+            resources.ApplyResources(this.downloadButton, "downloadButton");
+            this.downloadButton.Image = global::MeshCentralRouter.Properties.Resources.arrowleft16;
+            this.downloadButton.Name = "downloadButton";
+            this.mainToolTip.SetToolTip(this.downloadButton, resources.GetString("downloadButton.ToolTip"));
+            this.downloadButton.UseVisualStyleBackColor = true;
+            this.downloadButton.Click += new System.EventHandler(this.downloadButton_Click);
+            // 
+            // uploadButton
+            // 
+            resources.ApplyResources(this.uploadButton, "uploadButton");
+            this.uploadButton.Image = global::MeshCentralRouter.Properties.Resources.arrowright16;
+            this.uploadButton.Name = "uploadButton";
+            this.mainToolTip.SetToolTip(this.uploadButton, resources.GetString("uploadButton.ToolTip"));
+            this.uploadButton.UseVisualStyleBackColor = true;
+            this.uploadButton.Click += new System.EventHandler(this.uploadButton_Click);
+            // 
             // topPanel
             // 
             this.topPanel.BackColor = System.Drawing.SystemColors.Control;
@@ -221,23 +241,6 @@ namespace MeshCentralRouter
             this.panel1.Controls.Add(this.uploadButton);
             resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Name = "panel1";
-            // 
-            // downloadButton
-            // 
-            resources.ApplyResources(this.downloadButton, "downloadButton");
-            this.downloadButton.Image = global::MeshCentralRouter.Properties.Resources.arrowleft16;
-            this.downloadButton.Name = "downloadButton";
-            this.mainToolTip.SetToolTip(this.downloadButton, resources.GetString("downloadButton.ToolTip"));
-            this.downloadButton.UseVisualStyleBackColor = true;
-            // 
-            // uploadButton
-            // 
-            resources.ApplyResources(this.uploadButton, "uploadButton");
-            this.uploadButton.Image = global::MeshCentralRouter.Properties.Resources.arrowright16;
-            this.uploadButton.Name = "uploadButton";
-            this.mainToolTip.SetToolTip(this.uploadButton, resources.GetString("uploadButton.ToolTip"));
-            this.uploadButton.UseVisualStyleBackColor = true;
-            this.uploadButton.Click += new System.EventHandler(this.uploadButton_Click);
             // 
             // rightPanel
             // 
@@ -360,6 +363,8 @@ namespace MeshCentralRouter
             // 
             // leftTopPanel
             // 
+            this.leftTopPanel.Controls.Add(this.localDeleteButton);
+            this.leftTopPanel.Controls.Add(this.localNewFolderButton);
             this.leftTopPanel.Controls.Add(this.localRootButton);
             this.leftTopPanel.Controls.Add(this.localRefreshButton);
             this.leftTopPanel.Controls.Add(this.localUpButton);
@@ -371,6 +376,24 @@ namespace MeshCentralRouter
             // 
             resources.ApplyResources(this.localLabel, "localLabel");
             this.localLabel.Name = "localLabel";
+            // 
+            // localDeleteButton
+            // 
+            resources.ApplyResources(this.localDeleteButton, "localDeleteButton");
+            this.localDeleteButton.Image = global::MeshCentralRouter.Properties.Resources.delete16;
+            this.localDeleteButton.Name = "localDeleteButton";
+            this.mainToolTip.SetToolTip(this.localDeleteButton, resources.GetString("localDeleteButton.ToolTip"));
+            this.localDeleteButton.UseVisualStyleBackColor = true;
+            this.localDeleteButton.Click += new System.EventHandler(this.localDeleteButton_Click);
+            // 
+            // localNewFolderButton
+            // 
+            resources.ApplyResources(this.localNewFolderButton, "localNewFolderButton");
+            this.localNewFolderButton.Image = global::MeshCentralRouter.Properties.Resources.foldernew16;
+            this.localNewFolderButton.Name = "localNewFolderButton";
+            this.mainToolTip.SetToolTip(this.localNewFolderButton, resources.GetString("localNewFolderButton.ToolTip"));
+            this.localNewFolderButton.UseVisualStyleBackColor = true;
+            this.localNewFolderButton.Click += new System.EventHandler(this.localNewFolderButton_Click);
             // 
             // FileViewer
             // 
@@ -440,6 +463,8 @@ namespace MeshCentralRouter
         private ToolStripMenuItem refreshToolStripMenuItem;
         private Button uploadButton;
         private Button downloadButton;
+        private Button localDeleteButton;
+        private Button localNewFolderButton;
     }
 }
 

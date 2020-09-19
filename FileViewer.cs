@@ -16,8 +16,8 @@ limitations under the License.
 
 using System;
 using System.IO;
+using System.Net;
 using System.Text;
-using System.Drawing;
 using System.Collections;
 using System.Windows.Forms;
 using System.Collections.Generic;
@@ -59,6 +59,18 @@ namespace MeshCentralRouter
         public long uploadFilePtr = 0;
         public long uploadFileSize = 0;
 
+        // Download state
+        public bool downloadActive = false;
+        public bool downloadStop = false;
+        public int downloadFileArrayPtr = -1;
+        public ArrayList downloadFileArray;
+        public ArrayList downloadFileSizeArray;
+        public DirectoryInfo downloadLocalPath;
+        public string downloadRemotePath;
+        public FileStream downloadFileStream = null;
+        public long downloadFilePtr = 0;
+        public long downloadFileSize = 0;
+
         public FileViewer(MeshCentralServer server, NodeClass node)
         {
             InitializeComponent();
@@ -76,6 +88,8 @@ namespace MeshCentralRouter
             if (localFolder == null)
             {
                 localRootButton.Enabled = false;
+                localNewFolderButton.Enabled = false;
+                localDeleteButton.Enabled = false;
                 try
                 {
                     DriveInfo[] drives = DriveInfo.GetDrives();
@@ -94,6 +108,8 @@ namespace MeshCentralRouter
             else
             {
                 localRootButton.Enabled = true;
+                localNewFolderButton.Enabled = true;
+                localDeleteButton.Enabled = false;
                 try
                 {
                     DirectoryInfo[] directories = localFolder.GetDirectories();
@@ -339,34 +355,63 @@ namespace MeshCentralRouter
             // Parse the received JSON
             Dictionary<string, object> jsonAction = new Dictionary<string, object>();
             jsonAction = new JavaScriptSerializer().Deserialize<Dictionary<string, object>>(data);
-            if ((jsonAction == null) || (jsonAction.ContainsKey("type") == false) || (jsonAction["type"].GetType() != typeof(string))) return;
+            if (jsonAction == null) return;
 
-            string action = jsonAction["type"].ToString();
-            switch (action)
+            if (jsonAction.ContainsKey("action") && (jsonAction["action"].GetType() == typeof(string)))
             {
-                case "metadata":
-                    {
-                        if ((jsonAction.ContainsKey("users") == false) || (jsonAction["users"] == null)) return;
-                        Dictionary<string, object> usersex = (Dictionary<string, object>)jsonAction["users"];
-                        userSessions = new Dictionary<string, int>();
-                        foreach (string user in usersex.Keys) { userSessions.Add(user, (int)usersex[user]); }
-                        UpdateStatus();
-                        break;
-                    }
-                case "console":
-                    {
-                        string msg = null;
-                        int msgid = -1;
-                        if ((jsonAction.ContainsKey("msg")) && (jsonAction["msg"] != null)) { msg = jsonAction["msg"].ToString(); }
-                        if (jsonAction.ContainsKey("msgid")) { msgid = (int)jsonAction["msgid"]; }
-                        if (msgid == 1) { msg = "Waiting for user to grant access..."; }
-                        if (msgid == 2) { msg = "Denied"; }
-                        if (msgid == 3) { msg = "Failed to start remote terminal session"; } // , {0} ({1})
-                        if (msgid == 4) { msg = "Timeout"; }
-                        if (msgid == 5) { msg = "Received invalid network data"; }
-                        displayMessage(msg);
-                        break;
-                    }
+                string action = jsonAction["action"].ToString();
+                switch (action)
+                {
+                    case "download":
+                        {
+                            if (downloadStop) { downloadCancel(); return; }
+
+                            string sub = null;
+                            if (jsonAction.ContainsKey("sub")) { sub = (string)jsonAction["sub"]; }
+                            if (sub == "start")
+                            {
+                                // Send DOWNLOAD startack command
+                                string cmd = "{\"action\":\"download\",\"sub\":\"startack\",\"id\":" + (downloadFileArrayPtr + 1000) + "}";
+                                byte[] bincmd = UTF8Encoding.UTF8.GetBytes(cmd);
+                                wc.SendBinary(bincmd, 0, bincmd.Length);
+                            }
+                            else if (sub == "cancel")
+                            {
+                                // Cancel the download
+                                downloadCancel();
+                            }
+                            break;
+                        }
+                }
+            }
+            else if (jsonAction.ContainsKey("type") && (jsonAction["type"].GetType() == typeof(string))) {
+                string action = jsonAction["type"].ToString();
+                switch (action)
+                {
+                    case "metadata":
+                        {
+                            if ((jsonAction.ContainsKey("users") == false) || (jsonAction["users"] == null)) return;
+                            Dictionary<string, object> usersex = (Dictionary<string, object>)jsonAction["users"];
+                            userSessions = new Dictionary<string, int>();
+                            foreach (string user in usersex.Keys) { userSessions.Add(user, (int)usersex[user]); }
+                            UpdateStatus();
+                            break;
+                        }
+                    case "console":
+                        {
+                            string msg = null;
+                            int msgid = -1;
+                            if ((jsonAction.ContainsKey("msg")) && (jsonAction["msg"] != null)) { msg = jsonAction["msg"].ToString(); }
+                            if (jsonAction.ContainsKey("msgid")) { msgid = (int)jsonAction["msgid"]; }
+                            if (msgid == 1) { msg = "Waiting for user to grant access..."; }
+                            if (msgid == 2) { msg = "Denied"; }
+                            if (msgid == 3) { msg = "Failed to start remote terminal session"; } // , {0} ({1})
+                            if (msgid == 4) { msg = "Timeout"; }
+                            if (msgid == 5) { msg = "Received invalid network data"; }
+                            displayMessage(msg);
+                            break;
+                        }
+                }
             }
         }
 
@@ -435,6 +480,12 @@ namespace MeshCentralRouter
                     if (jsonAction.ContainsKey("dir")) { remoteFolderList = (ArrayList)jsonAction["dir"]; }
                     updateRemoteFileView();
                 }
+            } else
+            {
+                if (downloadActive) {
+                    if (downloadStop) { downloadCancel(); return; }
+                    downloadGotBinaryData(data, offset, length);
+                }
             }
         }
 
@@ -444,6 +495,14 @@ namespace MeshCentralRouter
         {
             if (this.InvokeRequired) { this.Invoke(new remoteRefreshHandler(remoteRefresh)); return; }
             updateTimer.Enabled = true;
+        }
+
+        private delegate void localRefreshHandler();
+
+        private void localRefresh()
+        {
+            if (this.InvokeRequired) { this.Invoke(new localRefreshHandler(localRefresh)); return; }
+            updateLocalFileView();
         }
 
         private void MenuItemDisconnect_Click(object sender, EventArgs e)
@@ -776,11 +835,12 @@ namespace MeshCentralRouter
         private void leftListView_SelectedIndexChanged(object sender, EventArgs e)
         {
             updateTransferButtons();
+            localDeleteButton.Enabled = ((localFolder != null) && (leftListView.SelectedItems.Count > 0));
         }
 
         private void uploadButton_Click(object sender, EventArgs e)
         {
-            if (uploadActive) return;
+            if (uploadActive || downloadActive) return;
             uploadFileArrayPtr = 0;
             uploadFileArray = new ArrayList();
             foreach (ListViewItem l in leftListView.SelectedItems) { if (l.ImageIndex == 2) { uploadFileArray.Add(l.Text); } }
@@ -861,5 +921,145 @@ namespace MeshCentralRouter
             transferStatusForm.Close(); transferStatusForm = null;
         }
 
+        private void downloadButton_Click(object sender, EventArgs e)
+        {
+            if (uploadActive || downloadActive) return;
+            downloadFileArrayPtr = 0;
+            downloadFileArray = new ArrayList();
+            downloadFileSizeArray = new ArrayList();
+            foreach (ListViewItem l in rightListView.SelectedItems) {
+                if (l.ImageIndex == 2) {
+                    downloadFileArray.Add(l.Text);
+                    downloadFileSizeArray.Add(int.Parse(l.SubItems[1].Text));
+                }
+            }
+            downloadLocalPath = localFolder;
+            downloadRemotePath = remoteFolder;
+            downloadActive = true;
+            downloadStop = false;
+            downloadNextFile();
+
+            // Show transfer status dialog
+            transferStatusForm = new FileTransferStatusForm(this);
+            transferStatusForm.Show(this);
+        }
+
+        private void downloadNextFile()
+        {
+            string localFilePath;
+            localFilePath = Path.Combine(downloadLocalPath.FullName, (string)downloadFileArray[downloadFileArrayPtr]);
+            downloadFileStream = File.OpenWrite(localFilePath);
+            downloadFileSize = (int)downloadFileSizeArray[downloadFileArrayPtr];
+            downloadFilePtr = 0;
+
+            string r;
+            if (downloadRemotePath.EndsWith("/")) { r = downloadRemotePath + downloadFileArray[downloadFileArrayPtr]; } else { r = downloadRemotePath + "/" + downloadFileArray[downloadFileArrayPtr]; }
+
+            // Send DOWNLOAD command
+            string cmd = "{\"action\":\"download\",\"sub\":\"start\",\"id\":" + (downloadFileArrayPtr + 1000) + ",\"path\":\"" + r + "\"}";
+            byte[] bincmd = UTF8Encoding.UTF8.GetBytes(cmd);
+            wc.SendBinary(bincmd, 0, bincmd.Length);
+        }
+
+        private void downloadGotBinaryData(byte[] data, int offset, int length)
+        {
+            if ((length < 4) || (downloadFileStream == null)) return;
+            if (length > 4)
+            {
+                // Save part to disk
+                downloadFileStream.Write(data, offset + 4, length - 4);
+                downloadFilePtr += (length - 4);
+            }
+            int controlBits = IPAddress.NetworkToHostOrder(BitConverter.ToInt32(data, offset));
+            if ((controlBits & 1) != 0)
+            {
+                if (downloadFileStream != null) { downloadFileStream.Close(); downloadFileStream = null; }
+                downloadFilePtr = 0;
+                downloadFileSize = 0;
+
+                if (downloadFileArray.Count > downloadFileArrayPtr + 1)
+                {
+                    // Download the next file
+                    downloadFileArrayPtr++;
+                    downloadNextFile();
+                }
+                else
+                {
+                    // Done with all files
+                    downloadActive = false;
+                    downloadStop = false;
+                    downloadFileArrayPtr = -1;
+                    downloadFileArray = null;
+                    downloadLocalPath = null;
+                    downloadRemotePath = null;
+                    closeTransferDialog();
+                    localRefresh();
+                }
+            }
+            else
+            {
+                // Send DOWNLOAD command
+                string cmd = "{\"action\":\"download\",\"sub\":\"ack\",\"id\":" + (downloadFileArrayPtr + 1000) + "}";
+                byte[] bincmd = UTF8Encoding.UTF8.GetBytes(cmd);
+                wc.SendBinary(bincmd, 0, bincmd.Length);
+            }
+        }
+
+
+        public void downloadCancel()
+        {
+            if (downloadActive == false) return;
+
+            // Send DOWNLOAD command
+            string cmd = "{\"action\":\"download\",\"sub\":\"stop\",\"id\":" + (downloadFileArrayPtr + 1000) + "}";
+            byte[] bincmd = UTF8Encoding.UTF8.GetBytes(cmd);
+            wc.SendBinary(bincmd, 0, bincmd.Length);
+
+            // Done with all files
+            if (downloadFileStream != null) { downloadFileStream.Close(); downloadFileStream = null; }
+            downloadFilePtr = 0;
+            downloadFileSize = 0;
+            downloadActive = false;
+            downloadStop = false;
+            downloadFileArrayPtr = -1;
+            downloadFileArray = null;
+            downloadLocalPath = null;
+            downloadRemotePath = null;
+            closeTransferDialog();
+            localRefresh();
+        }
+
+        private void localNewFolderButton_Click(object sender, EventArgs e)
+        {
+            if (localFolder == null) return;
+            FilenamePromptForm f = new FilenamePromptForm("Create Folder", "");
+            if (f.ShowDialog(this) == DialogResult.OK)
+            {
+                Directory.CreateDirectory(Path.Combine(localFolder.FullName, f.filename));
+                updateLocalFileView();
+            }
+        }
+
+        private void localDeleteButton_Click(object sender, EventArgs e)
+        {
+            ArrayList filesArray = new ArrayList();
+            foreach (ListViewItem l in leftListView.SelectedItems) { filesArray.Add(l.Text); }
+            string[] files = (string[])filesArray.ToArray(typeof(string));
+            string msg = string.Format("Confirm removal of {0} items?", files.Length);
+            if (files.Length == 1) { msg = "Confirm removal of 1 item?"; }
+            FileDeletePromptForm f = new FileDeletePromptForm(msg);
+            if (f.ShowDialog(this) == DialogResult.OK)
+            {
+                foreach (string file in filesArray)
+                {
+                    try {
+                        string fullpath = Path.Combine(localFolder.FullName, file);
+                        FileAttributes attr = File.GetAttributes(fullpath);
+                        if ((attr & FileAttributes.Directory) == FileAttributes.Directory) { Directory.Delete(fullpath, f.recursive); } else { File.Delete(fullpath); }
+                    } catch (Exception) { }
+                }
+                updateLocalFileView();
+            }
+        }
     }
 }
