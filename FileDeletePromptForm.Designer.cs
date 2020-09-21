@@ -30,10 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FileDeletePromptForm));
             this.mainGroupBox = new System.Windows.Forms.GroupBox();
+            this.mainLabel = new System.Windows.Forms.Label();
+            this.recursiveCheckBox = new System.Windows.Forms.CheckBox();
             this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
-            this.recursiveCheckBox = new System.Windows.Forms.CheckBox();
-            this.mainLabel = new System.Windows.Forms.Label();
             this.mainGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,6 +50,27 @@
             this.mainGroupBox.TabIndex = 3;
             this.mainGroupBox.TabStop = false;
             this.mainGroupBox.Text = "Confirm Delete";
+            // 
+            // mainLabel
+            // 
+            this.mainLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.mainLabel.Location = new System.Drawing.Point(14, 23);
+            this.mainLabel.Name = "mainLabel";
+            this.mainLabel.Size = new System.Drawing.Size(295, 13);
+            this.mainLabel.TabIndex = 1;
+            this.mainLabel.Text = "---";
+            // 
+            // recursiveCheckBox
+            // 
+            this.recursiveCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.recursiveCheckBox.AutoSize = true;
+            this.recursiveCheckBox.Location = new System.Drawing.Point(17, 44);
+            this.recursiveCheckBox.Name = "recursiveCheckBox";
+            this.recursiveCheckBox.Size = new System.Drawing.Size(108, 17);
+            this.recursiveCheckBox.TabIndex = 0;
+            this.recursiveCheckBox.Text = "Recursive Delete";
+            this.recursiveCheckBox.UseVisualStyleBackColor = true;
             // 
             // okButton
             // 
@@ -73,27 +94,6 @@
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
-            // 
-            // recursiveCheckBox
-            // 
-            this.recursiveCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.recursiveCheckBox.AutoSize = true;
-            this.recursiveCheckBox.Location = new System.Drawing.Point(17, 45);
-            this.recursiveCheckBox.Name = "recursiveCheckBox";
-            this.recursiveCheckBox.Size = new System.Drawing.Size(108, 17);
-            this.recursiveCheckBox.TabIndex = 0;
-            this.recursiveCheckBox.Text = "Recursive Delete";
-            this.recursiveCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // mainLabel
-            // 
-            this.mainLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.mainLabel.Location = new System.Drawing.Point(14, 23);
-            this.mainLabel.Name = "mainLabel";
-            this.mainLabel.Size = new System.Drawing.Size(295, 13);
-            this.mainLabel.TabIndex = 1;
-            this.mainLabel.Text = "---";
             // 
             // FileDeletePromptForm
             // 

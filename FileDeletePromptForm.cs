@@ -12,10 +12,15 @@ namespace MeshCentralRouter
 {
     public partial class FileDeletePromptForm : Form
     {
-        public FileDeletePromptForm(string message)
+        public FileDeletePromptForm(string message, bool rec)
         {
             InitializeComponent();
             mainLabel.Text = message;
+            if (rec == false)
+            {
+                recursiveCheckBox.Visible = false;
+                Height = 142;
+            }
         }
 
         public bool recursive { get { return recursiveCheckBox.Checked; } }

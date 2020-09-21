@@ -40,6 +40,7 @@ namespace MeshCentralRouter
         public DirectoryInfo localFolder = null;
         public string remoteFolder = null;
         public ArrayList remoteFolderList = null;
+        private static string rndString = getRandomString(12);
 
         // Stats
         public long bytesIn = 0;
@@ -762,12 +763,13 @@ namespace MeshCentralRouter
 
         private void remoteDeleteButton_Click(object sender, EventArgs e)
         {
+            bool rec = false;
             ArrayList filesArray = new ArrayList();
-            foreach (ListViewItem l in rightListView.SelectedItems) { filesArray.Add(l.Text); }
+            foreach (ListViewItem l in rightListView.SelectedItems) { filesArray.Add(l.Text); if (l.ImageIndex == 1) { rec = true; } }
             string[] files = (string[])filesArray.ToArray(typeof(string));
-            string msg = string.Format("Confirm removal of {0} items?", files.Length);
-            if (files.Length == 1) { msg = "Confirm removal of 1 item?"; }
-            FileDeletePromptForm f = new FileDeletePromptForm(msg);
+            string msg = string.Format("Remove {0} items?", files.Length);
+            if (files.Length == 1) { msg = "Remove 1 item?"; }
+            FileDeletePromptForm f = new FileDeletePromptForm(msg, rec);
             if (f.ShowDialog(this) == DialogResult.OK)
             {
                 requestDelete(remoteFolder, files, f.recursive);
@@ -779,11 +781,11 @@ namespace MeshCentralRouter
         {
             if (node.agentid < 5)
             {
-                toolStripMenuItem1.Visible = renameToolStripMenuItem.Visible = (rightListView.SelectedItems.Count == 1) && (remoteFolder != "") && (remoteFolder != null);
+                deleteToolStripMenuItem.Visible = toolStripMenuItem1.Visible = renameToolStripMenuItem.Visible = (rightListView.SelectedItems.Count == 1) && (remoteFolder != "") && (remoteFolder != null);
             }
             else
             {
-                toolStripMenuItem1.Visible = renameToolStripMenuItem.Visible = (rightListView.SelectedItems.Count == 1);
+                deleteToolStripMenuItem.Visible = toolStripMenuItem1.Visible = renameToolStripMenuItem.Visible = (rightListView.SelectedItems.Count == 1);
             }
         }
 
@@ -957,7 +959,7 @@ namespace MeshCentralRouter
         {
             string localFilePath;
             localFilePath = Path.Combine(downloadLocalPath.FullName, (string)downloadFileArray[downloadFileArrayPtr]);
-            downloadFileStream = File.OpenWrite(localFilePath);
+            try { downloadFileStream = File.OpenWrite(localFilePath); } catch (Exception) { return; }
             downloadFileSize = (int)downloadFileSizeArray[downloadFileArrayPtr];
             downloadFilePtr = 0;
 
@@ -1051,12 +1053,13 @@ namespace MeshCentralRouter
 
         private void localDeleteButton_Click(object sender, EventArgs e)
         {
+            bool rec = false;
             ArrayList filesArray = new ArrayList();
-            foreach (ListViewItem l in leftListView.SelectedItems) { filesArray.Add(l.Text); }
+            foreach (ListViewItem l in leftListView.SelectedItems) { filesArray.Add(l.Text); if (l.ImageIndex == 1) { rec = true; } }
             string[] files = (string[])filesArray.ToArray(typeof(string));
-            string msg = string.Format("Confirm removal of {0} items?", files.Length);
-            if (files.Length == 1) { msg = "Confirm removal of 1 item?"; }
-            FileDeletePromptForm f = new FileDeletePromptForm(msg);
+            string msg = string.Format("Remove {0} items?", files.Length);
+            if (files.Length == 1) { msg = "Remove 1 item?"; }
+            FileDeletePromptForm f = new FileDeletePromptForm(msg, rec);
             if (f.ShowDialog(this) == DialogResult.OK)
             {
                 foreach (string file in filesArray)
@@ -1107,6 +1110,65 @@ namespace MeshCentralRouter
                 {
                     leftListView.DoDragDrop(new DataObject(DataFormats.FileDrop, (string[])files.ToArray(typeof(string))), DragDropEffects.Copy);
                 }
+            }
+        }
+
+        private void rightListView_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ArrayList XdownloadFileArray = new ArrayList();
+                ArrayList XdownloadFileSizeArray = new ArrayList();
+                foreach (ListViewItem l in rightListView.SelectedItems)
+                {
+                    if (l.ImageIndex == 2)
+                    {
+                        XdownloadFileArray.Add(l.Text);
+                        XdownloadFileSizeArray.Add(int.Parse(l.SubItems[1].Text));
+                    }
+                }
+                if (XdownloadFileArray.Count > 0)
+                {
+                    DataObject dataObj = new DataObject();
+                    dataObj.SetData("Type", "MeshCentralRouterRemoteFiles-" + rndString);
+                    dataObj.SetData("RemoteFiles", XdownloadFileArray);
+                    dataObj.SetData("RemoteSizes", XdownloadFileSizeArray);
+                    dataObj.SetData("RemoteFolder", remoteFolder);
+                    rightListView.DoDragDrop(dataObj, DragDropEffects.Copy);
+                }
+            }
+        }
+
+        private void leftListView_DragEnter(object sender, DragEventArgs e)
+        {
+            if (uploadActive || downloadActive || (localFolder == null)) return;
+            if ((e.Data.GetDataPresent("Type") == true) && ((string)e.Data.GetData("Type") == ("MeshCentralRouterRemoteFiles-" + rndString))) { e.Effect = DragDropEffects.Copy; }
+        }
+
+        private void leftListView_DragDrop(object sender, DragEventArgs e)
+        {
+            if (uploadActive || downloadActive) return;
+            if ((e.Data.GetDataPresent("Type") == false) || ((string)e.Data.GetData("Type") != ("MeshCentralRouterRemoteFiles-" + rndString))) return;
+            downloadFileArrayPtr = 0;
+            downloadFileArray = (ArrayList)e.Data.GetData("RemoteFiles");
+            downloadFileSizeArray = (ArrayList)e.Data.GetData("RemoteSizes");
+            downloadLocalPath = localFolder;
+            downloadRemotePath = (string)e.Data.GetData("RemoteFolder");
+            downloadActive = true;
+            downloadStop = false;
+            downloadNextFile();
+
+            // Show transfer status dialog
+            transferStatusForm = new FileTransferStatusForm(this);
+            transferStatusForm.Show(this);
+        }
+        private static string getRandomString(int length)
+        {
+            using (var rng = new RNGCryptoServiceProvider())
+            {
+                var bytes = new byte[(((length * 6) + 7) / 8)];
+                rng.GetBytes(bytes);
+                return Convert.ToBase64String(bytes);
             }
         }
     }

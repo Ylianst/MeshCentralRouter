@@ -73,6 +73,7 @@ namespace MeshCentralRouter
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.leftTopPanel = new System.Windows.Forms.Panel();
             this.localLabel = new System.Windows.Forms.Label();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.topPanel.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.mainTableLayoutPanel.SuspendLayout();
@@ -287,6 +288,7 @@ namespace MeshCentralRouter
             this.rightListView.DragDrop += new System.Windows.Forms.DragEventHandler(this.rightListView_DragDrop);
             this.rightListView.DragEnter += new System.Windows.Forms.DragEventHandler(this.rightListView_DragEnter);
             this.rightListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.rightListView_MouseDoubleClick);
+            this.rightListView.MouseMove += new System.Windows.Forms.MouseEventHandler(this.rightListView_MouseMove);
             this.rightListView.Resize += new System.EventHandler(this.rightListView_Resize);
             // 
             // columnHeader3
@@ -301,6 +303,7 @@ namespace MeshCentralRouter
             // 
             this.remoteContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.renameToolStripMenuItem,
+            this.deleteToolStripMenuItem,
             this.toolStripMenuItem1,
             this.refreshToolStripMenuItem});
             this.remoteContextMenuStrip.Name = "remoteContextMenuStrip";
@@ -359,6 +362,7 @@ namespace MeshCentralRouter
             // 
             // leftListView
             // 
+            this.leftListView.AllowDrop = true;
             this.leftListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2});
@@ -371,6 +375,8 @@ namespace MeshCentralRouter
             this.leftListView.View = System.Windows.Forms.View.Details;
             this.leftListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.leftListView_ColumnWidthChanged);
             this.leftListView.SelectedIndexChanged += new System.EventHandler(this.leftListView_SelectedIndexChanged);
+            this.leftListView.DragDrop += new System.Windows.Forms.DragEventHandler(this.leftListView_DragDrop);
+            this.leftListView.DragEnter += new System.Windows.Forms.DragEventHandler(this.leftListView_DragEnter);
             this.leftListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.leftListView_MouseDoubleClick);
             this.leftListView.MouseMove += new System.Windows.Forms.MouseEventHandler(this.leftListView_MouseMove);
             this.leftListView.Resize += new System.EventHandler(this.leftListView_Resize);
@@ -398,6 +404,11 @@ namespace MeshCentralRouter
             // 
             resources.ApplyResources(this.localLabel, "localLabel");
             this.localLabel.Name = "localLabel";
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            resources.ApplyResources(this.deleteToolStripMenuItem, "deleteToolStripMenuItem");
             // 
             // FileViewer
             // 
@@ -469,6 +480,7 @@ namespace MeshCentralRouter
         private Button downloadButton;
         private Button localDeleteButton;
         private Button localNewFolderButton;
+        private ToolStripMenuItem deleteToolStripMenuItem;
     }
 }
 
