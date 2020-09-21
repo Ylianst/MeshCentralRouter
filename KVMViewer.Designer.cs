@@ -200,6 +200,8 @@ namespace MeshCentralRouter
             this.resizeKvmControl.ZoomToFit = false;
             this.resizeKvmControl.StateChanged += new System.EventHandler(this.kvmControl_StateChanged);
             this.resizeKvmControl.DisplaysReceived += new System.EventHandler(this.resizeKvmControl_DisplaysReceived);
+            this.resizeKvmControl.Enter += new System.EventHandler(this.resizeKvmControl_Enter);
+            this.resizeKvmControl.Leave += new System.EventHandler(this.resizeKvmControl_Leave);
             // 
             // KVMViewer
             // 
@@ -211,6 +213,8 @@ namespace MeshCentralRouter
             this.Controls.Add(this.topPanel);
             this.Controls.Add(this.mainStatusStrip);
             this.Name = "KVMViewer";
+            this.Activated += new System.EventHandler(this.KVMViewer_Activated);
+            this.Deactivate += new System.EventHandler(this.KVMViewer_Deactivate);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.Resize += new System.EventHandler(this.MainForm_Resize);

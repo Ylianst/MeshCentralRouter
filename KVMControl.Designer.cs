@@ -38,9 +38,6 @@
             this.Name = "KVMControl";
             this.Size = new System.Drawing.Size(585, 364);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.KVMControl_Paint);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KVMControl_KeyDown);
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.KVMControl_KeyPress);
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KVMControl_KeyUp);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.KVMControl_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.KVMControl_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.KVMControl_MouseUp);
