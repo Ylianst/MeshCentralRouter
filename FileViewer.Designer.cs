@@ -48,6 +48,8 @@ namespace MeshCentralRouter
             this.remoteDeleteButton = new System.Windows.Forms.Button();
             this.downloadButton = new System.Windows.Forms.Button();
             this.uploadButton = new System.Windows.Forms.Button();
+            this.localDeleteButton = new System.Windows.Forms.Button();
+            this.localNewFolderButton = new System.Windows.Forms.Button();
             this.topPanel = new System.Windows.Forms.Panel();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.mainToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -71,8 +73,6 @@ namespace MeshCentralRouter
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.leftTopPanel = new System.Windows.Forms.Panel();
             this.localLabel = new System.Windows.Forms.Label();
-            this.localDeleteButton = new System.Windows.Forms.Button();
-            this.localNewFolderButton = new System.Windows.Forms.Button();
             this.topPanel.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.mainTableLayoutPanel.SuspendLayout();
@@ -200,6 +200,24 @@ namespace MeshCentralRouter
             this.uploadButton.UseVisualStyleBackColor = true;
             this.uploadButton.Click += new System.EventHandler(this.uploadButton_Click);
             // 
+            // localDeleteButton
+            // 
+            resources.ApplyResources(this.localDeleteButton, "localDeleteButton");
+            this.localDeleteButton.Image = global::MeshCentralRouter.Properties.Resources.delete16;
+            this.localDeleteButton.Name = "localDeleteButton";
+            this.mainToolTip.SetToolTip(this.localDeleteButton, resources.GetString("localDeleteButton.ToolTip"));
+            this.localDeleteButton.UseVisualStyleBackColor = true;
+            this.localDeleteButton.Click += new System.EventHandler(this.localDeleteButton_Click);
+            // 
+            // localNewFolderButton
+            // 
+            resources.ApplyResources(this.localNewFolderButton, "localNewFolderButton");
+            this.localNewFolderButton.Image = global::MeshCentralRouter.Properties.Resources.foldernew16;
+            this.localNewFolderButton.Name = "localNewFolderButton";
+            this.mainToolTip.SetToolTip(this.localNewFolderButton, resources.GetString("localNewFolderButton.ToolTip"));
+            this.localNewFolderButton.UseVisualStyleBackColor = true;
+            this.localNewFolderButton.Click += new System.EventHandler(this.localNewFolderButton_Click);
+            // 
             // topPanel
             // 
             this.topPanel.BackColor = System.Drawing.SystemColors.Control;
@@ -252,6 +270,7 @@ namespace MeshCentralRouter
             // 
             // rightListView
             // 
+            this.rightListView.AllowDrop = true;
             this.rightListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader3,
             this.columnHeader4});
@@ -265,6 +284,8 @@ namespace MeshCentralRouter
             this.rightListView.View = System.Windows.Forms.View.Details;
             this.rightListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.rightListView_ColumnWidthChanged);
             this.rightListView.SelectedIndexChanged += new System.EventHandler(this.rightListView_SelectedIndexChanged);
+            this.rightListView.DragDrop += new System.Windows.Forms.DragEventHandler(this.rightListView_DragDrop);
+            this.rightListView.DragEnter += new System.Windows.Forms.DragEventHandler(this.rightListView_DragEnter);
             this.rightListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.rightListView_MouseDoubleClick);
             this.rightListView.Resize += new System.EventHandler(this.rightListView_Resize);
             // 
@@ -351,6 +372,7 @@ namespace MeshCentralRouter
             this.leftListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.leftListView_ColumnWidthChanged);
             this.leftListView.SelectedIndexChanged += new System.EventHandler(this.leftListView_SelectedIndexChanged);
             this.leftListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.leftListView_MouseDoubleClick);
+            this.leftListView.MouseMove += new System.Windows.Forms.MouseEventHandler(this.leftListView_MouseMove);
             this.leftListView.Resize += new System.EventHandler(this.leftListView_Resize);
             // 
             // columnHeader1
@@ -376,24 +398,6 @@ namespace MeshCentralRouter
             // 
             resources.ApplyResources(this.localLabel, "localLabel");
             this.localLabel.Name = "localLabel";
-            // 
-            // localDeleteButton
-            // 
-            resources.ApplyResources(this.localDeleteButton, "localDeleteButton");
-            this.localDeleteButton.Image = global::MeshCentralRouter.Properties.Resources.delete16;
-            this.localDeleteButton.Name = "localDeleteButton";
-            this.mainToolTip.SetToolTip(this.localDeleteButton, resources.GetString("localDeleteButton.ToolTip"));
-            this.localDeleteButton.UseVisualStyleBackColor = true;
-            this.localDeleteButton.Click += new System.EventHandler(this.localDeleteButton_Click);
-            // 
-            // localNewFolderButton
-            // 
-            resources.ApplyResources(this.localNewFolderButton, "localNewFolderButton");
-            this.localNewFolderButton.Image = global::MeshCentralRouter.Properties.Resources.foldernew16;
-            this.localNewFolderButton.Name = "localNewFolderButton";
-            this.mainToolTip.SetToolTip(this.localNewFolderButton, resources.GetString("localNewFolderButton.ToolTip"));
-            this.localNewFolderButton.UseVisualStyleBackColor = true;
-            this.localNewFolderButton.Click += new System.EventHandler(this.localNewFolderButton_Click);
             // 
             // FileViewer
             // 
