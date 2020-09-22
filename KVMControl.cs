@@ -629,5 +629,44 @@ namespace MeshCentralRouter
         public static byte[] GetByteArray() { lock (ByteArrayRecycleList) { if (ByteArrayRecycleList.Count == 0) ByteArrayRecycleListCount++; return (ByteArrayRecycleList.Count == 0) ? new byte[65535] : ByteArrayRecycleList.Pop(); } }
         public static void RecycleByteArray(byte[] obj) { lock (ByteArrayRecycleList) { if (obj != null) ByteArrayRecycleList.Push(obj); } }
 
+        private void KVMControl_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((e.KeyCode == Keys.LWin) || (e.KeyCode == Keys.RWin)) return; // Don't process the Windows key
+            SendKey(e, 0);
+            e.Handled = true;
+        }
+
+        private void KVMControl_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void KVMControl_KeyUp(object sender, KeyEventArgs e)
+        {
+            SendKey(e, 1);
+            e.Handled = true;
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            const int WM_KEYDOWN = 0x100;
+            const int WM_SYSKEYDOWN = 0x104;
+
+            // Tab keys
+            if (msg.Msg == WM_KEYDOWN && msg.WParam.ToInt32() == 9)
+            {
+                SendKey((byte)msg.WParam.ToInt32(), 0);
+                return true;
+            }
+
+            // Handle arrow keys
+            if (((msg.Msg == WM_KEYDOWN) || (msg.Msg == WM_SYSKEYDOWN)) && msg.WParam.ToInt32() >= 37 && msg.WParam.ToInt32() <= 40)
+            {
+                SendKey((byte)msg.WParam.ToInt32(), 0);
+                return true;
+            }
+
+            return false;
+        }
     }
 }

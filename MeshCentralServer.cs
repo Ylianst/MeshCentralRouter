@@ -743,7 +743,7 @@ namespace MeshCentralRouter
                         readBufferLen = 0;
                         Debug("Websocket TCP connected, doing TLS...");
                         wsstream = new SslStream(wsrawstream, false, VerifyServerCertificate, null);
-                        wsstream.BeginAuthenticateAsClient(url.Host, null, System.Security.Authentication.SslProtocols.Tls12, false, new AsyncCallback(OnTlsSetupSink), this);
+                        wsstream.BeginAuthenticateAsClient(url.Host, null, System.Security.Authentication.SslProtocols.Default, false, new AsyncCallback(OnTlsSetupSink), this);
                     }
                     else
                     {

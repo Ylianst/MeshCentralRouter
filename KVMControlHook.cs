@@ -51,45 +51,46 @@ namespace MeshCentralRouter
         {
             if (nCode >= 0)
             {
-                bool alt = (Control.ModifierKeys & Keys.Alt) != 0;
-                bool control = (Control.ModifierKeys & Keys.Control) != 0;
-
                 Keys key = (Keys)Marshal.ReadInt32(lParam);
+                if ((key == Keys.LWin) || (key == Keys.RWin)) {
+                    bool alt = (Control.ModifierKeys & Keys.Alt) != 0;
+                    bool control = (Control.ModifierKeys & Keys.Control) != 0;
 
-                const int WM_KEYDOWN = 0x100;
-                const int WM_KEYUP = 0x101;
-                const int WM_SYSKEYDOWN = 0x104;
-                const int WM_SYSKEYUP = 0x105;
+                    const int WM_KEYDOWN = 0x100;
+                    const int WM_KEYUP = 0x101;
+                    const int WM_SYSKEYDOWN = 0x104;
+                    const int WM_SYSKEYUP = 0x105;
 
-                byte bkey = (byte)key;
-                byte keyStatus;
-                switch ((int)wParam)
-                {
-                    case WM_KEYDOWN:
-                        keyStatus = 0;
-                        break;
-                    case WM_KEYUP:
-                        keyStatus = 1;
-                        break;
-                    case WM_SYSKEYDOWN:
-                        keyStatus = 4;
-                        break;
-                    case WM_SYSKEYUP:
-                        keyStatus = 5;
-                        break;
-                    default:
-                        return KVMKeyboardHook.CallNextHookEx(_hook, nCode, wParam, lParam);
-                }
-
-                try
-                {
-                    if (_callback != null)
+                    byte bkey = (byte)key;
+                    byte keyStatus = 255;
+                    switch ((int)wParam)
                     {
-                        _callback(bkey,keyStatus);
-                        return (IntPtr)1;
+                        case WM_KEYDOWN:
+                            keyStatus = 0;
+                            break;
+                        case WM_KEYUP:
+                            keyStatus = 1;
+                            break;
+                        case WM_SYSKEYDOWN:
+                            //keyStatus = 0; // 4
+                            break;
+                        case WM_SYSKEYUP:
+                            //keyStatus = 1; // 5
+                            break;
+                        default:
+                            return KVMKeyboardHook.CallNextHookEx(_hook, nCode, wParam, lParam);
                     }
+
+                    try
+                    {
+                        if ((_callback != null) && (keyStatus != 255))
+                        {
+                            _callback(bkey, keyStatus);
+                            return (IntPtr)1;
+                        }
+                    }
+                    catch { }
                 }
-                catch { }
             }
             return KVMKeyboardHook.CallNextHookEx(_hook, nCode, wParam, lParam);
         }
