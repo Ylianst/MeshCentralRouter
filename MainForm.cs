@@ -39,6 +39,7 @@ namespace MeshCentralRouter
         public string title;
         public string[] args;
         public bool debug = false;
+        public bool tlsdump = false;
         public bool autoLogin = false;
         public bool ignoreCert = false;
         public bool inaddrany = false;
@@ -168,6 +169,7 @@ namespace MeshCentralRouter
                 if (arg.ToLower() == "-install") { hookRouter(); forceExit = true; return; }
                 if (arg.ToLower() == "-uninstall") { unHookRouter(); forceExit = true; return; }
                 if (arg.ToLower() == "-debug") { debug = true; }
+                if (arg.ToLower() == "-tlsdump") { tlsdump = true; }
                 if (arg.ToLower() == "-ignorecert") { ignoreCert = true; }
                 if (arg.ToLower() == "-all") { inaddrany = true; }
                 if (arg.ToLower() == "-inaddrany") { inaddrany = true; }
@@ -303,6 +305,7 @@ namespace MeshCentralRouter
             openWebSiteButton.Visible = false;
             meshcentral = new MeshCentralServer();
             meshcentral.debug = debug;
+            meshcentral.tlsdump = tlsdump;
             meshcentral.ignoreCert = ignoreCert;
             if (acceptableCertHash != null) { meshcentral.okCertHash2 = acceptableCertHash; }
             meshcentral.onStateChanged += Meshcentral_onStateChanged;
@@ -374,6 +377,7 @@ namespace MeshCentralRouter
             openWebSiteButton.Visible = false;
             meshcentral = new MeshCentralServer();
             meshcentral.debug = debug;
+            meshcentral.tlsdump = tlsdump;
             meshcentral.ignoreCert = ignoreCert;
             meshcentral.onStateChanged += Meshcentral_onStateChanged;
             meshcentral.onNodesChanged += Meshcentral_onNodesChanged;
@@ -918,6 +922,7 @@ namespace MeshCentralRouter
 
             meshcentral = new MeshCentralServer();
             meshcentral.debug = debug;
+            meshcentral.tlsdump = tlsdump;
             meshcentral.ignoreCert = ignoreCert;
             if (lastBadConnectCert != null) {
                 meshcentral.okCertHash = lastBadConnectCert.GetCertHashString();
