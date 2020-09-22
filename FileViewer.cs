@@ -141,6 +141,14 @@ namespace MeshCentralRouter
             return true;
         }
 
+        public class ListViewItemSortClass : IComparer
+        {
+            int IComparer.Compare(Object x, Object y)
+            {
+                return ((new CaseInsensitiveComparer()).Compare(((ListViewItem)x).SubItems[0].Text, ((ListViewItem)y).SubItems[0].Text));
+            }
+        }
+
         private delegate void updateRemoteFileViewHandler();
         public void updateRemoteFileView()
         {
@@ -176,6 +184,8 @@ namespace MeshCentralRouter
 
             if (remoteFolderList != null)
             {
+                ArrayList sortlist = new ArrayList();
+
                 // Display all folders
                 for (int i = 0; i < remoteFolderList.Count; i++)
                 {
@@ -189,15 +199,14 @@ namespace MeshCentralRouter
                     if (fileItem.ContainsKey("d")) { fileDate = (string)fileItem["d"]; }
                     if (fileItem.ContainsKey("s")) { fileSize = (int)fileItem["s"]; }
                     if (fileIcon == 1) {
-                        // Drive
-                        ListViewItem x = new ListViewItem(fileName, 0);
-                        rightListView.Items.Add(x);
+                        sortlist.Add(new ListViewItem(fileName, 0)); // Drive
                     } else if (fileIcon == 2) {
-                        // Folder
-                        ListViewItem x = new ListViewItem(fileName, 1);
-                        rightListView.Items.Add(x);
+                        sortlist.Add(new ListViewItem(fileName, 1)); // Folder
                     }
                 }
+                sortlist.Sort(new ListViewItemSortClass());
+                foreach (ListViewItem l in sortlist) { rightListView.Items.Add(l); }
+                sortlist.Clear();
 
                 // Display all files
                 for (int i = 0; i < remoteFolderList.Count; i++)
@@ -217,10 +226,11 @@ namespace MeshCentralRouter
                         string[] si = new string[2];
                         si[0] = fileName;
                         si[1] = "" + fileSize;
-                        ListViewItem x = new ListViewItem(si, 2);
-                        rightListView.Items.Add(x);
+                        sortlist.Add(new ListViewItem(si, 2)); // File
                     }
                 }
+                sortlist.Sort(new ListViewItemSortClass());
+                foreach (ListViewItem l in sortlist) { rightListView.Items.Add(l); }
             }
             updateTransferButtons();
         }
