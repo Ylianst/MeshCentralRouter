@@ -36,7 +36,6 @@ namespace MeshCentralRouter
         private bool sessionIsRecorded = false;
         public webSocketClient wc = null;
         public Dictionary<string, int> userSessions = null;
-
         // Stats
         public long bytesIn = 0;
         public long bytesInCompressed = 0;
@@ -122,6 +121,7 @@ namespace MeshCentralRouter
                         state = 0;
                         wc.Dispose();
                         wc = null;
+                        kvmControl.DetacheKeyboard();
                         break;
                     }
                 case webSocketClient.ConnectionStates.Connecting:
@@ -224,6 +224,7 @@ namespace MeshCentralRouter
             {
                 // Connect
                 MenuItemConnect_Click(null, null);
+                kvmControl.AttachKeyboard();
             }
             displayMessage(null);
         }
@@ -405,7 +406,7 @@ namespace MeshCentralRouter
 
         private void winButton_Click(object sender, EventArgs e)
         {
-            kvmControl.SendWindowsKey();
+            //kvmControl.SendWindowsKey();
         }
 
         private void charmButton_Click(object sender, EventArgs e)
@@ -479,6 +480,26 @@ namespace MeshCentralRouter
                 textData = textData.Replace("\\", "\\\\").Replace("\"", "\\\"");
                 server.sendCommand("{\"action\":\"msg\",\"type\":\"setclip\",\"nodeid\":\"" + node.nodeid + "\",\"data\":\"" + textData + "\"}");
             }
+        }
+
+        private void resizeKvmControl_Enter(object sender, EventArgs e)
+        {
+            kvmControl.AttachKeyboard();
+        }
+
+        private void resizeKvmControl_Leave(object sender, EventArgs e)
+        {
+            kvmControl.DetacheKeyboard();
+        }
+
+        private void KVMViewer_Deactivate(object sender, EventArgs e)
+        {
+            kvmControl.DetacheKeyboard();
+        }
+
+        private void KVMViewer_Activated(object sender, EventArgs e)
+        {
+            kvmControl.AttachKeyboard();
         }
     }
 }

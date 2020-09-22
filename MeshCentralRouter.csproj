@@ -130,6 +130,8 @@
     <Compile Include="InstallForm.Designer.cs">
       <DependentUpon>InstallForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="KVMControlHook.cs" />
+    <Compile Include="KVMKeyboardHook.cs" />
     <Compile Include="KVMControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

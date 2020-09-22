@@ -143,7 +143,7 @@ namespace MeshCentralRouter
         }
         public string getRegValue(string name, string value)
         {
-            try { return Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\Open Source\MeshCentral Router", name, value).ToString(); } catch (Exception) { return value; }
+            try {return Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\Open Source\MeshCentral Router", name, value).ToString(); } catch (Exception) { return value; }
         }
 
         public MainForm(string[] args)

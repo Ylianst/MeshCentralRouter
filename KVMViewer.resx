@@ -121,31 +121,13 @@
     <value>127, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="mainToolStripStatusLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1029, 17</value>
-  </data>
-  <data name="mainToolStripStatusLabel.Text" xml:space="preserve">
-    <value>---</value>
-  </data>
-  <data name="mainToolStripStatusLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="toolStripStatusLabel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>13, 17</value>
-  </data>
-  <data name="toolStripStatusLabel1.Text" xml:space="preserve">
-    <value>v</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="toolStripStatusLabel1.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="mainStatusStrip.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 772</value>
+    <value>0, 727</value>
   </data>
   <data name="mainStatusStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>1044, 22</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="mainStatusStrip.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
   </data>
@@ -163,6 +145,24 @@
   </data>
   <data name="&gt;&gt;mainStatusStrip.ZOrder" xml:space="preserve">
     <value>3</value>
+  </data>
+  <data name="mainToolStripStatusLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1029, 17</value>
+  </data>
+  <data name="mainToolStripStatusLabel.Text" xml:space="preserve">
+    <value>---</value>
+  </data>
+  <data name="mainToolStripStatusLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="toolStripStatusLabel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>13, 17</value>
+  </data>
+  <data name="toolStripStatusLabel1.Text" xml:space="preserve">
+    <value>v</value>
+  </data>
+  <data name="toolStripStatusLabel1.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <metadata name="updateTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>264, 17</value>
@@ -583,7 +583,7 @@
     <value>0, 32</value>
   </data>
   <data name="resizeKvmControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1044, 740</value>
+    <value>1044, 695</value>
   </data>
   <data name="resizeKvmControl.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -592,7 +592,7 @@
     <value>resizeKvmControl</value>
   </data>
   <data name="&gt;&gt;resizeKvmControl.Type" xml:space="preserve">
-    <value>MeshCentralRouter.KVMResizeControl, MeshCentralRouter, Version=1.0.7565.29854, Culture=neutral, PublicKeyToken=null</value>
+    <value>MeshCentralRouter.KVMResizeControl, MeshCentralRouter, Version=1.0.7568.41332, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;resizeKvmControl.Parent" xml:space="preserve">
     <value>$this</value>
@@ -607,7 +607,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1044, 794</value>
+    <value>1044, 749</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

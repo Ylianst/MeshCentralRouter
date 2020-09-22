@@ -46,6 +46,9 @@ namespace MeshCentralRouter
         public double DpiX = 96;
         public double DpiY = 96;
         public KVMViewer parent = null;
+        private readonly KVMControlHook.KVMCallback KeyboardCallback;
+        private bool keyboardIsAttached;
+
 
         private enum KvmCommands
         {
@@ -121,6 +124,25 @@ namespace MeshCentralRouter
             this.SetStyle(ControlStyles.UserPaint, true);
             this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
             this.MouseWheel += new System.Windows.Forms.MouseEventHandler(KVMControl_MouseWheel);
+            KeyboardCallback = SendKey;
+        }
+
+        public void AttachKeyboard()
+        {
+            if (!keyboardIsAttached)
+            {
+                Program.controlHook.AttachCallback(KeyboardCallback);
+                keyboardIsAttached = true;
+            }
+        }
+
+        public void DetacheKeyboard()
+        {
+            if (keyboardIsAttached)
+            {
+                Program.controlHook.DetachCallback();
+                keyboardIsAttached = false;
+            }
         }
 
         public int ProcessData(byte[] buffer, int off, int len)
@@ -543,24 +565,6 @@ namespace MeshCentralRouter
             SendMouse(e, 0);
         }
 
-        private void KVMControl_KeyDown(object sender, KeyEventArgs e)
-        {
-            if ((e.KeyCode == Keys.LWin) || (e.KeyCode == Keys.RWin)) return; // Don't process the Windows key
-            SendKey(e, 0);
-            e.Handled = true;
-        }
-
-        private void KVMControl_KeyUp(object sender, KeyEventArgs e)
-        {
-            SendKey(e, 1);
-            e.Handled = true;
-        }
-
-        private void KVMControl_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = true;
-        }
-
         private void KVMControl_MouseEnter(object sender, EventArgs e)
         {
             this.Focus();
@@ -573,28 +577,6 @@ namespace MeshCentralRouter
             bw.Write(IPAddress.HostToNetworkOrder((short)KvmCommands.CtrlAltDel));
             bw.Write(IPAddress.HostToNetworkOrder((short)4));
             Send(bw);
-        }
-
-        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-        {
-            const int WM_KEYDOWN = 0x100;
-            const int WM_SYSKEYDOWN = 0x104;
-
-            // Tab keys
-            if (msg.Msg == WM_KEYDOWN && msg.WParam.ToInt32() == 9)
-            {
-                SendKey((byte)msg.WParam.ToInt32(), 0);
-                return true;
-            }
-
-            // Handle arrow keys
-            if (((msg.Msg == WM_KEYDOWN) || (msg.Msg == WM_SYSKEYDOWN)) && msg.WParam.ToInt32() >= 37 && msg.WParam.ToInt32() <= 40)
-            {
-                SendKey((byte)msg.WParam.ToInt32(), 0);
-                return true;
-            }
-
-            return false;
         }
 
         public void GetDisplayNumbers()
@@ -616,12 +598,6 @@ namespace MeshCentralRouter
             bw.Write(IPAddress.HostToNetworkOrder((short)6));
             bw.Write(IPAddress.HostToNetworkOrder((short)dispNo));
             Send(bw);
-        }
-
-        public void SendWindowsKey()
-        {
-            SendKey(0x5B, 4);   // Windows key down
-            SendKey(0x5B, 3);   // Windows key up
         }
 
         public void SendCharmsKey()

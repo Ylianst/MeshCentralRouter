@@ -21,6 +21,7 @@ namespace MeshCentralRouter
 {
     static class Program
     {
+        public static KVMControlHook controlHook = new KVMControlHook();
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
