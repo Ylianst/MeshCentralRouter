@@ -789,13 +789,18 @@ namespace MeshCentralRouter
 
         private void remoteContextMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (node.agentid < 5)
+            if ((rightListView.SelectedItems.Count == 0) || ((node.agentid < 5) && ((remoteFolder == null) || (remoteFolder == ""))))
             {
-                deleteToolStripMenuItem.Visible = toolStripMenuItem1.Visible = renameToolStripMenuItem.Visible = (rightListView.SelectedItems.Count == 1) && (remoteFolder != "") && (remoteFolder != null);
+                deleteToolStripMenuItem.Visible = toolStripMenuItem1.Visible = renameToolStripMenuItem.Visible = false;
             }
-            else
+            else if (rightListView.SelectedItems.Count == 1)
             {
-                deleteToolStripMenuItem.Visible = toolStripMenuItem1.Visible = renameToolStripMenuItem.Visible = (rightListView.SelectedItems.Count == 1);
+                deleteToolStripMenuItem.Visible = toolStripMenuItem1.Visible = renameToolStripMenuItem.Visible = true;
+            }
+            else if (rightListView.SelectedItems.Count > 1)
+            {
+                renameToolStripMenuItem.Visible = false;
+                deleteToolStripMenuItem.Visible = toolStripMenuItem1.Visible = true;
             }
         }
 
