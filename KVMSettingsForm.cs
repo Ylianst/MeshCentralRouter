@@ -118,6 +118,12 @@ namespace MeshCentralRouter
             }
         }
 
+        public bool SwamMouseButtons
+        {
+            get { return swapMouseButtonsCheckBox.Checked; }
+            set { swapMouseButtonsCheckBox.Checked = value; }
+        }
+
         private void okButton_Click(object sender, EventArgs e)
         {
             DialogResult = System.Windows.Forms.DialogResult.OK;

@@ -315,9 +315,11 @@ namespace MeshCentralRouter
                 form.Compression = kvmControl.CompressionLevel;
                 form.Scaling = kvmControl.ScalingLevel;
                 form.FrameRate = kvmControl.FrameRate;
+                form.SwamMouseButtons = kvmControl.SwamMouseButtons;
                 if (form.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
                 {
                     kvmControl.SetCompressionParams(form.Compression, form.Scaling, form.FrameRate);
+                    kvmControl.SwamMouseButtons = form.SwamMouseButtons;
                 }
             }
         }

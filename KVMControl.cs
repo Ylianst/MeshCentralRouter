@@ -37,6 +37,7 @@ namespace MeshCentralRouter
         private int compressionlevel = 60; // 60% compression
         private int scalinglevel = 1024; // 100% scale
         private int frameRate = 100; // Medium frame rate
+        private bool swamMouseButtons = false;
         private double scalefactor = 1;
         public List<string> displays = new List<string>();
         public ushort currentDisp = 0;
@@ -103,6 +104,8 @@ namespace MeshCentralRouter
         public int CompressionLevel { get { return compressionlevel; } set { compressionlevel = value; SendCompressionLevel(); } }
         public int ScalingLevel { get { return scalinglevel; } set { scalinglevel = value; SendCompressionLevel(); } }
         public int FrameRate { get { return frameRate; } set { frameRate = value; SendCompressionLevel(); } }
+        public bool SwamMouseButtons { get { return swamMouseButtons; } set { swamMouseButtons = value; } }
+
         public double ScaleFactor { get { return scalefactor; } set { scalefactor = value; } }
 
         public void SetCompressionParams(int level, int scaling, int framerate) { compressionlevel = level; scalinglevel = scaling; frameRate = framerate; SendCompressionLevel(); }
@@ -394,10 +397,24 @@ namespace MeshCentralRouter
                 switch (e.Button)
                 {
                     case MouseButtons.Left:
-                        buttons |= (byte)KvmMouseButtonCommands.MOUSEEVENTF_LEFTDOWN;
+                        if (swamMouseButtons)
+                        {
+                            buttons |= (byte)KvmMouseButtonCommands.MOUSEEVENTF_RIGHTDOWN;
+                        }
+                        else
+                        {
+                            buttons |= (byte)KvmMouseButtonCommands.MOUSEEVENTF_LEFTDOWN;
+                        }
                         break;
                     case MouseButtons.Right:
-                        buttons |= (byte)KvmMouseButtonCommands.MOUSEEVENTF_RIGHTDOWN;
+                        if (swamMouseButtons)
+                        {
+                            buttons |= (byte)KvmMouseButtonCommands.MOUSEEVENTF_LEFTDOWN;
+                        }
+                        else
+                        {
+                            buttons |= (byte)KvmMouseButtonCommands.MOUSEEVENTF_RIGHTDOWN;
+                        }
                         break;
                     case MouseButtons.Middle:
                         buttons |= (byte)KvmMouseButtonCommands.MOUSEEVENTF_MIDDLEDOWN;
@@ -409,10 +426,10 @@ namespace MeshCentralRouter
                 switch (e.Button)
                 {
                     case MouseButtons.Left:
-                        buttons |= (byte)KvmMouseButtonCommands.MOUSEEVENTF_LEFTUP;
+                        if (swamMouseButtons) { buttons |= (byte)KvmMouseButtonCommands.MOUSEEVENTF_RIGHTUP; } else { buttons |= (byte)KvmMouseButtonCommands.MOUSEEVENTF_LEFTUP; }
                         break;
                     case MouseButtons.Right:
-                        buttons |= (byte)KvmMouseButtonCommands.MOUSEEVENTF_RIGHTUP;
+                        if (swamMouseButtons) { buttons |= (byte)KvmMouseButtonCommands.MOUSEEVENTF_LEFTUP; } else { buttons |= (byte)KvmMouseButtonCommands.MOUSEEVENTF_RIGHTUP; }
                         break;
                     case MouseButtons.Middle:
                         buttons |= (byte)KvmMouseButtonCommands.MOUSEEVENTF_MIDDLEUP;
