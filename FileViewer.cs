@@ -263,6 +263,7 @@ namespace MeshCentralRouter
             if (i >= 0) { ux = ux.Substring(0, i); }
             Uri u = new Uri(ux + "meshrelay.ashx?browser=1&p=5&nodeid=" + node.nodeid + "&id=" + randomIdHex + "&auth=" + server.authCookie);
             wc = new webSocketClient();
+            wc.xdebug = server.debug;
             wc.onStateChanged += Wc_onStateChanged;
             wc.onBinaryData += Wc_onBinaryData;
             wc.onStringData += Wc_onStringData;

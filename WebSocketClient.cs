@@ -106,6 +106,8 @@ namespace MeshCentralRouter
             this.tlsCertFingerprint = tlsCertFingerprint;
             Uri proxyUri = null;
 
+            Debug("Websocket Start, URL=" + url.ToString());
+
             // Check if we need to use a HTTP proxy (Auto-proxy way)
             try
             {
@@ -130,6 +132,7 @@ namespace MeshCentralRouter
             if (proxyUri != null)
             {
                 // Proxy in use
+                Debug("Websocket proxyUri: " + proxyUri.ToString());
                 proxyInUse = true;
                 wsclient = new TcpClient();
                 wsclient.BeginConnect(proxyUri.Host, proxyUri.Port, new AsyncCallback(OnConnectSink), this);
@@ -137,6 +140,7 @@ namespace MeshCentralRouter
             else
             {
                 // No proxy in use
+                Debug("Websocket noProxy");
                 proxyInUse = false;
                 wsclient = new TcpClient();
                 wsclient.BeginConnect(url.Host, url.Port, new AsyncCallback(OnConnectSink), this);
@@ -461,17 +465,26 @@ namespace MeshCentralRouter
 
         private bool VerifyServerCertificate(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
         {
+            string hash1 = GetMeshKeyHash(certificate);
+            string hash2 = certificate.GetCertHashString();
+            Debug("VerifyServerCertificate: tlsCertFingerprint = " + ((tlsCertFingerprint == null) ? "NULL" : tlsCertFingerprint));
+            Debug("VerifyServerCertificate: Hash1 = " + hash1);
+            Debug("VerifyServerCertificate: Hash2 = " + hash2);
             return ((tlsCertFingerprint == GetMeshKeyHash(certificate)) || (tlsCertFingerprint == certificate.GetCertHashString()));
         }
 
         public int SendString(string data)
         {
             if (state != ConnectionStates.Connected) return 0;
+            Debug("WebSocketClient-SEND-String: " + data);
             byte[] buf = UTF8Encoding.UTF8.GetBytes(data);
             return SendFragment(buf, 0, buf.Length, 129);
         }
 
-        public int SendBinary(byte[] data, int offset, int len) { return SendFragment(data, offset, len, 130); }
+        public int SendBinary(byte[] data, int offset, int len) {
+            Debug("WebSocketClient-SEND-Binary-Len:" + len);
+            return SendFragment(data, offset, len, 130);
+        }
 
         // Fragment op code (129 = text, 130 = binary)
         public int SendFragment(byte[] data, int offset, int len, byte op)

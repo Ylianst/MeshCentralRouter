@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 using System;
+using System.IO;
 using System.Windows.Forms;
 
 namespace MeshCentralRouter
@@ -32,6 +33,10 @@ namespace MeshCentralRouter
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Properties.Settings.Default.Upgrade();
+
+            Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(ExceptionSink);
+            AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(UnhandledExceptionEventSink);
+            Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException, true);
 
             foreach (string arg in args)
             {
@@ -51,5 +56,16 @@ namespace MeshCentralRouter
             while (currentCulture.Equals(System.Threading.Thread.CurrentThread.CurrentUICulture) == false);
         }
 
+        public static void Debug(string msg) { try { File.AppendAllText("debug.log", msg + "\r\n"); } catch (Exception) { } }
+
+        public static void ExceptionSink(object sender, System.Threading.ThreadExceptionEventArgs args)
+        {
+            Debug("ExceptionSink: " + args.Exception.ToString());
+        }
+
+        public static void UnhandledExceptionEventSink(object sender, UnhandledExceptionEventArgs args)
+        {
+            Debug("UnhandledExceptionEventSink: " + ((Exception)args.ExceptionObject).ToString());
+        }
     }
 }

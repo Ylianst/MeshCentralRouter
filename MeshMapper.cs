@@ -75,6 +75,8 @@ namespace MeshCentralRouter
             wsurl = new Uri(url);
             //wshash = serverHashTextBox.Text;
 
+            Debug(string.Format("MeshMapper-Start: Protcol={0}, LocalPort={1}, Url={2}, RemotePort={3}, RemoteIP={4}", protocol, localPort, url, remotePort, remoteIP));
+
             if (protocol == 1)
             {
                 // Start the TCP listener
@@ -201,6 +203,7 @@ namespace MeshCentralRouter
         {
             webSocketClient wc = new webSocketClient();
             Debug("#" + counter + ": Connecting web socket to: " + wsurl.ToString());
+            wc.xdebug = xdebug;
             wc.Start(wsurl, certhash);
             wc.tag = client;
             wc.id = counter;
@@ -213,6 +216,7 @@ namespace MeshCentralRouter
         {
             webSocketClient wc = new webSocketClient();
             Debug("#" + counter + ": Connecting web socket to: " + wsurl.ToString());
+            wc.xdebug = xdebug;
             wc.Start(wsurl, certhash);
             wc.tag = client;
             wc.id = counter;
