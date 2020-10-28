@@ -1,5 +1,5 @@
 ﻿/*
-Copyright 2009-2017 Intel Corporation
+Copyright 2009-2020 Intel Corporation
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -184,6 +184,38 @@ namespace MeshCentralRouter
             }
             autoLogin = (argflags == 7);
 
+            // Set automatic port map values
+            if (authLoginUrl != null) {
+                string autoNodeId = null;
+                int autoRemotePort = 0;
+                int autoProtocol = 0;
+                int autoAppId = 0;
+                bool autoExit = false;
+                try
+                {
+                    // Automatic mappings
+                    autoNodeId = getValueFromQueryString(authLoginUrl.Query, "nodeid");
+                    autoRemotePort = int.Parse(getValueFromQueryString(authLoginUrl.Query, "remoteport"));
+                    autoProtocol = int.Parse(getValueFromQueryString(authLoginUrl.Query, "protocol"));
+                    autoAppId = int.Parse(getValueFromQueryString(authLoginUrl.Query, "appid"));
+                    autoExit = (getValueFromQueryString(authLoginUrl.Query, "autoexit") == "1");
+                }
+                catch (Exception) { }
+                if ((autoRemotePort != 0) && (autoProtocol != 0) && (autoNodeId != null)) {
+                    Dictionary<string, object> map = new Dictionary<string, object>();
+                    map.Add("nodeId", autoNodeId);
+                    map.Add("remotePort", autoRemotePort);
+                    map.Add("localPort", 0);
+                    map.Add("protocol", autoProtocol);
+                    map.Add("appId", autoAppId);
+                    map.Add("autoExit", autoExit);
+                    map.Add("launch", 1);
+                    mappingsToSetup = new ArrayList();
+                    mappingsToSetup.Add(map);
+                    devicesTabControl.SelectedIndex = 1;
+                }
+            }
+
             // Check MeshCentral .mcrouter hook
             installButton.Visible = !isRouterHooked();
         }
@@ -285,7 +317,7 @@ namespace MeshCentralRouter
             meshcentral.disconnect();
         }
 
-        private string getValueFromQueryString(string query, string name)
+        private static string getValueFromQueryString(string query, string name)
         {
             if ((query == null) || (name == null)) return null;
             int i = query.IndexOf("?" + name + "=");
@@ -389,14 +421,28 @@ namespace MeshCentralRouter
             Uri serverurl = null;
             if (authLoginUrl != null) {
                 meshcentral.okCertHash2 = getValueFromQueryString(authLoginUrl.Query, "t");
-                serverurl = new Uri("wss://" + authLoginUrl.Host + ":" + ((authLoginUrl.Port > 0) ? authLoginUrl.Port : 443) + authLoginUrl.LocalPath + "?auth=" + getValueFromQueryString(authLoginUrl.Query, "c"));
+                string loginkey = getValueFromQueryString(authLoginUrl.Query, "key");
+                string urlstring = "wss://" + authLoginUrl.Host + ":" + ((authLoginUrl.Port > 0) ? authLoginUrl.Port : 443) + authLoginUrl.LocalPath + "?auth=" + getValueFromQueryString(authLoginUrl.Query, "c");
+                if (loginkey != null) { urlstring += ("&key=" + loginkey); }
+                serverurl = new Uri(urlstring);
                 meshcentral.connect(serverurl, null, null, null);
             } else {
                 // Load two factor cookie if present
                 string twoFactorCookie = getRegValue("TwoFactorCookie", null);
                 if ((twoFactorCookie != null) && (twoFactorCookie != "")) { twoFactorCookie = "cookie=" + twoFactorCookie; } else { twoFactorCookie = null; }
-                serverurl = new Uri("wss://" + serverNameComboBox.Text + "/control.ashx");
-                meshcentral.connect(serverurl, userNameTextBox.Text, passwordTextBox.Text, twoFactorCookie);
+                int keyIndex = serverNameComboBox.Text.IndexOf("?key=");
+                if (keyIndex >= 0)
+                {
+                    string hostname = serverNameComboBox.Text.Substring(0, keyIndex);
+                    string loginkey = serverNameComboBox.Text.Substring(keyIndex + 5);
+                    try { serverurl = new Uri("wss://" + hostname + "/control.ashx?key=" + loginkey); } catch (Exception) { }
+                    meshcentral.connect(serverurl, userNameTextBox.Text, passwordTextBox.Text, twoFactorCookie);
+                }
+                else
+                {
+                    try { serverurl = new Uri("wss://" + serverNameComboBox.Text + "/control.ashx"); } catch (Exception) { }
+                    meshcentral.connect(serverurl, userNameTextBox.Text, passwordTextBox.Text, twoFactorCookie);
+                }
             }
         }
 
@@ -915,9 +961,22 @@ namespace MeshCentralRouter
 
             Uri serverurl = null;
             if (authLoginUrl != null) {
-                serverurl = new Uri("wss://" + authLoginUrl.Host + ":" + ((authLoginUrl.Port > 0) ? authLoginUrl.Port : 443) + authLoginUrl.LocalPath + "?auth=" + getValueFromQueryString(authLoginUrl.Query, "c"));
+                string loginkey = getValueFromQueryString(authLoginUrl.Query, "key");
+                string urlstring = "wss://" + authLoginUrl.Host + ":" + ((authLoginUrl.Port > 0) ? authLoginUrl.Port : 443) + authLoginUrl.LocalPath + "?auth=" + getValueFromQueryString(authLoginUrl.Query, "c");
+                if (loginkey != null) { urlstring += ("&key=" + loginkey); }
+                serverurl = new Uri(urlstring);
             } else {
-                serverurl = new Uri("wss://" + serverNameComboBox.Text + "/control.ashx");
+                int keyIndex = serverNameComboBox.Text.IndexOf("?key=");
+                if (keyIndex >= 0)
+                {
+                    string hostname = serverNameComboBox.Text.Substring(0, keyIndex);
+                    string loginkey = serverNameComboBox.Text.Substring(keyIndex + 5);
+                    serverurl = new Uri("wss://" + hostname + "/control.ashx?key=" + loginkey);
+                }
+                else
+                {
+                    serverurl = new Uri("wss://" + serverNameComboBox.Text + "/control.ashx");
+                }
             }
 
             meshcentral = new MeshCentralServer();
@@ -1318,6 +1377,7 @@ namespace MeshCentralRouter
                 if (x.ContainsKey("remoteIP")) { map.remoteIP = (string)x["remoteIP"]; }
                 map.remotePort = (int)x["remotePort"];
                 map.appId = (int)x["appId"];
+                if (x.ContainsKey("autoExit")) { map.autoexit = (bool)x["autoExit"]; }
                 map.node = node;
                 if (authLoginUrl != null) { map.host = authLoginUrl.Host + ":" + ((authLoginUrl.Port > 0) ? authLoginUrl.Port : 443); } else { map.host = serverNameComboBox.Text; }
                 map.authCookie = meshcentral.authCookie;
@@ -1331,11 +1391,17 @@ namespace MeshCentralRouter
 
                 // Launch any executable
                 if (x.ContainsKey("launch")) {
-                    try {
-                        string lanuchString = (string)x["launch"];
-                        lanuchString = lanuchString.Replace("{port}", x["localPort"].ToString());
-                        System.Diagnostics.Process.Start(lanuchString);
-                    } catch (Exception) { }
+                    if (x["launch"].GetType() == typeof(int)) { map.appButton_Click(this, null); }
+                    if (x["launch"].GetType() == typeof(string))
+                    {
+                        try
+                        {
+                            string lanuchString = (string)x["launch"];
+                            lanuchString = lanuchString.Replace("{port}", x["localPort"].ToString());
+                            System.Diagnostics.Process.Start(lanuchString);
+                        }
+                        catch (Exception) { }
+                    }
                 }
             }
             mappingsToSetup = null;

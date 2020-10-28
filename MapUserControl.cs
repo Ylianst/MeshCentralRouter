@@ -29,6 +29,8 @@ namespace MeshCentralRouter
         public bool xdebug = false;
         public bool inaddrany = false;
         public MappingStats stats = null;
+        public bool autoexit = false;
+        System.Diagnostics.Process autoExitProc = null;
 
         public static void saveToRegistry(string name, string value)
         {
@@ -104,6 +106,9 @@ namespace MeshCentralRouter
 
         public void appButton_Click(object sender, EventArgs e)
         {
+            bool shift = false;
+            if (Control.ModifierKeys == Keys.Shift) { shift = true; }
+
             if (appId == 1) { System.Diagnostics.Process.Start("http://localhost:" + mapper.localport); }
             if (appId == 2) { System.Diagnostics.Process.Start("https://localhost:" + mapper.localport); }
             if (appId == 3)
@@ -129,40 +134,81 @@ namespace MeshCentralRouter
                 // Launch the process
                 try { proc = System.Diagnostics.Process.Start(cmd, args); }
                 catch (System.ComponentModel.Win32Exception) { }
+
+                // Setup auto-exit
+                if ((autoexit == true) && (autoExitProc == null)) { autoExitProc = proc; autoExitTimer.Enabled = true; }
             }
             if (appId == 4)
             {
-                using (AppLaunchForm f = new AppLaunchForm())
+                string puttyPath = loadFromRegistry("PuttyPath");
+                if ((shift == false) && (File.Exists(puttyPath)))
                 {
+                    // Launch the process
                     System.Diagnostics.Process proc = null;
-                    f.SetAppName(Properties.Resources.PuttyAppName);
-                    f.SetAppLink("http://www.chiark.greenend.org.uk/~sgtatham/putty/");
-                    f.SetAppPath(loadFromRegistry("PuttyPath"));
-                    if (f.ShowDialog(this) == DialogResult.OK)
+                    string args = "-ssh 127.0.0.1 -P " + mapper.localport;
+                    try { proc = System.Diagnostics.Process.Start(puttyPath, args); }
+                    catch (System.ComponentModel.Win32Exception) { }
+
+                    // Setup auto-exit
+                    if ((autoexit == true) && (autoExitProc == null)) { autoExitProc = proc; autoExitTimer.Enabled = true; }
+                }
+                else
+                {
+                    using (AppLaunchForm f = new AppLaunchForm())
                     {
-                        saveToRegistry("PuttyPath", f.GetAppPath());
-                        string args = "-ssh 127.0.0.1 -P " + mapper.localport;
-                        // Launch the process
-                        try { proc = System.Diagnostics.Process.Start(f.GetAppPath(), args); }
-                        catch (System.ComponentModel.Win32Exception) { }
+                        System.Diagnostics.Process proc = null;
+                        f.SetAppName(Properties.Resources.PuttyAppName);
+                        f.SetAppLink("http://www.chiark.greenend.org.uk/~sgtatham/putty/");
+                        f.SetAppPath(puttyPath);
+                        if (f.ShowDialog(this) == DialogResult.OK)
+                        {
+                            saveToRegistry("PuttyPath", f.GetAppPath());
+                            string args = "-ssh 127.0.0.1 -P " + mapper.localport;
+                            
+                            // Launch the process
+                            try { proc = System.Diagnostics.Process.Start(f.GetAppPath(), args); }
+                            catch (System.ComponentModel.Win32Exception) { }
+
+                            // Setup auto-exit
+                            if ((autoexit == true) && (autoExitProc == null)) { autoExitProc = proc; autoExitTimer.Enabled = true; }
+                        }
                     }
                 }
             }
             if (appId == 5)
             {
-                using (AppLaunchForm f = new AppLaunchForm())
+                string winScpPath = loadFromRegistry("WinSCPPath");
+                if ((shift == false) && (File.Exists(winScpPath)))
                 {
+                    // Launch the process
                     System.Diagnostics.Process proc = null;
-                    f.SetAppName(Properties.Resources.WinscpAppName);
-                    f.SetAppLink("http://winscp.net/");
-                    f.SetAppPath(loadFromRegistry("WinSCPPath"));
-                    if (f.ShowDialog(this) == DialogResult.OK)
+                    string args = "scp://127.0.0.1:" + mapper.localport;
+                    try { proc = System.Diagnostics.Process.Start(winScpPath, args); }
+                    catch (System.ComponentModel.Win32Exception) { }
+
+                    // Setup auto-exit
+                    if ((autoexit == true) && (autoExitProc == null)) { autoExitProc = proc; autoExitTimer.Enabled = true; }
+                }
+                else
+                {
+                    using (AppLaunchForm f = new AppLaunchForm())
                     {
-                        saveToRegistry("WinSCPPath", f.GetAppPath());
-                        string args = "scp://127.0.0.1:" + mapper.localport;
-                        // Launch the process
-                        try { proc = System.Diagnostics.Process.Start(f.GetAppPath(), args); }
-                        catch (System.ComponentModel.Win32Exception) { }
+                        System.Diagnostics.Process proc = null;
+                        f.SetAppName(Properties.Resources.WinscpAppName);
+                        f.SetAppLink("http://winscp.net/");
+                        f.SetAppPath(winScpPath);
+                        if (f.ShowDialog(this) == DialogResult.OK)
+                        {
+                            saveToRegistry("WinSCPPath", f.GetAppPath());
+                            string args = "scp://127.0.0.1:" + mapper.localport;
+                            
+                            // Launch the process
+                            try { proc = System.Diagnostics.Process.Start(f.GetAppPath(), args); }
+                            catch (System.ComponentModel.Win32Exception) { }
+
+                            // Setup auto-exit
+                            if ((autoexit == true) && (autoExitProc == null)) { autoExitProc = proc; autoExitTimer.Enabled = true; }
+                        }
                     }
                 }
             }
@@ -190,6 +236,12 @@ namespace MeshCentralRouter
             if (stats == null) return;
             stats.Close();
             stats = null;
+        }
+
+        private void autoExitTimer_Tick(object sender, EventArgs e)
+        {
+            if (autoExitProc == null) return;
+            if (autoExitProc.HasExited == true) { Application.Exit(); }
         }
     }
 }
