@@ -373,10 +373,10 @@
     <value>HTTPS</value>
   </data>
   <data name="appComboBox.Items3" xml:space="preserve">
-    <value>RDP</value>
+    <value>PuTTY</value>
   </data>
   <data name="appComboBox.Items4" xml:space="preserve">
-    <value>PuTTY</value>
+    <value>RDP</value>
   </data>
   <data name="appComboBox.Items5" xml:space="preserve">
     <value>WinSCP</value>
@@ -591,6 +591,9 @@
   <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <metadata name="mainToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <data name="nameTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
@@ -603,9 +606,6 @@
   <data name="nameTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
   </data>
-  <metadata name="mainToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="nameTextBox.ToolTip" xml:space="preserve">
     <value>Optional mapping name</value>
   </data>
@@ -654,6 +654,9 @@
   <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <metadata name="mainToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
