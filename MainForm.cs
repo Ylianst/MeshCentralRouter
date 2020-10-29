@@ -27,6 +27,7 @@ using System.Runtime.InteropServices;
 using System.Web.Script.Serialization;
 using System.Security.Cryptography.X509Certificates;
 using Microsoft.Win32;
+using System.Drawing;
 
 namespace MeshCentralRouter
 {
@@ -276,6 +277,30 @@ namespace MeshCentralRouter
                 sortByNameToolStripMenuItem.Visible = false;
                 sortByGroupToolStripMenuItem.Visible = false;
             }
+
+            // Restore Window Location
+            string locationStr = getRegValue("location", "");
+            if (locationStr != null)
+            {
+                string[] locationSplit = locationStr.Split(',');
+                if (locationSplit.Length == 2)
+                {
+                    try
+                    {
+                        var x = int.Parse(locationSplit[0]);
+                        var y = int.Parse(locationSplit[1]);
+                        Point p = new Point(x, y);
+                        if (isPointVisibleOnAScreen(p)) { Location = p; }
+                    }
+                    catch (Exception) { }
+                }
+            }
+        }
+
+        bool isPointVisibleOnAScreen(Point p)
+        {
+            foreach (Screen s in Screen.AllScreens) { if ((p.X < s.Bounds.Right) && (p.X > s.Bounds.Left) && (p.Y > s.Bounds.Top) && (p.Y < s.Bounds.Bottom)) return true; }
+            return false;
         }
 
         private void updatePanel1(object sender, EventArgs e)
@@ -310,6 +335,7 @@ namespace MeshCentralRouter
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if ((notifyIcon.Visible == true) && (forceExit == false)) { e.Cancel = true; Visible = false; }
+            setRegValue("Location", Location.X + "," + Location.Y);
         }
 
         private void backButton5_Click(object sender, EventArgs e)
