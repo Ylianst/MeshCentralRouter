@@ -150,6 +150,9 @@ namespace MeshCentralRouter
 
         public MainForm(string[] args)
         {
+            // Set TLS 1.2
+            ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
+
             this.args = args;
             InitializeComponent();
             mainPanel.Controls.Add(panel1);
@@ -165,6 +168,8 @@ namespace MeshCentralRouter
             title = this.Text;
 
             int argflags = 0;
+            string update = null;
+            string delete = null;
             foreach (string arg in this.args) {
                 if (arg.ToLower() == "-oldstyle") { deviceListViewMode = false; }
                 if (arg.ToLower() == "-install") { hookRouter(); forceExit = true; return; }
@@ -179,11 +184,30 @@ namespace MeshCentralRouter
                 if (arg.Length > 6 && arg.Substring(0, 6).ToLower() == "-user:") { userNameTextBox.Text = arg.Substring(6); argflags |= 2; }
                 if (arg.Length > 6 && arg.Substring(0, 6).ToLower() == "-pass:") { passwordTextBox.Text = arg.Substring(6); argflags |= 4; }
                 if (arg.Length > 8 && arg.Substring(0, 8).ToLower() == "-search:") { searchTextBox.Text = arg.Substring(8); }
+                if (arg.Length > 8 && arg.Substring(0, 8).ToLower() == "-update:") { update = arg.Substring(8); }
+                if (arg.Length > 8 && arg.Substring(0, 8).ToLower() == "-delete:") { delete = arg.Substring(8); }
                 if (arg.Length > 11 && arg.Substring(0, 11).ToLower() == "mcrouter://") { authLoginUrl = new Uri(arg); }
                 if ((arg.Length > 1) && (arg[0] != '-') && (arg.ToLower().EndsWith(".mcrouter"))) { try { argflags |= loadMappingFile(File.ReadAllText(arg), 1); } catch (Exception) { } }
                 if (arg.ToLower() == "-localfiles") { FileViewer fileViewer = new FileViewer(meshcentral, null); fileViewer.Show(); }
             }
             autoLogin = (argflags == 7);
+
+            if (update != null) {
+                // New args
+                ArrayList args2 = new ArrayList();
+                foreach (string a in args) { if (a.StartsWith("-update:") == false) { args2.Add(a); } }
+
+                // Remove ".update.exe" and copy
+                System.Threading.Thread.Sleep(1000);
+                File.Copy(Assembly.GetEntryAssembly().Location, update, true);
+                System.Threading.Thread.Sleep(1000);
+                Process.Start(update, string.Join(" ", args2 + " -delete:" + Assembly.GetEntryAssembly().Location));
+                this.forceExit = true;
+                Application.Exit();
+                return;
+            }
+
+            if (delete != null) { try { System.Threading.Thread.Sleep(1000); File.Delete(delete); } catch (Exception) { } }
 
             // Set automatic port map values
             if (authLoginUrl != null) {
@@ -371,6 +395,7 @@ namespace MeshCentralRouter
             meshcentral.onLoginTokenChanged += Meshcentral_onLoginTokenChanged;
             meshcentral.onClipboardData += Meshcentral_onClipboardData;
             meshcentral.onTwoFactorCookie += Meshcentral_onTwoFactorCookie;
+            meshcentral.onToolUpdate += Meshcentral_onToolUpdate;
             if (lastBadConnectCert != null)
             {
                 meshcentral.okCertHash = lastBadConnectCert.GetCertHashString();
@@ -442,6 +467,7 @@ namespace MeshCentralRouter
             meshcentral.onLoginTokenChanged += Meshcentral_onLoginTokenChanged;
             meshcentral.onClipboardData += Meshcentral_onClipboardData;
             meshcentral.onTwoFactorCookie += Meshcentral_onTwoFactorCookie;
+            meshcentral.onToolUpdate += Meshcentral_onToolUpdate;
             meshcentral.okCertHash = lastBadConnectCert.GetCertHashString();
 
             Uri serverurl = null;
@@ -470,6 +496,13 @@ namespace MeshCentralRouter
                     meshcentral.connect(serverurl, userNameTextBox.Text, passwordTextBox.Text, twoFactorCookie);
                 }
             }
+        }
+
+        private void Meshcentral_onToolUpdate(string url, string hash, int size)
+        {
+            if (this.InvokeRequired) { this.Invoke(new MeshCentralServer.toolUpdateHandler(Meshcentral_onToolUpdate), url, hash, size); return; }
+            UpdateForm f = new UpdateForm(url, hash, size, args);
+            if (f.ShowDialog(this) == DialogResult.OK) { }
         }
 
         private void Meshcentral_onLoginTokenChanged()
@@ -1020,6 +1053,7 @@ namespace MeshCentralRouter
             meshcentral.onLoginTokenChanged += Meshcentral_onLoginTokenChanged;
             meshcentral.onClipboardData += Meshcentral_onClipboardData;
             meshcentral.onTwoFactorCookie += Meshcentral_onTwoFactorCookie;
+            meshcentral.onToolUpdate += Meshcentral_onToolUpdate;
             if (sendEmailToken == true)
             {
                 sendEmailToken = false;
