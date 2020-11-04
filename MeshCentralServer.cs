@@ -601,8 +601,12 @@ namespace MeshCentralRouter
                             string loginkey = getValueFromQueryString(wsurl.Query, "key");
                             if (loginkey != null) { url += ("&key=" + loginkey); }
 
+                            // Server TLS certificate hash
+                            string serverhash = null;
+                            if (jsonAction.ContainsKey("serverhash")) { serverhash = jsonAction["serverhash"].ToString(); }
+
                             // If the hashes don't match, event the tool update with URL
-                            if (selfExecutableHashHex != hash) { onToolUpdate((string)url, (string)jsonAction["hash"], (int)jsonAction["size"]); }
+                            if (selfExecutableHashHex != hash) { onToolUpdate((string)url, (string)jsonAction["hash"], (int)jsonAction["size"], serverhash); }
                         }
                         break;
                     }
@@ -637,7 +641,7 @@ namespace MeshCentralRouter
         public event onClipboardDataHandler onClipboardData;
         public delegate void twoFactorCookieHandler(string cookie);
         public event twoFactorCookieHandler onTwoFactorCookie;
-        public delegate void toolUpdateHandler(string url, string hash, int size);
+        public delegate void toolUpdateHandler(string url, string hash, int size, string serverhash);
         public event toolUpdateHandler onToolUpdate;
 
         public class xwebclient : IDisposable

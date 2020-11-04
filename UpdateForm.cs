@@ -6,6 +6,7 @@ using System.Net.Security;
 using System.Windows.Forms;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
+using System.Text;
 
 namespace MeshCentralRouter
 {
@@ -15,14 +16,16 @@ namespace MeshCentralRouter
         private string hash = null;
         private int size = 0;
         private string[] args = null;
+        private string serverTlsCertHash = null;
 
-        public UpdateForm(string url, string hash, int size, string[] args)
+        public UpdateForm(string url, string hash, int size, string[] args, string serverhash)
         {
             InitializeComponent();
             this.url = url;
             this.hash = hash;
             this.size = size;
             this.args = args;
+            this.serverTlsCertHash = serverhash;
         }
 
         private void okButton_Click(object sender, EventArgs e)
@@ -46,8 +49,10 @@ namespace MeshCentralRouter
             updateProgressBar.Visible = true;
         }
 
-        public static bool RemoteCertificateValidationCallback(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
+        public bool RemoteCertificateValidationCallback(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
         {
+            // Check MeshCentral server's TLS certificate. This is our first security layer.
+            if ((serverTlsCertHash != null) && (serverTlsCertHash != certificate.GetCertHashString().ToLower()) && (serverTlsCertHash != GetMeshKeyHash(certificate).ToLower()) && (serverTlsCertHash != GetMeshCertHash(certificate).ToLower())) return false;
             return true;
         }
 
@@ -110,6 +115,27 @@ namespace MeshCentralRouter
                 }
             }
             catch (Exception ex) { updateMessage("Error: " + ex.ToString(), 2); }
+        }
+
+
+        // Return a modified base64 SHA384 hash string of the certificate public key
+        public static string GetMeshKeyHash(X509Certificate cert)
+        {
+            return ByteArrayToHexString(new SHA384Managed().ComputeHash(cert.GetPublicKey()));
+        }
+
+        // Return a modified base64 SHA384 hash string of the certificate
+        public static string GetMeshCertHash(X509Certificate cert)
+        {
+            return ByteArrayToHexString(new SHA384Managed().ComputeHash(cert.GetRawCertData()));
+        }
+
+        public static string ByteArrayToHexString(byte[] Bytes)
+        {
+            StringBuilder Result = new StringBuilder(Bytes.Length * 2);
+            string HexAlphabet = "0123456789ABCDEF";
+            foreach (byte B in Bytes) { Result.Append(HexAlphabet[(int)(B >> 4)]); Result.Append(HexAlphabet[(int)(B & 0xF)]); }
+            return Result.ToString();
         }
 
     }

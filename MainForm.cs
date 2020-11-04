@@ -498,10 +498,10 @@ namespace MeshCentralRouter
             }
         }
 
-        private void Meshcentral_onToolUpdate(string url, string hash, int size)
+        private void Meshcentral_onToolUpdate(string url, string hash, int size, string serverhash)
         {
-            if (this.InvokeRequired) { this.Invoke(new MeshCentralServer.toolUpdateHandler(Meshcentral_onToolUpdate), url, hash, size); return; }
-            UpdateForm f = new UpdateForm(url, hash, size, args);
+            if (this.InvokeRequired) { this.Invoke(new MeshCentralServer.toolUpdateHandler(Meshcentral_onToolUpdate), url, hash, size, serverhash); return; }
+            UpdateForm f = new UpdateForm(url, hash, size, args, serverhash);
             if (f.ShowDialog(this) == DialogResult.OK) { }
         }
 
