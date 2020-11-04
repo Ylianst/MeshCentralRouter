@@ -201,7 +201,7 @@ namespace MeshCentralRouter
                 System.Threading.Thread.Sleep(1000);
                 File.Copy(Assembly.GetEntryAssembly().Location, update, true);
                 System.Threading.Thread.Sleep(1000);
-                Process.Start(update, string.Join(" ", args2 + " -delete:" + Assembly.GetEntryAssembly().Location));
+                Process.Start(update, string.Join(" ", (string[])args2.ToArray(typeof(string))) + " -delete:" + Assembly.GetEntryAssembly().Location);
                 this.forceExit = true;
                 Application.Exit();
                 return;
