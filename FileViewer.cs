@@ -18,6 +18,7 @@ using System;
 using System.IO;
 using System.Net;
 using System.Text;
+using System.Drawing;
 using System.Collections;
 using System.Windows.Forms;
 using System.Collections.Generic;
@@ -243,6 +244,30 @@ namespace MeshCentralRouter
         private void MainForm_Load(object sender, EventArgs e)
         {
             updateLocalFileView();
+
+            // Restore Window Location
+            string locationStr = getRegValue("filelocation", "");
+            if (locationStr != null)
+            {
+                string[] locationSplit = locationStr.Split(',');
+                if (locationSplit.Length == 4)
+                {
+                    try
+                    {
+                        var x = int.Parse(locationSplit[0]);
+                        var y = int.Parse(locationSplit[1]);
+                        var w = int.Parse(locationSplit[2]);
+                        var h = int.Parse(locationSplit[3]);
+                        Point p = new Point(x, y);
+                        if (isPointVisibleOnAScreen(p))
+                        {
+                            Location = p;
+                            if ((w > 50) && (h > 50)) { Size = new Size(w, h); }
+                        }
+                    }
+                    catch (Exception) { }
+                }
+            }
         }
 
         private void MenuItemExit_Click(object sender, EventArgs e)
@@ -588,6 +613,9 @@ namespace MeshCentralRouter
                 UpdateStatus();
             }
             node.fileViewer = null;
+
+            // Save window location
+            setRegValue("filelocation", Location.X + "," + Location.Y + "," + Size.Width + "," + Size.Height);
         }
 
         public delegate void displayMessageHandler(string msg);
@@ -1187,5 +1215,21 @@ namespace MeshCentralRouter
                 return Convert.ToBase64String(bytes);
             }
         }
+
+        public void setRegValue(string name, string value)
+        {
+            try { Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\Open Source\MeshCentral Router", name, value); } catch (Exception) { }
+        }
+        public string getRegValue(string name, string value)
+        {
+            try { return Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\Open Source\MeshCentral Router", name, value).ToString(); } catch (Exception) { return value; }
+        }
+
+        bool isPointVisibleOnAScreen(Point p)
+        {
+            foreach (Screen s in Screen.AllScreens) { if ((p.X < s.Bounds.Right) && (p.X > s.Bounds.Left) && (p.Y > s.Bounds.Top) && (p.Y < s.Bounds.Bottom)) return true; }
+            return false;
+        }
+
     }
 }

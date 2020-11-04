@@ -81,10 +81,13 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.sortByNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sortByGroupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
+            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.searchTextBox = new System.Windows.Forms.TextBox();
             this.devicesTabControl = new System.Windows.Forms.TabControl();
             this.devicesTabPage = new System.Windows.Forms.TabPage();
             this.devicesPanel = new System.Windows.Forms.Panel();
+            this.cancelAutoCloseButton1 = new System.Windows.Forms.Button();
             this.devicesListView = new System.Windows.Forms.ListView();
             this.nameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.stateColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -93,6 +96,7 @@
             this.addRelayMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.remoteDesktopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.remoteFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.httpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.httpsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rdpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -102,6 +106,7 @@
             this.noSearchResultsLabel = new System.Windows.Forms.Label();
             this.noDevicesLabel = new System.Windows.Forms.Label();
             this.portMapTabPage = new System.Windows.Forms.TabPage();
+            this.cancelAutoCloseButton2 = new System.Windows.Forms.Button();
             this.mapPanel = new System.Windows.Forms.Panel();
             this.noMapLabel = new System.Windows.Forms.Label();
             this.settingsPictureBox = new System.Windows.Forms.PictureBox();
@@ -126,7 +131,6 @@
             this.saveMappingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openMapFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveMapFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.remoteFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel5.SuspendLayout();
             this.mainPanel.SuspendLayout();
             this.mainTabControl.SuspendLayout();
@@ -180,6 +184,7 @@
             this.mainTabControl.Controls.Add(this.tabPage5);
             this.mainTabControl.Name = "mainTabControl";
             this.mainTabControl.SelectedIndex = 0;
+            this.mainTabControl.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             // 
             // tabPage1
             // 
@@ -502,7 +507,9 @@
             this.showOfflineDevicesToolStripMenuItem,
             this.toolStripMenuItem2,
             this.sortByNameToolStripMenuItem,
-            this.sortByGroupToolStripMenuItem});
+            this.sortByGroupToolStripMenuItem,
+            this.toolStripMenuItem4,
+            this.settingsToolStripMenuItem});
             this.mainContextMenuStrip.Name = "mainContextMenuStrip";
             resources.ApplyResources(this.mainContextMenuStrip, "mainContextMenuStrip");
             // 
@@ -539,6 +546,17 @@
             resources.ApplyResources(this.sortByGroupToolStripMenuItem, "sortByGroupToolStripMenuItem");
             this.sortByGroupToolStripMenuItem.Click += new System.EventHandler(this.sortByGroupToolStripMenuItem_Click);
             // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            resources.ApplyResources(this.toolStripMenuItem4, "toolStripMenuItem4");
+            // 
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            resources.ApplyResources(this.settingsToolStripMenuItem, "settingsToolStripMenuItem");
+            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
+            // 
             // searchTextBox
             // 
             resources.ApplyResources(this.searchTextBox, "searchTextBox");
@@ -554,6 +572,7 @@
             this.devicesTabControl.Name = "devicesTabControl";
             this.devicesTabControl.SelectedIndex = 0;
             this.devicesTabControl.SelectedIndexChanged += new System.EventHandler(this.devicesTabControl_SelectedIndexChanged);
+            this.devicesTabControl.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             // 
             // devicesTabPage
             // 
@@ -567,10 +586,19 @@
             resources.ApplyResources(this.devicesPanel, "devicesPanel");
             this.devicesPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.devicesPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.devicesPanel.Controls.Add(this.cancelAutoCloseButton1);
             this.devicesPanel.Controls.Add(this.devicesListView);
             this.devicesPanel.Controls.Add(this.noSearchResultsLabel);
             this.devicesPanel.Controls.Add(this.noDevicesLabel);
             this.devicesPanel.Name = "devicesPanel";
+            // 
+            // cancelAutoCloseButton1
+            // 
+            resources.ApplyResources(this.cancelAutoCloseButton1, "cancelAutoCloseButton1");
+            this.cancelAutoCloseButton1.Name = "cancelAutoCloseButton1";
+            this.cancelAutoCloseButton1.UseVisualStyleBackColor = true;
+            this.cancelAutoCloseButton1.Click += new System.EventHandler(this.cancelAutoCloseButton_Click);
+            this.cancelAutoCloseButton1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             // 
             // devicesListView
             // 
@@ -591,6 +619,7 @@
             this.devicesListView.UseCompatibleStateImageBehavior = false;
             this.devicesListView.View = System.Windows.Forms.View.Details;
             this.devicesListView.DoubleClick += new System.EventHandler(this.devicesListView_DoubleClick);
+            this.devicesListView.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             // 
             // nameColumnHeader
             // 
@@ -639,6 +668,12 @@
             this.remoteDesktopToolStripMenuItem.Name = "remoteDesktopToolStripMenuItem";
             resources.ApplyResources(this.remoteDesktopToolStripMenuItem, "remoteDesktopToolStripMenuItem");
             this.remoteDesktopToolStripMenuItem.Click += new System.EventHandler(this.remoteDesktopToolStripMenuItem_Click);
+            // 
+            // remoteFilesToolStripMenuItem
+            // 
+            this.remoteFilesToolStripMenuItem.Name = "remoteFilesToolStripMenuItem";
+            resources.ApplyResources(this.remoteFilesToolStripMenuItem, "remoteFilesToolStripMenuItem");
+            this.remoteFilesToolStripMenuItem.Click += new System.EventHandler(this.remoteFilesToolStripMenuItem_Click);
             // 
             // httpToolStripMenuItem
             // 
@@ -704,6 +739,7 @@
             // portMapTabPage
             // 
             this.portMapTabPage.BackColor = System.Drawing.SystemColors.Control;
+            this.portMapTabPage.Controls.Add(this.cancelAutoCloseButton2);
             this.portMapTabPage.Controls.Add(this.mapPanel);
             this.portMapTabPage.Controls.Add(this.settingsPictureBox);
             this.portMapTabPage.Controls.Add(this.helpPictureBox);
@@ -711,6 +747,13 @@
             this.portMapTabPage.Controls.Add(this.addRelayButton);
             resources.ApplyResources(this.portMapTabPage, "portMapTabPage");
             this.portMapTabPage.Name = "portMapTabPage";
+            // 
+            // cancelAutoCloseButton2
+            // 
+            resources.ApplyResources(this.cancelAutoCloseButton2, "cancelAutoCloseButton2");
+            this.cancelAutoCloseButton2.Name = "cancelAutoCloseButton2";
+            this.cancelAutoCloseButton2.UseVisualStyleBackColor = true;
+            this.cancelAutoCloseButton2.Click += new System.EventHandler(this.cancelAutoCloseButton_Click);
             // 
             // mapPanel
             // 
@@ -752,6 +795,7 @@
             this.addButton.Name = "addButton";
             this.addButton.UseVisualStyleBackColor = true;
             this.addButton.Click += new System.EventHandler(this.addButton_Click);
+            this.addButton.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             // 
             // addRelayButton
             // 
@@ -759,6 +803,7 @@
             this.addRelayButton.Name = "addRelayButton";
             this.addRelayButton.UseVisualStyleBackColor = true;
             this.addRelayButton.Click += new System.EventHandler(this.addRelayMapButton_Click);
+            this.addRelayButton.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             // 
             // openWebSiteButton
             // 
@@ -766,6 +811,7 @@
             this.openWebSiteButton.Name = "openWebSiteButton";
             this.openWebSiteButton.UseVisualStyleBackColor = true;
             this.openWebSiteButton.Click += new System.EventHandler(this.openWebSiteButton_Click);
+            this.openWebSiteButton.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             // 
             // backButton5
             // 
@@ -773,6 +819,7 @@
             this.backButton5.Name = "backButton5";
             this.backButton5.UseVisualStyleBackColor = true;
             this.backButton5.Click += new System.EventHandler(this.backButton5_Click);
+            this.backButton5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             // 
             // nextButton5
             // 
@@ -780,6 +827,7 @@
             this.nextButton5.Name = "nextButton5";
             this.nextButton5.UseVisualStyleBackColor = true;
             this.nextButton5.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            this.nextButton5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             // 
             // pictureBox7
             // 
@@ -871,12 +919,6 @@
             this.saveMapFileDialog.DefaultExt = "mcrouter";
             resources.ApplyResources(this.saveMapFileDialog, "saveMapFileDialog");
             // 
-            // remoteFilesToolStripMenuItem
-            // 
-            this.remoteFilesToolStripMenuItem.Name = "remoteFilesToolStripMenuItem";
-            resources.ApplyResources(this.remoteFilesToolStripMenuItem, "remoteFilesToolStripMenuItem");
-            this.remoteFilesToolStripMenuItem.Click += new System.EventHandler(this.remoteFilesToolStripMenuItem_Click);
-            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -888,6 +930,7 @@
             this.Name = "MainForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             this.panel5.ResumeLayout(false);
             this.mainPanel.ResumeLayout(false);
             this.mainTabControl.ResumeLayout(false);
@@ -1023,6 +1066,10 @@
         private System.Windows.Forms.CheckBox rememberCertCheckBox;
         private System.Windows.Forms.CheckBox tokenRememberCheckBox;
         private System.Windows.Forms.ToolStripMenuItem remoteFilesToolStripMenuItem;
+        private System.Windows.Forms.Button cancelAutoCloseButton1;
+        private System.Windows.Forms.Button cancelAutoCloseButton2;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem4;
+        private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
     }
 }
 

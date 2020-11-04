@@ -52,6 +52,8 @@ namespace MeshCentralRouter
         public string acceptableCertHash = null;
         public ArrayList mappingsToSetup = null;
         public bool deviceListViewMode = true;
+        public Process autoExitProc = null;
+        public int deviceDoubleClickAction = 0;
 
         public bool isRouterHooked()
         {
@@ -243,6 +245,23 @@ namespace MeshCentralRouter
 
             // Check MeshCentral .mcrouter hook
             installButton.Visible = !isRouterHooked();
+
+            // Right click action
+            deviceDoubleClickAction = int.Parse(getRegValue("DevDoubleClickClickAction", "0"));
+            setDoubleClickDeviceAction();
+        }
+
+        private void setDoubleClickDeviceAction()
+        {
+            addMapToolStripMenuItem.Font = new Font("Segoe UI", 9, (deviceDoubleClickAction == 0) ? FontStyle.Bold : FontStyle.Regular);
+            addRelayMapToolStripMenuItem.Font = new Font("Segoe UI", 9, (deviceDoubleClickAction == 1) ? FontStyle.Bold : FontStyle.Regular);
+            remoteDesktopToolStripMenuItem.Font = new Font("Segoe UI", 9, (deviceDoubleClickAction == 2) ? FontStyle.Bold : FontStyle.Regular);
+            remoteFilesToolStripMenuItem.Font = new Font("Segoe UI", 9, (deviceDoubleClickAction == 3) ? FontStyle.Bold : FontStyle.Regular);
+            httpToolStripMenuItem.Font = new Font("Segoe UI", 9, (deviceDoubleClickAction == 4) ? FontStyle.Bold : FontStyle.Regular);
+            httpsToolStripMenuItem.Font = new Font("Segoe UI", 9, (deviceDoubleClickAction == 5) ? FontStyle.Bold : FontStyle.Regular);
+            rdpToolStripMenuItem.Font = new Font("Segoe UI", 9, (deviceDoubleClickAction == 6) ? FontStyle.Bold : FontStyle.Regular);
+            sshToolStripMenuItem.Font = new Font("Segoe UI", 9, (deviceDoubleClickAction == 7) ? FontStyle.Bold : FontStyle.Regular);
+            scpToolStripMenuItem.Font = new Font("Segoe UI", 9, (deviceDoubleClickAction == 8) ? FontStyle.Bold : FontStyle.Regular);
         }
 
         private void setPanel(int newPanel)
@@ -258,6 +277,7 @@ namespace MeshCentralRouter
             // Setup stuff
             if (newPanel == 1) { tokenRememberCheckBox.Checked = false; }
             nextButton2.Enabled = (tokenTextBox.Text.Replace(" ", "") != "");
+            if (currentPanel == 4) { devicesTabControl.Focus(); }
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -1606,7 +1626,16 @@ namespace MeshCentralRouter
             ListViewItem selecteditem = devicesListView.SelectedItems[0];
             NodeClass node = (NodeClass)selecteditem.Tag;
             if ((node.conn & 1) == 0) { return; } // Agent not connected on this device
-            addButton_Click(null, null);
+
+            if (deviceDoubleClickAction == 0) { addMapToolStripMenuItem_Click(null, null); }
+            if (deviceDoubleClickAction == 1) { addRelayMapToolStripMenuItem_Click(null, null); }
+            if (deviceDoubleClickAction == 2) { remoteDesktopToolStripMenuItem_Click(null, null); }
+            if (deviceDoubleClickAction == 3) { remoteFilesToolStripMenuItem_Click(null, null); }
+            if (deviceDoubleClickAction == 4) { httpToolStripMenuItem_Click(null, null); }
+            if (deviceDoubleClickAction == 5) { httpsToolStripMenuItem_Click(null, null); }
+            if (deviceDoubleClickAction == 6) { rdpToolStripMenuItem_Click(null, null); }
+            if (deviceDoubleClickAction == 7) { sshToolStripMenuItem_Click(null, null); }
+            if (deviceDoubleClickAction == 8) { scpToolStripMenuItem_Click(null, null); }
         }
 
         private void remoteDesktopToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1640,6 +1669,56 @@ namespace MeshCentralRouter
             else
             {
                 node.fileViewer.Focus();
+            }
+        }
+
+        private void cancelAutoCloseButton_Click(object sender, EventArgs e)
+        {
+            autoExitProc = null;
+            cancelAutoCloseButton1.Visible = false;
+            cancelAutoCloseButton2.Visible = false;
+        }
+
+        public delegate void SetAutoCloseHandler();
+        public void SetAutoClose()
+        {
+            if (this.InvokeRequired) { this.Invoke(new SetAutoCloseHandler(SetAutoClose)); return; }
+            cancelAutoCloseButton1.Visible = true;
+            cancelAutoCloseButton2.Visible = true;
+        }
+
+        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DeviceSettingsForm f = new DeviceSettingsForm();
+            f.deviceDoubleClickAction = deviceDoubleClickAction;
+            if (f.ShowDialog(this) == DialogResult.OK)
+            {
+                deviceDoubleClickAction = f.deviceDoubleClickAction;
+                setRegValue("DevDoubleClickClickAction", deviceDoubleClickAction.ToString());
+                setDoubleClickDeviceAction();
+            }
+        }
+
+        private void MainForm_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((currentPanel == 4) && (devicesTabControl.SelectedIndex == 0))
+            {
+                if (e.KeyChar == 27)
+                {
+                    searchTextBox.Text = "";
+                }
+                else if (e.KeyChar == 8)
+                {
+                    if (searchTextBox.Text.Length > 0)
+                    {
+                        searchTextBox.Text = searchTextBox.Text.Substring(0, searchTextBox.Text.Length - 1);
+                    }
+                }
+                else
+                {
+                    searchTextBox.Text += e.KeyChar;
+                }
+                e.Handled = true;
             }
         }
 

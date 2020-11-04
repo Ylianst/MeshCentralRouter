@@ -30,7 +30,6 @@ namespace MeshCentralRouter
         public bool inaddrany = false;
         public MappingStats stats = null;
         public bool autoexit = false;
-        System.Diagnostics.Process autoExitProc = null;
 
         public static void saveToRegistry(string name, string value)
         {
@@ -136,7 +135,7 @@ namespace MeshCentralRouter
                 catch (System.ComponentModel.Win32Exception) { }
 
                 // Setup auto-exit
-                if ((autoexit == true) && (autoExitProc == null)) { autoExitProc = proc; autoExitTimer.Enabled = true; }
+                if ((autoexit == true) && (parent.autoExitProc == null)) { parent.autoExitProc = proc; parent.SetAutoClose(); autoExitTimer.Enabled = true; }
             }
             if (appId == 4)
             {
@@ -150,7 +149,7 @@ namespace MeshCentralRouter
                     catch (System.ComponentModel.Win32Exception) { }
 
                     // Setup auto-exit
-                    if ((autoexit == true) && (autoExitProc == null)) { autoExitProc = proc; autoExitTimer.Enabled = true; }
+                    if ((autoexit == true) && (parent.autoExitProc == null)) { parent.autoExitProc = proc; parent.SetAutoClose(); autoExitTimer.Enabled = true; }
                 }
                 else
                 {
@@ -170,7 +169,7 @@ namespace MeshCentralRouter
                             catch (System.ComponentModel.Win32Exception) { }
 
                             // Setup auto-exit
-                            if ((autoexit == true) && (autoExitProc == null)) { autoExitProc = proc; autoExitTimer.Enabled = true; }
+                            if ((autoexit == true) && (parent.autoExitProc == null)) { parent.autoExitProc = proc; parent.SetAutoClose(); autoExitTimer.Enabled = true; }
                         }
                     }
                 }
@@ -187,7 +186,7 @@ namespace MeshCentralRouter
                     catch (System.ComponentModel.Win32Exception) { }
 
                     // Setup auto-exit
-                    if ((autoexit == true) && (autoExitProc == null)) { autoExitProc = proc; autoExitTimer.Enabled = true; }
+                    if ((autoexit == true) && (parent.autoExitProc == null)) { parent.autoExitProc = proc; parent.SetAutoClose(); autoExitTimer.Enabled = true; }
                 }
                 else
                 {
@@ -207,7 +206,7 @@ namespace MeshCentralRouter
                             catch (System.ComponentModel.Win32Exception) { }
 
                             // Setup auto-exit
-                            if ((autoexit == true) && (autoExitProc == null)) { autoExitProc = proc; autoExitTimer.Enabled = true; }
+                            if ((autoexit == true) && (parent.autoExitProc == null)) { parent.autoExitProc = proc; parent.SetAutoClose(); autoExitTimer.Enabled = true; }
                         }
                     }
                 }
@@ -240,8 +239,8 @@ namespace MeshCentralRouter
 
         private void autoExitTimer_Tick(object sender, EventArgs e)
         {
-            if (autoExitProc == null) return;
-            if (autoExitProc.HasExited == true) { Application.Exit(); }
+            if (parent.autoExitProc == null) return;
+            if (parent.autoExitProc.HasExited == true) { Application.Exit(); }
         }
     }
 }
