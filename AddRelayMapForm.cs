@@ -107,8 +107,8 @@ namespace MeshCentralRouter
         {
             if (appComboBox.SelectedIndex == 1) { remoteNumericUpDown.Value = 80; }
             if (appComboBox.SelectedIndex == 2) { remoteNumericUpDown.Value = 443; }
-            if (appComboBox.SelectedIndex == 3) { remoteNumericUpDown.Value = 3389; }
-            if (appComboBox.SelectedIndex == 4) { remoteNumericUpDown.Value = 22; }
+            if (appComboBox.SelectedIndex == 3) { remoteNumericUpDown.Value = 22; }
+            if (appComboBox.SelectedIndex == 4) { remoteNumericUpDown.Value = 3389; }
             if (appComboBox.SelectedIndex == 5) { remoteNumericUpDown.Value = 22; }
         }
 
