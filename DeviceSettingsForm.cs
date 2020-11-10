@@ -24,6 +24,12 @@ namespace MeshCentralRouter
             set { doubleClickComboBox.SelectedIndex = value; }
         }
 
+        public bool ShowSystemTray
+        {
+            get { return systemTrayCheckBox.Checked; }
+            set { systemTrayCheckBox.Checked = value; }
+        }
+
         private void okButton_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;

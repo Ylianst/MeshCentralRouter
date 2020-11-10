@@ -384,6 +384,7 @@ namespace MeshCentralRouter
 
         private void backButton5_Click(object sender, EventArgs e)
         {
+            cancelAutoClose();
             meshcentral.disconnect();
         }
 
@@ -415,7 +416,7 @@ namespace MeshCentralRouter
             meshcentral.onLoginTokenChanged += Meshcentral_onLoginTokenChanged;
             meshcentral.onClipboardData += Meshcentral_onClipboardData;
             meshcentral.onTwoFactorCookie += Meshcentral_onTwoFactorCookie;
-            meshcentral.onToolUpdate += Meshcentral_onToolUpdate;
+            //meshcentral.onToolUpdate += Meshcentral_onToolUpdate;
             if (lastBadConnectCert != null)
             {
                 meshcentral.okCertHash = lastBadConnectCert.GetCertHashString();
@@ -983,6 +984,7 @@ namespace MeshCentralRouter
 
         private void addButton_Click(object sender, EventArgs e)
         {
+            cancelAutoClose();
             AddPortMapForm form = new AddPortMapForm(meshcentral);
 
             if (sender == null)
@@ -1131,8 +1133,16 @@ namespace MeshCentralRouter
             X509Certificate2UI.DisplayCertificate(lastBadConnectCert);
         }
 
+        private void cancelAutoClose()
+        {
+            autoExitProc = null;
+            cancelAutoCloseButton1.Visible = false;
+            cancelAutoCloseButton2.Visible = false;
+        }
+
         private void addRelayMapButton_Click(object sender, EventArgs e)
         {
+            cancelAutoClose();
             AddRelayMapForm form = new AddRelayMapForm(meshcentral);
 
             if (sender == null)
@@ -1171,11 +1181,13 @@ namespace MeshCentralRouter
 
         private void helpPictureBox_Click(object sender, EventArgs e)
         {
+            cancelAutoClose();
             new MappingHelpForm().ShowDialog(this);
         }
 
         private void openWebSiteButton_Click(object sender, EventArgs e)
         {
+            cancelAutoClose();
             if (meshcentral.loginCookie != null) {
                 Uri serverurl = null;
                 if (authLoginUrl != null) {
@@ -1212,6 +1224,7 @@ namespace MeshCentralRouter
 
         private void settingsPictureBox_Click(object sender, EventArgs e)
         {
+            cancelAutoClose();
             SettingsForm f = new SettingsForm();
             f.BindAllInterfaces = inaddrany;
             f.ShowSystemTray = (notifyIcon.Visible == true);
@@ -1267,6 +1280,7 @@ namespace MeshCentralRouter
 
         private void devicesTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
+            cancelAutoClose();
             searchTextBox.Visible = (devicesTabControl.SelectedIndex == 0);
             if (devicesTabControl.SelectedIndex == 0) {
                 menuLabel.ContextMenuStrip = mainContextMenuStrip;
@@ -1277,6 +1291,7 @@ namespace MeshCentralRouter
 
         private void searchTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
+            cancelAutoClose();
             if (e.KeyChar == 27) { searchTextBox.Text = ""; e.Handled = true; }
         }
 
@@ -1349,6 +1364,7 @@ namespace MeshCentralRouter
 
         private void menuLabel_Click(object sender, EventArgs e)
         {
+            cancelAutoClose();
             if (devicesTabControl.SelectedIndex == 0)
             {
                 mainContextMenuStrip.Show(menuLabel, menuLabel.PointToClient(Cursor.Position));
@@ -1518,6 +1534,7 @@ namespace MeshCentralRouter
 
         private void mapPanel_DragEnter(object sender, DragEventArgs e)
         {
+            cancelAutoClose();
             if (e.Data.GetDataPresent(DataFormats.FileDrop) == false) return;
             string[] s = (string[])e.Data.GetData(DataFormats.FileDrop, false);
             if ((s.Length != 1) || (s[0].ToLower().EndsWith(".mcrouter") == false)) return;
@@ -1526,6 +1543,7 @@ namespace MeshCentralRouter
 
         private void mapPanel_DragDrop(object sender, DragEventArgs e)
         {
+            cancelAutoClose();
             if (e.Data.GetDataPresent(DataFormats.FileDrop) == false) return;
             string[] s = (string[])e.Data.GetData(DataFormats.FileDrop, false);
             if ((s.Length != 1) || (s[0].ToLower().EndsWith(".mcrouter") == false)) return;
@@ -1622,6 +1640,7 @@ namespace MeshCentralRouter
 
         private void devicesListView_DoubleClick(object sender, EventArgs e)
         {
+            cancelAutoClose();
             if (devicesListView.SelectedItems.Count != 1) { return; }
             ListViewItem selecteditem = devicesListView.SelectedItems[0];
             NodeClass node = (NodeClass)selecteditem.Tag;
@@ -1674,9 +1693,7 @@ namespace MeshCentralRouter
 
         private void cancelAutoCloseButton_Click(object sender, EventArgs e)
         {
-            autoExitProc = null;
-            cancelAutoCloseButton1.Visible = false;
-            cancelAutoCloseButton2.Visible = false;
+            cancelAutoClose();
         }
 
         public delegate void SetAutoCloseHandler();
@@ -1691,16 +1708,30 @@ namespace MeshCentralRouter
         {
             DeviceSettingsForm f = new DeviceSettingsForm();
             f.deviceDoubleClickAction = deviceDoubleClickAction;
+            f.ShowSystemTray = (notifyIcon.Visible == true);
             if (f.ShowDialog(this) == DialogResult.OK)
             {
                 deviceDoubleClickAction = f.deviceDoubleClickAction;
                 setRegValue("DevDoubleClickClickAction", deviceDoubleClickAction.ToString());
                 setDoubleClickDeviceAction();
+                if (f.ShowSystemTray)
+                {
+                    notifyIcon.Visible = true;
+                    this.ShowInTaskbar = false;
+                    this.MinimizeBox = false;
+                }
+                else
+                {
+                    notifyIcon.Visible = false;
+                    this.ShowInTaskbar = true;
+                    this.MinimizeBox = true;
+                }
             }
         }
 
         private void MainForm_KeyPress(object sender, KeyPressEventArgs e)
         {
+            cancelAutoClose();
             if ((currentPanel == 4) && (devicesTabControl.SelectedIndex == 0))
             {
                 if (e.KeyChar == 27)
@@ -1720,6 +1751,11 @@ namespace MeshCentralRouter
                 }
                 e.Handled = true;
             }
+        }
+
+        private void devicesListView_Click(object sender, EventArgs e)
+        {
+            cancelAutoClose();
         }
 
         /*

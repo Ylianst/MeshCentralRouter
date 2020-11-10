@@ -34,6 +34,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
+            this.systemTrayCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -42,11 +43,12 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.systemTrayCheckBox);
             this.groupBox1.Controls.Add(this.doubleClickComboBox);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(294, 81);
+            this.groupBox1.Size = new System.Drawing.Size(294, 99);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Settings";
@@ -82,7 +84,7 @@
             // 
             this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.okButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.okButton.Location = new System.Drawing.Point(150, 99);
+            this.okButton.Location = new System.Drawing.Point(150, 117);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
             this.okButton.TabIndex = 4;
@@ -95,12 +97,23 @@
             this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.cancelButton.Location = new System.Drawing.Point(231, 99);
+            this.cancelButton.Location = new System.Drawing.Point(231, 117);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 3;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
+            // 
+            // systemTrayCheckBox
+            // 
+            this.systemTrayCheckBox.AutoSize = true;
+            this.systemTrayCheckBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.systemTrayCheckBox.Location = new System.Drawing.Point(14, 70);
+            this.systemTrayCheckBox.Name = "systemTrayCheckBox";
+            this.systemTrayCheckBox.Size = new System.Drawing.Size(123, 17);
+            this.systemTrayCheckBox.TabIndex = 2;
+            this.systemTrayCheckBox.Text = "Show on system tray";
+            this.systemTrayCheckBox.UseVisualStyleBackColor = true;
             // 
             // DeviceSettingsForm
             // 
@@ -108,7 +121,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(318, 134);
+            this.ClientSize = new System.Drawing.Size(318, 152);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.cancelButton);
@@ -131,5 +144,6 @@
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.ComboBox doubleClickComboBox;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox systemTrayCheckBox;
     }
 }
