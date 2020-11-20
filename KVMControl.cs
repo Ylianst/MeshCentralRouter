@@ -38,6 +38,7 @@ namespace MeshCentralRouter
         private int scalinglevel = 1024; // 100% scale
         private int frameRate = 100; // Medium frame rate
         private bool swamMouseButtons = false;
+        private bool remoteKeybaordMap = false;
         private double scalefactor = 1;
         public List<string> displays = new List<string>();
         public ushort currentDisp = 0;
@@ -49,6 +50,7 @@ namespace MeshCentralRouter
         public KVMViewer parent = null;
         private readonly KVMControlHook.KVMCallback KeyboardCallback;
         private bool keyboardIsAttached;
+        private long killNextKeyPress = 0;
 
 
         private enum KvmCommands
@@ -73,6 +75,7 @@ namespace MeshCentralRouter
             Jumbo = 27,
             Disconnect = 59,
             Alert = 65,
+            KeyUnicode = 85,
             MouseCursor = 88
         }
 
@@ -105,6 +108,7 @@ namespace MeshCentralRouter
         public int ScalingLevel { get { return scalinglevel; } set { scalinglevel = value; SendCompressionLevel(); } }
         public int FrameRate { get { return frameRate; } set { frameRate = value; SendCompressionLevel(); } }
         public bool SwamMouseButtons { get { return swamMouseButtons; } set { swamMouseButtons = value; } }
+        public bool RemoteKeybaordMap { get { return remoteKeybaordMap; } set { remoteKeybaordMap = value; } }
 
         public double ScaleFactor { get { return scalefactor; } set { scalefactor = value; } }
 
@@ -374,16 +378,51 @@ namespace MeshCentralRouter
             Send(bw);
         }
 
-        private void SendKey(KeyEventArgs e, byte action)
+        public void SendUnicodeKey(ushort key, byte action)
         {
             //if (state != ConnectState.Connected) return;
 
             BinaryWriter bw = GetBinaryWriter();
-            bw.Write(IPAddress.HostToNetworkOrder((short)KvmCommands.Key));
-            bw.Write(IPAddress.HostToNetworkOrder((short)6));
+            bw.Write(IPAddress.HostToNetworkOrder((short)KvmCommands.KeyUnicode));
+            bw.Write(IPAddress.HostToNetworkOrder((short)7));
             bw.Write((byte)action);
-            bw.Write((byte)e.KeyCode);
+            bw.Write((byte)(key >> 8));
+            bw.Write((byte)(key & 0xFF));
             Send(bw);
+        }
+
+        private void SendPress(KeyPressEventArgs e, byte action)
+        {
+            //if (state != ConnectState.Connected) return;
+
+            if (remoteKeybaordMap == true) return;
+
+            if (killNextKeyPress > 0) {
+                long t = DateTime.Now.Ticks;
+                if ((t - killNextKeyPress) < 10) { killNextKeyPress = 0; return; }
+            }
+
+            ushort c = (ushort)e.KeyChar;
+            if (c < 32)
+            {
+                SendKey((byte)c, 0);
+            }
+            else
+            {
+                SendUnicodeKey(c, 0);
+            }
+        }
+
+        private void SendKey(KeyEventArgs e, byte action)
+        {
+            //if (state != ConnectState.Connected) return;
+
+            if (remoteKeybaordMap == true) { SendKey((byte)e.KeyCode, action); return; } // Use old key system that uses the remote keyboard mapping.
+            string keycode = e.KeyCode.ToString();
+            if ((action == 0) && (e.Control == false) && (e.Alt == false) && (((e.KeyValue >= 48) && (e.KeyValue <= 57)) || (keycode.Length == 1) || (keycode.StartsWith("Oem") == true))) return;
+            if ((e.Control == true) || (e.Alt == true)) { killNextKeyPress = DateTime.Now.Ticks; }
+            SendKey((byte)e.KeyCode, action);
+            e.Handled = true;
         }
 
         private short LastX = 0;
@@ -655,6 +694,7 @@ namespace MeshCentralRouter
 
         private void KVMControl_KeyPress(object sender, KeyPressEventArgs e)
         {
+            SendPress(e, 0);
             e.Handled = true;
         }
 

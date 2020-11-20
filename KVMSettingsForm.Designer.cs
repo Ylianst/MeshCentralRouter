@@ -32,6 +32,7 @@
             this.cancelButton = new System.Windows.Forms.Button();
             this.okButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.swapMouseButtonsCheckBox = new System.Windows.Forms.CheckBox();
             this.frameRateComboBox = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.scalingComboBox = new System.Windows.Forms.ComboBox();
@@ -40,7 +41,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.swapMouseButtonsCheckBox = new System.Windows.Forms.CheckBox();
+            this.remoteKeyboardMapCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -63,6 +64,7 @@
             // groupBox1
             // 
             resources.ApplyResources(this.groupBox1, "groupBox1");
+            this.groupBox1.Controls.Add(this.remoteKeyboardMapCheckBox);
             this.groupBox1.Controls.Add(this.swapMouseButtonsCheckBox);
             this.groupBox1.Controls.Add(this.frameRateComboBox);
             this.groupBox1.Controls.Add(this.label2);
@@ -72,6 +74,12 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
+            // 
+            // swapMouseButtonsCheckBox
+            // 
+            resources.ApplyResources(this.swapMouseButtonsCheckBox, "swapMouseButtonsCheckBox");
+            this.swapMouseButtonsCheckBox.Name = "swapMouseButtonsCheckBox";
+            this.swapMouseButtonsCheckBox.UseVisualStyleBackColor = true;
             // 
             // frameRateComboBox
             // 
@@ -121,11 +129,11 @@
             resources.ApplyResources(this.label4, "label4");
             this.label4.Name = "label4";
             // 
-            // swapMouseButtonsCheckBox
+            // remoteKeyboardMapCheckBox
             // 
-            resources.ApplyResources(this.swapMouseButtonsCheckBox, "swapMouseButtonsCheckBox");
-            this.swapMouseButtonsCheckBox.Name = "swapMouseButtonsCheckBox";
-            this.swapMouseButtonsCheckBox.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.remoteKeyboardMapCheckBox, "remoteKeyboardMapCheckBox");
+            this.remoteKeyboardMapCheckBox.Name = "remoteKeyboardMapCheckBox";
+            this.remoteKeyboardMapCheckBox.UseVisualStyleBackColor = true;
             // 
             // KVMSettingsForm
             // 
@@ -164,5 +172,6 @@
         private System.Windows.Forms.ComboBox qualityComboBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.CheckBox swapMouseButtonsCheckBox;
+        private System.Windows.Forms.CheckBox remoteKeyboardMapCheckBox;
     }
 }
