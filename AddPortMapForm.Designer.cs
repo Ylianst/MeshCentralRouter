@@ -88,6 +88,7 @@
             this.nodeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.nodeComboBox.FormattingEnabled = true;
             this.nodeComboBox.Name = "nodeComboBox";
+            this.nodeComboBox.Sorted = true;
             // 
             // label2
             // 
@@ -137,6 +138,7 @@
             resources.GetString("appComboBox.Items4"),
             resources.GetString("appComboBox.Items5")});
             this.appComboBox.Name = "appComboBox";
+            this.appComboBox.Sorted = true;
             this.appComboBox.SelectedIndexChanged += new System.EventHandler(this.appComboBox_SelectedIndexChanged);
             // 
             // label5
@@ -150,6 +152,7 @@
             this.groupComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.groupComboBox.FormattingEnabled = true;
             this.groupComboBox.Name = "groupComboBox";
+            this.groupComboBox.Sorted = true;
             this.groupComboBox.SelectedIndexChanged += new System.EventHandler(this.groupComboBox_SelectedIndexChanged);
             // 
             // label6

@@ -38,6 +38,7 @@
             this.deviceImageList = new System.Windows.Forms.ImageList(this.components);
             this.mainContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.statsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.autoExitTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.devicePictureBox)).BeginInit();
             this.mainContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -99,6 +100,11 @@
             resources.ApplyResources(this.statsToolStripMenuItem, "statsToolStripMenuItem");
             this.statsToolStripMenuItem.Click += new System.EventHandler(this.statsToolStripMenuItem_Click);
             // 
+            // autoExitTimer
+            // 
+            this.autoExitTimer.Interval = 1000;
+            this.autoExitTimer.Tick += new System.EventHandler(this.autoExitTimer_Tick);
+            // 
             // MapUserControl
             // 
             resources.ApplyResources(this, "$this");
@@ -128,5 +134,6 @@
         private System.Windows.Forms.ImageList deviceImageList;
         private System.Windows.Forms.ContextMenuStrip mainContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem statsToolStripMenuItem;
+        private System.Windows.Forms.Timer autoExitTimer;
     }
 }

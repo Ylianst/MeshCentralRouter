@@ -78,6 +78,30 @@ namespace MeshCentralRouter
             this.Size = new Size(820, 480);
             resizeKvmControl.CenterKvmControl(false);
             topPanel.Visible = true;
+
+            // Restore Window Location
+            string locationStr = getRegValue("kvmlocation", "");
+            if (locationStr != null)
+            {
+                string[] locationSplit = locationStr.Split(',');
+                if (locationSplit.Length == 4)
+                {
+                    try
+                    {
+                        var x = int.Parse(locationSplit[0]);
+                        var y = int.Parse(locationSplit[1]);
+                        var w = int.Parse(locationSplit[2]);
+                        var h = int.Parse(locationSplit[3]);
+                        Point p = new Point(x, y);
+                        if (isPointVisibleOnAScreen(p))
+                        {
+                            Location = p;
+                            if ((w > 50) && (h > 50)) { Size = new Size(w, h); }
+                        }
+                    }
+                    catch (Exception) { }
+                }
+            }
         }
 
         public void OnScreenChanged()
@@ -293,6 +317,9 @@ namespace MeshCentralRouter
             }
             node.desktopViewer = null;
             closeKvmStats();
+
+            // Save window location
+            setRegValue("kvmlocation", Location.X + "," + Location.Y + "," + Size.Width + "," + Size.Height);
         }
 
         private void toolStripMenuItem2_DropDownOpening(object sender, EventArgs e)
@@ -317,10 +344,12 @@ namespace MeshCentralRouter
                 form.Scaling = kvmControl.ScalingLevel;
                 form.FrameRate = kvmControl.FrameRate;
                 form.SwamMouseButtons = kvmControl.SwamMouseButtons;
+                form.RemoteKeybaordMap = kvmControl.RemoteKeybaordMap;
                 if (form.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
                 {
                     kvmControl.SetCompressionParams(form.Compression, form.Scaling, form.FrameRate);
                     kvmControl.SwamMouseButtons = form.SwamMouseButtons;
+                    kvmControl.RemoteKeybaordMap = form.RemoteKeybaordMap;
                 }
             }
         }
@@ -504,5 +533,21 @@ namespace MeshCentralRouter
         {
             kvmControl.AttachKeyboard();
         }
+
+        public void setRegValue(string name, string value)
+        {
+            try { Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\Open Source\MeshCentral Router", name, value); } catch (Exception) { }
+        }
+        public string getRegValue(string name, string value)
+        {
+            try { return Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\Open Source\MeshCentral Router", name, value).ToString(); } catch (Exception) { return value; }
+        }
+
+        bool isPointVisibleOnAScreen(Point p)
+        {
+            foreach (Screen s in Screen.AllScreens) { if ((p.X < s.Bounds.Right) && (p.X > s.Bounds.Left) && (p.Y > s.Bounds.Top) && (p.Y < s.Bounds.Bottom)) return true; }
+            return false;
+        }
+
     }
 }

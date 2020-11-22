@@ -266,7 +266,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAAy
-        mgAAAk1TRnQBSQFMAgEBCAEAAVABAAFQAQABMgEAATIBAAT/AREBAAj/AUIBTQE2BwABNgMAASgDAAHI
+        mgAAAk1TRnQBSQFMAgEBCAEAAVgBAAFYAQABMgEAATIBAAT/AREBAAj/AUIBTQE2BwABNgMAASgDAAHI
         AwABlgMAAQEBAAEQBQABYAHq/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A
         /wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A
         /wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A
@@ -929,6 +929,12 @@
   <metadata name="mainContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>156, 17</value>
   </metadata>
+  <data name="statsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>108, 22</value>
+  </data>
+  <data name="statsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Stats...</value>
+  </data>
   <data name="mainContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>109, 26</value>
   </data>
@@ -938,12 +944,9 @@
   <data name="&gt;&gt;mainContextMenuStrip.Type" xml:space="preserve">
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="statsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>108, 22</value>
-  </data>
-  <data name="statsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Stats...</value>
-  </data>
+  <metadata name="autoExitTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>334, 17</value>
+  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -951,7 +954,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>425, 58</value>
+    <value>421, 54</value>
   </data>
   <data name="&gt;&gt;deviceImageList.Name" xml:space="preserve">
     <value>deviceImageList</value>
@@ -964,6 +967,12 @@
   </data>
   <data name="&gt;&gt;statsToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;autoExitTimer.Name" xml:space="preserve">
+    <value>autoExitTimer</value>
+  </data>
+  <data name="&gt;&gt;autoExitTimer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MapUserControl</value>

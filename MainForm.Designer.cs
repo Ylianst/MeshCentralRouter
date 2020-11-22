@@ -81,10 +81,13 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.sortByNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sortByGroupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
+            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.searchTextBox = new System.Windows.Forms.TextBox();
             this.devicesTabControl = new System.Windows.Forms.TabControl();
             this.devicesTabPage = new System.Windows.Forms.TabPage();
             this.devicesPanel = new System.Windows.Forms.Panel();
+            this.cancelAutoCloseButton1 = new System.Windows.Forms.Button();
             this.devicesListView = new System.Windows.Forms.ListView();
             this.nameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.stateColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -103,9 +106,9 @@
             this.noSearchResultsLabel = new System.Windows.Forms.Label();
             this.noDevicesLabel = new System.Windows.Forms.Label();
             this.portMapTabPage = new System.Windows.Forms.TabPage();
+            this.cancelAutoCloseButton2 = new System.Windows.Forms.Button();
             this.mapPanel = new System.Windows.Forms.Panel();
             this.noMapLabel = new System.Windows.Forms.Label();
-            this.settingsPictureBox = new System.Windows.Forms.PictureBox();
             this.helpPictureBox = new System.Windows.Forms.PictureBox();
             this.addButton = new System.Windows.Forms.Button();
             this.addRelayButton = new System.Windows.Forms.Button();
@@ -127,6 +130,9 @@
             this.saveMappingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openMapFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveMapFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
+            this.settingsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.settingsPictureBox = new System.Windows.Forms.PictureBox();
             this.panel5.SuspendLayout();
             this.mainPanel.SuspendLayout();
             this.mainTabControl.SuspendLayout();
@@ -150,12 +156,12 @@
             this.devicesContextMenuStrip.SuspendLayout();
             this.portMapTabPage.SuspendLayout();
             this.mapPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.settingsPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.trayIconContextMenuStrip.SuspendLayout();
             this.mappingsContextMenuStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.settingsPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // panel5
@@ -180,6 +186,7 @@
             this.mainTabControl.Controls.Add(this.tabPage5);
             this.mainTabControl.Name = "mainTabControl";
             this.mainTabControl.SelectedIndex = 0;
+            this.mainTabControl.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             // 
             // tabPage1
             // 
@@ -502,7 +509,9 @@
             this.showOfflineDevicesToolStripMenuItem,
             this.toolStripMenuItem2,
             this.sortByNameToolStripMenuItem,
-            this.sortByGroupToolStripMenuItem});
+            this.sortByGroupToolStripMenuItem,
+            this.toolStripMenuItem4,
+            this.settingsToolStripMenuItem});
             this.mainContextMenuStrip.Name = "mainContextMenuStrip";
             resources.ApplyResources(this.mainContextMenuStrip, "mainContextMenuStrip");
             // 
@@ -539,6 +548,17 @@
             resources.ApplyResources(this.sortByGroupToolStripMenuItem, "sortByGroupToolStripMenuItem");
             this.sortByGroupToolStripMenuItem.Click += new System.EventHandler(this.sortByGroupToolStripMenuItem_Click);
             // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            resources.ApplyResources(this.toolStripMenuItem4, "toolStripMenuItem4");
+            // 
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            resources.ApplyResources(this.settingsToolStripMenuItem, "settingsToolStripMenuItem");
+            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
+            // 
             // searchTextBox
             // 
             resources.ApplyResources(this.searchTextBox, "searchTextBox");
@@ -554,6 +574,7 @@
             this.devicesTabControl.Name = "devicesTabControl";
             this.devicesTabControl.SelectedIndex = 0;
             this.devicesTabControl.SelectedIndexChanged += new System.EventHandler(this.devicesTabControl_SelectedIndexChanged);
+            this.devicesTabControl.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             // 
             // devicesTabPage
             // 
@@ -567,10 +588,19 @@
             resources.ApplyResources(this.devicesPanel, "devicesPanel");
             this.devicesPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.devicesPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.devicesPanel.Controls.Add(this.cancelAutoCloseButton1);
             this.devicesPanel.Controls.Add(this.devicesListView);
             this.devicesPanel.Controls.Add(this.noSearchResultsLabel);
             this.devicesPanel.Controls.Add(this.noDevicesLabel);
             this.devicesPanel.Name = "devicesPanel";
+            // 
+            // cancelAutoCloseButton1
+            // 
+            resources.ApplyResources(this.cancelAutoCloseButton1, "cancelAutoCloseButton1");
+            this.cancelAutoCloseButton1.Name = "cancelAutoCloseButton1";
+            this.cancelAutoCloseButton1.UseVisualStyleBackColor = true;
+            this.cancelAutoCloseButton1.Click += new System.EventHandler(this.cancelAutoCloseButton_Click);
+            this.cancelAutoCloseButton1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             // 
             // devicesListView
             // 
@@ -591,7 +621,9 @@
             this.devicesListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.devicesListView.UseCompatibleStateImageBehavior = false;
             this.devicesListView.View = System.Windows.Forms.View.Details;
+            this.devicesListView.Click += new System.EventHandler(this.devicesListView_Click);
             this.devicesListView.DoubleClick += new System.EventHandler(this.devicesListView_DoubleClick);
+            this.devicesListView.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             // 
             // nameColumnHeader
             // 
@@ -711,6 +743,7 @@
             // portMapTabPage
             // 
             this.portMapTabPage.BackColor = System.Drawing.SystemColors.Control;
+            this.portMapTabPage.Controls.Add(this.cancelAutoCloseButton2);
             this.portMapTabPage.Controls.Add(this.mapPanel);
             this.portMapTabPage.Controls.Add(this.settingsPictureBox);
             this.portMapTabPage.Controls.Add(this.helpPictureBox);
@@ -718,6 +751,13 @@
             this.portMapTabPage.Controls.Add(this.addRelayButton);
             resources.ApplyResources(this.portMapTabPage, "portMapTabPage");
             this.portMapTabPage.Name = "portMapTabPage";
+            // 
+            // cancelAutoCloseButton2
+            // 
+            resources.ApplyResources(this.cancelAutoCloseButton2, "cancelAutoCloseButton2");
+            this.cancelAutoCloseButton2.Name = "cancelAutoCloseButton2";
+            this.cancelAutoCloseButton2.UseVisualStyleBackColor = true;
+            this.cancelAutoCloseButton2.Click += new System.EventHandler(this.cancelAutoCloseButton_Click);
             // 
             // mapPanel
             // 
@@ -735,15 +775,6 @@
             resources.ApplyResources(this.noMapLabel, "noMapLabel");
             this.noMapLabel.Name = "noMapLabel";
             // 
-            // settingsPictureBox
-            // 
-            resources.ApplyResources(this.settingsPictureBox, "settingsPictureBox");
-            this.settingsPictureBox.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.settingsPictureBox.Image = global::MeshCentralRouter.Properties.Resources.Gear20;
-            this.settingsPictureBox.Name = "settingsPictureBox";
-            this.settingsPictureBox.TabStop = false;
-            this.settingsPictureBox.Click += new System.EventHandler(this.settingsPictureBox_Click);
-            // 
             // helpPictureBox
             // 
             resources.ApplyResources(this.helpPictureBox, "helpPictureBox");
@@ -759,6 +790,7 @@
             this.addButton.Name = "addButton";
             this.addButton.UseVisualStyleBackColor = true;
             this.addButton.Click += new System.EventHandler(this.addButton_Click);
+            this.addButton.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             // 
             // addRelayButton
             // 
@@ -766,6 +798,7 @@
             this.addRelayButton.Name = "addRelayButton";
             this.addRelayButton.UseVisualStyleBackColor = true;
             this.addRelayButton.Click += new System.EventHandler(this.addRelayMapButton_Click);
+            this.addRelayButton.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             // 
             // openWebSiteButton
             // 
@@ -773,6 +806,7 @@
             this.openWebSiteButton.Name = "openWebSiteButton";
             this.openWebSiteButton.UseVisualStyleBackColor = true;
             this.openWebSiteButton.Click += new System.EventHandler(this.openWebSiteButton_Click);
+            this.openWebSiteButton.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             // 
             // backButton5
             // 
@@ -780,6 +814,7 @@
             this.backButton5.Name = "backButton5";
             this.backButton5.UseVisualStyleBackColor = true;
             this.backButton5.Click += new System.EventHandler(this.backButton5_Click);
+            this.backButton5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             // 
             // nextButton5
             // 
@@ -787,6 +822,7 @@
             this.nextButton5.Name = "nextButton5";
             this.nextButton5.UseVisualStyleBackColor = true;
             this.nextButton5.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            this.nextButton5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             // 
             // pictureBox7
             // 
@@ -852,7 +888,9 @@
             // 
             this.mappingsContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openMappingsToolStripMenuItem,
-            this.saveMappingsToolStripMenuItem});
+            this.saveMappingsToolStripMenuItem,
+            this.toolStripMenuItem5,
+            this.settingsToolStripMenuItem1});
             this.mappingsContextMenuStrip.Name = "mappingsContextMenuStrip";
             resources.ApplyResources(this.mappingsContextMenuStrip, "mappingsContextMenuStrip");
             // 
@@ -878,6 +916,26 @@
             this.saveMapFileDialog.DefaultExt = "mcrouter";
             resources.ApplyResources(this.saveMapFileDialog, "saveMapFileDialog");
             // 
+            // toolStripMenuItem5
+            // 
+            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+            resources.ApplyResources(this.toolStripMenuItem5, "toolStripMenuItem5");
+            // 
+            // ToolStripMenuItem1
+            // 
+            this.settingsToolStripMenuItem1.Name = "settingsToolStripMenuItem1";
+            resources.ApplyResources(this.settingsToolStripMenuItem1, "settingsToolStripMenuItem1");
+            this.settingsToolStripMenuItem1.Click += new System.EventHandler(this.settingsPictureBox_Click);
+            // 
+            // settingsPictureBox
+            // 
+            resources.ApplyResources(this.settingsPictureBox, "settingsPictureBox");
+            this.settingsPictureBox.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.settingsPictureBox.Image = global::MeshCentralRouter.Properties.Resources.Gear20;
+            this.settingsPictureBox.Name = "settingsPictureBox";
+            this.settingsPictureBox.TabStop = false;
+            this.settingsPictureBox.Click += new System.EventHandler(this.settingsPictureBox_Click);
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -889,6 +947,7 @@
             this.Name = "MainForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             this.panel5.ResumeLayout(false);
             this.mainPanel.ResumeLayout(false);
             this.mainTabControl.ResumeLayout(false);
@@ -916,12 +975,12 @@
             this.devicesContextMenuStrip.ResumeLayout(false);
             this.portMapTabPage.ResumeLayout(false);
             this.mapPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.settingsPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.helpPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.trayIconContextMenuStrip.ResumeLayout(false);
             this.mappingsContextMenuStrip.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.settingsPictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -982,7 +1041,6 @@
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.PictureBox settingsPictureBox;
         private System.Windows.Forms.TabControl devicesTabControl;
         private System.Windows.Forms.TabPage devicesTabPage;
         private System.Windows.Forms.TabPage portMapTabPage;
@@ -1024,6 +1082,13 @@
         private System.Windows.Forms.CheckBox rememberCertCheckBox;
         private System.Windows.Forms.CheckBox tokenRememberCheckBox;
         private System.Windows.Forms.ToolStripMenuItem remoteFilesToolStripMenuItem;
+        private System.Windows.Forms.Button cancelAutoCloseButton1;
+        private System.Windows.Forms.Button cancelAutoCloseButton2;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem4;
+        private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem5;
+        private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem1;
+        private System.Windows.Forms.PictureBox settingsPictureBox;
     }
 }
 

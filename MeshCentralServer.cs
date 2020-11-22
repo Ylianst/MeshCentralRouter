@@ -1,5 +1,5 @@
 /*
-Copyright 2009-2018 Intel Corporation
+Copyright 2009-2020 Intel Corporation
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -218,6 +218,7 @@ namespace MeshCentralRouter
                         wc.WriteStringWebSocket("{\"action\":\"nodes\"}");
                         wc.WriteStringWebSocket("{\"action\":\"authcookie\"}");
                         wc.WriteStringWebSocket("{\"action\":\"logincookie\"}");
+                        wc.WriteStringWebSocket("{\"action\":\"meshToolInfo\",\"name\":\"MeshCentralRouter\"}");
                         break;
                     }
                 case "authcookie":
@@ -582,11 +583,50 @@ namespace MeshCentralRouter
                         }
                         break;
                     }
+                case "meshToolInfo":
+                    {
+                        if (onToolUpdate == null) return;
+                        if (jsonAction.ContainsKey("hash") && jsonAction.ContainsKey("url"))
+                        {
+                            // MeshCentral Router hash on the server
+                            string hash = (string)jsonAction["hash"];
+
+                            // Hash our own executable
+                            byte[] selfHash;
+                            using (var sha384 = SHA384Managed.Create()) { using (var stream = File.OpenRead(System.Reflection.Assembly.GetEntryAssembly().Location)) { selfHash = sha384.ComputeHash(stream); } }
+                            string selfExecutableHashHex = BitConverter.ToString(selfHash).Replace("-", string.Empty).ToLower();
+
+                            // Get login key
+                            string url = jsonAction["url"] + "&auth=" + authCookie;
+                            string loginkey = getValueFromQueryString(wsurl.Query, "key");
+                            if (loginkey != null) { url += ("&key=" + loginkey); }
+
+                            // Server TLS certificate hash
+                            string serverhash = null;
+                            if (jsonAction.ContainsKey("serverhash")) { serverhash = jsonAction["serverhash"].ToString(); }
+
+                            // If the hashes don't match, event the tool update with URL
+                            if (selfExecutableHashHex != hash) { onToolUpdate((string)url, (string)jsonAction["hash"], (int)jsonAction["size"], serverhash); }
+                        }
+                        break;
+                    }
                 default:
                     {
                         break;
                     }
             }
+        }
+
+        private static string getValueFromQueryString(string query, string name)
+        {
+            if ((query == null) || (name == null)) return null;
+            int i = query.IndexOf("?" + name + "=");
+            if (i == -1) { i = query.IndexOf("&" + name + "="); }
+            if (i == -1) return null;
+            string r = query.Substring(i + name.Length + 2);
+            i = r.IndexOf("&");
+            if (i >= 0) { r = r.Substring(0, i); }
+            return r;
         }
 
         public delegate void onStateChangedHandler(int state);
@@ -601,6 +641,8 @@ namespace MeshCentralRouter
         public event onClipboardDataHandler onClipboardData;
         public delegate void twoFactorCookieHandler(string cookie);
         public event twoFactorCookieHandler onTwoFactorCookie;
+        public delegate void toolUpdateHandler(string url, string hash, int size, string serverhash);
+        public event toolUpdateHandler onToolUpdate;
 
         public class xwebclient : IDisposable
         {
