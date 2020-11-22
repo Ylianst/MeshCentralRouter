@@ -124,6 +124,7 @@
     <Compile Include="FileViewer.Designer.cs">
       <DependentUpon>FileViewer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Settings.cs" />
     <Compile Include="InstallForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -221,6 +222,7 @@
     <Compile Include="ServerUserControl.Designer.cs">
       <DependentUpon>ServerUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="DefaultSettings.cs" />
     <Compile Include="SettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>

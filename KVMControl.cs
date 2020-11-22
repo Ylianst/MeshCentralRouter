@@ -47,7 +47,10 @@ namespace MeshCentralRouter
         public double DpiX = 96;
         public double DpiY = 96;
         public KVMViewer parent = null;
+        private readonly KVMControlHook ControlHook;
         private readonly KVMControlHook.KVMCallback KeyboardCallback;
+        private bool isHookWanted;
+        private bool isHookPriority;
         private bool keyboardIsAttached;
 
 
@@ -127,14 +130,32 @@ namespace MeshCentralRouter
             this.SetStyle(ControlStyles.UserPaint, true);
             this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
             this.MouseWheel += new System.Windows.Forms.MouseEventHandler(KVMControl_MouseWheel);
-            KeyboardCallback = SendKey;
+            if (Settings.GetRegValue("Exp_KeyboardHook", "false").ToLower() == "true")
+            {
+                ControlHook = new KVMControlHook();
+                KeyboardCallback = SendKey;
+                isHookWanted = true;
+            }
+            else
+            {
+                isHookWanted = false;
+            }
+            if (Settings.GetRegValue("Exp_KeyboardHookPriority", "false").ToLower() == "true")
+            {
+                isHookPriority = true;
+            }
+            else
+            {
+                isHookPriority = false;
+            }
         }
 
         public void AttachKeyboard()
         {
-            if (!keyboardIsAttached)
+            Console.WriteLine(isHookWanted);
+            if (!keyboardIsAttached && isHookWanted)
             {
-                Program.controlHook.AttachCallback(KeyboardCallback);
+                ControlHook.AttachKeyboardHook(SendKey);
                 keyboardIsAttached = true;
             }
         }
@@ -143,7 +164,7 @@ namespace MeshCentralRouter
         {
             if (keyboardIsAttached)
             {
-                Program.controlHook.DetachCallback();
+                ControlHook.DetachKeyboardHook();
                 keyboardIsAttached = false;
             }
         }
@@ -648,20 +669,29 @@ namespace MeshCentralRouter
 
         private void KVMControl_KeyDown(object sender, KeyEventArgs e)
         {
-            if ((e.KeyCode == Keys.LWin) || (e.KeyCode == Keys.RWin)) return; // Don't process the Windows key
-            SendKey(e, 0);
-            e.Handled = true;
+            if (!isHookPriority)
+            {
+                if ((e.KeyCode == Keys.LWin) || (e.KeyCode == Keys.RWin)) return; // Don't process the Windows key
+                SendKey(e, 0);
+                e.Handled = true;
+            }
         }
 
         private void KVMControl_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = true;
+            if (!isHookPriority)
+            {
+                e.Handled = true;
+            }
         }
 
         private void KVMControl_KeyUp(object sender, KeyEventArgs e)
         {
-            SendKey(e, 1);
-            e.Handled = true;
+            if (!isHookPriority)
+            {
+                SendKey(e, 1);
+                e.Handled = true;
+            }
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)

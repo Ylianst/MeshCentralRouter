@@ -34,6 +34,9 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.systemTrayCheckBox = new System.Windows.Forms.CheckBox();
             this.allInterfacesCheckBox = new System.Windows.Forms.CheckBox();
+            this.exp_KeyboardHookCheckBox = new System.Windows.Forms.CheckBox();
+            this.exp_KeyboardHookPriorityCheckBox = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,6 +58,9 @@
             // groupBox1
             // 
             resources.ApplyResources(this.groupBox1, "groupBox1");
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.exp_KeyboardHookPriorityCheckBox);
+            this.groupBox1.Controls.Add(this.exp_KeyboardHookCheckBox);
             this.groupBox1.Controls.Add(this.systemTrayCheckBox);
             this.groupBox1.Controls.Add(this.allInterfacesCheckBox);
             this.groupBox1.Name = "groupBox1";
@@ -71,6 +77,24 @@
             resources.ApplyResources(this.allInterfacesCheckBox, "allInterfacesCheckBox");
             this.allInterfacesCheckBox.Name = "allInterfacesCheckBox";
             this.allInterfacesCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // exp_KeyboardHookCheckBox
+            // 
+            resources.ApplyResources(this.exp_KeyboardHookCheckBox, "exp_KeyboardHookCheckBox");
+            this.exp_KeyboardHookCheckBox.Name = "exp_KeyboardHookCheckBox";
+            this.exp_KeyboardHookCheckBox.UseVisualStyleBackColor = true;
+            this.exp_KeyboardHookCheckBox.CheckedChanged += new System.EventHandler(this.exp_KeyboardHookCheckBox_CheckedChanged);
+            // 
+            // exp_KeyboardHookPriorityCheckBox
+            // 
+            resources.ApplyResources(this.exp_KeyboardHookPriorityCheckBox, "exp_KeyboardHookPriorityCheckBox");
+            this.exp_KeyboardHookPriorityCheckBox.Name = "exp_KeyboardHookPriorityCheckBox";
+            this.exp_KeyboardHookPriorityCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
             // 
             // SettingsForm
             // 
@@ -98,5 +122,8 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckBox systemTrayCheckBox;
         private System.Windows.Forms.CheckBox allInterfacesCheckBox;
+        private System.Windows.Forms.CheckBox exp_KeyboardHookCheckBox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox exp_KeyboardHookPriorityCheckBox;
     }
 }

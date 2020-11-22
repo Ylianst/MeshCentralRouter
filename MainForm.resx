@@ -1462,7 +1462,7 @@
     <value>SCP</value>
   </data>
   <data name="devicesContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>171, 230</value>
+    <value>171, 208</value>
   </data>
   <data name="&gt;&gt;devicesContextMenuStrip.Name" xml:space="preserve">
     <value>devicesContextMenuStrip</value>
@@ -1478,7 +1478,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAADg
-        HQAAAk1TRnQBSQFMAgEBEAEAASgBAAEoAQABEAEAARABAAT/ARkBAAj/AUIBTQE2BwABNgMAASgDAAFA
+        HQAAAk1TRnQBSQFMAgEBEAEAATABAAEwAQABEAEAARABAAT/ARkBAAj/AUIBTQE2BwABNgMAASgDAAFA
         AwABUAMAAQEBAAEYBgABPP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AJYAA/0D+AP3A/sD/yEAA/0D+gP5
         A/wD/xgAAfoB+wH6A/4qAAP9A/8tAAP7A88D1QPbA88D1AO+A9QYAAP8A90D4APjA90D4APUA+MSAAP8
         AZEBjwF9AU4BaAEhAfQB9QH0JAAD/gPRA8YD+ioAAcYCxwHPAtAB2ALZA90DywPBA68DmgP3FQAD2APd
@@ -1645,7 +1645,7 @@
     <value>2, 88</value>
   </data>
   <data name="noSearchResultsLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>438, 52</value>
+    <value>434, 52</value>
   </data>
   <data name="noSearchResultsLabel.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -1684,7 +1684,7 @@
     <value>2, 88</value>
   </data>
   <data name="noDevicesLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>438, 52</value>
+    <value>434, 52</value>
   </data>
   <data name="noDevicesLabel.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -1774,7 +1774,7 @@
     <value>2, 79</value>
   </data>
   <data name="noMapLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>438, 52</value>
+    <value>434, 52</value>
   </data>
   <data name="noMapLabel.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -5814,6 +5814,12 @@ Click "Add" to get started.</value>
   <data name="&gt;&gt;remoteDesktopToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;remoteFilesToolStripMenuItem.Name" xml:space="preserve">
+    <value>remoteFilesToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;remoteFilesToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;httpToolStripMenuItem.Name" xml:space="preserve">
     <value>httpToolStripMenuItem</value>
   </data>
@@ -5915,12 +5921,6 @@ Click "Add" to get started.</value>
   </data>
   <data name="&gt;&gt;saveMapFileDialog.Type" xml:space="preserve">
     <value>System.Windows.Forms.SaveFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;remoteFilesToolStripMenuItem.Name" xml:space="preserve">
-    <value>remoteFilesToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;remoteFilesToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>

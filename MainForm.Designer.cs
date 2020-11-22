@@ -93,6 +93,7 @@
             this.addRelayMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.remoteDesktopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.remoteFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.httpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.httpsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rdpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -126,7 +127,6 @@
             this.saveMappingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openMapFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveMapFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.remoteFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel5.SuspendLayout();
             this.mainPanel.SuspendLayout();
             this.mainTabControl.SuspendLayout();
@@ -582,6 +582,7 @@
             this.devicesListView.FullRowSelect = true;
             this.devicesListView.GridLines = true;
             this.devicesListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.devicesListView.HideSelection = false;
             this.devicesListView.LargeImageList = this.devicesImageList;
             resources.ApplyResources(this.devicesListView, "devicesListView");
             this.devicesListView.MultiSelect = false;
@@ -639,6 +640,12 @@
             this.remoteDesktopToolStripMenuItem.Name = "remoteDesktopToolStripMenuItem";
             resources.ApplyResources(this.remoteDesktopToolStripMenuItem, "remoteDesktopToolStripMenuItem");
             this.remoteDesktopToolStripMenuItem.Click += new System.EventHandler(this.remoteDesktopToolStripMenuItem_Click);
+            // 
+            // remoteFilesToolStripMenuItem
+            // 
+            this.remoteFilesToolStripMenuItem.Name = "remoteFilesToolStripMenuItem";
+            resources.ApplyResources(this.remoteFilesToolStripMenuItem, "remoteFilesToolStripMenuItem");
+            this.remoteFilesToolStripMenuItem.Click += new System.EventHandler(this.remoteFilesToolStripMenuItem_Click);
             // 
             // httpToolStripMenuItem
             // 
@@ -870,12 +877,6 @@
             // 
             this.saveMapFileDialog.DefaultExt = "mcrouter";
             resources.ApplyResources(this.saveMapFileDialog, "saveMapFileDialog");
-            // 
-            // remoteFilesToolStripMenuItem
-            // 
-            this.remoteFilesToolStripMenuItem.Name = "remoteFilesToolStripMenuItem";
-            resources.ApplyResources(this.remoteFilesToolStripMenuItem, "remoteFilesToolStripMenuItem");
-            this.remoteFilesToolStripMenuItem.Click += new System.EventHandler(this.remoteFilesToolStripMenuItem_Click);
             // 
             // MainForm
             // 

@@ -15,14 +15,14 @@ namespace MeshCentralRouter
         internal KVMControlHook()
         {
             _proc = HookCallback;
-            AttachKeyboardHook();
         }
 
-        private void AttachKeyboardHook()
+        internal void AttachKeyboardHook(KVMCallback callback)
         {
             try
             {
                 _hook = KVMKeyboardHook.SetHook(_proc);
+                _callback = callback;
             }
             catch
             {
@@ -31,18 +31,9 @@ namespace MeshCentralRouter
             }
         }
 
-        internal void AttachCallback(KVMCallback callback)
-        {
-            _callback = callback;
-        }
-
-        internal void DetachCallback()
+        internal void DetachKeyboardHook()
         {
             _callback = null;
-        }
-
-        internal static void DetachKeyboardHook()
-        {
             if (_hook != IntPtr.Zero)
                 KVMKeyboardHook.UnhookWindowsHookEx(_hook);
         }
