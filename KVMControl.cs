@@ -134,7 +134,7 @@ namespace MeshCentralRouter
             this.SetStyle(ControlStyles.UserPaint, true);
             this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
             this.MouseWheel += new System.Windows.Forms.MouseEventHandler(KVMControl_MouseWheel);
-            if (Settings.GetRegValue("Exp_KeyboardHook", "false").ToLower() == "true")
+            if (Settings.GetRegValue("Exp_KeyboardHook", false))
             {
                 ControlHook = new KVMControlHook();
                 KeyboardCallback = SendKey;
@@ -144,7 +144,7 @@ namespace MeshCentralRouter
             {
                 isHookWanted = false;
             }
-            if (Settings.GetRegValue("Exp_KeyboardHookPriority", "false").ToLower() == "true")
+            if (Settings.GetRegValue("Exp_KeyboardHookPriority", false))
             {
                 isHookPriority = true;
             }

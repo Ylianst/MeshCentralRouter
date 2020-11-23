@@ -228,7 +228,6 @@
     <Compile Include="ServerUserControl.Designer.cs">
       <DependentUpon>ServerUserControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="DefaultSettings.cs" />
     <Compile Include="SettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>

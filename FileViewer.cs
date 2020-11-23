@@ -246,7 +246,7 @@ namespace MeshCentralRouter
             updateLocalFileView();
 
             // Restore Window Location
-            string locationStr = getRegValue("filelocation", "");
+            string locationStr = Settings.GetRegValue("filelocation", "");
             if (locationStr != null)
             {
                 string[] locationSplit = locationStr.Split(',');
@@ -615,7 +615,7 @@ namespace MeshCentralRouter
             node.fileViewer = null;
 
             // Save window location
-            setRegValue("filelocation", Location.X + "," + Location.Y + "," + Size.Width + "," + Size.Height);
+            Settings.SetRegValue("filelocation", Location.X + "," + Location.Y + "," + Size.Width + "," + Size.Height);
         }
 
         public delegate void displayMessageHandler(string msg);
@@ -1214,15 +1214,6 @@ namespace MeshCentralRouter
                 rng.GetBytes(bytes);
                 return Convert.ToBase64String(bytes);
             }
-        }
-
-        public void setRegValue(string name, string value)
-        {
-            try { Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\Open Source\MeshCentral Router", name, value); } catch (Exception) { }
-        }
-        public string getRegValue(string name, string value)
-        {
-            try { return Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\Open Source\MeshCentral Router", name, value).ToString(); } catch (Exception) { return value; }
         }
 
         bool isPointVisibleOnAScreen(Point p)

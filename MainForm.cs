@@ -158,6 +158,12 @@ namespace MeshCentralRouter
             Version version = Assembly.GetEntryAssembly().GetName().Version;
             versionLabel.Text = "v" + version.Major + "." + version.Minor + "." + version.Build;
 
+            // Prevent edgecase where the hook priority can be on and the hook disabled causing havoc
+            if( !Settings.GetRegValue("Exp_KeyboardHook", false) )
+            {
+                Settings.SetRegValue("Exp_KeyboardHookPriority", false);
+            }
+
             serverNameComboBox.Text = Settings.GetRegValue("ServerName", "");
             userNameTextBox.Text = Settings.GetRegValue("UserName", "");
             title = this.Text;
@@ -240,7 +246,7 @@ namespace MeshCentralRouter
             installButton.Visible = !isRouterHooked();
 
             // Right click action
-            deviceDoubleClickAction = int.Parse(getRegValue("DevDoubleClickClickAction", "0"));
+            deviceDoubleClickAction = int.Parse(Settings.GetRegValue("DevDoubleClickClickAction", "0"));
             setDoubleClickDeviceAction();
         }
 
@@ -316,7 +322,7 @@ namespace MeshCentralRouter
             }
 
             // Restore Window Location
-            string locationStr = getRegValue("location", "");
+            string locationStr = Settings.GetRegValue("location", "");
             if (locationStr != null)
             {
                 string[] locationSplit = locationStr.Split(',');
@@ -372,7 +378,7 @@ namespace MeshCentralRouter
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if ((notifyIcon.Visible == true) && (forceExit == false)) { e.Cancel = true; Visible = false; }
-            setRegValue("Location", Location.X + "," + Location.Y);
+            Settings.SetRegValue("Location", Location.X + "," + Location.Y);
         }
 
         private void backButton5_Click(object sender, EventArgs e)
@@ -1221,8 +1227,8 @@ namespace MeshCentralRouter
             SettingsForm f = new SettingsForm();
             f.BindAllInterfaces = inaddrany;
             f.ShowSystemTray = (notifyIcon.Visible == true);
-            f.Exp_KeyboardHookPriority = Settings.GetRegValue("Exp_KeyboardHookPriority", "false") == "true" ? true : false;
-            f.Exp_KeyboardHook = Settings.GetRegValue("Exp_KeyboardHook", "false") == "true" ? true : false;
+            f.Exp_KeyboardHookPriority = Settings.GetRegValue("Exp_KeyboardHookPriority", false);
+            f.Exp_KeyboardHook = Settings.GetRegValue("Exp_KeyboardHook", false);
 
             if (f.ShowDialog(this) == DialogResult.OK)
             {
@@ -1710,7 +1716,7 @@ namespace MeshCentralRouter
             if (f.ShowDialog(this) == DialogResult.OK)
             {
                 deviceDoubleClickAction = f.deviceDoubleClickAction;
-                setRegValue("DevDoubleClickClickAction", deviceDoubleClickAction.ToString());
+                Settings.SetRegValue("DevDoubleClickClickAction", deviceDoubleClickAction.ToString());
                 setDoubleClickDeviceAction();
                 if (f.ShowSystemTray)
                 {

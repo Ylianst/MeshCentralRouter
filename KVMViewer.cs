@@ -80,7 +80,7 @@ namespace MeshCentralRouter
             topPanel.Visible = true;
 
             // Restore Window Location
-            string locationStr = getRegValue("kvmlocation", "");
+            string locationStr = Settings.GetRegValue("kvmlocation", "");
             if (locationStr != null)
             {
                 string[] locationSplit = locationStr.Split(',');
@@ -319,7 +319,7 @@ namespace MeshCentralRouter
             closeKvmStats();
 
             // Save window location
-            setRegValue("kvmlocation", Location.X + "," + Location.Y + "," + Size.Width + "," + Size.Height);
+            Settings.SetRegValue("kvmlocation", Location.X + "," + Location.Y + "," + Size.Width + "," + Size.Height);
         }
 
         private void toolStripMenuItem2_DropDownOpening(object sender, EventArgs e)
@@ -446,15 +446,6 @@ namespace MeshCentralRouter
             //kvmControl.SendCharmsKey();
         }
 
-        public static void saveToRegistry(string name, string value)
-        {
-            try { Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\OpenSource\MeshRouter", name, value); } catch (Exception) { }
-        }
-        public static string loadFromRegistry(string name)
-        {
-            try { return Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\OpenSource\MeshRouter", name, "").ToString(); } catch (Exception) { return ""; }
-        }
-
         public delegate void displayMessageHandler(string msg);
         public void displayMessage(string msg)
         {
@@ -532,15 +523,6 @@ namespace MeshCentralRouter
         private void KVMViewer_Activated(object sender, EventArgs e)
         {
             kvmControl.AttachKeyboard();
-        }
-
-        public void setRegValue(string name, string value)
-        {
-            try { Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\Open Source\MeshCentral Router", name, value); } catch (Exception) { }
-        }
-        public string getRegValue(string name, string value)
-        {
-            try { return Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\Open Source\MeshCentral Router", name, value).ToString(); } catch (Exception) { return value; }
         }
 
         bool isPointVisibleOnAScreen(Point p)
