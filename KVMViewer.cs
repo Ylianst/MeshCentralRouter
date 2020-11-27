@@ -191,7 +191,7 @@ namespace MeshCentralRouter
                 return;
             }
             if (state != 3) return;
-            
+
             // Parse the received JSON
             Dictionary<string, object> jsonAction = new Dictionary<string, object>();
             jsonAction = new JavaScriptSerializer().Deserialize<Dictionary<string, object>>(data);
@@ -203,7 +203,7 @@ namespace MeshCentralRouter
                 case "metadata":
                     {
                         if ((jsonAction.ContainsKey("users") == false) || (jsonAction["users"] == null)) return;
-                        Dictionary <string, object> usersex = (Dictionary<string, object>)jsonAction["users"];
+                        Dictionary<string, object> usersex = (Dictionary<string, object>)jsonAction["users"];
                         userSessions = new Dictionary<string, int>();
                         foreach (string user in usersex.Keys) { userSessions.Add(user, (int)usersex[user]); }
                         UpdateStatus();
@@ -475,7 +475,8 @@ namespace MeshCentralRouter
             {
                 kvmStats = new KVMStats(this);
                 kvmStats.Show(this);
-            } else
+            }
+            else
             {
                 kvmStats.Focus();
             }

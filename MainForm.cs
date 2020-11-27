@@ -1666,6 +1666,7 @@ namespace MeshCentralRouter
             if (devicesListView.SelectedItems.Count != 1) { return; }
             ListViewItem selecteditem = devicesListView.SelectedItems[0];
             NodeClass node = (NodeClass)selecteditem.Tag;
+            if ((node.agentcaps & 1) == 0) { return; } // Agent does not support remote desktop
             if ((node.conn & 1) == 0) { return; } // Agent not connected on this device
             if (node.desktopViewer == null)
             {

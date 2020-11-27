@@ -84,12 +84,12 @@ namespace MeshCentralRouter
 
         private enum KvmMouseButtonCommands
         {
-            MOUSEEVENTF_LEFTDOWN = 		0x0002,
-            MOUSEEVENTF_RIGHTDOWN =		0x0008,
-            MOUSEEVENTF_MIDDLEDOWN =	0x0020,
-            MOUSEEVENTF_LEFTUP =		0x0004,
-            MOUSEEVENTF_RIGHTUP =		0x0010,
-            MOUSEEVENTF_MIDDLEUP =  	0x0040
+            MOUSEEVENTF_LEFTDOWN = 0x0002,
+            MOUSEEVENTF_RIGHTDOWN = 0x0008,
+            MOUSEEVENTF_MIDDLEDOWN = 0x0020,
+            MOUSEEVENTF_LEFTUP = 0x0004,
+            MOUSEEVENTF_RIGHTUP = 0x0010,
+            MOUSEEVENTF_MIDDLEUP = 0x0040
         }
 
         [Category("Action")]
@@ -144,14 +144,7 @@ namespace MeshCentralRouter
             {
                 isHookWanted = false;
             }
-            if (Settings.GetRegValue("Exp_KeyboardHookPriority", false))
-            {
-                isHookPriority = true;
-            }
-            else
-            {
-                isHookPriority = false;
-            }
+            isHookPriority = Settings.GetRegValue("Exp_KeyboardHookPriority", false);
         }
 
         public void AttachKeyboard()
@@ -249,8 +242,8 @@ namespace MeshCentralRouter
                             ushort sourcey = (ushort)((buffer[off + 6] << 8) + buffer[off + 7]);
                             ushort targetx = (ushort)((buffer[off + 8] << 8) + buffer[off + 9]);
                             ushort targety = (ushort)((buffer[off + 10] << 8) + buffer[off + 11]);
-                            ushort tilew   = (ushort)((buffer[off + 12] << 8) + buffer[off + 13]);
-                            ushort tileh   = (ushort)((buffer[off + 14] << 8) + buffer[off + 15]);
+                            ushort tilew = (ushort)((buffer[off + 12] << 8) + buffer[off + 13]);
+                            ushort tileh = (ushort)((buffer[off + 14] << 8) + buffer[off + 15]);
                             Rectangle r1 = new Rectangle((int)sourcex, (int)sourcey, (int)tilew, (int)tileh);
                             Rectangle r2 = new Rectangle((int)targetx, (int)targety, (int)tilew, (int)tileh);
                             Rectangle r3 = new Rectangle((int)((double)targetx / (double)scalefactor) - 2, (int)((double)targety / (double)scalefactor) - 2, (int)((double)tilew / (double)scalefactor) + 4, (int)((double)tileh / (double)scalefactor) + 4);
@@ -323,7 +316,7 @@ namespace MeshCentralRouter
         private delegate void ChangeMouseCursorHandler(int cursorId);
         private void ChangeMouseCursor(int cursorId)
         {
-            if (this.InvokeRequired) { this.Invoke(new ChangeMouseCursorHandler(ChangeMouseCursor), cursorId);  return; }
+            if (this.InvokeRequired) { this.Invoke(new ChangeMouseCursorHandler(ChangeMouseCursor), cursorId); return; }
             if (cursorId == 0) { this.Cursor = System.Windows.Forms.Cursors.Default; return; } // default
             if (cursorId == 1) { this.Cursor = System.Windows.Forms.Cursors.AppStarting; return; } // progress
             if (cursorId == 2) { this.Cursor = System.Windows.Forms.Cursors.Cross; return; } // crosshair
@@ -418,7 +411,8 @@ namespace MeshCentralRouter
 
             if (remoteKeybaordMap == true) return;
 
-            if (killNextKeyPress > 0) {
+            if (killNextKeyPress > 0)
+            {
                 long t = DateTime.Now.Ticks;
                 if ((t - killNextKeyPress) < 10) { killNextKeyPress = 0; return; }
             }
@@ -568,7 +562,7 @@ namespace MeshCentralRouter
             //if (remotepauseactive == false || paused == remotepause) return;
             //if (paused == remotepause) return;
             remotepause = paused;
-            
+
             BinaryWriter bw = GetBinaryWriter();
             bw.Write(IPAddress.HostToNetworkOrder((short)KvmCommands.Pause));
             bw.Write(IPAddress.HostToNetworkOrder((short)5));
@@ -615,7 +609,7 @@ namespace MeshCentralRouter
             }
             RecycleBinaryWriter(bw);
         }
-        
+
         private void KVMControl_MouseDown(object sender, MouseEventArgs e)
         {
             SendMouse(e, 1);
@@ -631,7 +625,8 @@ namespace MeshCentralRouter
         private void KVMControl_MouseMove(object sender, MouseEventArgs e)
         {
             long ct = DateTime.Now.Ticks;
-            if ((lastMouseMove + 30) < ct) {
+            if ((lastMouseMove + 30) < ct)
+            {
                 lastMouseMove = ct;
                 SendMouse(e, 0);
             }
