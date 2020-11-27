@@ -123,7 +123,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="cancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>231, 94</value>
+    <value>231, 266</value>
   </data>
   <data name="cancelButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -151,7 +151,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="okButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>150, 94</value>
+    <value>150, 266</value>
   </data>
   <data name="okButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -177,53 +177,102 @@
   <data name="groupBox1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
-  <data name="&gt;&gt;systemTrayCheckBox.Name" xml:space="preserve">
-    <value>systemTrayCheckBox</value>
+  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="&gt;&gt;systemTrayCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="&gt;&gt;systemTrayCheckBox.Parent" xml:space="preserve">
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 139</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>196, 13</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Experimental Features (Use at own risk!)</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
     <value>groupBox1</value>
   </data>
-  <data name="&gt;&gt;systemTrayCheckBox.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;allInterfacesCheckBox.Name" xml:space="preserve">
-    <value>allInterfacesCheckBox</value>
+  <data name="exp_KeyboardHookPriorityCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="&gt;&gt;allInterfacesCheckBox.Type" xml:space="preserve">
+  <data name="exp_KeyboardHookPriorityCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="exp_KeyboardHookPriorityCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 155</value>
+  </data>
+  <data name="exp_KeyboardHookPriorityCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 69</value>
+  </data>
+  <data name="exp_KeyboardHookPriorityCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="exp_KeyboardHookPriorityCheckBox.Text" xml:space="preserve">
+    <value>Override all default keyboard input with 
+the keyboard hook in remote desktop
+(This is not considered stable use at own risk)
+This will allow for all key combinations execept
+CTRL + ALT  + DEL
+</value>
+  </data>
+  <data name="&gt;&gt;exp_KeyboardHookPriorityCheckBox.Name" xml:space="preserve">
+    <value>exp_KeyboardHookPriorityCheckBox</value>
+  </data>
+  <data name="&gt;&gt;exp_KeyboardHookPriorityCheckBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;allInterfacesCheckBox.Parent" xml:space="preserve">
+  <data name="&gt;&gt;exp_KeyboardHookPriorityCheckBox.Parent" xml:space="preserve">
     <value>groupBox1</value>
   </data>
-  <data name="&gt;&gt;allInterfacesCheckBox.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;exp_KeyboardHookPriorityCheckBox.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 12</value>
+  <data name="exp_KeyboardHookCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>294, 76</value>
+  <data name="exp_KeyboardHookCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
+  <data name="exp_KeyboardHookCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 68</value>
+  </data>
+  <data name="exp_KeyboardHookCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>210, 43</value>
+  </data>
+  <data name="exp_KeyboardHookCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Settings</value>
+  <data name="exp_KeyboardHookCheckBox.Text" xml:space="preserve">
+    <value>Enable experimental keyboard hook
+(This may make some antiviruses mad!)
+This will allow special keys</value>
   </data>
-  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
+  <data name="&gt;&gt;exp_KeyboardHookCheckBox.Name" xml:space="preserve">
+    <value>exp_KeyboardHookCheckBox</value>
+  </data>
+  <data name="&gt;&gt;exp_KeyboardHookCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;exp_KeyboardHookCheckBox.Parent" xml:space="preserve">
     <value>groupBox1</value>
   </data>
-  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="&gt;&gt;exp_KeyboardHookCheckBox.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="systemTrayCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -250,7 +299,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;systemTrayCheckBox.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>3</value>
   </data>
   <data name="allInterfacesCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -277,7 +326,31 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;allInterfacesCheckBox.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>4</value>
+  </data>
+  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 12</value>
+  </data>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>294, 248</value>
+  </data>
+  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -286,7 +359,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>318, 129</value>
+    <value>318, 301</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

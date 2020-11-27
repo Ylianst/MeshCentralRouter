@@ -130,6 +130,7 @@
     <Compile Include="FileViewer.Designer.cs">
       <DependentUpon>FileViewer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Settings.cs" />
     <Compile Include="InstallForm.cs">
       <SubType>Form</SubType>
     </Compile>

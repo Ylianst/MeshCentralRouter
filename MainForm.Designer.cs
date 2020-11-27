@@ -612,6 +612,7 @@
             this.devicesListView.FullRowSelect = true;
             this.devicesListView.GridLines = true;
             this.devicesListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.devicesListView.HideSelection = false;
             this.devicesListView.LargeImageList = this.devicesImageList;
             resources.ApplyResources(this.devicesListView, "devicesListView");
             this.devicesListView.MultiSelect = false;
@@ -920,7 +921,7 @@
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
             resources.ApplyResources(this.toolStripMenuItem5, "toolStripMenuItem5");
             // 
-            // settingsToolStripMenuItem1
+            // ToolStripMenuItem1
             // 
             this.settingsToolStripMenuItem1.Name = "settingsToolStripMenuItem1";
             resources.ApplyResources(this.settingsToolStripMenuItem1, "settingsToolStripMenuItem1");

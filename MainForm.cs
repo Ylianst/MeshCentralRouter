@@ -87,6 +87,7 @@ namespace MeshCentralRouter
         {
             if (IsAdministrator() == false)
             {
+
                 // Restart program and run as admin
                 var exeName = System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
                 ProcessStartInfo startInfo = new ProcessStartInfo(exeName, "-install");
@@ -141,14 +142,6 @@ namespace MeshCentralRouter
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         private static extern Int32 SendMessage(IntPtr hWnd, int msg, int wParam, [MarshalAs(UnmanagedType.LPWStr)]string lParam);
 
-        public void setRegValue(string name, string value)
-        {
-            try { Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\Open Source\MeshCentral Router", name, value); } catch (Exception) { }
-        }
-        public string getRegValue(string name, string value)
-        {
-            try {return Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\Open Source\MeshCentral Router", name, value).ToString(); } catch (Exception) { return value; }
-        }
 
         public MainForm(string[] args)
         {
@@ -165,8 +158,14 @@ namespace MeshCentralRouter
             Version version = Assembly.GetEntryAssembly().GetName().Version;
             versionLabel.Text = "v" + version.Major + "." + version.Minor + "." + version.Build;
 
-            serverNameComboBox.Text = getRegValue("ServerName", "");
-            userNameTextBox.Text = getRegValue("UserName", "");
+            // Prevent edgecase where the hook priority can be on and the hook disabled causing havoc
+            if( !Settings.GetRegValue("Exp_KeyboardHook", false) )
+            {
+                Settings.SetRegValue("Exp_KeyboardHookPriority", false);
+            }
+
+            serverNameComboBox.Text = Settings.GetRegValue("ServerName", "");
+            userNameTextBox.Text = Settings.GetRegValue("UserName", "");
             title = this.Text;
 
             int argflags = 0;
@@ -247,7 +246,7 @@ namespace MeshCentralRouter
             installButton.Visible = !isRouterHooked();
 
             // Right click action
-            deviceDoubleClickAction = int.Parse(getRegValue("DevDoubleClickClickAction", "0"));
+            deviceDoubleClickAction = int.Parse(Settings.GetRegValue("DevDoubleClickClickAction", "0"));
             setDoubleClickDeviceAction();
         }
 
@@ -283,9 +282,9 @@ namespace MeshCentralRouter
         private void MainForm_Load(object sender, EventArgs e)
         {
             // Load registry settings
-            showGroupNamesToolStripMenuItem.Checked = (getRegValue("Show Group Names", "1") == "1");
-            showOfflineDevicesToolStripMenuItem.Checked = (getRegValue("Show Offline Devices", "1") == "1");
-            if (getRegValue("Device Sort", "Name") == "Name") {
+            showGroupNamesToolStripMenuItem.Checked = (Settings.GetRegValue("Show Group Names", "1") == "1");
+            showOfflineDevicesToolStripMenuItem.Checked = (Settings.GetRegValue("Show Offline Devices", "1") == "1");
+            if (Settings.GetRegValue("Device Sort", "Name") == "Name") {
                 sortByNameToolStripMenuItem.Checked = true;
                 sortByGroupToolStripMenuItem.Checked = false;
             } else {
@@ -323,7 +322,7 @@ namespace MeshCentralRouter
             }
 
             // Restore Window Location
-            string locationStr = getRegValue("location", "");
+            string locationStr = Settings.GetRegValue("location", "");
             if (locationStr != null)
             {
                 string[] locationSplit = locationStr.Split(',');
@@ -379,7 +378,7 @@ namespace MeshCentralRouter
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if ((notifyIcon.Visible == true) && (forceExit == false)) { e.Cancel = true; Visible = false; }
-            setRegValue("Location", Location.X + "," + Location.Y);
+            Settings.SetRegValue("Location", Location.X + "," + Location.Y);
         }
 
         private void backButton5_Click(object sender, EventArgs e)
@@ -423,12 +422,12 @@ namespace MeshCentralRouter
             }
             else
             {
-                string ignoreCert = getRegValue("IgnoreCert", null);
+                string ignoreCert = Settings.GetRegValue("IgnoreCert", null);
                 if (ignoreCert != null) { meshcentral.okCertHash = ignoreCert; }
             }
 
             // Load two factor cookie if present
-            string twoFactorCookie = getRegValue("TwoFactorCookie", null);
+            string twoFactorCookie = Settings.GetRegValue("TwoFactorCookie", null);
             if ((twoFactorCookie != null) && (twoFactorCookie != "")) { twoFactorCookie = "cookie=" + twoFactorCookie; } else { twoFactorCookie = null; }
 
             Uri serverurl = null;
@@ -467,13 +466,13 @@ namespace MeshCentralRouter
         private void Meshcentral_onTwoFactorCookie(string cookie)
         {
             if (this.InvokeRequired) { this.Invoke(new MeshCentralServer.twoFactorCookieHandler(Meshcentral_onTwoFactorCookie), cookie); return; }
-            setRegValue("TwoFactorCookie", cookie);
+            Settings.SetRegValue("TwoFactorCookie", cookie);
         }
 
         private void nextButton3_Click(object sender, EventArgs e)
         {
             // If we need to remember this certificate
-            if (rememberCertCheckBox.Checked) { setRegValue("IgnoreCert", lastBadConnectCert.GetCertHashString()); }
+            if (rememberCertCheckBox.Checked) { Settings.SetRegValue("IgnoreCert", lastBadConnectCert.GetCertHashString()); }
 
             // Attempt to login, ignore bad cert.
             addButton.Enabled = false;
@@ -501,7 +500,7 @@ namespace MeshCentralRouter
                 meshcentral.connect(serverurl, null, null, null);
             } else {
                 // Load two factor cookie if present
-                string twoFactorCookie = getRegValue("TwoFactorCookie", null);
+                string twoFactorCookie = Settings.GetRegValue("TwoFactorCookie", null);
                 if ((twoFactorCookie != null) && (twoFactorCookie != "")) { twoFactorCookie = "cookie=" + twoFactorCookie; } else { twoFactorCookie = null; }
                 int keyIndex = serverNameComboBox.Text.IndexOf("?key=");
                 if (keyIndex >= 0)
@@ -816,8 +815,8 @@ namespace MeshCentralRouter
                 addButton.Focus();
                 if (authLoginUrl == null)
                 {
-                    setRegValue("ServerName", serverNameComboBox.Text);
-                    setRegValue("UserName", userNameTextBox.Text);
+                    Settings.SetRegValue("ServerName", serverNameComboBox.Text);
+                    Settings.SetRegValue("UserName", userNameTextBox.Text);
                 }
                 if (meshcentral.username != null) {
                     this.Text = title + " - " + meshcentral.username;
@@ -1067,7 +1066,7 @@ namespace MeshCentralRouter
             if (lastBadConnectCert != null) {
                 meshcentral.okCertHash = lastBadConnectCert.GetCertHashString();
             } else {
-                string ignoreCert = getRegValue("IgnoreCert", null);
+                string ignoreCert = Settings.GetRegValue("IgnoreCert", null);
                 if (ignoreCert != null) { meshcentral.okCertHash = ignoreCert; }
             }
             meshcentral.onStateChanged += Meshcentral_onStateChanged;
@@ -1228,9 +1227,14 @@ namespace MeshCentralRouter
             SettingsForm f = new SettingsForm();
             f.BindAllInterfaces = inaddrany;
             f.ShowSystemTray = (notifyIcon.Visible == true);
+            f.Exp_KeyboardHookPriority = Settings.GetRegValue("Exp_KeyboardHookPriority", false);
+            f.Exp_KeyboardHook = Settings.GetRegValue("Exp_KeyboardHook", false);
+
             if (f.ShowDialog(this) == DialogResult.OK)
             {
                 inaddrany = f.BindAllInterfaces;
+                Settings.SetRegValue("Exp_KeyboardHook", f.Exp_KeyboardHook.ToString().ToLower());
+                Settings.SetRegValue("Exp_KeyboardHookPriority", f.Exp_KeyboardHookPriority.ToString().ToLower());
                 if (f.ShowSystemTray) {
                     notifyIcon.Visible = true;
                     this.ShowInTaskbar = false;
@@ -1378,14 +1382,14 @@ namespace MeshCentralRouter
         private void showGroupNamesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showGroupNamesToolStripMenuItem.Checked = !showGroupNamesToolStripMenuItem.Checked;
-            setRegValue("Show Group Names", showGroupNamesToolStripMenuItem.Checked ? "1" : "0");
+            Settings.SetRegValue("Show Group Names", showGroupNamesToolStripMenuItem.Checked ? "1" : "0");
             updateDeviceList();
         }
 
         private void hideOfflineDevicesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showOfflineDevicesToolStripMenuItem.Checked = !showOfflineDevicesToolStripMenuItem.Checked;
-            setRegValue("Show Offline Devices", showOfflineDevicesToolStripMenuItem.Checked?"1":"0");
+            Settings.SetRegValue("Show Offline Devices", showOfflineDevicesToolStripMenuItem.Checked?"1":"0");
             updateDeviceList();
         }
 
@@ -1393,7 +1397,7 @@ namespace MeshCentralRouter
         {
             sortByNameToolStripMenuItem.Checked = true;
             sortByGroupToolStripMenuItem.Checked = false;
-            setRegValue("Device Sort", "Name");
+            Settings.SetRegValue("Device Sort", "Name");
             updateDeviceList();
         }
 
@@ -1401,7 +1405,7 @@ namespace MeshCentralRouter
         {
             sortByNameToolStripMenuItem.Checked = false;
             sortByGroupToolStripMenuItem.Checked = true;
-            setRegValue("Device Sort", "Group");
+            Settings.SetRegValue("Device Sort", "Group");
             updateDeviceList();
         }
 
@@ -1712,7 +1716,7 @@ namespace MeshCentralRouter
             if (f.ShowDialog(this) == DialogResult.OK)
             {
                 deviceDoubleClickAction = f.deviceDoubleClickAction;
-                setRegValue("DevDoubleClickClickAction", deviceDoubleClickAction.ToString());
+                Settings.SetRegValue("DevDoubleClickClickAction", deviceDoubleClickAction.ToString());
                 setDoubleClickDeviceAction();
                 if (f.ShowSystemTray)
                 {

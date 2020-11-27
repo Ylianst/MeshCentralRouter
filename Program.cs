@@ -22,13 +22,13 @@ namespace MeshCentralRouter
 {
     static class Program
     {
-        public static KVMControlHook controlHook = new KVMControlHook();
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
         static void Main(string[] args)
         {
+
             // Setup settings & visual style
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
