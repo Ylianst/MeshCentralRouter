@@ -261,6 +261,10 @@ namespace MeshCentralRouter
             rdpToolStripMenuItem.Font = new Font("Segoe UI", 9, (deviceDoubleClickAction == 6) ? FontStyle.Bold : FontStyle.Regular);
             sshToolStripMenuItem.Font = new Font("Segoe UI", 9, (deviceDoubleClickAction == 7) ? FontStyle.Bold : FontStyle.Regular);
             scpToolStripMenuItem.Font = new Font("Segoe UI", 9, (deviceDoubleClickAction == 8) ? FontStyle.Bold : FontStyle.Regular);
+
+            askConsentBarToolStripMenuItem.Font = new Font("Segoe UI", 9, FontStyle.Regular);
+            askConsentToolStripMenuItem.Font = new Font("Segoe UI", 9, FontStyle.Regular);
+            privacyBarToolStripMenuItem.Font = new Font("Segoe UI", 9, FontStyle.Regular);
         }
 
         private void setPanel(int newPanel)
@@ -1227,14 +1231,10 @@ namespace MeshCentralRouter
             SettingsForm f = new SettingsForm();
             f.BindAllInterfaces = inaddrany;
             f.ShowSystemTray = (notifyIcon.Visible == true);
-            f.Exp_KeyboardHookPriority = Settings.GetRegValue("Exp_KeyboardHookPriority", false);
-            f.Exp_KeyboardHook = Settings.GetRegValue("Exp_KeyboardHook", false);
 
             if (f.ShowDialog(this) == DialogResult.OK)
             {
                 inaddrany = f.BindAllInterfaces;
-                Settings.SetRegValue("Exp_KeyboardHook", f.Exp_KeyboardHook.ToString().ToLower());
-                Settings.SetRegValue("Exp_KeyboardHookPriority", f.Exp_KeyboardHookPriority.ToString().ToLower());
                 if (f.ShowSystemTray) {
                     notifyIcon.Visible = true;
                     this.ShowInTaskbar = false;
@@ -1666,14 +1666,46 @@ namespace MeshCentralRouter
             if (devicesListView.SelectedItems.Count != 1) { return; }
             ListViewItem selecteditem = devicesListView.SelectedItems[0];
             NodeClass node = (NodeClass)selecteditem.Tag;
+            startNewDesktopViewer(node, 0);
+        }
+
+        private void askConsentBarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (devicesListView.SelectedItems.Count != 1) { return; }
+            ListViewItem selecteditem = devicesListView.SelectedItems[0];
+            NodeClass node = (NodeClass)selecteditem.Tag;
+            startNewDesktopViewer(node, 0x0008 + 0x0040); // Consent Prompt + Privacy bar
+        }
+
+        private void askConsentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (devicesListView.SelectedItems.Count != 1) { return; }
+            ListViewItem selecteditem = devicesListView.SelectedItems[0];
+            NodeClass node = (NodeClass)selecteditem.Tag;
+            startNewDesktopViewer(node, 0x0008); // Consent Prompt
+        }
+
+        private void privacyBarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (devicesListView.SelectedItems.Count != 1) { return; }
+            ListViewItem selecteditem = devicesListView.SelectedItems[0];
+            NodeClass node = (NodeClass)selecteditem.Tag;
+            startNewDesktopViewer(node, 0x0040); // Privacy bar
+        }
+
+        private void startNewDesktopViewer(NodeClass node, int consentFlags)
+        {
             if ((node.agentcaps & 1) == 0) { return; } // Agent does not support remote desktop
             if ((node.conn & 1) == 0) { return; } // Agent not connected on this device
             if (node.desktopViewer == null)
             {
                 node.desktopViewer = new KVMViewer(meshcentral, node);
+                node.desktopViewer.consentFlags = consentFlags;
                 node.desktopViewer.Show();
                 node.desktopViewer.MenuItemConnect_Click(null, null);
-            } else {
+            }
+            else
+            {
                 node.desktopViewer.Focus();
             }
         }
@@ -1714,10 +1746,15 @@ namespace MeshCentralRouter
             DeviceSettingsForm f = new DeviceSettingsForm();
             f.deviceDoubleClickAction = deviceDoubleClickAction;
             f.ShowSystemTray = (notifyIcon.Visible == true);
+            f.Exp_KeyboardHookPriority = Settings.GetRegValue("Exp_KeyboardHookPriority", false);
+            f.Exp_KeyboardHook = Settings.GetRegValue("Exp_KeyboardHook", false);
+
             if (f.ShowDialog(this) == DialogResult.OK)
             {
                 deviceDoubleClickAction = f.deviceDoubleClickAction;
                 Settings.SetRegValue("DevDoubleClickClickAction", deviceDoubleClickAction.ToString());
+                Settings.SetRegValue("Exp_KeyboardHook", f.Exp_KeyboardHook.ToString().ToLower());
+                Settings.SetRegValue("Exp_KeyboardHookPriority", f.Exp_KeyboardHookPriority.ToString().ToLower());
                 setDoubleClickDeviceAction();
                 if (f.ShowSystemTray)
                 {

@@ -62,9 +62,14 @@ namespace MeshCentralRouter
             this.consoleMessage = new System.Windows.Forms.Label();
             this.consoleTimer = new System.Windows.Forms.Timer(this.components);
             this.mainToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.consentContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.askConsentBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.askConsentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.privacyBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resizeKvmControl = new MeshCentralRouter.KVMResizeControl();
             this.mainStatusStrip.SuspendLayout();
             this.topPanel.SuspendLayout();
+            this.consentContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainStatusStrip
@@ -174,6 +179,7 @@ namespace MeshCentralRouter
             // 
             // connectButton
             // 
+            this.connectButton.ContextMenuStrip = this.consentContextMenuStrip;
             resources.ApplyResources(this.connectButton, "connectButton");
             this.connectButton.Name = "connectButton";
             this.connectButton.TabStop = false;
@@ -191,6 +197,34 @@ namespace MeshCentralRouter
             // 
             this.consoleTimer.Interval = 5000;
             this.consoleTimer.Tick += new System.EventHandler(this.consoleTimer_Tick);
+            // 
+            // consentContextMenuStrip
+            // 
+            this.consentContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.askConsentBarToolStripMenuItem,
+            this.askConsentToolStripMenuItem,
+            this.privacyBarToolStripMenuItem});
+            this.consentContextMenuStrip.Name = "consentContextMenuStrip";
+            resources.ApplyResources(this.consentContextMenuStrip, "consentContextMenuStrip");
+            this.consentContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.consentContextMenuStrip_Opening);
+            // 
+            // askConsentBarToolStripMenuItem
+            // 
+            this.askConsentBarToolStripMenuItem.Name = "askConsentBarToolStripMenuItem";
+            resources.ApplyResources(this.askConsentBarToolStripMenuItem, "askConsentBarToolStripMenuItem");
+            this.askConsentBarToolStripMenuItem.Click += new System.EventHandler(this.askConsentBarToolStripMenuItem_Click);
+            // 
+            // askConsentToolStripMenuItem
+            // 
+            this.askConsentToolStripMenuItem.Name = "askConsentToolStripMenuItem";
+            resources.ApplyResources(this.askConsentToolStripMenuItem, "askConsentToolStripMenuItem");
+            this.askConsentToolStripMenuItem.Click += new System.EventHandler(this.askConsentToolStripMenuItem_Click);
+            // 
+            // privacyBarToolStripMenuItem
+            // 
+            this.privacyBarToolStripMenuItem.Name = "privacyBarToolStripMenuItem";
+            resources.ApplyResources(this.privacyBarToolStripMenuItem, "privacyBarToolStripMenuItem");
+            this.privacyBarToolStripMenuItem.Click += new System.EventHandler(this.privacyBarToolStripMenuItem_Click);
             // 
             // resizeKvmControl
             // 
@@ -221,6 +255,7 @@ namespace MeshCentralRouter
             this.mainStatusStrip.ResumeLayout(false);
             this.mainStatusStrip.PerformLayout();
             this.topPanel.ResumeLayout(false);
+            this.consentContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -244,6 +279,10 @@ namespace MeshCentralRouter
         private Button clipInboundButton;
         private Button clipOutboundButton;
         private ToolTip mainToolTip;
+        private ContextMenuStrip consentContextMenuStrip;
+        private ToolStripMenuItem askConsentBarToolStripMenuItem;
+        private ToolStripMenuItem askConsentToolStripMenuItem;
+        private ToolStripMenuItem privacyBarToolStripMenuItem;
     }
 }
 

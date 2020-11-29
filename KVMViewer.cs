@@ -34,6 +34,7 @@ namespace MeshCentralRouter
         private RandomNumberGenerator rand = RandomNumberGenerator.Create();
         private string randomIdHex = null;
         private bool sessionIsRecorded = false;
+        public int consentFlags = 0;
         public webSocketClient wc = null;
         public Dictionary<string, int> userSessions = null;
         // Stats
@@ -182,6 +183,11 @@ namespace MeshCentralRouter
             {
                 if (data == "cr") { sessionIsRecorded = true; }
                 state = 3;
+
+                // Send any connection options here
+                if (consentFlags != 0) { kvmControl.Send("{ \"type\": \"options\", \"consent\": " + consentFlags + " }"); }
+
+                // Send remote desktop protocol (2)
                 kvmControl.Send("2");
                 kvmControl.SendCompressionLevel();
                 kvmControl.SendPause(false);
@@ -248,6 +254,7 @@ namespace MeshCentralRouter
             else
             {
                 // Connect
+                if (sender != null) { consentFlags = 0; }
                 MenuItemConnect_Click(null, null);
                 kvmControl.AttachKeyboard();
             }
@@ -532,5 +539,27 @@ namespace MeshCentralRouter
             return false;
         }
 
+        private void askConsentBarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            consentFlags = 0x0008 + 0x0040; // Consent Prompt + Privacy bar
+            MenuItemDisconnect_Click(null, null);
+        }
+
+        private void askConsentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            consentFlags = 0x0008; // Consent Prompt
+            MenuItemDisconnect_Click(null, null);
+        }
+
+        private void privacyBarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            consentFlags = 0x0040; // Privacy bar
+            MenuItemDisconnect_Click(null, null);
+        }
+
+        private void consentContextMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (wc != null) { e.Cancel = true; }
+        }
     }
 }
