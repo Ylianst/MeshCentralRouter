@@ -24,6 +24,7 @@ namespace MeshCentralRouter
         public KVMViewer desktopViewer;
         public FileViewer fileViewer;
         public Dictionary<string, ulong> links;
+        public string[] users;
 
         public override string ToString() { return name; }
 

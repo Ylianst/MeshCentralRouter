@@ -596,7 +596,21 @@ namespace MeshCentralRouter
                         int imageIndex = (node.icon - 1) * 2;
                         if ((node.conn & 1) == 0) { imageIndex++; }
                         device.ImageIndex = imageIndex;
-                        if (connVisible && ((search == "") || (device.SubItems[0].Text.ToLower().IndexOf(search) >= 0))) { controlsToAdd.Add(device); }
+
+                        string userSearch = null;
+                        string lowerSearch = search.ToLower();
+                        if (lowerSearch.StartsWith("u:")) { userSearch = lowerSearch.Substring(2); }
+                        if (lowerSearch.StartsWith("user:")) { userSearch = lowerSearch.Substring(5); }
+                        if (userSearch == null)
+                        {
+                            // Normal search
+                            if (connVisible && ((search == "") || (device.SubItems[0].Text.ToLower().IndexOf(search) >= 0))) { controlsToAdd.Add(device); }
+                        } else {
+                            // User search
+                            bool userSearchMatch = false;
+                            if (node.users != null) { foreach (string user in node.users) { if (user.ToLower().IndexOf(userSearch) >= 0) { userSearchMatch = true; } } }
+                            if (connVisible && ((userSearch == "") || userSearchMatch)) { controlsToAdd.Add(device); }
+                        }
                     }
 
                     // Add all controls at once to make it fast.

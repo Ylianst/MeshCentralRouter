@@ -353,6 +353,7 @@ namespace MeshCentralRouter
                                             }
                                             if (node.ContainsKey("conn")) { n.conn = (int)node["conn"]; }
                                             n.icon = (int)node["icon"];
+                                            if (node.ContainsKey("users")) { n.users = (string[])((ArrayList)node["users"]).ToArray(typeof(string)); } else { n.users = null; }
                                             if (node.ContainsKey("rdpport")) { n.rdpport = (int)node["rdpport"]; }
                                             ulong nodeRights = 0;
                                             if (node.ContainsKey("links"))
@@ -491,6 +492,7 @@ namespace MeshCentralRouter
                                         }
                                         n.name = (string)node["name"];
                                         n.meshid = meshid;
+                                        if (node.ContainsKey("users")) { n.users = (string[])((ArrayList)node["users"]).ToArray(typeof(string)); } else { n.users = null; }
                                         if (node.ContainsKey("rdpport")) { n.rdpport = (int)node["rdpport"]; } else { n.rdpport = 3389; }
                                         if (node.ContainsKey("conn")) { n.conn = (int)node["conn"]; } else { n.conn = 0; }
                                         if (node.ContainsKey("icon")) { n.icon = (int)node["icon"]; }
@@ -528,6 +530,8 @@ namespace MeshCentralRouter
                                         }
                                         n.name = (string)node["name"];
                                         n.meshid = meshid;
+
+                                        if (node.ContainsKey("users")) { n.users = (string[])((ArrayList)node["users"]).ToArray(typeof(string)); } else { n.users = null; }
                                         if (node.ContainsKey("rdpport")) { n.rdpport = (int)node["rdpport"]; } else { n.rdpport = 3389; }
                                         if (node.ContainsKey("conn")) { n.conn = (int)node["conn"]; } else { n.conn = 0; }
                                         if (node.ContainsKey("icon")) { n.icon = (int)node["icon"]; }
