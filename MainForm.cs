@@ -1337,7 +1337,7 @@ namespace MeshCentralRouter
             map.protocol = protocol; // 1 = TCP, 2 = UDP
             map.localPort = 0; // Any
             map.remotePort = port; // HTTP
-            map.appId = appId; // 0 = Custom, 1 = HTTP, 2 = HTTPS, 3 = RDP, 4 = PuTTY, 5 = WinSCP
+            map.appId = appId; // 0 = Custom, 1 = HTTP, 2 = HTTPS, 3 = PuTTY, 4 = RDP, 5 = WinSCP
             map.node = node;
             if (authLoginUrl != null) { map.host = authLoginUrl.Host + ":" + ((authLoginUrl.Port > 0) ? authLoginUrl.Port : 443); } else { map.host = serverNameComboBox.Text; }
             map.authCookie = meshcentral.authCookie;
@@ -1609,6 +1609,15 @@ namespace MeshCentralRouter
             QuickMap(1, 443, 2, node); // HTTPS
         }
 
+        private void sshToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (devicesListView.SelectedItems.Count != 1) { return; }
+            ListViewItem selecteditem = devicesListView.SelectedItems[0];
+            NodeClass node = (NodeClass)selecteditem.Tag;
+            if ((node.conn & 1) == 0) { return; } // Agent not connected on this device
+            QuickMap(1, 22, 3, node); // Putty
+        }
+
         private void rdpToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (devicesListView.SelectedItems.Count != 1) { return; }
@@ -1617,16 +1626,7 @@ namespace MeshCentralRouter
             if ((node.conn & 1) == 0) { return; } // Agent not connected on this device
             int rdpport = 3389;
             if (node.rdpport != 0) { rdpport = node.rdpport; }
-            QuickMap(1, rdpport, 3, node); // RDP
-        }
-
-        private void sshToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (devicesListView.SelectedItems.Count != 1) { return; }
-            ListViewItem selecteditem = devicesListView.SelectedItems[0];
-            NodeClass node = (NodeClass)selecteditem.Tag;
-            if ((node.conn & 1) == 0) { return; } // Agent not connected on this device
-            QuickMap(1, 22, 4, node); // Putty
+            QuickMap(1, rdpport, 4, node); // RDP
         }
 
         private void scpToolStripMenuItem_Click(object sender, EventArgs e)
