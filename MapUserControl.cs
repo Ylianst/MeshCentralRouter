@@ -95,8 +95,8 @@ namespace MeshCentralRouter
             } else {
                 if (appId == 1) { statemsg = "HTTP: " + statemsg; }
                 else if (appId == 2) { statemsg = "HTTPS: " + statemsg; }
-                else if (appId == 3) { statemsg = "PuTTY: " + statemsg; }
-                else if (appId == 4) { statemsg = "RDP: " + statemsg; }
+                else if (appId == 3) { statemsg = "RDP: " + statemsg; }
+                else if (appId == 4) { statemsg = "PuTTY: " + statemsg; }
                 else if (appId == 5) { statemsg = "WinSCP: " + statemsg; }
                 else { statemsg = "TCP: " + statemsg; }
             }
@@ -111,6 +111,33 @@ namespace MeshCentralRouter
             if (appId == 1) { System.Diagnostics.Process.Start("http://localhost:" + mapper.localport); }
             if (appId == 2) { System.Diagnostics.Process.Start("https://localhost:" + mapper.localport); }
             if (appId == 3)
+            {
+                System.Diagnostics.Process proc = null;
+                string cmd = System.Environment.GetFolderPath(System.Environment.SpecialFolder.System) + "\\mstsc.exe";
+                string tfile = Path.Combine(Path.GetTempPath(), "MeshRdpFile.rdp");
+                string[] f = null;
+                try { if (File.Exists(tfile)) f = File.ReadAllLines(tfile); } catch (Exception) { }
+                if (f != null)
+                {
+                    List<string> f2 = new List<string>();
+                    foreach (string fx in f) { if (!fx.StartsWith("full address")) f2.Add(fx); }
+                    f2.Add(string.Format("full address:s:127.0.0.1:{0}", mapper.localport));
+                    File.WriteAllLines(tfile, f2.ToArray());
+                }
+                else
+                {
+                    File.WriteAllText(tfile, string.Format("full address:s:127.0.0.1:{0}", mapper.localport));
+                }
+                string args = "/edit:\"" + tfile + "\"";
+
+                // Launch the process
+                try { proc = System.Diagnostics.Process.Start(cmd, args); }
+                catch (System.ComponentModel.Win32Exception) { }
+
+                // Setup auto-exit
+                if ((autoexit == true) && (parent.autoExitProc == null)) { parent.autoExitProc = proc; parent.SetAutoClose(); autoExitTimer.Enabled = true; }
+            }
+            if (appId == 4)
             {
                 string puttyPath = loadFromRegistry("PuttyPath");
                 if ((shift == false) && (File.Exists(puttyPath)))
@@ -146,33 +173,6 @@ namespace MeshCentralRouter
                         }
                     }
                 }
-            }
-            if (appId == 4)
-            {
-                System.Diagnostics.Process proc = null;
-                string cmd = System.Environment.GetFolderPath(System.Environment.SpecialFolder.System) + "\\mstsc.exe";
-                string tfile = Path.Combine(Path.GetTempPath(), "MeshRdpFile.rdp");
-                string[] f = null;
-                try { if (File.Exists(tfile)) f = File.ReadAllLines(tfile); } catch (Exception) { }
-                if (f != null)
-                {
-                    List<string> f2 = new List<string>();
-                    foreach (string fx in f) { if (!fx.StartsWith("full address")) f2.Add(fx); }
-                    f2.Add(string.Format("full address:s:127.0.0.1:{0}", mapper.localport));
-                    File.WriteAllLines(tfile, f2.ToArray());
-                }
-                else
-                {
-                    File.WriteAllText(tfile, string.Format("full address:s:127.0.0.1:{0}", mapper.localport));
-                }
-                string args = "/edit:\"" + tfile + "\"";
-
-                // Launch the process
-                try { proc = System.Diagnostics.Process.Start(cmd, args); }
-                catch (System.ComponentModel.Win32Exception) { }
-
-                // Setup auto-exit
-                if ((autoexit == true) && (parent.autoExitProc == null)) { parent.autoExitProc = proc; parent.SetAutoClose(); autoExitTimer.Enabled = true; }
             }
             if (appId == 5)
             {

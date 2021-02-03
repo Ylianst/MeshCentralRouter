@@ -18,7 +18,16 @@ namespace MeshCentralRouter
         public int getProtocol() { return (int)(tcpRadioButton.Checked?1:2); }
         public int getLocalPort() { return (int)localNumericUpDown.Value; }
         public int getRemotePort() { return (int)remoteNumericUpDown.Value; }
-        public int getAppId() { return (int)appComboBox.SelectedIndex; }
+        public int getAppId() {
+            int x = (int)appComboBox.SelectedIndex;
+            if (x == 0) { return 0; } // Custom
+            if (x == 1) { return 1; } // HTTP
+            if (x == 2) { return 2; } // HTTPS
+            if (x == 3) { return 4; } // PuTTY
+            if (x == 4) { return 3; } // RDP
+            if (x == 5) { return 5; } // WinSCP
+            return x;
+        }
         public NodeClass getNode() { return (NodeClass)nodeComboBox.SelectedItem; }
         public void setNode(NodeClass node) { selectedNode = node; }
 
@@ -103,11 +112,11 @@ namespace MeshCentralRouter
 
         private void appComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (appComboBox.SelectedIndex == 1) { remoteNumericUpDown.Value = 80; }
-            if (appComboBox.SelectedIndex == 2) { remoteNumericUpDown.Value = 443; }
-            if (appComboBox.SelectedIndex == 3) { remoteNumericUpDown.Value = 22; }
-            if (appComboBox.SelectedIndex == 4) { remoteNumericUpDown.Value = 3389; }
-            if (appComboBox.SelectedIndex == 5) { remoteNumericUpDown.Value = 22; }
+            if (appComboBox.SelectedIndex == 1) { remoteNumericUpDown.Value = 80; } // HTTP
+            if (appComboBox.SelectedIndex == 2) { remoteNumericUpDown.Value = 443; } // HTTPS
+            if (appComboBox.SelectedIndex == 3) { remoteNumericUpDown.Value = 22; } // SSH
+            if (appComboBox.SelectedIndex == 4) { remoteNumericUpDown.Value = 3389; } // RDP
+            if (appComboBox.SelectedIndex == 5) { remoteNumericUpDown.Value = 22; } // SCP
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
