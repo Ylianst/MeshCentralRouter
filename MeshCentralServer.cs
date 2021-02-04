@@ -836,7 +836,11 @@ namespace MeshCentralRouter
                 catch (Exception ex)
                 {
                     // Disconnect
-                    MessageBox.Show(ex.Message, "MeshRouter");
+                    if (ex.InnerException != null) {
+                        MessageBox.Show(ex.Message + ", Inner: " + ex.InnerException.ToString(), "MeshCentral Router");
+                    } else {
+                        MessageBox.Show(ex.Message, "MeshCentral Router");
+                    }
                     Debug("Websocket TLS failed: " + ex.ToString());
                     Dispose();
                     return;
