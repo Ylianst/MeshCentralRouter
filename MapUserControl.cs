@@ -24,7 +24,7 @@ namespace MeshCentralRouter
         public MainForm parent;
         public MeshMapper mapper;
         public string host;
-        public string authCookie;
+        //public string authCookie;
         public string certhash;
         public bool xdebug = false;
         public bool inaddrany = false;
@@ -67,7 +67,7 @@ namespace MeshCentralRouter
             mapper.inaddrany = inaddrany;
             mapper.certhash = certhash;
             mapper.onStateMsgChanged += Mapper_onStateMsgChanged;
-            string serverurl = "wss://" + host + "/meshrelay.ashx?auth=" + Uri.EscapeDataString(authCookie) + "&nodeid=" + node.nodeid;
+            string serverurl = "wss://" + host + "/meshrelay.ashx?nodeid=" + node.nodeid;
             if (protocol == 1) {
                 serverurl += ("&tcpport=" + remotePort);
                 if (remoteIP != null) { serverurl += "&tcpaddr=" + remoteIP; }
@@ -75,7 +75,7 @@ namespace MeshCentralRouter
                 serverurl += ("&udpport=" + remotePort);
                 if (remoteIP != null) { serverurl += "&udpaddr=" + remoteIP; }
             }
-            mapper.start(protocol, localPort, serverurl, remotePort, remoteIP);
+            mapper.start(parent.meshcentral, protocol, localPort, serverurl, remotePort, remoteIP);
             UpdateInfo();
         }
 

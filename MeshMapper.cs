@@ -17,8 +17,9 @@ namespace MeshCentralRouter
 {
     public class MeshMapper
     {
+        public MeshCentralServer parent = null;
         public int state = 0;
-        Uri wsurl = null;
+        public string url = null;
         public int protocol = 1; // 1 = TCP, 2 = UDP
         public int localport = 0;
         public int remoteport = 0;
@@ -67,12 +68,13 @@ namespace MeshCentralRouter
         }
 
         // Starts the routing server, called when the start button is pressed
-        public void start(int protocol, int localPort, string url, int remotePort, string remoteIP)
+        public void start(MeshCentralServer parent, int protocol, int localPort, string url, int remotePort, string remoteIP)
         {
+            this.parent = parent;
             this.protocol = protocol;
             this.remoteport = remotePort;
             this.remoteip = remoteIP;
-            wsurl = new Uri(url);
+            this.url = url;
             //wshash = serverHashTextBox.Text;
 
             Debug(string.Format("MeshMapper-Start: Protcol={0}, LocalPort={1}, Url={2}, RemotePort={3}, RemoteIP={4}", protocol, localPort, url, remotePort, remoteIP));
@@ -202,6 +204,7 @@ namespace MeshCentralRouter
         private void ConnectWS(TcpClient client, int counter)
         {
             webSocketClient wc = new webSocketClient();
+            Uri wsurl = new Uri(url + "&auth=" + Uri.EscapeDataString(parent.authCookie));
             Debug("#" + counter + ": Connecting web socket to: " + wsurl.ToString());
             wc.xdebug = xdebug;
             wc.Start(wsurl, certhash);
@@ -215,6 +218,7 @@ namespace MeshCentralRouter
         private void ConnectWS(UdpClient client, int counter)
         {
             webSocketClient wc = new webSocketClient();
+            Uri wsurl = new Uri(url + "&auth=" + Uri.EscapeDataString(parent.authCookie));
             Debug("#" + counter + ": Connecting web socket to: " + wsurl.ToString());
             wc.xdebug = xdebug;
             wc.Start(wsurl, certhash);
