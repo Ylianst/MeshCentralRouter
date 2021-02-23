@@ -15,6 +15,9 @@ namespace MeshCentralRouter
         public MappingHelpForm()
         {
             InitializeComponent();
+
+            // Load customizations
+            try { helpPictureBox.Image = (Bitmap)Image.FromFile(@"customization\help.png"); } catch (Exception) { }
         }
     }
 }

@@ -26,6 +26,14 @@ namespace MeshCentralRouter
             this.size = size;
             this.args = args;
             this.serverTlsCertHash = serverhash;
+
+            try
+            {
+                string[] lines = File.ReadAllLines(@"customization\customize.txt");
+                if (lines[4] != "") { this.Text = lines[4]; }
+                if (lines[5] != "") { mainLabel.Text = lines[5]; }
+            }
+            catch (Exception) { }
         }
 
         private void okButton_Click(object sender, EventArgs e)

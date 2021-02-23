@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+using System.IO;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MeshCentralRouter
@@ -15,6 +10,14 @@ namespace MeshCentralRouter
         public InstallForm()
         {
             InitializeComponent();
+
+            // Load customizations
+            try { pictureBox1.Image = (Bitmap)Image.FromFile(@"customization\install.png"); } catch (Exception) { }
+            try {
+                string[] lines = File.ReadAllLines(@"customization\customize.txt");
+                if (lines[2] != "") { groupBox1.Text = lines[2]; }
+                if (lines[3] != "") { label1.Text = lines[3]; }
+            } catch (Exception) { }
         }
 
         private void okButton_Click(object sender, EventArgs e)
