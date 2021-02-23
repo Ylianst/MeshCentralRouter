@@ -59,13 +59,13 @@ namespace MeshCentralRouter
             this.zoomButton = new System.Windows.Forms.Button();
             this.cadButton = new System.Windows.Forms.Button();
             this.connectButton = new System.Windows.Forms.Button();
-            this.consoleMessage = new System.Windows.Forms.Label();
-            this.consoleTimer = new System.Windows.Forms.Timer(this.components);
-            this.mainToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.consentContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.askConsentBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.askConsentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.privacyBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.consoleMessage = new System.Windows.Forms.Label();
+            this.consoleTimer = new System.Windows.Forms.Timer(this.components);
+            this.mainToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.resizeKvmControl = new MeshCentralRouter.KVMResizeControl();
             this.mainStatusStrip.SuspendLayout();
             this.topPanel.SuspendLayout();
@@ -187,17 +187,6 @@ namespace MeshCentralRouter
             this.connectButton.UseVisualStyleBackColor = true;
             this.connectButton.Click += new System.EventHandler(this.MenuItemDisconnect_Click);
             // 
-            // consoleMessage
-            // 
-            resources.ApplyResources(this.consoleMessage, "consoleMessage");
-            this.consoleMessage.ForeColor = System.Drawing.Color.Black;
-            this.consoleMessage.Name = "consoleMessage";
-            // 
-            // consoleTimer
-            // 
-            this.consoleTimer.Interval = 5000;
-            this.consoleTimer.Tick += new System.EventHandler(this.consoleTimer_Tick);
-            // 
             // consentContextMenuStrip
             // 
             this.consentContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -225,6 +214,17 @@ namespace MeshCentralRouter
             this.privacyBarToolStripMenuItem.Name = "privacyBarToolStripMenuItem";
             resources.ApplyResources(this.privacyBarToolStripMenuItem, "privacyBarToolStripMenuItem");
             this.privacyBarToolStripMenuItem.Click += new System.EventHandler(this.privacyBarToolStripMenuItem_Click);
+            // 
+            // consoleMessage
+            // 
+            resources.ApplyResources(this.consoleMessage, "consoleMessage");
+            this.consoleMessage.ForeColor = System.Drawing.Color.Black;
+            this.consoleMessage.Name = "consoleMessage";
+            // 
+            // consoleTimer
+            // 
+            this.consoleTimer.Interval = 5000;
+            this.consoleTimer.Tick += new System.EventHandler(this.consoleTimer_Tick);
             // 
             // resizeKvmControl
             // 

@@ -136,7 +136,7 @@
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="installButton.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
+    <value>104</value>
   </data>
   <data name="installButton.Text" xml:space="preserve">
     <value>Install...</value>
@@ -298,7 +298,7 @@
     <value>213, 20</value>
   </data>
   <data name="passwordTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>102</value>
   </data>
   <data name="&gt;&gt;passwordTextBox.Name" xml:space="preserve">
     <value>passwordTextBox</value>
@@ -325,7 +325,7 @@
     <value>213, 21</value>
   </data>
   <data name="serverNameComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+    <value>100</value>
   </data>
   <data name="&gt;&gt;serverNameComboBox.Name" xml:space="preserve">
     <value>serverNameComboBox</value>
@@ -349,7 +349,7 @@
     <value>213, 20</value>
   </data>
   <data name="userNameTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>101</value>
   </data>
   <data name="&gt;&gt;userNameTextBox.Name" xml:space="preserve">
     <value>userNameTextBox</value>
@@ -376,7 +376,7 @@
     <value>303, 13</value>
   </data>
   <data name="licenseLinkLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
+    <value>103</value>
   </data>
   <data name="licenseLinkLabel.Text" xml:space="preserve">
     <value>Open Source, Apache 2.0 License</value>
@@ -442,7 +442,7 @@
     <value>95, 23</value>
   </data>
   <data name="nextButton1.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>105</value>
   </data>
   <data name="nextButton1.Text" xml:space="preserve">
     <value>Login</value>
@@ -613,7 +613,7 @@
     <value>131, 17</value>
   </data>
   <data name="tokenRememberCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
+    <value>204</value>
   </data>
   <data name="tokenRememberCheckBox.Text" xml:space="preserve">
     <value>Don't ask for {0} days.</value>
@@ -643,7 +643,7 @@
     <value>95, 23</value>
   </data>
   <data name="emailTokenButton.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
+    <value>202</value>
   </data>
   <data name="emailTokenButton.Text" xml:space="preserve">
     <value>Email</value>
@@ -673,7 +673,7 @@
     <value>95, 23</value>
   </data>
   <data name="smsTokenButton.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
+    <value>203</value>
   </data>
   <data name="smsTokenButton.Text" xml:space="preserve">
     <value>SMS</value>
@@ -766,7 +766,7 @@
     <value>213, 20</value>
   </data>
   <data name="tokenTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
+    <value>201</value>
   </data>
   <data name="&gt;&gt;tokenTextBox.Name" xml:space="preserve">
     <value>tokenTextBox</value>
@@ -823,7 +823,7 @@
     <value>95, 23</value>
   </data>
   <data name="backButton2.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
+    <value>205</value>
   </data>
   <data name="backButton2.Text" xml:space="preserve">
     <value>Back</value>
@@ -853,7 +853,7 @@
     <value>95, 23</value>
   </data>
   <data name="nextButton2.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
+    <value>206</value>
   </data>
   <data name="nextButton2.Text" xml:space="preserve">
     <value>Next</value>
@@ -994,7 +994,7 @@
     <value>145, 17</value>
   </data>
   <data name="rememberCertCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>26</value>
+    <value>302</value>
   </data>
   <data name="rememberCertCheckBox.Text" xml:space="preserve">
     <value>Remember this certificate</value>
@@ -1054,7 +1054,7 @@
     <value>188, 23</value>
   </data>
   <data name="certDetailsButton.TabIndex" type="System.Int32, mscorlib">
-    <value>24</value>
+    <value>301</value>
   </data>
   <data name="certDetailsButton.Text" xml:space="preserve">
     <value>View Certificate Details...</value>
@@ -1150,7 +1150,7 @@
     <value>95, 23</value>
   </data>
   <data name="backButton3.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
+    <value>303</value>
   </data>
   <data name="backButton3.Text" xml:space="preserve">
     <value>Back</value>
@@ -1180,7 +1180,7 @@
     <value>95, 23</value>
   </data>
   <data name="nextButton3.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
+    <value>304</value>
   </data>
   <data name="nextButton3.Text" xml:space="preserve">
     <value>Ignore</value>
@@ -1342,7 +1342,7 @@
     <value>25, 25</value>
   </data>
   <data name="menuLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>403</value>
   </data>
   <data name="menuLabel.Text" xml:space="preserve">
     <value>≡</value>
@@ -1369,7 +1369,7 @@
     <value>146, 20</value>
   </data>
   <data name="searchTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+    <value>402</value>
   </data>
   <data name="&gt;&gt;searchTextBox.Name" xml:space="preserve">
     <value>searchTextBox</value>
@@ -1399,13 +1399,13 @@
     <value>Bottom, Left</value>
   </data>
   <data name="cancelAutoCloseButton1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 195</value>
+    <value>4, 191</value>
   </data>
   <data name="cancelAutoCloseButton1.Size" type="System.Drawing.Size, System.Drawing">
     <value>168, 35</value>
   </data>
   <data name="cancelAutoCloseButton1.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+    <value>405</value>
   </data>
   <data name="cancelAutoCloseButton1.Text" xml:space="preserve">
     <value>Cancel Auto-Close</value>
@@ -1519,7 +1519,7 @@
     <value>SCP</value>
   </data>
   <data name="devicesContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>171, 230</value>
+    <value>171, 208</value>
   </data>
   <data name="&gt;&gt;devicesContextMenuStrip.Name" xml:space="preserve">
     <value>devicesContextMenuStrip</value>
@@ -1535,7 +1535,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAADg
-        HQAAAk1TRnQBSQFMAgEBEAEAAVABAAFQAQABEAEAARABAAT/ARkBAAj/AUIBTQE2BwABNgMAASgDAAFA
+        HQAAAk1TRnQBSQFMAgEBEAEAAVgBAAFYAQABEAEAARABAAT/ARkBAAj/AUIBTQE2BwABNgMAASgDAAFA
         AwABUAMAAQEBAAEYBgABPP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AJYAA/0D+AP3A/sD/yEAA/0D+gP5
         A/wD/xgAAfoB+wH6A/4qAAP9A/8tAAP7A88D1QPbA88D1AO+A9QYAAP8A90D4APjA90D4APUA+MSAAP8
         AZEBjwF9AU4BaAEhAfQB9QH0JAAD/gPRA8YD+ioAAcYCxwHPAtAB2ALZA90DywPBA68DmgP3FQAD2APd
@@ -1672,7 +1672,7 @@
     <value>446, 210</value>
   </data>
   <data name="devicesListView.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>404</value>
   </data>
   <data name="devicesListView.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -1702,7 +1702,7 @@
     <value>2, 88</value>
   </data>
   <data name="noSearchResultsLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>418, 52</value>
+    <value>414, 52</value>
   </data>
   <data name="noSearchResultsLabel.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -1741,7 +1741,7 @@
     <value>2, 88</value>
   </data>
   <data name="noDevicesLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>418, 52</value>
+    <value>414, 52</value>
   </data>
   <data name="noDevicesLabel.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -1864,7 +1864,7 @@
     <value>2, 79</value>
   </data>
   <data name="noMapLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>447, 52</value>
+    <value>443, 52</value>
   </data>
   <data name="noMapLabel.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -2064,7 +2064,7 @@ Click "Add" to get started.</value>
     <value>478, 279</value>
   </data>
   <data name="devicesTabControl.TabIndex" type="System.Int32, mscorlib">
-    <value>55</value>
+    <value>401</value>
   </data>
   <data name="&gt;&gt;devicesTabControl.Name" xml:space="preserve">
     <value>devicesTabControl</value>
@@ -2091,7 +2091,7 @@ Click "Add" to get started.</value>
     <value>109, 23</value>
   </data>
   <data name="openWebSiteButton.TabIndex" type="System.Int32, mscorlib">
-    <value>53</value>
+    <value>406</value>
   </data>
   <data name="openWebSiteButton.Text" xml:space="preserve">
     <value>Open Web Site</value>
@@ -2124,7 +2124,7 @@ Click "Add" to get started.</value>
     <value>95, 23</value>
   </data>
   <data name="backButton5.TabIndex" type="System.Int32, mscorlib">
-    <value>35</value>
+    <value>407</value>
   </data>
   <data name="backButton5.Text" xml:space="preserve">
     <value>Log out</value>
@@ -2154,7 +2154,7 @@ Click "Add" to get started.</value>
     <value>95, 23</value>
   </data>
   <data name="nextButton5.TabIndex" type="System.Int32, mscorlib">
-    <value>36</value>
+    <value>408</value>
   </data>
   <data name="nextButton5.Text" xml:space="preserve">
     <value>Close</value>

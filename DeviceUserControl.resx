@@ -322,6 +322,12 @@
   <metadata name="rdpContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>313, 17</value>
   </metadata>
+  <data name="setRDPPortToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 22</value>
+  </data>
+  <data name="setRDPPortToolStripMenuItem.Text" xml:space="preserve">
+    <value>Set RDP port...</value>
+  </data>
   <data name="rdpContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>150, 26</value>
   </data>
@@ -338,7 +344,7 @@
     <value>58, 47</value>
   </data>
   <data name="rdpButton.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="rdpButton.Text" xml:space="preserve">
     <value>RDP</value>
@@ -355,12 +361,6 @@
   <data name="&gt;&gt;rdpButton.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="setRDPPortToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 22</value>
-  </data>
-  <data name="setRDPPortToolStripMenuItem.Text" xml:space="preserve">
-    <value>Set RDP port...</value>
-  </data>
   <metadata name="deviceImageList.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>15, 17</value>
   </metadata>
@@ -369,7 +369,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAAy
-        mgAAAk1TRnQBSQFMAgEBCAEAAYABAAGAAQABMgEAATIBAAT/AREBAAj/AUIBTQE2BwABNgMAASgDAAHI
+        mgAAAk1TRnQBSQFMAgEBCAEAAYgBAAGIAQABMgEAATIBAAT/AREBAAj/AUIBTQE2BwABNgMAASgDAAHI
         AwABlgMAAQEBAAEQBQABYAHq/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A
         /wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A
         /wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A
@@ -1037,7 +1037,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAC4
-        mgAAAk1TRnQBSQFMAgEBCAEAAYgBAAGIAQABMgEAATIBAAT/AREBAAj/AUIBTQE2BwABNgMAASgDAAHI
+        mgAAAk1TRnQBSQFMAgEBCAEAAZABAAGQAQABMgEAATIBAAT/AREBAAj/AUIBTQE2BwABNgMAASgDAAHI
         AwABlgMAAQEBAAEQBQABYAHq/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A
         /wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A
         /wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A
@@ -1706,6 +1706,12 @@
   <metadata name="altPortContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>468, 17</value>
   </metadata>
+  <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>178, 22</value>
+  </data>
+  <data name="toolStripMenuItem1.Text" xml:space="preserve">
+    <value>Use Alternate Port...</value>
+  </data>
   <data name="altPortContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>179, 26</value>
   </data>
@@ -1722,7 +1728,7 @@
     <value>58, 23</value>
   </data>
   <data name="httpsButton.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>1</value>
   </data>
   <data name="httpsButton.Text" xml:space="preserve">
     <value>HTTPS</value>
@@ -1739,12 +1745,6 @@
   <data name="&gt;&gt;httpsButton.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>178, 22</value>
-  </data>
-  <data name="toolStripMenuItem1.Text" xml:space="preserve">
-    <value>Use Alternate Port...</value>
-  </data>
   <data name="httpButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
@@ -1755,7 +1755,7 @@
     <value>58, 23</value>
   </data>
   <data name="httpButton.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>3</value>
   </data>
   <data name="httpButton.Text" xml:space="preserve">
     <value>HTTP</value>
@@ -1782,7 +1782,7 @@
     <value>58, 23</value>
   </data>
   <data name="scpButton.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+    <value>4</value>
   </data>
   <data name="scpButton.Text" xml:space="preserve">
     <value>SCP</value>
@@ -1809,7 +1809,7 @@
     <value>58, 23</value>
   </data>
   <data name="sshButton.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>2</value>
   </data>
   <data name="sshButton.Text" xml:space="preserve">
     <value>SSH</value>
@@ -1833,7 +1833,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>421, 53</value>
+    <value>417, 49</value>
   </data>
   <data name="&gt;&gt;setRDPPortToolStripMenuItem.Name" xml:space="preserve">
     <value>setRDPPortToolStripMenuItem</value>

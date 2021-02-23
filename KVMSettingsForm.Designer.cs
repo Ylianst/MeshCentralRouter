@@ -32,6 +32,7 @@
             this.cancelButton = new System.Windows.Forms.Button();
             this.okButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.remoteKeyboardMapCheckBox = new System.Windows.Forms.CheckBox();
             this.swapMouseButtonsCheckBox = new System.Windows.Forms.CheckBox();
             this.frameRateComboBox = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -41,7 +42,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.remoteKeyboardMapCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -74,6 +74,12 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
+            // 
+            // remoteKeyboardMapCheckBox
+            // 
+            resources.ApplyResources(this.remoteKeyboardMapCheckBox, "remoteKeyboardMapCheckBox");
+            this.remoteKeyboardMapCheckBox.Name = "remoteKeyboardMapCheckBox";
+            this.remoteKeyboardMapCheckBox.UseVisualStyleBackColor = true;
             // 
             // swapMouseButtonsCheckBox
             // 
@@ -128,12 +134,6 @@
             // 
             resources.ApplyResources(this.label4, "label4");
             this.label4.Name = "label4";
-            // 
-            // remoteKeyboardMapCheckBox
-            // 
-            resources.ApplyResources(this.remoteKeyboardMapCheckBox, "remoteKeyboardMapCheckBox");
-            this.remoteKeyboardMapCheckBox.Name = "remoteKeyboardMapCheckBox";
-            this.remoteKeyboardMapCheckBox.UseVisualStyleBackColor = true;
             // 
             // KVMSettingsForm
             // 

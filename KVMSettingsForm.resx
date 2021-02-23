@@ -130,7 +130,7 @@
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="cancelButton.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+    <value>7</value>
   </data>
   <data name="cancelButton.Text" xml:space="preserve">
     <value>Cancel</value>
@@ -157,7 +157,7 @@
     <value>75, 23</value>
   </data>
   <data name="okButton.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+    <value>6</value>
   </data>
   <data name="okButton.Text" xml:space="preserve">
     <value>OK</value>
@@ -190,7 +190,7 @@
     <value>157, 17</value>
   </data>
   <data name="remoteKeyboardMapCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
+    <value>5</value>
   </data>
   <data name="remoteKeyboardMapCheckBox.Text" xml:space="preserve">
     <value>Use Remote Keyboard Map</value>
@@ -217,7 +217,7 @@
     <value>127, 17</value>
   </data>
   <data name="swapMouseButtonsCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
+    <value>4</value>
   </data>
   <data name="swapMouseButtonsCheckBox.Text" xml:space="preserve">
     <value>Swap Mouse Buttons</value>
@@ -244,7 +244,7 @@
     <value>238, 21</value>
   </data>
   <data name="frameRateComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+    <value>3</value>
   </data>
   <data name="&gt;&gt;frameRateComboBox.Name" xml:space="preserve">
     <value>frameRateComboBox</value>
@@ -295,7 +295,7 @@
     <value>238, 21</value>
   </data>
   <data name="scalingComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+    <value>2</value>
   </data>
   <data name="&gt;&gt;scalingComboBox.Name" xml:space="preserve">
     <value>scalingComboBox</value>
@@ -339,6 +339,9 @@
   <data name="qualityComboBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
+  <data name="qualityComboBox.ItemHeight" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
   <data name="qualityComboBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>128, 21</value>
   </data>
@@ -346,7 +349,7 @@
     <value>238, 21</value>
   </data>
   <data name="qualityComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>1</value>
   </data>
   <data name="&gt;&gt;qualityComboBox.Name" xml:space="preserve">
     <value>qualityComboBox</value>

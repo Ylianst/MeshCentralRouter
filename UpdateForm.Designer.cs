@@ -32,9 +32,9 @@
             this.cancelButton = new System.Windows.Forms.Button();
             this.okButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.mainLabel = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.updateProgressBar = new System.Windows.Forms.ProgressBar();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.mainLabel = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -46,7 +46,7 @@
             this.cancelButton.Location = new System.Drawing.Point(294, 155);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
-            this.cancelButton.TabIndex = 0;
+            this.cancelButton.TabIndex = 2;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
             // 
@@ -76,18 +76,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "MeshCentral Router Update";
             // 
-            // mainLabel
+            // updateProgressBar
             // 
-            this.mainLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.updateProgressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.mainLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mainLabel.Location = new System.Drawing.Point(131, 19);
-            this.mainLabel.Name = "mainLabel";
-            this.mainLabel.Size = new System.Drawing.Size(220, 115);
-            this.mainLabel.TabIndex = 0;
-            this.mainLabel.Text = "This MeshCentral Server uses a different version of this tool. Click ok to downlo" +
-    "ad and update.";
+            this.updateProgressBar.Location = new System.Drawing.Point(134, 110);
+            this.updateProgressBar.Name = "updateProgressBar";
+            this.updateProgressBar.Size = new System.Drawing.Size(217, 20);
+            this.updateProgressBar.TabIndex = 2;
+            this.updateProgressBar.Visible = false;
             // 
             // pictureBox1
             // 
@@ -101,15 +98,18 @@
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
-            // updateProgressBar
+            // mainLabel
             // 
-            this.updateProgressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.mainLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.updateProgressBar.Location = new System.Drawing.Point(134, 110);
-            this.updateProgressBar.Name = "updateProgressBar";
-            this.updateProgressBar.Size = new System.Drawing.Size(217, 20);
-            this.updateProgressBar.TabIndex = 2;
-            this.updateProgressBar.Visible = false;
+            this.mainLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mainLabel.Location = new System.Drawing.Point(131, 19);
+            this.mainLabel.Name = "mainLabel";
+            this.mainLabel.Size = new System.Drawing.Size(220, 115);
+            this.mainLabel.TabIndex = 0;
+            this.mainLabel.Text = "This MeshCentral Server uses a different version of this tool. Click ok to downlo" +
+    "ad and update.";
             // 
             // UpdateForm
             // 

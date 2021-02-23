@@ -181,7 +181,7 @@
     <value>30, 26</value>
   </data>
   <data name="clipOutboundButton.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+    <value>3</value>
   </data>
   <metadata name="mainToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>399, 17</value>
@@ -214,7 +214,7 @@
     <value>30, 26</value>
   </data>
   <data name="clipInboundButton.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+    <value>4</value>
   </data>
   <data name="clipInboundButton.ToolTip" xml:space="preserve">
     <value>Pull clipboard from remote device</value>
@@ -264,6 +264,9 @@
   <data name="&gt;&gt;statsButton.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="displaySelectComboBox.ItemHeight" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
   <data name="displaySelectComboBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>360, 5</value>
   </data>
@@ -271,7 +274,7 @@
     <value>128, 21</value>
   </data>
   <data name="displaySelectComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>5</value>
   </data>
   <data name="displaySelectComboBox.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -298,7 +301,7 @@
     <value>89, 26</value>
   </data>
   <data name="settingsButton.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>2</value>
   </data>
   <data name="settingsButton.Text" xml:space="preserve">
     <value>Settings</value>
@@ -331,7 +334,7 @@
     <value>30, 26</value>
   </data>
   <data name="zoomButton.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="zoomButton.ToolTip" xml:space="preserve">
     <value>Toggle zoom-to-fit mode</value>
@@ -403,7 +406,7 @@
     <value>Privacy Bar</value>
   </data>
   <data name="consentContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 92</value>
+    <value>172, 70</value>
   </data>
   <data name="&gt;&gt;consentContextMenuStrip.Name" xml:space="preserve">
     <value>consentContextMenuStrip</value>
@@ -523,7 +526,7 @@
     <value>resizeKvmControl</value>
   </data>
   <data name="&gt;&gt;resizeKvmControl.Type" xml:space="preserve">
-    <value>MeshCentralRouter.KVMResizeControl, MeshCentralRouter, Version=1.1.7638.20047, Culture=neutral, PublicKeyToken=null</value>
+    <value>MeshCentralRouter.KVMResizeControl, MeshCentralRouter, Version=1.3.7724.17879, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;resizeKvmControl.Parent" xml:space="preserve">
     <value>$this</value>
@@ -992,18 +995,6 @@
   <data name="&gt;&gt;updateTimer.Type" xml:space="preserve">
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;consoleTimer.Name" xml:space="preserve">
-    <value>consoleTimer</value>
-  </data>
-  <data name="&gt;&gt;consoleTimer.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mainToolTip.Name" xml:space="preserve">
-    <value>mainToolTip</value>
-  </data>
-  <data name="&gt;&gt;mainToolTip.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;askConsentBarToolStripMenuItem.Name" xml:space="preserve">
     <value>askConsentBarToolStripMenuItem</value>
   </data>
@@ -1021,6 +1012,18 @@
   </data>
   <data name="&gt;&gt;privacyBarToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;consoleTimer.Name" xml:space="preserve">
+    <value>consoleTimer</value>
+  </data>
+  <data name="&gt;&gt;consoleTimer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mainToolTip.Name" xml:space="preserve">
+    <value>mainToolTip</value>
+  </data>
+  <data name="&gt;&gt;mainToolTip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>KVMViewer</value>

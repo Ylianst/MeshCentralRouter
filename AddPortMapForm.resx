@@ -130,7 +130,7 @@
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="cancelButton.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+    <value>10</value>
   </data>
   <data name="cancelButton.Text" xml:space="preserve">
     <value>Cancel</value>
@@ -157,7 +157,7 @@
     <value>75, 23</value>
   </data>
   <data name="okButton.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+    <value>9</value>
   </data>
   <data name="okButton.Text" xml:space="preserve">
     <value>OK</value>
@@ -184,7 +184,7 @@
     <value>206, 20</value>
   </data>
   <data name="localNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="localNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -238,7 +238,7 @@
     <value>206, 21</value>
   </data>
   <data name="nodeComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="&gt;&gt;nodeComboBox.Name" xml:space="preserve">
     <value>nodeComboBox</value>
@@ -316,7 +316,7 @@
     <value>206, 20</value>
   </data>
   <data name="remoteNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>8</value>
   </data>
   <data name="remoteNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -388,7 +388,7 @@
     <value>206, 21</value>
   </data>
   <data name="appComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="&gt;&gt;appComboBox.Name" xml:space="preserve">
     <value>appComboBox</value>
@@ -432,6 +432,9 @@
   <data name="groupComboBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
+  <data name="groupComboBox.ItemHeight" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
   <data name="groupComboBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>157, 89</value>
   </data>
@@ -439,7 +442,7 @@
     <value>206, 21</value>
   </data>
   <data name="groupComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="&gt;&gt;groupComboBox.Name" xml:space="preserve">
     <value>groupComboBox</value>
@@ -490,7 +493,7 @@
     <value>46, 17</value>
   </data>
   <data name="tcpRadioButton.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="tcpRadioButton.Text" xml:space="preserve">
     <value>TCP</value>
@@ -517,7 +520,7 @@
     <value>48, 17</value>
   </data>
   <data name="udpRadioButton.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="udpRadioButton.Text" xml:space="preserve">
     <value>UDP</value>
@@ -534,9 +537,6 @@
   <data name="&gt;&gt;udpRadioButton.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <metadata name="mainToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="nameTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
@@ -547,8 +547,11 @@
     <value>206, 20</value>
   </data>
   <data name="nameTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
+    <value>1</value>
   </data>
+  <metadata name="mainToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <data name="nameTextBox.ToolTip" xml:space="preserve">
     <value>Optional mapping name</value>
   </data>
@@ -597,9 +600,6 @@
   <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <metadata name="mainToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
