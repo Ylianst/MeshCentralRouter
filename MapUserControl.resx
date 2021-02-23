@@ -151,10 +151,10 @@
     <value>NoControl</value>
   </data>
   <data name="deviceNameLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>60, 8</value>
+    <value>60, 10</value>
   </data>
   <data name="deviceNameLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>273, 15</value>
+    <value>275, 15</value>
   </data>
   <data name="deviceNameLabel.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -181,10 +181,10 @@
     <value>NoControl</value>
   </data>
   <data name="routingStatusLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>60, 28</value>
+    <value>60, 30</value>
   </data>
   <data name="routingStatusLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>273, 15</value>
+    <value>275, 15</value>
   </data>
   <data name="routingStatusLabel.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -208,7 +208,7 @@
     <value>Top, Right</value>
   </data>
   <data name="appButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>339, 1</value>
+    <value>341, 3</value>
   </data>
   <data name="appButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -235,7 +235,7 @@
     <value>Top, Right</value>
   </data>
   <data name="closeButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>339, 25</value>
+    <value>341, 27</value>
   </data>
   <data name="closeButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -266,7 +266,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAAy
-        mgAAAk1TRnQBSQFMAgEBCAEAAWgBAAFoAQABMgEAATIBAAT/AREBAAj/AUIBTQE2BwABNgMAASgDAAHI
+        mgAAAk1TRnQBSQFMAgEBCAEAAXABAAFwAQABMgEAATIBAAT/AREBAAj/AUIBTQE2BwABNgMAASgDAAHI
         AwABlgMAAQEBAAEQBQABYAHq/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A
         /wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A
         /wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A
@@ -954,7 +954,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>413, 49</value>
+    <value>419, 55</value>
   </data>
   <data name="&gt;&gt;deviceImageList.Name" xml:space="preserve">
     <value>deviceImageList</value>
