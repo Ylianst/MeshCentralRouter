@@ -1464,13 +1464,13 @@ namespace MeshCentralRouter
             int argFlags = 3;
             Dictionary<string, object> jsonAction = new Dictionary<string, object>();
             jsonAction = new JavaScriptSerializer().Deserialize<Dictionary<string, object>>(data);
-            if ((jsonAction == null) || (jsonAction["hostname"].GetType() != typeof(string)) || (jsonAction["username"].GetType() != typeof(string)) || (jsonAction["certhash"].GetType() != typeof(string))) return 0;
+            if ((jsonAction == null) || (jsonAction["hostname"].GetType() != typeof(string)) || (jsonAction["username"].GetType() != typeof(string))) return 0;
             if (mode == 1)
             {
                 serverNameComboBox.Text = jsonAction["hostname"].ToString();
                 userNameTextBox.Text = jsonAction["username"].ToString();
                 if (jsonAction.ContainsKey("password")) { passwordTextBox.Text = jsonAction["password"].ToString(); argFlags |= 4; }
-                acceptableCertHash = jsonAction["certhash"].ToString();
+                if (jsonAction.ContainsKey("certhash")) { acceptableCertHash = jsonAction["certhash"].ToString(); }
             }
             if (jsonAction["mappings"] != null)
             {
