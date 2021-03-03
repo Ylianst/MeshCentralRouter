@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Drawing;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace MeshCentralRouter
@@ -12,9 +13,10 @@ namespace MeshCentralRouter
             InitializeComponent();
 
             // Load customizations
-            try { pictureBox1.Image = (Bitmap)Image.FromFile(@"customization\install.png"); } catch (Exception) { }
+            FileInfo selfExe = new FileInfo(Assembly.GetExecutingAssembly().Location);
+            try { pictureBox1.Image = (Bitmap)Image.FromFile(Path.Combine(selfExe.Directory.FullName, @"customization\install.png")); } catch (Exception) { }
             try {
-                string[] lines = File.ReadAllLines(@"customization\customize.txt");
+                string[] lines = File.ReadAllLines(Path.Combine(selfExe.Directory.FullName, @"customization\customize.txt"));
                 if (lines[2] != "") { groupBox1.Text = lines[2]; }
                 if (lines[3] != "") { label1.Text = lines[3]; }
             } catch (Exception) { }

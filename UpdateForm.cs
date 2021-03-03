@@ -1,12 +1,13 @@
 ﻿using System;
 using System.IO;
 using System.Net;
+using System.Text;
+using System.Reflection;
 using System.Diagnostics;
 using System.Net.Security;
 using System.Windows.Forms;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
-using System.Text;
 
 namespace MeshCentralRouter
 {
@@ -29,7 +30,8 @@ namespace MeshCentralRouter
 
             try
             {
-                string[] lines = File.ReadAllLines(@"customization\customize.txt");
+                FileInfo selfExe = new FileInfo(Assembly.GetExecutingAssembly().Location);
+                string[] lines = File.ReadAllLines(Path.Combine(selfExe.Directory.FullName, @"customization\customize.txt"));
                 if (lines[4] != "") { this.Text = lines[4]; }
                 if (lines[5] != "") { mainLabel.Text = lines[5]; }
             }
