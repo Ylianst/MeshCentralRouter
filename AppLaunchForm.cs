@@ -19,10 +19,31 @@ namespace MeshCentralRouter
             UpdateInfo();
         }
 
+        public class AppInfo
+        {
+            public AppInfo(string name, string link, string path, string tag) { this.name = name; this.link = link; this.path = path; this.tag = tag; }
+
+            public string name;
+            public string link;
+            public string path;
+            public string tag;
+
+            public override string ToString() { return name; }
+        }
+
         public void SetAppName(string name) { appNameLabel.Text = name; }
         public void SetAppLink(string link) { appLinkLabel.Text = link; }
         public void SetAppPath(string path) { appPathTextBox.Text = path; }
         public string GetAppPath() { return appPathTextBox.Text; }
+        public string GetAppTag() { return ((AppInfo)applicationComboBox.SelectedItem).tag; }
+
+        public void SetApps(AppInfo[] apps)
+        {
+            appNameLabel.Visible = false;
+            applicationComboBox.Visible = true;
+            foreach (AppInfo app in apps) { applicationComboBox.Items.Add(app); }
+            applicationComboBox.SelectedIndex = 0;
+        }
 
         private void folderPictureBox_Click(object sender, EventArgs e)
         {
@@ -59,5 +80,10 @@ namespace MeshCentralRouter
             System.Diagnostics.Process.Start(appLinkLabel.Text);
         }
 
+        private void applicationComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            appLinkLabel.Text = ((AppInfo)applicationComboBox.SelectedItem).link;
+            appPathTextBox.Text = ((AppInfo)applicationComboBox.SelectedItem).path;
+        }
     }
 }

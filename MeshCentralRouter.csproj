@@ -94,6 +94,12 @@
     <Compile Include="AddRelayMapForm.designer.cs">
       <DependentUpon>AddRelayMapForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SshUsernameForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SshUsernameForm.Designer.cs">
+      <DependentUpon>SshUsernameForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AppLaunchForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -319,6 +325,45 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddRelayMapForm.zh-chs.resx">
       <DependentUpon>AddRelayMapForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SshUsernameForm.cs.resx">
+      <DependentUpon>SshUsernameForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SshUsernameForm.de.resx">
+      <DependentUpon>SshUsernameForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SshUsernameForm.es.resx">
+      <DependentUpon>SshUsernameForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SshUsernameForm.fr.resx">
+      <DependentUpon>SshUsernameForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SshUsernameForm.hi.resx">
+      <DependentUpon>SshUsernameForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SshUsernameForm.it.resx">
+      <DependentUpon>SshUsernameForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SshUsernameForm.ja.resx">
+      <DependentUpon>SshUsernameForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SshUsernameForm.ko.resx">
+      <DependentUpon>SshUsernameForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SshUsernameForm.nl.resx">
+      <DependentUpon>SshUsernameForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SshUsernameForm.pt.resx">
+      <DependentUpon>SshUsernameForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SshUsernameForm.resx">
+      <DependentUpon>SshUsernameForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SshUsernameForm.ru.resx">
+      <DependentUpon>SshUsernameForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SshUsernameForm.zh-chs.resx">
+      <DependentUpon>SshUsernameForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="altPortForm.cs.resx">
       <DependentUpon>altPortForm.cs</DependentUpon>

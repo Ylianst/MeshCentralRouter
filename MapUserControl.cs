@@ -139,13 +139,25 @@ namespace MeshCentralRouter
             }
             if (appId == 4)
             {
+                string appTag = null;
+                string appPath = null;
                 string puttyPath = loadFromRegistry("PuttyPath");
-                if ((shift == false) && (File.Exists(puttyPath)))
+                string openSshPath = loadFromRegistry("OpenSshPath");
+                if (File.Exists(puttyPath)) { appTag = "PuttyPath"; appPath = puttyPath; }
+                if (File.Exists(openSshPath)) { appTag = "OpenSshPath"; appPath = openSshPath; }
+
+                if ((shift == false) && (appPath != null))
                 {
                     // Launch the process
                     System.Diagnostics.Process proc = null;
-                    string args = "-ssh 127.0.0.1 -P " + mapper.localport;
-                    try { proc = System.Diagnostics.Process.Start(puttyPath, args); }
+                    string args = null;
+                    if (appTag == "OpenSshPath") {
+                        SshUsernameForm f2 = new SshUsernameForm();
+                        if (f2.ShowDialog(this) != DialogResult.OK) return;
+                        args = "127.0.0.1 -l " + f2.Username + " -p " + mapper.localport;
+                    }
+                    if (appTag == "PuttyPath") { args = "-ssh 127.0.0.1 -P " + mapper.localport; }
+                    try { proc = System.Diagnostics.Process.Start(appPath, args); }
                     catch (System.ComponentModel.Win32Exception) { }
 
                     // Setup auto-exit
@@ -156,17 +168,27 @@ namespace MeshCentralRouter
                     using (AppLaunchForm f = new AppLaunchForm())
                     {
                         System.Diagnostics.Process proc = null;
-                        f.SetAppName(Properties.Resources.PuttyAppName);
-                        f.SetAppLink("http://www.chiark.greenend.org.uk/~sgtatham/putty/");
-                        f.SetAppPath(puttyPath);
+                        AppLaunchForm.AppInfo[] apps = new AppLaunchForm.AppInfo[2];
+                        apps[0] = new AppLaunchForm.AppInfo(Properties.Resources.OpenSSHAppName, "https://www.openssh.com/", (parent.nativeSshPath != null) ? parent.nativeSshPath.FullName : "", "OpenSshPath");
+                        apps[1] = new AppLaunchForm.AppInfo(Properties.Resources.PuttyAppName, "http://www.chiark.greenend.org.uk/~sgtatham/putty/", puttyPath, "PuttyPath");
+                        f.SetApps(apps);
                         if (f.ShowDialog(this) == DialogResult.OK)
                         {
-                            saveToRegistry("PuttyPath", f.GetAppPath());
-                            string args = "-ssh 127.0.0.1 -P " + mapper.localport;
+                            appTag = f.GetAppTag();
+                            appPath = f.GetAppPath();
+                            saveToRegistry(appTag, f.GetAppPath());
+
+                            string args = null;
+                            if (appTag == "OpenSshPath") {
+                                SshUsernameForm f2 = new SshUsernameForm();
+                                if (f2.ShowDialog(this) != DialogResult.OK) return;
+                                args = "127.0.0.1 -l " + f2.Username + " -p " + mapper.localport; saveToRegistry("PuttyPath", "");
+                            }
+                            if (appTag == "PuttyPath") { args = "-ssh 127.0.0.1 -P " + mapper.localport; saveToRegistry("OpenSshPath", ""); }
+                            if (args == null) return;
 
                             // Launch the process
-                            try { proc = System.Diagnostics.Process.Start(f.GetAppPath(), args); }
-                            catch (System.ComponentModel.Win32Exception) { }
+                            try { proc = System.Diagnostics.Process.Start(appPath, args); } catch (Win32Exception) { }
 
                             // Setup auto-exit
                             if ((autoexit == true) && (parent.autoExitProc == null)) { parent.autoExitProc = proc; parent.SetAutoClose(); autoExitTimer.Enabled = true; }

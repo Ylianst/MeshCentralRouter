@@ -54,6 +54,7 @@ namespace MeshCentralRouter
         public bool deviceListViewMode = true;
         public Process autoExitProc = null;
         public int deviceDoubleClickAction = 0;
+        public FileInfo nativeSshPath = null;
 
         public bool isRouterHooked()
         {
@@ -266,6 +267,10 @@ namespace MeshCentralRouter
                 if (lines[1] != "") { label1.Text = lines[1]; }
             }
             catch (Exception) { }
+
+            // Check if Windows SSH is present
+            FileInfo nativeSshPath = new FileInfo(Path.Combine(Environment.SystemDirectory, "OpenSSH\\ssh.exe"));
+            if (nativeSshPath.Exists) { this.nativeSshPath = nativeSshPath; }
         }
 
         private void setDoubleClickDeviceAction()

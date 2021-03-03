@@ -32,6 +32,7 @@
             this.cancelButton = new System.Windows.Forms.Button();
             this.okButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.applicationComboBox = new System.Windows.Forms.ComboBox();
             this.folderButton = new System.Windows.Forms.Button();
             this.appNameLabel = new System.Windows.Forms.Label();
             this.appLinkLabel = new System.Windows.Forms.LinkLabel();
@@ -61,6 +62,7 @@
             // groupBox1
             // 
             resources.ApplyResources(this.groupBox1, "groupBox1");
+            this.groupBox1.Controls.Add(this.applicationComboBox);
             this.groupBox1.Controls.Add(this.folderButton);
             this.groupBox1.Controls.Add(this.appNameLabel);
             this.groupBox1.Controls.Add(this.appLinkLabel);
@@ -70,6 +72,14 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
+            // 
+            // applicationComboBox
+            // 
+            resources.ApplyResources(this.applicationComboBox, "applicationComboBox");
+            this.applicationComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.applicationComboBox.FormattingEnabled = true;
+            this.applicationComboBox.Name = "applicationComboBox";
+            this.applicationComboBox.SelectedIndexChanged += new System.EventHandler(this.applicationComboBox_SelectedIndexChanged);
             // 
             // folderButton
             // 
@@ -149,5 +159,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.Button folderButton;
+        private System.Windows.Forms.ComboBox applicationComboBox;
     }
 }

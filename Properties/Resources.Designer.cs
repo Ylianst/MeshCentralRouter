@@ -375,6 +375,15 @@ namespace MeshCentralRouter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to OpenSSH.
+        /// </summary>
+        internal static string OpenSSHAppName {
+            get {
+                return ResourceManager.GetString("OpenSSHAppName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to PuTTY SSH client.
         /// </summary>
         internal static string PuttyAppName {
