@@ -67,7 +67,13 @@ namespace MeshCentralRouter
             mapper.inaddrany = inaddrany;
             mapper.certhash = certhash;
             mapper.onStateMsgChanged += Mapper_onStateMsgChanged;
-            string serverurl = "wss://" + host + "/meshrelay.ashx?nodeid=" + node.nodeid;
+            string serverurl;
+            int keyIndex = host.IndexOf("?key=");
+            if (keyIndex >= 0) {
+                serverurl = "wss://" + host.Substring(0, keyIndex) + "/meshrelay.ashx?nodeid=" + node.nodeid + "&key=" + host.Substring(keyIndex + 5);
+            } else {
+                serverurl = "wss://" + host + "/meshrelay.ashx?nodeid=" + node.nodeid;
+            }
             if (protocol == 1) {
                 serverurl += ("&tcpport=" + remotePort);
                 if (remoteIP != null) { serverurl += "&tcpaddr=" + remoteIP; }
