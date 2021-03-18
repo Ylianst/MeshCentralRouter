@@ -147,7 +147,7 @@ namespace MeshCentralRouter
         public MainForm(string[] args)
         {
             // Set TLS 1.2
-            ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
             this.args = args;
             InitializeComponent();
