@@ -94,6 +94,7 @@
     <Compile Include="AddRelayMapForm.designer.cs">
       <DependentUpon>AddRelayMapForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="LocalPipe.cs" />
     <Compile Include="SshUsernameForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -28,6 +28,7 @@ using System.Web.Script.Serialization;
 using System.Security.Cryptography.X509Certificates;
 using Microsoft.Win32;
 using System.Drawing;
+using System.Text;
 
 namespace MeshCentralRouter
 {
@@ -55,6 +56,7 @@ namespace MeshCentralRouter
         public Process autoExitProc = null;
         public int deviceDoubleClickAction = 0;
         public FileInfo nativeSshPath = null;
+        public LocalPipeServer localPipeServer = null;
 
         public bool isRouterHooked()
         {
@@ -835,6 +837,9 @@ namespace MeshCentralRouter
                     }
                 }
 
+                // Clean up single instance pipe server
+                if (localPipeServer != null) { localPipeServer.Dispose(); localPipeServer = null; }
+
                 // Clean up the server
                 cookieRefreshTimer.Enabled = false;
                 meshcentral.onStateChanged -= Meshcentral_onStateChanged;
@@ -868,6 +873,62 @@ namespace MeshCentralRouter
 
                 // If we need to remember the 2nd factor, ask for a cookie now.
                 if (tokenRememberCheckBox.Checked) { meshcentral.sendCommand("{\"action\":\"twoFactorCookie\"}"); }
+
+                // Setup single instance pipe server
+                if (authLoginUrl != null) {
+                    string urlstring = "wss://" + authLoginUrl.Host + ":" + ((authLoginUrl.Port > 0) ? authLoginUrl.Port : 443) + authLoginUrl.LocalPath;
+                    localPipeServer = new LocalPipeServer(Convert.ToBase64String(UTF8Encoding.UTF8.GetBytes(urlstring))); //  + "" + meshcentral.certHash
+                    localPipeServer.onArgs += LocalPipeServer_onArgs;
+                }
+            }
+        }
+
+        private delegate void LocalPipeServerOnArgsHandler(string args);
+
+        private void LocalPipeServer_onArgs(string args)
+        {
+            if (args.StartsWith("mcrouter://") == false) return;
+            if (this.InvokeRequired) { this.Invoke(new LocalPipeServerOnArgsHandler(LocalPipeServer_onArgs), args); return; }
+
+            Uri authLoginUrl2 = new Uri(args);
+
+            // Set automatic port map values
+            if (authLoginUrl2 != null)
+            {
+                string autoNodeId = null;
+                string autoRemoteIp = null;
+                int autoRemotePort = 0;
+                int autoProtocol = 0;
+                int autoAppId = 0;
+                bool autoExit = false;
+                try
+                {
+                    // Automatic mappings
+                    autoNodeId = getValueFromQueryString(authLoginUrl2.Query, "nodeid");
+                    autoRemoteIp = getValueFromQueryString(authLoginUrl2.Query, "remoteip");
+                    autoRemotePort = int.Parse(getValueFromQueryString(authLoginUrl2.Query, "remoteport"));
+                    autoProtocol = int.Parse(getValueFromQueryString(authLoginUrl2.Query, "protocol"));
+                    autoAppId = int.Parse(getValueFromQueryString(authLoginUrl2.Query, "appid"));
+                    autoExit = (getValueFromQueryString(authLoginUrl2.Query, "autoexit") == "1");
+                }
+                catch (Exception) { }
+                if ((autoRemotePort != 0) && (autoProtocol != 0) && (autoNodeId != null))
+                {
+                    Dictionary<string, object> map = new Dictionary<string, object>();
+                    map.Add("nodeId", autoNodeId);
+                    if (autoRemoteIp != null) { map.Add("remoteIP", autoRemoteIp); }
+                    map.Add("remotePort", autoRemotePort);
+                    map.Add("localPort", 0);
+                    map.Add("protocol", autoProtocol);
+                    map.Add("appId", autoAppId);
+                    map.Add("autoExit", autoExit);
+                    map.Add("launch", 1);
+                    mappingsToSetup = new ArrayList();
+                    mappingsToSetup.Add(map);
+                    devicesTabControl.SelectedIndex = 1;
+                    setupMappings();
+                    cancelAutoClose();
+                }
             }
         }
 

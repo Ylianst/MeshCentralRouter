@@ -16,6 +16,7 @@ limitations under the License.
 
 using System;
 using System.IO;
+using System.Text;
 using System.Windows.Forms;
 
 namespace MeshCentralRouter
@@ -28,6 +29,7 @@ namespace MeshCentralRouter
         [STAThread]
         static void Main(string[] args)
         {
+            Uri authLoginUrl = null;
 
             // Setup settings & visual style
             Application.EnableVisualStyles();
@@ -43,6 +45,15 @@ namespace MeshCentralRouter
                 if (arg.Length > 3 && string.Compare(arg.Substring(0, 3), "-l:", true) == 0) {
                     try { System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(arg.Substring(3)); } catch (ArgumentException) { }
                 }
+                if (arg.Length > 11 && arg.Substring(0, 11).ToLower() == "mcrouter://") { authLoginUrl = new Uri(arg); }
+            }
+
+            // Setup single instance pipe client
+            if (authLoginUrl != null)
+            {
+                string urlstring = "wss://" + authLoginUrl.Host + ":" + ((authLoginUrl.Port > 0) ? authLoginUrl.Port : 443) + authLoginUrl.LocalPath;
+                LocalPipeClient localPipeClient = new LocalPipeClient(Convert.ToBase64String(UTF8Encoding.UTF8.GetBytes(urlstring))); //  + "" + meshcentral.certHash
+                if (localPipeClient.TrySendingArguments(authLoginUrl.ToString()) == true) { Application.Exit(); return; }
             }
 
             MainForm main;
