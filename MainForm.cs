@@ -367,6 +367,9 @@ namespace MeshCentralRouter
                     catch (Exception) { }
                 }
             }
+
+            // Set the focus
+            if (userNameTextBox.Text != "") { passwordTextBox.Select(); }
         }
 
         bool isPointVisibleOnAScreen(Point p)
