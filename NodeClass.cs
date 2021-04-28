@@ -18,6 +18,7 @@ namespace MeshCentralRouter
         public int conn;
         public int rdpport;
         public ulong rights;
+        public int mtype;
         public MeshClass mesh;
         public ListViewItem listitem;
         public DeviceUserControl control;
@@ -31,6 +32,7 @@ namespace MeshCentralRouter
         public string getStateString()
         {
             string status = "";
+            if (mtype == 3) return Properties.Resources.Local;
             if ((conn & 1) != 0) { if (status.Length > 0) { status += ", "; } status += Properties.Resources.Agent; }
             if ((conn & 2) != 0) { if (status.Length > 0) { status += ", "; } status += Properties.Resources.CIRA; }
             if ((conn & 4) != 0) { if (status.Length > 0) { status += ", "; } status += Properties.Resources.AMT; }

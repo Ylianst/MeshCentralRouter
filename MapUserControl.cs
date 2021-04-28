@@ -70,9 +70,9 @@ namespace MeshCentralRouter
             string serverurl;
             int keyIndex = host.IndexOf("?key=");
             if (keyIndex >= 0) {
-                serverurl = "wss://" + host.Substring(0, keyIndex) + "/meshrelay.ashx?nodeid=" + node.nodeid + "&key=" + host.Substring(keyIndex + 5);
+                serverurl = "wss://" + host.Substring(0, keyIndex) + "/" + ((node.mtype == 3)?"local":"mesh") + "relay.ashx?nodeid=" + node.nodeid + "&key=" + host.Substring(keyIndex + 5);
             } else {
-                serverurl = "wss://" + host + "/meshrelay.ashx?nodeid=" + node.nodeid;
+                serverurl = "wss://" + host + "/" + ((node.mtype == 3) ? "local" : "mesh") + "relay.ashx?nodeid=" + node.nodeid;
             }
             if (protocol == 1) {
                 serverurl += ("&tcpport=" + remotePort);

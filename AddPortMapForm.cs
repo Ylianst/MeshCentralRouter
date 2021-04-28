@@ -40,13 +40,13 @@ namespace MeshCentralRouter
                 foreach (string meshid in meshcentral.meshes.Keys)
                 {
                     MeshClass mesh = meshcentral.meshes[meshid];
-                    if (mesh.type == 2)
+                    if ((mesh.type == 2) || (mesh.type == 3))
                     {
                         int nodeCount = 0;
                         foreach (string nodeid in meshcentral.nodes.Keys)
                         {
                             NodeClass node = meshcentral.nodes[nodeid];
-                            if ((node.meshid == mesh.meshid) && ((node.conn & 1) != 0)) { nodeCount++; }
+                            if ((node.meshid == mesh.meshid) && (((node.conn & 1) != 0) || (node.mtype == 3))) { nodeCount++; }
                         }
                         if (nodeCount > 0) { groupComboBox.Items.Add(mesh); }
                     }
@@ -103,7 +103,7 @@ namespace MeshCentralRouter
                 foreach (string nodeid in meshcentral.nodes.Keys)
                 {
                     NodeClass node = meshcentral.nodes[nodeid];
-                    if (((node.meshid == mesh.meshid) || ((mesh.meshid == null) && (meshcentral.userRights.ContainsKey(node.nodeid)))) && ((node.conn & 1) != 0)) { nodeComboBox.Items.Add(node); }
+                    if (((node.meshid == mesh.meshid) || ((mesh.meshid == null) && (meshcentral.userRights.ContainsKey(node.nodeid)))) && (((node.conn & 1) != 0) || (node.mtype == 3))) { nodeComboBox.Items.Add(node); }
                 }
             }
 

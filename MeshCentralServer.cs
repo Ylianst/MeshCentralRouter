@@ -492,10 +492,16 @@ namespace MeshCentralRouter
                                         }
                                         n.name = (string)node["name"];
                                         n.meshid = meshid;
+                                        if (node.ContainsKey("mtype"))
+                                        {
+                                            if (node["mtype"].GetType() == typeof(string)) { n.mtype = int.Parse((string)node["mtype"]); }
+                                            if (node["mtype"].GetType() == typeof(int)) { n.mtype = (int)node["mtype"]; }
+                                        }
                                         if (node.ContainsKey("users")) { n.users = (string[])((ArrayList)node["users"]).ToArray(typeof(string)); } else { n.users = null; }
                                         if (node.ContainsKey("rdpport")) { n.rdpport = (int)node["rdpport"]; } else { n.rdpport = 3389; }
                                         if (node.ContainsKey("conn")) { n.conn = (int)node["conn"]; } else { n.conn = 0; }
                                         if (node.ContainsKey("icon")) { n.icon = (int)node["icon"]; }
+                                        if (n.icon == 0) { n.icon = 1; }
                                         n.rights = 0;
                                         n.links = new Dictionary<string, ulong>();
                                         if (node.ContainsKey("links"))
@@ -531,10 +537,16 @@ namespace MeshCentralRouter
                                         n.name = (string)node["name"];
                                         n.meshid = meshid;
 
+                                        if (node.ContainsKey("mtype"))
+                                        {
+                                            if (node["mtype"].GetType() == typeof(string)) { n.mtype = int.Parse((string)node["mtype"]); }
+                                            if (node["mtype"].GetType() == typeof(int)) { n.mtype = (int)node["mtype"]; }
+                                        }
                                         if (node.ContainsKey("users")) { n.users = (string[])((ArrayList)node["users"]).ToArray(typeof(string)); } else { n.users = null; }
                                         if (node.ContainsKey("rdpport")) { n.rdpport = (int)node["rdpport"]; } else { n.rdpport = 3389; }
                                         if (node.ContainsKey("conn")) { n.conn = (int)node["conn"]; } else { n.conn = 0; }
                                         if (node.ContainsKey("icon")) { n.icon = (int)node["icon"]; }
+                                        if (n.icon == 0) { n.icon = 1; }
                                         n.rights = 0;
                                         n.links = new Dictionary<string, ulong>();
                                         if (node.ContainsKey("links"))

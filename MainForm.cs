@@ -620,9 +620,9 @@ namespace MeshCentralRouter
                             device.SubItems[0].Text = node.name;
                         }
 
-                        bool connVisible = ((showOfflineDevicesToolStripMenuItem.Checked) || ((node.conn & 1) != 0));
+                        bool connVisible = ((showOfflineDevicesToolStripMenuItem.Checked) || ((node.conn & 1) != 0)) || (node.mtype == 3);
                         int imageIndex = (node.icon - 1) * 2;
-                        if ((node.conn & 1) == 0) { imageIndex++; }
+                        if (((node.conn & 1) == 0) && (node.mtype != 3)) { imageIndex++; }
                         device.ImageIndex = imageIndex;
 
                         string userSearch = null;
@@ -1094,7 +1094,7 @@ namespace MeshCentralRouter
                 if (devicesListView.SelectedItems.Count != 1) { return; }
                 ListViewItem selecteditem = devicesListView.SelectedItems[0];
                 NodeClass node = (NodeClass)selecteditem.Tag;
-                if ((node.conn & 1) == 0) { return; } // Agent not connected on this device
+                if (((node.conn & 1) == 0) && (node.mtype != 3)) { return; } // Agent not connected on this device & not local device
                 form.setNode(node);
             }
 
@@ -1654,7 +1654,7 @@ namespace MeshCentralRouter
             if (devicesListView.SelectedItems.Count != 1) { e.Cancel = true; return; } // Device not selected
             ListViewItem selecteditem = devicesListView.SelectedItems[0];
             NodeClass node = (NodeClass)selecteditem.Tag;
-            if ((node.conn & 1) == 0) { e.Cancel = true; return; } // Agent not connected on this device
+            if (((node.conn & 1) == 0) && (node.mtype != 3)) { e.Cancel = true; return; } // Agent not connected on this device
             if (node.agentid < 6)
             {
                 // Windows OS
@@ -1669,7 +1669,9 @@ namespace MeshCentralRouter
                 scpToolStripMenuItem.Visible = true;
                 rdpToolStripMenuItem.Visible = false;
             }
-            remoteDesktopToolStripMenuItem.Visible = ((node.agentcaps & 1) != 0); // Only display remote desktop if it's supported by the agent
+            addRelayMapToolStripMenuItem.Visible = (node.mtype != 3); // Relay mappings are not allowed for local devices
+            remoteDesktopToolStripMenuItem.Visible = ((node.agentcaps & 1) != 0); // Only display remote desktop if it's supported by the agent (1 = Desktop)
+            remoteFilesToolStripMenuItem.Visible = ((node.agentcaps & 4) != 0); // Only display remote desktop if it's supported by the agent (4 = Files)
         }
 
         private void httpToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1677,7 +1679,7 @@ namespace MeshCentralRouter
             if (devicesListView.SelectedItems.Count != 1) { return; }
             ListViewItem selecteditem = devicesListView.SelectedItems[0];
             NodeClass node = (NodeClass)selecteditem.Tag;
-            if ((node.conn & 1) == 0) { return; } // Agent not connected on this device
+            if (((node.conn & 1) == 0) && (node.mtype != 3)) { return; } // Agent not connected on this device & not local device
             QuickMap(1, 80, 1, node); // HTTP
         }
 
@@ -1686,7 +1688,7 @@ namespace MeshCentralRouter
             if (devicesListView.SelectedItems.Count != 1) { return; }
             ListViewItem selecteditem = devicesListView.SelectedItems[0];
             NodeClass node = (NodeClass)selecteditem.Tag;
-            if ((node.conn & 1) == 0) { return; } // Agent not connected on this device
+            if (((node.conn & 1) == 0) && (node.mtype != 3)) { return; } // Agent not connected on this device & not local device
             QuickMap(1, 443, 2, node); // HTTPS
         }
         private void rdpToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1694,7 +1696,7 @@ namespace MeshCentralRouter
             if (devicesListView.SelectedItems.Count != 1) { return; }
             ListViewItem selecteditem = devicesListView.SelectedItems[0];
             NodeClass node = (NodeClass)selecteditem.Tag;
-            if ((node.conn & 1) == 0) { return; } // Agent not connected on this device
+            if (((node.conn & 1) == 0) && (node.mtype != 3)) { return; } // Agent not connected on this device & not local device
             int rdpport = 3389;
             if (node.rdpport != 0) { rdpport = node.rdpport; }
             QuickMap(1, rdpport, 3, node); // RDP
@@ -1705,7 +1707,7 @@ namespace MeshCentralRouter
             if (devicesListView.SelectedItems.Count != 1) { return; }
             ListViewItem selecteditem = devicesListView.SelectedItems[0];
             NodeClass node = (NodeClass)selecteditem.Tag;
-            if ((node.conn & 1) == 0) { return; } // Agent not connected on this device
+            if (((node.conn & 1) == 0) && (node.mtype != 3)) { return; } // Agent not connected on this device & not local device
             QuickMap(1, 22, 4, node); // Putty
         }
 
@@ -1714,7 +1716,7 @@ namespace MeshCentralRouter
             if (devicesListView.SelectedItems.Count != 1) { return; }
             ListViewItem selecteditem = devicesListView.SelectedItems[0];
             NodeClass node = (NodeClass)selecteditem.Tag;
-            if ((node.conn & 1) == 0) { return; } // Agent not connected on this device
+            if (((node.conn & 1) == 0) && (node.mtype != 3)) { return; } // Agent not connected on this device & not local device
             QuickMap(1, 22, 5, node); // WinSCP
         }
 
@@ -1723,7 +1725,7 @@ namespace MeshCentralRouter
             if (devicesListView.SelectedItems.Count != 1) { return; }
             ListViewItem selecteditem = devicesListView.SelectedItems[0];
             NodeClass node = (NodeClass)selecteditem.Tag;
-            if ((node.conn & 1) == 0) { return; } // Agent not connected on this device
+            if (((node.conn & 1) == 0) && (node.mtype != 3)) { return; } // Agent not connected on this device & not local device
             addButton_Click(null, null);
         }
 
@@ -1732,7 +1734,7 @@ namespace MeshCentralRouter
             if (devicesListView.SelectedItems.Count != 1) { return; }
             ListViewItem selecteditem = devicesListView.SelectedItems[0];
             NodeClass node = (NodeClass)selecteditem.Tag;
-            if ((node.conn & 1) == 0) { return; } // Agent not connected on this device
+            if (((node.conn & 1) == 0) && (node.mtype != 3)) { return; } // Agent not connected on this device & not local device
             addRelayMapButton_Click(null, null);
         }
 
@@ -1742,7 +1744,7 @@ namespace MeshCentralRouter
             if (devicesListView.SelectedItems.Count != 1) { return; }
             ListViewItem selecteditem = devicesListView.SelectedItems[0];
             NodeClass node = (NodeClass)selecteditem.Tag;
-            if ((node.conn & 1) == 0) { return; } // Agent not connected on this device
+            if (((node.conn & 1) == 0) && (node.mtype != 3)) { return; } // Agent not connected on this device & not local device
 
             if (deviceDoubleClickAction == 0) { addMapToolStripMenuItem_Click(null, null); }
             if (deviceDoubleClickAction == 1) { addRelayMapToolStripMenuItem_Click(null, null); }

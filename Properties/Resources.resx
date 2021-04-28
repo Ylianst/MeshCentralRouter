@@ -268,4 +268,7 @@
   <data name="OpenSSHAppName" xml:space="preserve">
     <value>OpenSSH</value>
   </data>
+  <data name="Local" xml:space="preserve">
+    <value>Local</value>
+  </data>
 </root>
