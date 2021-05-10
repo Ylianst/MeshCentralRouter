@@ -411,6 +411,7 @@ namespace MeshCentralRouter
                                 }
                             case "nodeconnect":
                                 {
+                                    if (nodes == null) return;
                                     string nodeid = (string)ev["nodeid"];
                                     if (nodes.ContainsKey(nodeid))
                                     {
