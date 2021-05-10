@@ -194,7 +194,18 @@ namespace MeshCentralRouter
 
             // Parse the received JSON
             Dictionary<string, object> jsonAction = new Dictionary<string, object>();
-            jsonAction = new JavaScriptSerializer().Deserialize<Dictionary<string, object>>(data);
+            try
+            {
+                jsonAction = new JavaScriptSerializer().Deserialize<Dictionary<string, object>>(data);
+            } catch (Exception ex) {
+                if (debug) {
+                    try {
+                        File.AppendAllText("debug.log", "processServerData JSON Deserialize error: \r\n" + ex.ToString());
+                        File.AppendAllText("debug.log", "Invalid data (" + data.Length + "): \r\n" + data);
+                    } catch (Exception) { }
+                }
+                return;
+            }
             if (jsonAction == null || jsonAction["action"].GetType() != typeof(string)) return;
 
             string action = jsonAction["action"].ToString();
