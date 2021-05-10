@@ -66,6 +66,7 @@ namespace MeshCentralRouter
         public int twoFactorCookieDays = 0;
         public Dictionary<string, ulong> userRights = null;
         public Dictionary<string, string> userGroups = null;
+        private JavaScriptSerializer JSON = new JavaScriptSerializer();
 
         // Mesh Rights
         /*
@@ -137,6 +138,7 @@ namespace MeshCentralRouter
         // Starts the routing server, called when the start button is pressed
         public void connect(Uri wsurl, string user, string pass, string token)
         {
+            JSON.MaxJsonLength = 217483647;
             this.user = user;
             this.pass = pass;
             this.token = token;
@@ -196,7 +198,7 @@ namespace MeshCentralRouter
             Dictionary<string, object> jsonAction = new Dictionary<string, object>();
             try
             {
-                jsonAction = new JavaScriptSerializer().Deserialize<Dictionary<string, object>>(data);
+                jsonAction = JSON.Deserialize<Dictionary<string, object>>(data);
             } catch (Exception ex) {
                 if (debug) {
                     try {
