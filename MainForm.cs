@@ -218,6 +218,7 @@ namespace MeshCentralRouter
                 string autoNodeId = null;
                 string autoRemoteIp = null;
                 int autoRemotePort = 0;
+                int autoLocalPort = 0;
                 int autoProtocol = 0;
                 int autoAppId = 0;
                 bool autoExit = false;
@@ -230,6 +231,8 @@ namespace MeshCentralRouter
                     autoProtocol = int.Parse(getValueFromQueryString(authLoginUrl.Query, "protocol"));
                     autoAppId = int.Parse(getValueFromQueryString(authLoginUrl.Query, "appid"));
                     autoExit = (getValueFromQueryString(authLoginUrl.Query, "autoexit") == "1");
+                    string localPortStr = getValueFromQueryString(authLoginUrl.Query, "localport");
+                    if (localPortStr != null) { autoLocalPort = int.Parse(localPortStr); }
                 }
                 catch (Exception) { }
                 if ((autoRemotePort != 0) && (autoProtocol != 0) && (autoNodeId != null)) {
@@ -237,7 +240,7 @@ namespace MeshCentralRouter
                     map.Add("nodeId", autoNodeId);
                     if (autoRemoteIp != null) { map.Add("remoteIP", autoRemoteIp); }
                     map.Add("remotePort", autoRemotePort);
-                    map.Add("localPort", 0);
+                    map.Add("localPort", autoLocalPort);
                     map.Add("protocol", autoProtocol);
                     map.Add("appId", autoAppId);
                     map.Add("autoExit", autoExit);
@@ -901,6 +904,7 @@ namespace MeshCentralRouter
                 string autoNodeId = null;
                 string autoRemoteIp = null;
                 int autoRemotePort = 0;
+                int autoLocalPort = 0;
                 int autoProtocol = 0;
                 int autoAppId = 0;
                 bool autoExit = false;
@@ -913,6 +917,8 @@ namespace MeshCentralRouter
                     autoProtocol = int.Parse(getValueFromQueryString(authLoginUrl2.Query, "protocol"));
                     autoAppId = int.Parse(getValueFromQueryString(authLoginUrl2.Query, "appid"));
                     autoExit = (getValueFromQueryString(authLoginUrl2.Query, "autoexit") == "1");
+                    string localPortStr = getValueFromQueryString(authLoginUrl.Query, "localport");
+                    if (localPortStr != null) { autoLocalPort = int.Parse(localPortStr); }
                 }
                 catch (Exception) { }
                 if ((autoRemotePort != 0) && (autoProtocol != 0) && (autoNodeId != null))
@@ -921,7 +927,7 @@ namespace MeshCentralRouter
                     map.Add("nodeId", autoNodeId);
                     if (autoRemoteIp != null) { map.Add("remoteIP", autoRemoteIp); }
                     map.Add("remotePort", autoRemotePort);
-                    map.Add("localPort", 0);
+                    map.Add("localPort", autoLocalPort);
                     map.Add("protocol", autoProtocol);
                     map.Add("appId", autoAppId);
                     map.Add("autoExit", autoExit);
