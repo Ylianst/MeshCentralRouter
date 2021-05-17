@@ -556,7 +556,20 @@ namespace MeshCentralRouter
                                             if (node["mtype"].GetType() == typeof(string)) { n.mtype = int.Parse((string)node["mtype"]); }
                                             if (node["mtype"].GetType() == typeof(int)) { n.mtype = (int)node["mtype"]; }
                                         }
-                                        if (node.ContainsKey("users")) { n.users = (string[])((ArrayList)node["users"]).ToArray(typeof(string)); } else { n.users = null; }
+                                        if (node.ContainsKey("users")) {
+                                            if (node["users"].GetType() == typeof(ArrayList)) {
+                                                n.users = (string[])((ArrayList)node["users"]).ToArray(typeof(string));
+                                            } else if (node["users"].GetType() == typeof(Dictionary<string, object>)) {
+                                                Dictionary<string, object> users = (Dictionary<string, object>)node["users"];
+                                                ArrayList users2 = new ArrayList();
+                                                foreach (string u in users.Keys) { if (users[u].GetType() == typeof(string)) { users2.Add((string)users[u]); } }
+                                                n.users = (string[])users2.ToArray(typeof(string));
+                                            } else {
+                                                n.users = null;
+                                            }
+                                        } else {
+                                            n.users = null;
+                                        }
                                         if (node.ContainsKey("rdpport")) { n.rdpport = (int)node["rdpport"]; } else { n.rdpport = 3389; }
                                         if (node.ContainsKey("conn")) { n.conn = (int)node["conn"]; } else { n.conn = 0; }
                                         if (node.ContainsKey("icon")) { n.icon = (int)node["icon"]; }
