@@ -194,11 +194,14 @@ namespace MeshCentralRouter
                     int fileIcon = 0;
                     string fileName = null;
                     string fileDate = null;
-                    int fileSize = -1;
+                    long fileSize = -1;
                     if (fileItem.ContainsKey("t")) { fileIcon = (int)fileItem["t"]; }
                     if (fileItem.ContainsKey("n")) { fileName = (string)fileItem["n"]; }
                     if (fileItem.ContainsKey("d")) { fileDate = (string)fileItem["d"]; }
-                    if (fileItem.ContainsKey("s")) { fileSize = (int)fileItem["s"]; }
+                    if (fileItem.ContainsKey("s")) {
+                        if (fileItem["s"].GetType() == typeof(System.Int32)) { fileSize = (int)fileItem["s"]; }
+                        if (fileItem["s"].GetType() == typeof(System.Int64)) { fileSize = (long)fileItem["s"]; }
+                    }
                     if (fileIcon == 1) {
                         sortlist.Add(new ListViewItem(fileName, 0)); // Drive
                     } else if (fileIcon == 2) {
@@ -216,11 +219,15 @@ namespace MeshCentralRouter
                     int fileIcon = 0;
                     string fileName = null;
                     string fileDate = null;
-                    int fileSize = -1;
+                    long fileSize = -1;
                     if (fileItem.ContainsKey("t")) { fileIcon = (int)fileItem["t"]; }
                     if (fileItem.ContainsKey("n")) { fileName = (string)fileItem["n"]; }
                     if (fileItem.ContainsKey("d")) { fileDate = (string)fileItem["d"]; }
-                    if (fileItem.ContainsKey("s")) { fileSize = (int)fileItem["s"]; }
+                    if (fileItem.ContainsKey("s"))
+                    {
+                        if (fileItem["s"].GetType() == typeof(System.Int32)) { fileSize = (int)fileItem["s"]; }
+                        if (fileItem["s"].GetType() == typeof(System.Int64)) { fileSize = (long)fileItem["s"]; }
+                    }
                     if (fileIcon == 3)
                     {
                         // File
