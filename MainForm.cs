@@ -227,15 +227,15 @@ namespace MeshCentralRouter
                     // Automatic mappings
                     autoNodeId = getValueFromQueryString(authLoginUrl.Query, "nodeid");
                     autoRemoteIp = getValueFromQueryString(authLoginUrl.Query, "remoteip");
-                    autoRemotePort = int.Parse(getValueFromQueryString(authLoginUrl.Query, "remoteport"));
-                    autoProtocol = int.Parse(getValueFromQueryString(authLoginUrl.Query, "protocol"));
-                    autoAppId = int.Parse(getValueFromQueryString(authLoginUrl.Query, "appid"));
+                    int.TryParse(getValueFromQueryString(authLoginUrl.Query, "remoteport"), out autoRemotePort);
+                    int.TryParse(getValueFromQueryString(authLoginUrl.Query, "protocol"), out autoProtocol);
+                    int.TryParse(getValueFromQueryString(authLoginUrl.Query, "appid"), out autoAppId);
                     autoExit = (getValueFromQueryString(authLoginUrl.Query, "autoexit") == "1");
                     string localPortStr = getValueFromQueryString(authLoginUrl.Query, "localport");
                     if (localPortStr != null) { autoLocalPort = int.Parse(localPortStr); }
                 }
                 catch (Exception) { }
-                if ((autoRemotePort != 0) && (autoProtocol != 0) && (autoNodeId != null)) {
+                if (((autoRemotePort != 0) && (autoProtocol != 0) && (autoNodeId != null)) || ((autoNodeId != null) && ((autoAppId == 6) || (autoAppId == 7)))) {
                     Dictionary<string, object> map = new Dictionary<string, object>();
                     map.Add("nodeId", autoNodeId);
                     if (autoRemoteIp != null) { map.Add("remoteIP", autoRemoteIp); }
@@ -247,7 +247,7 @@ namespace MeshCentralRouter
                     map.Add("launch", 1);
                     mappingsToSetup = new ArrayList();
                     mappingsToSetup.Add(map);
-                    devicesTabControl.SelectedIndex = 1;
+                    if ((autoAppId != 6) && (autoAppId != 7)) { devicesTabControl.SelectedIndex = 1; }
                 }
             }
 
@@ -913,15 +913,15 @@ namespace MeshCentralRouter
                     // Automatic mappings
                     autoNodeId = getValueFromQueryString(authLoginUrl2.Query, "nodeid");
                     autoRemoteIp = getValueFromQueryString(authLoginUrl2.Query, "remoteip");
-                    autoRemotePort = int.Parse(getValueFromQueryString(authLoginUrl2.Query, "remoteport"));
-                    autoProtocol = int.Parse(getValueFromQueryString(authLoginUrl2.Query, "protocol"));
-                    autoAppId = int.Parse(getValueFromQueryString(authLoginUrl2.Query, "appid"));
+                    int.TryParse(getValueFromQueryString(authLoginUrl2.Query, "remoteport"), out autoRemotePort);
+                    int.TryParse(getValueFromQueryString(authLoginUrl2.Query, "protocol"), out autoProtocol);
+                    int.TryParse(getValueFromQueryString(authLoginUrl2.Query, "appid"), out autoAppId);
                     autoExit = (getValueFromQueryString(authLoginUrl2.Query, "autoexit") == "1");
                     string localPortStr = getValueFromQueryString(authLoginUrl.Query, "localport");
                     if (localPortStr != null) { autoLocalPort = int.Parse(localPortStr); }
                 }
                 catch (Exception) { }
-                if ((autoRemotePort != 0) && (autoProtocol != 0) && (autoNodeId != null))
+                if (((autoRemotePort != 0) && (autoProtocol != 0) && (autoNodeId != null)) || ((autoNodeId != null) && ((autoAppId == 6) || (autoAppId == 7))))
                 {
                     Dictionary<string, object> map = new Dictionary<string, object>();
                     map.Add("nodeId", autoNodeId);
@@ -934,7 +934,7 @@ namespace MeshCentralRouter
                     map.Add("launch", 1);
                     mappingsToSetup = new ArrayList();
                     mappingsToSetup.Add(map);
-                    devicesTabControl.SelectedIndex = 1;
+                    if ((autoAppId != 6) && (autoAppId != 7)) { devicesTabControl.SelectedIndex = 1; }
                     setupMappings();
                     cancelAutoClose();
                 }
@@ -1568,40 +1568,66 @@ namespace MeshCentralRouter
                 NodeClass node = null;
                 try { node = meshcentral.nodes[nodeId]; } catch (Exception) { }
                 if (node == null) continue;
+                int appId = (int)x["appId"];
 
-                // Add a new port map
-                MapUserControl map = new MapUserControl();
-                map.xdebug = debug;
-                map.inaddrany = inaddrany;
-                if (x.ContainsKey("name")) { map.name = x["name"].ToString(); } else { map.name = ""; }
-                map.protocol = (int)x["protocol"];
-                map.localPort = (int)x["localPort"];
-                if (x.ContainsKey("remoteIP")) { map.remoteIP = (string)x["remoteIP"]; }
-                map.remotePort = (int)x["remotePort"];
-                map.appId = (int)x["appId"];
-                if (x.ContainsKey("autoExit")) { map.autoexit = (bool)x["autoExit"]; }
-                map.node = node;
-                if (authLoginUrl != null) { map.host = authLoginUrl.Host + ":" + ((authLoginUrl.Port > 0) ? authLoginUrl.Port : 443); } else { map.host = serverNameComboBox.Text; }
-                map.certhash = meshcentral.wshash;
-                map.parent = this;
-                map.Dock = DockStyle.Top;
-                map.Start();
-
-                mapPanel.Controls.Add(map);
-                noMapLabel.Visible = false;
-
-                // Launch any executable
-                if (x.ContainsKey("launch")) {
-                    if (x["launch"].GetType() == typeof(int)) { map.appButton_Click(this, null); }
-                    if (x["launch"].GetType() == typeof(string))
+                if (appId == 6)
+                {
+                    // MeshCentral Router Desktop
+                    if ((node.conn & 1) == 0) return; // Agent not connected on this device
+                    startNewDesktopViewer(node, 0);
+                }
+                else if (appId == 7)
+                {
+                    // MeshCentral Router Files
+                    if ((node.conn & 1) == 0) return; // Agent not connected on this device
+                    if (node.fileViewer == null)
                     {
-                        try
+                        node.fileViewer = new FileViewer(meshcentral, node);
+                        node.fileViewer.Show();
+                        node.fileViewer.MenuItemConnect_Click(null, null);
+                    }
+                    else
+                    {
+                        node.fileViewer.Focus();
+                    }
+                }
+                else
+                {
+                    // Add a new port map
+                    MapUserControl map = new MapUserControl();
+                    map.xdebug = debug;
+                    map.inaddrany = inaddrany;
+                    if (x.ContainsKey("name")) { map.name = x["name"].ToString(); } else { map.name = ""; }
+                    map.protocol = (int)x["protocol"];
+                    map.localPort = (int)x["localPort"];
+                    if (x.ContainsKey("remoteIP")) { map.remoteIP = (string)x["remoteIP"]; }
+                    map.remotePort = (int)x["remotePort"];
+                    map.appId = (int)x["appId"];
+                    if (x.ContainsKey("autoExit")) { map.autoexit = (bool)x["autoExit"]; }
+                    map.node = node;
+                    if (authLoginUrl != null) { map.host = authLoginUrl.Host + ":" + ((authLoginUrl.Port > 0) ? authLoginUrl.Port : 443); } else { map.host = serverNameComboBox.Text; }
+                    map.certhash = meshcentral.wshash;
+                    map.parent = this;
+                    map.Dock = DockStyle.Top;
+                    map.Start();
+
+                    mapPanel.Controls.Add(map);
+                    noMapLabel.Visible = false;
+
+                    // Launch any executable
+                    if (x.ContainsKey("launch"))
+                    {
+                        if (x["launch"].GetType() == typeof(int)) { map.appButton_Click(this, null); }
+                        if (x["launch"].GetType() == typeof(string))
                         {
-                            string lanuchString = (string)x["launch"];
-                            lanuchString = lanuchString.Replace("{port}", x["localPort"].ToString());
-                            System.Diagnostics.Process.Start(lanuchString);
+                            try
+                            {
+                                string lanuchString = (string)x["launch"];
+                                lanuchString = lanuchString.Replace("{port}", x["localPort"].ToString());
+                                System.Diagnostics.Process.Start(lanuchString);
+                            }
+                            catch (Exception) { }
                         }
-                        catch (Exception) { }
                     }
                 }
             }
