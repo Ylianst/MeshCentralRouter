@@ -13,6 +13,7 @@ namespace MeshCentralRouter
         {
             this.meshcentral = meshcentral;
             InitializeComponent();
+            Translate.TranslateControl(this);
             updateInfo();
         }
 

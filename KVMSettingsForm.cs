@@ -29,6 +29,7 @@ namespace MeshCentralRouter
         public KVMSettingsForm()
         {
             InitializeComponent();
+            Translate.TranslateControl(this);
             qualityComboBox.Items.Add(new DropListItem(90, "90%"));
             qualityComboBox.Items.Add(new DropListItem(80, "80%"));
             qualityComboBox.Items.Add(new DropListItem(70, "70%"));

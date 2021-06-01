@@ -76,6 +76,7 @@ namespace MeshCentralRouter
         public FileViewer(MeshCentralServer server, NodeClass node)
         {
             InitializeComponent();
+            Translate.TranslateControl(this);
             if (node != null) { this.Text += " - " + node.name; }
             this.node = node;
             this.server = server;

@@ -8,6 +8,7 @@ namespace MeshCentralRouter
         public altPortForm()
         {
             InitializeComponent();
+            Translate.TranslateControl(this);
         }
 
         public int altPort

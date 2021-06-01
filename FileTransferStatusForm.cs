@@ -11,6 +11,7 @@ namespace MeshCentralRouter
         {
             this.fileViewer = fileViewer;
             InitializeComponent();
+            Translate.TranslateControl(this);
             updateInfo();
             updateTimer.Enabled = true;
         }

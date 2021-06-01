@@ -8,6 +8,7 @@ namespace MeshCentralRouter
         public SshUsernameForm()
         {
             InitializeComponent();
+            Translate.TranslateControl(this);
         }
 
         public string Username

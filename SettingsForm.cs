@@ -15,6 +15,7 @@ namespace MeshCentralRouter
         public SettingsForm()
         {
             InitializeComponent();
+            Translate.TranslateControl(this);
         }
 
         public bool BindAllInterfaces

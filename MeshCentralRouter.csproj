@@ -241,6 +241,7 @@
     <Compile Include="SettingsForm.Designer.cs">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Translate.cs" />
     <Compile Include="UpdateForm.cs">
       <SubType>Form</SubType>
     </Compile>

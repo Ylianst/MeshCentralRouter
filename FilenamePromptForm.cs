@@ -21,6 +21,7 @@ namespace MeshCentralRouter
         public FilenamePromptForm(string operation, string filename)
         {
             InitializeComponent();
+            Translate.TranslateControl(this);
             mainGroupBox.Text = operation;
             mainTextBox.Text = filename;
             okButton.Enabled = (filename.Length > 0);

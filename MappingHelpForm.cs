@@ -11,6 +11,7 @@ namespace MeshCentralRouter
         public MappingHelpForm()
         {
             InitializeComponent();
+            Translate.TranslateControl(this);
 
             // Load customizations
             FileInfo selfExe = new FileInfo(Assembly.GetExecutingAssembly().Location);

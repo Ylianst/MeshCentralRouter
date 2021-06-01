@@ -12,6 +12,7 @@ namespace MeshCentralRouter
         {
             this.meshcentral = meshcentral;
             InitializeComponent();
+            Translate.TranslateControl(this);
         }
 
         public string getName() { return nameTextBox.Text; }

@@ -16,6 +16,7 @@ namespace MeshCentralRouter
         public AppLaunchForm()
         {
             InitializeComponent();
+            Translate.TranslateControl(this);
             UpdateInfo();
         }
 

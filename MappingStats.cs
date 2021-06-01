@@ -11,6 +11,7 @@ namespace MeshCentralRouter
         {
             this.mapControl = mapControl;
             InitializeComponent();
+            Translate.TranslateControl(this);
         }
 
         private void refreshTimer_Tick(object sender, EventArgs e)

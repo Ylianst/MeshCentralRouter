@@ -22,6 +22,7 @@ namespace MeshCentralRouter
         public UpdateForm(string url, string hash, int size, string[] args, string serverhash)
         {
             InitializeComponent();
+            Translate.TranslateControl(this);
             this.url = url;
             this.hash = hash;
             this.size = size;

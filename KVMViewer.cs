@@ -46,6 +46,7 @@ namespace MeshCentralRouter
         public KVMViewer(MeshCentralServer server, NodeClass node)
         {
             InitializeComponent();
+            Translate.TranslateControl(this);
             this.Text += " - " + node.name;
             this.node = node;
             this.server = server;

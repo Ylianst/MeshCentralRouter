@@ -15,6 +15,7 @@ namespace MeshCentralRouter
         public DeviceSettingsForm()
         {
             InitializeComponent();
+            Translate.TranslateControl(this);
             doubleClickComboBox.SelectedIndex = 0;
         }
 

@@ -153,6 +153,7 @@ namespace MeshCentralRouter
 
             this.args = args;
             InitializeComponent();
+            Translate.TranslateControl(this);
             mainPanel.Controls.Add(panel1);
             mainPanel.Controls.Add(panel2);
             mainPanel.Controls.Add(panel3);
