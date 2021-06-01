@@ -154,6 +154,7 @@ namespace MeshCentralRouter
             this.args = args;
             InitializeComponent();
             Translate.TranslateControl(this);
+            Translate.TranslateListView(devicesListView);
             mainPanel.Controls.Add(panel1);
             mainPanel.Controls.Add(panel2);
             mainPanel.Controls.Add(panel3);
@@ -331,7 +332,7 @@ namespace MeshCentralRouter
             //windowColor = serverNameTextBox.BackColor;
             setPanel(1);
             updatePanel1(null, null);
-            SendMessage(searchTextBox.Handle, EM_SETCUEBANNER, 0, Properties.Resources.SearchPlaceHolder);
+            SendMessage(searchTextBox.Handle, EM_SETCUEBANNER, 0, Translate.T(Properties.Resources.SearchPlaceHolder));
 
             // Start the multicast scanner
             //scanner = new MeshDiscovery();
@@ -772,8 +773,8 @@ namespace MeshCentralRouter
                     emailTokenButton.Visible = (meshcentral.disconnectEmail2FA == true) && (meshcentral.disconnectEmail2FASent == false);
                     tokenEmailSentLabel.Visible = (meshcentral.disconnectEmail2FASent == true) || (meshcentral.disconnectSms2FASent == true);
                     smsTokenButton.Visible = ((meshcentral.disconnectSms2FA == true) && (meshcentral.disconnectSms2FASent == false));
-                    if (meshcentral.disconnectEmail2FASent) { tokenEmailSentLabel.Text = Properties.Resources.EmailSent; }
-                    if (meshcentral.disconnectSms2FASent) { tokenEmailSentLabel.Text = Properties.Resources.SmsSent; }
+                    if (meshcentral.disconnectEmail2FASent) { tokenEmailSentLabel.Text = Translate.T(Properties.Resources.EmailSent); }
+                    if (meshcentral.disconnectSms2FASent) { tokenEmailSentLabel.Text = Translate.T(Properties.Resources.SmsSent); }
                     if ((meshcentral.disconnectEmail2FA == true) && (meshcentral.disconnectEmail2FASent == false)) {
                         smsTokenButton.Left = emailTokenButton.Left + emailTokenButton.Width + 5;
                     } else {
@@ -782,7 +783,7 @@ namespace MeshCentralRouter
                     tokenTextBox.Text = "";
                     if (meshcentral.twoFactorCookieDays > 0) {
                         tokenRememberCheckBox.Visible = true;
-                        tokenRememberCheckBox.Text = string.Format(Properties.Resources.DontAskXDays, meshcentral.twoFactorCookieDays);
+                        tokenRememberCheckBox.Text = string.Format(Translate.T(Properties.Resources.DontAskXDays), meshcentral.twoFactorCookieDays);
                     } else {
                         tokenRememberCheckBox.Visible = false;
                     }
@@ -792,14 +793,14 @@ namespace MeshCentralRouter
                 } else { setPanel(1); }
 
                 if ((meshcentral.disconnectMsg != null) && meshcentral.disconnectMsg.StartsWith("noauth")) {
-                    stateLabel.Text = Properties.Resources.InvalidUsernameOrPassword;
+                    stateLabel.Text = Translate.T(Properties.Resources.InvalidUsernameOrPassword);
                     stateLabel.Visible = true;
                     stateClearTimer.Enabled = true;
                     serverNameComboBox.Focus();
                 }
                 else if ((meshcentral.disconnectMsg != null) && meshcentral.disconnectMsg.StartsWith("emailvalidationrequired"))
                 {
-                    stateLabel.Text = Properties.Resources.EmailVerificationRequired;
+                    stateLabel.Text = Translate.T(Properties.Resources.EmailVerificationRequired);
                     stateLabel.Visible = true;
                     stateClearTimer.Enabled = true;
                     serverNameComboBox.Focus();
@@ -810,7 +811,7 @@ namespace MeshCentralRouter
                     setPanel(3);
                     certDetailsButton.Focus();
                 }
-                else if (meshcentral.disconnectMsg == null) { stateLabel.Text = Properties.Resources.UnableToConnect; stateLabel.Visible = true; stateClearTimer.Enabled = true; serverNameComboBox.Focus(); }
+                else if (meshcentral.disconnectMsg == null) { stateLabel.Text = Translate.T(Properties.Resources.UnableToConnect); stateLabel.Visible = true; stateClearTimer.Enabled = true; serverNameComboBox.Focus(); }
 
                 // Clean up the UI
                 nextButton1.Enabled = true;
@@ -1441,7 +1442,7 @@ namespace MeshCentralRouter
 
         private void emailTokenButton_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show(this, Properties.Resources.SendTokenEmail, Properties.Resources.TwoFactorAuthentication, MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            if (MessageBox.Show(this, Translate.T(Properties.Resources.SendTokenEmail), Translate.T(Properties.Resources.TwoFactorAuthentication), MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
                 sendEmailToken = true;
                 sendSMSToken = false;
@@ -1451,7 +1452,7 @@ namespace MeshCentralRouter
 
         private void smsTokenButton_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show(this, Properties.Resources.SendTokenSMS, Properties.Resources.TwoFactorAuthentication, MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            if (MessageBox.Show(this, Translate.T(Properties.Resources.SendTokenSMS), Translate.T(Properties.Resources.TwoFactorAuthentication), MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
                 sendEmailToken = false;
                 sendSMSToken = true;
@@ -1521,7 +1522,7 @@ namespace MeshCentralRouter
         private void ChangeLanguage(string lang)
         {
             if (System.Threading.Thread.CurrentThread.CurrentUICulture == new System.Globalization.CultureInfo(lang)) return;
-            if (MessageBox.Show(this, Properties.Resources.LanguagesChanging, Properties.Resources.LanguagesTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show(this, Translate.T(Properties.Resources.LanguagesChanging), Translate.T(Properties.Resources.LanguagesTitle), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(lang);
                 Close();

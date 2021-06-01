@@ -133,8 +133,8 @@ namespace MeshCentralRouter
 
         private void UpdateInfo() {
             string msg = "";
-            if (state == -1) { msg = Properties.Resources.UnableToBindToLocalPort; }
-            else if (state == 0) { msg = Properties.Resources.Stopped2; }
+            if (state == -1) { msg = Translate.T(Properties.Resources.UnableToBindToLocalPort); }
+            else if (state == 0) { msg = Translate.T(Properties.Resources.Stopped2); }
             else if (state == 1) {
                 if (remoteip == null)
                 {
@@ -142,8 +142,8 @@ namespace MeshCentralRouter
                 } else {
                     msg = "Port " + localport + " to " + remoteip + ":" + remoteport;
                 }
-                if (totalConnectCounter == 1) { msg += Properties.Resources.OneConnection; }
-                if (totalConnectCounter > 1) { msg += string.Format(Properties.Resources.ManyConnections, totalConnectCounter); }
+                if (totalConnectCounter == 1) { msg += Translate.T(Properties.Resources.OneConnection); }
+                if (totalConnectCounter > 1) { msg += string.Format(Translate.T(Properties.Resources.ManyConnections), totalConnectCounter); }
             }
             if (onStateMsgChanged != null) { onStateMsgChanged(msg); }
         }

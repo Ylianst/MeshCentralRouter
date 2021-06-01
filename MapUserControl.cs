@@ -71,7 +71,7 @@ namespace MeshCentralRouter
 
         public void Start()
         {
-            routingStatusLabel.Text = Properties.Resources.Starting;
+            routingStatusLabel.Text = Translate.T(Properties.Resources.Starting);
             appButton.Enabled = (appId != 0);
             mapper = new MeshMapper();
             mapper.xdebug = xdebug;
@@ -98,7 +98,7 @@ namespace MeshCentralRouter
 
         public void Stop()
         {
-            routingStatusLabel.Text = Properties.Resources.Stopped;
+            routingStatusLabel.Text = Translate.T(Properties.Resources.Stopped);
             appButton.Enabled = false;
             if (mapper != null) { mapper.onStateMsgChanged -= Mapper_onStateMsgChanged; mapper.stop(); mapper = null; }
             if (stats != null) { stats.Close(); stats = null; }
@@ -186,8 +186,8 @@ namespace MeshCentralRouter
                     {
                         System.Diagnostics.Process proc = null;
                         AppLaunchForm.AppInfo[] apps = new AppLaunchForm.AppInfo[2];
-                        apps[0] = new AppLaunchForm.AppInfo(Properties.Resources.OpenSSHAppName, "https://www.openssh.com/", (parent.nativeSshPath != null) ? parent.nativeSshPath.FullName : "", "OpenSshPath");
-                        apps[1] = new AppLaunchForm.AppInfo(Properties.Resources.PuttyAppName, "http://www.chiark.greenend.org.uk/~sgtatham/putty/", puttyPath, "PuttyPath");
+                        apps[0] = new AppLaunchForm.AppInfo(Translate.T(Properties.Resources.OpenSSHAppName), "https://www.openssh.com/", (parent.nativeSshPath != null) ? parent.nativeSshPath.FullName : "", "OpenSshPath");
+                        apps[1] = new AppLaunchForm.AppInfo(Translate.T(Properties.Resources.PuttyAppName), "http://www.chiark.greenend.org.uk/~sgtatham/putty/", puttyPath, "PuttyPath");
                         f.SetApps(apps);
                         if (f.ShowDialog(this) == DialogResult.OK)
                         {
@@ -232,7 +232,7 @@ namespace MeshCentralRouter
                     using (AppLaunchForm f = new AppLaunchForm())
                     {
                         System.Diagnostics.Process proc = null;
-                        f.SetAppName(Properties.Resources.WinscpAppName);
+                        f.SetAppName(Translate.T(Properties.Resources.WinscpAppName));
                         f.SetAppLink("http://winscp.net/");
                         f.SetAppPath(winScpPath);
                         if (f.ShowDialog(this) == DialogResult.OK)

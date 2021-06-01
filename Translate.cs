@@ -25,1040 +25,987 @@ namespace MeshCentralRouter
         // *** TRANSLATION TABLE START ***
         static private Dictionary<string, Dictionary<string, string>> translationTable = new Dictionary<string, Dictionary<string, string>>() {
         {
-            "Count",
+            "Sort by G&roup",
             new Dictionary<string, string>() {
-                {"ru","Считать"},
-                {"fi","Считать"},
-                {"fr","Compter"},
-                {"es","Contar"}
+                {"es","Hlig yb T&ilfk"}
             }
         },
         {
-            "Intel® ME State...",
+            "Tunnelling Data",
             new Dictionary<string, string>() {
-                {"ru","Состояние Intel® ME ..."},
-                {"fi","Состояние Intel® ME ..."},
-                {"fr","État Intel® ME..."},
-                {"es","Estado Intel® ME ..."}
+                {"es","Gfmmvoormt Wzgz"}
             }
         },
         {
-            "Remote Sessions...",
+            "MeshCentral Router",
             new Dictionary<string, string>() {
-                {"ru","Удаленные сеансы ..."},
-                {"fi","Удаленные сеансы ..."},
-                {"fr","Séances à distance..."},
-                {"es","Sesiones remotas ..."}
+                {"es","NvhsXvmgizo Ilfgvi"}
             }
         },
         {
-            "Remote Sessions",
+            "SMS",
             new Dictionary<string, string>() {
-                {"ru","Удаленные сеансы"},
-                {"fi","Удаленные сеансы"},
-                {"fr","Séances à distance"},
-                {"es","Sesiones remotas"}
+                {"es","HNH"}
             }
         },
         {
-            "MeshCentral Assistant",
+            "Sort by &Name",
             new Dictionary<string, string>() {
-                {"fr","Assistant MeshCentral"},
-                {"es","Asistente MeshCentral"},
-                {"ru","MeshCentral Ассистент"}
+                {"es","Hlig yb &Mznv"}
             }
         },
         {
-            "&Start Agent",
+            "Protocol",
             new Dictionary<string, string>() {
-                {"ru","& Запустить агент"},
-                {"fi","& Запустить агент"},
-                {"fr","&Démarrer l'agent"},
-                {"es","& Iniciar agente"}
+                {"es","Kilglxlo"}
             }
         },
         {
-            "Agent Select",
+            "Password",
             new Dictionary<string, string>() {
-                {"ru","Агент Выбрать"},
-                {"fi","Агент Выбрать"},
-                {"fr","Sélection d'agent"},
-                {"es","Seleccionar agente"}
+                {"es","Kzhhdliw"}
             }
         },
         {
-            "Agent is paused",
+            "Agent",
             new Dictionary<string, string>() {
-                {"ru","Агент приостановлен"},
-                {"fi","Агент приостановлен"},
-                {"fr","L'agent est en pause"},
-                {"es","El agente está en pausa"}
+                {"es","Ztvmg"}
             }
         },
         {
-            "Agent is continue pending",
+            "Settings",
             new Dictionary<string, string>() {
-                {"ru","Агент ожидает продолжения"},
-                {"fi","Агент ожидает продолжения"},
-                {"fr","L'agent est en attente de poursuite"},
-                {"es","El agente sigue pendiente"}
+                {"es","Hvggrmth"}
             }
         },
         {
-            "Later",
+            "&Info...",
             new Dictionary<string, string>() {
-                {"ru","Позже"},
-                {"fi","Позже"},
-                {"fr","Plus tard"},
-                {"es","Mas tarde"}
+                {"es","&Rmul..."}
             }
         },
         {
-            "Agent is stopped pending",
+            "Email",
             new Dictionary<string, string>() {
-                {"ru","Агент остановлен в ожидании"},
-                {"fi","Агент остановлен в ожидании"},
-                {"fr","L'agent est arrêté en attente"},
-                {"es","El agente está detenido pendiente"}
+                {"es","Vnzro"}
             }
         },
         {
-            "Agent is missing",
+            "Unable to connect",
             new Dictionary<string, string>() {
-                {"ru","Агент отсутствует"},
-                {"fi","Агент отсутствует"},
-                {"fr","L'agent est manquant"},
-                {"es","Falta el agente"}
+                {"es","Fmzyov gl xlmmvxg"}
             }
         },
         {
-            "Intel® Management Engine state for this computer.",
+            "UDP",
             new Dictionary<string, string>() {
-                {"ru","Состояние Intel® Management Engine для этого компьютера."},
-                {"fi","Состояние Intel® Management Engine для этого компьютера."},
-                {"fr","État du moteur de gestion Intel® pour cet ordinateur."},
-                {"es","Estado del motor de administración Intel® para este equipo."}
+                {"es","FWK"}
             }
         },
         {
-            "Item",
+            "Remote IP",
             new Dictionary<string, string>() {
-                {"ru","Пункт"},
-                {"fi","Пункт"},
-                {"fr","Article"},
-                {"es","Artículo"}
+                {"es","Ivnlgv RK"}
             }
         },
         {
-            "Loading...",
+            "TCP",
             new Dictionary<string, string>() {
-                {"de","Laden..."},
-                {"hi","लोड हो रहा है..."},
-                {"fr","Chargement..."},
-                {"zh-cht","載入中..."},
-                {"zh-chs","载入中..."},
-                {"fi","Ladataan..."},
-                {"tr","Yükleniyor..."},
-                {"cs","Načítání…"},
-                {"ja","読み込み中..."},
-                {"es","Cargando..."},
-                {"pt","Carregando..."},
-                {"nl","Laden..."},
-                {"ko","불러오는 중 ..."},
-                {"ru","Загрузка..."}
+                {"es","GXK"}
             }
         },
         {
-            "&Update Software",
+            "Connection",
             new Dictionary<string, string>() {
-                {"ru","&Обновление программного обеспечения"},
-                {"fi","&Обновление программного обеспечения"},
-                {"fr","&Mettre à jour le logiciel"},
-                {"es","&Actualiza el software"}
+                {"es","Xlmmvxgrlm"}
             }
         },
         {
-            "Agent is disconnected",
+            "PuTTY SSH client",
             new Dictionary<string, string>() {
-                {"ru","Агент отключен"},
-                {"fi","Агент отключен"},
-                {"fr","L'agent est déconnecté"},
-                {"es","El agente está desconectado"}
+                {"es","KfGGB HHS xorvmg"}
             }
         },
         {
-            "Request Help",
+            "MeshCentral",
             new Dictionary<string, string>() {
-                {"ru","Запросить помощь"},
-                {"fi","Запросить помощь"},
-                {"fr","Demander de l'aide"},
-                {"es","Solicitar ayuda"}
+                {"es","NvhsXvmgizo"}
             }
         },
         {
-            "Remote Sessions: {0}",
+            "MeshCentral Router allows mapping of TCP and UDP ports on this computer to any computer in your MeshCentral server account. Start by logging into your account.",
             new Dictionary<string, string>() {
-                {"ru","Удаленные сеансы: {0}"},
-                {"fi","Удаленные сеансы: {0}"},
-                {"fr","Sessions à distance : {0}"},
-                {"es","Sesiones remotas: {0}"}
+                {"es","NvhsXvmgizo Ilfgvi zooldh nzkkrmt lu GXK zmw FWK kligh lm gsrh xlnkfgvi gl zmb xlnkfgvi rm blfi NvhsXvmgizo hvievi zxxlfmg. Hgzig yb olttrmt rmgl blfi zxxlfmg."}
             }
         },
         {
-            "Assistant Update",
+            "v",
             new Dictionary<string, string>() {
-                {"ru","Ассистент Обновление"},
-                {"fi","Ассистент Обновление"},
-                {"fr","Mise à jour de l'assistant"},
-                {"es","Asistente de actualización"}
+                {"es","e"}
             }
         },
         {
-            "User",
+            "Invalid username or password",
             new Dictionary<string, string>() {
-                {"de","Benutzer"},
-                {"hi","उपयोगकर्ता"},
-                {"fr","Utilisateur"},
-                {"zh-cht","用戶"},
-                {"zh-chs","用户"},
-                {"fi","Käyttäjä"},
-                {"tr","Kullanıcı"},
-                {"cs","Uživatel"},
-                {"ja","ユーザー"},
-                {"es","Usuario"},
-                {"pt","Do utilizador"},
-                {"nl","Gebruiker"},
-                {"ko","사용자"},
-                {"ru","Пользователь"}
+                {"es","Rmezorw fhvimznv li kzhhdliw"}
             }
         },
         {
-            "{0} remote sessions",
+            "Email sent",
             new Dictionary<string, string>() {
-                {"ru","{0} удаленных сеансов"},
-                {"fi","{0} удаленных сеансов"},
-                {"fr","{0} sessions à distance"},
-                {"es","{0} sesiones remotas"}
+                {"es","Vnzro hvmg"}
             }
         },
         {
-            "Notify",
+            "Cancel Auto-Close",
             new Dictionary<string, string>() {
-                {"de","Benachrichtigen"},
-                {"hi","सूचित करें"},
-                {"fr","Notifier"},
-                {"zh-cht","通知"},
-                {"zh-chs","通知"},
-                {"fi","Ilmoita"},
-                {"tr","Bildir"},
-                {"cs","Upozornit"},
-                {"ja","通知する"},
-                {"es","Notificar"},
-                {"pt","Notificar"},
-                {"nl","Melden"},
-                {"ko","알림"},
-                {"ru","Уведомить"}
+                {"es","Xzmxvo Zfgl-Xolhv"}
             }
         },
         {
-            "Enter help request details",
+            "&Open Mappings...",
             new Dictionary<string, string>() {
-                {"ru","Введите детали запроса на помощь"},
-                {"fi","Введите детали запроса на помощь"},
-                {"fr","Entrez les détails de la demande d'aide"},
-                {"es","Ingrese los detalles de la solicitud de ayuda"}
+                {"es","&Lkvm Nzkkrmth..."}
             }
         },
         {
-            "{0} Assistant",
+            "Server information",
             new Dictionary<string, string>() {
-                {"ru","{0} Ассистент"},
-                {"fi","{0} Ассистент"},
-                {"fr","{0} Assistante"},
-                {"es","{0} Asistente"}
+                {"es","Hvievi rmulinzgrlm"}
             }
         },
         {
-            "&Open",
+            "Show on system tray",
             new Dictionary<string, string>() {
-                {"ru","&Открыть"},
-                {"fi","&Открыть"},
-                {"fr","&Ouvert"},
-                {"es","&Abierto"}
+                {"es","Hsld lm hbhgvn gizb"}
             }
         },
         {
-            "{0} remote sessions are active.",
+            "Install...",
             new Dictionary<string, string>() {
-                {"ru","Активных удаленных сеансов: {0}."},
-                {"fi","Активных удаленных сеансов: {0}."},
-                {"fr","{0} sessions à distance sont actives."},
-                {"es","{0} sesiones remotas están activas."}
+                {"es","Rmhgzoo..."}
             }
         },
         {
-            "E&xit",
+            "WinSCP client",
             new Dictionary<string, string>() {
-                {"ru","Выход"},
-                {"fi","Выход"},
-                {"fr","Sortir"},
-                {"es","Salida"}
+                {"es","DrmHXK xorvmg"}
             }
         },
         {
-            "Time",
-            new Dictionary<string, string>() {
-                {"de","Zeit"},
-                {"hi","समय"},
-                {"fr","Temps"},
-                {"zh-cht","時間"},
-                {"zh-chs","时间"},
-                {"fi","Aika"},
-                {"tr","Zaman"},
-                {"cs","Čas"},
-                {"ja","時間"},
-                {"es","Tiempo"},
-                {"pt","Tempo"},
-                {"nl","Tijd"},
-                {"ko","시간"},
-                {"ru","Время"}
-            }
-        },
-        {
-            "Events",
-            new Dictionary<string, string>() {
-                {"de","Ereignisse"},
-                {"hi","आयोजन"},
-                {"fr","Événements"},
-                {"zh-cht","事件"},
-                {"zh-chs","事件"},
-                {"fi","Tapahtumat"},
-                {"tr","Etkinlikler"},
-                {"cs","Události"},
-                {"ja","イベント"},
-                {"es","Eventos"},
-                {"pt","Eventos"},
-                {"nl","Gebeurtenissen"},
-                {"ko","이벤트"},
-                {"ru","События"}
-            }
-        },
-        {
-            "Versions",
-            new Dictionary<string, string>() {
-                {"ru","Версии "},
-                {"fi","Версии"},
-                {"es","Versiones"}
-            }
-        },
-        {
-            "Agent is start pending",
-            new Dictionary<string, string>() {
-                {"ru","Агент ожидает запуска"},
-                {"fi","Агент ожидает запуска"},
-                {"fr","L'agent est en attente de démarrage"},
-                {"es","El agente está pendiente de inicio"}
-            }
-        },
-        {
-            "Type",
-            new Dictionary<string, string>() {
-                {"de","Typ"},
-                {"hi","प्रकार"},
-                {"zh-cht","類型"},
-                {"zh-chs","类型"},
-                {"fi","Tyyppi"},
-                {"tr","tip"},
-                {"cs","Typ"},
-                {"ja","タイプ"},
-                {"es","Tipo"},
-                {"pt","Tipo"},
-                {"ko","유형"},
-                {"ru","Удаленный ввод"}
-            }
-        },
-        {
-            "Disconnected",
-            new Dictionary<string, string>() {
-                {"de","Getrennt"},
-                {"hi","डिस्कनेक्ट किया गया"},
-                {"fr","Débranché"},
-                {"zh-cht","已斷線"},
-                {"zh-chs","已断线"},
-                {"fi","Yhteys katkaistu"},
-                {"tr","Bağlantı kesildi"},
-                {"cs","Odpojeno"},
-                {"ja","切断されました"},
-                {"es","Desconectado"},
-                {"pt","Desconectado"},
-                {"nl","Verbroken"},
-                {"ko","연결 해제"},
-                {"ru","Отключен"}
-            }
-        },
-        {
-            "State",
-            new Dictionary<string, string>() {
-                {"de","Zustand"},
-                {"hi","राज्य"},
-                {"fr","Etat"},
-                {"zh-cht","狀態"},
-                {"zh-chs","状况"},
-                {"fi","Tila"},
-                {"tr","Durum"},
-                {"cs","Stav"},
-                {"ja","状態"},
-                {"es","Estado"},
-                {"pt","Estado"},
-                {"nl","Status"},
-                {"ko","상태"},
-                {"ru","Состояние"}
-            }
-        },
-        {
-            "Connected to server",
-            new Dictionary<string, string>() {
-                {"ru","Подключено к серверу"},
-                {"fi","Подключено к серверу"},
-                {"fr","Connecté au serveur"},
-                {"es","Conectado al servidor"}
-            }
-        },
-        {
-            "Value",
-            new Dictionary<string, string>() {
-                {"ru","Значение"},
-                {"fi","Значение"},
-                {"fr","Valeur"},
-                {"es","Valor"}
-            }
-        },
-        {
-            "List of remote sessions active on this computer.",
-            new Dictionary<string, string>() {
-                {"ru","Список удаленных сеансов, активных на этом компьютере."},
-                {"fi","Список удаленных сеансов, активных на этом компьютере."},
-                {"fr","Liste des sessions distantes actives sur cet ordinateur."},
-                {"es","Lista de sesiones remotas activas en esta computadora."}
-            }
-        },
-        {
-            "Help Requested",
-            new Dictionary<string, string>() {
-                {"ru","Запрошена помощь"},
-                {"fi","Запрошена помощь"},
-                {"fr","Aide demandée"},
-                {"es","Ayuda solicitada"}
-            }
-        },
-        {
-            "Enabled",
-            new Dictionary<string, string>() {
-                {"de","aktiviert"},
-                {"hi","सक्रिय"},
-                {"fr","Activer"},
-                {"zh-cht","已啟用"},
-                {"zh-chs","已启用"},
-                {"fi","Käytössä"},
-                {"tr","Etkin"},
-                {"cs","Povoleno"},
-                {"ja","有効"},
-                {"es","Habilitado"},
-                {"pt","ativado"},
-                {"nl","Ingeschakeld"},
-                {"ko","활성화 됨"},
-                {"ru","Включено"}
-            }
-        },
-        {
-            "Files",
-            new Dictionary<string, string>() {
-                {"de","Dateien"},
-                {"hi","फ़ाइलें"},
-                {"fr","Dossiers"},
-                {"zh-cht","檔案"},
-                {"zh-chs","档案"},
-                {"fi","Tiedostot"},
-                {"tr","Dosyalar"},
-                {"cs","Soubory"},
-                {"ja","ファイル"},
-                {"es","Archivos"},
-                {"pt","Arquivos"},
-                {"nl","Bestanden"},
-                {"ko","파일"},
-                {"ru","Файлы"}
-            }
-        },
-        {
-            "Cancel",
-            new Dictionary<string, string>() {
-                {"de","Abbrechen"},
-                {"hi","रद्द करना"},
-                {"fr","Annuler"},
-                {"zh-cht","取消"},
-                {"zh-chs","取消"},
-                {"fi","Peruuta"},
-                {"tr","İptal etmek"},
-                {"cs","Storno"},
-                {"ja","キャンセル"},
-                {"es","Cancelar"},
-                {"pt","Cancelar"},
-                {"nl","Annuleren"},
-                {"ko","취소"},
-                {"ru","Отмена"}
-            }
-        },
-        {
-            "Connected",
-            new Dictionary<string, string>() {
-                {"de","Verbunden"},
-                {"hi","जुड़े हुए"},
-                {"fr","Connecté"},
-                {"zh-cht","已連接"},
-                {"zh-chs","已连接"},
-                {"fi","Yhdistetty"},
-                {"tr","Bağlandı"},
-                {"cs","Připojeno"},
-                {"ja","接続済み"},
-                {"es","Conectado"},
-                {"pt","Conectado"},
-                {"nl","Verbonden"},
-                {"ko","연결됨"},
-                {"ru","Подключено"}
-            }
-        },
-        {
-            "Show Sessions...",
-            new Dictionary<string, string>() {
-                {"ru","Показать сеансы ..."},
-                {"fi","Показать сеансы ..."},
-                {"fr","Afficher les séances..."},
-                {"es","Mostrar sesiones ..."}
-            }
-        },
-        {
-            "PrivacyBarForm",
-            new Dictionary<string, string>() {
-                {"ru","Конфиденциальность"},
-                {"fi","Конфиденциальность"}
-            }
-        },
-        {
-            "Agent is pause pending",
-            new Dictionary<string, string>() {
-                {"ru","Агент ожидает приостановки"},
-                {"fi","Агент ожидает приостановки"},
-                {"fr","L'agent est en attente de pause"},
-                {"es","El agente está en pausa pendiente"}
-            }
-        },
-        {
-            "Agent not installed",
-            new Dictionary<string, string>() {
-                {"ru","Агент не установлен"},
-                {"fi","Агент не установлен"},
-                {"fr","Agent non installé"},
-                {"es","Agente no instalado"}
-            }
-        },
-        {
-            "No remote sessions",
-            new Dictionary<string, string>() {
-                {"ru","Нет удаленных сеансов"},
-                {"fi","Нет удаленных сеансов"},
-                {"fr","Pas de sessions à distance"},
-                {"es","Sin sesiones remotas"}
-            }
-        },
-        {
-            "No active remote sessions.",
-            new Dictionary<string, string>() {
-                {"ru","Нет активных удаленных сеансов."},
-                {"fi","Нет активных удаленных сеансов."},
-                {"fr","Aucune session à distance active."},
-                {"es","No hay sesiones remotas activas."}
-            }
-        },
-        {
-            "Connecting",
-            new Dictionary<string, string>() {
-                {"ru","Подключение"},
-                {"fi","Подключение"},
-                {"fr","De liaison"},
-                {"es","Conectando"}
-            }
-        },
-        {
-            "Allow",
-            new Dictionary<string, string>() {
-                {"ru","Позволять"},
-                {"fi","Позволять"},
-                {"fr","Permettre"},
-                {"es","Permitir"}
-            }
-        },
-        {
-            "Show &Events...",
-            new Dictionary<string, string>() {
-                {"ru","Показать и события ..."},
-                {"fi","Показать и события ..."},
-                {"fr","Afficher les &événements..."},
-                {"es","Espectáculos y eventos ..."}
-            }
-        },
-        {
-            "A new version of this software is available. Update now?",
-            new Dictionary<string, string>() {
-                {"ru","Доступна новая версия этого программного обеспечения. Обновить сейчас?"},
-                {"fi","Доступна новая версия этого программного обеспечения. Обновить сейчас?"},
-                {"fr","Une nouvelle version de ce logiciel est disponible. Mettez à jour maintenant?"},
-                {"es","Hay disponible una nueva versión de este software. ¿Actualizar ahora?"}
-            }
-        },
-        {
-            "Event",
-            new Dictionary<string, string>() {
-                {"ru","Мероприятие"},
-                {"fi","Мероприятие"},
-                {"fr","Événement"},
-                {"es","Evento"}
-            }
-        },
-        {
-            "Deny",
-            new Dictionary<string, string>() {
-                {"ru","Отрицать"},
-                {"fi","Отрицать"},
-                {"fr","Refuser"},
-                {"es","Negar"}
-            }
-        },
-        {
-            "1 remote session",
-            new Dictionary<string, string>() {
-                {"ru","1 удаленный сеанс"},
-                {"fi","1 удаленный сеанс"},
-                {"fr","1 séance à distance"},
-                {"es","1 sesión remota"}
-            }
-        },
-        {
-            "{0} - {1}",
+            "0%",
             new Dictionary<string, string>() {
 
             }
         },
         {
-            "Close",
+            "Token",
             new Dictionary<string, string>() {
-                {"de","Schließen"},
-                {"hi","बंद करे"},
-                {"fr","Fermer"},
-                {"zh-cht","關"},
-                {"zh-chs","关"},
-                {"fi","Sulje"},
-                {"tr","Kapat"},
-                {"cs","Zavřít"},
-                {"ja","閉じる"},
-                {"es","Cerrar"},
-                {"pt","Fechar"},
-                {"nl","Sluiten"},
-                {"ko","닫기"},
-                {"ru","Закрыть"}
+                {"es","Glpvm"}
             }
         },
         {
-            "Disabled",
+            "Back",
             new Dictionary<string, string>() {
-                {"de","Deaktiviertes"},
-                {"hi","विकलांग"},
-                {"fr","Désactivé"},
-                {"zh-cht","已禁用"},
-                {"zh-chs","已禁用"},
-                {"fi","Poistettu käytöstä"},
-                {"tr","Devre dışı"},
-                {"cs","Zakázáno"},
-                {"ja","無効"},
-                {"es","Deshabilitado"},
-                {"pt","Desativado"},
-                {"nl","Uitgeschakeld"},
-                {"ko","비활성화"},
-                {"ru","Отключено"}
+                {"es","Yzxp"}
             }
         },
         {
-            "OK",
+            "Remote Desktop",
             new Dictionary<string, string>() {
-                {"hi","ठीक"},
-                {"fr","ОК"},
-                {"tr","tamam"},
-                {"pt","Ok"},
-                {"ko","확인"},
-                {"ru","ОК"}
+                {"es","Ivnlgv Wvhpglk"}
             }
         },
         {
-            "Direct Connect",
+            "Search",
             new Dictionary<string, string>() {
-                {"ru","Прямое соединение"},
-                {"fi","Прямое соединение"},
-                {"fr","Connection directe"},
-                {"es","Conexión directa"}
+                {"es","Hvzixs"}
             }
         },
         {
-            "Not Activated (In)",
+            "MeshCentral Router Installation",
             new Dictionary<string, string>() {
-                {"de","Nicht aktiviert (In)"},
-                {"hi","सक्रिय नहीं (में)"},
-                {"fr","Non activé (en)"},
-                {"zh-cht","未啟動（輸入）"},
-                {"zh-chs","未激活（输入）"},
-                {"fi","Ei aktivoitu (sisään)"},
-                {"tr","Etkinleştirilmedi (İçinde)"},
-                {"cs","Neaktivováno (v)"},
-                {"ja","アクティブ化されていない（イン）"},
-                {"es","No Activada (entrada)"},
-                {"pt","Não ativado (entrada)"},
-                {"nl","Niet geactiveerd (In)"},
-                {"ko","활성화되지 않음 (In)"},
-                {"ru","Не активированно (In)"}
+                {"es","NvhsXvmgizo Ilfgvi Rmhgzoozgrlm"}
             }
         },
         {
-            "1 remote session is active.",
+            "No Devices",
             new Dictionary<string, string>() {
-                {"ru","Активен 1 удаленный сеанс."},
-                {"fi","Активен 1 удаленный сеанс."},
-                {"fr","1 session à distance est active."},
-                {"es","1 sesión remota está activa."}
+                {"es","Ml Wverxvh"}
             }
         },
         {
-            "(None)",
+            "Device Status",
             new Dictionary<string, string>() {
-                {"ru","(Никто)"},
-                {"fi","(Никто)"},
-                {"fr","(Rien)"},
-                {"es","(Ninguno)"}
+                {"es","Wverxv Hgzgfh"}
             }
         },
         {
-            "Desktop",
+            "Bind local port to all network interfaces",
             new Dictionary<string, string>() {
-                {"hi","डेस्कटॉप"},
-                {"fr","Bureau"},
-                {"zh-cht","桌面"},
-                {"zh-chs","桌面"},
-                {"fi","Työpöytä"},
-                {"tr","Masaüstü Bilgisayar"},
-                {"cs","Plocha"},
-                {"ja","デスクトップ"},
-                {"es","Escritorio"},
-                {"pt","Área de Trabalho"},
-                {"nl","Bureaublad"},
-                {"ko","데스크탑"},
-                {"ru","Рабочий стол"}
+                {"es","Yrmw olxzo klig gl zoo mvgdlip rmgviuzxvh"}
             }
         },
         {
-            "Unknown",
+            "Installation",
             new Dictionary<string, string>() {
-                {"de","Unbekannt"},
-                {"hi","अनजान"},
-                {"fr","Inconnue"},
-                {"zh-cht","未知"},
-                {"zh-chs","未知"},
-                {"fi","Tuntematon"},
-                {"tr","Bilinmeyen"},
-                {"cs","Neznámé"},
-                {"ja","未知の"},
-                {"es","Desconocido"},
-                {"pt","Desconhecido"},
-                {"nl","Onbekend"},
-                {"ko","알 수 없는"},
-                {"ru","Неизвестно"}
+                {"es","Rmhgzoozgrlm"}
             }
         },
         {
-            "Activated",
+            "v0.8.0",
             new Dictionary<string, string>() {
-                {"de","Aktiviertes"},
-                {"hi","सक्रिय"},
-                {"fr","Activé"},
-                {"zh-cht","已啟動"},
-                {"zh-chs","已激活"},
-                {"fi","Aktivoitu"},
-                {"tr","Aktif"},
-                {"cs","Zapnuto"},
-                {"ja","有効化"},
-                {"es","Activado"},
-                {"pt","ativado"},
-                {"nl","Geactiveerd"},
-                {"ko","활성화 됨"},
-                {"ru","Активировано"}
+                {"es","e0.8.0"}
             }
         },
         {
-            "Multiple Users",
+            "Add &Relay Map...",
             new Dictionary<string, string>() {
-                {"ru","Несколько пользователей"},
-                {"fi","Несколько пользователей"},
-                {"fr","Utilisateurs multiples"},
-                {"es","Múltiples usuarios"}
+                {"es","Zww &Ivozb Nzk..."}
             }
         },
         {
-            "Terminal",
+            "SSH",
             new Dictionary<string, string>() {
-                {"hi","टर्मिनल"},
-                {"zh-cht","終端機"},
-                {"zh-chs","终端"},
-                {"fi","Pääte"},
-                {"tr","terminal"},
-                {"cs","Terminál"},
-                {"ja","ターミナル"},
-                {"ko","터미널"},
-                {"ru","Терминал"}
+                {"es","HHS"}
             }
         },
         {
-            "&Close",
+            "Compressed Network Traffic",
             new Dictionary<string, string>() {
-                {"ru","&Закрывать"},
-                {"fi","&Закрывать"},
-                {"fr","&Fermer"},
-                {"es","&Cerca"}
+                {"es","Xlnkivhhvw Mvgdlip Gizuurx"}
             }
         },
         {
-            "Authenticating",
+            "View Certificate Details...",
             new Dictionary<string, string>() {
-                {"ru","Аутентификация"},
-                {"fi","Аутентификация"},
-                {"fr","Authentification"},
-                {"es","Autenticando"}
+                {"es","Ervd Xvigrurxzgv Wvgzroh..."}
             }
         },
         {
-            "User Consent",
+            " MeshCentral Router",
             new Dictionary<string, string>() {
-                {"de","Benutzereinwilligung"},
-                {"hi","उपयोगकर्ता सहमति"},
-                {"fr","Consentement de l'utilisateur"},
-                {"zh-cht","用戶同意"},
-                {"zh-chs","用户同意"},
-                {"fi","Käyttäjän suostumus"},
-                {"tr","Kullanıcı Onayı"},
-                {"cs","Souhlas uživatele"},
-                {"ja","ユーザーの同意"},
-                {"es","Consentimiento del Usuario"},
-                {"pt","Consentimento do Usuário"},
-                {"nl","Toestemming van gebruiker"},
-                {"ko","사용자 연결 옵션"},
-                {"ru","Согласие пользователя"}
+                {"es"," NvhsXvmgizo Ilfgvi"}
             }
         },
         {
-            "Not Activated (Pre)",
+            "CIRA",
             new Dictionary<string, string>() {
-                {"de","Nicht aktiviert (Pre)"},
-                {"hi","सक्रिय नहीं (पूर्व)"},
-                {"fr","Non activé (pré)"},
-                {"zh-cht","未啟動（預）"},
-                {"zh-chs","未激活（预）"},
-                {"fi","Ei aktivoitu (ennakko)"},
-                {"tr","Etkinleştirilmedi (Ön)"},
-                {"cs","Neaktivováno (před)"},
-                {"ja","アクティブ化されていない（前）"},
-                {"es","No activada (Pre)"},
-                {"pt","Não ativado (pré)"},
-                {"nl","Niet geactiveerd (Pre)"},
-                {"ko","활성화되지 않음 (Pre)"},
-                {"ru","Не активированно (Pre)"}
+                {"es","XRIZ"}
             }
         },
         {
-            "S&top Agent",
+            "State",
             new Dictionary<string, string>() {
-                {"ru","S & главный агент"},
-                {"fi","S & главный агент"},
-                {"fr","Agent d'arrêt"},
-                {"es","Agente s & top"}
+                {"es","Hgzgv"}
             }
         },
         {
-            "UDP relay",
+            "Ask Consent",
             new Dictionary<string, string>() {
-                {"ru","UDP реле"},
-                {"fi","UDP реле"},
-                {"fr","Relais UDP"},
-                {"es","Relé UDP"}
+                {"es","Zhp Xlmhvmg"}
             }
         },
         {
-            "Agent is stopped",
+            "AMT",
             new Dictionary<string, string>() {
-                {"ru","Агент остановлен"},
-                {"fi","Агент остановлен"},
-                {"fr","L'agent est arrêté"},
-                {"es","El agente está detenido"}
+                {"es","ZNG"}
             }
         },
         {
-            "Intel® Management Engine",
+            "Add Map...",
             new Dictionary<string, string>() {
-                {"fr","Moteur de gestion Intel®"},
-                {"es","Motor de administración Intel®"}
+                {"es","Zww Nzk..."}
             }
         },
         {
-            "Agent Snapshot",
+            "Don't ask for {0} days.",
             new Dictionary<string, string>() {
-                {"ru","Снимок агента"},
-                {"fi","Снимок агента"},
-                {"fr","Instantané de l'agent"},
-                {"es","Instantánea del agente"}
+                {"es","Wlm'g zhp uli {0} wzbh."}
             }
         },
         {
-            "Request Help...",
+            "Use Alternate Port...",
             new Dictionary<string, string>() {
-                {"ru","Запросить помощь ..."},
-                {"fi","Запросить помощь ..."},
-                {"fr","Demander de l'aide..."},
-                {"es","Solicitar ayuda ..."}
+                {"es","Fhv Zogvimzgv Klig..."}
             }
         },
         {
-            "O&pen Site...",
+            "Send token to registered phone number?",
             new Dictionary<string, string>() {
-                {"ru","Открытие сайта ..."},
-                {"fi","Открытие сайта ..."},
-                {"fr","&Ouvrir le site..."},
-                {"es","Sitio de O & pen ..."}
+                {"es","Hvmw glpvm gl ivtrhgvivw kslmv mfnyvi?"}
             }
         },
         {
-            "Send",
+            "Unable to bind to local port",
             new Dictionary<string, string>() {
-                {"de","Senden"},
-                {"hi","संदेश"},
-                {"fr","Envoyer"},
-                {"zh-cht","發送"},
-                {"zh-chs","发送"},
-                {"fi","Lähetä"},
-                {"tr","Gönder"},
-                {"cs","Odeslat"},
-                {"ja","送る"},
-                {"es","Enviar"},
-                {"pt","Enviar"},
-                {"nl","Verzenden"},
-                {"ko","전송"},
-                {"ru","Отправить"}
+                {"es","Fmzyov gl yrmw gl olxzo klig"}
             }
         },
         {
-            "Clear",
+            "Open...",
             new Dictionary<string, string>() {
-                {"de","Leeren"},
-                {"hi","स्पष्ट"},
-                {"fr","Nettoyer"},
-                {"zh-cht","清除"},
-                {"zh-chs","清除"},
-                {"fi","Tyhjennä"},
-                {"tr","Açık"},
-                {"cs","Vymazat"},
-                {"ja","クリア"},
-                {"es","Borrar"},
-                {"pt","Limpo"},
-                {"nl","Wissen"},
-                {"ko","지우기"},
-                {"ru","Очистить"}
+                {"es","Lkvm..."}
             }
         },
         {
-            "Cancel Help Request",
+            "Application",
             new Dictionary<string, string>() {
-                {"ru","Отменить запрос помощи"},
-                {"fi","Отменить запрос помощи"},
-                {"fr","Annuler la demande d'aide"},
-                {"es","Cancelar solicitud de ayuda"}
+                {"es","Zkkorxzgrlm"}
             }
         },
         {
-            "TCP relay",
+            "Connect",
             new Dictionary<string, string>() {
-                {"ru","Реле TCP"},
-                {"fi","Реле TCP"},
-                {"fr","Relais TCP"},
-                {"es","Relé TCP"}
+                {"es","Xlmmvxg"}
+            }
+        },
+        {
+            "Error Message",
+            new Dictionary<string, string>() {
+                {"es","Viili Nvhhztv"}
+            }
+        },
+        {
+            "Changing language will close this tool. Are you sure?",
+            new Dictionary<string, string>() {
+                {"es","Xszmtrmt ozmtfztv droo xolhv gsrh gllo. Ziv blf hfiv?"}
+            }
+        },
+        {
+            "Remote Desktop...",
+            new Dictionary<string, string>() {
+                {"es","Ivnlgv Wvhpglk..."}
+            }
+        },
+        {
+            "ServerName",
+            new Dictionary<string, string>() {
+                {"es","HvieviMznv"}
+            }
+        },
+        {
+            "Swap Mouse Buttons",
+            new Dictionary<string, string>() {
+                {"es","Hdzk Nlfhv Yfgglmh"}
+            }
+        },
+        {
+            ", 1 connection.",
+            new Dictionary<string, string>() {
+                {"es",", 1 xlmmvxgrlm."}
+            }
+        },
+        {
+            "Port Mapping",
+            new Dictionary<string, string>() {
+                {"es","Klig Nzkkrmt"}
+            }
+        },
+        {
+            "Languages",
+            new Dictionary<string, string>() {
+                {"es","Ozmtfztvh"}
+            }
+        },
+        {
+            "Port Mapping Help",
+            new Dictionary<string, string>() {
+                {"es","Klig Nzkkrmt Svok"}
+            }
+        },
+        {
+            "Open Source, Apache 2.0 License",
+            new Dictionary<string, string>() {
+                {"es","Lkvm Hlfixv, Zkzxsv 2.0 Orxvmhv"}
+            }
+        },
+        {
+            "OpenSSH",
+            new Dictionary<string, string>() {
+                {"es","LkvmHHS"}
+            }
+        },
+        {
+            "Open Web Site",
+            new Dictionary<string, string>() {
+                {"es","Lkvm Dvy Hrgv"}
+            }
+        },
+        {
+            "Stopped",
+            new Dictionary<string, string>() {
+                {"es","Hglkkvw"}
+            }
+        },
+        {
+            "Mappings",
+            new Dictionary<string, string>() {
+                {"es","Nzkkrmth"}
+            }
+        },
+        {
+            "Relay Device",
+            new Dictionary<string, string>() {
+                {"es","Ivozb Wverxv"}
+            }
+        },
+        {
+            "0 Bytes",
+            new Dictionary<string, string>() {
+                {"es","0 Ybgvh"}
+            }
+        },
+        {
+            "Certificate",
+            new Dictionary<string, string>() {
+                {"es","Xvigrurxzgv"}
+            }
+        },
+        {
+            "&Save Mappings...",
+            new Dictionary<string, string>() {
+                {"es","&Hzev Nzkkrmth..."}
+            }
+        },
+        {
+            "Stats...",
+            new Dictionary<string, string>() {
+                {"es","Hgzgh..."}
+            }
+        },
+        {
+            "Username",
+            new Dictionary<string, string>() {
+                {"es","Fhvimznv"}
+            }
+        },
+        {
+            ", {0} connections.",
+            new Dictionary<string, string>() {
+                {"es",", {0} xlmmvxgrlmh."}
+            }
+        },
+        {
+            "Set RDP port...",
+            new Dictionary<string, string>() {
+                {"es","Hvg IWK klig..."}
+            }
+        },
+        {
+            "&Delete",
+            new Dictionary<string, string>() {
+                {"es","&Wvovgv"}
+            }
+        },
+        {
+            "E&xit",
+            new Dictionary<string, string>() {
+                {"es","V&crg"}
+            }
+        },
+        {
+            "Quality",
+            new Dictionary<string, string>() {
+                {"es","Jfzorgb"}
+            }
+        },
+        {
+            "Email verification required",
+            new Dictionary<string, string>() {
+                {"es","Vnzro evirurxzgrlm ivjfrivw"}
+            }
+        },
+        {
+            "Frame rate",
+            new Dictionary<string, string>() {
+                {"es","Uiznv izgv"}
+            }
+        },
+        {
+            "Relay Mapping",
+            new Dictionary<string, string>() {
+                {"es","Ivozb Nzkkrmt"}
+            }
+        },
+        {
+            "Server",
+            new Dictionary<string, string>() {
+                {"es","Hvievi"}
+            }
+        },
+        {
+            "Remote Files...",
+            new Dictionary<string, string>() {
+                {"es","Ivnlgv Urovh..."}
+            }
+        },
+        {
+            "R&efresh",
+            new Dictionary<string, string>() {
+                {"es","I&vuivhs"}
+            }
+        },
+        {
+            "Add &Map...",
+            new Dictionary<string, string>() {
+                {"es","Zww &Nzk..."}
+            }
+        },
+        {
+            "RDP",
+            new Dictionary<string, string>() {
+                {"es","IWK"}
+            }
+        },
+        {
+            "Cancel",
+            new Dictionary<string, string>() {
+                {"es","Xzmxvo"}
+            }
+        },
+        {
+            "Remember this certificate",
+            new Dictionary<string, string>() {
+                {"es","Ivnvnyvi gsrh xvigrurxzgv"}
+            }
+        },
+        {
+            "(Individual Devices)",
+            new Dictionary<string, string>() {
+                {"es","(Rmwrerwfzo Wverxvh)"}
+            }
+        },
+        {
+            "Alternative Port",
+            new Dictionary<string, string>() {
+                {"es","Zogvimzgrev Klig"}
+            }
+        },
+        {
+            "Remote Files",
+            new Dictionary<string, string>() {
+                {"es","Ivnlgv Urovh"}
+            }
+        },
+        {
+            "Incoming Bytes",
+            new Dictionary<string, string>() {
+                {"es","Rmxlnrmt Ybgvh"}
+            }
+        },
+        {
+            "Relay",
+            new Dictionary<string, string>() {
+                {"es","Ivozb"}
+            }
+        },
+        {
+            "statusStrip1",
+            new Dictionary<string, string>() {
+                {"es","hgzgfhHgirk1"}
+            }
+        },
+        {
+            "SMS sent",
+            new Dictionary<string, string>() {
+                {"es","HNH hvmg"}
+            }
+        },
+        {
+            "Application Name",
+            new Dictionary<string, string>() {
+                {"es","Zkkorxzgrlm Mznv"}
+            }
+        },
+        {
+            "Remote Desktop Stats",
+            new Dictionary<string, string>() {
+                {"es","Ivnlgv Wvhpglk Hgzgh"}
+            }
+        },
+        {
+            "≡",
+            new Dictionary<string, string>() {
+
+            }
+        },
+        {
+            "Click ok to register MeshCentral Router on your system as the handler for the \"mcrouter://\" protocol. This will allow the MeshCentral web site to launch this application when needed.",
+            new Dictionary<string, string>() {
+                {"es","Xorxp lp gl ivtrhgvi NvhsXvmgizo Ilfgvi lm blfi hbhgvn zh gsv szmwovi uli gsv \"nxilfgvi://\" kilglxlo. Gsrh droo zoold gsv NvhsXvmgizo dvy hrgv gl ozfmxs gsrh zkkorxzgrlm dsvm mvvwvw."}
+            }
+        },
+        {
+            "Size",
+            new Dictionary<string, string>() {
+                {"es","Hrav"}
+            }
+        },
+        {
+            "Remote Port",
+            new Dictionary<string, string>() {
+                {"es","Ivnlgv Klig"}
+            }
+        },
+        {
+            "No Port Mappings\r\n\r\nClick \"Add\" to get started.",
+            new Dictionary<string, string>() {
+                {"es","Ml Klig Nzkkrmth\r\n\r\nXorxp \"Zww\" gl tvg hgzigvw."}
+            }
+        },
+        {
+            "Ctrl-Alt-Del",
+            new Dictionary<string, string>() {
+                {"es","Xgio-Zog-Wvo"}
+            }
+        },
+        {
+            "HTTP",
+            new Dictionary<string, string>() {
+                {"es","SGGK"}
+            }
+        },
+        {
+            "Site",
+            new Dictionary<string, string>() {
+                {"es","Hrgv"}
+            }
+        },
+        {
+            "Two-factor Authentication",
+            new Dictionary<string, string>() {
+                {"es","Gdl-uzxgli Zfgsvmgrxzgrlm"}
+            }
+        },
+        {
+            "Application Launch",
+            new Dictionary<string, string>() {
+                {"es","Zkkorxzgrlm Ozfmxs"}
+            }
+        },
+        {
+            "Add Relay Map...",
+            new Dictionary<string, string>() {
+                {"es","Zww Ivozb Nzk..."}
+            }
+        },
+        {
+            "Mapping Settings",
+            new Dictionary<string, string>() {
+                {"es","Nzkkrmt Hvggrmth"}
+            }
+        },
+        {
+            "S&ettings...",
+            new Dictionary<string, string>() {
+                {"es","H&vggrmth..."}
+            }
+        },
+        {
+            "Enter the RDP port of the remote computer, the default RDP port is 3389.",
+            new Dictionary<string, string>() {
+                {"es","Vmgvi gsv IWK klig lu gsv ivnlgv xlnkfgvi, gsv wvuzfog IWK klig rh 3389."}
+            }
+        },
+        {
+            "Devices",
+            new Dictionary<string, string>() {
+                {"es","Wverxvh"}
+            }
+        },
+        {
+            "Starting...",
+            new Dictionary<string, string>() {
+                {"es","Hgzigrmt..."}
+            }
+        },
+        {
+            "Local",
+            new Dictionary<string, string>() {
+                {"es","Olxzo"}
+            }
+        },
+        {
+            "Remote Desktop Settings",
+            new Dictionary<string, string>() {
+                {"es","Ivnlgv Wvhpglk Hvggrmth"}
+            }
+        },
+        {
+            "Stopped.",
+            new Dictionary<string, string>() {
+                {"es","Hglkkvw."}
+            }
+        },
+        {
+            "Outgoing Compression",
+            new Dictionary<string, string>() {
+                {"es","Lfgtlrmt Xlnkivhhrlm"}
+            }
+        },
+        {
+            "Application Link",
+            new Dictionary<string, string>() {
+                {"es","Zkkorxzgrlm Ormp"}
+            }
+        },
+        {
+            "---",
+            new Dictionary<string, string>() {
+
+            }
+        },
+        {
+            "This server presented a un-trusted certificate.  This may indicate that this is not the correct server or that the server does not have a valid certificate. It is not recommanded, but you can press the ignore button to continue connection to this server.",
+            new Dictionary<string, string>() {
+                {"es","Gsrh hvievi kivhvmgvw z fm-gifhgvw xvigrurxzgv.  Gsrh nzb rmwrxzgv gszg gsrh rh mlg gsv xliivxg hvievi li gszg gsv hvievi wlvh mlg szev z ezorw xvigrurxzgv. Rg rh mlg ivxlnnzmwvw, yfg blf xzm kivhh gsv rtmliv yfgglm gl xlmgrmfv xlmmvxgrlm gl gsrh hvievi."}
+            }
+        },
+        {
+            "MQTT",
+            new Dictionary<string, string>() {
+                {"es","NJGG"}
+            }
+        },
+        {
+            "127.0.0.1",
+            new Dictionary<string, string>() {
+
+            }
+        },
+        {
+            "SSH Username",
+            new Dictionary<string, string>() {
+                {"es","HHS Fhvimznv"}
+            }
+        },
+        {
+            "Next",
+            new Dictionary<string, string>() {
+                {"es","Mvcg"}
+            }
+        },
+        {
+            "Enter the second factor authentication token.",
+            new Dictionary<string, string>() {
+                {"es","Vmgvi gsv hvxlmw uzxgli zfgsvmgrxzgrlm glpvm."}
+            }
+        },
+        {
+            "No Search Results",
+            new Dictionary<string, string>() {
+                {"es","Ml Hvzixs Ivhfogh"}
+            }
+        },
+        {
+            "Stats",
+            new Dictionary<string, string>() {
+                {"es","Hgzgh"}
+            }
+        },
+        {
+            "Use Remote Keyboard Map",
+            new Dictionary<string, string>() {
+                {"es","Fhv Ivnlgv Pvbylziw Nzk"}
+            }
+        },
+        {
+            "Path",
+            new Dictionary<string, string>() {
+                {"es","Kzgs"}
+            }
+        },
+        {
+            "Send token to registered email address?",
+            new Dictionary<string, string>() {
+                {"es","Hvmw glpvm gl ivtrhgvivw vnzro zwwivhh?"}
+            }
+        },
+        {
+            "Local Port",
+            new Dictionary<string, string>() {
+                {"es","Olxzo Klig"}
+            }
+        },
+        {
+            "label1",
+            new Dictionary<string, string>() {
+                {"es","ozyvo1"}
+            }
+        },
+        {
+            "Scaling",
+            new Dictionary<string, string>() {
+                {"es","Hxzormt"}
+            }
+        },
+        {
+            "SCP",
+            new Dictionary<string, string>() {
+                {"es","HXK"}
+            }
+        },
+        {
+            "Remote desktop quality, scaling and frame rate settings. These can be adjusted depending on the quality of the network connection.",
+            new Dictionary<string, string>() {
+                {"es","Ivnlgv wvhpglk jfzorgb, hxzormt zmw uiznv izgv hvggrmth. Gsvhv xzm yv zwqfhgvw wvkvmwrmt lm gsv jfzorgb lu gsv mvgdlip xlmmvxgrlm."}
+            }
+        },
+        {
+            "ComputerName",
+            new Dictionary<string, string>() {
+                {"es","XlnkfgviMznv"}
+            }
+        },
+        {
+            "Offline",
+            new Dictionary<string, string>() {
+                {"es","Luuormv"}
+            }
+        },
+        {
+            "Log out",
+            new Dictionary<string, string>() {
+                {"es","Olt lfg"}
+            }
+        },
+        {
+            "Show &Offline Devices",
+            new Dictionary<string, string>() {
+                {"es","Hsld &Luuormv Wverxvh"}
+            }
+        },
+        {
+            "&Open...",
+            new Dictionary<string, string>() {
+                {"es","&Lkvm..."}
             }
         },
         {
             "Privacy Bar",
             new Dictionary<string, string>() {
-                {"de","Datenschutzleiste"},
-                {"hi","गोपनीयता बार"},
-                {"fr","Barre de confidentialité"},
-                {"zh-cht","隱私欄"},
-                {"zh-chs","隐私栏"},
-                {"fi","Tietosuojapalkki"},
-                {"tr","Gizlilik Çubuğu"},
-                {"cs","Bar ochrany osobních údajů"},
-                {"ja","プライバシーバー"},
-                {"es","Barra de Privacidad"},
-                {"pt","Barra de Privacidade"},
-                {"nl","Privacy balk"},
-                {"ko","프라이버시 바"},
-                {"ru","Панель конфиденциальности"}
+                {"es","Kirezxb Yzi"}
             }
         },
         {
-            "Update",
+            "Login",
             new Dictionary<string, string>() {
-                {"de","Updates"},
-                {"hi","अपडेट करें"},
-                {"fr","Mettre à jour"},
-                {"zh-cht","更新資料"},
-                {"zh-chs","更新资料"},
-                {"fi","Päivittää"},
-                {"tr","Güncelleme"},
-                {"cs","Aktualizace"},
-                {"ja","更新"},
-                {"es","Actualizar"},
-                {"pt","Atualizar"},
-                {"nl","Bijwerken"},
-                {"ko","개조하다"},
-                {"ru","Обновить"}
+                {"es","Oltrm"}
             }
         },
         {
-            "Agent is running",
+            "Ignore",
             new Dictionary<string, string>() {
-                {"ru","Агент работает"},
-                {"fi","Агент работает"},
-                {"fr","L'agent est en cours d'exécution"},
-                {"es","El agente se está ejecutando"}
+                {"es","Rtmliv"}
             }
         },
         {
-            "Agent Console",
+            "RDP Port",
             new Dictionary<string, string>() {
-                {"de","Agent-Konsole"},
-                {"hi","एजेंट कंसोल"},
-                {"fr","Console d'agent"},
-                {"zh-cht","代理控制台"},
-                {"zh-chs","代理控制台"},
-                {"fi","Agentin konsoli"},
-                {"tr","Aracı Konsolu"},
-                {"cs","Konzole agenta"},
-                {"ja","エージェントコンソール"},
-                {"es","Consola de Agente"},
-                {"pt","Console do agente"},
-                {"nl","Agent console"},
-                {"ko","에이전트 콘솔"},
-                {"ru","Консоль агента"}
+                {"es","IWK Klig"}
+            }
+        },
+        {
+            "Routing Stats",
+            new Dictionary<string, string>() {
+                {"es","Ilfgrmt Hgzgh"}
+            }
+        },
+        {
+            "Show &Group Names",
+            new Dictionary<string, string>() {
+                {"es","Hsld &Tilfk Mznvh"}
+            }
+        },
+        {
+            "Remote",
+            new Dictionary<string, string>() {
+                {"es","Ivnlgv"}
+            }
+        },
+        {
+            "Remote Device",
+            new Dictionary<string, string>() {
+                {"es","Ivnlgv Wverxv"}
+            }
+        },
+        {
+            "Remote Desktop Data",
+            new Dictionary<string, string>() {
+                {"es","Ivnlgv Wvhpglk Wzgz"}
+            }
+        },
+        {
+            "Device Group",
+            new Dictionary<string, string>() {
+                {"es","Wverxv Tilfk"}
+            }
+        },
+        {
+            "&Rename",
+            new Dictionary<string, string>() {
+                {"es","&Ivmznv"}
+            }
+        },
+        {
+            "WARNING - Invalid Server Certificate",
+            new Dictionary<string, string>() {
+                {"es","DZIMRMT - Rmezorw Hvievi Xvigrurxzgv"}
+            }
+        },
+        {
+            "Close",
+            new Dictionary<string, string>() {
+                {"es","Xolhv"}
+            }
+        },
+        {
+            "Outgoing Bytes",
+            new Dictionary<string, string>() {
+                {"es","Lfgtlrmt Ybgvh"}
+            }
+        },
+        {
+            "OK",
+            new Dictionary<string, string>() {
+                {"es","LP"}
+            }
+        },
+        {
+            "Routing Status",
+            new Dictionary<string, string>() {
+                {"es","Ilfgrmt Hgzgfh"}
+            }
+        },
+        {
+            "Ask Consent + Bar",
+            new Dictionary<string, string>() {
+                {"es","Zhp Xlmhvmg + Yzi"}
+            }
+        },
+        {
+            "Name",
+            new Dictionary<string, string>() {
+                {"es","Mznv"}
+            }
+        },
+        {
+            "Remove",
+            new Dictionary<string, string>() {
+                {"es","Ivnlev"}
+            }
+        },
+        {
+            "HTTPS",
+            new Dictionary<string, string>() {
+                {"es","SGGKH"}
+            }
+        },
+        {
+            "Incoming Compression",
+            new Dictionary<string, string>() {
+                {"es","Rmxlnrmt Xlnkivhhrlm"}
             }
         }
         };

@@ -53,12 +53,12 @@ namespace MeshCentralRouter
             }
 
             string status = "";
-            if ((node.conn & 1) != 0) { if (status.Length > 0) { status += ", "; }  status += Properties.Resources.Agent; }
-            if ((node.conn & 2) != 0) { if (status.Length > 0) { status += ", "; } status += Properties.Resources.CIRA; }
-            if ((node.conn & 4) != 0) { if (status.Length > 0) { status += ", "; } status += Properties.Resources.AMT; }
-            if ((node.conn & 8) != 0) { if (status.Length > 0) { status += ", "; } status += Properties.Resources.Relay; }
-            if ((node.conn & 16) != 0) { if (status.Length > 0) { status += ", "; } status += Properties.Resources.MQTT; }
-            if (status == "") { status = Properties.Resources.Offline; }
+            if ((node.conn & 1) != 0) { if (status.Length > 0) { status += ", "; }  status += Translate.T(Properties.Resources.Agent); }
+            if ((node.conn & 2) != 0) { if (status.Length > 0) { status += ", "; } status += Translate.T(Properties.Resources.CIRA); }
+            if ((node.conn & 4) != 0) { if (status.Length > 0) { status += ", "; } status += Translate.T(Properties.Resources.AMT); }
+            if ((node.conn & 8) != 0) { if (status.Length > 0) { status += ", "; } status += Translate.T(Properties.Resources.Relay); }
+            if ((node.conn & 16) != 0) { if (status.Length > 0) { status += ", "; } status += Translate.T(Properties.Resources.MQTT); }
+            if (status == "") { status = Translate.T(Properties.Resources.Offline); }
             deviceStatusLabel.Text = status;
 
             if (node.agentid < 6) {

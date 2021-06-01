@@ -56,7 +56,7 @@ namespace MeshCentralRouter
 
             // Fix the name
             if (name == null) { name = this.name; }
-            if (name == null) { name = Properties.Resources.MeshCentralTitle; }
+            if (name == null) { name = Translate.T(Properties.Resources.MeshCentralTitle); }
 
             // Don't replace a IPv4 address with a IPv6 one, or remove information
             if ((this.url.IndexOf("://[") == -1) && (url.IndexOf("://[") >= 0)) return false;

@@ -250,236 +250,20 @@
     </Compile>
     <Compile Include="WebSocketClient.cs" />
     <Compile Include="Win32Api.cs" />
-    <EmbeddedResource Include="AddPortMapForm.cs.resx">
-      <DependentUpon>AddPortMapForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AddPortMapForm.de.resx">
-      <DependentUpon>AddPortMapForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AddPortMapForm.es.resx">
-      <DependentUpon>AddPortMapForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AddPortMapForm.fr.resx">
-      <DependentUpon>AddPortMapForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AddPortMapForm.hi.resx">
-      <DependentUpon>AddPortMapForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AddPortMapForm.it.resx">
-      <DependentUpon>AddPortMapForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AddPortMapForm.ja.resx">
-      <DependentUpon>AddPortMapForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AddPortMapForm.ko.resx">
-      <DependentUpon>AddPortMapForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AddPortMapForm.nl.resx">
-      <DependentUpon>AddPortMapForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AddPortMapForm.pt.resx">
-      <DependentUpon>AddPortMapForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="AddPortMapForm.resx">
       <DependentUpon>AddPortMapForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AddPortMapForm.ru.resx">
-      <DependentUpon>AddPortMapForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AddPortMapForm.zh-chs.resx">
-      <DependentUpon>AddPortMapForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AddRelayMapForm.cs.resx">
-      <DependentUpon>AddRelayMapForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AddRelayMapForm.de.resx">
-      <DependentUpon>AddRelayMapForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AddRelayMapForm.es.resx">
-      <DependentUpon>AddRelayMapForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AddRelayMapForm.fr.resx">
-      <DependentUpon>AddRelayMapForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AddRelayMapForm.hi.resx">
-      <DependentUpon>AddRelayMapForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AddRelayMapForm.it.resx">
-      <DependentUpon>AddRelayMapForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AddRelayMapForm.ja.resx">
-      <DependentUpon>AddRelayMapForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AddRelayMapForm.ko.resx">
-      <DependentUpon>AddRelayMapForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AddRelayMapForm.nl.resx">
-      <DependentUpon>AddRelayMapForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AddRelayMapForm.pt.resx">
-      <DependentUpon>AddRelayMapForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddRelayMapForm.resx">
       <DependentUpon>AddRelayMapForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddRelayMapForm.ru.resx">
-      <DependentUpon>AddRelayMapForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AddRelayMapForm.zh-chs.resx">
-      <DependentUpon>AddRelayMapForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SshUsernameForm.cs.resx">
-      <DependentUpon>SshUsernameForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SshUsernameForm.de.resx">
-      <DependentUpon>SshUsernameForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SshUsernameForm.es.resx">
-      <DependentUpon>SshUsernameForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SshUsernameForm.fr.resx">
-      <DependentUpon>SshUsernameForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SshUsernameForm.hi.resx">
-      <DependentUpon>SshUsernameForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SshUsernameForm.it.resx">
-      <DependentUpon>SshUsernameForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SshUsernameForm.ja.resx">
-      <DependentUpon>SshUsernameForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SshUsernameForm.ko.resx">
-      <DependentUpon>SshUsernameForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SshUsernameForm.nl.resx">
-      <DependentUpon>SshUsernameForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SshUsernameForm.pt.resx">
-      <DependentUpon>SshUsernameForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="SshUsernameForm.resx">
       <DependentUpon>SshUsernameForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SshUsernameForm.ru.resx">
-      <DependentUpon>SshUsernameForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SshUsernameForm.zh-chs.resx">
-      <DependentUpon>SshUsernameForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="altPortForm.cs.resx">
-      <DependentUpon>altPortForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="altPortForm.de.resx">
-      <DependentUpon>altPortForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="altPortForm.es.resx">
-      <DependentUpon>altPortForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="altPortForm.fr.resx">
-      <DependentUpon>altPortForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="altPortForm.hi.resx">
-      <DependentUpon>altPortForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="altPortForm.it.resx">
-      <DependentUpon>altPortForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="altPortForm.ja.resx">
-      <DependentUpon>altPortForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="altPortForm.ko.resx">
-      <DependentUpon>altPortForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="altPortForm.nl.resx">
-      <DependentUpon>altPortForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="altPortForm.pt.resx">
-      <DependentUpon>altPortForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="altPortForm.ru.resx">
-      <DependentUpon>altPortForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="altPortForm.zh-chs.resx">
-      <DependentUpon>altPortForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AppLaunchForm.cs.resx">
-      <DependentUpon>AppLaunchForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AppLaunchForm.de.resx">
-      <DependentUpon>AppLaunchForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AppLaunchForm.es.resx">
-      <DependentUpon>AppLaunchForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AppLaunchForm.fr.resx">
-      <DependentUpon>AppLaunchForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AppLaunchForm.hi.resx">
-      <DependentUpon>AppLaunchForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AppLaunchForm.it.resx">
-      <DependentUpon>AppLaunchForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AppLaunchForm.ja.resx">
-      <DependentUpon>AppLaunchForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AppLaunchForm.ko.resx">
-      <DependentUpon>AppLaunchForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AppLaunchForm.nl.resx">
-      <DependentUpon>AppLaunchForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AppLaunchForm.pt.resx">
-      <DependentUpon>AppLaunchForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AppLaunchForm.resx">
       <DependentUpon>AppLaunchForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AppLaunchForm.ru.resx">
-      <DependentUpon>AppLaunchForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AppLaunchForm.zh-chs.resx">
-      <DependentUpon>AppLaunchForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="DeviceSettingsForm.resx">
       <DependentUpon>DeviceSettingsForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DeviceUserControl.cs.resx">
-      <DependentUpon>DeviceUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DeviceUserControl.de.resx">
-      <DependentUpon>DeviceUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DeviceUserControl.es.resx">
-      <DependentUpon>DeviceUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DeviceUserControl.fr.resx">
-      <DependentUpon>DeviceUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DeviceUserControl.hi.resx">
-      <DependentUpon>DeviceUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DeviceUserControl.it.resx">
-      <DependentUpon>DeviceUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DeviceUserControl.ja.resx">
-      <DependentUpon>DeviceUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DeviceUserControl.ko.resx">
-      <DependentUpon>DeviceUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DeviceUserControl.nl.resx">
-      <DependentUpon>DeviceUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DeviceUserControl.pt.resx">
-      <DependentUpon>DeviceUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DeviceUserControl.ru.resx">
-      <DependentUpon>DeviceUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DeviceUserControl.zh-chs.resx">
-      <DependentUpon>DeviceUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FileDeletePromptForm.resx">
       <DependentUpon>FileDeletePromptForm.cs</DependentUpon>
@@ -493,43 +277,7 @@
     <EmbeddedResource Include="FileViewer.resx">
       <DependentUpon>FileViewer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="InstallForm.cs.resx">
-      <DependentUpon>InstallForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="InstallForm.de.resx">
-      <DependentUpon>InstallForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="InstallForm.es.resx">
-      <DependentUpon>InstallForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="InstallForm.fr.resx">
-      <DependentUpon>InstallForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="InstallForm.hi.resx">
-      <DependentUpon>InstallForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="InstallForm.it.resx">
-      <DependentUpon>InstallForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="InstallForm.ja.resx">
-      <DependentUpon>InstallForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="InstallForm.ko.resx">
-      <DependentUpon>InstallForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="InstallForm.nl.resx">
-      <DependentUpon>InstallForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="InstallForm.pt.resx">
-      <DependentUpon>InstallForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="InstallForm.resx">
-      <DependentUpon>InstallForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="InstallForm.ru.resx">
-      <DependentUpon>InstallForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="InstallForm.zh-chs.resx">
       <DependentUpon>InstallForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KVMControl.resx">
@@ -550,72 +298,9 @@
     <EmbeddedResource Include="KVMViewer.resx">
       <DependentUpon>KVMViewer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.cs.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.de.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.es.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.fr.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.hi.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.it.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.ja.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.ko.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.nl.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.pt.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.ru.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.zh-chs.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MappingHelpForm.cs.resx">
-      <DependentUpon>MappingHelpForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MappingHelpForm.de.resx">
-      <DependentUpon>MappingHelpForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MappingHelpForm.es.resx">
-      <DependentUpon>MappingHelpForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MappingHelpForm.fr.resx">
-      <DependentUpon>MappingHelpForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MappingHelpForm.hi.resx">
-      <DependentUpon>MappingHelpForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MappingHelpForm.it.resx">
-      <DependentUpon>MappingHelpForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MappingHelpForm.ja.resx">
-      <DependentUpon>MappingHelpForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MappingHelpForm.ko.resx">
-      <DependentUpon>MappingHelpForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MappingHelpForm.pt.resx">
-      <DependentUpon>MappingHelpForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MappingHelpForm.resx">
       <DependentUpon>MappingHelpForm.cs</DependentUpon>
@@ -623,61 +308,9 @@
     <EmbeddedResource Include="DeviceUserControl.resx">
       <DependentUpon>DeviceUserControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MappingHelpForm.ru.resx">
-      <DependentUpon>MappingHelpForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MappingHelpForm.zh-chs.resx">
-      <DependentUpon>MappingHelpForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MapUserControl.cs.resx">
-      <DependentUpon>MapUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MapUserControl.de.resx">
-      <DependentUpon>MapUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MapUserControl.es.resx">
-      <DependentUpon>MapUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MapUserControl.fr.resx">
-      <DependentUpon>MapUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MapUserControl.hi.resx">
-      <DependentUpon>MapUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MapUserControl.it.resx">
-      <DependentUpon>MapUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MapUserControl.ja.resx">
-      <DependentUpon>MapUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MapUserControl.ko.resx">
-      <DependentUpon>MapUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MapUserControl.nl.resx">
-      <DependentUpon>MapUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MapUserControl.pt.resx">
-      <DependentUpon>MapUserControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MapUserControl.resx">
       <DependentUpon>MapUserControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MapUserControl.ru.resx">
-      <DependentUpon>MapUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MapUserControl.zh-chs.resx">
-      <DependentUpon>MapUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.cs.resx" />
-    <EmbeddedResource Include="Properties\Resources.de.resx" />
-    <EmbeddedResource Include="Properties\Resources.es.resx" />
-    <EmbeddedResource Include="Properties\Resources.fr.resx" />
-    <EmbeddedResource Include="Properties\Resources.hi.resx" />
-    <EmbeddedResource Include="Properties\Resources.it.resx" />
-    <EmbeddedResource Include="Properties\Resources.ja.resx" />
-    <EmbeddedResource Include="Properties\Resources.ko.resx" />
-    <EmbeddedResource Include="Properties\Resources.nl.resx" />
-    <EmbeddedResource Include="Properties\Resources.pt.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
@@ -686,123 +319,13 @@
     <EmbeddedResource Include="altPortForm.resx">
       <DependentUpon>altPortForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.ru.resx" />
-    <EmbeddedResource Include="Properties\Resources.zh-chs.resx" />
-    <EmbeddedResource Include="rdpPortForm.cs.resx">
-      <DependentUpon>rdpPortForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="rdpPortForm.de.resx">
-      <DependentUpon>rdpPortForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="rdpPortForm.es.resx">
-      <DependentUpon>rdpPortForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="rdpPortForm.fr.resx">
-      <DependentUpon>rdpPortForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="rdpPortForm.hi.resx">
-      <DependentUpon>rdpPortForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="rdpPortForm.it.resx">
-      <DependentUpon>rdpPortForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="rdpPortForm.ja.resx">
-      <DependentUpon>rdpPortForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="rdpPortForm.ko.resx">
-      <DependentUpon>rdpPortForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="rdpPortForm.nl.resx">
-      <DependentUpon>rdpPortForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="rdpPortForm.pt.resx">
-      <DependentUpon>rdpPortForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="rdpPortForm.resx">
       <DependentUpon>rdpPortForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="rdpPortForm.ru.resx">
-      <DependentUpon>rdpPortForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="rdpPortForm.zh-chs.resx">
-      <DependentUpon>rdpPortForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ServerUserControl.cs.resx">
-      <DependentUpon>ServerUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ServerUserControl.de.resx">
-      <DependentUpon>ServerUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ServerUserControl.es.resx">
-      <DependentUpon>ServerUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ServerUserControl.fr.resx">
-      <DependentUpon>ServerUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ServerUserControl.hi.resx">
-      <DependentUpon>ServerUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ServerUserControl.it.resx">
-      <DependentUpon>ServerUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ServerUserControl.ja.resx">
-      <DependentUpon>ServerUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ServerUserControl.ko.resx">
-      <DependentUpon>ServerUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ServerUserControl.nl.resx">
-      <DependentUpon>ServerUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ServerUserControl.pt.resx">
-      <DependentUpon>ServerUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ServerUserControl.resx">
       <DependentUpon>ServerUserControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ServerUserControl.ru.resx">
-      <DependentUpon>ServerUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ServerUserControl.zh-chs.resx">
-      <DependentUpon>ServerUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SettingsForm.cs.resx">
-      <DependentUpon>SettingsForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SettingsForm.de.resx">
-      <DependentUpon>SettingsForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SettingsForm.es.resx">
-      <DependentUpon>SettingsForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SettingsForm.fr.resx">
-      <DependentUpon>SettingsForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SettingsForm.hi.resx">
-      <DependentUpon>SettingsForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SettingsForm.it.resx">
-      <DependentUpon>SettingsForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SettingsForm.ja.resx">
-      <DependentUpon>SettingsForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SettingsForm.ko.resx">
-      <DependentUpon>SettingsForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SettingsForm.nl.resx">
-      <DependentUpon>SettingsForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SettingsForm.pt.resx">
-      <DependentUpon>SettingsForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="SettingsForm.resx">
-      <DependentUpon>SettingsForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SettingsForm.ru.resx">
-      <DependentUpon>SettingsForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SettingsForm.zh-chs.resx">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UpdateForm.resx">

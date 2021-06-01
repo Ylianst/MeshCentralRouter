@@ -77,7 +77,7 @@ namespace MeshCentralRouter
                     if (indivitualDevices)
                     {
                         MeshClass m = new MeshClass();
-                        m.name = Properties.Resources.IndividualDevices;
+                        m.name = Translate.T(Properties.Resources.IndividualDevices);
                         groupComboBox.Items.Add(m);
                     }
                 }
@@ -90,7 +90,7 @@ namespace MeshCentralRouter
                 if (selectedNode.mesh == null)
                 {
                     MeshClass m = new MeshClass();
-                    m.name = Properties.Resources.IndividualDevices;
+                    m.name = Translate.T(Properties.Resources.IndividualDevices);
                     groupComboBox.Items.Add(m);
                 }
                 else
