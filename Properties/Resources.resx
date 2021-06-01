@@ -271,4 +271,103 @@
   <data name="Local" xml:space="preserve">
     <value>Local</value>
   </data>
+  <data name="AddXUsers" xml:space="preserve">
+    <value>, {0} users</value>
+  </data>
+  <data name="Connect" xml:space="preserve">
+    <value>Connect</value>
+  </data>
+  <data name="Connected" xml:space="preserve">
+    <value>Connected</value>
+  </data>
+  <data name="Connecting" xml:space="preserve">
+    <value>Connecting...</value>
+  </data>
+  <data name="CreateFolder" xml:space="preserve">
+    <value>Create Folder</value>
+  </data>
+  <data name="Denied" xml:space="preserve">
+    <value>Denied</value>
+  </data>
+  <data name="Disconnect" xml:space="preserve">
+    <value>Disconnect</value>
+  </data>
+  <data name="Disconnected" xml:space="preserve">
+    <value>Disconnected</value>
+  </data>
+  <data name="FailedToStartRemoteTerminalSession" xml:space="preserve">
+    <value>Failed to start remote terminal session</value>
+  </data>
+  <data name="LocalPlus" xml:space="preserve">
+    <value>Local - {0}</value>
+  </data>
+  <data name="ReceivedInvalidNetworkData" xml:space="preserve">
+    <value>Received invalid network data</value>
+  </data>
+  <data name="RecordedSession" xml:space="preserve">
+    <value>, Recorded Session</value>
+  </data>
+  <data name="Remote" xml:space="preserve">
+    <value>Remote</value>
+  </data>
+  <data name="RemotePlus" xml:space="preserve">
+    <value>Remote - {0}</value>
+  </data>
+  <data name="Remove1Item" xml:space="preserve">
+    <value>Remove 1 item?</value>
+  </data>
+  <data name="RemoveXItems" xml:space="preserve">
+    <value>Remove {0} items?</value>
+  </data>
+  <data name="Rename" xml:space="preserve">
+    <value>Rename</value>
+  </data>
+  <data name="Setup" xml:space="preserve">
+    <value>Setup...</value>
+  </data>
+  <data name="Timeout" xml:space="preserve">
+    <value>Timeout</value>
+  </data>
+  <data name="WaitingForUserToGrantAccess" xml:space="preserve">
+    <value>Waiting for user to grant access...</value>
+  </data>
+  <data name="AllDisplays" xml:space="preserve">
+    <value>All Displays</value>
+  </data>
+  <data name="DisplayX" xml:space="preserve">
+    <value>Display {0}</value>
+  </data>
+  <data name="FailedToStartRemoteDesktopSession" xml:space="preserve">
+    <value>Failed to start remote desktop session</value>
+  </data>
+  <data name="Fast" xml:space="preserve">
+    <value>Fast</value>
+  </data>
+  <data name="Medium" xml:space="preserve">
+    <value>Medium</value>
+  </data>
+  <data name="OneByte" xml:space="preserve">
+    <value>{0} Byte</value>
+  </data>
+  <data name="Slow" xml:space="preserve">
+    <value>Slow</value>
+  </data>
+  <data name="VerySlow" xml:space="preserve">
+    <value>Very slow</value>
+  </data>
+  <data name="XBytes" xml:space="preserve">
+    <value>{0} Bytes</value>
+  </data>
+  <data name="PortXtoIPPortY" xml:space="preserve">
+    <value>Port {0} to {1}:{2}</value>
+  </data>
+  <data name="PortXtoPortY" xml:space="preserve">
+    <value>Port {0} to port {1}</value>
+  </data>
+  <data name="InvalidDownload" xml:space="preserve">
+    <value>Invalid download.</value>
+  </data>
+  <data name="Updating" xml:space="preserve">
+    <value>Updating...</value>
+  </data>
 </root>

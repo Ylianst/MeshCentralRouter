@@ -24,7 +24,6 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Web.Script.Serialization;
-using Microsoft.Win32;
 
 namespace MeshCentralRouter
 {
@@ -103,8 +102,8 @@ namespace MeshCentralRouter
                         leftListView.Items.Add(x);
                     }
                     localUpButton.Enabled = false;
-                    localLabel.Text = "Local";
-                    mainToolTip.SetToolTip(localLabel, "Local");
+                    localLabel.Text = Translate.T(Properties.Resources.Local);
+                    mainToolTip.SetToolTip(localLabel, Translate.T(Properties.Resources.Local));
                 }
                 catch (Exception) { return false; }
             }
@@ -125,7 +124,7 @@ namespace MeshCentralRouter
                     FileInfo[] files = localFolder.GetFiles();
                     foreach (FileInfo file in files)
                     {
-                        if (file.Attributes.HasFlag(System.IO.FileAttributes.Hidden)) continue;
+                        if (file.Attributes.HasFlag(FileAttributes.Hidden)) continue;
                         string[] si = new string[2];
                         si[0] = file.Name;
                         si[1] = "" + file.Length;
@@ -134,8 +133,8 @@ namespace MeshCentralRouter
                         leftListView.Items.Add(x);
                     }
                     localUpButton.Enabled = true;
-                    localLabel.Text = "Local - " + localFolder.FullName;
-                    mainToolTip.SetToolTip(localLabel, "Local - " + localFolder.FullName);
+                    localLabel.Text = string.Format(Translate.T(Properties.Resources.LocalPlus), localFolder.FullName);
+                    mainToolTip.SetToolTip(localLabel, string.Format(Translate.T(Properties.Resources.LocalPlus), localFolder.FullName));
                 }
                 catch (Exception) { return false; }
             }
@@ -158,18 +157,18 @@ namespace MeshCentralRouter
             rightListView.Items.Clear();
 
             if ((remoteFolder == null) || (remoteFolder == "")) {
-                remoteLabel.Text = "Remote";
-                mainToolTip.SetToolTip(remoteLabel, "Remote");
+                remoteLabel.Text = Translate.T(Properties.Resources.Remote);
+                mainToolTip.SetToolTip(remoteLabel, Translate.T(Properties.Resources.Remote));
             } else {
                 if (node.agentid < 5)
                 {
-                    remoteLabel.Text = "Remote - " + remoteFolder.Replace("/", "\\");
-                    mainToolTip.SetToolTip(remoteLabel, "Remote - " + remoteFolder.Replace("/", "\\"));
+                    remoteLabel.Text = string.Format(Translate.T(Properties.Resources.RemotePlus), remoteFolder.Replace("/", "\\"));
+                    mainToolTip.SetToolTip(remoteLabel, string.Format(Translate.T(Properties.Resources.RemotePlus), remoteFolder.Replace("/", "\\")));
                 }
                 else
                 {
-                    remoteLabel.Text = "Remote - " + remoteFolder;
-                    mainToolTip.SetToolTip(remoteLabel, "Remote - " + remoteFolder);
+                    remoteLabel.Text = string.Format(Translate.T(Properties.Resources.RemotePlus), remoteFolder);
+                    mainToolTip.SetToolTip(remoteLabel, string.Format(Translate.T(Properties.Resources.RemotePlus), remoteFolder));
                 }
             }
 
@@ -448,11 +447,11 @@ namespace MeshCentralRouter
                             int msgid = -1;
                             if ((jsonAction.ContainsKey("msg")) && (jsonAction["msg"] != null)) { msg = jsonAction["msg"].ToString(); }
                             if (jsonAction.ContainsKey("msgid")) { msgid = (int)jsonAction["msgid"]; }
-                            if (msgid == 1) { msg = "Waiting for user to grant access..."; }
-                            if (msgid == 2) { msg = "Denied"; }
-                            if (msgid == 3) { msg = "Failed to start remote terminal session"; } // , {0} ({1})
-                            if (msgid == 4) { msg = "Timeout"; }
-                            if (msgid == 5) { msg = "Received invalid network data"; }
+                            if (msgid == 1) { msg = Translate.T(Properties.Resources.WaitingForUserToGrantAccess); }
+                            if (msgid == 2) { msg = Translate.T(Properties.Resources.Denied); }
+                            if (msgid == 3) { msg = Translate.T(Properties.Resources.FailedToStartRemoteTerminalSession); }
+                            if (msgid == 4) { msg = Translate.T(Properties.Resources.Timeout); }
+                            if (msgid == 5) { msg = Translate.T(Properties.Resources.ReceivedInvalidNetworkData); }
                             displayMessage(msg);
                             break;
                         }
@@ -579,8 +578,8 @@ namespace MeshCentralRouter
             switch (state)
             {
                 case 0: // Disconnected
-                    mainToolStripStatusLabel.Text = "Disconnected";
-                    connectButton.Text = "Connect";
+                    mainToolStripStatusLabel.Text = Translate.T(Properties.Resources.Disconnected);
+                    connectButton.Text = Translate.T(Properties.Resources.Connect);
                     remoteRefreshButton.Enabled = false;
                     remoteUpButton.Enabled = false;
                     remoteRootButton.Enabled = false;
@@ -589,20 +588,20 @@ namespace MeshCentralRouter
                     remoteFolder = null;
                     break;
                 case 1: // Connecting
-                    mainToolStripStatusLabel.Text = "Connecting...";
-                    connectButton.Text = "Disconnect";
+                    mainToolStripStatusLabel.Text = Translate.T(Properties.Resources.Connecting);
+                    connectButton.Text = Translate.T(Properties.Resources.Disconnect);
                     break;
                 case 2: // Setup
-                    mainToolStripStatusLabel.Text = "Setup...";
-                    connectButton.Text = "Disconnect";
+                    mainToolStripStatusLabel.Text = Translate.T(Properties.Resources.Setup);
+                    connectButton.Text = Translate.T(Properties.Resources.Disconnect);
                     break;
                 case 3: // Connected
-                    string label = "Connected";
-                    if (sessionIsRecorded) { label += ", Recorded Session"; }
-                    if ((userSessions != null) && (userSessions.Count > 1)) { label += string.Format(", {0} users", userSessions.Count); }
+                    string label = Translate.T(Properties.Resources.Connected);
+                    if (sessionIsRecorded) { label += Translate.T(Properties.Resources.RecordedSession); }
+                    if ((userSessions != null) && (userSessions.Count > 1)) { label += string.Format(Translate.T(Properties.Resources.AddXUsers), userSessions.Count); }
                     label += ".";
                     mainToolStripStatusLabel.Text = label;
-                    connectButton.Text = "Disconnect";
+                    connectButton.Text = Translate.T(Properties.Resources.Disconnect);
                     break;
             }
 
@@ -736,7 +735,7 @@ namespace MeshCentralRouter
         private void remoteNewFolderButton_Click(object sender, EventArgs e)
         {
             if (remoteFolder == null) return;
-            FilenamePromptForm f = new FilenamePromptForm("Create Folder", "");
+            FilenamePromptForm f = new FilenamePromptForm(Translate.T(Properties.Resources.CreateFolder), "");
             if (f.ShowDialog(this) == DialogResult.OK)
             {
                 string r;
@@ -814,8 +813,8 @@ namespace MeshCentralRouter
             ArrayList filesArray = new ArrayList();
             foreach (ListViewItem l in rightListView.SelectedItems) { filesArray.Add(l.Text); if (l.ImageIndex == 1) { rec = true; } }
             string[] files = (string[])filesArray.ToArray(typeof(string));
-            string msg = string.Format("Remove {0} items?", files.Length);
-            if (files.Length == 1) { msg = "Remove 1 item?"; }
+            string msg = string.Format(Translate.T(Properties.Resources.RemoveXItems), files.Length);
+            if (files.Length == 1) { msg = Translate.T(Properties.Resources.Remove1Item); }
             FileDeletePromptForm f = new FileDeletePromptForm(msg, rec);
             if (f.ShowDialog(this) == DialogResult.OK)
             {
@@ -845,7 +844,7 @@ namespace MeshCentralRouter
         {
             string oldname = rightListView.SelectedItems[0].Text;
             if ((rightListView.SelectedItems.Count != 1) || (remoteFolder == null)) return;
-            FilenamePromptForm f = new FilenamePromptForm("Rename", oldname);
+            FilenamePromptForm f = new FilenamePromptForm(Translate.T(Properties.Resources.Rename), oldname);
             if (f.ShowDialog(this) == DialogResult.OK)
             {
                 if (oldname == f.filename) return;
@@ -1095,7 +1094,7 @@ namespace MeshCentralRouter
         private void localNewFolderButton_Click(object sender, EventArgs e)
         {
             if (localFolder == null) return;
-            FilenamePromptForm f = new FilenamePromptForm("Create Folder", "");
+            FilenamePromptForm f = new FilenamePromptForm(Translate.T(Properties.Resources.CreateFolder), "");
             if (f.ShowDialog(this) == DialogResult.OK)
             {
                 Directory.CreateDirectory(Path.Combine(localFolder.FullName, f.filename));
@@ -1109,8 +1108,8 @@ namespace MeshCentralRouter
             ArrayList filesArray = new ArrayList();
             foreach (ListViewItem l in leftListView.SelectedItems) { filesArray.Add(l.Text); if (l.ImageIndex == 1) { rec = true; } }
             string[] files = (string[])filesArray.ToArray(typeof(string));
-            string msg = string.Format("Remove {0} items?", files.Length);
-            if (files.Length == 1) { msg = "Remove 1 item?"; }
+            string msg = string.Format(Translate.T(Properties.Resources.RemoveXItems), files.Length);
+            if (files.Length == 1) { msg = Translate.T(Properties.Resources.Remove1Item); }
             FileDeletePromptForm f = new FileDeletePromptForm(msg, rec);
             if (f.ShowDialog(this) == DialogResult.OK)
             {

@@ -155,6 +155,10 @@ namespace MeshCentralRouter
             InitializeComponent();
             Translate.TranslateControl(this);
             Translate.TranslateListView(devicesListView);
+            Translate.TranslateContextMenu(trayIconContextMenuStrip);
+            Translate.TranslateContextMenu(mainContextMenuStrip);
+            Translate.TranslateContextMenu(mappingsContextMenuStrip);
+            Translate.TranslateContextMenu(devicesContextMenuStrip);
             mainPanel.Controls.Add(panel1);
             mainPanel.Controls.Add(panel2);
             mainPanel.Controls.Add(panel3);

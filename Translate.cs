@@ -37,6 +37,12 @@ namespace MeshCentralRouter
             }
         },
         {
+            "Disconnected",
+            new Dictionary<string, string>() {
+                {"es","Wrhxlmmvxgvw"}
+            }
+        },
+        {
             "MeshCentral Router",
             new Dictionary<string, string>() {
                 {"es","NvhsXvmgizo Ilfgvi"}
@@ -46,6 +52,12 @@ namespace MeshCentralRouter
             "SMS",
             new Dictionary<string, string>() {
                 {"es","HNH"}
+            }
+        },
+        {
+            "Display {0}",
+            new Dictionary<string, string>() {
+                {"es","Wrhkozb {0}"}
             }
         },
         {
@@ -64,6 +76,12 @@ namespace MeshCentralRouter
             "Password",
             new Dictionary<string, string>() {
                 {"es","Kzhhdliw"}
+            }
+        },
+        {
+            "Disconnect",
+            new Dictionary<string, string>() {
+                {"es","Wrhxlmmvxg"}
             }
         },
         {
@@ -88,6 +106,12 @@ namespace MeshCentralRouter
             "Email",
             new Dictionary<string, string>() {
                 {"es","Vnzro"}
+            }
+        },
+        {
+            "Double Click Action",
+            new Dictionary<string, string>() {
+                {"es","Wlfyov Xorxp Zxgrlm"}
             }
         },
         {
@@ -118,6 +142,18 @@ namespace MeshCentralRouter
             "Connection",
             new Dictionary<string, string>() {
                 {"es","Xlmmvxgrlm"}
+            }
+        },
+        {
+            "Slow",
+            new Dictionary<string, string>() {
+                {"es","Hold"}
+            }
+        },
+        {
+            "Remove {0} items?",
+            new Dictionary<string, string>() {
+                {"es","Ivnlev {0} rgvnh?"}
             }
         },
         {
@@ -211,6 +247,12 @@ namespace MeshCentralRouter
             }
         },
         {
+            "All Displays",
+            new Dictionary<string, string>() {
+                {"es","Zoo Wrhkozbh"}
+            }
+        },
+        {
             "Remote Desktop",
             new Dictionary<string, string>() {
                 {"es","Ivnlgv Wvhpglk"}
@@ -229,6 +271,12 @@ namespace MeshCentralRouter
             }
         },
         {
+            "{0} Bytes",
+            new Dictionary<string, string>() {
+                {"es","{0} Ybgvh"}
+            }
+        },
+        {
             "No Devices",
             new Dictionary<string, string>() {
                 {"es","Ml Wverxvh"}
@@ -244,6 +292,12 @@ namespace MeshCentralRouter
             "Bind local port to all network interfaces",
             new Dictionary<string, string>() {
                 {"es","Yrmw olxzo klig gl zoo mvgdlip rmgviuzxvh"}
+            }
+        },
+        {
+            "Port {0} to {1}:{2}",
+            new Dictionary<string, string>() {
+                {"es","Klig {0} gl {1}:{2}"}
             }
         },
         {
@@ -301,6 +355,12 @@ namespace MeshCentralRouter
             }
         },
         {
+            "Failed to start remote terminal session",
+            new Dictionary<string, string>() {
+                {"es","Uzrovw gl hgzig ivnlgv gvinrmzo hvhhrlm"}
+            }
+        },
+        {
             "Ask Consent",
             new Dictionary<string, string>() {
                 {"es","Zhp Xlmhvmg"}
@@ -337,9 +397,21 @@ namespace MeshCentralRouter
             }
         },
         {
+            "Local - {0}",
+            new Dictionary<string, string>() {
+                {"es","Olxzo - {0}"}
+            }
+        },
+        {
             "Unable to bind to local port",
             new Dictionary<string, string>() {
                 {"es","Fmzyov gl yrmw gl olxzo klig"}
+            }
+        },
+        {
+            "Create Folder",
+            new Dictionary<string, string>() {
+                {"es","Xivzgv Ulowvi"}
             }
         },
         {
@@ -400,6 +472,12 @@ namespace MeshCentralRouter
             "Port Mapping",
             new Dictionary<string, string>() {
                 {"es","Klig Nzkkrmt"}
+            }
+        },
+        {
+            "Failed to start remote desktop session",
+            new Dictionary<string, string>() {
+                {"es","Uzrovw gl hgzig ivnlgv wvhpglk hvhhrlm"}
             }
         },
         {
@@ -469,6 +547,12 @@ namespace MeshCentralRouter
             }
         },
         {
+            "Desktop Settings",
+            new Dictionary<string, string>() {
+                {"es","Wvhpglk Hvggrmth"}
+            }
+        },
+        {
             "Stats...",
             new Dictionary<string, string>() {
                 {"es","Hgzgh..."}
@@ -478,6 +562,12 @@ namespace MeshCentralRouter
             "Username",
             new Dictionary<string, string>() {
                 {"es","Fhvimznv"}
+            }
+        },
+        {
+            "Port {0} to port {1}",
+            new Dictionary<string, string>() {
+                {"es","Klig {0} gl klig {1}"}
             }
         },
         {
@@ -499,6 +589,12 @@ namespace MeshCentralRouter
             }
         },
         {
+            "Timeout",
+            new Dictionary<string, string>() {
+                {"es","Grnvlfg"}
+            }
+        },
+        {
             "E&xit",
             new Dictionary<string, string>() {
                 {"es","V&crg"}
@@ -514,6 +610,12 @@ namespace MeshCentralRouter
             "Email verification required",
             new Dictionary<string, string>() {
                 {"es","Vnzro evirurxzgrlm ivjfrivw"}
+            }
+        },
+        {
+            "Remote - {0}",
+            new Dictionary<string, string>() {
+                {"es","Ivnlgv - {0}"}
             }
         },
         {
@@ -538,6 +640,18 @@ namespace MeshCentralRouter
             "Remote Files...",
             new Dictionary<string, string>() {
                 {"es","Ivnlgv Urovh..."}
+            }
+        },
+        {
+            "Enhanced keyboard capture",
+            new Dictionary<string, string>() {
+                {"es","Vmszmxvw pvbylziw xzkgfiv"}
+            }
+        },
+        {
+            "Device Settings",
+            new Dictionary<string, string>() {
+                {"es","Wverxv Hvggrmth"}
             }
         },
         {
@@ -571,6 +685,12 @@ namespace MeshCentralRouter
             }
         },
         {
+            "Invalid download.",
+            new Dictionary<string, string>() {
+                {"es","Rmezorw wldmolzw."}
+            }
+        },
+        {
             "(Individual Devices)",
             new Dictionary<string, string>() {
                 {"es","(Rmwrerwfzo Wverxvh)"}
@@ -595,6 +715,12 @@ namespace MeshCentralRouter
             }
         },
         {
+            "Denied",
+            new Dictionary<string, string>() {
+                {"es","Wvmrvw"}
+            }
+        },
+        {
             "Relay",
             new Dictionary<string, string>() {
                 {"es","Ivozb"}
@@ -604,6 +730,12 @@ namespace MeshCentralRouter
             "statusStrip1",
             new Dictionary<string, string>() {
                 {"es","hgzgfhHgirk1"}
+            }
+        },
+        {
+            ", {0} users",
+            new Dictionary<string, string>() {
+                {"es",", {0} fhvih"}
             }
         },
         {
@@ -697,6 +829,12 @@ namespace MeshCentralRouter
             }
         },
         {
+            "Fast",
+            new Dictionary<string, string>() {
+                {"es","Uzhg"}
+            }
+        },
+        {
             "S&ettings...",
             new Dictionary<string, string>() {
                 {"es","H&vggrmth..."}
@@ -727,9 +865,33 @@ namespace MeshCentralRouter
             }
         },
         {
+            "Connected",
+            new Dictionary<string, string>() {
+                {"es","Xlmmvxgvw"}
+            }
+        },
+        {
+            "Rename",
+            new Dictionary<string, string>() {
+                {"es","Ivmznv"}
+            }
+        },
+        {
             "Remote Desktop Settings",
             new Dictionary<string, string>() {
                 {"es","Ivnlgv Wvhpglk Hvggrmth"}
+            }
+        },
+        {
+            "Connecting...",
+            new Dictionary<string, string>() {
+                {"es","Xlmmvxgrmt..."}
+            }
+        },
+        {
+            "Very slow",
+            new Dictionary<string, string>() {
+                {"es","Evib hold"}
             }
         },
         {
@@ -751,9 +913,21 @@ namespace MeshCentralRouter
             }
         },
         {
+            "{0} Byte",
+            new Dictionary<string, string>() {
+                {"es","{0} Ybgv"}
+            }
+        },
+        {
             "---",
             new Dictionary<string, string>() {
 
+            }
+        },
+        {
+            "Setup...",
+            new Dictionary<string, string>() {
+                {"es","Hvgfk..."}
             }
         },
         {
@@ -799,6 +973,12 @@ namespace MeshCentralRouter
             }
         },
         {
+            "Received invalid network data",
+            new Dictionary<string, string>() {
+                {"es","Ivxvrevw rmezorw mvgdlip wzgz"}
+            }
+        },
+        {
             "Stats",
             new Dictionary<string, string>() {
                 {"es","Hgzgh"}
@@ -808,6 +988,12 @@ namespace MeshCentralRouter
             "Use Remote Keyboard Map",
             new Dictionary<string, string>() {
                 {"es","Fhv Ivnlgv Pvbylziw Nzk"}
+            }
+        },
+        {
+            "Forward all keyboard keys",
+            new Dictionary<string, string>() {
+                {"es","Ulidziw zoo pvbylziw pvbh"}
             }
         },
         {
@@ -844,6 +1030,12 @@ namespace MeshCentralRouter
             "SCP",
             new Dictionary<string, string>() {
                 {"es","HXK"}
+            }
+        },
+        {
+            "Medium",
+            new Dictionary<string, string>() {
+                {"es","Nvwrfn"}
             }
         },
         {
@@ -895,9 +1087,27 @@ namespace MeshCentralRouter
             }
         },
         {
+            "Waiting for user to grant access...",
+            new Dictionary<string, string>() {
+                {"es","Dzrgrmt uli fhvi gl tizmg zxxvhh..."}
+            }
+        },
+        {
+            "Updating...",
+            new Dictionary<string, string>() {
+                {"es","Fkwzgrmt..."}
+            }
+        },
+        {
             "Ignore",
             new Dictionary<string, string>() {
                 {"es","Rtmliv"}
+            }
+        },
+        {
+            "Remove 1 item?",
+            new Dictionary<string, string>() {
+                {"es","Ivnlev 1 rgvn?"}
             }
         },
         {
@@ -940,6 +1150,12 @@ namespace MeshCentralRouter
             "Device Group",
             new Dictionary<string, string>() {
                 {"es","Wverxv Tilfk"}
+            }
+        },
+        {
+            ", Recorded Session",
+            new Dictionary<string, string>() {
+                {"es",", Ivxliwvw Hvhhrlm"}
             }
         },
         {

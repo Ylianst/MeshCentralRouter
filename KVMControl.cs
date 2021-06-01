@@ -278,11 +278,11 @@ namespace MeshCentralRouter
                                     ushort num = (ushort)((buffer[off + 6 + i * 2] << 8) + buffer[off + 7 + i * 2]);
                                     if (num == 0xFFFF)
                                     {
-                                        displays.Add("All Displays");
+                                        displays.Add(Translate.T(Properties.Resources.AllDisplays));
                                     }
                                     else
                                     {
-                                        displays.Add("Display " + num);
+                                        displays.Add(string.Format(Translate.T(Properties.Resources.DisplayX), num));
                                     }
                                 }
                             }

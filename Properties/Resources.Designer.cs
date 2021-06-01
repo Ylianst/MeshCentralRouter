@@ -61,11 +61,29 @@ namespace MeshCentralRouter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to , {0} users.
+        /// </summary>
+        internal static string AddXUsers {
+            get {
+                return ResourceManager.GetString("AddXUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Agent.
         /// </summary>
         internal static string Agent {
             get {
                 return ResourceManager.GetString("Agent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All Displays.
+        /// </summary>
+        internal static string AllDisplays {
+            get {
+                return ResourceManager.GetString("AllDisplays", resourceCulture);
             }
         }
         
@@ -118,12 +136,84 @@ namespace MeshCentralRouter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Connect.
+        /// </summary>
+        internal static string Connect {
+            get {
+                return ResourceManager.GetString("Connect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connected.
+        /// </summary>
+        internal static string Connected {
+            get {
+                return ResourceManager.GetString("Connected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connecting....
+        /// </summary>
+        internal static string Connecting {
+            get {
+                return ResourceManager.GetString("Connecting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create Folder.
+        /// </summary>
+        internal static string CreateFolder {
+            get {
+                return ResourceManager.GetString("CreateFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap delete16 {
             get {
                 object obj = ResourceManager.GetObject("delete16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Denied.
+        /// </summary>
+        internal static string Denied {
+            get {
+                return ResourceManager.GetString("Denied", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disconnect.
+        /// </summary>
+        internal static string Disconnect {
+            get {
+                return ResourceManager.GetString("Disconnect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disconnected.
+        /// </summary>
+        internal static string Disconnected {
+            get {
+                return ResourceManager.GetString("Disconnected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display {0}.
+        /// </summary>
+        internal static string DisplayX {
+            get {
+                return ResourceManager.GetString("DisplayX", resourceCulture);
             }
         }
         
@@ -161,6 +251,33 @@ namespace MeshCentralRouter.Properties {
             get {
                 object obj = ResourceManager.GetObject("EmptyBanner", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to start remote desktop session.
+        /// </summary>
+        internal static string FailedToStartRemoteDesktopSession {
+            get {
+                return ResourceManager.GetString("FailedToStartRemoteDesktopSession", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to start remote terminal session.
+        /// </summary>
+        internal static string FailedToStartRemoteTerminalSession {
+            get {
+                return ResourceManager.GetString("FailedToStartRemoteTerminalSession", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fast.
+        /// </summary>
+        internal static string Fast {
+            get {
+                return ResourceManager.GetString("Fast", resourceCulture);
             }
         }
         
@@ -274,6 +391,15 @@ namespace MeshCentralRouter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid download..
+        /// </summary>
+        internal static string InvalidDownload {
+            get {
+                return ResourceManager.GetString("InvalidDownload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid username or password.
         /// </summary>
         internal static string InvalidUsernameOrPassword {
@@ -310,6 +436,15 @@ namespace MeshCentralRouter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Local - {0}.
+        /// </summary>
+        internal static string LocalPlus {
+            get {
+                return ResourceManager.GetString("LocalPlus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to , {0} connections..
         /// </summary>
         internal static string ManyConnections {
@@ -325,6 +460,15 @@ namespace MeshCentralRouter.Properties {
             get {
                 object obj = ResourceManager.GetObject("MC2Banner", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Medium.
+        /// </summary>
+        internal static string Medium {
+            get {
+                return ResourceManager.GetString("Medium", resourceCulture);
             }
         }
         
@@ -375,6 +519,15 @@ namespace MeshCentralRouter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} Byte.
+        /// </summary>
+        internal static string OneByte {
+            get {
+                return ResourceManager.GetString("OneByte", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to , 1 connection..
         /// </summary>
         internal static string OneConnection {
@@ -393,11 +546,47 @@ namespace MeshCentralRouter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Port {0} to {1}:{2}.
+        /// </summary>
+        internal static string PortXtoIPPortY {
+            get {
+                return ResourceManager.GetString("PortXtoIPPortY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Port {0} to port {1}.
+        /// </summary>
+        internal static string PortXtoPortY {
+            get {
+                return ResourceManager.GetString("PortXtoPortY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to PuTTY SSH client.
         /// </summary>
         internal static string PuttyAppName {
             get {
                 return ResourceManager.GetString("PuttyAppName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Received invalid network data.
+        /// </summary>
+        internal static string ReceivedInvalidNetworkData {
+            get {
+                return ResourceManager.GetString("ReceivedInvalidNetworkData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to , Recorded Session.
+        /// </summary>
+        internal static string RecordedSession {
+            get {
+                return ResourceManager.GetString("RecordedSession", resourceCulture);
             }
         }
         
@@ -417,6 +606,51 @@ namespace MeshCentralRouter.Properties {
         internal static string Relay {
             get {
                 return ResourceManager.GetString("Relay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remote.
+        /// </summary>
+        internal static string Remote {
+            get {
+                return ResourceManager.GetString("Remote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remote - {0}.
+        /// </summary>
+        internal static string RemotePlus {
+            get {
+                return ResourceManager.GetString("RemotePlus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove 1 item?.
+        /// </summary>
+        internal static string Remove1Item {
+            get {
+                return ResourceManager.GetString("Remove1Item", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove {0} items?.
+        /// </summary>
+        internal static string RemoveXItems {
+            get {
+                return ResourceManager.GetString("RemoveXItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rename.
+        /// </summary>
+        internal static string Rename {
+            get {
+                return ResourceManager.GetString("Rename", resourceCulture);
             }
         }
         
@@ -444,6 +678,24 @@ namespace MeshCentralRouter.Properties {
         internal static string SendTokenSMS {
             get {
                 return ResourceManager.GetString("SendTokenSMS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Setup....
+        /// </summary>
+        internal static string Setup {
+            get {
+                return ResourceManager.GetString("Setup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Slow.
+        /// </summary>
+        internal static string Slow {
+            get {
+                return ResourceManager.GetString("Slow", resourceCulture);
             }
         }
         
@@ -484,6 +736,15 @@ namespace MeshCentralRouter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Timeout.
+        /// </summary>
+        internal static string Timeout {
+            get {
+                return ResourceManager.GetString("Timeout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Two-factor Authentication.
         /// </summary>
         internal static string TwoFactorAuthentication {
@@ -511,11 +772,47 @@ namespace MeshCentralRouter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Updating....
+        /// </summary>
+        internal static string Updating {
+            get {
+                return ResourceManager.GetString("Updating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Very slow.
+        /// </summary>
+        internal static string VerySlow {
+            get {
+                return ResourceManager.GetString("VerySlow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Waiting for user to grant access....
+        /// </summary>
+        internal static string WaitingForUserToGrantAccess {
+            get {
+                return ResourceManager.GetString("WaitingForUserToGrantAccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to WinSCP client.
         /// </summary>
         internal static string WinscpAppName {
             get {
                 return ResourceManager.GetString("WinscpAppName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} Bytes.
+        /// </summary>
+        internal static string XBytes {
+            get {
+                return ResourceManager.GetString("XBytes", resourceCulture);
             }
         }
         

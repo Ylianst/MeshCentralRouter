@@ -138,9 +138,9 @@ namespace MeshCentralRouter
             else if (state == 1) {
                 if (remoteip == null)
                 {
-                    msg = "Port " + localport + " to port " + remoteport;
+                    msg = string.Format(Translate.T(Properties.Resources.PortXtoPortY), localport, remoteport);
                 } else {
-                    msg = "Port " + localport + " to " + remoteip + ":" + remoteport;
+                    msg = string.Format(Translate.T(Properties.Resources.PortXtoIPPortY), localport, remoteip, remoteport);
                 }
                 if (totalConnectCounter == 1) { msg += Translate.T(Properties.Resources.OneConnection); }
                 if (totalConnectCounter > 1) { msg += string.Format(Translate.T(Properties.Resources.ManyConnections), totalConnectCounter); }

@@ -32,10 +32,10 @@ namespace MeshCentralRouter
 
         private void refreshTimer_Tick(object sender, EventArgs e)
         {
-            kvmInBytesLabel.Text = string.Format(((mapControl.mapper.bytesToClient == 1)?"{0} Byte":"{0} Bytes"), mapControl.mapper.bytesToClient);
-            kvmOutBytesLabel.Text = string.Format(((mapControl.mapper.bytesToServer == 1) ? "{0} Byte" : "{0} Bytes"), mapControl.mapper.bytesToServer);
-            kvmCompInBytesLabel.Text = string.Format(((mapControl.mapper.bytesToClientCompressed == 1) ? "{0} Byte" : "{0} Bytes"), mapControl.mapper.bytesToClientCompressed);
-            kvmCompOutBytesLabel.Text = string.Format(((mapControl.mapper.bytesToServerCompressed == 1) ? "{0} Byte" : "{0} Bytes"), mapControl.mapper.bytesToServerCompressed);
+            kvmInBytesLabel.Text = string.Format(((mapControl.mapper.bytesToClient == 1) ? Translate.T(Properties.Resources.OneByte) : Translate.T(Properties.Resources.XBytes)), mapControl.mapper.bytesToClient);
+            kvmOutBytesLabel.Text = string.Format(((mapControl.mapper.bytesToServer == 1) ? Translate.T(Properties.Resources.OneByte) : Translate.T(Properties.Resources.XBytes)), mapControl.mapper.bytesToServer);
+            kvmCompInBytesLabel.Text = string.Format(((mapControl.mapper.bytesToClientCompressed == 1) ? Translate.T(Properties.Resources.OneByte) : Translate.T(Properties.Resources.XBytes)), mapControl.mapper.bytesToClientCompressed);
+            kvmCompOutBytesLabel.Text = string.Format(((mapControl.mapper.bytesToServerCompressed == 1) ? Translate.T(Properties.Resources.OneByte) : Translate.T(Properties.Resources.XBytes)), mapControl.mapper.bytesToServerCompressed);
             if (mapControl.mapper.bytesToClient == 0) {
                 inRatioLabel.Text = "0%";
             } else {

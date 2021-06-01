@@ -222,11 +222,11 @@ namespace MeshCentralRouter
                         int msgid = -1;
                         if ((jsonAction.ContainsKey("msg")) && (jsonAction["msg"] != null)) { msg = jsonAction["msg"].ToString(); }
                         if (jsonAction.ContainsKey("msgid")) { msgid = (int)jsonAction["msgid"]; }
-                        if (msgid == 1) { msg = "Waiting for user to grant access..."; }
-                        if (msgid == 2) { msg = "Denied"; }
-                        if (msgid == 3) { msg = "Failed to start remote terminal session"; } // , {0} ({1})
-                        if (msgid == 4) { msg = "Timeout"; }
-                        if (msgid == 5) { msg = "Received invalid network data"; }
+                        if (msgid == 1) { msg = Translate.T(Properties.Resources.WaitingForUserToGrantAccess); }
+                        if (msgid == 2) { msg = Translate.T(Properties.Resources.Denied); }
+                        if (msgid == 3) { msg = Translate.T(Properties.Resources.FailedToStartRemoteDesktopSession); }
+                        if (msgid == 4) { msg = Translate.T(Properties.Resources.Timeout); }
+                        if (msgid == 5) { msg = Translate.T(Properties.Resources.ReceivedInvalidNetworkData); }
                         displayMessage(msg);
                         break;
                     }
@@ -273,32 +273,32 @@ namespace MeshCentralRouter
             switch (state)
             {
                 case 0: // Disconnected
-                    mainToolStripStatusLabel.Text = "Disconnected";
+                    mainToolStripStatusLabel.Text = Translate.T(Properties.Resources.Disconnected);
                     displaySelectComboBox.Visible = false;
                     kvmControl.Visible = false;
                     kvmControl.screenWidth = 0;
                     kvmControl.screenHeight = 0;
-                    connectButton.Text = "Connect";
+                    connectButton.Text = Translate.T(Properties.Resources.Connect);
                     break;
                 case 1: // Connecting
-                    mainToolStripStatusLabel.Text = "Connecting...";
+                    mainToolStripStatusLabel.Text = Translate.T(Properties.Resources.Connecting);
                     displaySelectComboBox.Visible = false;
                     kvmControl.Visible = false;
-                    connectButton.Text = "Disconnect";
+                    connectButton.Text = Translate.T(Properties.Resources.Disconnect);
                     break;
                 case 2: // Setup
                     mainToolStripStatusLabel.Text = "Setup...";
                     displaySelectComboBox.Visible = false;
                     kvmControl.Visible = false;
-                    connectButton.Text = "Disconnect";
+                    connectButton.Text = Translate.T(Properties.Resources.Disconnect);
                     break;
                 case 3: // Connected
-                    string label = "Connected";
-                    if (sessionIsRecorded) { label += ", Recorded Session"; }
-                    if ((userSessions != null) && (userSessions.Count > 1)) { label += string.Format(", {0} users", userSessions.Count); }
+                    string label = Translate.T(Properties.Resources.Connected);
+                    if (sessionIsRecorded) { label += Translate.T(Properties.Resources.RecordedSession); }
+                    if ((userSessions != null) && (userSessions.Count > 1)) { label += string.Format(Translate.T(Properties.Resources.AddXUsers), userSessions.Count); }
                     label += ".";
                     mainToolStripStatusLabel.Text = label;
-                    connectButton.Text = "Disconnect";
+                    connectButton.Text = Translate.T(Properties.Resources.Disconnect);
                     kvmControl.SendCompressionLevel();
                     break;
             }
@@ -393,11 +393,11 @@ namespace MeshCentralRouter
                 displaySelectComboBox.Items.AddRange(kvmControl.displays.ToArray());
                 if (kvmControl.currentDisp == 0xFFFF)
                 {
-                    displaySelectComboBox.SelectedItem = "All Displays";
+                    displaySelectComboBox.SelectedItem = Translate.T(Properties.Resources.AllDisplays);
                 }
                 else
                 {
-                    displaySelectComboBox.SelectedItem = "Display " + kvmControl.currentDisp;
+                    displaySelectComboBox.SelectedItem = string.Format(Translate.T(Properties.Resources.DisplayX), kvmControl.currentDisp);
                 }
             }
             else
@@ -411,7 +411,7 @@ namespace MeshCentralRouter
         {
             string displayText = displaySelectComboBox.SelectedItem.ToString();
             int displaynum = 0;
-            if (displayText == "All Displays") displaynum = 0xFFFF;
+            if (displayText == Translate.T(Properties.Resources.AllDisplays)) displaynum = 0xFFFF;
             if (displaynum != 0 || int.TryParse(displayText.Substring(8), out displaynum))
             {
                 if (kvmControl != null) kvmControl.SendDisplay(displaynum);

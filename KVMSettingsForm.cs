@@ -44,10 +44,10 @@ namespace MeshCentralRouter
             scalingComboBox.Items.Add(new DropListItem(384, "37.5%"));
             scalingComboBox.Items.Add(new DropListItem(256, "25%"));
             scalingComboBox.Items.Add(new DropListItem(128, "12.5%"));
-            frameRateComboBox.Items.Add(new DropListItem(50, "Fast"));
-            frameRateComboBox.Items.Add(new DropListItem(100, "Medium"));
-            frameRateComboBox.Items.Add(new DropListItem(400, "Slow"));
-            frameRateComboBox.Items.Add(new DropListItem(1000, "Very slow"));
+            frameRateComboBox.Items.Add(new DropListItem(50, Translate.T(Properties.Resources.Fast)));
+            frameRateComboBox.Items.Add(new DropListItem(100, Translate.T(Properties.Resources.Medium)));
+            frameRateComboBox.Items.Add(new DropListItem(400, Translate.T(Properties.Resources.Slow)));
+            frameRateComboBox.Items.Add(new DropListItem(1000, Translate.T(Properties.Resources.VerySlow)));
             qualityComboBox.SelectedIndex = 4;
             scalingComboBox.SelectedIndex = 0;
             frameRateComboBox.SelectedIndex = 1;

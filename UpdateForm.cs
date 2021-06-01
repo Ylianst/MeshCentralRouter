@@ -132,10 +132,10 @@ namespace MeshCentralRouter
                     using (var sha384 = SHA384Managed.Create()) { using (var stream = File.OpenRead(System.Reflection.Assembly.GetEntryAssembly().Location + ".update.exe")) { downloadHash = sha384.ComputeHash(stream); } }
                     string downloadHashHex = BitConverter.ToString(downloadHash).Replace("-", string.Empty).ToLower();
                     if (downloadHashHex != hash) {
-                        updateMessage("Invalid download.", 2);
+                        updateMessage(Translate.T(Properties.Resources.InvalidDownload), 2);
                         File.Delete(System.Reflection.Assembly.GetEntryAssembly().Location + ".update.exe");
                     } else {
-                        updateMessage("Updating...", 0);
+                        updateMessage(Translate.T(Properties.Resources.Updating), 0);
                         Process.Start(System.Reflection.Assembly.GetEntryAssembly().Location + ".update.exe", "-update:" + System.Reflection.Assembly.GetEntryAssembly().Location + " " + string.Join(" ", args));
                         Application.Exit();
                     }

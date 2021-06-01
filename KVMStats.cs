@@ -32,10 +32,10 @@ namespace MeshCentralRouter
 
         private void refreshTimer_Tick(object sender, EventArgs e)
         {
-            kvmInBytesLabel.Text = string.Format(((viewer.bytesIn == 1)?"{0} Byte":"{0} Bytes"), viewer.bytesIn);
-            kvmOutBytesLabel.Text = string.Format(((viewer.bytesOut == 1) ? "{0} Byte" : "{0} Bytes"), viewer.bytesOut);
-            kvmCompInBytesLabel.Text = string.Format(((viewer.bytesInCompressed == 1) ? "{0} Byte" : "{0} Bytes"), viewer.bytesInCompressed);
-            kvmCompOutBytesLabel.Text = string.Format(((viewer.bytesOutCompressed == 1) ? "{0} Byte" : "{0} Bytes"), viewer.bytesOutCompressed);
+            kvmInBytesLabel.Text = string.Format(((viewer.bytesIn == 1)? Translate.T(Properties.Resources.OneByte): Translate.T(Properties.Resources.XBytes)), viewer.bytesIn);
+            kvmOutBytesLabel.Text = string.Format(((viewer.bytesOut == 1) ? Translate.T(Properties.Resources.OneByte) : Translate.T(Properties.Resources.XBytes)), viewer.bytesOut);
+            kvmCompInBytesLabel.Text = string.Format(((viewer.bytesInCompressed == 1) ? Translate.T(Properties.Resources.OneByte) : Translate.T(Properties.Resources.XBytes)), viewer.bytesInCompressed);
+            kvmCompOutBytesLabel.Text = string.Format(((viewer.bytesOutCompressed == 1) ? Translate.T(Properties.Resources.OneByte) : Translate.T(Properties.Resources.XBytes)), viewer.bytesOutCompressed);
             if (viewer.bytesIn == 0) {
                 inRatioLabel.Text = "0%";
             } else {
