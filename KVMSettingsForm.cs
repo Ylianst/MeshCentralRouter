@@ -1,5 +1,5 @@
 ﻿/*
-Copyright 2009-2011 Intel Corporation
+Copyright 2009-2021 Intel Corporation
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -15,12 +15,7 @@ limitations under the License.
 */
 
 using System;
-using System.Data;
-using System.Text;
-using System.Drawing;
 using System.Windows.Forms;
-using System.ComponentModel;
-using System.Collections.Generic;
 
 namespace MeshCentralRouter
 {
