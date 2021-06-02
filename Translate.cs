@@ -25,15 +25,25 @@ namespace MeshCentralRouter
         // *** TRANSLATION TABLE START ***
         static private Dictionary<string, Dictionary<string, string>> translationTable = new Dictionary<string, Dictionary<string, string>>() {
         {
-            "Email sent",
+            "Failed to start remote terminal session",
             new Dictionary<string, string>() {
-                {"ko","メールを送信しました"},
-                {"fr","Email envoyé"},
-                {"es","Email enviado"},
-                {"ja","メールを送信しました"},
-                {"hi","ईमेल भेजा"},
-                {"zh-chs","邮件已发送"},
-                {"de","E-Mail gesendet"}
+                {"ko","リモート ターミナル セッションの開始に失敗しました"},
+                {"fr","Échec du démarrage de la session de terminal distant"},
+                {"zh-chs","无法启动远程终端会话"},
+                {"es","No se pudo iniciar la sesión de terminal remota"},
+                {"hi","दूरस्थ टर्मिनल सत्र प्रारंभ करने में विफल"},
+                {"de","Fehler beim Starten der Remote-Terminal-Sitzung"}
+            }
+        },
+        {
+            "Certificate",
+            new Dictionary<string, string>() {
+                {"ko","証明書"},
+                {"fr","Certificat"},
+                {"zh-chs","证书"},
+                {"es","Certificado"},
+                {"hi","प्रमाणपत्र"},
+                {"de","Zertifikat"}
             }
         },
         {
@@ -41,10 +51,9 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","リフレッシュ"},
                 {"fr","Rafraîchir"},
-                {"es","Actualizar"},
-                {"ja","リフレッシュ"},
-                {"hi","ताज़ा करें"},
                 {"zh-chs","刷新"},
+                {"es","Actualizar"},
+                {"hi","ताज़ा करें"},
                 {"de","Aktualisierung"}
             }
         },
@@ -53,10 +62,9 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","名前順"},
                 {"fr","Trier par nom"},
-                {"es","Ordenar por nombre"},
-                {"ja","名前順"},
-                {"hi","नाम द्वारा क्रमबद्ध करें"},
                 {"zh-chs","按名称分类"},
+                {"es","Ordenar por nombre"},
+                {"hi","नाम द्वारा क्रमबद्ध करें"},
                 {"de","Nach Name sortieren"}
             }
         },
@@ -65,10 +73,9 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","言語を変更すると、このツールが閉じます。本気ですか？"},
                 {"fr","Le changement de langue fermera cet outil. Êtes-vous sûr?"},
-                {"es","El cambio de idioma cerrará esta herramienta. ¿Está seguro?"},
-                {"ja","言語を変更すると、このツールが閉じます。本気ですか？"},
-                {"hi","भाषा बदलने से यह टूल बंद हो जाएगा। क्या आपको यकीन है?"},
                 {"zh-chs","更改语言将关闭此工具。你确定吗？"},
+                {"es","El cambio de idioma cerrará esta herramienta. ¿Está seguro?"},
+                {"hi","भाषा बदलने से यह टूल बंद हो जाएगा। क्या आपको यकीन है?"},
                 {"de","Wenn Sie die Sprache ändern, wird dieses Tool geschlossen. Bist du sicher?"}
             }
         },
@@ -96,11 +103,32 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","リモート デスクトップの品質、スケーリング、フレーム レートの設定。これらは、ネットワーク接続の品質に応じて調整できます。"},
                 {"fr","Paramètres de qualité, de mise à l'échelle et de fréquence d'images du bureau à distance. Ceux-ci peuvent être ajustés en fonction de la qualité de la connexion réseau."},
-                {"es","Configuración de la calidad del escritorio remoto, la escala y la velocidad de fotogramas. Estos se pueden ajustar en función de la calidad de la conexión de red."},
-                {"ja","リモート デスクトップの品質、スケーリング、フレーム レートの設定。これらは、ネットワーク接続の品質に応じて調整できます。"},
-                {"hi","दूरस्थ डेस्कटॉप गुणवत्ता, स्केलिंग और फ्रेम दर सेटिंग्स। इन्हें नेटवर्क कनेक्शन की गुणवत्ता के आधार पर समायोजित किया जा सकता है।"},
                 {"zh-chs","远程桌面质量、缩放和帧速率设置。这些可以根据网络连接的质量进行调整。"},
+                {"es","Configuración de la calidad del escritorio remoto, la escala y la velocidad de fotogramas. Estos se pueden ajustar en función de la calidad de la conexión de red."},
+                {"hi","दूरस्थ डेस्कटॉप गुणवत्ता, स्केलिंग और फ्रेम दर सेटिंग्स। इन्हें नेटवर्क कनेक्शन की गुणवत्ता के आधार पर समायोजित किया जा सकता है।"},
                 {"de","Remote-Desktop-Qualität, Skalierung und Bildrateneinstellungen. Diese können je nach Qualität der Netzwerkverbindung angepasst werden."}
+            }
+        },
+        {
+            "Use Alternate Port...",
+            new Dictionary<string, string>() {
+                {"ko","代替ポートを使用..."},
+                {"fr","Utiliser un autre port..."},
+                {"zh-chs","使用备用端口..."},
+                {"es","Usar puerto alternativo ..."},
+                {"hi","वैकल्पिक पोर्ट का उपयोग करें..."},
+                {"de","Alternativer Port verwenden..."}
+            }
+        },
+        {
+            "No Port Mappings\r\n\r\nClick \"Add\" to get started.",
+            new Dictionary<string, string>() {
+                {"ko","ポート マッピングなし\r\n\r\n[追加] をクリックして開始します。"},
+                {"fr","Aucun mappage de port\r\n\r\nCliquez sur \"Ajouter\" pour commencer."},
+                {"zh-chs","无端口映射\r\n\r\n单击“添加”开始。"},
+                {"es","Sin asignaciones de puertos\r\n\r\nHaga clic en \"Agregar\" para comenzar."},
+                {"hi","कोई पोर्ट मैपिंग नहीं\r\n\r\nआरंभ करने के लिए \"जोड़ें\" पर क्लिक करें।"},
+                {"de","Keine Portzuordnungen\r\n\r\nKlicken Sie auf \"Hinzufügen\", um zu beginnen."}
             }
         },
         {
@@ -108,34 +136,42 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","ラベル1"},
                 {"fr","étiquette1"},
-                {"es","etiqueta1"},
-                {"ja","ラベル1"},
-                {"hi","लेबल1"},
                 {"zh-chs","标签 1"},
+                {"es","etiqueta1"},
+                {"hi","लेबल1"},
                 {"de","Etikett1"}
             }
         },
         {
-            "Application",
+            "Server",
             new Dictionary<string, string>() {
-                {"ko","応用"},
-                {"es","Solicitud"},
-                {"ja","応用"},
-                {"hi","आवेदन"},
-                {"zh-chs","应用"},
-                {"de","Anwendung"}
+                {"ko","サーバ"},
+                {"fr","Serveur"},
+                {"zh-chs","服务器"},
+                {"es","Servidor"},
+                {"hi","सर्वर"}
             }
         },
         {
-            "Remove {0} items?",
+            "Log out",
             new Dictionary<string, string>() {
-                {"ko","{0} 個のアイテムを削除しますか?"},
-                {"fr","Supprimer {0} éléments ?"},
-                {"es","¿Eliminar {0} elementos?"},
-                {"ja","{0} 個のアイテムを削除しますか?"},
-                {"hi","{0} आइटम निकालें?"},
-                {"zh-chs","删除 {0} 项？"},
-                {"de","{0} Elemente entfernen?"}
+                {"ko","ログアウト"},
+                {"fr","Se déconnecter"},
+                {"zh-chs","登出"},
+                {"es","Cerrar sesión"},
+                {"hi","लॉग आउट"},
+                {"de","Ausloggen"}
+            }
+        },
+        {
+            "Don't ask for {0} days.",
+            new Dictionary<string, string>() {
+                {"ko","{0} 日間尋ねないでください。"},
+                {"fr","Ne demandez pas {0} jours."},
+                {"zh-chs","不要要求 {0} 天。"},
+                {"es","No pida {0} días."},
+                {"hi","{0} दिनों के लिए मत पूछो।"},
+                {"de","Frag nicht nach {0} Tagen."}
             }
         },
         {
@@ -143,10 +179,9 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","すべてのキーボード キーを転送する"},
                 {"fr","Transférer toutes les touches du clavier"},
-                {"es","Reenviar todas las teclas del teclado"},
-                {"ja","すべてのキーボード キーを転送する"},
-                {"hi","सभी कीबोर्ड कुंजियों को अग्रेषित करें"},
                 {"zh-chs","转发所有键盘键"},
+                {"es","Reenviar todas las teclas del teclado"},
+                {"hi","सभी कीबोर्ड कुंजियों को अग्रेषित करें"},
                 {"de","Alle Tastaturtasten weiterleiten"}
             }
         },
@@ -189,10 +224,9 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","マップを追加..."},
                 {"fr","Ajouter une &carte..."},
-                {"es","Agregar & mapa ..."},
-                {"ja","マップを追加..."},
-                {"hi","नक्शा जोड़ें..."},
                 {"zh-chs","添加地图 (&M)..."},
+                {"es","Agregar & mapa ..."},
+                {"hi","नक्शा जोड़ें..."},
                 {"de","&Zuordnen hinzufügen..."}
             }
         },
@@ -201,10 +235,9 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","停止"},
                 {"fr","Arrêté"},
-                {"es","Detenido"},
-                {"ja","停止"},
-                {"hi","रोका हुआ"},
                 {"zh-chs","停止"},
+                {"es","Detenido"},
+                {"hi","रोका हुआ"},
                 {"de","Gestoppt"}
             }
         },
@@ -213,10 +246,9 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","二要素認証"},
                 {"fr","Authentification à deux facteurs"},
-                {"es","Autenticación de dos factores"},
-                {"ja","二要素認証"},
-                {"hi","दो तरीकों से प्रमाणीकरण"},
                 {"zh-chs","两因素身份验证"},
+                {"es","Autenticación de dos factores"},
+                {"hi","दो तरीकों से प्रमाणीकरण"},
                 {"de","Zwei-Faktor-Authentifizierung"}
             }
         },
@@ -240,27 +272,14 @@ namespace MeshCentralRouter
             }
         },
         {
-            "0 Bytes",
+            "View Certificate Details...",
             new Dictionary<string, string>() {
-                {"ko","0 バイト"},
-                {"fr","0 octet"},
-                {"es","0 bytes"},
-                {"ja","0 バイト"},
-                {"hi","0 बाइट्स"},
-                {"zh-chs","0 字节"},
-                {"de","0 Byte"}
-            }
-        },
-        {
-            "Routing Stats",
-            new Dictionary<string, string>() {
-                {"ko","ルーティング統計"},
-                {"fr","Statistiques de routage"},
-                {"es","Estadísticas de enrutamiento"},
-                {"ja","ルーティング統計"},
-                {"hi","रूटिंग आँकड़े"},
-                {"zh-chs","路由统计"},
-                {"de","Routing-Statistiken"}
+                {"ko","証明書の詳細を表示..."},
+                {"fr","Afficher les détails du certificat..."},
+                {"zh-chs","查看证书详细信息..."},
+                {"es","Ver detalles del certificado ..."},
+                {"hi","प्रमाणपत्र विवरण देखें..."},
+                {"de","Zertifikatdetails anzeigen..."}
             }
         },
         {
@@ -268,23 +287,10 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","、記録されたセッション"},
                 {"fr",", Séance enregistrée"},
-                {"es",", Sesión grabada"},
-                {"ja","、記録されたセッション"},
-                {"hi",", रिकॉर्ड किया गया सत्र"},
                 {"zh-chs",", 录制会话"},
+                {"es",", Sesión grabada"},
+                {"hi",", रिकॉर्ड किया गया सत्र"},
                 {"de",", Aufgezeichnete Sitzung"}
-            }
-        },
-        {
-            "No Port Mappings\r\n\r\nClick \"Add\" to get started.",
-            new Dictionary<string, string>() {
-                {"ko","ポート マッピングなし\r\n\r\n[追加] をクリックして開始します。"},
-                {"fr","Aucun mappage de port\r\n\r\nCliquez sur \"Ajouter\" pour commencer."},
-                {"es","Sin asignaciones de puertos\r\n\r\nHaga clic en \"Agregar\" para comenzar."},
-                {"ja","ポート マッピングなし\r\n\r\n[追加] をクリックして開始します。"},
-                {"hi","कोई पोर्ट मैपिंग नहीं\r\n\r\nआरंभ करने के लिए \"जोड़ें\" पर क्लिक करें।"},
-                {"zh-chs","无端口映射\r\n\r\n单击“添加”开始。"},
-                {"de","Keine Portzuordnungen\r\n\r\nKlicken Sie auf \"Hinzufügen\", um zu beginnen."}
             }
         },
         {
@@ -292,11 +298,21 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","メール認証が必要です"},
                 {"fr","Vérification de l'e-mail requise"},
-                {"es","Se requiere verificación de correo electrónico"},
-                {"ja","メール認証が必要です"},
-                {"hi","ईमेल सत्यापन आवश्यक"},
                 {"zh-chs","需要电子邮件验证"},
+                {"es","Se requiere verificación de correo electrónico"},
+                {"hi","ईमेल सत्यापन आवश्यक"},
                 {"de","E-Mail-Verifizierung erforderlich"}
+            }
+        },
+        {
+            "Ignore",
+            new Dictionary<string, string>() {
+                {"ko","無視する"},
+                {"fr","Ignorer"},
+                {"zh-chs","忽略"},
+                {"es","Ignorar"},
+                {"hi","नज़रअंदाज़ करना"},
+                {"de","Ignorieren"}
             }
         },
         {
@@ -304,35 +320,10 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","リレーマッピング"},
                 {"fr","Cartographie des relais"},
-                {"es","Mapeo de relés"},
-                {"ja","リレーマッピング"},
-                {"hi","रिले मैपिंग"},
                 {"zh-chs","中继映射"},
+                {"es","Mapeo de relés"},
+                {"hi","रिले मैपिंग"},
                 {"de","Relaiszuordnung"}
-            }
-        },
-        {
-            "Remote Port",
-            new Dictionary<string, string>() {
-                {"ko","リモートポート"},
-                {"fr","Port distant"},
-                {"es","Puerto remoto"},
-                {"ja","リモートポート"},
-                {"hi","रिमोट पोर्ट"},
-                {"zh-chs","远程端口"},
-                {"de","Remote-Port"}
-            }
-        },
-        {
-            "SSH Username",
-            new Dictionary<string, string>() {
-                {"ko","SSH ユーザー名"},
-                {"fr","Nom d'utilisateur SSH"},
-                {"es","Nombre de usuario SSH"},
-                {"ja","SSH ユーザー名"},
-                {"hi","एसएसएच उपयोगकर्ता नाम"},
-                {"zh-chs","SSH 用户名"},
-                {"de","SSH-Benutzername"}
             }
         },
         {
@@ -340,11 +331,21 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","、{0} 接続。"},
                 {"fr",", {0} connexions."},
-                {"es",", {0} conexiones."},
-                {"ja","、{0} 接続。"},
-                {"hi",", {0} कनेक्शन।"},
                 {"zh-chs",", {0} 个连接。"},
+                {"es",", {0} conexiones."},
+                {"hi",", {0} कनेक्शन।"},
                 {"de",", {0} Verbindungen."}
+            }
+        },
+        {
+            "Enter the RDP port of the remote computer, the default RDP port is 3389.",
+            new Dictionary<string, string>() {
+                {"ko","リモート コンピューターの RDP ポートを入力します。デフォルトの RDP ポートは 3389 です。"},
+                {"fr","Entrez le port RDP de l'ordinateur distant, le port RDP par défaut est 3389."},
+                {"zh-chs","输入远程计算机的RDP端口，默认RDP端口为3389。"},
+                {"es","Ingrese el puerto RDP de la computadora remota, el puerto RDP predeterminado es 3389."},
+                {"hi","दूरस्थ कंप्यूटर का RDP पोर्ट दर्ज करें, डिफ़ॉल्ट RDP पोर्ट 3389 है।"},
+                {"de","Geben Sie den RDP-Port des Remote-Computers ein, der Standard-RDP-Port ist 3389."}
             }
         },
         {
@@ -352,10 +353,9 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","削除を確認"},
                 {"fr","Confirmation de la suppression"},
-                {"es","Confirmar eliminación"},
-                {"ja","削除を確認"},
-                {"hi","हटाने की पुष्टि करें"},
                 {"zh-chs","确认删除"},
+                {"es","Confirmar eliminación"},
+                {"hi","हटाने की पुष्टि करें"},
                 {"de","Löschen bestätigen"}
             }
         },
@@ -364,46 +364,42 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","更新中..."},
                 {"fr","Mise à jour..."},
-                {"es","Actualizando ..."},
-                {"ja","更新中..."},
-                {"hi","अपडेट हो रहा है..."},
                 {"zh-chs","正在更新..."},
+                {"es","Actualizando ..."},
+                {"hi","अपडेट हो रहा है..."},
                 {"de","Aktualisierung..."}
             }
         },
         {
-            "Compressed Network Traffic",
+            "&Delete",
             new Dictionary<string, string>() {
-                {"ko","圧縮されたネットワーク トラフィック"},
-                {"fr","Trafic réseau compressé"},
-                {"es","Tráfico de red comprimido"},
-                {"ja","圧縮されたネットワーク トラフィック"},
-                {"hi","संपीडित नेटवर्क यातायात"},
-                {"zh-chs","压缩网络流量"},
-                {"de","Komprimierter Netzwerkverkehr"}
+                {"ko","削除"},
+                {"fr","&Effacer"},
+                {"zh-chs","＆删除"},
+                {"es","&Borrar"},
+                {"hi","&हटाएं"},
+                {"de","&Löschen"}
             }
         },
         {
             "&Info...",
             new Dictionary<string, string>() {
                 {"ko","&情報..."},
-                {"es","&Info ..."},
-                {"ja","&情報..."},
-                {"hi","जानकारी..."},
                 {"zh-chs","＆信息..."},
+                {"es","&Info ..."},
+                {"hi","जानकारी..."},
                 {"de","&Die Info..."}
             }
         },
         {
-            ", 1 connection.",
+            "Invalid username or password",
             new Dictionary<string, string>() {
-                {"ko","、1接続。"},
-                {"fr",", 1 connexion."},
-                {"es",", 1 conexión."},
-                {"ja","、1接続。"},
-                {"hi",", 1 कनेक्शन।"},
-                {"zh-chs",", 1 个连接。"},
-                {"de",", 1 Anschluss."}
+                {"ko","無効なユーザー名またはパスワード"},
+                {"fr","Nom d'utilisateur ou mot de passe invalide"},
+                {"zh-chs","无效的用户名或密码"},
+                {"es","usuario o contraseña invalido"},
+                {"hi","अमान्य उपयोगकर्ता नाम या पासवर्ड"},
+                {"de","ungültiger Benutzername oder Passwort"}
             }
         },
         {
@@ -411,10 +407,9 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","ファイルの名前を変更"},
                 {"fr","Renommer le fichier"},
-                {"es","Renombrar archivo"},
-                {"ja","ファイルの名前を変更"},
-                {"hi","फाइल का नाम बदलो"},
                 {"zh-chs","重新命名文件"},
+                {"es","Renombrar archivo"},
+                {"hi","फाइल का नाम बदलो"},
                 {"de","Datei umbenennen"}
             }
         },
@@ -435,15 +430,14 @@ namespace MeshCentralRouter
             }
         },
         {
-            "ComputerName",
+            "Display connection statistics",
             new Dictionary<string, string>() {
-                {"ko","コンピュータネーム"},
-                {"fr","Nom de l'ordinateur"},
-                {"es","Nombre del computador"},
-                {"ja","コンピュータネーム"},
-                {"hi","कंप्यूटर का नाम"},
-                {"zh-chs","计算机名"},
-                {"de","Computername"}
+                {"ko","接続統計の表示"},
+                {"fr","Afficher les statistiques de connexion"},
+                {"zh-chs","显示连接统计"},
+                {"es","Mostrar estadísticas de conexión"},
+                {"hi","कनेक्शन आंकड़े प्रदर्शित करें"},
+                {"de","Verbindungsstatistik anzeigen"}
             }
         },
         {
@@ -451,23 +445,21 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","サーバー名"},
                 {"fr","Nom du serveur"},
-                {"es","Nombre del servidor"},
-                {"ja","サーバー名"},
-                {"hi","सर्वर का नाम"},
                 {"zh-chs","服务器名称"},
+                {"es","Nombre del servidor"},
+                {"hi","सर्वर का नाम"},
                 {"de","Servername"}
             }
         },
         {
-            "&Open...",
+            "0 Bytes",
             new Dictionary<string, string>() {
-                {"ko","＆開いた..."},
-                {"fr","&Ouvert..."},
-                {"es","&Abierto..."},
-                {"ja","＆開いた..."},
-                {"hi","&खुला हुआ..."},
-                {"zh-chs","＆打开..."},
-                {"de","&Öffnen..."}
+                {"ko","0 バイト"},
+                {"fr","0 octet"},
+                {"zh-chs","0 字节"},
+                {"es","0 bytes"},
+                {"hi","0 बाइट्स"},
+                {"de","0 Byte"}
             }
         },
         {
@@ -475,59 +467,40 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","ポート {0} からポート {1}"},
                 {"fr","Port {0} vers port {1}"},
-                {"es","Puerto {0} al puerto {1}"},
-                {"ja","ポート {0} からポート {1}"},
-                {"hi","पोर्ट {0} से पोर्ट {1}"},
                 {"zh-chs","端口 {0} 到端口 {1}"},
+                {"es","Puerto {0} al puerto {1}"},
+                {"hi","पोर्ट {0} से पोर्ट {1}"},
                 {"de","Port {0} zu Port {1}"}
             }
         },
         {
-            "RDP Port",
+            "Desktop Settings",
             new Dictionary<string, string>() {
-                {"ko","RDP ポート"},
-                {"fr","Port RDP"},
-                {"es","Puerto RDP"},
-                {"ja","RDP ポート"},
-                {"hi","आरडीपी पोर्ट"},
-                {"zh-chs","RDP 端口"},
-                {"de","RDP-Port"}
+                {"ko","デスクトップ設定"},
+                {"fr","Paramètres du bureau"},
+                {"zh-chs","桌面设置"},
+                {"es","Configuración de escritorio"},
+                {"hi","डेस्कटॉप सेटिंग्स"},
+                {"de","Desktop-Einstellungen"}
             }
         },
         {
-            "Enter the RDP port of the remote computer, the default RDP port is 3389.",
+            "Connecting...",
             new Dictionary<string, string>() {
-                {"ko","リモート コンピューターの RDP ポートを入力します。デフォルトの RDP ポートは 3389 です。"},
-                {"fr","Entrez le port RDP de l'ordinateur distant, le port RDP par défaut est 3389."},
-                {"es","Ingrese el puerto RDP de la computadora remota, el puerto RDP predeterminado es 3389."},
-                {"ja","リモート コンピューターの RDP ポートを入力します。デフォルトの RDP ポートは 3389 です。"},
-                {"hi","दूरस्थ कंप्यूटर का RDP पोर्ट दर्ज करें, डिफ़ॉल्ट RDP पोर्ट 3389 है।"},
-                {"zh-chs","输入远程计算机的RDP端口，默认RDP端口为3389。"},
-                {"de","Geben Sie den RDP-Port des Remote-Computers ein, der Standard-RDP-Port ist 3389."}
-            }
-        },
-        {
-            "Certificate",
-            new Dictionary<string, string>() {
-                {"ko","証明書"},
-                {"fr","Certificat"},
-                {"es","Certificado"},
-                {"ja","証明書"},
-                {"hi","प्रमाणपत्र"},
-                {"zh-chs","证书"},
-                {"de","Zertifikat"}
-            }
-        },
-        {
-            "Set RDP port...",
-            new Dictionary<string, string>() {
-                {"ko","RDP ポートを設定..."},
-                {"fr","Définir le port RDP..."},
-                {"es","Establecer puerto RDP ..."},
-                {"ja","RDP ポートを設定..."},
-                {"hi","आरडीपी पोर्ट सेट करें..."},
-                {"zh-chs","设置 RDP 端口..."},
-                {"de","RDP-Port einstellen..."}
+                {"de","Verbinden..."},
+                {"hi","कनेक्ट ..."},
+                {"fr","En cours de connexion ..."},
+                {"zh-cht","正在連線..."},
+                {"zh-chs","正在连线..."},
+                {"fi","Yhdistetään..."},
+                {"tr","Bağlanıyor..."},
+                {"cs","Připojování…"},
+                {"ja","接続しています..."},
+                {"es","Conectando...."},
+                {"pt","Conectando..."},
+                {"nl","Verbinden..."},
+                {"ko","연결 중 ..."},
+                {"ru","Подключение..."}
             }
         },
         {
@@ -535,35 +508,32 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","サーバー情報"},
                 {"fr","Informations sur le serveur"},
-                {"es","Información del servidor"},
-                {"ja","サーバー情報"},
-                {"hi","सर्वर जानकारी"},
                 {"zh-chs","服务器信息"},
+                {"es","Información del servidor"},
+                {"hi","सर्वर जानकारी"},
                 {"de","Serverinformation"}
             }
         },
         {
-            "Incoming Compression",
+            "Push local clipboard to remote device",
             new Dictionary<string, string>() {
-                {"ko","着信圧縮"},
-                {"fr","Compression entrante"},
-                {"es","Compresión entrante"},
-                {"ja","着信圧縮"},
-                {"hi","आने वाली संपीड़न"},
-                {"zh-chs","传入压缩"},
-                {"de","Eingehende Kompression"}
+                {"ko","ローカル クリップボードをリモート デバイスにプッシュ"},
+                {"fr","Transférer le presse-papiers local vers l'appareil distant"},
+                {"zh-chs","将本地剪贴板推送到远程设备"},
+                {"es","Empuje el portapapeles local al dispositivo remoto"},
+                {"hi","स्थानीय क्लिपबोर्ड को दूरस्थ डिवाइस पर पुश करें"},
+                {"de","Lokale Zwischenablage auf Remote-Gerät übertragen"}
             }
         },
         {
-            "Failed to start remote desktop session",
+            "Incoming Bytes",
             new Dictionary<string, string>() {
-                {"ko","リモート デスクトップ セッションを開始できませんでした"},
-                {"fr","Échec du démarrage de la session de bureau à distance"},
-                {"es","No se pudo iniciar la sesión de escritorio remoto"},
-                {"ja","リモート デスクトップ セッションを開始できませんでした"},
-                {"hi","दूरस्थ डेस्कटॉप सत्र प्रारंभ करने में विफल"},
-                {"zh-chs","无法启动远程桌面会话"},
-                {"de","Fehler beim Starten der Remote-Desktop-Sitzung"}
+                {"ko","受信バイト"},
+                {"fr","Octets entrants"},
+                {"zh-chs","传入字节"},
+                {"es","Bytes entrantes"},
+                {"hi","आने वाली बाइट्स"},
+                {"de","Eingehende Bytes"}
             }
         },
         {
@@ -571,11 +541,18 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","転送の進行状況"},
                 {"fr","Progression du transfert"},
-                {"es","Progreso de la transferencia"},
-                {"ja","転送の進行状況"},
-                {"hi","स्थानांतरण प्रगति"},
                 {"zh-chs","转学进度"},
+                {"es","Progreso de la transferencia"},
+                {"hi","स्थानांतरण प्रगति"},
                 {"de","Übertragungsfortschritt"}
+            }
+        },
+        {
+            "MeshCentral",
+            new Dictionary<string, string>() {
+                {"ko","メッシュ中央"},
+                {"zh-chs","网格中心"},
+                {"hi","मेशसेंट्रल"}
             }
         },
         {
@@ -583,11 +560,21 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","システムトレイに表示"},
                 {"fr","Afficher sur la barre d'état système"},
-                {"es","Mostrar en la bandeja del sistema"},
-                {"ja","システムトレイに表示"},
-                {"hi","सिस्टम ट्रे पर दिखाएं"},
                 {"zh-chs","在系统托盘上显示"},
+                {"es","Mostrar en la bandeja del sistema"},
+                {"hi","सिस्टम ट्रे पर दिखाएं"},
                 {"de","In der Taskleiste anzeigen"}
+            }
+        },
+        {
+            "PuTTY SSH client",
+            new Dictionary<string, string>() {
+                {"ko","PuTTY SSH クライアント"},
+                {"fr","Client SSH PuTTY"},
+                {"zh-chs","PuTTY SSH 客户端"},
+                {"es","Cliente PuTTY SSH"},
+                {"hi","पुटी एसएसएच क्लाइंट"},
+                {"de","PuTTY SSH-Client"}
             }
         },
         {
@@ -595,10 +582,9 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","出口"},
                 {"fr","Sortir"},
-                {"es","Salida"},
-                {"ja","出口"},
-                {"hi","बाहर जाएं"},
                 {"zh-chs","出口"},
+                {"es","Salida"},
+                {"hi","बाहर जाएं"},
                 {"de","Ausgang"}
             }
         },
@@ -607,10 +593,9 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","リモート - {0}"},
                 {"fr","À distance - {0}"},
-                {"es","Remoto: {0}"},
-                {"ja","リモート - {0}"},
-                {"hi","रिमोट - {0}"},
                 {"zh-chs","远程 - {0}"},
+                {"es","Remoto: {0}"},
+                {"hi","रिमोट - {0}"},
                 {"de","Fernbedienung - {0}"}
             }
         },
@@ -634,39 +619,36 @@ namespace MeshCentralRouter
             }
         },
         {
-            "Don't ask for {0} days.",
-            new Dictionary<string, string>() {
-                {"ko","{0} 日間尋ねないでください。"},
-                {"fr","Ne demandez pas {0} jours."},
-                {"es","No pida {0} días."},
-                {"ja","{0} 日間尋ねないでください。"},
-                {"hi","{0} दिनों के लिए मत पूछो।"},
-                {"zh-chs","不要要求 {0} 天。"},
-                {"de","Frag nicht nach {0} Tagen."}
-            }
-        },
-        {
             "Site",
             new Dictionary<string, string>() {
                 {"ko","地点"},
                 {"fr","Placer"},
-                {"es","Sitio"},
-                {"ja","地点"},
-                {"hi","साइट"},
                 {"zh-chs","地点"},
+                {"es","Sitio"},
+                {"hi","साइट"},
                 {"de","Seite? ˅"}
             }
         },
         {
-            "Failed to start remote terminal session",
+            "Bind local port to all network interfaces",
             new Dictionary<string, string>() {
-                {"ko","リモート ターミナル セッションの開始に失敗しました"},
-                {"fr","Échec du démarrage de la session de terminal distant"},
-                {"es","No se pudo iniciar la sesión de terminal remota"},
-                {"ja","リモート ターミナル セッションの開始に失敗しました"},
-                {"hi","दूरस्थ टर्मिनल सत्र प्रारंभ करने में विफल"},
-                {"zh-chs","无法启动远程终端会话"},
-                {"de","Fehler beim Starten der Remote-Terminal-Sitzung"}
+                {"ko","ローカル ポートをすべてのネットワーク インターフェイスにバインドする"},
+                {"fr","Lier le port local à toutes les interfaces réseau"},
+                {"zh-chs","将本地端口绑定到所有网络接口"},
+                {"es","Vincular el puerto local a todas las interfaces de red"},
+                {"hi","स्थानीय पोर्ट को सभी नेटवर्क इंटरफेस से बाइंड करें"},
+                {"de","Binden Sie den lokalen Port an alle Netzwerkschnittstellen"}
+            }
+        },
+        {
+            "Failed to start remote desktop session",
+            new Dictionary<string, string>() {
+                {"ko","リモート デスクトップ セッションを開始できませんでした"},
+                {"fr","Échec du démarrage de la session de bureau à distance"},
+                {"zh-chs","无法启动远程桌面会话"},
+                {"es","No se pudo iniciar la sesión de escritorio remoto"},
+                {"hi","दूरस्थ डेस्कटॉप सत्र प्रारंभ करने में विफल"},
+                {"de","Fehler beim Starten der Remote-Desktop-Sitzung"}
             }
         },
         {
@@ -674,23 +656,21 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","接続"},
                 {"fr","Lien"},
-                {"es","Conexión"},
-                {"ja","接続"},
-                {"hi","संबंध"},
                 {"zh-chs","联系"},
+                {"es","Conexión"},
+                {"hi","संबंध"},
                 {"de","Verbindung"}
             }
         },
         {
-            "Remote IP",
+            "Click ok to register MeshCentral Router on your system as the handler for the \"mcrouter://\" protocol. This will allow the MeshCentral web site to launch this application when needed.",
             new Dictionary<string, string>() {
-                {"ko","リモート IP"},
-                {"fr","IP distante"},
-                {"es","IP remota"},
-                {"ja","リモート IP"},
-                {"hi","दूरदराज़ के आई. पी"},
-                {"zh-chs","远程IP"},
-                {"de","Remote-IP"}
+                {"ko","[OK] をクリックして、システムに MeshCentral Router を「mcrouter://」プロトコルのハンドラーとして登録します。これにより、MeshCentral Web サイトは必要に応じてこのアプリケーションを起動できます。"},
+                {"fr","Cliquez sur ok pour enregistrer MeshCentral Router sur votre système en tant que gestionnaire du protocole « mcrouter:// ». Cela permettra au site Web MeshCentral de lancer cette application en cas de besoin."},
+                {"zh-chs","单击确定在您的系统上注册 MeshCentral Router 作为“mcrouter://”协议的处理程序。这将允许 MeshCentral 网站在需要时启动此应用程序。"},
+                {"es","Haga clic en Aceptar para registrar MeshCentral Router en su sistema como el controlador del protocolo \"mcrouter: //\". Esto permitirá que el sitio web de MeshCentral inicie esta aplicación cuando sea necesario."},
+                {"hi","MeshCentral राउटर को अपने सिस्टम पर \"mcrouter: //\" प्रोटोकॉल के लिए हैंडलर के रूप में पंजीकृत करने के लिए ओके पर क्लिक करें। यह मेशसेंट्रल वेब साइट को जरूरत पड़ने पर इस एप्लिकेशन को लॉन्च करने की अनुमति देगा।"},
+                {"de","Klicken Sie auf OK, um MeshCentral Router auf Ihrem System als Handler für das Protokoll \"mcrouter://\" zu registrieren. Dadurch kann die MeshCentral-Website diese Anwendung bei Bedarf starten."}
             }
         },
         {
@@ -704,10 +684,9 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","統計..."},
                 {"fr","Statistiques..."},
-                {"es","Estadísticas ..."},
-                {"ja","統計..."},
-                {"hi","आँकड़े..."},
                 {"zh-chs","统计..."},
+                {"es","Estadísticas ..."},
+                {"hi","आँकड़े..."},
                 {"de","Statistiken..."}
             }
         },
@@ -716,20 +695,21 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","ローカルポート"},
                 {"fr","Port local"},
-                {"es","Puerto local"},
-                {"ja","ローカルポート"},
-                {"hi","स्थानीय बंदरगाह"},
                 {"zh-chs","本地端口"},
+                {"es","Puerto local"},
+                {"hi","स्थानीय बंदरगाह"},
                 {"de","Lokaler Hafen"}
             }
         },
         {
-            "MeshCentral",
+            "Open Web Site",
             new Dictionary<string, string>() {
-                {"ko","メッシュ中央"},
-                {"ja","メッシュ中央"},
-                {"hi","मेशसेंट्रल"},
-                {"zh-chs","网格中心"}
+                {"ko","ウェブサイトを開く"},
+                {"fr","Ouvrir le site Web"},
+                {"zh-chs","打开网站"},
+                {"es","Abrir sitio web"},
+                {"hi","वेब साइट खोलें"},
+                {"de","Website öffnen"}
             }
         },
         {
@@ -752,14 +732,24 @@ namespace MeshCentralRouter
             }
         },
         {
+            "Enter the second factor authentication token.",
+            new Dictionary<string, string>() {
+                {"ko","第二要素認証トークンを入力します。"},
+                {"fr","Saisissez le jeton d'authentification du deuxième facteur."},
+                {"zh-chs","输入第二个因素身份验证令牌。"},
+                {"es","Ingrese el token de autenticación de segundo factor."},
+                {"hi","दूसरा कारक प्रमाणीकरण टोकन दर्ज करें।"},
+                {"de","Geben Sie das zweite Faktor-Authentifizierungstoken ein."}
+            }
+        },
+        {
             "Remote Desktop...",
             new Dictionary<string, string>() {
                 {"ko","リモートデスクトップ..."},
                 {"fr","Bureau à distance..."},
-                {"es","Escritorio remoto..."},
-                {"ja","リモートデスクトップ..."},
-                {"hi","रिमोट डेस्कटॉप..."},
                 {"zh-chs","远程桌面..."},
+                {"es","Escritorio remoto..."},
+                {"hi","रिमोट डेस्कटॉप..."},
                 {"de","Remotedesktop..."}
             }
         },
@@ -783,87 +773,91 @@ namespace MeshCentralRouter
             }
         },
         {
-            "Toggle remote desktop connection",
+            "&Open...",
             new Dictionary<string, string>() {
-                {"ko","リモート デスクトップ接続を切り替える"},
-                {"fr","Basculer la connexion au bureau à distance"},
-                {"es","Alternar la conexión de escritorio remoto"},
-                {"ja","リモート デスクトップ接続を切り替える"},
-                {"hi","दूरस्थ डेस्कटॉप कनेक्शन टॉगल करें"},
-                {"zh-chs","切换远程桌面连接"},
-                {"de","Remotedesktopverbindung umschalten"}
+                {"ko","＆開いた..."},
+                {"fr","&Ouvert..."},
+                {"zh-chs","＆打开..."},
+                {"es","&Abierto..."},
+                {"hi","&खुला हुआ..."},
+                {"de","&Öffnen..."}
             }
         },
         {
-            "Log out",
+            "Tunnelling Data",
             new Dictionary<string, string>() {
-                {"ko","ログアウト"},
-                {"fr","Se déconnecter"},
-                {"es","Cerrar sesión"},
-                {"ja","ログアウト"},
-                {"hi","लॉग आउट"},
-                {"zh-chs","登出"},
-                {"de","Ausloggen"}
+                {"ko","トンネリングデータ"},
+                {"fr","Données de tunneling"},
+                {"zh-chs","隧道数据"},
+                {"es","Datos de tunelización"},
+                {"hi","टनलिंग डेटा"},
+                {"de","Tunneling-Daten"}
             }
         },
         {
-            "Pull clipboard from remote device",
+            "Device Settings",
             new Dictionary<string, string>() {
-                {"ko","リモート デバイスからクリップボードをプルする"},
-                {"fr","Extraire le presse-papiers de l'appareil distant"},
-                {"es","Extraiga el portapapeles del dispositivo remoto"},
-                {"ja","リモート デバイスからクリップボードをプルする"},
-                {"hi","दूरस्थ डिवाइस से क्लिपबोर्ड खींचे"},
-                {"zh-chs","从远程设备拉剪贴板"},
-                {"de","Zwischenablage von Remote-Gerät ziehen"}
+                {"ko","デバイスの設定"},
+                {"fr","Réglages de l'appareil"},
+                {"zh-chs","设备设置"},
+                {"es","Configuración de dispositivo"},
+                {"hi","उपकरण सेटिंग्स"},
+                {"de","Geräteeinstellungen"}
             }
         },
         {
-            "View Certificate Details...",
+            "MeshCentral Router Installation",
             new Dictionary<string, string>() {
-                {"ko","証明書の詳細を表示..."},
-                {"fr","Afficher les détails du certificat..."},
-                {"es","Ver detalles del certificado ..."},
-                {"ja","証明書の詳細を表示..."},
-                {"hi","प्रमाणपत्र विवरण देखें..."},
-                {"zh-chs","查看证书详细信息..."},
-                {"de","Zertifikatdetails anzeigen..."}
+                {"ko","MeshCentral ルーターのインストール"},
+                {"fr","Installation du routeur MeshCentral"},
+                {"zh-chs","MeshCentral 路由器安装"},
+                {"es","Instalación del enrutador MeshCentral"},
+                {"hi","मेशसेंट्रल राउटर इंस्टालेशन"},
+                {"de","Installation des MeshCentral-Routers"}
             }
         },
         {
-            "Invalid username or password",
+            "Remote Files",
             new Dictionary<string, string>() {
-                {"ko","無効なユーザー名またはパスワード"},
-                {"fr","Nom d'utilisateur ou mot de passe invalide"},
-                {"es","usuario o contraseña invalido"},
-                {"ja","無効なユーザー名またはパスワード"},
-                {"hi","अमान्य उपयोगकर्ता नाम या पासवर्ड"},
-                {"zh-chs","无效的用户名或密码"},
-                {"de","ungültiger Benutzername oder Passwort"}
+                {"ko","リモート ファイル"},
+                {"fr","Fichiers distants"},
+                {"zh-chs","远程文件"},
+                {"es","Archivos remotos"},
+                {"hi","दूरस्थ फ़ाइलें"},
+                {"de","Remote-Dateien"}
             }
         },
         {
-            "&Rename",
+            "Incoming Compression",
             new Dictionary<string, string>() {
-                {"ko","名前を変更"},
-                {"fr","&Renommer"},
-                {"es","&Rebautizar"},
-                {"ja","名前を変更"},
-                {"hi","&नाम बदलें"},
-                {"zh-chs","＆改名"},
-                {"de","&Umbenennen"}
+                {"ko","着信圧縮"},
+                {"fr","Compression entrante"},
+                {"zh-chs","传入压缩"},
+                {"es","Compresión entrante"},
+                {"hi","आने वाली संपीड़न"},
+                {"de","Eingehende Kompression"}
             }
         },
         {
-            "Application Link",
+            "Remote Device",
             new Dictionary<string, string>() {
-                {"ko","アプリケーションリンク"},
-                {"fr","Lien d'application"},
-                {"es","Enlace de aplicación"},
-                {"ja","アプリケーションリンク"},
-                {"hi","आवेदन लिंक"},
-                {"zh-chs","申请链接"},
-                {"de","Bewerbungslink"}
+                {"ko","リモートデバイス"},
+                {"fr","Périphérique distant"},
+                {"zh-chs","遥控装置"},
+                {"es","Dispositivo remoto"},
+                {"hi","रिमोट डिवाइस"},
+                {"de","Remote-Gerät"}
+            }
+        },
+        {
+            "Unable to connect",
+            new Dictionary<string, string>() {
+                {"ko","接続することができません"},
+                {"fr","Impossible de se connecter"},
+                {"zh-chs","无法连接"},
+                {"es","No puede conectarse"},
+                {"hi","कनेक्ट करने में असमर्थ"},
+                {"de","Verbindung konnte nicht hergestellt werden"}
             }
         },
         {
@@ -890,23 +884,10 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","{0} バイト"},
                 {"fr","{0} octets"},
-                {"es","{0} bytes"},
-                {"ja","{0} バイト"},
-                {"hi","{0} बाइट्स"},
                 {"zh-chs","{0} 字节"},
+                {"es","{0} bytes"},
+                {"hi","{0} बाइट्स"},
                 {"de","{0} Byte"}
-            }
-        },
-        {
-            "Outgoing Bytes",
-            new Dictionary<string, string>() {
-                {"ko","送信バイト"},
-                {"fr","Octets sortants"},
-                {"es","Bytes salientes"},
-                {"ja","送信バイト"},
-                {"hi","आउटगोइंग बाइट्स"},
-                {"zh-chs","传出字节"},
-                {"de","Ausgehende Bytes"}
             }
         },
         {
@@ -914,10 +895,9 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","グループ名を表示"},
                 {"fr","Afficher les noms de &groupes"},
-                {"es","Mostrar y nombres de grupos"},
-                {"ja","グループ名を表示"},
-                {"hi","समूह के नाम दिखाएं"},
                 {"zh-chs","显示组名称(&G)"},
+                {"es","Mostrar y nombres de grupos"},
+                {"hi","समूह के नाम दिखाएं"},
                 {"de","&Gruppennamen anzeigen"}
             }
         },
@@ -964,10 +944,9 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","デバイスなし"},
                 {"fr","Aucun appareil"},
-                {"es","Sin dispositivos"},
-                {"ja","デバイスなし"},
-                {"hi","कोई उपकरण नहीं"},
                 {"zh-chs","没有设备"},
+                {"es","Sin dispositivos"},
+                {"hi","कोई उपकरण नहीं"},
                 {"de","Keine Geräte"}
             }
         },
@@ -991,15 +970,14 @@ namespace MeshCentralRouter
             }
         },
         {
-            "Add &Relay Map...",
+            "Email sent",
             new Dictionary<string, string>() {
-                {"ko","リレー マップを追加..."},
-                {"fr","Ajouter une carte de &relais..."},
-                {"es","Agregar y retransmitir mapa ..."},
-                {"ja","リレー マップを追加..."},
-                {"hi","मानचित्र &रिले जोड़ें..."},
-                {"zh-chs","添加中继地图 (&R)..."},
-                {"de","&Relay-Karte hinzufügen..."}
+                {"ko","メールを送信しました"},
+                {"fr","Email envoyé"},
+                {"zh-chs","邮件已发送"},
+                {"es","Email enviado"},
+                {"hi","ईमेल भेजा"},
+                {"de","E-Mail gesendet"}
             }
         },
         {
@@ -1007,10 +985,9 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","地図を追加..."},
                 {"fr","Ajouter une carte..."},
-                {"es","Agregar mapa ..."},
-                {"ja","地図を追加..."},
-                {"hi","नक्शा जोड़ें..."},
                 {"zh-chs","添加地图..."},
+                {"es","Agregar mapa ..."},
+                {"hi","नक्शा जोड़ें..."},
                 {"de","Karte hinzufügen..."}
             }
         },
@@ -1019,10 +996,9 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","SMSが送信されました"},
                 {"fr","SMS envoyé"},
-                {"es","SMS enviado"},
-                {"ja","SMSが送信されました"},
-                {"hi","एसएमएस भेजा गया"},
                 {"zh-chs","短信发送"},
+                {"es","SMS enviado"},
+                {"hi","एसएमएस भेजा गया"},
                 {"de","SMS gesendet"}
             }
         },
@@ -1031,35 +1007,21 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","マッピングを開く..."},
                 {"fr","&Ouvrir les mappages..."},
-                {"es","&Abrir mapeos ..."},
-                {"ja","マッピングを開く..."},
-                {"hi","&ओपन मैपिंग..."},
                 {"zh-chs","打开映射 (&O)..."},
+                {"es","&Abrir mapeos ..."},
+                {"hi","&ओपन मैपिंग..."},
                 {"de","&Zuordnungen öffnen..."}
             }
         },
         {
-            "PuTTY SSH client",
+            "Invalid download.",
             new Dictionary<string, string>() {
-                {"ko","PuTTY SSH クライアント"},
-                {"fr","Client SSH PuTTY"},
-                {"es","Cliente PuTTY SSH"},
-                {"ja","PuTTY SSH クライアント"},
-                {"hi","पुटी एसएसएच क्लाइंट"},
-                {"zh-chs","PuTTY SSH 客户端"},
-                {"de","PuTTY SSH-Client"}
-            }
-        },
-        {
-            "Unable to connect",
-            new Dictionary<string, string>() {
-                {"ko","接続することができません"},
-                {"fr","Impossible de se connecter"},
-                {"es","No puede conectarse"},
-                {"ja","接続することができません"},
-                {"hi","कनेक्ट करने में असमर्थ"},
-                {"zh-chs","无法连接"},
-                {"de","Verbindung konnte nicht hergestellt werden"}
+                {"ko","ダウンロードが無効です。"},
+                {"fr","Téléchargement non valide."},
+                {"zh-chs","下载无效。"},
+                {"es","Descarga no válida."},
+                {"hi","अमान्य डाउनलोड।"},
+                {"de","Ungültiger Download."}
             }
         },
         {
@@ -1127,33 +1089,20 @@ namespace MeshCentralRouter
                 {"fr","Affichage {0}"},
                 {"zh-chs","显示{0}"},
                 {"es","Mostrar {0}"},
-                {"ja","{0}を表示"},
                 {"ru","Экран {0}"},
                 {"hi","प्रदर्शन {0}"},
                 {"de","Anzeige {0}"}
             }
         },
         {
-            "Server",
+            "Application Link",
             new Dictionary<string, string>() {
-                {"ko","サーバ"},
-                {"fr","Serveur"},
-                {"es","Servidor"},
-                {"ja","サーバ"},
-                {"hi","सर्वर"},
-                {"zh-chs","服务器"}
-            }
-        },
-        {
-            "Install...",
-            new Dictionary<string, string>() {
-                {"ko","インストール..."},
-                {"fr","Installer..."},
-                {"es","Instalar en pc..."},
-                {"ja","インストール..."},
-                {"hi","इंस्टॉल..."},
-                {"zh-chs","安装..."},
-                {"de","Installieren..."}
+                {"ko","アプリケーションリンク"},
+                {"fr","Lien d'application"},
+                {"zh-chs","申请链接"},
+                {"es","Enlace de aplicación"},
+                {"hi","आवेदन लिंक"},
+                {"de","Bewerbungslink"}
             }
         },
         {
@@ -1167,41 +1116,14 @@ namespace MeshCentralRouter
             }
         },
         {
-            "Device Settings",
+            "Routing Status",
             new Dictionary<string, string>() {
-                {"ko","デバイスの設定"},
-                {"fr","Réglages de l'appareil"},
-                {"es","Configuración de dispositivo"},
-                {"ja","デバイスの設定"},
-                {"hi","उपकरण सेटिंग्स"},
-                {"zh-chs","设备设置"},
-                {"de","Geräteeinstellungen"}
-            }
-        },
-        {
-            "Port Mapping",
-            new Dictionary<string, string>() {
-                {"ko","ポートマッピング"},
-                {"fr","Mappage des ports"},
-                {"es","La asignación de puertos"},
-                {"ja","ポートマッピング"},
-                {"hi","पोर्ट मानचित्रण"},
-                {"zh-chs","端口映射"},
-                {"de","Port-Mapping"}
-            }
-        },
-        {
-            "MeshCentral Router",
-            new Dictionary<string, string>() {
-                {"hi","मेश्चरल राउटर"},
-                {"fr","Routeur MeshCentral"},
-                {"zh-chs","MeshCentral路由器"},
-                {"fi","MeshCentral Reititin"},
-                {"tr","MeshCentral Yönlendirici"},
-                {"ja","MeshCentralルーター"},
-                {"es","Router de MeshCentral "},
-                {"ko","MeshCentral 라우터"},
-                {"ru","MeshCentral Router "}
+                {"ko","ルーティング ステータス"},
+                {"fr","État du routage"},
+                {"zh-chs","路由状态"},
+                {"es","Estado de enrutamiento"},
+                {"hi","रूटिंग स्थिति"},
+                {"de","Routing-Status"}
             }
         },
         {
@@ -1226,35 +1148,21 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","リレー マップを追加..."},
                 {"fr","Ajouter une carte de relais..."},
-                {"es","Agregar mapa de retransmisiones ..."},
-                {"ja","リレー マップを追加..."},
-                {"hi","रिले मैप जोड़ें..."},
                 {"zh-chs","添加中继地图..."},
+                {"es","Agregar mapa de retransmisiones ..."},
+                {"hi","रिले मैप जोड़ें..."},
                 {"de","Relaiskarte hinzufügen..."}
             }
         },
         {
-            "Recursive Delete",
+            "Add &Relay Map...",
             new Dictionary<string, string>() {
-                {"ko","再帰的削除"},
-                {"fr","Suppression récursive"},
-                {"es","Eliminación recursiva"},
-                {"ja","再帰的削除"},
-                {"hi","पुनरावर्ती हटाएं"},
-                {"zh-chs","递归删除"},
-                {"de","Rekursives Löschen"}
-            }
-        },
-        {
-            "&Delete",
-            new Dictionary<string, string>() {
-                {"ko","削除"},
-                {"fr","&Effacer"},
-                {"es","&Borrar"},
-                {"ja","削除"},
-                {"hi","&हटाएं"},
-                {"zh-chs","＆删除"},
-                {"de","&Löschen"}
+                {"ko","リレー マップを追加..."},
+                {"fr","Ajouter une carte de &relais..."},
+                {"zh-chs","添加中继地图 (&R)..."},
+                {"es","Agregar y retransmitir mapa ..."},
+                {"hi","मानचित्र &रिले जोड़ें..."},
+                {"de","&Relay-Karte hinzufügen..."}
             }
         },
         {
@@ -1262,35 +1170,21 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","起動..."},
                 {"fr","Départ..."},
-                {"es","A partir de..."},
-                {"ja","起動..."},
-                {"hi","शुरुआत..."},
                 {"zh-chs","开始..."},
+                {"es","A partir de..."},
+                {"hi","शुरुआत..."},
                 {"de","Beginnend..."}
             }
         },
         {
-            "&Save Mappings...",
+            "Remote IP",
             new Dictionary<string, string>() {
-                {"ko","マッピングを保存..."},
-                {"fr","&Enregistrer les mappages..."},
-                {"es","&Guardar asignaciones ..."},
-                {"ja","マッピングを保存..."},
-                {"hi","&मैपिंग सहेजें..."},
-                {"zh-chs","保存映射(&S)..."},
-                {"de","&Zuordnungen speichern..."}
-            }
-        },
-        {
-            "Toggle zoom-to-fit mode",
-            new Dictionary<string, string>() {
-                {"ko","ズーム ツー フィット モードを切り替える"},
-                {"fr","Basculer en mode zoom pour ajuster"},
-                {"es","Alternar el modo de zoom para ajustar"},
-                {"ja","ズーム ツー フィット モードを切り替える"},
-                {"hi","ज़ूम-टू-फ़िट मोड टॉगल करें"},
-                {"zh-chs","切换缩放至适合模式"},
-                {"de","Zoom-to-Fit-Modus umschalten"}
+                {"ko","リモート IP"},
+                {"fr","IP distante"},
+                {"zh-chs","远程IP"},
+                {"es","IP remota"},
+                {"hi","दूरदराज़ के आई. पी"},
+                {"de","Remote-IP"}
             }
         },
         {
@@ -1298,23 +1192,21 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","中継装置"},
                 {"fr","Dispositif de relais"},
-                {"es","Dispositivo de retransmisión"},
-                {"ja","中継装置"},
-                {"hi","रिले डिवाइस"},
                 {"zh-chs","中继装置"},
+                {"es","Dispositivo de retransmisión"},
+                {"hi","रिले डिवाइस"},
                 {"de","Relaisgerät"}
             }
         },
         {
-            "Mapping Settings",
+            "&Rename",
             new Dictionary<string, string>() {
-                {"ko","マッピング設定"},
-                {"fr","Paramètres de mappage"},
-                {"es","Configuración de mapeo"},
-                {"ja","マッピング設定"},
-                {"hi","मैपिंग सेटिंग्स"},
-                {"zh-chs","映射设置"},
-                {"de","Zuordnungseinstellungen"}
+                {"ko","名前を変更"},
+                {"fr","&Renommer"},
+                {"zh-chs","＆改名"},
+                {"es","&Rebautizar"},
+                {"hi","&नाम बदलें"},
+                {"de","&Umbenennen"}
             }
         },
         {
@@ -1322,10 +1214,9 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","ポート {0} から {1}:{2}"},
                 {"fr","Port {0} vers {1} :{2}"},
-                {"es","Puerto {0} a {1}: {2}"},
-                {"ja","ポート {0} から {1}:{2}"},
-                {"hi","पोर्ट {0} से {1}:{2}"},
                 {"zh-chs","端口 {0} 到 {1}：{2}"},
+                {"es","Puerto {0} a {1}: {2}"},
+                {"hi","पोर्ट {0} से {1}:{2}"},
                 {"de","Port {0} nach {1}:{2}"}
             }
         },
@@ -1334,45 +1225,10 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","フォルダーを作る"},
                 {"fr","Créer le dossier"},
-                {"es","Crear carpeta"},
-                {"ja","フォルダーを作る"},
-                {"hi","फोल्डर बनाएं"},
                 {"zh-chs","创建文件夹"},
+                {"es","Crear carpeta"},
+                {"hi","फोल्डर बनाएं"},
                 {"de","Ordner erstellen"}
-            }
-        },
-        {
-            "Application Launch",
-            new Dictionary<string, string>() {
-                {"ko","アプリケーションの起動"},
-                {"fr","Lancement de l'application"},
-                {"es","Lanzamiento de la aplicación"},
-                {"ja","アプリケーションの起動"},
-                {"hi","एप्लिकेशन लॉन्च"},
-                {"zh-chs","应用启动"},
-                {"de","Anwendungsstart"}
-            }
-        },
-        {
-            "Bind local port to all network interfaces",
-            new Dictionary<string, string>() {
-                {"ko","ローカル ポートをすべてのネットワーク インターフェイスにバインドする"},
-                {"fr","Lier le port local à toutes les interfaces réseau"},
-                {"es","Vincular el puerto local a todas las interfaces de red"},
-                {"ja","ローカル ポートをすべてのネットワーク インターフェイスにバインドする"},
-                {"hi","स्थानीय पोर्ट को सभी नेटवर्क इंटरफेस से बाइंड करें"},
-                {"zh-chs","将本地端口绑定到所有网络接口"},
-                {"de","Binden Sie den lokalen Port an alle Netzwerkschnittstellen"}
-            }
-        },
-        {
-            "Installation",
-            new Dictionary<string, string>() {
-                {"ko","インストール"},
-                {"es","Instalación"},
-                {"ja","インストール"},
-                {"hi","इंस्टालेशन"},
-                {"zh-chs","安装"}
             }
         },
         {
@@ -1395,15 +1251,25 @@ namespace MeshCentralRouter
             }
         },
         {
-            "Remote Files",
+            "Set RDP port...",
             new Dictionary<string, string>() {
-                {"ko","リモート ファイル"},
-                {"fr","Fichiers distants"},
-                {"es","Archivos remotos"},
-                {"ja","リモート ファイル"},
-                {"hi","दूरस्थ फ़ाइलें"},
-                {"zh-chs","远程文件"},
-                {"de","Remote-Dateien"}
+                {"ko","RDP ポートを設定..."},
+                {"fr","Définir le port RDP..."},
+                {"zh-chs","设置 RDP 端口..."},
+                {"es","Establecer puerto RDP ..."},
+                {"hi","आरडीपी पोर्ट सेट करें..."},
+                {"de","RDP-Port einstellen..."}
+            }
+        },
+        {
+            "Application Launch",
+            new Dictionary<string, string>() {
+                {"ko","アプリケーションの起動"},
+                {"fr","Lancement de l'application"},
+                {"zh-chs","应用启动"},
+                {"es","Lanzamiento de la aplicación"},
+                {"hi","एप्लिकेशन लॉन्च"},
+                {"de","Anwendungsstart"}
             }
         },
         {
@@ -1414,34 +1280,9 @@ namespace MeshCentralRouter
                 {"fr","Transfert de fichiers"},
                 {"zh-chs","文件传输"},
                 {"es","Transferencia de archivos"},
-                {"ja","ファイル転送"},
                 {"ru","Передача файлов"},
                 {"hi","फ़ाइल स्थानांतरण"},
                 {"de","Datei Übertragung"}
-            }
-        },
-        {
-            "Click ok to register MeshCentral Router on your system as the handler for the \"mcrouter://\" protocol. This will allow the MeshCentral web site to launch this application when needed.",
-            new Dictionary<string, string>() {
-                {"ko","[OK] をクリックして、システムに MeshCentral Router を「mcrouter://」プロトコルのハンドラーとして登録します。これにより、MeshCentral Web サイトは必要に応じてこのアプリケーションを起動できます。"},
-                {"fr","Cliquez sur ok pour enregistrer MeshCentral Router sur votre système en tant que gestionnaire du protocole « mcrouter:// ». Cela permettra au site Web MeshCentral de lancer cette application en cas de besoin."},
-                {"es","Haga clic en Aceptar para registrar MeshCentral Router en su sistema como el controlador del protocolo \"mcrouter: //\". Esto permitirá que el sitio web de MeshCentral inicie esta aplicación cuando sea necesario."},
-                {"ja","[OK] をクリックして、システムに MeshCentral Router を「mcrouter://」プロトコルのハンドラーとして登録します。これにより、MeshCentral Web サイトは必要に応じてこのアプリケーションを起動できます。"},
-                {"hi","MeshCentral राउटर को अपने सिस्टम पर \"mcrouter: //\" प्रोटोकॉल के लिए हैंडलर के रूप में पंजीकृत करने के लिए ओके पर क्लिक करें। यह मेशसेंट्रल वेब साइट को जरूरत पड़ने पर इस एप्लिकेशन को लॉन्च करने की अनुमति देगा।"},
-                {"zh-chs","单击确定在您的系统上注册 MeshCentral Router 作为“mcrouter://”协议的处理程序。这将允许 MeshCentral 网站在需要时启动此应用程序。"},
-                {"de","Klicken Sie auf OK, um MeshCentral Router auf Ihrem System als Handler für das Protokoll \"mcrouter://\" zu registrieren. Dadurch kann die MeshCentral-Website diese Anwendung bei Bedarf starten."}
-            }
-        },
-        {
-            "Next",
-            new Dictionary<string, string>() {
-                {"ko","次"},
-                {"fr","Suivant"},
-                {"es","próximo"},
-                {"ja","次"},
-                {"hi","अगला"},
-                {"zh-chs","下一个"},
-                {"de","Nächster"}
             }
         },
         {
@@ -1449,23 +1290,10 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","WinSCP クライアント"},
                 {"fr","Client WinSCP"},
-                {"es","Cliente WinSCP"},
-                {"ja","WinSCP クライアント"},
-                {"hi","विनएससीपी क्लाइंट"},
                 {"zh-chs","WinSCP客户端 "},
+                {"es","Cliente WinSCP"},
+                {"hi","विनएससीपी क्लाइंट"},
                 {"de","WinSCP-Client"}
-            }
-        },
-        {
-            "Outgoing Compression",
-            new Dictionary<string, string>() {
-                {"ko","発信圧縮"},
-                {"fr","Compression sortante"},
-                {"es","Compresión saliente"},
-                {"ja","発信圧縮"},
-                {"hi","आउटगोइंग संपीड़न"},
-                {"zh-chs","输出压缩"},
-                {"de","Ausgehende Komprimierung"}
             }
         },
         {
@@ -1492,11 +1320,20 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","オフライン デバイスを表示"},
                 {"fr","Afficher les appareils &hors ligne"},
-                {"es","Mostrar y dispositivos sin conexión"},
-                {"ja","オフライン デバイスを表示"},
-                {"hi","दिखाएँ &ऑफ़लाइन उपकरण"},
                 {"zh-chs","显示离线设备 (&A)"},
+                {"es","Mostrar y dispositivos sin conexión"},
+                {"hi","दिखाएँ &ऑफ़लाइन उपकरण"},
                 {"de","&Offline-Geräte anzeigen"}
+            }
+        },
+        {
+            "Application",
+            new Dictionary<string, string>() {
+                {"ko","応用"},
+                {"zh-chs","应用"},
+                {"es","Solicitud"},
+                {"hi","आवेदन"},
+                {"de","Anwendung"}
             }
         },
         {
@@ -1519,18 +1356,6 @@ namespace MeshCentralRouter
             }
         },
         {
-            "Tunnelling Data",
-            new Dictionary<string, string>() {
-                {"ko","トンネリングデータ"},
-                {"fr","Données de tunneling"},
-                {"es","Datos de tunelización"},
-                {"ja","トンネリングデータ"},
-                {"hi","टनलिंग डेटा"},
-                {"zh-chs","隧道数据"},
-                {"de","Tunneling-Daten"}
-            }
-        },
-        {
             "Remove",
             new Dictionary<string, string>() {
                 {"de","Entfernen"},
@@ -1550,14 +1375,24 @@ namespace MeshCentralRouter
             }
         },
         {
+            "Routing Stats",
+            new Dictionary<string, string>() {
+                {"ko","ルーティング統計"},
+                {"fr","Statistiques de routage"},
+                {"zh-chs","路由统计"},
+                {"es","Estadísticas de enrutamiento"},
+                {"hi","रूटिंग आँकड़े"},
+                {"de","Routing-Statistiken"}
+            }
+        },
+        {
             "No Search Results",
             new Dictionary<string, string>() {
                 {"ko","検索結果がありません"},
                 {"fr","aucun résultat trouvé"},
-                {"es","Sin resultados de búsqueda"},
-                {"ja","検索結果がありません"},
-                {"hi","खोजने पर कोई परिणाम नहीं मिला"},
                 {"zh-chs","没有搜索结果"},
+                {"es","Sin resultados de búsqueda"},
+                {"hi","खोजने पर कोई परिणाम नहीं मिला"},
                 {"de","keine Suchergebnisse"}
             }
         },
@@ -1587,22 +1422,10 @@ namespace MeshCentralRouter
             }
         },
         {
-            "Open...",
-            new Dictionary<string, string>() {
-                {"ko","開いた..."},
-                {"fr","Ouvert..."},
-                {"es","Abierto..."},
-                {"ja","開いた..."},
-                {"hi","खुला हुआ..."},
-                {"zh-chs","打开..."},
-                {"de","Öffnen..."}
-            }
-        },
-        {
             "OpenSSH",
             new Dictionary<string, string>() {
-                {"hi","अधिभारित"},
-                {"zh-chs","开放式SSH"}
+                {"zh-chs","开放式SSH"},
+                {"hi","अधिभारित"}
             }
         },
         {
@@ -1629,30 +1452,39 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","リモート ファイル..."},
                 {"fr","Fichiers distants..."},
-                {"es","Archivos remotos ..."},
-                {"ja","リモート ファイル..."},
-                {"hi","दूरस्थ फ़ाइलें..."},
                 {"zh-chs","远程文件..."},
+                {"es","Archivos remotos ..."},
+                {"hi","दूरस्थ फ़ाइलें..."},
                 {"de","Remote-Dateien..."}
             }
         },
         {
             "statusStrip1",
             new Dictionary<string, string>() {
-                {"hi","स्थिति पट्टी1"},
-                {"zh-chs","状态条1"}
+                {"zh-chs","状态条1"},
+                {"hi","स्थिति पट्टी1"}
             }
         },
         {
-            "Open Web Site",
+            "RDP Port",
             new Dictionary<string, string>() {
-                {"ko","ウェブサイトを開く"},
-                {"fr","Ouvrir le site Web"},
-                {"es","Abrir sitio web"},
-                {"ja","ウェブサイトを開く"},
-                {"hi","वेब साइट खोलें"},
-                {"zh-chs","打开网站"},
-                {"de","Website öffnen"}
+                {"ko","RDP ポート"},
+                {"fr","Port RDP"},
+                {"zh-chs","RDP 端口"},
+                {"es","Puerto RDP"},
+                {"hi","आरडीपी पोर्ट"},
+                {"de","RDP-Port"}
+            }
+        },
+        {
+            "SSH Username",
+            new Dictionary<string, string>() {
+                {"ko","SSH ユーザー名"},
+                {"fr","Nom d'utilisateur SSH"},
+                {"zh-chs","SSH 用户名"},
+                {"es","Nombre de usuario SSH"},
+                {"hi","एसएसएच उपयोगकर्ता नाम"},
+                {"de","SSH-Benutzername"}
             }
         },
         {
@@ -1686,14 +1518,43 @@ namespace MeshCentralRouter
             }
         },
         {
+            "Local - {0}",
+            new Dictionary<string, string>() {
+                {"ko","ローカル - {0}"},
+                {"fr","Locale - {0}"},
+                {"zh-chs","本地 - {0}"},
+                {"es","Local: {0}"},
+                {"hi","स्थानीय - {0}"},
+                {"de","Lokal - {0}"}
+            }
+        },
+        {
+            "Send token to registered email address?",
+            new Dictionary<string, string>() {
+                {"de","Token an registrierte E-Mail-Adresse senden?"},
+                {"hi","प्राप्त ईमेल पते पर टोकन भेजें?"},
+                {"fr","Envoyer un jeton à une adresse e-mail enregistrée?"},
+                {"zh-cht","將保安編碼發送到註冊的電郵地址？"},
+                {"zh-chs","将保安编码发送到注册的电邮地址？"},
+                {"fi","Lähetetäänkö tunnus rekisteröityyn sähköpostiosoitteeseen?"},
+                {"tr","Belirteç kayıtlı e-posta adresine gönderilsin mi?"},
+                {"cs","Odeslat token na zaregistrovanou e-mailovou adresu?"},
+                {"ja","登録済みのメールアドレスにトークンを送信しますか？"},
+                {"es","¿Enviar token a la dirección de correo electrónico registrada?"},
+                {"pt","Enviar token para o endereço de e-mail registrado?"},
+                {"nl","Token verzenden naar geregistreerd e-mailadres?"},
+                {"ko","등록된 이메일 주소로 토큰을 보내시겠습니까?"},
+                {"ru","Отправить токен на зарегистрированный адрес электронной почты?"}
+            }
+        },
+        {
             "Device Status",
             new Dictionary<string, string>() {
                 {"ko","デバイスの状態"},
                 {"fr","Statut du périphérique"},
-                {"es","Estado del dispositivo"},
-                {"ja","デバイスの状態"},
-                {"hi","उपकरण की स्थिति"},
                 {"zh-chs","设备状态"},
+                {"es","Estado del dispositivo"},
+                {"hi","उपकरण की स्थिति"},
                 {"de","Gerätestatus"}
             }
         },
@@ -1736,21 +1597,20 @@ namespace MeshCentralRouter
             }
         },
         {
-            "TCP",
+            "UDP",
             new Dictionary<string, string>() {
-                {"hi","टीसीपी"}
+                {"hi","यूडीपी"}
             }
         },
         {
-            "Path",
+            "Next",
             new Dictionary<string, string>() {
-                {"ko","道"},
-                {"fr","Chemin"},
-                {"es","Camino"},
-                {"ja","道"},
-                {"hi","पथ"},
-                {"zh-chs","小路"},
-                {"de","Pfad"}
+                {"ko","次"},
+                {"fr","Suivant"},
+                {"zh-chs","下一个"},
+                {"es","próximo"},
+                {"hi","अगला"},
+                {"de","Nächster"}
             }
         },
         {
@@ -1796,29 +1656,10 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","強化されたキーボード キャプチャ"},
                 {"fr","Capture de clavier améliorée"},
-                {"es","Captura de teclado mejorada"},
-                {"ja","強化されたキーボード キャプチャ"},
-                {"hi","उन्नत कीबोर्ड कैप्चर"},
                 {"zh-chs","增强的键盘捕获"},
+                {"es","Captura de teclado mejorada"},
+                {"hi","उन्नत कीबोर्ड कैप्चर"},
                 {"de","Verbesserte Tastaturerfassung"}
-            }
-        },
-        {
-            "Ignore",
-            new Dictionary<string, string>() {
-                {"ko","無視する"},
-                {"fr","Ignorer"},
-                {"es","Ignorar"},
-                {"ja","無視する"},
-                {"hi","नज़रअंदाज़ करना"},
-                {"zh-chs","忽略"},
-                {"de","Ignorieren"}
-            }
-        },
-        {
-            "UDP",
-            new Dictionary<string, string>() {
-                {"hi","यूडीपी"}
             }
         },
         {
@@ -1826,10 +1667,9 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","MeshCentral ルーターの更新"},
                 {"fr","Mise à jour du routeur MeshCentral"},
-                {"es","Actualización del enrutador MeshCentral"},
-                {"ja","MeshCentral ルーターの更新"},
-                {"hi","मेशसेंट्रल राउटर अपडेट"},
                 {"zh-chs","MeshCentral 路由器更新"},
+                {"es","Actualización del enrutador MeshCentral"},
+                {"hi","मेशसेंट्रल राउटर अपडेट"},
                 {"de","MeshCentral Router-Update"}
             }
         },
@@ -1853,6 +1693,17 @@ namespace MeshCentralRouter
             }
         },
         {
+            "ComputerName",
+            new Dictionary<string, string>() {
+                {"ko","コンピュータネーム"},
+                {"fr","Nom de l'ordinateur"},
+                {"zh-chs","计算机名"},
+                {"es","Nombre del computador"},
+                {"hi","कंप्यूटर का नाम"},
+                {"de","Computername"}
+            }
+        },
+        {
             "Scaling",
             new Dictionary<string, string>() {
                 {"de","Skalierung"},
@@ -1872,15 +1723,28 @@ namespace MeshCentralRouter
             }
         },
         {
-            "Desktop Settings",
+            "Recursive Delete",
             new Dictionary<string, string>() {
-                {"ko","デスクトップ設定"},
-                {"fr","Paramètres du bureau"},
-                {"es","Configuración de escritorio"},
-                {"ja","デスクトップ設定"},
-                {"hi","डेस्कटॉप सेटिंग्स"},
-                {"zh-chs","桌面设置"},
-                {"de","Desktop-Einstellungen"}
+                {"ko","再帰的削除"},
+                {"fr","Suppression récursive"},
+                {"zh-chs","递归删除"},
+                {"es","Eliminación recursiva"},
+                {"hi","पुनरावर्ती हटाएं"},
+                {"de","Rekursives Löschen"}
+            }
+        },
+        {
+            "MeshCentral Router",
+            new Dictionary<string, string>() {
+                {"hi","मेश्चरल राउटर"},
+                {"fr","Routeur MeshCentral"},
+                {"zh-chs","MeshCentral路由器"},
+                {"fi","MeshCentral Reititin"},
+                {"tr","MeshCentral Yönlendirici"},
+                {"ja","MeshCentralルーター"},
+                {"es","Router de MeshCentral "},
+                {"ko","MeshCentral 라우터"},
+                {"ru","MeshCentral Router "}
             }
         },
         {
@@ -1906,30 +1770,21 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","リモート デスクトップ データ"},
                 {"fr","Données de bureau à distance"},
-                {"es","Datos de escritorio remoto"},
-                {"ja","リモート デスクトップ データ"},
-                {"hi","दूरस्थ डेस्कटॉप डेटा"},
                 {"zh-chs","远程桌面数据"},
+                {"es","Datos de escritorio remoto"},
+                {"hi","दूरस्थ डेस्कटॉप डेटा"},
                 {"de","Remotedesktopdaten"}
             }
         },
         {
-            "Send token to registered email address?",
+            "Port Mapping",
             new Dictionary<string, string>() {
-                {"de","Token an registrierte E-Mail-Adresse senden?"},
-                {"hi","प्राप्त ईमेल पते पर टोकन भेजें?"},
-                {"fr","Envoyer un jeton à une adresse e-mail enregistrée?"},
-                {"zh-cht","將保安編碼發送到註冊的電郵地址？"},
-                {"zh-chs","将保安编码发送到注册的电邮地址？"},
-                {"fi","Lähetetäänkö tunnus rekisteröityyn sähköpostiosoitteeseen?"},
-                {"tr","Belirteç kayıtlı e-posta adresine gönderilsin mi?"},
-                {"cs","Odeslat token na zaregistrovanou e-mailovou adresu?"},
-                {"ja","登録済みのメールアドレスにトークンを送信しますか？"},
-                {"es","¿Enviar token a la dirección de correo electrónico registrada?"},
-                {"pt","Enviar token para o endereço de e-mail registrado?"},
-                {"nl","Token verzenden naar geregistreerd e-mailadres?"},
-                {"ko","등록된 이메일 주소로 토큰을 보내시겠습니까?"},
-                {"ru","Отправить токен на зарегистрированный адрес электронной почты?"}
+                {"ko","ポートマッピング"},
+                {"fr","Mappage des ports"},
+                {"zh-chs","端口映射"},
+                {"es","La asignación de puertos"},
+                {"hi","पोर्ट मानचित्रण"},
+                {"de","Port-Mapping"}
             }
         },
         {
@@ -1937,10 +1792,9 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","アプリケーション名"},
                 {"fr","Nom de l'application"},
-                {"es","Nombre de la aplicación"},
-                {"ja","アプリケーション名"},
-                {"hi","आवेदन का नाम"},
                 {"zh-chs","应用名称"},
+                {"es","Nombre de la aplicación"},
+                {"hi","आवेदन का नाम"},
                 {"de","Anwendungsname"}
             }
         },
@@ -1949,11 +1803,21 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","エラーメッセージ"},
                 {"fr","Message d'erreur"},
-                {"es","Mensaje de error"},
-                {"ja","エラーメッセージ"},
-                {"hi","त्रुटि संदेश"},
                 {"zh-chs","错误信息"},
+                {"es","Mensaje de error"},
+                {"hi","त्रुटि संदेश"},
                 {"de","Fehlermeldung"}
+            }
+        },
+        {
+            "Path",
+            new Dictionary<string, string>() {
+                {"ko","道"},
+                {"fr","Chemin"},
+                {"zh-chs","小路"},
+                {"es","Camino"},
+                {"hi","पथ"},
+                {"de","Pfad"}
             }
         },
         {
@@ -1961,10 +1825,9 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko"," MeshCentral ルーター"},
                 {"fr"," Routeur MeshCentral"},
-                {"es"," Enrutador MeshCentral"},
-                {"ja"," MeshCentral ルーター"},
-                {"hi"," मेशसेंट्रल राउटर"},
                 {"zh-chs"," MeshCentral 路由器"},
+                {"es"," Enrutador MeshCentral"},
+                {"hi"," मेशसेंट्रल राउटर"},
                 {"de"," MeshCentral-Router"}
             }
         },
@@ -1992,10 +1855,9 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","リモート デスクトップの設定を変更する"},
                 {"fr","Modifier les paramètres du bureau à distance"},
-                {"es","Cambiar la configuración del escritorio remoto"},
-                {"ja","リモート デスクトップの設定を変更する"},
-                {"hi","दूरस्थ डेस्कटॉप सेटिंग बदलें"},
                 {"zh-chs","更改远程桌面设置"},
+                {"es","Cambiar la configuración del escritorio remoto"},
+                {"hi","दूरस्थ डेस्कटॉप सेटिंग बदलें"},
                 {"de","Remote-Desktop-Einstellungen ändern"}
             }
         },
@@ -2022,10 +1884,9 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","リモート デスクトップ統計"},
                 {"fr","Statistiques du bureau à distance"},
-                {"es","Estadísticas de escritorio remoto"},
-                {"ja","リモート デスクトップ統計"},
-                {"hi","दूरस्थ डेस्कटॉप आँकड़े"},
                 {"zh-chs","远程桌面统计"},
+                {"es","Estadísticas de escritorio remoto"},
+                {"hi","दूरस्थ डेस्कटॉप आँकड़े"},
                 {"de","Remotedesktop-Statistiken"}
             }
         },
@@ -2034,35 +1895,21 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","代替ポート"},
                 {"fr","Port alternatif"},
-                {"es","Puerto alternativo"},
-                {"ja","代替ポート"},
-                {"hi","वैकल्पिक बंदरगाह"},
                 {"zh-chs","替代端口"},
+                {"es","Puerto alternativo"},
+                {"hi","वैकल्पिक बंदरगाह"},
                 {"de","Alternativer Hafen"}
             }
         },
         {
-            "Incoming Bytes",
+            "Toggle zoom-to-fit mode",
             new Dictionary<string, string>() {
-                {"ko","受信バイト"},
-                {"fr","Octets entrants"},
-                {"es","Bytes entrantes"},
-                {"ja","受信バイト"},
-                {"hi","आने वाली बाइट्स"},
-                {"zh-chs","传入字节"},
-                {"de","Eingehende Bytes"}
-            }
-        },
-        {
-            "Use Alternate Port...",
-            new Dictionary<string, string>() {
-                {"ko","代替ポートを使用..."},
-                {"fr","Utiliser un autre port..."},
-                {"es","Usar puerto alternativo ..."},
-                {"ja","代替ポートを使用..."},
-                {"hi","वैकल्पिक पोर्ट का उपयोग करें..."},
-                {"zh-chs","使用备用端口..."},
-                {"de","Alternativer Port verwenden..."}
+                {"ko","ズーム ツー フィット モードを切り替える"},
+                {"fr","Basculer en mode zoom pour ajuster"},
+                {"zh-chs","切换缩放至适合模式"},
+                {"es","Alternar el modo de zoom para ajustar"},
+                {"hi","ज़ूम-टू-फ़िट मोड टॉगल करें"},
+                {"de","Zoom-to-Fit-Modus umschalten"}
             }
         },
         {
@@ -2088,23 +1935,10 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","Ctrl-Alt-Del をリモート デバイスに送信する"},
                 {"fr","Envoyer Ctrl-Alt-Suppr à l'appareil distant"},
-                {"es","Enviar Ctrl-Alt-Del al dispositivo remoto"},
-                {"ja","Ctrl-Alt-Del をリモート デバイスに送信する"},
-                {"hi","रिमोट डिवाइस पर Ctrl-Alt-Del भेजें"},
                 {"zh-chs","发送 Ctrl-Alt-Del 到远程设备"},
+                {"es","Enviar Ctrl-Alt-Del al dispositivo remoto"},
+                {"hi","रिमोट डिवाइस पर Ctrl-Alt-Del भेजें"},
                 {"de","Strg-Alt-Entf an Remote-Gerät senden"}
-            }
-        },
-        {
-            "Routing Status",
-            new Dictionary<string, string>() {
-                {"ko","ルーティング ステータス"},
-                {"fr","État du routage"},
-                {"es","Estado de enrutamiento"},
-                {"ja","ルーティング ステータス"},
-                {"hi","रूटिंग स्थिति"},
-                {"zh-chs","路由状态"},
-                {"de","Routing-Status"}
             }
         },
         {
@@ -2112,10 +1946,9 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","グループで並べ替え(&L)"},
                 {"fr","Trier par groupe"},
-                {"es","Ordenar por grupo y grupo"},
-                {"ja","グループで並べ替え(&L)"},
-                {"hi","समूह के आधार पर छाँटें"},
                 {"zh-chs","按组(&O) 排序"},
+                {"es","Ordenar por grupo y grupo"},
+                {"hi","समूह के आधार पर छाँटें"},
                 {"de","Nach Gruppe sortieren"}
             }
         },
@@ -2124,10 +1957,9 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","1 件削除しますか?"},
                 {"fr","Supprimer 1 élément ?"},
-                {"es","¿Eliminar 1 artículo?"},
-                {"ja","1 件削除しますか?"},
-                {"hi","1 आइटम निकालें?"},
                 {"zh-chs","删除 1 项？"},
+                {"es","¿Eliminar 1 artículo?"},
+                {"hi","1 आइटम निकालें?"},
                 {"de","1 Artikel entfernen?"}
             }
         },
@@ -2148,46 +1980,36 @@ namespace MeshCentralRouter
             }
         },
         {
-            "Local - {0}",
-            new Dictionary<string, string>() {
-                {"ko","ローカル - {0}"},
-                {"fr","Locale - {0}"},
-                {"es","Local: {0}"},
-                {"ja","ローカル - {0}"},
-                {"hi","स्थानीय - {0}"},
-                {"zh-chs","本地 - {0}"},
-                {"de","Lokal - {0}"}
-            }
-        },
-        {
             "Unable to bind to local port",
             new Dictionary<string, string>() {
                 {"ko","ローカル ポートにバインドできません"},
                 {"fr","Impossible de se lier au port local"},
-                {"es","No se puede vincular al puerto local"},
-                {"ja","ローカル ポートにバインドできません"},
-                {"hi","स्थानीय पोर्ट से जुड़ने में असमर्थ"},
                 {"zh-chs","无法绑定到本地端口"},
+                {"es","No se puede vincular al puerto local"},
+                {"hi","स्थानीय पोर्ट से जुड़ने में असमर्थ"},
                 {"de","Kann nicht an lokalen Port binden"}
             }
         },
         {
-            "Login",
+            "Outgoing Bytes",
             new Dictionary<string, string>() {
-                {"de","Anmeldung"},
-                {"hi","लॉग इन करें"},
-                {"fr","Connexion"},
-                {"zh-cht","登入"},
-                {"zh-chs","登录"},
-                {"fi","Kirjaudu sisään"},
-                {"tr","Oturum aç"},
-                {"cs","Přihlášení"},
-                {"ja","ログイン"},
-                {"es","Iniciar sesión"},
-                {"pt","Entrar"},
-                {"nl","Inloggen"},
-                {"ko","로그인"},
-                {"ru","Войти"}
+                {"ko","送信バイト"},
+                {"fr","Octets sortants"},
+                {"zh-chs","传出字节"},
+                {"es","Bytes salientes"},
+                {"hi","आउटगोइंग बाइट्स"},
+                {"de","Ausgehende Bytes"}
+            }
+        },
+        {
+            "Open...",
+            new Dictionary<string, string>() {
+                {"ko","開いた..."},
+                {"fr","Ouvert..."},
+                {"zh-chs","打开..."},
+                {"es","Abierto..."},
+                {"hi","खुला हुआ..."},
+                {"de","Öffnen..."}
             }
         },
         {
@@ -2195,10 +2017,9 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","言語"},
                 {"fr","Langues"},
-                {"es","Idiomas"},
-                {"ja","言語"},
-                {"hi","बोली"},
                 {"zh-chs","语言"},
+                {"es","Idiomas"},
+                {"hi","बोली"},
                 {"de","Sprachen"}
             }
         },
@@ -2209,14 +2030,24 @@ namespace MeshCentralRouter
             }
         },
         {
+            "S&ettings...",
+            new Dictionary<string, string>() {
+                {"ko","設定..."},
+                {"fr","Paramètres..."},
+                {"zh-chs","设置(&E)..."},
+                {"es","Ajustes..."},
+                {"hi","समायोजन..."},
+                {"de","Die Einstellungen..."}
+            }
+        },
+        {
             "Port Mapping Help",
             new Dictionary<string, string>() {
                 {"ko","ポート マッピング ヘルプ"},
                 {"fr","Aide sur le mappage de ports"},
-                {"es","Ayuda de mapeo de puertos"},
-                {"ja","ポート マッピング ヘルプ"},
-                {"hi","पोर्ट मैपिंग सहायता"},
                 {"zh-chs","端口映射帮助"},
+                {"es","Ayuda de mapeo de puertos"},
+                {"hi","पोर्ट मैपिंग सहायता"},
                 {"de","Hilfe zur Portzuordnung"}
             }
         },
@@ -2244,10 +2075,9 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","警告 - 無効なサーバー証明書"},
                 {"fr","AVERTISSEMENT - Certificat de serveur non valide"},
-                {"es","ADVERTENCIA: certificado de servidor no válido"},
-                {"ja","警告 - 無効なサーバー証明書"},
-                {"hi","चेतावनी - अमान्य सर्वर प्रमाणपत्र"},
                 {"zh-chs","警告 - 服务器证书无效"},
+                {"es","ADVERTENCIA: certificado de servidor no válido"},
+                {"hi","चेतावनी - अमान्य सर्वर प्रमाणपत्र"},
                 {"de","WARNUNG - Ungültiges Serverzertifikat"}
             }
         },
@@ -2274,23 +2104,21 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","この証明書を覚えておいてください"},
                 {"fr","Rappelez-vous ce certificat"},
-                {"es","Recuerda este certificado"},
-                {"ja","この証明書を覚えておいてください"},
-                {"hi","यह प्रमाणपत्र याद रखें"},
                 {"zh-chs","记住这个证书"},
+                {"es","Recuerda este certificado"},
+                {"hi","यह प्रमाणपत्र याद रखें"},
                 {"de","Merken Sie sich dieses Zertifikat"}
             }
         },
         {
-            "Enter the second factor authentication token.",
+            "Stopped.",
             new Dictionary<string, string>() {
-                {"ko","第二要素認証トークンを入力します。"},
-                {"fr","Saisissez le jeton d'authentification du deuxième facteur."},
-                {"es","Ingrese el token de autenticación de segundo factor."},
-                {"ja","第二要素認証トークンを入力します。"},
-                {"hi","दूसरा कारक प्रमाणीकरण टोकन दर्ज करें।"},
-                {"zh-chs","输入第二个因素身份验证令牌。"},
-                {"de","Geben Sie das zweite Faktor-Authentifizierungstoken ein."}
+                {"ko","停止。"},
+                {"fr","Arrêté."},
+                {"zh-chs","停了。"},
+                {"es","Detenido."},
+                {"hi","रोका हुआ।"},
+                {"de","Gestoppt."}
             }
         },
         {
@@ -2313,6 +2141,17 @@ namespace MeshCentralRouter
             }
         },
         {
+            "Pull clipboard from remote device",
+            new Dictionary<string, string>() {
+                {"ko","リモート デバイスからクリップボードをプルする"},
+                {"fr","Extraire le presse-papiers de l'appareil distant"},
+                {"zh-chs","从远程设备拉剪贴板"},
+                {"es","Extraiga el portapapeles del dispositivo remoto"},
+                {"hi","दूरस्थ डिवाइस से क्लिपबोर्ड खींचे"},
+                {"de","Zwischenablage von Remote-Gerät ziehen"}
+            }
+        },
+        {
             "Remote",
             new Dictionary<string, string>() {
                 {"de","Entfernt"},
@@ -2332,15 +2171,9 @@ namespace MeshCentralRouter
             }
         },
         {
-            "S&ettings...",
+            "TCP",
             new Dictionary<string, string>() {
-                {"ko","設定..."},
-                {"fr","Paramètres..."},
-                {"es","Ajustes..."},
-                {"ja","設定..."},
-                {"hi","समायोजन..."},
-                {"zh-chs","设置(&E)..."},
-                {"de","Die Einstellungen..."}
+                {"hi","टीसीपी"}
             }
         },
         {
@@ -2367,23 +2200,21 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","MeshCentral Router を使用すると、このコンピューターの TCP および UDP ポートを、MeshCentral サーバー アカウント内の任意のコンピューターにマッピングできます。アカウントにログインすることから始めます。"},
                 {"fr","Le routeur MeshCentral permet de mapper les ports TCP et UDP de cet ordinateur sur n'importe quel ordinateur de votre compte de serveur MeshCentral. Commencez par vous connecter à votre compte."},
-                {"es","MeshCentral Router permite la asignación de puertos TCP y UDP en esta computadora a cualquier computadora en su cuenta de servidor MeshCentral. Empiece por iniciar sesión en su cuenta."},
-                {"ja","MeshCentral Router を使用すると、このコンピューターの TCP および UDP ポートを、MeshCentral サーバー アカウント内の任意のコンピューターにマッピングできます。アカウントにログインすることから始めます。"},
-                {"hi","MeshCentral राउटर इस कंप्यूटर पर आपके MeshCentral सर्वर खाते के किसी भी कंप्यूटर पर TCP और UDP पोर्ट की मैपिंग की अनुमति देता है। अपने खाते में लॉग इन करके प्रारंभ करें।"},
                 {"zh-chs","MeshCentral 路由器允许将此计算机上的 TCP 和 UDP 端口映射到您的 MeshCentral 服务器帐户中的任何计算机。首先登录您的帐户。"},
+                {"es","MeshCentral Router permite la asignación de puertos TCP y UDP en esta computadora a cualquier computadora en su cuenta de servidor MeshCentral. Empiece por iniciar sesión en su cuenta."},
+                {"hi","MeshCentral राउटर इस कंप्यूटर पर आपके MeshCentral सर्वर खाते के किसी भी कंप्यूटर पर TCP और UDP पोर्ट की मैपिंग की अनुमति देता है। अपने खाते में लॉग इन करके प्रारंभ करें।"},
                 {"de","MeshCentral Router ermöglicht die Zuordnung von TCP- und UDP-Ports auf diesem Computer zu jedem Computer in Ihrem MeshCentral-Serverkonto. Melden Sie sich zunächst bei Ihrem Konto an."}
             }
         },
         {
-            "Invalid download.",
+            "Outgoing Compression",
             new Dictionary<string, string>() {
-                {"ko","ダウンロードが無効です。"},
-                {"fr","Téléchargement non valide."},
-                {"es","Descarga no válida."},
-                {"ja","ダウンロードが無効です。"},
-                {"hi","अमान्य डाउनलोड।"},
-                {"zh-chs","下载无效。"},
-                {"de","Ungültiger Download."}
+                {"ko","発信圧縮"},
+                {"fr","Compression sortante"},
+                {"zh-chs","输出压缩"},
+                {"es","Compresión saliente"},
+                {"hi","आउटगोइंग संपीड़न"},
+                {"de","Ausgehende Komprimierung"}
             }
         },
         {
@@ -2391,10 +2222,9 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","、{0}人のユーザー"},
                 {"fr",", {0} utilisateurs"},
-                {"es",", {0} usuarios"},
-                {"ja","、{0}人のユーザー"},
-                {"hi",", {0} उपयोगकर्ता"},
                 {"zh-chs",", {0} 个用户"},
+                {"es",", {0} usuarios"},
+                {"hi",", {0} उपयोगकर्ता"},
                 {"de",", {0} Nutzer"}
             }
         },
@@ -2403,10 +2233,9 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","この MeshCentral サーバーは、このツールの異なるバージョンを使用しています。 [OK] をクリックしてダウンロードして更新します。"},
                 {"fr","Ce serveur MeshCentral utilise une version différente de cet outil. Cliquez sur ok pour télécharger et mettre à jour."},
-                {"es","Este servidor MeshCentral utiliza una versión diferente de esta herramienta. Haga clic en Aceptar para descargar y actualizar."},
-                {"ja","この MeshCentral サーバーは、このツールの異なるバージョンを使用しています。 [OK] をクリックしてダウンロードして更新します。"},
-                {"hi","यह MeshCentral सर्वर इस टूल के भिन्न संस्करण का उपयोग करता है। डाउनलोड और अपडेट करने के लिए ओके पर क्लिक करें।"},
                 {"zh-chs","此 MeshCentral Server 使用此工具的不同版本。单击“确定”进行下载和更新。"},
+                {"es","Este servidor MeshCentral utiliza una versión diferente de esta herramienta. Haga clic en Aceptar para descargar y actualizar."},
+                {"hi","यह MeshCentral सर्वर इस टूल के भिन्न संस्करण का उपयोग करता है। डाउनलोड और अपडेट करने के लिए ओके पर क्लिक करें।"},
                 {"de","Dieser MeshCentral Server verwendet eine andere Version dieses Tools. Klicken Sie auf OK, um herunterzuladen und zu aktualisieren."}
             }
         },
@@ -2415,10 +2244,9 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","オートクローズをキャンセル"},
                 {"fr","Annuler la fermeture automatique"},
-                {"es","Cancelar cierre automático"},
-                {"ja","オートクローズをキャンセル"},
-                {"hi","रद्द करें स्वतः बंद"},
                 {"zh-chs","取消自动关闭"},
+                {"es","Cancelar cierre automático"},
+                {"hi","रद्द करें स्वतः बंद"},
                 {"de","Automatisches Schließen abbrechen"}
             }
         },
@@ -2427,10 +2255,9 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","オープンソース、Apache 2.0 ライセンス"},
                 {"fr","Open Source, licence Apache 2.0"},
-                {"es","Código abierto, licencia Apache 2.0"},
-                {"ja","オープンソース、Apache 2.0 ライセンス"},
-                {"hi","ओपन सोर्स, अपाचे 2.0 लाइसेंस"},
                 {"zh-chs","开源，Apache 2.0 许可"},
+                {"es","Código abierto, licencia Apache 2.0"},
+                {"hi","ओपन सोर्स, अपाचे 2.0 लाइसेंस"},
                 {"de","Open Source, Apache 2.0-Lizenz"}
             }
         },
@@ -2439,10 +2266,9 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","マッピング"},
                 {"fr","Mappages"},
-                {"es","Mapeos"},
-                {"ja","マッピング"},
-                {"hi","मानचित्रण"},
                 {"zh-chs","映射"},
+                {"es","Mapeos"},
+                {"hi","मानचित्रण"},
                 {"de","Zuordnungen"}
             }
         },
@@ -2470,10 +2296,9 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","(個別デバイス)"},
                 {"fr","(Appareils individuels)"},
-                {"es","(Dispositivos individuales)"},
-                {"ja","(個別デバイス)"},
-                {"hi","(व्यक्तिगत उपकरण)"},
                 {"zh-chs","（个别设备）"},
+                {"es","(Dispositivos individuales)"},
+                {"hi","(व्यक्तिगत उपकरण)"},
                 {"de","(Einzelgeräte)"}
             }
         },
@@ -2494,6 +2319,17 @@ namespace MeshCentralRouter
                 {"nl","Privacy balk"},
                 {"ko","프라이버시 바"},
                 {"ru","Панель конфиденциальности"}
+            }
+        },
+        {
+            "Remove {0} items?",
+            new Dictionary<string, string>() {
+                {"ko","{0} 個のアイテムを削除しますか?"},
+                {"fr","Supprimer {0} éléments ?"},
+                {"zh-chs","删除 {0} 项？"},
+                {"es","¿Eliminar {0} elementos?"},
+                {"hi","{0} आइटम निकालें?"},
+                {"de","{0} Elemente entfernen?"}
             }
         },
         {
@@ -2520,10 +2356,9 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","このサーバーは、信頼できない証明書を提示しました。これは、これが正しいサーバーでないか、サーバーに有効な証明書がないことを示している可能性があります。これは推奨されませんが、無視ボタンを押してこのサーバーへの接続を続けることができます。"},
                 {"fr","Ce serveur a présenté un certificat non approuvé. Cela peut indiquer qu'il ne s'agit pas du bon serveur ou que le serveur n'a pas de certificat valide. Ce n'est pas recommandé, mais vous pouvez appuyer sur le bouton ignorer pour continuer la connexion à ce serveur."},
-                {"es","Este servidor presentó un certificado no confiable. Esto puede indicar que este no es el servidor correcto o que el servidor no tiene un certificado válido. No se recomienda, pero puede presionar el botón ignorar para continuar la conexión a este servidor."},
-                {"ja","このサーバーは、信頼できない証明書を提示しました。これは、これが正しいサーバーでないか、サーバーに有効な証明書がないことを示している可能性があります。これは推奨されませんが、無視ボタンを押してこのサーバーへの接続を続けることができます。"},
-                {"hi","इस सर्वर ने एक अविश्वसनीय प्रमाणपत्र प्रस्तुत किया। यह संकेत दे सकता है कि यह सही सर्वर नहीं है या सर्वर के पास वैध प्रमाणपत्र नहीं है। यह अनुशंसित नहीं है, लेकिन आप इस सर्वर से कनेक्शन जारी रखने के लिए अनदेखा करें बटन दबा सकते हैं।"},
                 {"zh-chs","此服务器提供了不受信任的证书。这可能表明这不是正确的服务器或服务器没有有效的证书。不推荐，但您可以按忽略按钮继续连接到此服务器。"},
+                {"es","Este servidor presentó un certificado no confiable. Esto puede indicar que este no es el servidor correcto o que el servidor no tiene un certificado válido. No se recomienda, pero puede presionar el botón ignorar para continuar la conexión a este servidor."},
+                {"hi","इस सर्वर ने एक अविश्वसनीय प्रमाणपत्र प्रस्तुत किया। यह संकेत दे सकता है कि यह सही सर्वर नहीं है या सर्वर के पास वैध प्रमाणपत्र नहीं है। यह अनुशंसित नहीं है, लेकिन आप इस सर्वर से कनेक्शन जारी रखने के लिए अनदेखा करें बटन दबा सकते हैं।"},
                 {"de","Dieser Server hat ein nicht vertrauenswürdiges Zertifikat vorgelegt. Dies kann darauf hinweisen, dass dies nicht der richtige Server ist oder dass der Server nicht über ein gültiges Zertifikat verfügt. Es wird nicht empfohlen, aber Sie können die Ignorieren-Taste drücken, um die Verbindung zu diesem Server fortzusetzen."}
             }
         },
@@ -2544,6 +2379,36 @@ namespace MeshCentralRouter
                 {"nl","Wachtwoord"},
                 {"ko","암호"},
                 {"ru","Пароль"}
+            }
+        },
+        {
+            "Login",
+            new Dictionary<string, string>() {
+                {"de","Anmeldung"},
+                {"hi","लॉग इन करें"},
+                {"fr","Connexion"},
+                {"zh-cht","登入"},
+                {"zh-chs","登录"},
+                {"fi","Kirjaudu sisään"},
+                {"tr","Oturum aç"},
+                {"cs","Přihlášení"},
+                {"ja","ログイン"},
+                {"es","Iniciar sesión"},
+                {"pt","Entrar"},
+                {"nl","Inloggen"},
+                {"ko","로그인"},
+                {"ru","Войти"}
+            }
+        },
+        {
+            "&Save Mappings...",
+            new Dictionary<string, string>() {
+                {"ko","マッピングを保存..."},
+                {"fr","&Enregistrer les mappages..."},
+                {"zh-chs","保存映射(&S)..."},
+                {"es","&Guardar asignaciones ..."},
+                {"hi","&मैपिंग सहेजें..."},
+                {"de","&Zuordnungen speichern..."}
             }
         },
         {
@@ -2570,42 +2435,21 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","ダブルクリックアクション"},
                 {"fr","Action de double-clic"},
-                {"es","Acción de doble clic"},
-                {"ja","ダブルクリックアクション"},
-                {"hi","डबल क्लिक एक्शन"},
                 {"zh-chs","双击操作"},
+                {"es","Acción de doble clic"},
+                {"hi","डबल क्लिक एक्शन"},
                 {"de","Doppelklick-Aktion"}
             }
         },
         {
-            "Display connection statistics",
+            "Toggle remote desktop connection",
             new Dictionary<string, string>() {
-                {"ko","接続統計の表示"},
-                {"fr","Afficher les statistiques de connexion"},
-                {"es","Mostrar estadísticas de conexión"},
-                {"ja","接続統計の表示"},
-                {"hi","कनेक्शन आंकड़े प्रदर्शित करें"},
-                {"zh-chs","显示连接统计"},
-                {"de","Verbindungsstatistik anzeigen"}
-            }
-        },
-        {
-            "Connecting...",
-            new Dictionary<string, string>() {
-                {"de","Verbinden..."},
-                {"hi","कनेक्ट ..."},
-                {"fr","En cours de connexion ..."},
-                {"zh-cht","正在連線..."},
-                {"zh-chs","正在连线..."},
-                {"fi","Yhdistetään..."},
-                {"tr","Bağlanıyor..."},
-                {"cs","Připojování…"},
-                {"ja","接続しています..."},
-                {"es","Conectando...."},
-                {"pt","Conectando..."},
-                {"nl","Verbinden..."},
-                {"ko","연결 중 ..."},
-                {"ru","Подключение..."}
+                {"ko","リモート デスクトップ接続を切り替える"},
+                {"fr","Basculer la connexion au bureau à distance"},
+                {"zh-chs","切换远程桌面连接"},
+                {"es","Alternar la conexión de escritorio remoto"},
+                {"hi","दूरस्थ डेस्कटॉप कनेक्शन टॉगल करें"},
+                {"de","Remotedesktopverbindung umschalten"}
             }
         },
         {
@@ -2638,27 +2482,47 @@ namespace MeshCentralRouter
             new Dictionary<string, string>() {
                 {"ko","{0}バイト"},
                 {"fr","{0} octet"},
-                {"ja","{0}バイト"},
-                {"hi","{0} बाइट"},
-                {"zh-chs","{0} 字节"}
+                {"zh-chs","{0} 字节"},
+                {"hi","{0} बाइट"}
             }
         },
         {
-            "Remote Device",
+            "Mapping Settings",
             new Dictionary<string, string>() {
-                {"ko","リモートデバイス"},
-                {"fr","Périphérique distant"},
-                {"es","Dispositivo remoto"},
-                {"ja","リモートデバイス"},
-                {"hi","रिमोट डिवाइस"},
-                {"zh-chs","遥控装置"},
-                {"de","Remote-Gerät"}
+                {"ko","マッピング設定"},
+                {"fr","Paramètres de mappage"},
+                {"zh-chs","映射设置"},
+                {"es","Configuración de mapeo"},
+                {"hi","मैपिंग सेटिंग्स"},
+                {"de","Zuordnungseinstellungen"}
+            }
+        },
+        {
+            ", 1 connection.",
+            new Dictionary<string, string>() {
+                {"ko","、1接続。"},
+                {"fr",", 1 connexion."},
+                {"zh-chs",", 1 个连接。"},
+                {"es",", 1 conexión."},
+                {"hi",", 1 कनेक्शन।"},
+                {"de",", 1 Anschluss."}
             }
         },
         {
             "HTTPS",
             new Dictionary<string, string>() {
                 {"hi","HTTPS के"}
+            }
+        },
+        {
+            "Install...",
+            new Dictionary<string, string>() {
+                {"ko","インストール..."},
+                {"fr","Installer..."},
+                {"zh-chs","安装..."},
+                {"es","Instalar en pc..."},
+                {"hi","इंस्टॉल..."},
+                {"de","Installieren..."}
             }
         },
         {
@@ -2695,15 +2559,14 @@ namespace MeshCentralRouter
             }
         },
         {
-            "Push local clipboard to remote device",
+            "Compressed Network Traffic",
             new Dictionary<string, string>() {
-                {"ko","ローカル クリップボードをリモート デバイスにプッシュ"},
-                {"fr","Transférer le presse-papiers local vers l'appareil distant"},
-                {"es","Empuje el portapapeles local al dispositivo remoto"},
-                {"ja","ローカル クリップボードをリモート デバイスにプッシュ"},
-                {"hi","स्थानीय क्लिपबोर्ड को दूरस्थ डिवाइस पर पुश करें"},
-                {"zh-chs","将本地剪贴板推送到远程设备"},
-                {"de","Lokale Zwischenablage auf Remote-Gerät übertragen"}
+                {"ko","圧縮されたネットワーク トラフィック"},
+                {"fr","Trafic réseau compressé"},
+                {"zh-chs","压缩网络流量"},
+                {"es","Tráfico de red comprimido"},
+                {"hi","संपीडित नेटवर्क यातायात"},
+                {"de","Komprimierter Netzwerkverkehr"}
             }
         },
         {
@@ -2764,27 +2627,23 @@ namespace MeshCentralRouter
             }
         },
         {
-            "MeshCentral Router Installation",
+            "Installation",
             new Dictionary<string, string>() {
-                {"ko","MeshCentral ルーターのインストール"},
-                {"fr","Installation du routeur MeshCentral"},
-                {"es","Instalación del enrutador MeshCentral"},
-                {"ja","MeshCentral ルーターのインストール"},
-                {"hi","मेशसेंट्रल राउटर इंस्टालेशन"},
-                {"zh-chs","MeshCentral 路由器安装"},
-                {"de","Installation des MeshCentral-Routers"}
+                {"ko","インストール"},
+                {"zh-chs","安装"},
+                {"es","Instalación"},
+                {"hi","इंस्टालेशन"}
             }
         },
         {
-            "Stopped.",
+            "Remote Port",
             new Dictionary<string, string>() {
-                {"ko","停止。"},
-                {"fr","Arrêté."},
-                {"es","Detenido."},
-                {"ja","停止。"},
-                {"hi","रोका हुआ।"},
-                {"zh-chs","停了。"},
-                {"de","Gestoppt."}
+                {"ko","リモートポート"},
+                {"fr","Port distant"},
+                {"zh-chs","远程端口"},
+                {"es","Puerto remoto"},
+                {"hi","रिमोट पोर्ट"},
+                {"de","Remote-Port"}
             }
         }
         };
