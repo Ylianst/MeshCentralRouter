@@ -117,6 +117,15 @@ namespace MeshCentralRouter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Change remote desktop settings.
+        /// </summary>
+        internal static string ChangeRemoteDesktopSettings {
+            get {
+                return ResourceManager.GetString("ChangeRemoteDesktopSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to CIRA.
         /// </summary>
         internal static string CIRA {
@@ -205,6 +214,15 @@ namespace MeshCentralRouter.Properties {
         internal static string Disconnected {
             get {
                 return ResourceManager.GetString("Disconnected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display connection statistics.
+        /// </summary>
+        internal static string DisplayConnectionStatistics {
+            get {
+                return ResourceManager.GetString("DisplayConnectionStatistics", resourceCulture);
             }
         }
         
@@ -564,6 +582,24 @@ namespace MeshCentralRouter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pull clipboard from remote device.
+        /// </summary>
+        internal static string PullClipboardFromRemoteDevice {
+            get {
+                return ResourceManager.GetString("PullClipboardFromRemoteDevice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Push local clipboard to remote device.
+        /// </summary>
+        internal static string PushLocaClipboardToRemoteDevice {
+            get {
+                return ResourceManager.GetString("PushLocaClipboardToRemoteDevice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to PuTTY SSH client.
         /// </summary>
         internal static string PuttyAppName {
@@ -664,6 +700,15 @@ namespace MeshCentralRouter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Send Ctrl-Alt-Del to remote device.
+        /// </summary>
+        internal static string SendCtrlAltDelToRemoteDevice {
+            get {
+                return ResourceManager.GetString("SendCtrlAltDelToRemoteDevice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Send token to registered email address?.
         /// </summary>
         internal static string SendTokenEmail {
@@ -741,6 +786,24 @@ namespace MeshCentralRouter.Properties {
         internal static string Timeout {
             get {
                 return ResourceManager.GetString("Timeout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle remote desktop connection.
+        /// </summary>
+        internal static string ToggleRemoteDesktopConnection {
+            get {
+                return ResourceManager.GetString("ToggleRemoteDesktopConnection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle zoom-to-fit mode.
+        /// </summary>
+        internal static string ToggleZoomToFitMode {
+            get {
+                return ResourceManager.GetString("ToggleZoomToFitMode", resourceCulture);
             }
         }
         

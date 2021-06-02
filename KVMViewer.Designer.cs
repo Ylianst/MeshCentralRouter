@@ -118,7 +118,6 @@ namespace MeshCentralRouter
             this.clipOutboundButton.Image = global::MeshCentralRouter.Properties.Resources.iconClipboardOut;
             this.clipOutboundButton.Name = "clipOutboundButton";
             this.clipOutboundButton.TabStop = false;
-            this.mainToolTip.SetToolTip(this.clipOutboundButton, resources.GetString("clipOutboundButton.ToolTip"));
             this.clipOutboundButton.UseVisualStyleBackColor = true;
             this.clipOutboundButton.Click += new System.EventHandler(this.clipOutboundButton_Click);
             // 
@@ -137,7 +136,6 @@ namespace MeshCentralRouter
             resources.ApplyResources(this.statsButton, "statsButton");
             this.statsButton.Name = "statsButton";
             this.statsButton.TabStop = false;
-            this.mainToolTip.SetToolTip(this.statsButton, resources.GetString("statsButton.ToolTip"));
             this.statsButton.UseVisualStyleBackColor = true;
             this.statsButton.Click += new System.EventHandler(this.statsButton_Click);
             // 
@@ -154,7 +152,6 @@ namespace MeshCentralRouter
             resources.ApplyResources(this.settingsButton, "settingsButton");
             this.settingsButton.Name = "settingsButton";
             this.settingsButton.TabStop = false;
-            this.mainToolTip.SetToolTip(this.settingsButton, resources.GetString("settingsButton.ToolTip"));
             this.settingsButton.UseVisualStyleBackColor = true;
             this.settingsButton.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
@@ -164,7 +161,6 @@ namespace MeshCentralRouter
             this.zoomButton.Image = global::MeshCentralRouter.Properties.Resources.ZoomToFit;
             this.zoomButton.Name = "zoomButton";
             this.zoomButton.TabStop = false;
-            this.mainToolTip.SetToolTip(this.zoomButton, resources.GetString("zoomButton.ToolTip"));
             this.zoomButton.UseVisualStyleBackColor = true;
             this.zoomButton.Click += new System.EventHandler(this.zoomButton_Click);
             // 
@@ -173,7 +169,6 @@ namespace MeshCentralRouter
             resources.ApplyResources(this.cadButton, "cadButton");
             this.cadButton.Name = "cadButton";
             this.cadButton.TabStop = false;
-            this.mainToolTip.SetToolTip(this.cadButton, resources.GetString("cadButton.ToolTip"));
             this.cadButton.UseVisualStyleBackColor = true;
             this.cadButton.Click += new System.EventHandler(this.sendCtrlAltDelToolStripMenuItem_Click);
             // 
@@ -183,7 +178,6 @@ namespace MeshCentralRouter
             resources.ApplyResources(this.connectButton, "connectButton");
             this.connectButton.Name = "connectButton";
             this.connectButton.TabStop = false;
-            this.mainToolTip.SetToolTip(this.connectButton, resources.GetString("connectButton.ToolTip"));
             this.connectButton.UseVisualStyleBackColor = true;
             this.connectButton.Click += new System.EventHandler(this.MenuItemDisconnect_Click);
             // 

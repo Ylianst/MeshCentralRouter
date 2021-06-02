@@ -370,4 +370,25 @@
   <data name="Updating" xml:space="preserve">
     <value>Updating...</value>
   </data>
+  <data name="ChangeRemoteDesktopSettings" xml:space="preserve">
+    <value>Change remote desktop settings</value>
+  </data>
+  <data name="DisplayConnectionStatistics" xml:space="preserve">
+    <value>Display connection statistics</value>
+  </data>
+  <data name="PullClipboardFromRemoteDevice" xml:space="preserve">
+    <value>Pull clipboard from remote device</value>
+  </data>
+  <data name="PushLocaClipboardToRemoteDevice" xml:space="preserve">
+    <value>Push local clipboard to remote device</value>
+  </data>
+  <data name="SendCtrlAltDelToRemoteDevice" xml:space="preserve">
+    <value>Send Ctrl-Alt-Del to remote device</value>
+  </data>
+  <data name="ToggleRemoteDesktopConnection" xml:space="preserve">
+    <value>Toggle remote desktop connection</value>
+  </data>
+  <data name="ToggleZoomToFitMode" xml:space="preserve">
+    <value>Toggle zoom-to-fit mode</value>
+  </data>
 </root>
