@@ -528,6 +528,15 @@ namespace MeshCentralRouter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No tools allowed.
+        /// </summary>
+        internal static string NoToolsAllowed {
+            get {
+                return ResourceManager.GetString("NoToolsAllowed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Offline.
         /// </summary>
         internal static string Offline {

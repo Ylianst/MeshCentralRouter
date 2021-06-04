@@ -802,6 +802,13 @@ namespace MeshCentralRouter
                     stateClearTimer.Enabled = true;
                     serverNameComboBox.Focus();
                 }
+                else if ((meshcentral.disconnectMsg != null) && meshcentral.disconnectMsg.StartsWith("notools"))
+                {
+                    stateLabel.Text = Translate.T(Properties.Resources.NoToolsAllowed);
+                    stateLabel.Visible = true;
+                    stateClearTimer.Enabled = true;
+                    serverNameComboBox.Focus();
+                }
                 else if ((meshcentral.disconnectMsg != null) && meshcentral.disconnectMsg.StartsWith("emailvalidationrequired"))
                 {
                     stateLabel.Text = Translate.T(Properties.Resources.EmailVerificationRequired);

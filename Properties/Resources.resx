@@ -391,4 +391,7 @@
   <data name="ToggleZoomToFitMode" xml:space="preserve">
     <value>Toggle zoom-to-fit mode</value>
   </data>
+  <data name="NoToolsAllowed" xml:space="preserve">
+    <value>No tools allowed</value>
+  </data>
 </root>
