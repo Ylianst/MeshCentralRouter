@@ -212,7 +212,7 @@ namespace MeshCentralRouter
             webSocketClient wc = new webSocketClient();
             Uri wsurl = new Uri(url + "&auth=" + Uri.EscapeDataString(parent.authCookie));
             Debug("#" + counter + ": Connecting web socket to: " + wsurl.ToString());
-            wc.xdebug = xdebug;
+            wc.debug = xdebug;
             wc.Start(wsurl, certhash);
             wc.tag = client;
             wc.id = counter;
@@ -226,7 +226,7 @@ namespace MeshCentralRouter
             webSocketClient wc = new webSocketClient();
             Uri wsurl = new Uri(url + "&auth=" + Uri.EscapeDataString(parent.authCookie));
             Debug("#" + counter + ": Connecting web socket to: " + wsurl.ToString());
-            wc.xdebug = xdebug;
+            wc.debug = xdebug;
             wc.Start(wsurl, certhash);
             wc.tag = client;
             wc.id = counter;
