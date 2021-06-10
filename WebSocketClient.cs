@@ -62,6 +62,7 @@ namespace MeshCentralRouter
         public long PendingSendLength { get { return (pendingSendBuffer == null)? 0 : pendingSendBuffer.Length; } }
         private bool readPaused = false;
         private bool shouldRead = false;
+        private RNGCryptoServiceProvider CryptoRandom = new RNGCryptoServiceProvider();
 
         // Outside variables
         public object tag = null;
@@ -643,6 +644,12 @@ namespace MeshCentralRouter
 
             // Check that everything is ok
             if (len < 0) { Dispose(); return 0; }
+
+            // Set the mask to a cryptographic random value and XOR the data
+            byte[] rand = new byte[4];
+            CryptoRandom.GetBytes(rand);
+            Array.Copy(rand, 0, buf, 10, 4);
+            for (int x = 0; x < len; x++) { buf[x + 14] ^= rand[x % 4]; }
 
             if (len < 126)
             {
