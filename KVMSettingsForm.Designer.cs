@@ -42,6 +42,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.autoSendClipboardCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -64,6 +65,7 @@
             // groupBox1
             // 
             resources.ApplyResources(this.groupBox1, "groupBox1");
+            this.groupBox1.Controls.Add(this.autoSendClipboardCheckBox);
             this.groupBox1.Controls.Add(this.remoteKeyboardMapCheckBox);
             this.groupBox1.Controls.Add(this.swapMouseButtonsCheckBox);
             this.groupBox1.Controls.Add(this.frameRateComboBox);
@@ -135,6 +137,12 @@
             resources.ApplyResources(this.label4, "label4");
             this.label4.Name = "label4";
             // 
+            // autoSendClipboardCheckBox
+            // 
+            resources.ApplyResources(this.autoSendClipboardCheckBox, "autoSendClipboardCheckBox");
+            this.autoSendClipboardCheckBox.Name = "autoSendClipboardCheckBox";
+            this.autoSendClipboardCheckBox.UseVisualStyleBackColor = true;
+            // 
             // KVMSettingsForm
             // 
             this.AcceptButton = this.okButton;
@@ -173,5 +181,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.CheckBox swapMouseButtonsCheckBox;
         private System.Windows.Forms.CheckBox remoteKeyboardMapCheckBox;
+        private System.Windows.Forms.CheckBox autoSendClipboardCheckBox;
     }
 }

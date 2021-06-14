@@ -32,6 +32,15 @@ namespace MeshCentralRouter
         public const int WINHTTP_AUTO_DETECT_TYPE_DHCP = 0x00000001;
         public const int WINHTTP_AUTO_DETECT_TYPE_DNS_A = 0x00000002;
 
+        [DllImport("User32.dll", CharSet = CharSet.Auto)]
+        public static extern IntPtr SetClipboardViewer(IntPtr hWndNewViewer);
+
+        [DllImport("User32.dll", CharSet = CharSet.Auto)]
+        public static extern bool ChangeClipboardChain(IntPtr hWndRemove, IntPtr hWndNewNext);
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        public static extern int SendMessage(IntPtr hwnd, int wMsg, IntPtr wParam, IntPtr lParam);
+
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
         public struct WINHTTP_AUTOPROXY_OPTIONS
         {

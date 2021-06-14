@@ -120,10 +120,15 @@ namespace MeshCentralRouter
             set { swapMouseButtonsCheckBox.Checked = value; }
         }
 
-        public bool RemoteKeybaordMap
+        public bool RemoteKeyboardMap
         {
             get { return remoteKeyboardMapCheckBox.Checked; }
             set { remoteKeyboardMapCheckBox.Checked = value; }
+        }
+        public bool AutoSendClipboard
+        {
+            get { return autoSendClipboardCheckBox.Checked; }
+            set { autoSendClipboardCheckBox.Checked = value; }
         }
 
         private void okButton_Click(object sender, EventArgs e)

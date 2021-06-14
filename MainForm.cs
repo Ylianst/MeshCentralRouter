@@ -57,6 +57,31 @@ namespace MeshCentralRouter
         public int deviceDoubleClickAction = 0;
         public FileInfo nativeSshPath = null;
         public LocalPipeServer localPipeServer = null;
+        private IntPtr nextClipboardViewer = IntPtr.Zero;
+
+        public delegate void ClipboardChangedHandler();
+        public event ClipboardChangedHandler ClipboardChanged;
+
+        protected override void WndProc(ref System.Windows.Forms.Message m)
+        {
+            // defined in winuser.h
+            const int WM_DRAWCLIPBOARD = 0x308;
+            const int WM_CHANGECBCHAIN = 0x030D;
+
+            switch (m.Msg)
+            {
+                case WM_DRAWCLIPBOARD:
+                    if (ClipboardChanged != null) { ClipboardChanged(); }
+                    Win32Api.SendMessage(nextClipboardViewer, m.Msg, m.WParam, m.LParam);
+                    break;
+                case WM_CHANGECBCHAIN:
+                    if (m.WParam == nextClipboardViewer) { nextClipboardViewer = m.LParam; } else { Win32Api.SendMessage(nextClipboardViewer, m.Msg, m.WParam, m.LParam); }
+                    break;
+                default:
+                    base.WndProc(ref m);
+                    break;
+            }
+        }
 
         public bool isRouterHooked()
         {
@@ -282,6 +307,9 @@ namespace MeshCentralRouter
             // Check if Windows SSH is present
             FileInfo nativeSshPath = new FileInfo(Path.Combine(Environment.SystemDirectory, "OpenSSH\\ssh.exe"));
             if (nativeSshPath.Exists) { this.nativeSshPath = nativeSshPath; }
+
+            // Listen to clipboard events
+            nextClipboardViewer = Win32Api.SetClipboardViewer(this.Handle);
         }
 
         private void setDoubleClickDeviceAction()
@@ -1840,7 +1868,7 @@ namespace MeshCentralRouter
             if ((node.conn & 1) == 0) { return; } // Agent not connected on this device
             if (node.desktopViewer == null)
             {
-                node.desktopViewer = new KVMViewer(meshcentral, node);
+                node.desktopViewer = new KVMViewer(this, meshcentral, node);
                 node.desktopViewer.consentFlags = consentFlags;
                 node.desktopViewer.Show();
                 node.desktopViewer.MenuItemConnect_Click(null, null);

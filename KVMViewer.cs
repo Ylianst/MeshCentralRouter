@@ -26,6 +26,7 @@ namespace MeshCentralRouter
 {
     public partial class KVMViewer : Form
     {
+        private MainForm parent = null;
         private KVMControl kvmControl = null;
         private KVMStats kvmStats = null;
         private MeshCentralServer server = null;
@@ -37,14 +38,19 @@ namespace MeshCentralRouter
         public int consentFlags = 0;
         public webSocketClient wc = null;
         public Dictionary<string, int> userSessions = null;
+        private string lastClipboardSent = null;
+        private DateTime lastClipboardTime = DateTime.MinValue;
+
         // Stats
         public long bytesIn = 0;
         public long bytesInCompressed = 0;
         public long bytesOut = 0;
         public long bytesOutCompressed = 0;
 
-        public KVMViewer(MeshCentralServer server, NodeClass node)
+
+        public KVMViewer(MainForm parent, MeshCentralServer server, NodeClass node)
         {
+            this.parent = parent;
             InitializeComponent();
             Translate.TranslateControl(this);
             this.Text += " - " + node.name;
@@ -56,6 +62,7 @@ namespace MeshCentralRouter
             resizeKvmControl.ZoomToFit = true;
             UpdateStatus();
             this.MouseWheel += MainForm_MouseWheel;
+            parent.ClipboardChanged += Parent_ClipboardChanged;
 
             mainToolTip.SetToolTip(connectButton, Translate.T(Properties.Resources.ToggleRemoteDesktopConnection));
             mainToolTip.SetToolTip(cadButton, Translate.T(Properties.Resources.SendCtrlAltDelToRemoteDevice));
@@ -64,6 +71,29 @@ namespace MeshCentralRouter
             mainToolTip.SetToolTip(clipInboundButton, Translate.T(Properties.Resources.PullClipboardFromRemoteDevice));
             mainToolTip.SetToolTip(zoomButton, Translate.T(Properties.Resources.ToggleZoomToFitMode));
             mainToolTip.SetToolTip(statsButton, Translate.T(Properties.Resources.DisplayConnectionStatistics));
+            kvmControl.AutoSendClipboard = Settings.GetRegValue("kvmAutoClipboard", "0").Equals("1");
+        }
+
+        private void Parent_ClipboardChanged()
+        {
+            if (state != 3) return;
+            if (kvmControl.AutoSendClipboard) { SendClipboard(); }
+        }
+
+        private delegate void SendClipboardHandler();
+
+        private void SendClipboard()
+        {
+            if (this.InvokeRequired) { this.Invoke(new SendClipboardHandler(SendClipboard)); return; }
+            string textData = (string)Clipboard.GetData(DataFormats.Text);
+            if (textData != null)
+            {
+                if ((DateTime.Now.Subtract(lastClipboardTime).TotalSeconds < 20) && (lastClipboardSent != null) && (lastClipboardSent.Equals(textData))) return; // Don't resend clipboard if same and sent in last 20 seconds. This avoids clipboard loop.
+                string textData2 = textData.Replace("\\", "\\\\").Replace("\"", "\\\"");
+                server.sendCommand("{\"action\":\"msg\",\"type\":\"setclip\",\"nodeid\":\"" + node.nodeid + "\",\"data\":\"" + textData2 + "\"}");
+                lastClipboardTime = DateTime.Now;
+                lastClipboardSent = textData;
+            }
         }
 
         private void KvmControl_DesktopSizeChanged(object sender, EventArgs e)
@@ -203,6 +233,10 @@ namespace MeshCentralRouter
                 kvmControl.SendRefresh();
                 UpdateStatus();
                 displayMessage(null);
+
+                // Send clipboard
+                if (kvmControl.AutoSendClipboard) { SendClipboard(); }
+
                 return;
             }
             if (state != 3) return;
@@ -312,6 +346,8 @@ namespace MeshCentralRouter
             }
 
             cadButton.Enabled = (state == 3);
+            clipInboundButton.Visible = !kvmControl.AutoSendClipboard;
+            clipOutboundButton.Visible = !kvmControl.AutoSendClipboard;
             clipInboundButton.Enabled = (state == 3);
             clipOutboundButton.Enabled = (state == 3);
         }
@@ -360,12 +396,20 @@ namespace MeshCentralRouter
                 form.Scaling = kvmControl.ScalingLevel;
                 form.FrameRate = kvmControl.FrameRate;
                 form.SwamMouseButtons = kvmControl.SwamMouseButtons;
-                form.RemoteKeybaordMap = kvmControl.RemoteKeybaordMap;
+                form.RemoteKeyboardMap = kvmControl.RemoteKeyboardMap;
+                form.AutoSendClipboard = kvmControl.AutoSendClipboard;
                 if (form.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
                 {
                     kvmControl.SetCompressionParams(form.Compression, form.Scaling, form.FrameRate);
                     kvmControl.SwamMouseButtons = form.SwamMouseButtons;
-                    kvmControl.RemoteKeybaordMap = form.RemoteKeybaordMap;
+                    kvmControl.RemoteKeyboardMap = form.RemoteKeyboardMap;
+                    if (kvmControl.AutoSendClipboard != form.AutoSendClipboard)
+                    {
+                        kvmControl.AutoSendClipboard = form.AutoSendClipboard;
+                        Settings.SetRegValue("kvmAutoClipboard", kvmControl.AutoSendClipboard ? "1" : "0");
+                        if (kvmControl.AutoSendClipboard == true) { Parent_ClipboardChanged(); }
+                    }
+                    UpdateStatus();
                 }
             }
         }
@@ -514,12 +558,7 @@ namespace MeshCentralRouter
 
         private void clipOutboundButton_Click(object sender, EventArgs e)
         {
-            string textData = (string)Clipboard.GetData(DataFormats.Text);
-            if (textData != null)
-            {
-                textData = textData.Replace("\\", "\\\\").Replace("\"", "\\\"");
-                server.sendCommand("{\"action\":\"msg\",\"type\":\"setclip\",\"nodeid\":\"" + node.nodeid + "\",\"data\":\"" + textData + "\"}");
-            }
+            SendClipboard();
         }
 
         private void resizeKvmControl_Enter(object sender, EventArgs e)

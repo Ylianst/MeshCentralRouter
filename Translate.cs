@@ -37,6 +37,15 @@ namespace MeshCentralRouter
             }
         },
         {
+            "{0} Byte",
+            new Dictionary<string, string>() {
+                {"ko","{0} 바이트"},
+                {"fr","{0} octet"},
+                {"zh-chs","{0} 字节"},
+                {"hi","{0} बाइट"}
+            }
+        },
+        {
             "Certificate",
             new Dictionary<string, string>() {
                 {"nl","Certificaat"},
@@ -2650,15 +2659,6 @@ namespace MeshCentralRouter
             "CIRA",
             new Dictionary<string, string>() {
                 {"hi","सीआईआरए"}
-            }
-        },
-        {
-            "{0} Byte",
-            new Dictionary<string, string>() {
-                {"ko","{0} 바이트"},
-                {"fr","{0} octet"},
-                {"zh-chs","{0} 字节"},
-                {"hi","{0} बाइट"}
             }
         },
         {

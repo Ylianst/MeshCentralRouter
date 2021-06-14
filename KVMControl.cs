@@ -38,7 +38,8 @@ namespace MeshCentralRouter
         private int scalinglevel = 1024; // 100% scale
         private int frameRate = 100; // Medium frame rate
         private bool swamMouseButtons = false;
-        private bool remoteKeybaordMap = false;
+        private bool remoteKeyboardMap = false;
+        private bool autoSendClipboard = false;
         private double scalefactor = 1;
         public List<string> displays = new List<string>();
         public ushort currentDisp = 0;
@@ -111,7 +112,8 @@ namespace MeshCentralRouter
         public int ScalingLevel { get { return scalinglevel; } set { scalinglevel = value; SendCompressionLevel(); } }
         public int FrameRate { get { return frameRate; } set { frameRate = value; SendCompressionLevel(); } }
         public bool SwamMouseButtons { get { return swamMouseButtons; } set { swamMouseButtons = value; } }
-        public bool RemoteKeybaordMap { get { return remoteKeybaordMap; } set { remoteKeybaordMap = value; } }
+        public bool RemoteKeyboardMap { get { return remoteKeyboardMap; } set { remoteKeyboardMap = value; } }
+        public bool AutoSendClipboard { get { return autoSendClipboard; } set { autoSendClipboard = value; } }
 
         public double ScaleFactor { get { return scalefactor; } set { scalefactor = value; } }
 
@@ -409,7 +411,7 @@ namespace MeshCentralRouter
         {
             //if (state != ConnectState.Connected) return;
 
-            if (remoteKeybaordMap == true) return;
+            if (remoteKeyboardMap == true) return;
 
             if (killNextKeyPress > 0)
             {
@@ -432,7 +434,7 @@ namespace MeshCentralRouter
         {
             //if (state != ConnectState.Connected) return;
 
-            if (remoteKeybaordMap == true) { SendKey((byte)e.KeyCode, action); return; } // Use old key system that uses the remote keyboard mapping.
+            if (remoteKeyboardMap == true) { SendKey((byte)e.KeyCode, action); return; } // Use old key system that uses the remote keyboard mapping.
             string keycode = e.KeyCode.ToString();
             if ((action == 0) && (e.Control == false) && (e.Alt == false) && (((e.KeyValue >= 48) && (e.KeyValue <= 57)) || (keycode.Length == 1) || (keycode.StartsWith("Oem") == true))) return;
             if ((e.Control == true) || (e.Alt == true)) { killNextKeyPress = DateTime.Now.Ticks; }
