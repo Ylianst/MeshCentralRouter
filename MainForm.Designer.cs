@@ -48,7 +48,6 @@
             this.nextButton1 = new System.Windows.Forms.Button();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tokenRememberCheckBox = new System.Windows.Forms.CheckBox();
@@ -136,13 +135,13 @@
             this.settingsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.openMapFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveMapFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel5.SuspendLayout();
             this.mainPanel.SuspendLayout();
             this.mainTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
@@ -165,6 +164,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.trayIconContextMenuStrip.SuspendLayout();
             this.mappingsContextMenuStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // panel5
@@ -303,13 +303,6 @@
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
             this.label1.UseMnemonic = false;
-            // 
-            // pictureBox2
-            // 
-            resources.ApplyResources(this.pictureBox2, "pictureBox2");
-            this.pictureBox2.Image = global::MeshCentralRouter.Properties.Resources.MeshCentral;
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.TabStop = false;
             // 
             // tabPage2
             // 
@@ -507,6 +500,7 @@
             // 
             // mainContextMenuStrip
             // 
+            this.mainContextMenuStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.mainContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.showGroupNamesToolStripMenuItem,
             this.showOfflineDevicesToolStripMenuItem,
@@ -638,6 +632,7 @@
             // 
             // devicesContextMenuStrip
             // 
+            this.devicesContextMenuStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.devicesContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addMapToolStripMenuItem,
             this.addRelayMapToolStripMenuItem,
@@ -890,6 +885,7 @@
             // 
             // trayIconContextMenuStrip
             // 
+            this.trayIconContextMenuStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.trayIconContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openToolStripMenuItem,
             this.toolStripMenuItem1,
@@ -920,6 +916,7 @@
             // 
             // mappingsContextMenuStrip
             // 
+            this.mappingsContextMenuStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.mappingsContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openMappingsToolStripMenuItem,
             this.saveMappingsToolStripMenuItem,
@@ -961,6 +958,13 @@
             this.saveMapFileDialog.DefaultExt = "mcrouter";
             resources.ApplyResources(this.saveMapFileDialog, "saveMapFileDialog");
             // 
+            // pictureBox2
+            // 
+            resources.ApplyResources(this.pictureBox2, "pictureBox2");
+            this.pictureBox2.Image = global::MeshCentralRouter.Properties.Resources.MeshCentral;
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.TabStop = false;
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -980,7 +984,6 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -1006,6 +1009,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.trayIconContextMenuStrip.ResumeLayout(false);
             this.mappingsContextMenuStrip.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1019,7 +1023,6 @@
         private System.Windows.Forms.Label versionLabel;
         private System.Windows.Forms.Button nextButton1;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Panel panel2;
@@ -1117,6 +1120,7 @@
         private System.Windows.Forms.ToolStripMenuItem askConsentBarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem askConsentToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem privacyBarToolStripMenuItem;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }
 

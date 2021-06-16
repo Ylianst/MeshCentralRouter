@@ -295,7 +295,7 @@
     <value>●</value>
   </data>
   <data name="passwordTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>213, 20</value>
+    <value>214, 20</value>
   </data>
   <data name="passwordTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>102</value>
@@ -322,7 +322,7 @@
     <value>241, 110</value>
   </data>
   <data name="serverNameComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>213, 21</value>
+    <value>214, 21</value>
   </data>
   <data name="serverNameComboBox.TabIndex" type="System.Int32, mscorlib">
     <value>100</value>
@@ -346,7 +346,7 @@
     <value>241, 151</value>
   </data>
   <data name="userNameTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>213, 20</value>
+    <value>214, 20</value>
   </data>
   <data name="userNameTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>101</value>
@@ -370,7 +370,7 @@
     <value>NoControl</value>
   </data>
   <data name="licenseLinkLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>173, 260</value>
+    <value>174, 260</value>
   </data>
   <data name="licenseLinkLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>303, 13</value>
@@ -529,10 +529,10 @@
     <value>15, 68</value>
   </data>
   <data name="pictureBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>202, 170</value>
+    <value>217, 170</value>
   </data>
   <data name="pictureBox2.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
-    <value>CenterImage</value>
+    <value>Zoom</value>
   </data>
   <data name="pictureBox2.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -763,7 +763,7 @@
     <value>241, 151</value>
   </data>
   <data name="tokenTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>213, 20</value>
+    <value>214, 20</value>
   </data>
   <data name="tokenTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>201</value>
@@ -793,7 +793,7 @@
     <value>202, 170</value>
   </data>
   <data name="pictureBox6.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
-    <value>CenterImage</value>
+    <value>Zoom</value>
   </data>
   <data name="pictureBox6.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
@@ -1024,7 +1024,7 @@
     <value>Vertical</value>
   </data>
   <data name="certDetailsTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>451, 162</value>
+    <value>450, 162</value>
   </data>
   <data name="certDetailsTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>25</value>
@@ -1399,7 +1399,7 @@
     <value>Bottom, Left</value>
   </data>
   <data name="cancelAutoCloseButton1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 183</value>
+    <value>4, 174</value>
   </data>
   <data name="cancelAutoCloseButton1.Size" type="System.Drawing.Size, System.Drawing">
     <value>168, 35</value>
@@ -1535,7 +1535,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAADg
-        HQAAAk1TRnQBSQFMAgEBEAEAAWgBAAFoAQABEAEAARABAAT/ARkBAAj/AUIBTQE2BwABNgMAASgDAAFA
+        HQAAAk1TRnQBSQFMAgEBEAEAAXgBAAF4AQABEAEAARABAAT/ARkBAAj/AUIBTQE2BwABNgMAASgDAAFA
         AwABUAMAAQEBAAEYBgABPP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AJYAA/0D+AP3A/sD/yEAA/0D+gP5
         A/wD/xgAAfoB+wH6A/4qAAP9A/8tAAP7A88D1QPbA88D1AO+A9QYAAP8A90D4APjA90D4APUA+MSAAP8
         AZEBjwF9AU4BaAEhAfQB9QH0JAAD/gPRA8YD+ioAAcYCxwHPAtAB2ALZA90DywPBA68DmgP3FQAD2APd
@@ -1702,7 +1702,7 @@
     <value>2, 88</value>
   </data>
   <data name="noSearchResultsLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>406, 52</value>
+    <value>399, 52</value>
   </data>
   <data name="noSearchResultsLabel.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -1741,7 +1741,7 @@
     <value>2, 88</value>
   </data>
   <data name="noDevicesLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>406, 52</value>
+    <value>399, 52</value>
   </data>
   <data name="noDevicesLabel.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -1768,7 +1768,7 @@
     <value>0, 0</value>
   </data>
   <data name="devicesPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>470, 250</value>
+    <value>470, 248</value>
   </data>
   <data name="devicesPanel.TabIndex" type="System.Int32, mscorlib">
     <value>50</value>
@@ -1819,7 +1819,7 @@
     <value>NoControl</value>
   </data>
   <data name="cancelAutoCloseButton2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 181</value>
+    <value>4, 185</value>
   </data>
   <data name="cancelAutoCloseButton2.Size" type="System.Drawing.Size, System.Drawing">
     <value>168, 35</value>
@@ -1864,7 +1864,7 @@
     <value>6, 79</value>
   </data>
   <data name="noMapLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>457, 52</value>
+    <value>453, 52</value>
   </data>
   <data name="noMapLabel.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -1893,7 +1893,7 @@ Click "Add" to get started.</value>
     <value>0, 0</value>
   </data>
   <data name="mapPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>470, 220</value>
+    <value>473, 224</value>
   </data>
   <data name="mapPanel.TabIndex" type="System.Int32, mscorlib">
     <value>49</value>
@@ -1917,7 +1917,7 @@ Click "Add" to get started.</value>
     <value>NoControl</value>
   </data>
   <data name="settingsPictureBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1, 226</value>
+    <value>1, 229</value>
   </data>
   <data name="settingsPictureBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>20, 20</value>
@@ -1944,7 +1944,7 @@ Click "Add" to get started.</value>
     <value>NoControl</value>
   </data>
   <data name="helpPictureBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>238, 226</value>
+    <value>241, 229</value>
   </data>
   <data name="helpPictureBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>20, 20</value>
@@ -1974,7 +1974,7 @@ Click "Add" to get started.</value>
     <value>NoControl</value>
   </data>
   <data name="addButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>370, 224</value>
+    <value>373, 227</value>
   </data>
   <data name="addButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 23</value>
@@ -2007,7 +2007,7 @@ Click "Add" to get started.</value>
     <value>NoControl</value>
   </data>
   <data name="addRelayButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>264, 224</value>
+    <value>267, 227</value>
   </data>
   <data name="addRelayButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 23</value>
@@ -2037,7 +2037,7 @@ Click "Add" to get started.</value>
     <value>3, 3, 3, 3</value>
   </data>
   <data name="portMapTabPage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>470, 250</value>
+    <value>473, 256</value>
   </data>
   <data name="portMapTabPage.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -2314,6 +2314,9 @@ Click "Add" to get started.</value>
   </data>
   <data name="pictureBox1.Size" type="System.Drawing.Size, System.Drawing">
     <value>492, 65</value>
+  </data>
+  <data name="pictureBox1.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>Zoom</value>
   </data>
   <data name="pictureBox1.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>

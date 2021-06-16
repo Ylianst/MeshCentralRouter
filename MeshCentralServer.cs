@@ -365,7 +365,8 @@ namespace MeshCentralRouter
                                                 n.agentcaps = (int)((Dictionary<string, object>)node["agent"])["caps"];
                                             }
                                             if (node.ContainsKey("conn")) { n.conn = (int)node["conn"]; }
-                                            n.icon = (int)node["icon"];
+                                            n.icon = 1;
+                                            if (node.ContainsKey("icon")) { n.icon = (int)node["icon"]; }
                                             if (node.ContainsKey("users")) { n.users = (string[])((ArrayList)node["users"]).ToArray(typeof(string)); } else { n.users = null; }
                                             if (node.ContainsKey("rdpport")) { n.rdpport = (int)node["rdpport"]; }
                                             ulong nodeRights = 0;

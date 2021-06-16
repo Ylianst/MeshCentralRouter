@@ -1338,7 +1338,9 @@ namespace MeshCentralRouter
             if (meshcentral.loginCookie != null) {
                 Uri serverurl = null;
                 if (authLoginUrl != null) {
-                    serverurl = new Uri("https://" + authLoginUrl.Host + ":" + ((authLoginUrl.Port > 0) ? authLoginUrl.Port : 443) + authLoginUrl.LocalPath + "?login=" + meshcentral.loginCookie);
+                    string localPath = authLoginUrl.LocalPath;
+                    if (localPath.EndsWith("/control.ashx")) { localPath = localPath.Substring(0, localPath.Length - 12); }
+                    serverurl = new Uri("https://" + authLoginUrl.Host + ":" + ((authLoginUrl.Port > 0) ? authLoginUrl.Port : 443) + localPath + "?login=" + meshcentral.loginCookie);
                 } else {
                     serverurl = new Uri("https://" + serverNameComboBox.Text + "?login=" + meshcentral.loginCookie);
                 }
