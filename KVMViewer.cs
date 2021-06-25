@@ -21,6 +21,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Web.Script.Serialization;
 using Microsoft.Win32;
+using System.Threading;
 
 namespace MeshCentralRouter
 {
@@ -40,6 +41,7 @@ namespace MeshCentralRouter
         public Dictionary<string, int> userSessions = null;
         private string lastClipboardSent = null;
         private DateTime lastClipboardTime = DateTime.MinValue;
+        public string lang = Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName;
 
         // Stats
         public long bytesIn = 0;
@@ -47,6 +49,15 @@ namespace MeshCentralRouter
         public long bytesOut = 0;
         public long bytesOutCompressed = 0;
 
+        public class displayTag
+        {
+            public ushort num;
+            public string name;
+
+            public displayTag(ushort num, string name) { this.num = num; this.name = name; }
+
+            public override string ToString() { return name; }
+        }
 
         public KVMViewer(MainForm parent, MeshCentralServer server, NodeClass node)
         {
@@ -64,13 +75,13 @@ namespace MeshCentralRouter
             this.MouseWheel += MainForm_MouseWheel;
             parent.ClipboardChanged += Parent_ClipboardChanged;
 
-            mainToolTip.SetToolTip(connectButton, Translate.T(Properties.Resources.ToggleRemoteDesktopConnection));
-            mainToolTip.SetToolTip(cadButton, Translate.T(Properties.Resources.SendCtrlAltDelToRemoteDevice));
-            mainToolTip.SetToolTip(settingsButton, Translate.T(Properties.Resources.ChangeRemoteDesktopSettings));
-            mainToolTip.SetToolTip(clipOutboundButton, Translate.T(Properties.Resources.PushLocaClipboardToRemoteDevice));
-            mainToolTip.SetToolTip(clipInboundButton, Translate.T(Properties.Resources.PullClipboardFromRemoteDevice));
-            mainToolTip.SetToolTip(zoomButton, Translate.T(Properties.Resources.ToggleZoomToFitMode));
-            mainToolTip.SetToolTip(statsButton, Translate.T(Properties.Resources.DisplayConnectionStatistics));
+            mainToolTip.SetToolTip(connectButton, Translate.T(Properties.Resources.ToggleRemoteDesktopConnection, lang));
+            mainToolTip.SetToolTip(cadButton, Translate.T(Properties.Resources.SendCtrlAltDelToRemoteDevice, lang));
+            mainToolTip.SetToolTip(settingsButton, Translate.T(Properties.Resources.ChangeRemoteDesktopSettings, lang));
+            mainToolTip.SetToolTip(clipOutboundButton, Translate.T(Properties.Resources.PushLocaClipboardToRemoteDevice, lang));
+            mainToolTip.SetToolTip(clipInboundButton, Translate.T(Properties.Resources.PullClipboardFromRemoteDevice, lang));
+            mainToolTip.SetToolTip(zoomButton, Translate.T(Properties.Resources.ToggleZoomToFitMode, lang));
+            mainToolTip.SetToolTip(statsButton, Translate.T(Properties.Resources.DisplayConnectionStatistics, lang));
             kvmControl.AutoSendClipboard = Settings.GetRegValue("kvmAutoClipboard", "0").Equals("1");
         }
 
@@ -264,11 +275,11 @@ namespace MeshCentralRouter
                         int msgid = -1;
                         if ((jsonAction.ContainsKey("msg")) && (jsonAction["msg"] != null)) { msg = jsonAction["msg"].ToString(); }
                         if (jsonAction.ContainsKey("msgid")) { msgid = (int)jsonAction["msgid"]; }
-                        if (msgid == 1) { msg = Translate.T(Properties.Resources.WaitingForUserToGrantAccess); }
-                        if (msgid == 2) { msg = Translate.T(Properties.Resources.Denied); }
-                        if (msgid == 3) { msg = Translate.T(Properties.Resources.FailedToStartRemoteDesktopSession); }
-                        if (msgid == 4) { msg = Translate.T(Properties.Resources.Timeout); }
-                        if (msgid == 5) { msg = Translate.T(Properties.Resources.ReceivedInvalidNetworkData); }
+                        if (msgid == 1) { msg = Translate.T(Properties.Resources.WaitingForUserToGrantAccess, lang); }
+                        if (msgid == 2) { msg = Translate.T(Properties.Resources.Denied, lang); }
+                        if (msgid == 3) { msg = Translate.T(Properties.Resources.FailedToStartRemoteDesktopSession, lang); }
+                        if (msgid == 4) { msg = Translate.T(Properties.Resources.Timeout, lang); }
+                        if (msgid == 5) { msg = Translate.T(Properties.Resources.ReceivedInvalidNetworkData, lang); }
                         displayMessage(msg);
                         break;
                     }
@@ -315,32 +326,32 @@ namespace MeshCentralRouter
             switch (state)
             {
                 case 0: // Disconnected
-                    mainToolStripStatusLabel.Text = Translate.T(Properties.Resources.Disconnected);
+                    mainToolStripStatusLabel.Text = Translate.T(Properties.Resources.Disconnected, lang);
                     displaySelectComboBox.Visible = false;
                     kvmControl.Visible = false;
                     kvmControl.screenWidth = 0;
                     kvmControl.screenHeight = 0;
-                    connectButton.Text = Translate.T(Properties.Resources.Connect);
+                    connectButton.Text = Translate.T(Properties.Resources.Connect, lang);
                     break;
                 case 1: // Connecting
-                    mainToolStripStatusLabel.Text = Translate.T(Properties.Resources.Connecting);
+                    mainToolStripStatusLabel.Text = Translate.T(Properties.Resources.Connecting, lang);
                     displaySelectComboBox.Visible = false;
                     kvmControl.Visible = false;
-                    connectButton.Text = Translate.T(Properties.Resources.Disconnect);
+                    connectButton.Text = Translate.T(Properties.Resources.Disconnect, lang);
                     break;
                 case 2: // Setup
                     mainToolStripStatusLabel.Text = "Setup...";
                     displaySelectComboBox.Visible = false;
                     kvmControl.Visible = false;
-                    connectButton.Text = Translate.T(Properties.Resources.Disconnect);
+                    connectButton.Text = Translate.T(Properties.Resources.Disconnect, lang);
                     break;
                 case 3: // Connected
-                    string label = Translate.T(Properties.Resources.Connected);
-                    if (sessionIsRecorded) { label += Translate.T(Properties.Resources.RecordedSession); }
-                    if ((userSessions != null) && (userSessions.Count > 1)) { label += string.Format(Translate.T(Properties.Resources.AddXUsers), userSessions.Count); }
+                    string label = Translate.T(Properties.Resources.Connected, lang);
+                    if (sessionIsRecorded) { label += Translate.T(Properties.Resources.RecordedSession, lang); }
+                    if ((userSessions != null) && (userSessions.Count > 1)) { label += string.Format(Translate.T(Properties.Resources.AddXUsers, lang), userSessions.Count); }
                     label += ".";
                     mainToolStripStatusLabel.Text = label;
-                    connectButton.Text = Translate.T(Properties.Resources.Disconnect);
+                    connectButton.Text = Translate.T(Properties.Resources.Disconnect, lang);
                     kvmControl.SendCompressionLevel();
                     break;
             }
@@ -442,14 +453,21 @@ namespace MeshCentralRouter
             {
                 displaySelectComboBox.Visible = true;
                 displaySelectComboBox.Items.Clear();
-                displaySelectComboBox.Items.AddRange(kvmControl.displays.ToArray());
-                if (kvmControl.currentDisp == 0xFFFF)
+                foreach (ushort displayNum in kvmControl.displays)
                 {
-                    displaySelectComboBox.SelectedItem = Translate.T(Properties.Resources.AllDisplays);
-                }
-                else
-                {
-                    displaySelectComboBox.SelectedItem = string.Format(Translate.T(Properties.Resources.DisplayX), kvmControl.currentDisp);
+                    displayTag t;
+                    if (displayNum == 0xFFFF)
+                    {
+                        t = new displayTag(displayNum, Translate.T(Properties.Resources.AllDisplays, lang));
+                        displaySelectComboBox.Items.Add(t);
+                    }
+                    else
+                    {
+                        t = new displayTag(displayNum, string.Format(Translate.T(Properties.Resources.DisplayX, lang), displayNum));
+                        displaySelectComboBox.Items.Add(t);
+                    }
+
+                    if (kvmControl.currentDisp == displayNum) { displaySelectComboBox.SelectedItem = t; }
                 }
             }
             else
@@ -461,13 +479,7 @@ namespace MeshCentralRouter
 
         private void displaySelectComboBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            string displayText = displaySelectComboBox.SelectedItem.ToString();
-            int displaynum = 0;
-            if (displayText == Translate.T(Properties.Resources.AllDisplays)) displaynum = 0xFFFF;
-            if (displaynum != 0 || int.TryParse(displayText.Substring(8), out displaynum))
-            {
-                if (kvmControl != null) kvmControl.SendDisplay(displaynum);
-            }
+            if (kvmControl != null) kvmControl.SendDisplay(((displayTag)displaySelectComboBox.SelectedItem).num);
         }
 
         private void resizeKvmControl_TouchEnabledChanged(object sender, EventArgs e)

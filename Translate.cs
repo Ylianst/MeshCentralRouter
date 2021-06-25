@@ -2847,6 +2847,17 @@ namespace MeshCentralRouter
             return english;
         }
 
+        static public string T(string english, string lang)
+        {
+            if (lang == "en") return english;
+            if (translationTable.ContainsKey(english))
+            {
+                Dictionary<string, string> translations = translationTable[english];
+                if (translations.ContainsKey(lang)) return translations[lang];
+            }
+            return english;
+        }
+
         static public void TranslateControl(Control control)
         {
             control.Text = T(control.Text);

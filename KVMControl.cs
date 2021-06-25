@@ -41,7 +41,7 @@ namespace MeshCentralRouter
         private bool remoteKeyboardMap = false;
         private bool autoSendClipboard = false;
         private double scalefactor = 1;
-        public List<string> displays = new List<string>();
+        public List<ushort> displays = new List<ushort>();
         public ushort currentDisp = 0;
         public bool MouseButtonLeft = false;
         public bool MouseButtonMiddle = false;
@@ -273,21 +273,7 @@ namespace MeshCentralRouter
                             int i = 0;
                             ushort length = (ushort)((buffer[off + 4] << 8) + buffer[off + 5]);
                             displays.Clear();
-                            if (length > 0)
-                            {
-                                for (i = 0; i < length; i++)
-                                {
-                                    ushort num = (ushort)((buffer[off + 6 + i * 2] << 8) + buffer[off + 7 + i * 2]);
-                                    if (num == 0xFFFF)
-                                    {
-                                        displays.Add(Translate.T(Properties.Resources.AllDisplays));
-                                    }
-                                    else
-                                    {
-                                        displays.Add(string.Format(Translate.T(Properties.Resources.DisplayX), num));
-                                    }
-                                }
-                            }
+                            if (length > 0) { for (i = 0; i < length; i++) { displays.Add((ushort)((buffer[off + 6 + i * 2] << 8) + buffer[off + 7 + i * 2])); } }
                             currentDisp = (ushort)((buffer[off + 6 + i * 2] << 8) + buffer[off + 7 + i * 2]);
                             if (DisplaysReceived != null) DisplaysReceived(this, null);
                             break;
