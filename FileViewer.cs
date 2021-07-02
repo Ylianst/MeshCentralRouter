@@ -489,12 +489,15 @@ namespace MeshCentralRouter
                 }
                 else if (action == "uploaddone")
                 {
+                    // Clean up current upload
+                    uploadFilePtr = 0;
+                    uploadFileSize = 0;
+                    if (uploadFileStream != null) { uploadFileStream.Close(); uploadFileStream = null; }
+
+                    // Check if another file needs to be uploaded
                     if (uploadFileArray.Count > uploadFileArrayPtr + 1)
                     {
                         // Upload the next file
-                        uploadFilePtr = 0;
-                        uploadFileSize = 0;
-                        if (uploadFileStream != null) { uploadFileStream.Close(); uploadFileStream = null; }
                         uploadFileArrayPtr++;
                         uploadNextFile();
                     }
@@ -572,6 +575,7 @@ namespace MeshCentralRouter
 
         private void UpdateStatus()
         {
+            if (this.IsDisposed) return;
             if (this.InvokeRequired) { this.Invoke(new UpdateStatusHandler(UpdateStatus)); return; }
 
             //if (kvmControl == null) return;
@@ -620,6 +624,28 @@ namespace MeshCentralRouter
                 UpdateStatus();
             }
             node.fileViewer = null;
+
+            // Clean up any downloads
+            if (downloadFileStream != null) { downloadFileStream.Close(); downloadFileStream = null; }
+            downloadFilePtr = 0;
+            downloadFileSize = 0;
+            downloadActive = false;
+            downloadStop = false;
+            downloadFileArrayPtr = -1;
+            downloadFileArray = null;
+            downloadLocalPath = null;
+            downloadRemotePath = null;
+
+            // Clean up any uploads
+            uploadActive = false;
+            uploadStop = false;
+            uploadFileArrayPtr = -1;
+            uploadFileArray = null;
+            uploadLocalPath = null;
+            uploadRemotePath = null;
+            uploadFilePtr = 0;
+            uploadFileSize = 0;
+            if (uploadFileStream != null) { uploadFileStream.Close(); uploadFileStream = null; }
 
             // Save window location
             Settings.SetRegValue("filelocation", Location.X + "," + Location.Y + "," + Size.Width + "," + Size.Height);
