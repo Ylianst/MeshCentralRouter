@@ -15,9 +15,11 @@ limitations under the License.
 */
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
+using System.Web.Script.Serialization;
 
 namespace MeshCentralRouter
 {
@@ -36,7 +38,8 @@ namespace MeshCentralRouter
         public bool exit = false;
         public bool xdebug = false;
         public bool inaddrany = false;
-        TcpListener listener = null;
+        private TcpListener listener = null;
+        private JavaScriptSerializer JSON = new JavaScriptSerializer();
 
         // Stats
         public long bytesToServer = 0;
@@ -257,7 +260,7 @@ namespace MeshCentralRouter
         {
             bytesToClient += data.Length;
             bytesToClientCompressed += orglen;
-            if ((sender.tunneling == false) &&( (data == "c") || (data == "cr")))
+            if ((sender.tunneling == false) && ((data == "c") || (data == "cr")))
             {
                 Debug("#" + sender.id + ": Websocket got server 'c' confirmation.");
 
@@ -285,6 +288,27 @@ namespace MeshCentralRouter
             else if (sender.tunneling == true)
             {
                 Debug("#" + sender.id + ": Websocket got text frame: " + data);
+
+                // Parse the received JSON
+                Dictionary<string, object> jsonAction = new Dictionary<string, object>();
+                try { jsonAction = JSON.Deserialize<Dictionary<string, object>>(data); } catch (Exception) { }
+                if ((jsonAction == null) || (jsonAction["ctrlChannel"].GetType() != typeof(string)) || ((string)jsonAction["ctrlChannel"] != "102938")) return;
+
+                string actiontype = jsonAction["type"].ToString();
+                switch (actiontype)
+                {
+                    case "ping":
+                        {
+                            // Send pong back
+                            try { sender.SendString("{\"ctrlChannel\":\"102938\",\"type\":\"ping\"}"); } catch (Exception) { }
+                            break;
+                        }
+                    case "pong":
+                        {
+                            // NOP
+                            break;
+                        }
+                }
             }
         }
 

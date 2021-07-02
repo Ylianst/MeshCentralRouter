@@ -213,6 +213,17 @@ namespace MeshCentralRouter
             string action = jsonAction["action"].ToString();
             switch (action)
             {
+                case "pong":
+                    {
+                        // NOP
+                        break;
+                    }
+                case "ping":
+                    {
+                        // Send pong back
+                        if (wc != null) { wc.WriteStringWebSocket("{\"action\":\"pong\"}"); }
+                        break;
+                    }
                 case "close":
                     {
                         disconnectCause = jsonAction["cause"].ToString();
