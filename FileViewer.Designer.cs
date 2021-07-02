@@ -72,6 +72,11 @@ namespace MeshCentralRouter
             this.leftListView = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.localContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.renameToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.refreshToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.leftTopPanel = new System.Windows.Forms.Panel();
             this.localLabel = new System.Windows.Forms.Label();
             this.topPanel.SuspendLayout();
@@ -82,6 +87,7 @@ namespace MeshCentralRouter
             this.remoteContextMenuStrip.SuspendLayout();
             this.rightTopPanel.SuspendLayout();
             this.leftPanel.SuspendLayout();
+            this.localContextMenuStrip.SuspendLayout();
             this.leftTopPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -372,6 +378,7 @@ namespace MeshCentralRouter
             this.leftListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2});
+            this.leftListView.ContextMenuStrip = this.localContextMenuStrip;
             resources.ApplyResources(this.leftListView, "leftListView");
             this.leftListView.FullRowSelect = true;
             this.leftListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
@@ -394,6 +401,40 @@ namespace MeshCentralRouter
             // columnHeader2
             // 
             resources.ApplyResources(this.columnHeader2, "columnHeader2");
+            // 
+            // localContextMenuStrip
+            // 
+            this.localContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.renameToolStripMenuItem1,
+            this.deleteToolStripMenuItem1,
+            this.toolStripMenuItem2,
+            this.refreshToolStripMenuItem1});
+            this.localContextMenuStrip.Name = "localContextMenuStrip";
+            resources.ApplyResources(this.localContextMenuStrip, "localContextMenuStrip");
+            this.localContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.localContextMenuStrip_Opening);
+            // 
+            // renameToolStripMenuItem1
+            // 
+            this.renameToolStripMenuItem1.Name = "renameToolStripMenuItem1";
+            resources.ApplyResources(this.renameToolStripMenuItem1, "renameToolStripMenuItem1");
+            this.renameToolStripMenuItem1.Click += new System.EventHandler(this.renameToolStripMenuItem1_Click);
+            // 
+            // deleteToolStripMenuItem1
+            // 
+            this.deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
+            resources.ApplyResources(this.deleteToolStripMenuItem1, "deleteToolStripMenuItem1");
+            this.deleteToolStripMenuItem1.Click += new System.EventHandler(this.localDeleteButton_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            resources.ApplyResources(this.toolStripMenuItem2, "toolStripMenuItem2");
+            // 
+            // refreshToolStripMenuItem1
+            // 
+            this.refreshToolStripMenuItem1.Name = "refreshToolStripMenuItem1";
+            resources.ApplyResources(this.refreshToolStripMenuItem1, "refreshToolStripMenuItem1");
+            this.refreshToolStripMenuItem1.Click += new System.EventHandler(this.leftRefreshButton_Click);
             // 
             // leftTopPanel
             // 
@@ -433,6 +474,7 @@ namespace MeshCentralRouter
             this.rightTopPanel.PerformLayout();
             this.leftPanel.ResumeLayout(false);
             this.leftPanel.PerformLayout();
+            this.localContextMenuStrip.ResumeLayout(false);
             this.leftTopPanel.ResumeLayout(false);
             this.leftTopPanel.PerformLayout();
             this.ResumeLayout(false);
@@ -482,6 +524,11 @@ namespace MeshCentralRouter
         private Button localDeleteButton;
         private Button localNewFolderButton;
         private ToolStripMenuItem deleteToolStripMenuItem;
+        private ContextMenuStrip localContextMenuStrip;
+        private ToolStripMenuItem renameToolStripMenuItem1;
+        private ToolStripMenuItem deleteToolStripMenuItem1;
+        private ToolStripSeparator toolStripMenuItem2;
+        private ToolStripMenuItem refreshToolStripMenuItem1;
     }
 }
 

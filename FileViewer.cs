@@ -1255,5 +1255,36 @@ namespace MeshCentralRouter
             return false;
         }
 
+        private void localContextMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if ((leftListView.SelectedItems.Count == 0) || (localFolder == null))
+            {
+                deleteToolStripMenuItem1.Visible = toolStripMenuItem2.Visible = renameToolStripMenuItem1.Visible = false;
+            }
+            else if (leftListView.SelectedItems.Count == 1)
+            {
+                deleteToolStripMenuItem1.Visible = toolStripMenuItem2.Visible = renameToolStripMenuItem1.Visible = true;
+            }
+            else if (leftListView.SelectedItems.Count > 1)
+            {
+                renameToolStripMenuItem1.Visible = false;
+                deleteToolStripMenuItem1.Visible = toolStripMenuItem2.Visible = true;
+            }
+        }
+
+        private void renameToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if ((leftListView.SelectedItems.Count != 1) || (localFolder == null)) return;
+            string oldname = leftListView.SelectedItems[0].Text;
+            FilenamePromptForm f = new FilenamePromptForm(Translate.T(Properties.Resources.Rename), oldname);
+            if (f.ShowDialog(this) == DialogResult.OK)
+            {
+                if (oldname == f.filename) return;
+                FileInfo fileinfo = new FileInfo(Path.Combine(localFolder.FullName, oldname));
+                if (fileinfo.Exists == false) return;
+                try { fileinfo.MoveTo(Path.Combine(localFolder.FullName, f.filename)); } catch (Exception) { }
+                localRefresh();
+            }
+        }
     }
 }

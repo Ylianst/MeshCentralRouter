@@ -292,15 +292,18 @@ namespace MeshCentralRouter
             // Load customizations
             bool showLicense = true;
             FileInfo selfExe = new FileInfo(Assembly.GetExecutingAssembly().Location);
-            try { pictureBox1.Image = (Bitmap)Image.FromFile(Path.Combine(selfExe.Directory.FullName, @"customization\topbanner.png")); showLicense = false; } catch (Exception) { }
-            try { pictureBox2.Image = pictureBox6.Image = (Bitmap)Image.FromFile(Path.Combine(selfExe.Directory.FullName, @"customization\logo.png")); showLicense = false; } catch (Exception) { }
-            try { pictureBox3.Image = pictureBox4.Image = pictureBox5.Image = pictureBox7.Image = (Bitmap)Image.FromFile(Path.Combine(selfExe.Directory.FullName, @"customization\bottombanner.png")); showLicense = false; } catch (Exception) { }
+            if (File.Exists(Path.Combine(selfExe.Directory.FullName, @"customization\topbanner.png"))) { try { pictureBox1.Image = (Bitmap)Image.FromFile(Path.Combine(selfExe.Directory.FullName, @"customization\topbanner.png")); showLicense = false; } catch (Exception) { } }
+            if (File.Exists(Path.Combine(selfExe.Directory.FullName, @"customization\logo.png"))) { try { pictureBox2.Image = pictureBox6.Image = (Bitmap)Image.FromFile(Path.Combine(selfExe.Directory.FullName, @"customization\logo.png")); showLicense = false; } catch (Exception) { } }
+            if (File.Exists(Path.Combine(selfExe.Directory.FullName, @"customization\bottombanner.png"))) { try { pictureBox3.Image = pictureBox4.Image = pictureBox5.Image = pictureBox7.Image = (Bitmap)Image.FromFile(Path.Combine(selfExe.Directory.FullName, @"customization\bottombanner.png")); showLicense = false; } catch (Exception) { } }
             licenseLinkLabel.Visible = showLicense;
             try
             {
-                string[] lines = File.ReadAllLines(Path.Combine(selfExe.Directory.FullName, @"customization\customize.txt"));
-                if (lines[0] != "") { this.Text = lines[0]; }
-                if (lines[1] != "") { label1.Text = lines[1]; }
+                if (File.Exists(Path.Combine(selfExe.Directory.FullName, @"customization\customize.txt")))
+                {
+                    string[] lines = File.ReadAllLines(Path.Combine(selfExe.Directory.FullName, @"customization\customize.txt"));
+                    if (lines[0] != "") { this.Text = lines[0]; }
+                    if (lines[1] != "") { label1.Text = lines[1]; }
+                }
             }
             catch (Exception) { }
 
