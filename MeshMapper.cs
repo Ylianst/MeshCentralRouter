@@ -223,7 +223,9 @@ namespace MeshCentralRouter
             wc.onStateChanged += Wc_onStateChanged;
             wc.onBinaryData += Wc_onBinaryData;
             wc.onStringData += Wc_onStringData;
+            wc.onSendOk += Wc_onSendOk;
         }
+
         private void ConnectWS(UdpClient client, int counter)
         {
             webSocketClient wc = new webSocketClient();
@@ -237,6 +239,27 @@ namespace MeshCentralRouter
             wc.onStateChanged += Wc_onStateChanged;
             wc.onBinaryData += Wc_onBinaryData;
             wc.onStringData += Wc_onStringData;
+            wc.onSendOk += Wc_onSendOk;
+        }
+
+        private void Wc_onSendOk(webSocketClient sender)
+        {
+            if (sender.tag.GetType() == typeof(TcpClient))
+            {
+                // This is a TCP client, if it's not reading now, start reading
+                if (sender.tag2 == null) return;
+                object[] args = sender.tag2;
+                sender.tag2 = null;
+                MeshMapper mm = (MeshMapper)args[0];
+                webSocketClient wc = (webSocketClient)args[1];
+                TcpClient client = (TcpClient)args[2];
+                byte[] buf = (byte[])args[3];
+                try { client.GetStream().BeginRead(buf, 0, buf.Length, new AsyncCallback(ClientEndReadWS), new object[] { mm, wc, client, buf }); } catch (Exception) { }
+            }
+            if ((sender.tag.GetType() == typeof(UdpClient)) && (sender.endpoint != null))
+            {
+                // This is a UDP socket, do nothing since it's always reading
+            }
         }
 
         private void Wc_onStateChanged(webSocketClient sender, webSocketClient.ConnectionStates state)
@@ -299,8 +322,7 @@ namespace MeshCentralRouter
                 {
                     case "ping":
                         {
-                            // Send pong back
-                            try { sender.SendString("{\"ctrlChannel\":\"102938\",\"type\":\"ping\"}"); } catch (Exception) { }
+                            // We can't respond to a ping with a pong in this case since it will be relayed and corrupt the data channel.
                             break;
                         }
                     case "pong":
@@ -323,7 +345,10 @@ namespace MeshCentralRouter
             {
                 // Write: WS --> TCP
                 TcpClient client = (TcpClient)sender.tag;
-                if (client != null) { try { client.GetStream().Write(data, offset, length); } catch (Exception) { } }
+                if (client != null) {
+                    sender.Pause(); // Pause reading from the websocket until the data is sent on the TCP client
+                    client.GetStream().BeginWrite(data, offset, length, new AsyncCallback(ClientEndWrite), sender);
+                }
             }
             if ((sender.tag.GetType() == typeof(UdpClient)) && (sender.endpoint != null))
             {
@@ -342,6 +367,11 @@ namespace MeshCentralRouter
             }
         }
 
+        private void ClientEndWrite(IAsyncResult ar)
+        {
+            // TCP Client finished sending data, read more from the websocket
+            ((webSocketClient)ar.AsyncState).Resume();
+        }
 
         // Read from the local client
         private void ClientEndReadWS(IAsyncResult ar)
@@ -369,8 +399,8 @@ namespace MeshCentralRouter
                 try
                 {
                     mm.bytesToServer += len;
-                    mm.bytesToServerCompressed += wc.SendBinary(buf, 0, len); // TODO: Do Async
-                    try { client.GetStream().BeginRead(buf, 0, buf.Length, new AsyncCallback(ClientEndReadWS), new object[] { mm, wc, client, buf }); } catch (Exception) { }
+                    wc.tag2 = args; // When the websocket SendOK is triggered, read more data from the TCP client.
+                    mm.bytesToServerCompressed += wc.SendBinary(buf, 0, len);
                 }
                 catch (Exception)
                 {
@@ -380,6 +410,7 @@ namespace MeshCentralRouter
             }
             else
             {
+                Debug("#" + counter + ": ClientEndRead(" + len + ") - Disconnect");
                 ShutdownClients(client, null, wc, counter);
                 return;
             }
