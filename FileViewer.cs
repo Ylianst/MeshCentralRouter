@@ -927,7 +927,41 @@ namespace MeshCentralRouter
 
         private void uploadButton_Click(object sender, EventArgs e)
         {
+            // If a transfer is currently active, ignore this.
             if (uploadActive || downloadActive) return;
+
+            // If any files are going to be overwritten
+            int overWriteCount = 0;
+            foreach (ListViewItem l in leftListView.SelectedItems) {
+                if (l.ImageIndex == 2) {
+                    string filename = l.Text;
+
+                    foreach (ListViewItem l2 in rightListView.Items)
+                    {
+                        if (l2.ImageIndex == 2)
+                        {
+                            string filename2 = l2.Text;
+                            if (node.agentid < 5) { filename = filename.ToLower(); filename2 = filename2.ToLower(); }
+                            if (filename.Equals(filename2)) { overWriteCount++; }
+                        }
+                    }
+                }
+            }
+
+            if (overWriteCount > 0)
+            {
+                FileConfirmOverwriteForm f = new FileConfirmOverwriteForm();
+                if (overWriteCount == 1) { f.mainTextLabel = String.Format("Overwrite 1 file?", overWriteCount); } else { f.mainTextLabel = String.Format("Overwrite {0} files?", overWriteCount); }
+                if (f.ShowDialog(this) == DialogResult.OK) { performFileUpload(); }
+            }
+            else
+            {
+                performFileUpload();
+            }
+        }
+
+        private void performFileUpload()
+        {
             uploadFileArrayPtr = 0;
             uploadFileArray = new ArrayList();
             foreach (ListViewItem l in leftListView.SelectedItems) { if (l.ImageIndex == 2) { uploadFileArray.Add(l.Text); } }
@@ -940,10 +974,12 @@ namespace MeshCentralRouter
             // Show transfer status dialog
             transferStatusForm = new FileTransferStatusForm(this);
             transferStatusForm.Show(this);
-    }
+        }
 
         private void uploadNextFile()
         {
+            if ((uploadFileArray == null) || (uploadFileArray.Count == 0)) return;
+
             string localFilePath, localFileName;
             if (uploadLocalPath != null)
             {
@@ -1019,12 +1055,50 @@ namespace MeshCentralRouter
 
         private void downloadButton_Click(object sender, EventArgs e)
         {
+            // If a transfer is currently active, ignore this.
             if (uploadActive || downloadActive) return;
+
+            // If any files are going to be overwritten
+            int overWriteCount = 0;
+            foreach (ListViewItem l in rightListView.SelectedItems)
+            {
+                if (l.ImageIndex == 2)
+                {
+                    string filename = l.Text;
+
+                    foreach (ListViewItem l2 in leftListView.Items)
+                    {
+                        if (l2.ImageIndex == 2)
+                        {
+                            string filename2 = l2.Text;
+                            if (node.agentid < 5) { filename = filename.ToLower(); filename2 = filename2.ToLower(); }
+                            if (filename.Equals(filename2)) { overWriteCount++; }
+                        }
+                    }
+                }
+            }
+
+            if (overWriteCount > 0)
+            {
+                FileConfirmOverwriteForm f = new FileConfirmOverwriteForm();
+                if (overWriteCount == 1) { f.mainTextLabel = String.Format("Overwrite 1 file?", overWriteCount); } else { f.mainTextLabel = String.Format("Overwrite {0} files?", overWriteCount); }
+                if (f.ShowDialog(this) == DialogResult.OK) { performFileDownload(); }
+            }
+            else
+            {
+                performFileDownload();
+            }
+        }
+
+        private void performFileDownload()
+        {
             downloadFileArrayPtr = 0;
             downloadFileArray = new ArrayList();
             downloadFileSizeArray = new ArrayList();
-            foreach (ListViewItem l in rightListView.SelectedItems) {
-                if (l.ImageIndex == 2) {
+            foreach (ListViewItem l in rightListView.SelectedItems)
+            {
+                if (l.ImageIndex == 2)
+                {
                     downloadFileArray.Add(l.Text);
                     downloadFileSizeArray.Add(int.Parse(l.SubItems[1].Text));
                 }
@@ -1042,6 +1116,8 @@ namespace MeshCentralRouter
 
         private void downloadNextFile()
         {
+            if ((downloadFileArray == null) || (downloadFileArray.Count == 0)) return;
+
             string localFilePath;
             localFilePath = Path.Combine(downloadLocalPath.FullName, (string)downloadFileArray[downloadFileArrayPtr]);
             try { downloadFileStream = File.OpenWrite(localFilePath); } catch (Exception) { return; }

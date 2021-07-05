@@ -94,6 +94,12 @@
     <Compile Include="AddRelayMapForm.designer.cs">
       <DependentUpon>AddRelayMapForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FileConfirmOverwriteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FileConfirmOverwriteForm.Designer.cs">
+      <DependentUpon>FileConfirmOverwriteForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="LocalPipe.cs" />
     <Compile Include="SshUsernameForm.cs">
       <SubType>Form</SubType>
@@ -255,6 +261,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddRelayMapForm.resx">
       <DependentUpon>AddRelayMapForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FileConfirmOverwriteForm.resx">
+      <DependentUpon>FileConfirmOverwriteForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SshUsernameForm.resx">
       <DependentUpon>SshUsernameForm.cs</DependentUpon>
