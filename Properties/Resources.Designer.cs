@@ -88,6 +88,15 @@ namespace MeshCentralRouter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Almost done.
+        /// </summary>
+        internal static string Almostdone {
+            get {
+                return ResourceManager.GetString("Almostdone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AMT.
         /// </summary>
         internal static string AMT {
@@ -269,6 +278,15 @@ namespace MeshCentralRouter.Properties {
             get {
                 object obj = ResourceManager.GetObject("EmptyBanner", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Estimating....
+        /// </summary>
+        internal static string EstimatingDotDotDot {
+            get {
+                return ResourceManager.GetString("EstimatingDotDotDot", resourceCulture);
             }
         }
         
@@ -569,6 +587,24 @@ namespace MeshCentralRouter.Properties {
         internal static string OpenSSHAppName {
             get {
                 return ResourceManager.GetString("OpenSSHAppName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Overwrite 1 file?.
+        /// </summary>
+        internal static string OverwriteOneFile {
+            get {
+                return ResourceManager.GetString("OverwriteOneFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Overwrite {0} files?.
+        /// </summary>
+        internal static string OverwriteXfiles {
+            get {
+                return ResourceManager.GetString("OverwriteXfiles", resourceCulture);
             }
         }
         
@@ -889,12 +925,75 @@ namespace MeshCentralRouter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} bytes/sec.
+        /// </summary>
+        internal static string XbytesPersec {
+            get {
+                return ResourceManager.GetString("XbytesPersec", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} Gbytes/sec.
+        /// </summary>
+        internal static string XGbytesPersec {
+            get {
+                return ResourceManager.GetString("XGbytesPersec", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} hours left.
+        /// </summary>
+        internal static string xhoursleft {
+            get {
+                return ResourceManager.GetString("xhoursleft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap xinstall {
             get {
                 object obj = ResourceManager.GetObject("xinstall", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} Kbytes/sec.
+        /// </summary>
+        internal static string XKbytesPersec {
+            get {
+                return ResourceManager.GetString("XKbytesPersec", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} Mbytes/sec.
+        /// </summary>
+        internal static string XMbytesPersec {
+            get {
+                return ResourceManager.GetString("XMbytesPersec", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} minutes left.
+        /// </summary>
+        internal static string xminutesleft {
+            get {
+                return ResourceManager.GetString("xminutesleft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} seconds left.
+        /// </summary>
+        internal static string xsecondsleft {
+            get {
+                return ResourceManager.GetString("xsecondsleft", resourceCulture);
             }
         }
         

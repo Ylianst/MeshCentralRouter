@@ -36,6 +36,7 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.mainLabel1 = new System.Windows.Forms.Label();
             this.updateTimer = new System.Windows.Forms.Timer(this.components);
+            this.mainLabel2 = new System.Windows.Forms.Label();
             this.mainGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,6 +51,7 @@
             // mainGroupBox
             // 
             resources.ApplyResources(this.mainGroupBox, "mainGroupBox");
+            this.mainGroupBox.Controls.Add(this.mainLabel2);
             this.mainGroupBox.Controls.Add(this.progressBar2);
             this.mainGroupBox.Controls.Add(this.progressBar1);
             this.mainGroupBox.Controls.Add(this.mainLabel1);
@@ -75,6 +77,11 @@
             // 
             this.updateTimer.Interval = 500;
             this.updateTimer.Tick += new System.EventHandler(this.updateTimer_Tick);
+            // 
+            // mainLabel2
+            // 
+            resources.ApplyResources(this.mainLabel2, "mainLabel2");
+            this.mainLabel2.Name = "mainLabel2";
             // 
             // FileTransferStatusForm
             // 
@@ -102,5 +109,6 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label mainLabel1;
         private System.Windows.Forms.Timer updateTimer;
+        private System.Windows.Forms.Label mainLabel2;
     }
 }

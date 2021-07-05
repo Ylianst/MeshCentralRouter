@@ -48,6 +48,15 @@ namespace MeshCentralRouter
                 if (x > (int)fileViewer.uploadFileSize) { x = (int)fileViewer.uploadFileSize; }
                 progressBar1.Value = x;
 
+                // Compute bytes per second & estimated time left
+                double elapseTimeSeconds = DateTime.Now.Subtract(fileViewer.uploadFileStartTime).TotalMilliseconds / 1000;
+                if (elapseTimeSeconds < 5) { mainLabel2.Text = Translate.T(Properties.Resources.EstimatingDotDotDot); } else
+                {
+                    double bytePerSecond = x / elapseTimeSeconds;
+                    double secondsLeft = Math.Round((fileViewer.uploadFileSize - x) / bytePerSecond);
+                    mainLabel2.Text = bytePerSecondToString(bytePerSecond) + ", " + secondsLeftToString(secondsLeft);
+                }
+
                 progressBar2.Maximum = fileViewer.uploadFileArray.Count;
                 x = (int)(int)fileViewer.uploadFileSize;
                 if (x < 0) { x = 0; }
@@ -63,6 +72,15 @@ namespace MeshCentralRouter
                 if (x > (int)fileViewer.downloadFileSize) { x = (int)fileViewer.downloadFileSize; }
                 progressBar1.Value = x;
 
+                // Compute bytes per second & estimated time left
+                double elapseTimeSeconds = DateTime.Now.Subtract(fileViewer.downloadFileStartTime).TotalMilliseconds / 1000;
+                if (elapseTimeSeconds < 5) { mainLabel2.Text = Translate.T(Properties.Resources.EstimatingDotDotDot); } else
+                {
+                    double bytePerSecond = x / elapseTimeSeconds;
+                    double secondsLeft = Math.Round((fileViewer.downloadFileSize - x) / bytePerSecond);
+                    mainLabel2.Text = bytePerSecondToString(bytePerSecond) + ", " + secondsLeftToString(secondsLeft);
+                }
+
                 progressBar2.Maximum = fileViewer.downloadFileArray.Count;
                 x = (int)(int)fileViewer.downloadFileSize;
                 if (x < 0) { x = 0; }
@@ -70,6 +88,22 @@ namespace MeshCentralRouter
                 progressBar2.Value = fileViewer.downloadFileArrayPtr;
             }
             else { Close(); }
+        }
+
+        private string secondsLeftToString(double x)
+        {
+            if (x > 5400) return String.Format(Translate.T(Properties.Resources.xhoursleft), Math.Round(x / 60 / 60));
+            if (x > 90) return String.Format(Translate.T(Properties.Resources.xminutesleft), Math.Round(x / 60));
+            if (x > 1) return String.Format(Translate.T(Properties.Resources.xsecondsleft), Math.Round(x));
+            return Translate.T(Properties.Resources.Almostdone);
+        }
+
+        private string bytePerSecondToString(double x)
+        {
+            if (x > 1200000000) return String.Format(Translate.T(Properties.Resources.XGbytesPersec), Math.Round((x / 1024 / 1024 / 1024) * 10) / 10);
+            if (x > 1200000) return String.Format(Translate.T(Properties.Resources.XMbytesPersec), Math.Round((x / 1024 / 1024) * 10) / 10);
+            if (x > 1200) return String.Format(Translate.T(Properties.Resources.XKbytesPersec), Math.Round((x / 1024) * 10) / 10);
+            return String.Format(Translate.T(Properties.Resources.XbytesPersec), x);
         }
 
         private void FileTransferStatusForm_FormClosing(object sender, FormClosingEventArgs e)

@@ -123,7 +123,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="cancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>277, 113</value>
+    <value>277, 130</value>
   </data>
   <data name="cancelButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -150,11 +150,41 @@
   <data name="mainGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
+  <data name="mainLabel2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="mainLabel2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="mainLabel2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 42</value>
+  </data>
+  <data name="mainLabel2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>309, 13</value>
+  </data>
+  <data name="mainLabel2.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="mainLabel2.Text" xml:space="preserve">
+    <value>---</value>
+  </data>
+  <data name="&gt;&gt;mainLabel2.Name" xml:space="preserve">
+    <value>mainLabel2</value>
+  </data>
+  <data name="&gt;&gt;mainLabel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mainLabel2.Parent" xml:space="preserve">
+    <value>mainGroupBox</value>
+  </data>
+  <data name="&gt;&gt;mainLabel2.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="progressBar2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
   <data name="progressBar2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 64</value>
+    <value>17, 83</value>
   </data>
   <data name="progressBar2.Size" type="System.Drawing.Size, System.Drawing">
     <value>306, 16</value>
@@ -172,13 +202,13 @@
     <value>mainGroupBox</value>
   </data>
   <data name="&gt;&gt;progressBar2.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="progressBar1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
   <data name="progressBar1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 42</value>
+    <value>17, 61</value>
   </data>
   <data name="progressBar1.Size" type="System.Drawing.Size, System.Drawing">
     <value>306, 16</value>
@@ -196,7 +226,7 @@
     <value>mainGroupBox</value>
   </data>
   <data name="&gt;&gt;progressBar1.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="mainLabel1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -223,13 +253,13 @@
     <value>mainGroupBox</value>
   </data>
   <data name="&gt;&gt;mainLabel1.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="mainGroupBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 12</value>
   </data>
   <data name="mainGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>340, 95</value>
+    <value>340, 112</value>
   </data>
   <data name="mainGroupBox.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -259,7 +289,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>364, 148</value>
+    <value>364, 165</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

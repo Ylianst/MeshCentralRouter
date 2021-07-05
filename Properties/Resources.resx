@@ -394,4 +394,37 @@
   <data name="NoToolsAllowed" xml:space="preserve">
     <value>No tools allowed</value>
   </data>
+  <data name="Almostdone" xml:space="preserve">
+    <value>Almost done</value>
+  </data>
+  <data name="EstimatingDotDotDot" xml:space="preserve">
+    <value>Estimating...</value>
+  </data>
+  <data name="OverwriteOneFile" xml:space="preserve">
+    <value>Overwrite 1 file?</value>
+  </data>
+  <data name="OverwriteXfiles" xml:space="preserve">
+    <value>Overwrite {0} files?</value>
+  </data>
+  <data name="XbytesPersec" xml:space="preserve">
+    <value>{0} bytes/sec</value>
+  </data>
+  <data name="XGbytesPersec" xml:space="preserve">
+    <value>{0} Gbytes/sec</value>
+  </data>
+  <data name="xhoursleft" xml:space="preserve">
+    <value>{0} hours left</value>
+  </data>
+  <data name="XKbytesPersec" xml:space="preserve">
+    <value>{0} Kbytes/sec</value>
+  </data>
+  <data name="XMbytesPersec" xml:space="preserve">
+    <value>{0} Mbytes/sec</value>
+  </data>
+  <data name="xminutesleft" xml:space="preserve">
+    <value>{0} minutes left</value>
+  </data>
+  <data name="xsecondsleft" xml:space="preserve">
+    <value>{0} seconds left</value>
+  </data>
 </root>
