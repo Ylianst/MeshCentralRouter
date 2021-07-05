@@ -55,7 +55,7 @@
             this.mainLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.mainLabel.Location = new System.Drawing.Point(14, 23);
             this.mainLabel.Name = "mainLabel";
-            this.mainLabel.Size = new System.Drawing.Size(295, 38);
+            this.mainLabel.Size = new System.Drawing.Size(295, 22);
             this.mainLabel.TabIndex = 1;
             this.mainLabel.Text = "---";
             // 
