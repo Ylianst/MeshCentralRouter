@@ -82,6 +82,10 @@ namespace MeshCentralRouter
             UpdateStatus();
 
             rightListView.Columns[0].Width = rightListView.Width - rightListView.Columns[1].Width - 22;
+
+            // Load the local path from the registry
+            string lp = Settings.GetRegValue("LocalPath", "");
+            if ((lp != "") && (Directory.Exists(lp))) { localFolder = new DirectoryInfo(lp); }
         }
 
         public bool updateLocalFileView()
@@ -700,12 +704,14 @@ namespace MeshCentralRouter
                     DirectoryInfo old = localFolder;
                     localFolder = ((DriveInfo)item.Tag).RootDirectory;
                     if (updateLocalFileView() == false) { localFolder = old; updateLocalFileView(); }
+                    Settings.SetRegValue("LocalPath", (localFolder == null) ? "" : localFolder.FullName);
                 }
                 else if (item.Tag.GetType() == typeof(DirectoryInfo))
                 {
                     DirectoryInfo old = localFolder;
                     localFolder = (DirectoryInfo)item.Tag;
                     if (updateLocalFileView() == false) { localFolder = old; updateLocalFileView(); }
+                    Settings.SetRegValue("LocalPath", (localFolder == null) ? "" : localFolder.FullName);
                 }
             }
         }
@@ -713,6 +719,7 @@ namespace MeshCentralRouter
         private void localUpButton_Click(object sender, EventArgs e)
         {
             localFolder = localFolder.Parent;
+            Settings.SetRegValue("LocalPath", (localFolder == null)?"":localFolder.FullName);
             updateLocalFileView();
         }
 
@@ -774,6 +781,7 @@ namespace MeshCentralRouter
         private void localRootButton_Click(object sender, EventArgs e)
         {
             localFolder = null;
+            Settings.SetRegValue("LocalPath", "");
             updateLocalFileView();
         }
 
