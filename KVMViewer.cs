@@ -215,7 +215,8 @@ namespace MeshCentralRouter
                         bytesOutCompressed = 0;
 
                         state = 2;
-                        string u = "*/meshrelay.ashx?p=2&nodeid=" + node.nodeid + "&id=" + randomIdHex + "&rauth=" + server.rauthCookie;
+
+                        string u = "*" + server.wsurl.AbsolutePath.Replace("control.ashx", "meshrelay.ashx") + "?p=2&nodeid=" + node.nodeid + "&id=" + randomIdHex + "&rauth=" + server.rauthCookie;
                         server.sendCommand("{ \"action\": \"msg\", \"type\": \"tunnel\", \"nodeid\": \"" + node.nodeid + "\", \"value\": \"" + u.ToString() + "\", \"usage\": 2 }");
                         displayMessage(null);
                         break;
@@ -320,7 +321,7 @@ namespace MeshCentralRouter
 
         private void UpdateStatus()
         {
-            if (this.InvokeRequired) { this.Invoke(new UpdateStatusHandler(UpdateStatus)); return; }
+            if (this.InvokeRequired) { try { this.Invoke(new UpdateStatusHandler(UpdateStatus)); } catch (Exception) { } return; }
 
             //if (kvmControl == null) return;
             switch (state)

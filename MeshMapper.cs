@@ -347,7 +347,7 @@ namespace MeshCentralRouter
                 TcpClient client = (TcpClient)sender.tag;
                 if (client != null) {
                     sender.Pause(); // Pause reading from the websocket until the data is sent on the TCP client
-                    client.GetStream().BeginWrite(data, offset, length, new AsyncCallback(ClientEndWrite), sender);
+                    try { client.GetStream().BeginWrite(data, offset, length, new AsyncCallback(ClientEndWrite), sender); } catch (Exception) { }
                 }
             }
             if ((sender.tag.GetType() == typeof(UdpClient)) && (sender.endpoint != null))

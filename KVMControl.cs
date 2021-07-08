@@ -151,7 +151,7 @@ namespace MeshCentralRouter
 
         public void AttachKeyboard()
         {
-            Console.WriteLine(isHookWanted);
+            //Console.WriteLine(isHookWanted);
             if (!keyboardIsAttached && isHookWanted)
             {
                 ControlHook.AttachKeyboardHook(SendKey);

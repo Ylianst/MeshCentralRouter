@@ -335,7 +335,8 @@ namespace MeshCentralRouter
                         bytesOutCompressed = 0;
 
                         state = 2;
-                        string u = "*/meshrelay.ashx?p=5&nodeid=" + node.nodeid + "&id=" + randomIdHex + "&rauth=" + server.rauthCookie;
+
+                        string u = "*" + server.wsurl.AbsolutePath.Replace("control.ashx", "meshrelay.ashx") + "?p=5&nodeid=" + node.nodeid + "&id=" + randomIdHex + "&rauth=" + server.rauthCookie;
                         server.sendCommand("{ \"action\": \"msg\", \"type\": \"tunnel\", \"nodeid\": \"" + node.nodeid + "\", \"value\": \"" + u.ToString() + "\", \"usage\": 5 }");
                         displayMessage(null);
                         break;
