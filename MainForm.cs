@@ -1059,7 +1059,7 @@ namespace MeshCentralRouter
                         map.remotePort = (int)remotePort;
                         map.appId = appId;
                         map.node = node;
-                        if (authLoginUrl != null) { map.host = authLoginUrl.Host + ":" + ((authLoginUrl.Port > 0) ? authLoginUrl.Port : 443); } else { map.host = serverNameComboBox.Text; }
+                        if (authLoginUrl != null) { map.host = authLoginUrl.Host + ":" + ((authLoginUrl.Port > 0) ? authLoginUrl.Port : 443) + authLoginUrl.AbsolutePath.Replace("/control.ashx", ""); } else { map.host = serverNameComboBox.Text; }
                         map.certhash = meshcentral.wshash;
                         map.parent = this;
                         map.Dock = DockStyle.Top;
@@ -1120,7 +1120,7 @@ namespace MeshCentralRouter
                         map.remotePort = (int)remotePort;
                         map.appId = appId;
                         map.node = node;
-                        if (authLoginUrl != null) { map.host = authLoginUrl.Host + ":" + ((authLoginUrl.Port > 0) ? authLoginUrl.Port : 443); } else { map.host = serverNameComboBox.Text; }
+                        if (authLoginUrl != null) { map.host = authLoginUrl.Host + ":" + ((authLoginUrl.Port > 0) ? authLoginUrl.Port : 443) + authLoginUrl.AbsolutePath.Replace("/control.ashx", ""); } else { map.host = serverNameComboBox.Text; }
                         map.certhash = meshcentral.wshash;
                         map.parent = this;
                         map.Dock = DockStyle.Top;
@@ -1160,7 +1160,7 @@ namespace MeshCentralRouter
                 map.remotePort = form.getRemotePort();
                 map.appId = form.getAppId();
                 map.node = form.getNode();
-                if (authLoginUrl != null) { map.host = authLoginUrl.Host + ":" + ((authLoginUrl.Port > 0) ? authLoginUrl.Port : 443); } else { map.host = serverNameComboBox.Text; }
+                if (authLoginUrl != null) { map.host = authLoginUrl.Host + ":" + ((authLoginUrl.Port > 0) ? authLoginUrl.Port : 443) + authLoginUrl.AbsolutePath.Replace("/control.ashx", ""); } else { map.host = serverNameComboBox.Text; }
                 map.certhash = meshcentral.wshash;
                 map.parent = this;
                 map.Dock = DockStyle.Top;
@@ -1318,7 +1318,7 @@ namespace MeshCentralRouter
                 map.remoteIP = form.getRemoteIP();
                 map.appId = form.getAppId();
                 map.node = form.getNode();
-                if (authLoginUrl != null) { map.host = authLoginUrl.Host + ":" + ((authLoginUrl.Port > 0) ? authLoginUrl.Port : 443); } else { map.host = serverNameComboBox.Text; }
+                if (authLoginUrl != null) { map.host = authLoginUrl.Host + ":" + ((authLoginUrl.Port > 0) ? authLoginUrl.Port : 443) + authLoginUrl.AbsolutePath.Replace("/control.ashx", ""); } else { map.host = serverNameComboBox.Text; }
                 map.certhash = meshcentral.wshash;
                 map.parent = this;
                 map.Dock = DockStyle.Top;
@@ -1474,7 +1474,7 @@ namespace MeshCentralRouter
             map.remotePort = port; // HTTP
             map.appId = appId; // 0 = Custom, 1 = HTTP, 2 = HTTPS, 3 = RDP, 4 = PuTTY, 5 = WinSCP
             map.node = node;
-            if (authLoginUrl != null) { map.host = authLoginUrl.Host + ":" + ((authLoginUrl.Port > 0) ? authLoginUrl.Port : 443); } else { map.host = serverNameComboBox.Text; }
+            if (authLoginUrl != null) { map.host = authLoginUrl.Host + ":" + ((authLoginUrl.Port > 0) ? authLoginUrl.Port : 443) + authLoginUrl.AbsolutePath.Replace("/control.ashx", ""); } else { map.host = serverNameComboBox.Text; }
             map.certhash = meshcentral.wshash;
             map.parent = this;
             map.Dock = DockStyle.Top;
@@ -1651,7 +1651,7 @@ namespace MeshCentralRouter
                     map.appId = (int)x["appId"];
                     if (x.ContainsKey("autoExit")) { map.autoexit = (bool)x["autoExit"]; }
                     map.node = node;
-                    if (authLoginUrl != null) { map.host = authLoginUrl.Host + ":" + ((authLoginUrl.Port > 0) ? authLoginUrl.Port : 443); } else { map.host = serverNameComboBox.Text; }
+                    if (authLoginUrl != null) { map.host = authLoginUrl.Host + ":" + ((authLoginUrl.Port > 0) ? authLoginUrl.Port : 443) + authLoginUrl.AbsolutePath.Replace("/control.ashx",""); } else { map.host = serverNameComboBox.Text; }
                     map.certhash = meshcentral.wshash;
                     map.parent = this;
                     map.Dock = DockStyle.Top;
