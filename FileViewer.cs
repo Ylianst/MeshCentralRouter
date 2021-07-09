@@ -92,6 +92,11 @@ namespace MeshCentralRouter
 
         public bool updateLocalFileView()
         {
+            // Save the list of selected items
+            List<String> selectedItems = new List<String>();
+            foreach (ListViewItem l in leftListView.SelectedItems) { selectedItems.Add(l.Text); }
+
+            // Refresh the list
             leftListView.Items.Clear();
             if (localFolder == null)
             {
@@ -145,6 +150,10 @@ namespace MeshCentralRouter
                 catch (Exception) { return false; }
             }
             updateTransferButtons();
+
+            // Reselect items
+            foreach (ListViewItem l in leftListView.Items) { l.Selected = selectedItems.Contains(l.Text); }
+
             return true;
         }
 
@@ -160,6 +169,11 @@ namespace MeshCentralRouter
         public void updateRemoteFileView()
         {
             if (this.InvokeRequired) { this.Invoke(new updateRemoteFileViewHandler(updateRemoteFileView)); return; }
+
+            // Save the list of selected items
+            List<String> selectedItems = new List<String>();
+            foreach (ListViewItem l in rightListView.SelectedItems) { selectedItems.Add(l.Text); }
+
             rightListView.Items.Clear();
 
             if ((remoteFolder == null) || (remoteFolder == "")) {
@@ -247,6 +261,9 @@ namespace MeshCentralRouter
                 foreach (ListViewItem l in sortlist) { rightListView.Items.Add(l); }
             }
             updateTransferButtons();
+
+            // Reselect items
+            foreach (ListViewItem l in rightListView.Items) { l.Selected = selectedItems.Contains(l.Text); }
         }
 
         private void Server_onStateChanged(int state)

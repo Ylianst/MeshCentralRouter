@@ -285,6 +285,7 @@ namespace MeshCentralRouter
             resources.ApplyResources(this.rightListView, "rightListView");
             this.rightListView.FullRowSelect = true;
             this.rightListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.rightListView.HideSelection = false;
             this.rightListView.Name = "rightListView";
             this.rightListView.SmallImageList = this.fileIconImageList;
             this.rightListView.UseCompatibleStateImageBehavior = false;
@@ -382,6 +383,7 @@ namespace MeshCentralRouter
             resources.ApplyResources(this.leftListView, "leftListView");
             this.leftListView.FullRowSelect = true;
             this.leftListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.leftListView.HideSelection = false;
             this.leftListView.Name = "leftListView";
             this.leftListView.SmallImageList = this.fileIconImageList;
             this.leftListView.UseCompatibleStateImageBehavior = false;
