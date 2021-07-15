@@ -21,7 +21,7 @@ namespace MeshCentralRouter
 {
     public partial class KVMSettingsForm : Form
     {
-        public KVMSettingsForm()
+        public KVMSettingsForm(int features2)
         {
             InitializeComponent();
             Translate.TranslateControl(this);
@@ -51,6 +51,10 @@ namespace MeshCentralRouter
             qualityComboBox.SelectedIndex = 4;
             scalingComboBox.SelectedIndex = 0;
             frameRateComboBox.SelectedIndex = 1;
+            if ((features2 & 0x1000) != 0) {
+                this.Height -= (autoSendClipboardCheckBox.Top - remoteKeyboardMapCheckBox.Top);
+                autoSendClipboardCheckBox.Visible = false;
+            }
         }
 
         private class DropListItem

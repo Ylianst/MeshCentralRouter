@@ -358,8 +358,16 @@ namespace MeshCentralRouter
             }
 
             cadButton.Enabled = (state == 3);
-            clipInboundButton.Visible = !kvmControl.AutoSendClipboard;
-            clipOutboundButton.Visible = !kvmControl.AutoSendClipboard;
+            if ((kvmControl.AutoSendClipboard) && ((server.features2 & 0x1000) == 0)) // 0x1000 Clipboard Set
+            {
+                clipInboundButton.Visible = false;
+                clipOutboundButton.Visible = false;
+            }
+            else
+            {
+                clipInboundButton.Visible = ((server.features2 & 0x0800) == 0); // 0x0800 Clipboard Get
+                clipOutboundButton.Visible = ((server.features2 & 0x1000) == 0); // 0x1000 Clipboard Set
+            }
             clipInboundButton.Enabled = (state == 3);
             clipOutboundButton.Enabled = (state == 3);
         }
@@ -402,7 +410,7 @@ namespace MeshCentralRouter
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (kvmControl == null) return;
-            using (KVMSettingsForm form = new KVMSettingsForm())
+            using (KVMSettingsForm form = new KVMSettingsForm(server.features2))
             {
                 form.Compression = kvmControl.CompressionLevel;
                 form.Scaling = kvmControl.ScalingLevel;
