@@ -427,4 +427,19 @@
   <data name="xsecondsleft" xml:space="preserve">
     <value>{0} seconds left</value>
   </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="ErrorDownloadingFileX" xml:space="preserve">
+    <value>Error downloading file: {0}</value>
+  </data>
+  <data name="ErrorUploadingFileX" xml:space="preserve">
+    <value>Error uploading file: {0}</value>
+  </data>
+  <data name="UnableToOpenFileX" xml:space="preserve">
+    <value>Unable to open file: {0}</value>
+  </data>
+  <data name="UnableToWriteFileX" xml:space="preserve">
+    <value>Unable to write file: {0}</value>
+  </data>
 </root>

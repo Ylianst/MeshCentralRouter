@@ -144,6 +144,15 @@ namespace MeshCentralRouter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        internal static string Close {
+            get {
+                return ResourceManager.GetString("Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Computer50 {
@@ -278,6 +287,24 @@ namespace MeshCentralRouter.Properties {
             get {
                 object obj = ResourceManager.GetObject("EmptyBanner", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error downloading file: {0}.
+        /// </summary>
+        internal static string ErrorDownloadingFileX {
+            get {
+                return ResourceManager.GetString("ErrorDownloadingFileX", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error uploading file: {0}.
+        /// </summary>
+        internal static string ErrorUploadingFileX {
+            get {
+                return ResourceManager.GetString("ErrorUploadingFileX", resourceCulture);
             }
         }
         
@@ -876,6 +903,24 @@ namespace MeshCentralRouter.Properties {
         internal static string UnableToConnect {
             get {
                 return ResourceManager.GetString("UnableToConnect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to open file: {0}.
+        /// </summary>
+        internal static string UnableToOpenFileX {
+            get {
+                return ResourceManager.GetString("UnableToOpenFileX", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to write file: {0}.
+        /// </summary>
+        internal static string UnableToWriteFileX {
+            get {
+                return ResourceManager.GetString("UnableToWriteFileX", resourceCulture);
             }
         }
         

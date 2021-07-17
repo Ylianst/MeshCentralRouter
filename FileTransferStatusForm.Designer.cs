@@ -32,12 +32,15 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FileTransferStatusForm));
             this.cancelButton = new System.Windows.Forms.Button();
             this.mainGroupBox = new System.Windows.Forms.GroupBox();
+            this.errorsTextBox = new System.Windows.Forms.TextBox();
+            this.mainLabel2 = new System.Windows.Forms.Label();
             this.progressBar2 = new System.Windows.Forms.ProgressBar();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.mainLabel1 = new System.Windows.Forms.Label();
             this.updateTimer = new System.Windows.Forms.Timer(this.components);
-            this.mainLabel2 = new System.Windows.Forms.Label();
+            this.errorsGroupBox = new System.Windows.Forms.GroupBox();
             this.mainGroupBox.SuspendLayout();
+            this.errorsGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // cancelButton
@@ -57,6 +60,18 @@
             this.mainGroupBox.Controls.Add(this.mainLabel1);
             this.mainGroupBox.Name = "mainGroupBox";
             this.mainGroupBox.TabStop = false;
+            // 
+            // errorsTextBox
+            // 
+            resources.ApplyResources(this.errorsTextBox, "errorsTextBox");
+            this.errorsTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.errorsTextBox.Name = "errorsTextBox";
+            this.errorsTextBox.ReadOnly = true;
+            // 
+            // mainLabel2
+            // 
+            resources.ApplyResources(this.mainLabel2, "mainLabel2");
+            this.mainLabel2.Name = "mainLabel2";
             // 
             // progressBar2
             // 
@@ -78,16 +93,19 @@
             this.updateTimer.Interval = 500;
             this.updateTimer.Tick += new System.EventHandler(this.updateTimer_Tick);
             // 
-            // mainLabel2
+            // errorsGroupBox
             // 
-            resources.ApplyResources(this.mainLabel2, "mainLabel2");
-            this.mainLabel2.Name = "mainLabel2";
+            this.errorsGroupBox.Controls.Add(this.errorsTextBox);
+            resources.ApplyResources(this.errorsGroupBox, "errorsGroupBox");
+            this.errorsGroupBox.Name = "errorsGroupBox";
+            this.errorsGroupBox.TabStop = false;
             // 
             // FileTransferStatusForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
+            this.Controls.Add(this.errorsGroupBox);
             this.Controls.Add(this.mainGroupBox);
             this.Controls.Add(this.cancelButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
@@ -97,6 +115,8 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FileTransferStatusForm_FormClosing);
             this.Load += new System.EventHandler(this.FileTransferStatusForm_Load);
             this.mainGroupBox.ResumeLayout(false);
+            this.errorsGroupBox.ResumeLayout(false);
+            this.errorsGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -110,5 +130,7 @@
         private System.Windows.Forms.Label mainLabel1;
         private System.Windows.Forms.Timer updateTimer;
         private System.Windows.Forms.Label mainLabel2;
+        private System.Windows.Forms.TextBox errorsTextBox;
+        private System.Windows.Forms.GroupBox errorsGroupBox;
     }
 }

@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace MeshCentralRouter
@@ -22,6 +23,12 @@ namespace MeshCentralRouter
     public partial class FileTransferStatusForm : Form
     {
         private FileViewer fileViewer;
+        private bool loaded = false;
+        public bool showingError = false;
+        private string errors = "";
+        private bool done = false;
+        private Point mainBoxLocation;
+        private Point errorBoxLocation;
 
         public FileTransferStatusForm(FileViewer fileViewer)
         {
@@ -30,11 +37,38 @@ namespace MeshCentralRouter
             Translate.TranslateControl(this);
             updateInfo();
             updateTimer.Enabled = true;
+            mainBoxLocation = mainGroupBox.Location;
+            errorBoxLocation = errorsGroupBox.Location;
         }
 
         private void updateTimer_Tick(object sender, EventArgs e)
         {
             updateInfo();
+        }
+
+        public delegate void updateErrorMessageshandler();
+
+        public void addErrorMessage(string msg)
+        {
+            lock (this)
+            {
+                errors += (msg + "\r\n");
+                showingError = true;
+            }
+            if (loaded == false) return;
+            if (this.InvokeRequired) { this.Invoke(new updateErrorMessageshandler(updateErrorMessages)); } else { updateErrorMessages(); }
+        }
+
+        public void updateErrorMessages()
+        {
+            showDialogParts(!done, showingError);
+            lock (this) { errorsTextBox.Text = errors; }
+        }
+
+        public void transferCompleted()
+        {
+            done = true;
+            showDialogParts(!done, showingError);
         }
 
         private void updateInfo()
@@ -87,7 +121,11 @@ namespace MeshCentralRouter
                 if (x > (int)fileViewer.downloadFileArray.Count) { x = fileViewer.downloadFileArray.Count; }
                 progressBar2.Value = fileViewer.downloadFileArrayPtr;
             }
-            else { Close(); }
+            else
+            {
+                done = true;
+                if (showingError == false) { Close(); } else { cancelButton.Text = Translate.T(Properties.Resources.Close); }
+            }
         }
 
         private string secondsLeftToString(double x)
@@ -114,12 +152,60 @@ namespace MeshCentralRouter
 
         private void cancelButton_Click(object sender, EventArgs e)
         {
-            Close();
+            if (done)
+            {
+                fileViewer.transferStatusForm = null;
+                Close();
+            }
+            else
+            {
+                // Cancel file transfer
+                if (fileViewer.uploadActive) { fileViewer.uploadCancel(); }
+                if (fileViewer.downloadActive) { fileViewer.downloadCancel(); }
+            }
         }
 
         private void FileTransferStatusForm_Load(object sender, EventArgs e)
         {
             CenterToParent();
+            lock (this) { errorsTextBox.Text = errors; }
+            loaded = true;
+            showDialogParts(!done, showingError);
         }
+
+        private void showDialogParts(bool status, bool errors)
+        {
+            mainGroupBox.Visible = status;
+            errorsGroupBox.Visible = errors;
+            if (errors == false)
+            {
+                if (status == false)
+                {
+                    // Show nothing
+                    this.Height = 109;
+                }
+                else
+                {
+                    // Show only status box
+                    this.Height = mainGroupBox.Height + 99;
+                }
+            }
+            else
+            {
+                if (status == false)
+                {
+                    // Show only error box
+                    this.Height = errorsGroupBox.Height + 99;
+                    errorsGroupBox.Location = mainBoxLocation;
+                }
+                else
+                {
+                    // Show both status and error box
+                    this.Height = mainGroupBox.Height + errorsGroupBox.Height + 109;
+                    errorsGroupBox.Location = errorBoxLocation;
+                }
+            }
+        }
+
     }
 }

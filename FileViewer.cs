@@ -60,6 +60,7 @@ namespace MeshCentralRouter
         public long uploadFilePtr = 0;
         public long uploadFileSize = 0;
         public DateTime uploadFileStartTime = DateTime.MinValue;
+        public string uploadFileName = null;
 
         // Download state
         public bool downloadActive = false;
@@ -445,8 +446,35 @@ namespace MeshCentralRouter
                             }
                             else if (sub == "cancel")
                             {
-                                // Cancel the download
-                                downloadCancel();
+                                // Unable to download this file
+                                if (transferStatusForm != null) { transferStatusForm.addErrorMessage(String.Format(Translate.T(Properties.Resources.ErrorDownloadingFileX), downloadFileArray[downloadFileArrayPtr].ToString())); }
+
+                                // Send DOWNLOAD command
+                                string cmd = "{\"action\":\"download\",\"sub\":\"stop\",\"id\":" + (downloadFileArrayPtr + 1000) + "}";
+                                byte[] bincmd = UTF8Encoding.UTF8.GetBytes(cmd);
+                                wc.SendBinary(bincmd, 0, bincmd.Length);
+                                if (downloadFileStream != null) { downloadFileStream.Close(); downloadFileStream = null; } // Close the file
+                                try { File.Delete(Path.Combine(downloadLocalPath.FullName, downloadFileArray[downloadFileArrayPtr].ToString())); } catch (Exception) { }
+
+                                // Go to next file
+                                if (downloadFileArray.Count > downloadFileArrayPtr + 1)
+                                {
+                                    // Download the next file
+                                    downloadFileArrayPtr++;
+                                    downloadNextFile();
+                                }
+                                else
+                                {
+                                    // Done with all files
+                                    downloadActive = false;
+                                    downloadStop = false;
+                                    downloadFileArrayPtr = -1;
+                                    downloadFileArray = null;
+                                    downloadLocalPath = null;
+                                    downloadRemotePath = null;
+                                    closeTransferDialog();
+                                    localRefresh();
+                                }
                             }
                             break;
                         }
@@ -511,12 +539,15 @@ namespace MeshCentralRouter
                     if (uploadStop) { uploadCancel(); return; }
                     uploadNextPart(false);
                 }
-                else if (action == "uploaddone")
+                else if ((action == "uploaddone") || (action == "uploaderror"))
                 {
                     // Clean up current upload
                     uploadFilePtr = 0;
                     uploadFileSize = 0;
                     if (uploadFileStream != null) { uploadFileStream.Close(); uploadFileStream = null; }
+
+                    // If this is an error, show it in the dialog
+                    if ((action == "uploaderror") && (transferStatusForm != null)) { transferStatusForm.addErrorMessage(String.Format(Translate.T(Properties.Resources.ErrorUploadingFileX), uploadFileName)); }
 
                     // Check if another file needs to be uploaded
                     if (uploadFileArray.Count > uploadFileArrayPtr + 1)
@@ -536,13 +567,10 @@ namespace MeshCentralRouter
                         uploadRemotePath = null;
                         uploadFilePtr = 0;
                         uploadFileSize = 0;
+                        uploadFileName = null;
                         closeTransferDialog();
                         remoteRefresh();
                     }
-                }
-                else if (action == "uploaderror")
-                {
-                    uploadCancel();
                 }
                 else if (reqid == 1)
                 {
@@ -765,13 +793,7 @@ namespace MeshCentralRouter
             string r = remoteFolder;
             if (r.EndsWith("/")) { r = r.Substring(0, r.Length - 1); }
             int i = r.LastIndexOf("/");
-            if (i >= 0)
-            {
-                r = r.Substring(0, i + 1);
-            } else
-            {
-                r = "";
-            }
+            if (i >= 0) { r = r.Substring(0, i + 1); } else { r = ""; }
             requestRemoteFolder(r);
         }
 
@@ -948,7 +970,7 @@ namespace MeshCentralRouter
         private void uploadButton_Click(object sender, EventArgs e)
         {
             // If a transfer is currently active, ignore this.
-            if (uploadActive || downloadActive) return;
+            if (uploadActive || downloadActive || (transferStatusForm != null)) return;
 
             // If any files are going to be overwritten
             int overWriteCount = 0;
@@ -989,11 +1011,12 @@ namespace MeshCentralRouter
             uploadRemotePath = remoteFolder;
             uploadActive = true;
             uploadStop = false;
-            uploadNextFile();
 
             // Show transfer status dialog
             transferStatusForm = new FileTransferStatusForm(this);
             transferStatusForm.Show(this);
+
+            uploadNextFile();
         }
 
         private void uploadNextFile()
@@ -1011,10 +1034,40 @@ namespace MeshCentralRouter
                 localFilePath = (string)uploadFileArray[uploadFileArrayPtr];
                 localFileName = Path.GetFileName(localFilePath);
             }
-            uploadFileStream = File.OpenRead(localFilePath);
+            try { uploadFileStream = File.OpenRead(localFilePath); } catch (Exception ex)
+            {
+                // Display the error
+                if (transferStatusForm != null) { transferStatusForm.addErrorMessage(String.Format(Translate.T(Properties.Resources.UnableToOpenFileX), localFileName)); }
+
+                // Skip to the next file
+                // Check if another file needs to be uploaded
+                if (uploadFileArray.Count > uploadFileArrayPtr + 1)
+                {
+                    // Upload the next file
+                    uploadFileArrayPtr++;
+                    uploadNextFile();
+                }
+                else
+                {
+                    // Done with all files
+                    uploadActive = false;
+                    uploadStop = false;
+                    uploadFileArrayPtr = -1;
+                    uploadFileArray = null;
+                    uploadLocalPath = null;
+                    uploadRemotePath = null;
+                    uploadFilePtr = 0;
+                    uploadFileSize = 0;
+                    uploadFileName = null;
+                    closeTransferDialog();
+                    remoteRefresh();
+                }
+                return;
+            }
             uploadFileSize = new FileInfo(localFilePath).Length;
             uploadFilePtr = 0;
             uploadFileStartTime = DateTime.Now;
+            uploadFileName = localFileName;
 
             // Send UPLOAD command
             string cmd = "{\"action\":\"upload\",\"reqid\":" + (uploadFileArrayPtr + 1000) + ",\"path\":\"" + uploadRemotePath + "\",\"name\":\"" + localFileName + "\",\"size\":" + uploadFileSize + "}";
@@ -1071,13 +1124,21 @@ namespace MeshCentralRouter
         {
             if (transferStatusForm == null) return;
             if (this.InvokeRequired) { this.Invoke(new closeTransferDialogHandler(closeTransferDialog)); return; }
-            transferStatusForm.Close(); transferStatusForm = null;
+            if (transferStatusForm.showingError == false)
+            {
+                // Everything was succesful, close the form
+                transferStatusForm.Close();
+                transferStatusForm = null;
+            } else {
+                // Error are displayed, keep the form open
+                transferStatusForm.transferCompleted();
+            }
         }
 
         private void downloadButton_Click(object sender, EventArgs e)
         {
             // If a transfer is currently active, ignore this.
-            if (uploadActive || downloadActive) return;
+            if (uploadActive || downloadActive || (transferStatusForm != null)) return;
 
             // If any files are going to be overwritten
             int overWriteCount = 0;
@@ -1103,16 +1164,10 @@ namespace MeshCentralRouter
             {
                 FileConfirmOverwriteForm f = new FileConfirmOverwriteForm();
                 if (overWriteCount == 1) { f.mainTextLabel = String.Format(Translate.T(Properties.Resources.OverwriteOneFile), overWriteCount); } else { f.mainTextLabel = String.Format(Translate.T(Properties.Resources.OverwriteXfiles), overWriteCount); }
-                if (f.ShowDialog(this) == DialogResult.OK) { performFileDownload(); }
+                if (f.ShowDialog(this) != DialogResult.OK) return;
             }
-            else
-            {
-                performFileDownload();
-            }
-        }
 
-        private void performFileDownload()
-        {
+            // Perform the download
             downloadFileArrayPtr = 0;
             downloadFileArray = new ArrayList();
             downloadFileSizeArray = new ArrayList();
@@ -1128,11 +1183,12 @@ namespace MeshCentralRouter
             downloadRemotePath = remoteFolder;
             downloadActive = true;
             downloadStop = false;
-            downloadNextFile();
 
             // Show transfer status dialog
             transferStatusForm = new FileTransferStatusForm(this);
             transferStatusForm.Show(this);
+
+            downloadNextFile();
         }
 
         private void downloadNextFile()
@@ -1141,7 +1197,32 @@ namespace MeshCentralRouter
 
             string localFilePath;
             localFilePath = Path.Combine(downloadLocalPath.FullName, (string)downloadFileArray[downloadFileArrayPtr]);
-            try { downloadFileStream = File.OpenWrite(localFilePath); } catch (Exception) { return; }
+            try { downloadFileStream = File.OpenWrite(localFilePath); } catch (Exception) {
+                // Download error, show it in the dialog
+                FileInfo f = new FileInfo(localFilePath);
+                if (transferStatusForm != null) { transferStatusForm.addErrorMessage(String.Format(Translate.T(Properties.Resources.UnableToWriteFileX), f.Name)); }
+
+                // Unable to download the file, skip it.
+                if (downloadFileArray.Count > downloadFileArrayPtr + 1)
+                {
+                    // Download the next file
+                    downloadFileArrayPtr++;
+                    downloadNextFile();
+                }
+                else
+                {
+                    // Done with all files
+                    downloadActive = false;
+                    downloadStop = false;
+                    downloadFileArrayPtr = -1;
+                    downloadFileArray = null;
+                    downloadLocalPath = null;
+                    downloadRemotePath = null;
+                    closeTransferDialog();
+                    localRefresh();
+                }
+                return;
+            }
             downloadFileSize = (int)downloadFileSizeArray[downloadFileArrayPtr];
             downloadFilePtr = 0;
             downloadFileStartTime = DateTime.Now;
@@ -1198,7 +1279,6 @@ namespace MeshCentralRouter
                 wc.SendBinary(bincmd, 0, bincmd.Length);
             }
         }
-
 
         public void downloadCancel()
         {
@@ -1259,28 +1339,54 @@ namespace MeshCentralRouter
 
         private void rightListView_DragEnter(object sender, DragEventArgs e)
         {
-            if (uploadActive || downloadActive) return;
+            if (uploadActive || downloadActive || (transferStatusForm != null)) return;
             if ((node.agentid < 5) && ((remoteFolder == null) || (remoteFolder == ""))) { return; }
             if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;
         }
 
         private void rightListView_DragDrop(object sender, DragEventArgs e)
         {
-            if (uploadActive || downloadActive) return;
+            if (uploadActive || downloadActive || (transferStatusForm != null)) return;
             if ((node.agentid < 5) && ((remoteFolder == null) || (remoteFolder == ""))) { return; }
+            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+
+            // If any files are going to be overwritten
+            int overWriteCount = 0;
+            foreach (string file in files)
+            {
+                FileInfo f = new FileInfo(file);
+                string filename = f.Name;
+                foreach (ListViewItem l2 in rightListView.Items)
+                {
+                    if (l2.ImageIndex == 2)
+                    {
+                        string filename2 = l2.Text;
+                        if (node.agentid < 5) { filename = filename.ToLower(); filename2 = filename2.ToLower(); }
+                        if (filename.Equals(filename2)) { overWriteCount++; }
+                    }
+                }
+            }
+            if (overWriteCount > 0)
+            {
+                FileConfirmOverwriteForm f = new FileConfirmOverwriteForm();
+                if (overWriteCount == 1) { f.mainTextLabel = String.Format(Translate.T(Properties.Resources.OverwriteOneFile), overWriteCount); } else { f.mainTextLabel = String.Format(Translate.T(Properties.Resources.OverwriteXfiles), overWriteCount); }
+                if (f.ShowDialog(this) != DialogResult.OK) return;
+            }
+
+            // Perform the upload
             uploadFileArrayPtr = 0;
             uploadFileArray = new ArrayList();
-            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
             foreach (string file in files) { uploadFileArray.Add(file); }
             uploadLocalPath = null;
             uploadRemotePath = remoteFolder;
             uploadActive = true;
             uploadStop = false;
-            uploadNextFile();
 
             // Show transfer status dialog
             transferStatusForm = new FileTransferStatusForm(this);
             transferStatusForm.Show(this);
+
+            uploadNextFile();
         }
 
         private void leftListView_MouseMove(object sender, MouseEventArgs e)
@@ -1324,14 +1430,40 @@ namespace MeshCentralRouter
 
         private void leftListView_DragEnter(object sender, DragEventArgs e)
         {
-            if (uploadActive || downloadActive || (localFolder == null)) return;
+            if (uploadActive || downloadActive || (localFolder == null) || (transferStatusForm != null)) return;
             if ((e.Data.GetDataPresent("Type") == true) && ((string)e.Data.GetData("Type") == ("MeshCentralRouterRemoteFiles-" + rndString))) { e.Effect = DragDropEffects.Copy; }
         }
 
         private void leftListView_DragDrop(object sender, DragEventArgs e)
         {
-            if (uploadActive || downloadActive) return;
+            if (uploadActive || downloadActive || (transferStatusForm != null)) return;
             if ((e.Data.GetDataPresent("Type") == false) || ((string)e.Data.GetData("Type") != ("MeshCentralRouterRemoteFiles-" + rndString))) return;
+
+            ArrayList files = (ArrayList)e.Data.GetData("RemoteFiles");
+
+            // If any files are going to be overwritten
+            int overWriteCount = 0;
+            foreach (string file in files)
+            {
+                string filename = file;
+                foreach (ListViewItem l2 in leftListView.Items)
+                {
+                    if (l2.ImageIndex == 2)
+                    {
+                        string filename2 = l2.Text;
+                        if (node.agentid < 5) { filename = filename.ToLower(); filename2 = filename2.ToLower(); }
+                        if (filename.Equals(filename2)) { overWriteCount++; }
+                    }
+                }
+            }
+            if (overWriteCount > 0)
+            {
+                FileConfirmOverwriteForm f = new FileConfirmOverwriteForm();
+                if (overWriteCount == 1) { f.mainTextLabel = String.Format(Translate.T(Properties.Resources.OverwriteOneFile), overWriteCount); } else { f.mainTextLabel = String.Format(Translate.T(Properties.Resources.OverwriteXfiles), overWriteCount); }
+                if (f.ShowDialog(this) != DialogResult.OK) return;
+            }
+
+            // Perform downloads
             downloadFileArrayPtr = 0;
             downloadFileArray = (ArrayList)e.Data.GetData("RemoteFiles");
             downloadFileSizeArray = (ArrayList)e.Data.GetData("RemoteSizes");
@@ -1339,11 +1471,12 @@ namespace MeshCentralRouter
             downloadRemotePath = (string)e.Data.GetData("RemoteFolder");
             downloadActive = true;
             downloadStop = false;
-            downloadNextFile();
 
             // Show transfer status dialog
             transferStatusForm = new FileTransferStatusForm(this);
             transferStatusForm.Show(this);
+
+            downloadNextFile();
         }
         private static string getRandomString(int length)
         {
