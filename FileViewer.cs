@@ -41,6 +41,7 @@ namespace MeshCentralRouter
         public string remoteFolder = null;
         public ArrayList remoteFolderList = null;
         private static string rndString = getRandomString(12);
+        private bool skipExistingFiles = false;
 
         // Stats
         public long bytesIn = 0;
@@ -990,23 +991,43 @@ namespace MeshCentralRouter
                 }
             }
 
+            skipExistingFiles = true;
             if (overWriteCount > 0)
             {
                 FileConfirmOverwriteForm f = new FileConfirmOverwriteForm();
                 if (overWriteCount == 1) { f.mainTextLabel = String.Format(Translate.T(Properties.Resources.OverwriteOneFile), overWriteCount); } else { f.mainTextLabel = String.Format(Translate.T(Properties.Resources.OverwriteXfiles), overWriteCount); }
-                if (f.ShowDialog(this) == DialogResult.OK) { performFileUpload(); }
+                if (f.ShowDialog(this) != DialogResult.OK) return;
+                skipExistingFiles = f.skipExistingFiles;
+            }
+
+            uploadFileArrayPtr = 0;
+            uploadFileArray = new ArrayList();
+
+            if (skipExistingFiles == true)
+            {
+                foreach (ListViewItem l in leftListView.SelectedItems) {
+                    if (l.ImageIndex == 2) {
+                        bool overwrite = false;
+                        string filename = l.Text;
+                        foreach (ListViewItem l2 in rightListView.Items)
+                        {
+                            if (l2.ImageIndex == 2)
+                            {
+                                string filename2 = l2.Text;
+                                if (node.agentid < 5) { filename = filename.ToLower(); filename2 = filename2.ToLower(); }
+                                if (filename.Equals(filename2)) { overwrite = true; }
+                            }
+                        }
+                        if (overwrite == false) { uploadFileArray.Add(l.Text); }
+                    }
+                }
             }
             else
             {
-                performFileUpload();
+                foreach (ListViewItem l in leftListView.SelectedItems) { if (l.ImageIndex == 2) { uploadFileArray.Add(l.Text); } }
             }
-        }
-
-        private void performFileUpload()
-        {
-            uploadFileArrayPtr = 0;
-            uploadFileArray = new ArrayList();
-            foreach (ListViewItem l in leftListView.SelectedItems) { if (l.ImageIndex == 2) { uploadFileArray.Add(l.Text); } }
+            
+            if (uploadFileArray.Count == 0) return;
             uploadLocalPath = localFolder;
             uploadRemotePath = remoteFolder;
             uploadActive = true;
@@ -1160,11 +1181,13 @@ namespace MeshCentralRouter
                 }
             }
 
+            skipExistingFiles = true;
             if (overWriteCount > 0)
             {
                 FileConfirmOverwriteForm f = new FileConfirmOverwriteForm();
                 if (overWriteCount == 1) { f.mainTextLabel = String.Format(Translate.T(Properties.Resources.OverwriteOneFile), overWriteCount); } else { f.mainTextLabel = String.Format(Translate.T(Properties.Resources.OverwriteXfiles), overWriteCount); }
                 if (f.ShowDialog(this) != DialogResult.OK) return;
+                skipExistingFiles = f.skipExistingFiles;
             }
 
             // Perform the download
@@ -1175,10 +1198,33 @@ namespace MeshCentralRouter
             {
                 if (l.ImageIndex == 2)
                 {
-                    downloadFileArray.Add(l.Text);
-                    downloadFileSizeArray.Add(int.Parse(l.SubItems[1].Text));
+                    if (skipExistingFiles == false)
+                    {
+                        downloadFileArray.Add(l.Text);
+                        downloadFileSizeArray.Add(int.Parse(l.SubItems[1].Text));
+                    }
+                    else
+                    {
+                        bool overwrite = false;
+                        string filename = l.Text;
+                        foreach (ListViewItem l2 in leftListView.Items)
+                        {
+                            if (l2.ImageIndex == 2)
+                            {
+                                string filename2 = l2.Text;
+                                if (node.agentid < 5) { filename = filename.ToLower(); filename2 = filename2.ToLower(); }
+                                if (filename.Equals(filename2)) { overwrite = true; }
+                            }
+                        }
+                        if (overwrite == false)
+                        {
+                            downloadFileArray.Add(l.Text);
+                            downloadFileSizeArray.Add(int.Parse(l.SubItems[1].Text));
+                        }
+                    }
                 }
             }
+            if (downloadFileArray.Count == 0) return;
             downloadLocalPath = localFolder;
             downloadRemotePath = remoteFolder;
             downloadActive = true;
@@ -1366,17 +1412,43 @@ namespace MeshCentralRouter
                     }
                 }
             }
+            skipExistingFiles = true;
             if (overWriteCount > 0)
             {
                 FileConfirmOverwriteForm f = new FileConfirmOverwriteForm();
                 if (overWriteCount == 1) { f.mainTextLabel = String.Format(Translate.T(Properties.Resources.OverwriteOneFile), overWriteCount); } else { f.mainTextLabel = String.Format(Translate.T(Properties.Resources.OverwriteXfiles), overWriteCount); }
                 if (f.ShowDialog(this) != DialogResult.OK) return;
+                skipExistingFiles = f.skipExistingFiles;
             }
 
             // Perform the upload
             uploadFileArrayPtr = 0;
             uploadFileArray = new ArrayList();
-            foreach (string file in files) { uploadFileArray.Add(file); }
+
+            if (skipExistingFiles == true)
+            {
+                foreach (string file in files)
+                {
+                    bool overwrite = false;
+                    string filename = file;
+                    foreach (ListViewItem l2 in rightListView.Items)
+                    {
+                        if (l2.ImageIndex == 2)
+                        {
+                            string filename2 = l2.Text;
+                            if (node.agentid < 5) { filename = filename.ToLower(); filename2 = filename2.ToLower(); }
+                            if (filename.Equals(filename2)) { overwrite = true; }
+                        }
+                    }
+                    if (overwrite == false) { uploadFileArray.Add(file); }
+                }
+            }
+            else
+            {
+                foreach (string file in files) { uploadFileArray.Add(file); }
+            }
+
+            if (uploadFileArray.Count == 0) return;
             uploadLocalPath = null;
             uploadRemotePath = remoteFolder;
             uploadActive = true;
@@ -1456,17 +1528,51 @@ namespace MeshCentralRouter
                     }
                 }
             }
+            skipExistingFiles = true;
             if (overWriteCount > 0)
             {
                 FileConfirmOverwriteForm f = new FileConfirmOverwriteForm();
                 if (overWriteCount == 1) { f.mainTextLabel = String.Format(Translate.T(Properties.Resources.OverwriteOneFile), overWriteCount); } else { f.mainTextLabel = String.Format(Translate.T(Properties.Resources.OverwriteXfiles), overWriteCount); }
                 if (f.ShowDialog(this) != DialogResult.OK) return;
+                skipExistingFiles = f.skipExistingFiles;
             }
 
             // Perform downloads
             downloadFileArrayPtr = 0;
             downloadFileArray = (ArrayList)e.Data.GetData("RemoteFiles");
             downloadFileSizeArray = (ArrayList)e.Data.GetData("RemoteSizes");
+
+            if (skipExistingFiles == true)
+            {
+                ArrayList downloadFileArray2 = new ArrayList();
+                ArrayList downloadFileSizeArray2 = new ArrayList();
+
+                for (int i = 0; i < downloadFileArray.Count; i++)
+                {
+                    bool overwrite = false;
+                    string filename = (string)downloadFileArray[i];
+                    foreach (ListViewItem l2 in leftListView.Items)
+                    {
+                        if (l2.ImageIndex == 2)
+                        {
+                            string filename2 = l2.Text;
+                            if (node.agentid < 5) { filename = filename.ToLower(); filename2 = filename2.ToLower(); }
+                            if (filename.Equals(filename2)) { overwrite = true; }
+                        }
+                    }
+                    if (overwrite == false)
+                    {
+                        downloadFileArray2.Add(downloadFileArray[i]);
+                        downloadFileSizeArray2.Add(downloadFileSizeArray[i]);
+                    }
+                }
+
+                downloadFileArray = downloadFileArray2;
+                downloadFileSizeArray = downloadFileSizeArray2;
+            }
+
+            if (downloadFileArray.Count == 0) return;
+
             downloadLocalPath = localFolder;
             downloadRemotePath = (string)e.Data.GetData("RemoteFolder");
             downloadActive = true;

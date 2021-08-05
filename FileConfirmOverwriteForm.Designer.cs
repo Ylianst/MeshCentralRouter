@@ -32,6 +32,7 @@
             this.mainLabel = new System.Windows.Forms.Label();
             this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
+            this.skipCheckBox = new System.Windows.Forms.CheckBox();
             this.mainGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -40,10 +41,11 @@
             this.mainGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.mainGroupBox.Controls.Add(this.skipCheckBox);
             this.mainGroupBox.Controls.Add(this.mainLabel);
             this.mainGroupBox.Location = new System.Drawing.Point(12, 12);
             this.mainGroupBox.Name = "mainGroupBox";
-            this.mainGroupBox.Size = new System.Drawing.Size(315, 48);
+            this.mainGroupBox.Size = new System.Drawing.Size(315, 73);
             this.mainGroupBox.TabIndex = 6;
             this.mainGroupBox.TabStop = false;
             this.mainGroupBox.Text = "Confirm Overwrite";
@@ -64,7 +66,7 @@
             this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.okButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.okButton.Location = new System.Drawing.Point(171, 66);
+            this.okButton.Location = new System.Drawing.Point(171, 91);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
             this.okButton.TabIndex = 4;
@@ -77,7 +79,7 @@
             this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.cancelButton.Location = new System.Drawing.Point(252, 66);
+            this.cancelButton.Location = new System.Drawing.Point(252, 91);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 5;
@@ -85,13 +87,23 @@
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
+            // skipCheckBox
+            // 
+            this.skipCheckBox.AutoSize = true;
+            this.skipCheckBox.Location = new System.Drawing.Point(17, 44);
+            this.skipCheckBox.Name = "skipCheckBox";
+            this.skipCheckBox.Size = new System.Drawing.Size(106, 17);
+            this.skipCheckBox.TabIndex = 2;
+            this.skipCheckBox.Text = "Skip existing files";
+            this.skipCheckBox.UseVisualStyleBackColor = true;
+            // 
             // FileConfirmOverwriteForm
             // 
             this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(339, 101);
+            this.ClientSize = new System.Drawing.Size(339, 126);
             this.Controls.Add(this.mainGroupBox);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.cancelButton);
@@ -100,6 +112,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "File Operation";
             this.mainGroupBox.ResumeLayout(false);
+            this.mainGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -110,5 +123,6 @@
         private System.Windows.Forms.Label mainLabel;
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.CheckBox skipCheckBox;
     }
 }
