@@ -387,6 +387,16 @@ namespace MeshCentralRouter.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap folderzip {
+            get {
+                object obj = ResourceManager.GetObject("folderzip", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Gear20 {
             get {
                 object obj = ResourceManager.GetObject("Gear20", resourceCulture);
@@ -1039,6 +1049,15 @@ namespace MeshCentralRouter.Properties {
         internal static string xsecondsleft {
             get {
                 return ResourceManager.GetString("xsecondsleft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ZIP Selected Files.
+        /// </summary>
+        internal static string ZipSelectedFiles {
+            get {
+                return ResourceManager.GetString("ZipSelectedFiles", resourceCulture);
             }
         }
         

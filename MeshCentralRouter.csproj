@@ -100,6 +100,12 @@
     <Compile Include="FileConfirmOverwriteForm.Designer.cs">
       <DependentUpon>FileConfirmOverwriteForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FileDialogMsgForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FileDialogMsgForm.Designer.cs">
+      <DependentUpon>FileDialogMsgForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="LocalPipe.cs" />
     <Compile Include="SshUsernameForm.cs">
       <SubType>Form</SubType>
@@ -265,6 +271,9 @@
     <EmbeddedResource Include="FileConfirmOverwriteForm.resx">
       <DependentUpon>FileConfirmOverwriteForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FileDialogMsgForm.resx">
+      <DependentUpon>FileDialogMsgForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SshUsernameForm.resx">
       <DependentUpon>SshUsernameForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -358,6 +367,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MeshServer.ico" />
+    <None Include="Resources\folderzip.png" />
     <None Include="Resources\arrowleft16.png" />
     <None Include="Resources\arrowright16.png" />
     <None Include="Resources\delete16.png" />

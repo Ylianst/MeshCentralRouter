@@ -50,6 +50,7 @@ namespace MeshCentralRouter
             this.uploadButton = new System.Windows.Forms.Button();
             this.localDeleteButton = new System.Windows.Forms.Button();
             this.localNewFolderButton = new System.Windows.Forms.Button();
+            this.remoteZipButton = new System.Windows.Forms.Button();
             this.topPanel = new System.Windows.Forms.Panel();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.mainToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -62,6 +63,7 @@ namespace MeshCentralRouter
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.remoteContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.renameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.compressToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -225,6 +227,15 @@ namespace MeshCentralRouter
             this.localNewFolderButton.UseVisualStyleBackColor = true;
             this.localNewFolderButton.Click += new System.EventHandler(this.localNewFolderButton_Click);
             // 
+            // remoteZipButton
+            // 
+            resources.ApplyResources(this.remoteZipButton, "remoteZipButton");
+            this.remoteZipButton.Image = global::MeshCentralRouter.Properties.Resources.folderzip;
+            this.remoteZipButton.Name = "remoteZipButton";
+            this.mainToolTip.SetToolTip(this.remoteZipButton, resources.GetString("remoteZipButton.ToolTip"));
+            this.remoteZipButton.UseVisualStyleBackColor = true;
+            this.remoteZipButton.Click += new System.EventHandler(this.remoteZipButton_Click);
+            // 
             // topPanel
             // 
             this.topPanel.BackColor = System.Drawing.SystemColors.Control;
@@ -310,6 +321,7 @@ namespace MeshCentralRouter
             // 
             this.remoteContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.renameToolStripMenuItem,
+            this.compressToolStripMenuItem,
             this.deleteToolStripMenuItem,
             this.toolStripMenuItem1,
             this.refreshToolStripMenuItem});
@@ -322,6 +334,12 @@ namespace MeshCentralRouter
             this.renameToolStripMenuItem.Name = "renameToolStripMenuItem";
             resources.ApplyResources(this.renameToolStripMenuItem, "renameToolStripMenuItem");
             this.renameToolStripMenuItem.Click += new System.EventHandler(this.renameToolStripMenuItem_Click);
+            // 
+            // compressToolStripMenuItem
+            // 
+            this.compressToolStripMenuItem.Name = "compressToolStripMenuItem";
+            resources.ApplyResources(this.compressToolStripMenuItem, "compressToolStripMenuItem");
+            this.compressToolStripMenuItem.Click += new System.EventHandler(this.remoteZipButton_Click);
             // 
             // deleteToolStripMenuItem
             // 
@@ -350,6 +368,7 @@ namespace MeshCentralRouter
             // 
             // rightTopPanel
             // 
+            this.rightTopPanel.Controls.Add(this.remoteZipButton);
             this.rightTopPanel.Controls.Add(this.remoteDeleteButton);
             this.rightTopPanel.Controls.Add(this.remoteRootButton);
             this.rightTopPanel.Controls.Add(this.remoteNewFolderButton);
@@ -531,6 +550,8 @@ namespace MeshCentralRouter
         private ToolStripMenuItem deleteToolStripMenuItem1;
         private ToolStripSeparator toolStripMenuItem2;
         private ToolStripMenuItem refreshToolStripMenuItem1;
+        private ToolStripMenuItem compressToolStripMenuItem;
+        private Button remoteZipButton;
     }
 }
 

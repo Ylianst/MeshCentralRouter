@@ -42,6 +42,7 @@ namespace MeshCentralRouter
         public ArrayList remoteFolderList = null;
         private static string rndString = getRandomString(12);
         private bool skipExistingFiles = false;
+        private FileDialogMsgForm msgForm = null;
 
         // Stats
         public long bytesIn = 0;
@@ -199,10 +200,10 @@ namespace MeshCentralRouter
             remoteUpButton.Enabled = !((remoteFolder == null) || (remoteFolder == ""));
             if (node.agentid < 5) {
                 remoteNewFolderButton.Enabled = !((remoteFolder == null) || (remoteFolder == ""));
-                remoteDeleteButton.Enabled = (!((remoteFolder == null) || (remoteFolder == ""))) && (rightListView.SelectedItems.Count > 0);
+                remoteDeleteButton.Enabled = remoteZipButton.Enabled = (!((remoteFolder == null) || (remoteFolder == ""))) && (rightListView.SelectedItems.Count > 0);
             } else {
                 remoteNewFolderButton.Enabled = true;
-                remoteDeleteButton.Enabled = (rightListView.SelectedItems.Count > 0);
+                remoteDeleteButton.Enabled = remoteZipButton.Enabled = (rightListView.SelectedItems.Count > 0);
             }
 
             if (remoteFolderList != null)
@@ -377,6 +378,29 @@ namespace MeshCentralRouter
         {
             // Send MKDIR command
             string cmd = "{\"action\":\"mkdir\",\"reqid\":2,\"path\":\"" + path.Replace("\\", "/") + "\"}";
+            byte[] bincmd = UTF8Encoding.UTF8.GetBytes(cmd);
+            wc.SendBinary(bincmd, 0, bincmd.Length);
+        }
+
+        public void requestCancel()
+        {
+            string cmd = "{\"action\":\"cancel\"}";
+            byte[] bincmd = UTF8Encoding.UTF8.GetBytes(cmd);
+            wc.SendBinary(bincmd, 0, bincmd.Length);
+            updateMsgForm(null, null, 0);
+        }
+
+        private void requestCreateZipFileFolder(string path, string zip, string[] files)
+        {
+            // Send ZIP command
+            string cmd = "{\"action\":\"zip\",\"reqid\":5,\"path\":\"" + path.Replace("\\", "/") + "\",\"output\":\"" + zip.Replace("\\", "/") + "\",\"files\":[";
+            bool first = true;
+            foreach (string file in files)
+            {
+                if (first) { first = false; } else { cmd += ","; }
+                cmd += "\"" + file + "\"";
+            }
+            cmd += "]}";
             byte[] bincmd = UTF8Encoding.UTF8.GetBytes(cmd);
             wc.SendBinary(bincmd, 0, bincmd.Length);
         }
@@ -573,6 +597,18 @@ namespace MeshCentralRouter
                         remoteRefresh();
                     }
                 }
+                else if ((action == "dialogmessage"))
+                {
+                    // Dialog box message
+                    string msg = null;
+                    string file = null;
+                    int progress = 0;
+                    if (jsonAction.ContainsKey("msg") && (jsonAction["msg"] == null)) { msg = ""; }
+                    else if (jsonAction.ContainsKey("msg") && (jsonAction["msg"].GetType() == typeof(string))) { msg = (string)jsonAction["msg"]; }
+                    if (jsonAction.ContainsKey("file") && (jsonAction["file"].GetType() == typeof(string))) { file = (string)jsonAction["file"]; }
+                    if (jsonAction.ContainsKey("progress") && (jsonAction["progress"].GetType() == typeof(System.Int32))) { progress = (int)jsonAction["progress"]; }
+                    updateMsgForm(msg, file, progress);
+                }
                 else if (reqid == 1)
                 {
                     // Result of a LS command
@@ -580,11 +616,44 @@ namespace MeshCentralRouter
                     if (jsonAction.ContainsKey("dir")) { remoteFolderList = (ArrayList)jsonAction["dir"]; }
                     updateRemoteFileView();
                 }
-            } else
+            }
+            else
             {
                 if (downloadActive) {
                     if (downloadStop) { downloadCancel(); return; }
                     downloadGotBinaryData(data, offset, length);
+                }
+            }
+        }
+
+        public delegate void updateMsgFormHandler(string msg, string file, int progress);
+
+        private void updateMsgForm(string msg, string file, int progress)
+        {
+            if (this.InvokeRequired) { this.Invoke(new updateMsgFormHandler(updateMsgForm), msg, file, progress); return; }
+            if ((msg == null) || (msg == ""))
+            {
+                // Close the dialog box
+                if (msgForm != null) { msgForm.Close(); msgForm = null; remoteRefresh(); }
+            }
+            else
+            {
+                // Open or update the dialog box
+                if (msgForm == null)
+                {
+                    msgForm = new FileDialogMsgForm(this);
+                    msgForm.Show(this);
+                    msgForm.UpdateStatus(msg, file, progress);
+                    if (msgForm.StartPosition == FormStartPosition.CenterParent)
+                    {
+                        var x = Location.X + (Width - msgForm.Width) / 2;
+                        var y = Location.Y + (Height - msgForm.Height) / 2;
+                        msgForm.Location = new Point(Math.Max(x, 0), Math.Max(y, 0));
+                    }
+                }
+                else
+                {
+                    msgForm.UpdateStatus(msg, file, progress);
                 }
             }
         }
@@ -642,6 +711,7 @@ namespace MeshCentralRouter
                     remoteRootButton.Enabled = false;
                     remoteNewFolderButton.Enabled = false;
                     remoteDeleteButton.Enabled = false;
+                    remoteZipButton.Enabled = false;
                     remoteFolder = null;
                     break;
                 case 1: // Connecting
@@ -821,6 +891,21 @@ namespace MeshCentralRouter
             }
         }
 
+        private void remoteZipButton_Click(object sender, EventArgs e)
+        {
+            if (remoteFolder == null) return;
+            FilenamePromptForm f = new FilenamePromptForm(Translate.T(Properties.Resources.ZipSelectedFiles), "");
+            if (f.ShowDialog(this) == DialogResult.OK)
+            {
+                string r = f.filename;
+                if (!r.ToLower().EndsWith(".zip")) { r += ".zip"; }
+                ArrayList filesArray = new ArrayList();
+                foreach (ListViewItem l in rightListView.SelectedItems) { filesArray.Add(l.Text); }
+                string[] files = (string[])filesArray.ToArray(typeof(string));
+                requestCreateZipFileFolder(remoteFolder, r, files);
+            }
+        }
+
         private void localRootButton_Click(object sender, EventArgs e)
         {
             localFolder = null;
@@ -837,11 +922,11 @@ namespace MeshCentralRouter
         {
             if (node.agentid < 5)
             {
-                remoteDeleteButton.Enabled = (!((remoteFolder == null) || (remoteFolder == ""))) && (rightListView.SelectedItems.Count > 0);
+                remoteDeleteButton.Enabled = remoteZipButton.Enabled = (!((remoteFolder == null) || (remoteFolder == ""))) && (rightListView.SelectedItems.Count > 0);
             }
             else
             {
-                remoteDeleteButton.Enabled = (rightListView.SelectedItems.Count > 0);
+                remoteDeleteButton.Enabled = remoteZipButton.Enabled = (rightListView.SelectedItems.Count > 0);
             }
             updateTransferButtons();
         }
@@ -904,16 +989,16 @@ namespace MeshCentralRouter
         {
             if ((rightListView.SelectedItems.Count == 0) || ((node.agentid < 5) && ((remoteFolder == null) || (remoteFolder == ""))))
             {
-                deleteToolStripMenuItem.Visible = toolStripMenuItem1.Visible = renameToolStripMenuItem.Visible = false;
+                deleteToolStripMenuItem.Visible = toolStripMenuItem1.Visible = renameToolStripMenuItem.Visible = compressToolStripMenuItem.Visible = false;
             }
             else if (rightListView.SelectedItems.Count == 1)
             {
-                deleteToolStripMenuItem.Visible = toolStripMenuItem1.Visible = renameToolStripMenuItem.Visible = true;
+                deleteToolStripMenuItem.Visible = toolStripMenuItem1.Visible = renameToolStripMenuItem.Visible = compressToolStripMenuItem.Visible = true;
             }
             else if (rightListView.SelectedItems.Count > 1)
             {
                 renameToolStripMenuItem.Visible = false;
-                deleteToolStripMenuItem.Visible = toolStripMenuItem1.Visible = true;
+                deleteToolStripMenuItem.Visible = toolStripMenuItem1.Visible = compressToolStripMenuItem.Visible = true;
             }
         }
 
