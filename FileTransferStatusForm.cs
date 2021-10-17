@@ -86,13 +86,13 @@ namespace MeshCentralRouter
                 double elapseTimeSeconds = DateTime.Now.Subtract(fileViewer.uploadFileStartTime).TotalMilliseconds / 1000;
                 if (elapseTimeSeconds < 5) { mainLabel2.Text = Translate.T(Properties.Resources.EstimatingDotDotDot); } else
                 {
-                    double bytePerSecond = x / elapseTimeSeconds;
+                    double bytePerSecond = (x - fileViewer.uploadFileStartPtr) / elapseTimeSeconds;
                     double secondsLeft = Math.Round((fileViewer.uploadFileSize - x) / bytePerSecond);
                     mainLabel2.Text = bytePerSecondToString(bytePerSecond) + ", " + secondsLeftToString(secondsLeft);
                 }
 
                 progressBar2.Maximum = fileViewer.uploadFileArray.Count;
-                x = (int)(int)fileViewer.uploadFileSize;
+                x = (int)fileViewer.uploadFileArrayPtr;
                 if (x < 0) { x = 0; }
                 if (x > (int)fileViewer.uploadFileArray.Count) { x = fileViewer.uploadFileArray.Count; }
                 progressBar2.Value = fileViewer.uploadFileArrayPtr;
@@ -116,7 +116,7 @@ namespace MeshCentralRouter
                 }
 
                 progressBar2.Maximum = fileViewer.downloadFileArray.Count;
-                x = (int)(int)fileViewer.downloadFileSize;
+                x = (int)fileViewer.downloadFileArrayPtr;
                 if (x < 0) { x = 0; }
                 if (x > (int)fileViewer.downloadFileArray.Count) { x = fileViewer.downloadFileArray.Count; }
                 progressBar2.Value = fileViewer.downloadFileArrayPtr;

@@ -61,6 +61,7 @@ namespace MeshCentralRouter
         public string uploadRemotePath;
         public FileStream uploadFileStream = null;
         public long uploadFilePtr = 0;
+        public long uploadFileStartPtr = 0;
         public long uploadFileSize = 0;
         public DateTime uploadFileStartTime = DateTime.MinValue;
         public string uploadFileName = null;
@@ -569,6 +570,7 @@ namespace MeshCentralRouter
                 {
                     // Clean up current upload
                     uploadFilePtr = 0;
+                    uploadFileStartPtr = 0;
                     uploadFileSize = 0;
                     if (uploadFileStream != null) { uploadFileStream.Close(); uploadFileStream = null; }
 
@@ -593,6 +595,7 @@ namespace MeshCentralRouter
                         uploadLocalPath = null;
                         uploadRemotePath = null;
                         uploadFilePtr = 0;
+                        uploadFileStartPtr = 0;
                         uploadFileSize = 0;
                         uploadFileName = null;
                         closeTransferDialog();
@@ -664,6 +667,7 @@ namespace MeshCentralRouter
                                 uploadLocalPath = null;
                                 uploadRemotePath = null;
                                 uploadFilePtr = 0;
+                                uploadFileStartPtr = 0;
                                 uploadFileSize = 0;
                                 uploadFileName = null;
                                 closeTransferDialog();
@@ -674,7 +678,7 @@ namespace MeshCentralRouter
                         {
                             // Files are not the same length, append the rest
                             uploadFileStream.Seek(remoteFileSize, SeekOrigin.Begin);
-                            uploadFilePtr = remoteFileSize;
+                            uploadFilePtr = uploadFileStartPtr = remoteFileSize;
 
                             // Send UPLOAD command with append turned on
                             string cmd = "{\"action\":\"upload\",\"reqid\":" + (uploadFileArrayPtr + 1000) + ",\"path\":\"" + uploadRemotePath + "\",\"name\":\"" + name + "\",\"size\":" + uploadFileSize + ",\"append\":true}";
@@ -861,6 +865,7 @@ namespace MeshCentralRouter
             uploadLocalPath = null;
             uploadRemotePath = null;
             uploadFilePtr = 0;
+            uploadFileStartPtr = 0;
             uploadFileSize = 0;
             if (uploadFileStream != null) { uploadFileStream.Close(); uploadFileStream = null; }
 
@@ -1269,6 +1274,7 @@ namespace MeshCentralRouter
                     uploadLocalPath = null;
                     uploadRemotePath = null;
                     uploadFilePtr = 0;
+                    uploadFileStartPtr = 0;
                     uploadFileSize = 0;
                     uploadFileName = null;
                     closeTransferDialog();
@@ -1278,6 +1284,7 @@ namespace MeshCentralRouter
             }
             uploadFileSize = new FileInfo(localFilePath).Length;
             uploadFilePtr = 0;
+            uploadFileStartPtr = 0;
             uploadFileStartTime = DateTime.Now;
             uploadFileName = localFileName;
 
@@ -1316,6 +1323,7 @@ namespace MeshCentralRouter
             uploadLocalPath = null;
             uploadRemotePath = null;
             uploadFilePtr = 0;
+            uploadFileStartPtr = 0;
             uploadFileSize = 0;
             if (uploadFileStream != null) { uploadFileStream.Close(); uploadFileStream = null; }
             closeTransferDialog();
