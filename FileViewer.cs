@@ -56,6 +56,7 @@ namespace MeshCentralRouter
         public bool uploadStop = false;
         public int uploadFileArrayPtr = -1;
         public ArrayList uploadFileArray;
+        public Hashtable uploadFileDuplicateArray;  // Name --> Size
         public DirectoryInfo uploadLocalPath;
         public string uploadRemotePath;
         public FileStream uploadFileStream = null;
@@ -575,7 +576,7 @@ namespace MeshCentralRouter
                     if ((action == "uploaderror") && (transferStatusForm != null)) { transferStatusForm.addErrorMessage(String.Format(Translate.T(Properties.Resources.ErrorUploadingFileX), uploadFileName)); }
 
                     // Check if another file needs to be uploaded
-                    if (uploadFileArray.Count > uploadFileArrayPtr + 1)
+                    if (uploadFileArray.Count > (uploadFileArrayPtr + 1))
                     {
                         // Upload the next file
                         uploadFileArrayPtr++;
@@ -588,6 +589,7 @@ namespace MeshCentralRouter
                         uploadStop = false;
                         uploadFileArrayPtr = -1;
                         uploadFileArray = null;
+                        uploadFileDuplicateArray = null;
                         uploadLocalPath = null;
                         uploadRemotePath = null;
                         uploadFilePtr = 0;
@@ -595,6 +597,97 @@ namespace MeshCentralRouter
                         uploadFileName = null;
                         closeTransferDialog();
                         remoteRefresh();
+                    }
+                }
+                else if (action == "uploadhash")
+                {
+                    if (uploadStop) { uploadCancel(); return; }
+                    string name = null;
+                    if (jsonAction.ContainsKey("name")) { name = (string)jsonAction["name"]; }
+                    string path = null;
+                    if (jsonAction.ContainsKey("path")) { path = (string)jsonAction["path"]; }
+                    string remoteHashHex = null;
+                    if (jsonAction.ContainsKey("hash")) { remoteHashHex = (string)jsonAction["hash"]; }
+                    long remoteFileSize = 0;
+                    if (jsonAction.ContainsKey("tag")) {
+                        if (jsonAction["tag"].GetType() == typeof(int)) { remoteFileSize = (int)jsonAction["tag"]; }
+                        if (jsonAction["tag"].GetType() == typeof(long)) { remoteFileSize = (long)jsonAction["tag"]; }
+                    }
+                    if ((uploadRemotePath != path) || (uploadFileName != name)) { uploadCancel(); return; }
+
+                    // Hash the local file
+                    string localHashHex = null;
+                    try
+                    {
+                        string filePath = Path.Combine(localFolder.FullName, uploadFileName);
+                        using (SHA384 SHA384 = SHA384Managed.Create())
+                        {
+                            uploadFileStream.Seek(0, SeekOrigin.Begin);
+                            byte[] buf = new byte[65536];
+                            long ptr = 0;
+                            int len = 1;
+                            while (len != 0)
+                            {
+                                int l = buf.Length;
+                                if (l > (remoteFileSize - ptr)) { l = (int)(remoteFileSize - ptr); }
+                                if (l == 0) { len = 0; } else { len = uploadFileStream.Read(buf, 0, l); }
+                                if (len > 0) { SHA384.TransformBlock(buf, 0, len, buf, 0); }
+                                ptr += len;
+                            }
+                            SHA384.TransformFinalBlock(buf, 0, 0);
+                            localHashHex = BitConverter.ToString(SHA384.Hash).Replace("-", string.Empty);
+                            uploadFileStream.Seek(0, SeekOrigin.Begin);
+                        }
+                    }
+                    catch (Exception) { }
+
+                    if ((localHashHex != null) && (localHashHex.Equals(remoteHashHex)))
+                    {
+                        if (remoteFileSize == uploadFileStream.Length)
+                        {
+                            // Files are the same length, skip the file.
+                            // Check if another file needs to be uploaded
+                            if (uploadFileArray.Count > (uploadFileArrayPtr + 1))
+                            {
+                                // Upload the next file
+                                uploadFileArrayPtr++;
+                                uploadNextFile();
+                            }
+                            else
+                            {
+                                // Done with all files
+                                uploadActive = false;
+                                uploadStop = false;
+                                uploadFileArrayPtr = -1;
+                                uploadFileArray = null;
+                                uploadFileDuplicateArray = null;
+                                uploadLocalPath = null;
+                                uploadRemotePath = null;
+                                uploadFilePtr = 0;
+                                uploadFileSize = 0;
+                                uploadFileName = null;
+                                closeTransferDialog();
+                                remoteRefresh();
+                            }
+                        }
+                        else
+                        {
+                            // Files are not the same length, append the rest
+                            uploadFileStream.Seek(remoteFileSize, SeekOrigin.Begin);
+                            uploadFilePtr = remoteFileSize;
+
+                            // Send UPLOAD command with append turned on
+                            string cmd = "{\"action\":\"upload\",\"reqid\":" + (uploadFileArrayPtr + 1000) + ",\"path\":\"" + uploadRemotePath + "\",\"name\":\"" + name + "\",\"size\":" + uploadFileSize + ",\"append\":true}";
+                            byte[] bincmd = UTF8Encoding.UTF8.GetBytes(cmd);
+                            wc.SendBinary(bincmd, 0, bincmd.Length);
+                        }
+                    }
+                    else
+                    {
+                        // Send UPLOAD command
+                        string cmd = "{\"action\":\"upload\",\"reqid\":" + (uploadFileArrayPtr + 1000) + ",\"path\":\"" + uploadRemotePath + "\",\"name\":\"" + name + "\",\"size\":" + uploadFileSize + "}";
+                        byte[] bincmd = UTF8Encoding.UTF8.GetBytes(cmd);
+                        wc.SendBinary(bincmd, 0, bincmd.Length);
                     }
                 }
                 else if ((action == "dialogmessage"))
@@ -764,6 +857,7 @@ namespace MeshCentralRouter
             uploadStop = false;
             uploadFileArrayPtr = -1;
             uploadFileArray = null;
+            uploadFileDuplicateArray = null;
             uploadLocalPath = null;
             uploadRemotePath = null;
             uploadFilePtr = 0;
@@ -1087,29 +1181,40 @@ namespace MeshCentralRouter
 
             uploadFileArrayPtr = 0;
             uploadFileArray = new ArrayList();
+            uploadFileDuplicateArray = new Hashtable();
 
-            if (skipExistingFiles == true)
+            foreach (ListViewItem l in leftListView.SelectedItems)
             {
-                foreach (ListViewItem l in leftListView.SelectedItems) {
-                    if (l.ImageIndex == 2) {
-                        bool overwrite = false;
-                        string filename = l.Text;
-                        foreach (ListViewItem l2 in rightListView.Items)
+                if (l.ImageIndex == 2)
+                {
+                    bool overwrite = false;
+                    bool overwriteNotLarger = false;
+                    long remoteLength = 0;
+                    string filename = l.Text;
+                    foreach (ListViewItem l2 in rightListView.Items)
+                    {
+                        if (l2.ImageIndex == 2)
                         {
-                            if (l2.ImageIndex == 2)
-                            {
-                                string filename2 = l2.Text;
-                                if (node.agentid < 5) { filename = filename.ToLower(); filename2 = filename2.ToLower(); }
-                                if (filename.Equals(filename2)) { overwrite = true; }
+                            string filename2 = l2.Text;
+                            if (node.agentid < 5) { filename = filename.ToLower(); filename2 = filename2.ToLower(); }
+                            if (filename.Equals(filename2)) {
+                                overwrite = true;
+                                if (skipExistingFiles == false)
+                                {
+                                    long localLength = new FileInfo(Path.Combine(localFolder.FullName, l.Text)).Length;
+                                    remoteLength = long.Parse(l2.SubItems[1].Text);
+                                    if (localLength >= remoteLength) { overwriteNotLarger = true; }
+                                }
+                                break;
                             }
                         }
-                        if (overwrite == false) { uploadFileArray.Add(l.Text); }
+                    }
+                    if ((skipExistingFiles == false) || (overwrite == false))
+                    {
+                        uploadFileArray.Add(l.Text);
+                        if (overwriteNotLarger) { uploadFileDuplicateArray.Add(Path.Combine(localFolder.FullName, l.Text), remoteLength); }
                     }
                 }
-            }
-            else
-            {
-                foreach (ListViewItem l in leftListView.SelectedItems) { if (l.ImageIndex == 2) { uploadFileArray.Add(l.Text); } }
             }
             
             if (uploadFileArray.Count == 0) return;
@@ -1147,7 +1252,7 @@ namespace MeshCentralRouter
 
                 // Skip to the next file
                 // Check if another file needs to be uploaded
-                if (uploadFileArray.Count > uploadFileArrayPtr + 1)
+                if (uploadFileArray.Count > (uploadFileArrayPtr + 1))
                 {
                     // Upload the next file
                     uploadFileArrayPtr++;
@@ -1160,6 +1265,7 @@ namespace MeshCentralRouter
                     uploadStop = false;
                     uploadFileArrayPtr = -1;
                     uploadFileArray = null;
+                    uploadFileDuplicateArray = null;
                     uploadLocalPath = null;
                     uploadRemotePath = null;
                     uploadFilePtr = 0;
@@ -1175,10 +1281,21 @@ namespace MeshCentralRouter
             uploadFileStartTime = DateTime.Now;
             uploadFileName = localFileName;
 
-            // Send UPLOAD command
-            string cmd = "{\"action\":\"upload\",\"reqid\":" + (uploadFileArrayPtr + 1000) + ",\"path\":\"" + uploadRemotePath + "\",\"name\":\"" + localFileName + "\",\"size\":" + uploadFileSize + "}";
-            byte[] bincmd = UTF8Encoding.UTF8.GetBytes(cmd);
-            wc.SendBinary(bincmd, 0, bincmd.Length);
+            // Check if the files already exist on the remote side
+            if (uploadFileDuplicateArray[localFilePath] != null)
+            {
+                // Send UPLOADHASH command
+                string cmd = "{\"action\":\"uploadhash\",\"reqid\":" + (uploadFileArrayPtr + 1000) + ",\"path\":\"" + uploadRemotePath + "\",\"name\":\"" + localFileName + "\",\"tag\":" + uploadFileDuplicateArray[localFilePath] + "}";
+                byte[] bincmd = UTF8Encoding.UTF8.GetBytes(cmd);
+                wc.SendBinary(bincmd, 0, bincmd.Length);
+            }
+            else
+            {
+                // Send UPLOAD command
+                string cmd = "{\"action\":\"upload\",\"reqid\":" + (uploadFileArrayPtr + 1000) + ",\"path\":\"" + uploadRemotePath + "\",\"name\":\"" + localFileName + "\",\"size\":" + uploadFileSize + "}";
+                byte[] bincmd = UTF8Encoding.UTF8.GetBytes(cmd);
+                wc.SendBinary(bincmd, 0, bincmd.Length);
+            }
         }
 
         public void uploadCancel()
@@ -1195,6 +1312,7 @@ namespace MeshCentralRouter
             uploadStop = false;
             uploadFileArrayPtr = -1;
             uploadFileArray = null;
+            uploadFileDuplicateArray = null;
             uploadLocalPath = null;
             uploadRemotePath = null;
             uploadFilePtr = 0;
@@ -1509,28 +1627,36 @@ namespace MeshCentralRouter
             // Perform the upload
             uploadFileArrayPtr = 0;
             uploadFileArray = new ArrayList();
+            uploadFileDuplicateArray = new Hashtable();
 
-            if (skipExistingFiles == true)
+            foreach (string file in files)
             {
-                foreach (string file in files)
+                bool overwrite = false;
+                bool overwriteNotLarger = false;
+                long remoteLength = 0;
+                string filename = Path.GetFileName(file);
+                foreach (ListViewItem l2 in rightListView.Items)
                 {
-                    bool overwrite = false;
-                    string filename = file;
-                    foreach (ListViewItem l2 in rightListView.Items)
+                    if (l2.ImageIndex == 2)
                     {
-                        if (l2.ImageIndex == 2)
-                        {
-                            string filename2 = l2.Text;
-                            if (node.agentid < 5) { filename = filename.ToLower(); filename2 = filename2.ToLower(); }
-                            if (filename.Equals(filename2)) { overwrite = true; }
+                        string filename2 = l2.Text;
+                        if (node.agentid < 5) { filename = filename.ToLower(); filename2 = filename2.ToLower(); }
+                        if (filename.Equals(filename2)) {
+                            overwrite = true;
+                            if (skipExistingFiles == false)
+                            {
+                                long localLength = new FileInfo(file).Length;
+                                remoteLength = long.Parse(l2.SubItems[1].Text);
+                                if (localLength >= remoteLength) { overwriteNotLarger = true; }
+                            }
+                            break;
                         }
                     }
-                    if (overwrite == false) { uploadFileArray.Add(file); }
                 }
-            }
-            else
-            {
-                foreach (string file in files) { uploadFileArray.Add(file); }
+                if ((skipExistingFiles == false) || (overwrite == false)) {
+                    uploadFileArray.Add(file);
+                    if (overwriteNotLarger) { uploadFileDuplicateArray.Add(file, remoteLength); }
+                }
             }
 
             if (uploadFileArray.Count == 0) return;
