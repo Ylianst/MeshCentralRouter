@@ -43,6 +43,7 @@ namespace MeshCentralRouter
         private bool accmask = false;
         private int acclen = 0;
         private bool proxyInUse = false;
+        private Uri proxyUri = null;
         private string tlsCertFingerprint = null;
         //private ConnectionErrors lastError = ConnectionErrors.NoError;
         public bool debug = false;
@@ -134,30 +135,11 @@ namespace MeshCentralRouter
             SetState(ConnectionStates.Connecting);
             this.url = url;
             if (tlsCertFingerprint != null) { this.tlsCertFingerprint = tlsCertFingerprint.ToUpper(); }
-            Uri proxyUri = null;
+            
 
             Log("Websocket Start, URL=" + ((url == null) ? "(NULL)" : url.ToString()));
 
-            // Check if we need to use a HTTP proxy (Auto-proxy way)
-            try
-            {
-                RegistryKey registryKey = Registry.CurrentUser.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings", true);
-                Object x = registryKey.GetValue("AutoConfigURL", null);
-                if ((x != null) && (x.GetType() == typeof(string)))
-                {
-                    string proxyStr = GetProxyForUrlUsingPac("http" + ((url.Port == 80) ? "" : "s") + "://" + url.Host + ":" + url.Port, x.ToString());
-                    if (proxyStr != null) { proxyUri = new Uri("http://" + proxyStr); }
-                }
-            }
-            catch (Exception) { proxyUri = null; }
-
-            // Check if we need to use a HTTP proxy (Normal way)
-            if (proxyUri == null)
-            {
-                var proxy = System.Net.HttpWebRequest.GetSystemWebProxy();
-                proxyUri = proxy.GetProxy(url);
-                if ((url.Host.ToLower() == proxyUri.Host.ToLower()) && (url.Port == proxyUri.Port)) { proxyUri = null; }
-            }
+            proxyUri = Win32Api.GetProxy(url);
 
             if (proxyUri != null)
             {
@@ -201,7 +183,17 @@ namespace MeshCentralRouter
             {
                 // Send proxy connection request
                 wsrawstream = wsclient.GetStream();
-                byte[] proxyRequestBuf = UTF8Encoding.UTF8.GetBytes("CONNECT " + url.Host + ":" + url.Port + " HTTP/1.1\r\nHost: " + url.Host + ":" + url.Port + "\r\n\r\n");
+
+                string userCreds = proxyUri.UserInfo;
+                string basicAuth = "";
+                if (userCreds.Length > 0)
+                {
+                    // Base64 encode for basic authentication
+                    userCreds = System.Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes(userCreds));
+                    basicAuth = "\r\nProxy-Authorization: Basic " + userCreds;
+                }
+
+                byte[] proxyRequestBuf = UTF8Encoding.UTF8.GetBytes("CONNECT " + url.Host + ":" + url.Port + " HTTP/1.1\r\nHost: " + url.Host + ":" + url.Port + basicAuth + "\r\n\r\n");
                 wsrawstream.Write(proxyRequestBuf, 0, proxyRequestBuf.Length);
                 wsrawstream.BeginRead(readBuffer, readBufferLen, readBuffer.Length - readBufferLen, new AsyncCallback(OnProxyResponseSink), this);
             }

@@ -99,31 +99,6 @@ namespace MeshCentralRouter
             try { return Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\OpenSource\MeshRouter", name, "").ToString(); } catch (Exception) { return ""; }
         }
 
-        public static string GetProxyForUrlUsingPac(string DestinationUrl, string PacUri)
-        {
-            IntPtr WinHttpSession = Win32Api.WinHttpOpen("User", Win32Api.WINHTTP_ACCESS_TYPE_DEFAULT_PROXY, IntPtr.Zero, IntPtr.Zero, 0);
-
-            Win32Api.WINHTTP_AUTOPROXY_OPTIONS ProxyOptions = new Win32Api.WINHTTP_AUTOPROXY_OPTIONS();
-            Win32Api.WINHTTP_PROXY_INFO ProxyInfo = new Win32Api.WINHTTP_PROXY_INFO();
-
-            ProxyOptions.dwFlags = Win32Api.WINHTTP_AUTOPROXY_CONFIG_URL;
-            ProxyOptions.dwAutoDetectFlags = (Win32Api.WINHTTP_AUTO_DETECT_TYPE_DHCP | Win32Api.WINHTTP_AUTO_DETECT_TYPE_DNS_A);
-            ProxyOptions.lpszAutoConfigUrl = PacUri;
-
-            // Get Proxy 
-            bool IsSuccess = Win32Api.WinHttpGetProxyForUrl(WinHttpSession, DestinationUrl, ref ProxyOptions, ref ProxyInfo);
-            Win32Api.WinHttpCloseHandle(WinHttpSession);
-
-            if (IsSuccess)
-            {
-                return ProxyInfo.lpszProxy;
-            }
-            else
-            {
-                Console.WriteLine("Error: {0}", Win32Api.GetLastError());
-                return null;
-            }
-        }
 
         // Parse the URL query parameters and returns a collection
         public static NameValueCollection GetQueryStringParameters()
@@ -722,6 +697,7 @@ namespace MeshCentralRouter
             private bool accmask = false;
             private int acclen = 0;
             private bool proxyInUse = false;
+            private Uri proxyUri = null;
             private string user = null;
             private string pass = null;
             private string token = null;
@@ -752,31 +728,17 @@ namespace MeshCentralRouter
                 this.user = user;
                 this.pass = pass;
                 this.token = token;
-                Uri proxyUri = null;
+                this.proxyUri = null;
 
-                // Check if we need to use a HTTP proxy (Auto-proxy way)
-                try {
-                    RegistryKey registryKey = Registry.CurrentUser.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings", true);
-                    Object x = registryKey.GetValue("AutoConfigURL", null);
-                    if ((x != null) && (x.GetType() == typeof(string))) {
-                        string proxyStr = GetProxyForUrlUsingPac("http" + ((url.Port == 80) ? "" : "s") + "://" + url.Host + ":" + url.Port, x.ToString());
-                        if (proxyStr != null) { proxyUri = new Uri("http://" + proxyStr); }
-                    }
-                } catch (Exception) { proxyUri = null; }
-
-                // Check if we need to use a HTTP proxy (Normal way)
-                if (proxyUri == null) {
-                    var proxy = System.Net.HttpWebRequest.GetSystemWebProxy();
-                    proxyUri = proxy.GetProxy(url);
-                    if ((url.Host.ToLower() == proxyUri.Host.ToLower()) && (url.Port == proxyUri.Port)) { proxyUri = null; }
-                }
+                this.proxyUri = Win32Api.GetProxy(url);
 
                 if (proxyUri != null)
                 {
                     // Proxy in use
                     proxyInUse = true;
                     wsclient = new TcpClient();
-                    Debug("Connecting with proxy in use: " + proxyUri.ToString());
+                    // This may log proxy password to debug log
+                    Debug("Connecting with proxy in use: " + proxyUri.ToString()); 
                     wsclient.BeginConnect(proxyUri.Host, proxyUri.Port, new AsyncCallback(OnConnectSink), this);
                 }
                 else
@@ -808,7 +770,16 @@ namespace MeshCentralRouter
                 {
                     // Send proxy connection request
                     wsrawstream = wsclient.GetStream();
-                    byte[] proxyRequestBuf = UTF8Encoding.UTF8.GetBytes("CONNECT " + url.Host + ":" + url.Port + " HTTP/1.1\r\nHost: " + url.Host + ":" + url.Port + "\r\n\r\n");
+                    string userCreds = proxyUri.UserInfo;
+                    string basicAuth = "";
+                    if (userCreds.Length > 0)
+                    {
+                        // Base64 encode for basic authentication
+                        userCreds = System.Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes(userCreds));
+                        basicAuth = "\r\nProxy-Authorization: Basic " + userCreds;
+                    }
+
+                    byte[] proxyRequestBuf = UTF8Encoding.UTF8.GetBytes("CONNECT " + url.Host + ":" + url.Port + " HTTP/1.1\r\nHost: " + url.Host + ":" + url.Port + basicAuth + "\r\n\r\n");
                     TlsDump("OutRaw", proxyRequestBuf, 0, proxyRequestBuf.Length);
                     try { wsrawstream.Write(proxyRequestBuf, 0, proxyRequestBuf.Length); } catch (Exception ex) { Debug(ex.ToString()); }
                     wsrawstream.BeginRead(readBuffer, readBufferLen, readBuffer.Length - readBufferLen, new AsyncCallback(OnProxyResponseSink), this);
