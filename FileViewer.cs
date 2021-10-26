@@ -327,7 +327,8 @@ namespace MeshCentralRouter
             wc.onStateChanged += Wc_onStateChanged;
             wc.onBinaryData += Wc_onBinaryData;
             wc.onStringData += Wc_onStringData;
-            wc.Start(u, server.wshash);
+            wc.TLSCertCheck = webSocketClient.TLSCertificateCheck.Fingerprint;
+            wc.Start(u, server.wshash, null);
         }
 
         private void Wc_onStateChanged(webSocketClient sender, webSocketClient.ConnectionStates wsstate)
@@ -1250,7 +1251,7 @@ namespace MeshCentralRouter
                 localFilePath = (string)uploadFileArray[uploadFileArrayPtr];
                 localFileName = Path.GetFileName(localFilePath);
             }
-            try { uploadFileStream = File.OpenRead(localFilePath); } catch (Exception ex)
+            try { uploadFileStream = File.OpenRead(localFilePath); } catch (Exception)
             {
                 // Display the error
                 if (transferStatusForm != null) { transferStatusForm.addErrorMessage(String.Format(Translate.T(Properties.Resources.UnableToOpenFileX), localFileName)); }

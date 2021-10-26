@@ -170,11 +170,32 @@ namespace MeshCentralRouter
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         private static extern Int32 SendMessage(IntPtr hWnd, int msg, int wParam, [MarshalAs(UnmanagedType.LPWStr)]string lParam);
 
+        private bool RemoteCertificateValidationCallback(object sender, X509Certificate certificate, X509Chain chain, System.Net.Security.SslPolicyErrors sslPolicyErrors)
+        {
+            if (meshcentral.ignoreCert) return true;
+            if (meshcentral.connectionState < 2)
+            {
+                // Normal certificate check
+                if (chain.Build(new X509Certificate2(certificate)) == true) { meshcentral.certHash = webSocketClient.GetMeshKeyHash(certificate); return true; }
+                if ((meshcentral.okCertHash != null) && ((meshcentral.okCertHash == certificate.GetCertHashString()) || (meshcentral.okCertHash == webSocketClient.GetMeshKeyHash(certificate)) || (meshcentral.okCertHash == webSocketClient.GetMeshCertHash(certificate)))) { meshcentral.certHash = webSocketClient.GetMeshKeyHash(certificate);  return true; }
+                if ((meshcentral.okCertHash2 != null) && ((meshcentral.okCertHash2 == certificate.GetCertHashString()) || (meshcentral.okCertHash2 == webSocketClient.GetMeshKeyHash(certificate)) || (meshcentral.okCertHash2 == webSocketClient.GetMeshCertHash(certificate)))) { meshcentral.certHash = webSocketClient.GetMeshKeyHash(certificate); return true; }
+                meshcentral.certHash = null;
+                meshcentral.disconnectMsg = "cert";
+                meshcentral.disconnectCert = new X509Certificate2(certificate);
+            }
+            else
+            {
+                if ((meshcentral.certHash != null) && ((meshcentral.certHash == certificate.GetCertHashString()) || (meshcentral.certHash == webSocketClient.GetMeshKeyHash(certificate)) || (meshcentral.certHash == webSocketClient.GetMeshCertHash(certificate)))) { return true; }
+            }
+            return false;
+        }
+
 
         public MainForm(string[] args)
         {
             // Set TLS 1.2
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            ServicePointManager.ServerCertificateValidationCallback = new System.Net.Security.RemoteCertificateValidationCallback(RemoteCertificateValidationCallback);
 
             this.args = args;
             InitializeComponent();
@@ -215,6 +236,7 @@ namespace MeshCentralRouter
                 if (arg.ToLower() == "-all") { inaddrany = true; }
                 if (arg.ToLower() == "-inaddrany") { inaddrany = true; }
                 if (arg.ToLower() == "-tray") { notifyIcon.Visible = true; this.ShowInTaskbar = false; this.MinimizeBox = false; }
+                if (arg.ToLower() == "-nonative") { webSocketClient.nativeWebSocketFirst = false; }
                 if (arg.Length > 6 && arg.Substring(0, 6).ToLower() == "-host:") { serverNameComboBox.Text = arg.Substring(6); argflags |= 1; }
                 if (arg.Length > 6 && arg.Substring(0, 6).ToLower() == "-user:") { userNameTextBox.Text = arg.Substring(6); argflags |= 2; }
                 if (arg.Length > 6 && arg.Substring(0, 6).ToLower() == "-pass:") { passwordTextBox.Text = arg.Substring(6); argflags |= 4; }

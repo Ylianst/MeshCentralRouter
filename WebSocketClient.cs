@@ -18,9 +18,12 @@ using System;
 using System.IO;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Net.Sockets;
 using System.Net.Security;
+using System.Net.WebSockets;
 using System.IO.Compression;
+using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
@@ -30,6 +33,9 @@ namespace MeshCentralRouter
 {
     public class webSocketClient : IDisposable
     {
+        private ClientWebSocket ws = null; // Native Windows WebSocket
+        private CancellationTokenSource CTS;
+
         public bool AllowCompression = true;
         private TcpClient wsclient = null;
         private SslStream wsstream = null;
@@ -44,10 +50,11 @@ namespace MeshCentralRouter
         private int acclen = 0;
         private bool proxyInUse = false;
         private string tlsCertFingerprint = null;
+        private string tlsCertFingerprint2 = null;
         //private ConnectionErrors lastError = ConnectionErrors.NoError;
         public bool debug = false;
-        public bool xignoreCert = false;
-        public string extraHeaders = null;
+        public bool tlsdump = false;
+        public Dictionary<string, string> extraHeaders = null;
         private MemoryStream inflateMemory;
         private DeflateStream inflate;
         private MemoryStream deflateMemory;
@@ -64,6 +71,10 @@ namespace MeshCentralRouter
         private bool shouldRead = false;
         private RNGCryptoServiceProvider CryptoRandom = new RNGCryptoServiceProvider();
         private object mainLock = new object();
+        public TLSCertificateCheck TLSCertCheck = TLSCertificateCheck.Verify;
+        public X509Certificate2 failedTlsCert = null;
+        static public bool nativeWebSocketFirst = true;
+
 
         // Outside variables
         public object tag = null;
@@ -79,10 +90,19 @@ namespace MeshCentralRouter
             Connected = 2
         }
 
+        public enum TLSCertificateCheck
+        {
+            Ignore = 0,
+            Fingerprint = 1,
+            Verify = 2
+        }
+
         public enum ConnectionErrors
         {
             NoError = 0
         }
+
+        private void TlsDump(string direction, byte[] data, int offset, int len) { if (tlsdump) { try { File.AppendAllText("debug.log", direction + ": " + BitConverter.ToString(data, offset, len).Replace("-", string.Empty) + "\r\n"); } catch (Exception) { } } }
 
         public delegate void onBinaryDataHandler(webSocketClient sender, byte[] data, int offset, int length, int orglen);
         public event onBinaryDataHandler onBinaryData;
@@ -97,12 +117,7 @@ namespace MeshCentralRouter
 
         public ConnectionStates State { get { return state; } }
 
-        public X509Certificate RemoteCertificate {
-            get
-            {
-                try { return wsstream.RemoteCertificate; } catch (Exception) { return null; }
-            }
-        }
+        public X509Certificate RemoteCertificate { get { try { return wsstream.RemoteCertificate; } catch (Exception) { return null; } } }
 
         private void SetState(ConnectionStates newstate)
         {
@@ -113,6 +128,17 @@ namespace MeshCentralRouter
 
         public void Dispose()
         {
+            if (ws != null)
+            {
+                if (ws.State == WebSocketState.Open)
+                {
+                    CTS.CancelAfter(TimeSpan.FromSeconds(2));
+                    ws.CloseOutputAsync(WebSocketCloseStatus.Empty, "", CancellationToken.None);
+                    ws.CloseAsync(WebSocketCloseStatus.NormalClosure, "", CancellationToken.None);
+                }
+                try { if (ws != null) { ws.Dispose(); ws = null; } } catch (Exception) { }
+                try { if (CTS != null) { CTS.Dispose(); CTS = null; } } catch (Exception) { }
+            }
             if (pingTimer != null) { pingTimer.Dispose(); pingTimer = null; }
             if (pongTimer != null) { pongTimer.Dispose(); pongTimer = null; }
             if (wsstream != null) { try { wsstream.Close(); } catch (Exception) { } try { wsstream.Dispose(); } catch (Exception) { } wsstream = null; }
@@ -128,56 +154,91 @@ namespace MeshCentralRouter
             if (debug) { try { File.AppendAllText("debug.log", DateTime.Now.ToString("HH:mm:tt.ffff") + ": WebSocket: " + msg + "\r\n"); } catch (Exception) { } }
         }
 
-        public bool Start(Uri url, string tlsCertFingerprint)
+        private async Task ConnectAsync(Uri url)
+        {
+            if (CTS != null) CTS.Dispose();
+            CTS = new CancellationTokenSource();
+            try { await ws.ConnectAsync(url, CTS.Token); } catch (Exception) { SetState(0); return; }
+            await Task.Factory.StartNew(ReceiveLoop, CTS.Token, TaskCreationOptions.LongRunning, TaskScheduler.Default);
+        }
+
+        public async Task DisconnectAsync()
+        {
+            if (ws == null) return;
+            if (ws.State == WebSocketState.Open)
+            {
+                CTS.CancelAfter(TimeSpan.FromSeconds(2));
+                await ws.CloseOutputAsync(WebSocketCloseStatus.Empty, "", CancellationToken.None);
+                await ws.CloseAsync(WebSocketCloseStatus.NormalClosure, "", CancellationToken.None);
+            }
+            ws.Dispose();
+            ws = null;
+            CTS.Dispose();
+            CTS = null;
+        }
+
+        public bool Start(Uri url, string tlsCertFingerprint, string tlsCertFingerprint2)
         {
             if (state != ConnectionStates.Disconnected) return false;
             SetState(ConnectionStates.Connecting);
             this.url = url;
             if (tlsCertFingerprint != null) { this.tlsCertFingerprint = tlsCertFingerprint.ToUpper(); }
-            Uri proxyUri = null;
+            if (tlsCertFingerprint2 != null) { this.tlsCertFingerprint2 = tlsCertFingerprint2.ToUpper(); }
 
-            Log("Websocket Start, URL=" + ((url == null) ? "(NULL)" : url.ToString()));
-
-            // Check if we need to use a HTTP proxy (Auto-proxy way)
-            try
+            if (nativeWebSocketFirst) { try { ws = new ClientWebSocket(); } catch (Exception) { } }
+            if (ws != null)
             {
-                RegistryKey registryKey = Registry.CurrentUser.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings", true);
-                Object x = registryKey.GetValue("AutoConfigURL", null);
-                if ((x != null) && (x.GetType() == typeof(string)))
-                {
-                    string proxyStr = GetProxyForUrlUsingPac("http" + ((url.Port == 80) ? "" : "s") + "://" + url.Host + ":" + url.Port, x.ToString());
-                    if (proxyStr != null) { proxyUri = new Uri("http://" + proxyStr); }
-                }
-            }
-            catch (Exception) { proxyUri = null; }
-
-            // Check if we need to use a HTTP proxy (Normal way)
-            if (proxyUri == null)
-            {
-                var proxy = System.Net.HttpWebRequest.GetSystemWebProxy();
-                proxyUri = proxy.GetProxy(url);
-                if ((url.Host.ToLower() == proxyUri.Host.ToLower()) && (url.Port == proxyUri.Port)) { proxyUri = null; }
-            }
-
-            if (proxyUri != null)
-            {
-                // Proxy in use
-                Log("Websocket proxyUri: " + proxyUri.ToString());
-                proxyInUse = true;
-                wsclient = new TcpClient();
-                wsclient.BeginConnect(proxyUri.Host, proxyUri.Port, new AsyncCallback(OnConnectSink), this);
+                // Use Windows native websockets
+                Log("Websocket (native) Start, URL=" + ((url == null) ? "(NULL)" : url.ToString()));
+                if (extraHeaders != null) { foreach (var key in extraHeaders.Keys) { ws.Options.SetRequestHeader(key, extraHeaders[key]); } }
+                Task t = ConnectAsync(url);
             }
             else
             {
-                // No proxy in use
-                Log("Websocket noProxy");
-                proxyInUse = false;
-                wsclient = new TcpClient();
-                string h = url.Host;
-                if (h.StartsWith("[") && h.EndsWith("]")) { h = h.Substring(1, h.Length - 2); }
-                wsclient.BeginConnect(h, url.Port, new AsyncCallback(OnConnectSink), this);
-            }
+                // Use C# coded websockets
+                Uri proxyUri = null;
+                Log("Websocket Start, URL=" + ((url == null) ? "(NULL)" : url.ToString()));
 
+                // Check if we need to use a HTTP proxy (Auto-proxy way)
+                try
+                {
+                    RegistryKey registryKey = Registry.CurrentUser.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings", true);
+                    Object x = registryKey.GetValue("AutoConfigURL", null);
+                    if ((x != null) && (x.GetType() == typeof(string)))
+                    {
+                        string proxyStr = GetProxyForUrlUsingPac("http" + ((url.Port == 80) ? "" : "s") + "://" + url.Host + ":" + url.Port, x.ToString());
+                        if (proxyStr != null) { proxyUri = new Uri("http://" + proxyStr); }
+                    }
+                }
+                catch (Exception) { proxyUri = null; }
+
+                // Check if we need to use a HTTP proxy (Normal way)
+                if (proxyUri == null)
+                {
+                    var proxy = System.Net.HttpWebRequest.GetSystemWebProxy();
+                    proxyUri = proxy.GetProxy(url);
+                    if ((url.Host.ToLower() == proxyUri.Host.ToLower()) && (url.Port == proxyUri.Port)) { proxyUri = null; }
+                }
+
+                if (proxyUri != null)
+                {
+                    // Proxy in use
+                    Log("Websocket proxyUri: " + proxyUri.ToString());
+                    proxyInUse = true;
+                    wsclient = new TcpClient();
+                    wsclient.BeginConnect(proxyUri.Host, proxyUri.Port, new AsyncCallback(OnConnectSink), this);
+                }
+                else
+                {
+                    // No proxy in use
+                    Log("Websocket noProxy");
+                    proxyInUse = false;
+                    wsclient = new TcpClient();
+                    string h = url.Host;
+                    if (h.StartsWith("[") && h.EndsWith("]")) { h = h.Substring(1, h.Length - 2); }
+                    wsclient.BeginConnect(h, url.Port, new AsyncCallback(OnConnectSink), this);
+                }
+            }
             return true;
         }
 
@@ -296,13 +357,20 @@ namespace MeshCentralRouter
             pendingSendBuffer = new MemoryStream();
             pendingSendCall = false;
 
+            // Build extra headers
+            string extraHeadersStr = "";
+            if (extraHeaders != null)
+            {
+                foreach (string key in extraHeaders.Keys) { extraHeadersStr += key + ": " + extraHeaders[key] + "\r\n"; }
+            }
+
             // Send the HTTP headers
             Log("Websocket TLS setup, sending HTTP header...");
             string header;
             if (AllowCompression) {
-                header = "GET " + url.PathAndQuery + " HTTP/1.1\r\nHost: " + url.Host + "\r\nUpgrade: websocket\r\nConnection: Upgrade\r\nSec-WebSocket-Key: dGhlIHNhbXBsZSBub25jZQ==\r\nSec-WebSocket-Version: 13\r\nSec-WebSocket-Extensions: permessage-deflate; client_no_context_takeover\r\n" + extraHeaders + "\r\n";
+                header = "GET " + url.PathAndQuery + " HTTP/1.1\r\nHost: " + url.Host + "\r\nUpgrade: websocket\r\nConnection: Upgrade\r\nSec-WebSocket-Key: dGhlIHNhbXBsZSBub25jZQ==\r\nSec-WebSocket-Version: 13\r\nSec-WebSocket-Extensions: permessage-deflate; client_no_context_takeover\r\n" + extraHeadersStr + "\r\n";
             } else {
-                header = "GET " + url.PathAndQuery + " HTTP/1.1\r\nHost: " + url.Host + "\r\nUpgrade: websocket\r\nConnection: Upgrade\r\nSec-WebSocket-Key: dGhlIHNhbXBsZSBub25jZQ==\r\nSec-WebSocket-Version: 13\r\n" + extraHeaders + "\r\n";
+                header = "GET " + url.PathAndQuery + " HTTP/1.1\r\nHost: " + url.Host + "\r\nUpgrade: websocket\r\nConnection: Upgrade\r\nSec-WebSocket-Key: dGhlIHNhbXBsZSBub25jZQ==\r\nSec-WebSocket-Version: 13\r\n" + extraHeadersStr + "\r\n";
             }
             SendData(UTF8Encoding.UTF8.GetBytes(header));
 
@@ -397,6 +465,7 @@ namespace MeshCentralRouter
 
         private int ProcessBuffer(byte[] buffer, int offset, int len)
         {
+            TlsDump("InRaw", buffer, offset, len);
             string ss = UTF8Encoding.UTF8.GetString(buffer, offset, len);
 
             if (state == ConnectionStates.Connecting)
@@ -503,12 +572,14 @@ namespace MeshCentralRouter
                 case 0x01: // This is a text frame
                     {
                         Log("Websocket got string data, len = " + len);
+                        TlsDump("InStr", data, offset, len);
                         if (onStringData != null) { onStringData(this, UTF8Encoding.UTF8.GetString(data, offset, len), orglen); }
                         break;
                     }
                 case 0x02: // This is a birnay frame
                     {
                         Log("Websocket got binary data, len = " + len);
+                        TlsDump("InBin", data, offset, len);
                         if (onBinaryData != null) { onBinaryData(this, data, offset, len, orglen); }
                         break;
                     }
@@ -564,20 +635,42 @@ namespace MeshCentralRouter
 
         private bool VerifyServerCertificate(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
         {
-            if (tlsCertFingerprint == null) return true;
-            if ((tlsCertFingerprint.Length == 32) && (certificate.GetCertHashString().Equals(tlsCertFingerprint))) { return true; }
-            if (tlsCertFingerprint.Length == 96)
-            {
-                if (GetMeshCertHash(certificate).Equals(tlsCertFingerprint)) { return true; }
-                if (GetMeshKeyHash(certificate).Equals(tlsCertFingerprint)) { return true; }
-            }
-
             string hash1 = GetMeshCertHash(certificate);
             string hash2 = certificate.GetCertHashString();
-            Log("VerifyServerCertificate: tlsCertFingerprint = " + tlsCertFingerprint);
-            Log("VerifyServerCertificate: Hash1 = " + hash1);
-            Log("VerifyServerCertificate: Hash2 = " + hash2);
-            return ((tlsCertFingerprint == GetMeshKeyHash(certificate)) || (tlsCertFingerprint == certificate.GetCertHashString()));
+            //Debug("Verify cert: " + hash1);
+
+            if (TLSCertCheck == TLSCertificateCheck.Ignore)
+            {
+                // Ignore certificate check
+                return true;
+            }
+            else if (TLSCertCheck == TLSCertificateCheck.Fingerprint)
+            {
+                // Fingerprint certificate check
+                if (tlsCertFingerprint == null) return true;
+                if ((tlsCertFingerprint.Length == 32) && (certificate.GetCertHashString().Equals(tlsCertFingerprint))) { return true; }
+                if (tlsCertFingerprint.Length == 96)
+                {
+                    if (GetMeshCertHash(certificate).Equals(tlsCertFingerprint)) { return true; }
+                    if (GetMeshKeyHash(certificate).Equals(tlsCertFingerprint)) { return true; }
+                }
+
+                Log("VerifyServerCertificate: tlsCertFingerprint = " + tlsCertFingerprint);
+                Log("VerifyServerCertificate: Hash1 = " + hash1);
+                Log("VerifyServerCertificate: Hash2 = " + hash2);
+                return ((tlsCertFingerprint == GetMeshKeyHash(certificate)) || (tlsCertFingerprint == certificate.GetCertHashString()));
+            }
+            else
+            {
+                // Normal certificate check
+                if (chain.Build(new X509Certificate2(certificate)) == true) return true;
+
+                // Check that the remote certificate is the expected one
+                if ((tlsCertFingerprint != null) && ((tlsCertFingerprint == certificate.GetCertHashString()) || (tlsCertFingerprint == GetMeshKeyHash(certificate)) || (tlsCertFingerprint == GetMeshCertHash(certificate)))) { return true; }
+                if ((tlsCertFingerprint2 != null) && ((tlsCertFingerprint2 == certificate.GetCertHashString()) || (tlsCertFingerprint2 == GetMeshKeyHash(certificate)) || (tlsCertFingerprint2 == GetMeshCertHash(certificate)))) { return true; }
+                failedTlsCert = new X509Certificate2(certificate);
+                return false;
+            }
         }
 
         public int SendString(string data)
@@ -611,84 +704,103 @@ namespace MeshCentralRouter
             return SendFragment(null, 0, 0, 138);
         }
 
+        Task pendingSend = null;
+
         // Fragment op code (129 = text, 130 = binary)
         public int SendFragment(byte[] data, int offset, int len, byte op)
         {
-            lock (mainLock)
+            TlsDump("Out(" + op + ")", data, offset, len);
+            if (ws != null)
             {
-                if (state != ConnectionStates.Connected) return 0;
-                byte[] buf;
-
-                // If deflate is active, attempt to compress the data here.
-                if ((deflateMemory != null) && (len > 32) && (AllowCompression))
+                // Using native websocket
+                lock (this)
                 {
-                    deflateMemory.SetLength(0);
-                    deflateMemory.Write(inflateStart, 0, 14);
-                    DeflateStream deflate = new DeflateStream(deflateMemory, CompressionMode.Compress, true);
-                    deflate.Write(data, offset, len);
-                    deflate.Dispose();
-                    deflate = null;
-                    if (deflateMemory.Length < len)
+                    if ((pendingSend != null) && (pendingSend.IsCompleted == false)) { pendingSend.Wait(); }
+                    ArraySegment<byte> arr = new ArraySegment<byte>(data, offset, len);
+                    WebSocketMessageType msgType = ((op == 129) ? WebSocketMessageType.Text : WebSocketMessageType.Binary);
+                    pendingSend = ws.SendAsync(arr, msgType, true, CTS.Token);
+                }
+                return len;
+            }
+            else
+            {
+                // Using C# websocket
+                lock (mainLock)
+                {
+                    if (state != ConnectionStates.Connected) return 0;
+                    byte[] buf;
+
+                    // If deflate is active, attempt to compress the data here.
+                    if ((deflateMemory != null) && (len > 32) && (AllowCompression))
                     {
-                        // Use the compressed data
-                        int newlen = (int)deflateMemory.Length;
-                        buf = deflateMemory.GetBuffer();
-                        len = newlen - 14;
-                        op |= 0x40; // Add compression op
+                        deflateMemory.SetLength(0);
+                        deflateMemory.Write(inflateStart, 0, 14);
+                        DeflateStream deflate = new DeflateStream(deflateMemory, CompressionMode.Compress, true);
+                        deflate.Write(data, offset, len);
+                        deflate.Dispose();
+                        deflate = null;
+                        if (deflateMemory.Length < len)
+                        {
+                            // Use the compressed data
+                            int newlen = (int)deflateMemory.Length;
+                            buf = deflateMemory.GetBuffer();
+                            len = newlen - 14;
+                            op |= 0x40; // Add compression op
+                        }
+                        else
+                        {
+                            // Don't use the compress data
+                            // Convert the string into a buffer with 4 byte of header space.
+                            buf = new byte[14 + len];
+                            Array.Copy(data, offset, buf, 14, len);
+                        }
                     }
                     else
                     {
-                        // Don't use the compress data
                         // Convert the string into a buffer with 4 byte of header space.
                         buf = new byte[14 + len];
-                        Array.Copy(data, offset, buf, 14, len);
+                        if (len > 0) { Array.Copy(data, offset, buf, 14, len); }
                     }
-                }
-                else
-                {
-                    // Convert the string into a buffer with 4 byte of header space.
-                    buf = new byte[14 + len];
-                    if (len > 0) { Array.Copy(data, offset, buf, 14, len); }
-                }
 
-                // Check that everything is ok
-                if (len < 0) { Dispose(); return 0; }
+                    // Check that everything is ok
+                    if (len < 0) { Dispose(); return 0; }
 
-                // Set the mask to a cryptographic random value and XOR the data
-                byte[] rand = new byte[4];
-                CryptoRandom.GetBytes(rand);
-                Array.Copy(rand, 0, buf, 10, 4);
-                for (int x = 0; x < len; x++) { buf[x + 14] ^= rand[x % 4]; }
+                    // Set the mask to a cryptographic random value and XOR the data
+                    byte[] rand = new byte[4];
+                    CryptoRandom.GetBytes(rand);
+                    Array.Copy(rand, 0, buf, 10, 4);
+                    for (int x = 0; x < len; x++) { buf[x + 14] ^= rand[x % 4]; }
 
-                if (len < 126)
-                {
-                    // Small fragment
-                    buf[8] = op;
-                    buf[9] = (byte)((len & 0x7F) + 128); // Add 128 to indicate the mask is present
-                    SendData(buf, 8, len + 6);
-                }
-                else if (len < 65535)
-                {
-                    // Medium fragment
-                    buf[6] = op;
-                    buf[7] = 126 + 128; // Add 128 to indicate the mask is present
-                    buf[8] = (byte)((len >> 8) & 0xFF);
-                    buf[9] = (byte)(len & 0xFF);
-                    SendData(buf, 6, len + 8);
-                }
-                else
-                {
-                    // Large fragment
-                    buf[0] = op;
-                    buf[1] = 127 + 128; // Add 128 to indicate the mask is present
-                    buf[6] = (byte)((len >> 24) & 0xFF);
-                    buf[7] = (byte)((len >> 16) & 0xFF);
-                    buf[8] = (byte)((len >> 8) & 0xFF);
-                    buf[9] = (byte)(len & 0xFF);
-                    SendData(buf, 0, len + 14);
-                }
+                    if (len < 126)
+                    {
+                        // Small fragment
+                        buf[8] = op;
+                        buf[9] = (byte)((len & 0x7F) + 128); // Add 128 to indicate the mask is present
+                        SendData(buf, 8, len + 6);
+                    }
+                    else if (len < 65535)
+                    {
+                        // Medium fragment
+                        buf[6] = op;
+                        buf[7] = 126 + 128; // Add 128 to indicate the mask is present
+                        buf[8] = (byte)((len >> 8) & 0xFF);
+                        buf[9] = (byte)(len & 0xFF);
+                        SendData(buf, 6, len + 8);
+                    }
+                    else
+                    {
+                        // Large fragment
+                        buf[0] = op;
+                        buf[1] = 127 + 128; // Add 128 to indicate the mask is present
+                        buf[6] = (byte)((len >> 24) & 0xFF);
+                        buf[7] = (byte)((len >> 16) & 0xFF);
+                        buf[8] = (byte)((len >> 8) & 0xFF);
+                        buf[9] = (byte)(len & 0xFF);
+                        SendData(buf, 0, len + 14);
+                    }
 
-                return len;
+                    return len;
+                }
             }
         }
 
@@ -696,6 +808,7 @@ namespace MeshCentralRouter
 
         private void SendData(byte[] buf, int off, int len)
         {
+            TlsDump("OutRaw", buf, off, len);
             if (pendingSendCall)
             {
                 lock (pendingSendBuffer) { pendingSendBuffer.Write(buf, off, len); }
@@ -749,6 +862,50 @@ namespace MeshCentralRouter
                     shouldRead = false;
                     try { wsstream.BeginRead(readBuffer, readBufferLen, readBuffer.Length - readBufferLen, new AsyncCallback(OnTlsDataSink), this); } catch (Exception) { }
                 }
+            }
+        }
+
+        private async Task ReceiveLoop()
+        {
+            SetState(ConnectionStates.Connected);
+            var loopToken = CTS.Token;
+            MemoryStream outputStream = null;
+            WebSocketReceiveResult receiveResult = null;
+            var buffer = new byte[8192];
+            ArraySegment<byte> bufferEx = new ArraySegment<byte>(buffer);
+            try
+            {
+                while (!loopToken.IsCancellationRequested)
+                {
+                    outputStream = new MemoryStream(8192);
+                    do
+                    {
+                        receiveResult = await ws.ReceiveAsync(bufferEx, CTS.Token);
+                        if (receiveResult.MessageType != WebSocketMessageType.Close)
+                            outputStream.Write(buffer, 0, receiveResult.Count);
+                    }
+                    while (!receiveResult.EndOfMessage);
+                    if (receiveResult.MessageType == WebSocketMessageType.Close) break;
+                    outputStream.Position = 0;
+                    if (receiveResult.MessageType == WebSocketMessageType.Text)
+                    {
+                        Log("Websocket got string data, len = " + (int)outputStream.Length);
+                        TlsDump("InStr", outputStream.GetBuffer(), 0, (int)outputStream.Length);
+                        if (onStringData != null) { onStringData(this, UTF8Encoding.UTF8.GetString(outputStream.GetBuffer(), 0, (int)outputStream.Length), (int)outputStream.Length); }
+                    }
+                    else if (receiveResult.MessageType == WebSocketMessageType.Binary)
+                    {
+                        Log("Websocket got binary data, len = " + (int)outputStream.Length);
+                        TlsDump("InBin", outputStream.GetBuffer(), 0, (int)outputStream.Length);
+                        if (onBinaryData != null) { onBinaryData(this, outputStream.GetBuffer(), 0, (int)outputStream.Length, (int)outputStream.Length); }
+                    }
+                }
+            }
+            catch (TaskCanceledException) { }
+            finally
+            {
+                outputStream?.Dispose();
+                SetState(0);
             }
         }
 

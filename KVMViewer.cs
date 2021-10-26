@@ -184,7 +184,8 @@ namespace MeshCentralRouter
             wc.onStateChanged += Wc_onStateChanged;
             wc.onBinaryData += Wc_onBinaryData;
             wc.onStringData += Wc_onStringData;
-            wc.Start(u, server.wshash);
+            wc.TLSCertCheck = webSocketClient.TLSCertificateCheck.Fingerprint;
+            wc.Start(u, server.wshash, null);
         }
 
         private void Wc_onStateChanged(webSocketClient sender, webSocketClient.ConnectionStates wsstate)

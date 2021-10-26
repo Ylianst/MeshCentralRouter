@@ -216,7 +216,6 @@ namespace MeshCentralRouter
             Uri wsurl = new Uri(url + "&auth=" + Uri.EscapeDataString(parent.authCookie));
             Debug("#" + counter + ": Connecting web socket to: " + wsurl.ToString());
             wc.debug = xdebug;
-            wc.Start(wsurl, certhash);
             wc.tag = client;
             wc.id = counter;
             wc.tunneling = false;
@@ -224,6 +223,8 @@ namespace MeshCentralRouter
             wc.onBinaryData += Wc_onBinaryData;
             wc.onStringData += Wc_onStringData;
             wc.onSendOk += Wc_onSendOk;
+            wc.TLSCertCheck = webSocketClient.TLSCertificateCheck.Fingerprint;
+            wc.Start(wsurl, certhash, null);
         }
 
         private void ConnectWS(UdpClient client, int counter)
@@ -232,7 +233,6 @@ namespace MeshCentralRouter
             Uri wsurl = new Uri(url + "&auth=" + Uri.EscapeDataString(parent.authCookie));
             Debug("#" + counter + ": Connecting web socket to: " + wsurl.ToString());
             wc.debug = xdebug;
-            wc.Start(wsurl, certhash);
             wc.tag = client;
             wc.id = counter;
             wc.tunneling = false;
@@ -240,6 +240,8 @@ namespace MeshCentralRouter
             wc.onBinaryData += Wc_onBinaryData;
             wc.onStringData += Wc_onStringData;
             wc.onSendOk += Wc_onSendOk;
+            wc.TLSCertCheck = webSocketClient.TLSCertificateCheck.Fingerprint;
+            wc.Start(wsurl, certhash, null);
         }
 
         private void Wc_onSendOk(webSocketClient sender)
