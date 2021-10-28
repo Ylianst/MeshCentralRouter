@@ -74,7 +74,7 @@ namespace MeshCentralRouter
         public TLSCertificateCheck TLSCertCheck = TLSCertificateCheck.Verify;
         public X509Certificate2 failedTlsCert = null;
         static public bool nativeWebSocketFirst = true;
-
+        private SemaphoreSlim receiveLock = new SemaphoreSlim(1, 1);
 
         // Outside variables
         public object tag = null;
@@ -704,7 +704,17 @@ namespace MeshCentralRouter
             return SendFragment(null, 0, 0, 138);
         }
 
-        Task pendingSend = null;
+        // This controls the flow of fragments being sent, queuing send operations if needed
+        private Task pendingSend = null;
+        private List<pendingSendClass> pendingSends = new List<pendingSendClass>();
+        private class pendingSendClass
+        {
+            public pendingSendClass(byte[] data, int offset, int len, byte op) { this.data = data; this.offset = offset; this.len = len; this.op = op; }
+            public byte[] data;
+            public int offset;
+            public int len;
+            public byte op;
+        }
 
         // Fragment op code (129 = text, 130 = binary)
         public int SendFragment(byte[] data, int offset, int len, byte op)
@@ -713,12 +723,21 @@ namespace MeshCentralRouter
             if (ws != null)
             {
                 // Using native websocket
-                lock (this)
+                lock (pendingSends)
                 {
-                    if ((pendingSend != null) && (pendingSend.IsCompleted == false)) { pendingSend.Wait(); }
-                    ArraySegment<byte> arr = new ArraySegment<byte>(data, offset, len);
-                    WebSocketMessageType msgType = ((op == 129) ? WebSocketMessageType.Text : WebSocketMessageType.Binary);
-                    pendingSend = ws.SendAsync(arr, msgType, true, CTS.Token);
+                    if (pendingSend != null)
+                    {
+                        // A send operating is already being processes, queue this send.
+                        pendingSends.Add(new pendingSendClass(data, offset, len, op));
+                    }
+                    else
+                    {
+                        // No send operations being performed now, send this fragment now.
+                        ArraySegment<byte> arr = new ArraySegment<byte>(data, offset, len);
+                        WebSocketMessageType msgType = ((op == 129) ? WebSocketMessageType.Text : WebSocketMessageType.Binary);
+                        pendingSend = ws.SendAsync(arr, msgType, true, CTS.Token);
+                        pendingSend.ContinueWith(antecedent => SendFragmentDone());
+                    }
                 }
                 return len;
             }
@@ -804,6 +823,29 @@ namespace MeshCentralRouter
             }
         }
 
+
+        // Called when a fragment is done sending. We look to send the next one or signal that we can accept more data
+        private void SendFragmentDone()
+        {
+            bool q = false;
+            lock (pendingSends)
+            {
+                pendingSend = null;
+                if (pendingSends.Count > 0)
+                {
+                    // There is more send operation pending, send the next one now.
+                    pendingSendClass p = pendingSends[0];
+                    pendingSends.RemoveAt(0);
+                    ArraySegment<byte> arr = new ArraySegment<byte>(p.data, p.offset, p.len);
+                    WebSocketMessageType msgType = ((p.op == 129) ? WebSocketMessageType.Text : WebSocketMessageType.Binary);
+                    pendingSend = ws.SendAsync(arr, msgType, true, CTS.Token);
+                    pendingSend.ContinueWith(antecedent => SendFragmentDone());
+                }
+                else { q = true; } // No pending send operations, signal ok to send more.
+            }
+            if ((q == true) && (onSendOk != null)) { onSendOk(this); }
+        }
+
         private void SendData(byte[] buf) { SendData(buf, 0, buf.Length); }
 
         private void SendData(byte[] buf, int off, int len)
@@ -847,7 +889,9 @@ namespace MeshCentralRouter
         {
             lock (mainLock)
             {
+                if (readPaused == true) return;
                 readPaused = true;
+                if (ws != null) { receiveLock.Wait(); }
             }
         }
 
@@ -857,10 +901,17 @@ namespace MeshCentralRouter
             {
                 if (readPaused == false) return;
                 readPaused = false;
-                if (shouldRead == true)
+                if (ws != null)
                 {
-                    shouldRead = false;
-                    try { wsstream.BeginRead(readBuffer, readBufferLen, readBuffer.Length - readBufferLen, new AsyncCallback(OnTlsDataSink), this); } catch (Exception) { }
+                    receiveLock.Release();
+                }
+                else
+                {
+                    if (shouldRead == true)
+                    {
+                        shouldRead = false;
+                        try { wsstream.BeginRead(readBuffer, readBufferLen, readBuffer.Length - readBufferLen, new AsyncCallback(OnTlsDataSink), this); } catch (Exception) { }
+                    }
                 }
             }
         }
@@ -887,6 +938,10 @@ namespace MeshCentralRouter
                     while (!receiveResult.EndOfMessage);
                     if (receiveResult.MessageType == WebSocketMessageType.Close) break;
                     outputStream.Position = 0;
+
+                    receiveLock.Wait(); // Pause reading if needed
+                    receiveLock.Release();
+
                     if (receiveResult.MessageType == WebSocketMessageType.Text)
                     {
                         Log("Websocket got string data, len = " + (int)outputStream.Length);
