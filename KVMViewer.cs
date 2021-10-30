@@ -20,7 +20,6 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Web.Script.Serialization;
-using Microsoft.Win32;
 using System.Threading;
 
 namespace MeshCentralRouter
