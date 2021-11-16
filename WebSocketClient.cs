@@ -187,7 +187,7 @@ namespace MeshCentralRouter
             if (tlsCertFingerprint != null) { this.tlsCertFingerprint = tlsCertFingerprint.ToUpper(); }
             if (tlsCertFingerprint2 != null) { this.tlsCertFingerprint2 = tlsCertFingerprint2.ToUpper(); }
 
-            if (nativeWebSocketFirst) { try { ws = new ClientWebSocket(); } catch (Exception) { } }
+            //if (nativeWebSocketFirst) { try { ws = new ClientWebSocket(); } catch (Exception) { } }
             if (ws != null)
             {
                 // Use Windows native websockets

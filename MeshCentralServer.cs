@@ -677,7 +677,7 @@ namespace MeshCentralRouter
 
                             // Get login key
                             string url = jsonAction["url"] + "&auth=" + authCookie;
-                            if (url.StartsWith("*/")) { url = "wss://" + wsurl.Authority + url.Substring(1); }
+                            if (url.StartsWith("*/")) { url = "https://" + wsurl.Authority + url.Substring(1); }
                             string loginkey = getValueFromQueryString(wsurl.Query, "key");
                             if (loginkey != null) { url += ("&key=" + loginkey); }
 
