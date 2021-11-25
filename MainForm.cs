@@ -236,7 +236,7 @@ namespace MeshCentralRouter
                 if (arg.ToLower() == "-all") { inaddrany = true; }
                 if (arg.ToLower() == "-inaddrany") { inaddrany = true; }
                 if (arg.ToLower() == "-tray") { notifyIcon.Visible = true; this.ShowInTaskbar = false; this.MinimizeBox = false; }
-                if (arg.ToLower() == "-nonative") { webSocketClient.nativeWebSocketFirst = false; }
+                if (arg.ToLower() == "-native") { webSocketClient.nativeWebSocketFirst = true; }
                 if (arg.Length > 6 && arg.Substring(0, 6).ToLower() == "-host:") { serverNameComboBox.Text = arg.Substring(6); argflags |= 1; }
                 if (arg.Length > 6 && arg.Substring(0, 6).ToLower() == "-user:") { userNameTextBox.Text = arg.Substring(6); argflags |= 2; }
                 if (arg.Length > 6 && arg.Substring(0, 6).ToLower() == "-pass:") { passwordTextBox.Text = arg.Substring(6); argflags |= 4; }
