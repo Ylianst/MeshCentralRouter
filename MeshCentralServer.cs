@@ -1,5 +1,5 @@
 /*
-Copyright 2009-2021 Intel Corporation
+Copyright 2009-2022 Intel Corporation
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -222,199 +222,354 @@ namespace MeshCentralRouter
             }
             if (jsonAction == null || jsonAction["action"].GetType() != typeof(string)) return;
 
-            string action = jsonAction["action"].ToString();
-            switch (action)
+            try
             {
-                case "pong":
-                    {
-                        // NOP
-                        break;
-                    }
-                case "ping":
-                    {
-                        // Send pong back
-                        if (wc != null) { wc.SendString("{\"action\":\"pong\"}"); }
-                        break;
-                    }
-                case "close":
-                    {
-                        disconnectCause = jsonAction["cause"].ToString();
-                        disconnectMsg = jsonAction["msg"].ToString();
-                        if (jsonAction.ContainsKey("email2fa")) { disconnectEmail2FA = (bool)jsonAction["email2fa"]; } else { disconnectEmail2FA = false; }
-                        if (jsonAction.ContainsKey("email2fasent")) { disconnectEmail2FASent = (bool)jsonAction["email2fasent"]; } else { disconnectEmail2FASent = false; }
-                        if (jsonAction.ContainsKey("sms2fa")) { disconnectSms2FA = (bool)jsonAction["sms2fa"]; } else { disconnectSms2FA = false; }
-                        if (jsonAction.ContainsKey("sms2fasent")) { disconnectSms2FASent = (bool)jsonAction["sms2fasent"]; } else { disconnectSms2FASent = false; }
-                        if (jsonAction.ContainsKey("twoFactorCookieDays") && (jsonAction["twoFactorCookieDays"].GetType() == typeof(int))) { twoFactorCookieDays = (int)jsonAction["twoFactorCookieDays"]; }
-                        break;
-                    }
-                case "serverinfo":
-                    {
-                        // Get the bit flags of server features
-                        Dictionary<string, object> serverinfo = (Dictionary<string, object>)jsonAction["serverinfo"];
-                        if (serverinfo.ContainsKey("features") && (serverinfo["features"].GetType() == typeof(int))) { features = (int)serverinfo["features"]; }
-                        if (serverinfo.ContainsKey("features2") && (serverinfo["features2"].GetType() == typeof(int))) { features2 = (int)serverinfo["features2"]; }
-
-                        // Ask for a lot of things from the server
-                        wc.SendString("{\"action\":\"usergroups\"}");
-                        wc.SendString("{\"action\":\"meshes\"}");
-                        wc.SendString("{\"action\":\"nodes\"}");
-                        wc.SendString("{\"action\":\"authcookie\"}");
-                        wc.SendString("{\"action\":\"logincookie\"}");
-                        wc.SendString("{\"action\":\"meshToolInfo\",\"name\":\"MeshCentralRouter\"}");
-                        break;
-                    }
-                case "authcookie":
-                    {
-                        authCookie = jsonAction["cookie"].ToString();
-                        rauthCookie = jsonAction["rcookie"].ToString();
-                        changeState(2);
-
-                        if (sender.RemoteCertificate != null)
+                string action = jsonAction["action"].ToString();
+                switch (action)
+                {
+                    case "pong":
                         {
-                            certHash = webSocketClient.GetMeshCertHash(new X509Certificate2(sender.RemoteCertificate));
+                            // NOP
+                            break;
                         }
-
-                        break;
-                    }
-                case "logincookie":
-                    {
-                        loginCookie = jsonAction["cookie"].ToString();
-                        if (onLoginTokenChanged != null) { onLoginTokenChanged(); }
-                        break;
-                    }
-                case "userinfo":
-                    {
-                        Dictionary<string, object> userinfo = (Dictionary<string, object>)jsonAction["userinfo"];
-                        userid = (string)userinfo["_id"];
-                        if (userinfo.ContainsKey("name")) { username = (string)userinfo["name"]; }
-                        userRights = new Dictionary<string, ulong>();
-                        if (userinfo.ContainsKey("links"))
+                    case "ping":
                         {
-                            Dictionary<string, object> userLinks = (Dictionary<string, object>)userinfo["links"];
-                            foreach (string i in userLinks.Keys)
+                            // Send pong back
+                            if (wc != null) { wc.SendString("{\"action\":\"pong\"}"); }
+                            break;
+                        }
+                    case "close":
+                        {
+                            disconnectCause = jsonAction["cause"].ToString();
+                            disconnectMsg = jsonAction["msg"].ToString();
+                            if (jsonAction.ContainsKey("email2fa")) { disconnectEmail2FA = (bool)jsonAction["email2fa"]; } else { disconnectEmail2FA = false; }
+                            if (jsonAction.ContainsKey("email2fasent")) { disconnectEmail2FASent = (bool)jsonAction["email2fasent"]; } else { disconnectEmail2FASent = false; }
+                            if (jsonAction.ContainsKey("sms2fa")) { disconnectSms2FA = (bool)jsonAction["sms2fa"]; } else { disconnectSms2FA = false; }
+                            if (jsonAction.ContainsKey("sms2fasent")) { disconnectSms2FASent = (bool)jsonAction["sms2fasent"]; } else { disconnectSms2FASent = false; }
+                            if (jsonAction.ContainsKey("twoFactorCookieDays") && (jsonAction["twoFactorCookieDays"].GetType() == typeof(int))) { twoFactorCookieDays = (int)jsonAction["twoFactorCookieDays"]; }
+                            break;
+                        }
+                    case "serverinfo":
+                        {
+                            // Get the bit flags of server features
+                            Dictionary<string, object> serverinfo = (Dictionary<string, object>)jsonAction["serverinfo"];
+                            if (serverinfo.ContainsKey("features") && (serverinfo["features"].GetType() == typeof(int))) { features = (int)serverinfo["features"]; }
+                            if (serverinfo.ContainsKey("features2") && (serverinfo["features2"].GetType() == typeof(int))) { features2 = (int)serverinfo["features2"]; }
+
+                            // Ask for a lot of things from the server
+                            wc.SendString("{\"action\":\"usergroups\"}");
+                            wc.SendString("{\"action\":\"meshes\"}");
+                            wc.SendString("{\"action\":\"nodes\"}");
+                            wc.SendString("{\"action\":\"authcookie\"}");
+                            wc.SendString("{\"action\":\"logincookie\"}");
+                            wc.SendString("{\"action\":\"meshToolInfo\",\"name\":\"MeshCentralRouter\"}");
+                            break;
+                        }
+                    case "authcookie":
+                        {
+                            authCookie = jsonAction["cookie"].ToString();
+                            rauthCookie = jsonAction["rcookie"].ToString();
+                            changeState(2);
+
+                            if (sender.RemoteCertificate != null)
                             {
-                                Dictionary<string, object> userLinksEx = (Dictionary<string, object>)userLinks[i];
-                                if (userLinksEx.ContainsKey("rights"))
+                                certHash = webSocketClient.GetMeshCertHash(new X509Certificate2(sender.RemoteCertificate));
+                            }
+
+                            break;
+                        }
+                    case "logincookie":
+                        {
+                            loginCookie = jsonAction["cookie"].ToString();
+                            if (onLoginTokenChanged != null) { onLoginTokenChanged(); }
+                            break;
+                        }
+                    case "userinfo":
+                        {
+                            Dictionary<string, object> userinfo = (Dictionary<string, object>)jsonAction["userinfo"];
+                            userid = (string)userinfo["_id"];
+                            if (userinfo.ContainsKey("name")) { username = (string)userinfo["name"]; }
+                            userRights = new Dictionary<string, ulong>();
+                            if (userinfo.ContainsKey("links"))
+                            {
+                                Dictionary<string, object> userLinks = (Dictionary<string, object>)userinfo["links"];
+                                foreach (string i in userLinks.Keys)
                                 {
-                                    userRights[i] = ulong.Parse(userLinksEx["rights"].ToString());
+                                    Dictionary<string, object> userLinksEx = (Dictionary<string, object>)userLinks[i];
+                                    if (userLinksEx.ContainsKey("rights"))
+                                    {
+                                        userRights[i] = ulong.Parse(userLinksEx["rights"].ToString());
+                                    }
                                 }
                             }
+                            break;
                         }
-                        break;
-                    }
-                case "usergroups":
-                    {
-                        userGroups = new Dictionary<string, string>();
-                        if (jsonAction.ContainsKey("ugroups"))
+                    case "usergroups":
                         {
-                            Dictionary<string, object> usergroups = (Dictionary<string, object>)jsonAction["ugroups"];
-                            if (usergroups != null)
+                            userGroups = new Dictionary<string, string>();
+                            if (jsonAction.ContainsKey("ugroups"))
                             {
-                                foreach (string i in usergroups.Keys)
+                                Dictionary<string, object> usergroups = (Dictionary<string, object>)jsonAction["ugroups"];
+                                if (usergroups != null)
                                 {
-                                    Dictionary<string, object> usergroupsEx = (Dictionary<string, object>)usergroups[i];
-                                    if (usergroupsEx.ContainsKey("name"))
+                                    foreach (string i in usergroups.Keys)
                                     {
-                                        userGroups.Add(i, usergroupsEx["name"].ToString());
-                                    }
-                                }
-                                if ((onNodesChanged != null) && (nodes != null)) onNodesChanged(false);
-                            }
-                        }
-                        break;
-                    }
-                case "event":
-                    {
-                        Dictionary<string, object> ev = (Dictionary<string, object>)jsonAction["event"];
-                        string action2 = ev["action"].ToString();
-                        switch (action2)
-                        {
-                            case "meshchange":
-                                {
-                                    // Get the new values
-                                    string meshid = ev["meshid"].ToString();
-                                    string meshname = (string)ev["name"];
-                                    string meshdesc = (string)ev["desc"];
-                                    int meshtype = (int)ev["mtype"];
-                                    ulong meshrights = 0;
-                                    Dictionary<string, object> links = ((Dictionary<string, object>)ev["links"]);
-                                    if (links.ContainsKey(userid))
-                                    {
-                                        Dictionary<string, object> urights = ((Dictionary<string, object>)links[userid]);
-                                        if (urights != null)
+                                        Dictionary<string, object> usergroupsEx = (Dictionary<string, object>)usergroups[i];
+                                        if (usergroupsEx.ContainsKey("name"))
                                         {
-                                            if (urights["rights"].GetType() == typeof(int)) { meshrights = (ulong)((int)urights["rights"]); }
-                                            if (urights["rights"].GetType() == typeof(Int64)) { meshrights = (ulong)((Int64)urights["rights"]); }
+                                            userGroups.Add(i, usergroupsEx["name"].ToString());
                                         }
                                     }
-
-                                    Dictionary<string, ulong> newlinks = new Dictionary<string, ulong>();
-                                    foreach (string j in links.Keys)
-                                    {
-                                        Dictionary<string, object> urights = ((Dictionary<string, object>)links[j]);
-                                        if (urights != null)
-                                        {
-                                            if (urights["rights"].GetType() == typeof(int)) { newlinks[j] = (ulong)((int)urights["rights"]); }
-                                            if (urights["rights"].GetType() == typeof(Int64)) { newlinks[j] = (ulong)((Int64)urights["rights"]); }
-                                        }
-                                    }
-
-                                    // Update the mesh
-                                    if (meshes.ContainsKey(meshid))
-                                    {
-                                        MeshClass mesh = (MeshClass)meshes[meshid];
-                                        mesh.name = meshname;
-                                        mesh.desc = meshdesc;
-                                        mesh.rights = meshrights;
-                                        mesh.links = newlinks;
-                                    }
-                                    else
-                                    {
-                                        MeshClass mesh = new MeshClass();
-                                        mesh.name = meshname;
-                                        mesh.desc = meshdesc;
-                                        mesh.rights = meshrights;
-                                        mesh.type = meshtype;
-                                        mesh.links = newlinks;
-                                        meshes[meshid] = mesh;
-                                    }
-                                    wc.SendString("{\"action\":\"nodes\"}");
                                     if ((onNodesChanged != null) && (nodes != null)) onNodesChanged(false);
-                                    break;
                                 }
-                            case "changenode":
-                                {
-                                    if (nodes == null) return;
-                                    Dictionary<string, object> node = (Dictionary<string, object>)ev["node"];
-                                    string nodeid = (string)node["_id"];
-                                    if (nodes.ContainsKey(nodeid))
+                            }
+                            break;
+                        }
+                    case "event":
+                        {
+                            Dictionary<string, object> ev = (Dictionary<string, object>)jsonAction["event"];
+                            string action2 = ev["action"].ToString();
+                            switch (action2)
+                            {
+                                case "meshchange":
                                     {
-                                        // Change existing node
-                                        lock (nodes)
+                                        // Get the new values
+                                        string meshid = ev["meshid"].ToString();
+                                        string meshname = (string)ev["name"];
+                                        string meshdesc = (string)ev["desc"];
+                                        int meshtype = (int)ev["mtype"];
+                                        ulong meshrights = 0;
+                                        Dictionary<string, object> links = ((Dictionary<string, object>)ev["links"]);
+                                        if (links.ContainsKey(userid))
+                                        {
+                                            Dictionary<string, object> urights = ((Dictionary<string, object>)links[userid]);
+                                            if (urights != null)
+                                            {
+                                                if (urights["rights"].GetType() == typeof(int)) { meshrights = (ulong)((int)urights["rights"]); }
+                                                if (urights["rights"].GetType() == typeof(Int64)) { meshrights = (ulong)((Int64)urights["rights"]); }
+                                            }
+                                        }
+
+                                        Dictionary<string, ulong> newlinks = new Dictionary<string, ulong>();
+                                        foreach (string j in links.Keys)
+                                        {
+                                            Dictionary<string, object> urights = ((Dictionary<string, object>)links[j]);
+                                            if (urights != null)
+                                            {
+                                                if (urights["rights"].GetType() == typeof(int)) { newlinks[j] = (ulong)((int)urights["rights"]); }
+                                                if (urights["rights"].GetType() == typeof(Int64)) { newlinks[j] = (ulong)((Int64)urights["rights"]); }
+                                            }
+                                        }
+
+                                        // Update the mesh
+                                        if (meshes.ContainsKey(meshid))
+                                        {
+                                            MeshClass mesh = (MeshClass)meshes[meshid];
+                                            mesh.name = meshname;
+                                            mesh.desc = meshdesc;
+                                            mesh.rights = meshrights;
+                                            mesh.links = newlinks;
+                                        }
+                                        else
+                                        {
+                                            MeshClass mesh = new MeshClass();
+                                            mesh.name = meshname;
+                                            mesh.desc = meshdesc;
+                                            mesh.rights = meshrights;
+                                            mesh.type = meshtype;
+                                            mesh.links = newlinks;
+                                            meshes[meshid] = mesh;
+                                        }
+                                        wc.SendString("{\"action\":\"nodes\"}");
+                                        if ((onNodesChanged != null) && (nodes != null)) onNodesChanged(false);
+                                        break;
+                                    }
+                                case "changenode":
+                                    {
+                                        if (nodes == null) return;
+                                        Dictionary<string, object> node = (Dictionary<string, object>)ev["node"];
+                                        string nodeid = (string)node["_id"];
+                                        if (nodes.ContainsKey(nodeid))
+                                        {
+                                            // Change existing node
+                                            lock (nodes)
+                                            {
+                                                NodeClass n = (NodeClass)nodes[nodeid];
+                                                n.name = (string)node["name"];
+                                                if (node.ContainsKey("agent"))
+                                                {
+                                                    n.agentid = (int)((Dictionary<string, object>)node["agent"])["id"];
+                                                    n.agentcaps = (int)((Dictionary<string, object>)node["agent"])["caps"];
+                                                }
+                                                if (node.ContainsKey("conn")) { n.conn = (int)node["conn"]; }
+                                                n.icon = 1;
+                                                if (node.ContainsKey("icon")) { n.icon = (int)node["icon"]; }
+                                                if (node.ContainsKey("users")) { n.users = (string[])((ArrayList)node["users"]).ToArray(typeof(string)); } else { n.users = null; }
+                                                if (node.ContainsKey("rdpport")) { n.rdpport = (int)node["rdpport"]; }
+                                                ulong nodeRights = 0;
+                                                if (node.ContainsKey("links"))
+                                                {
+                                                    Dictionary<string, object> links = ((Dictionary<string, object>)node["links"]);
+                                                    if (links.ContainsKey(userid))
+                                                    {
+                                                        Dictionary<string, object> linksEx = ((Dictionary<string, object>)links[userid]);
+                                                        if (linksEx.ContainsKey("rights")) { nodeRights = (ulong)(int)linksEx["rights"]; }
+                                                    }
+
+                                                    n.links = new Dictionary<string, ulong>();
+                                                    foreach (string j in links.Keys)
+                                                    {
+                                                        Dictionary<string, object> linksEx = ((Dictionary<string, object>)links[j]);
+                                                        if (linksEx.ContainsKey("rights"))
+                                                        {
+                                                            n.links.Add(j, ulong.Parse(linksEx["rights"].ToString()));
+                                                        }
+                                                    }
+                                                }
+                                                n.rights = nodeRights;
+
+                                                // Compute rights on this device
+                                                ulong rights = n.rights; // Direct device rights
+                                                if (meshes.ContainsKey(n.meshid)) { rights |= meshes[n.meshid].rights; } // Device group rights
+                                                foreach (string i in n.links.Keys) { if (userGroups.ContainsKey(i)) { rights |= n.links[i]; } } // Take a look at group rights
+
+                                                if (rights == 0)
+                                                {
+                                                    // We have no rights to this device, remove it
+                                                    nodes.Remove(n.nodeid);
+                                                }
+                                                else
+                                                {
+                                                    // Update the node
+                                                    nodes[n.nodeid] = n;
+                                                }
+                                            }
+                                            if ((onNodesChanged != null) && (nodes != null)) onNodesChanged(false);
+                                        }
+                                        else
+                                        {
+                                            wc.SendString("{\"action\":\"nodes\"}");
+                                        }
+                                        break;
+                                    }
+                                case "nodeconnect":
+                                    {
+                                        if (nodes == null) return;
+                                        string nodeid = (string)ev["nodeid"];
+                                        if (nodes.ContainsKey(nodeid))
+                                        {
+                                            lock (nodes)
+                                            {
+                                                NodeClass n = (NodeClass)nodes[nodeid];
+                                                if (ev.ContainsKey("conn")) { n.conn = (int)ev["conn"]; }
+                                                nodes[n.nodeid] = n;
+                                            }
+                                            if ((onNodesChanged != null) && (nodes != null)) onNodesChanged(false);
+                                        }
+                                        break;
+                                    }
+                                case "usergroupchange":
+                                    {
+                                        wc.SendString("{\"action\":\"usergroups\"}");
+                                        wc.SendString("{\"action\":\"nodes\"}");
+                                        break;
+                                    }
+                            }
+                            break;
+                        }
+                    case "meshes":
+                        {
+                            meshes = new Dictionary<string, MeshClass>();
+
+                            ArrayList meshList = (ArrayList)jsonAction["meshes"];
+                            for (int i = 0; i < meshList.Count; i++)
+                            {
+                                Dictionary<string, object> mesh = (Dictionary<string, object>)meshList[i];
+                                MeshClass m = new MeshClass();
+                                m.meshid = (string)mesh["_id"];
+                                m.name = (string)mesh["name"];
+                                if (mesh.ContainsKey("desc")) { m.desc = (string)mesh["desc"]; }
+                                m.rights = 0;
+                                m.links = new Dictionary<string, ulong>();
+
+                                Dictionary<string, object> links = ((Dictionary<string, object>)mesh["links"]);
+                                if (links.ContainsKey(userid))
+                                {
+                                    Dictionary<string, object> urights = ((Dictionary<string, object>)links[userid]);
+                                    if (urights != null)
+                                    {
+                                        if (urights["rights"].GetType() == typeof(int)) { m.rights = (ulong)((int)urights["rights"]); }
+                                        if (urights["rights"].GetType() == typeof(Int64)) { m.rights = (ulong)((Int64)urights["rights"]); }
+                                    }
+                                }
+
+                                foreach (string j in links.Keys)
+                                {
+                                    Dictionary<string, object> urights = ((Dictionary<string, object>)links[j]);
+                                    if (urights != null)
+                                    {
+                                        if (urights["rights"].GetType() == typeof(int)) { m.links[j] = (ulong)((int)urights["rights"]); }
+                                        if (urights["rights"].GetType() == typeof(Int64)) { m.links[j] = (ulong)((Int64)urights["rights"]); }
+                                    }
+                                }
+
+                                if (mesh["mtype"].GetType() == typeof(string)) { m.type = int.Parse((string)mesh["mtype"]); }
+                                if (mesh["mtype"].GetType() == typeof(int)) { m.type = (int)mesh["mtype"]; }
+                                meshes[m.meshid] = m;
+                            }
+
+                            break;
+                        }
+                    case "nodes":
+                        {
+                            if (nodes == null) { nodes = new Dictionary<string, NodeClass>(); }
+                            Dictionary<string, NodeClass> nodes2 = new Dictionary<string, NodeClass>();
+                            lock (nodes)
+                            {
+                                Dictionary<string, object> groups = (Dictionary<string, object>)jsonAction["nodes"];
+                                foreach (string meshid in groups.Keys)
+                                {
+                                    ArrayList nodesinMesh = (ArrayList)groups[meshid];
+                                    for (int i = 0; i < nodesinMesh.Count; i++)
+                                    {
+                                        Dictionary<string, object> node = (Dictionary<string, object>)nodesinMesh[i];
+                                        string nodeid = (string)node["_id"];
+                                        if (nodes.ContainsKey(nodeid))
                                         {
                                             NodeClass n = (NodeClass)nodes[nodeid];
-                                            n.name = (string)node["name"];
+                                            n.nodeid = nodeid;
                                             if (node.ContainsKey("agent"))
                                             {
                                                 n.agentid = (int)((Dictionary<string, object>)node["agent"])["id"];
                                                 n.agentcaps = (int)((Dictionary<string, object>)node["agent"])["caps"];
                                             }
-                                            if (node.ContainsKey("conn")) { n.conn = (int)node["conn"]; }
-                                            n.icon = 1;
-                                            if (node.ContainsKey("icon")) { n.icon = (int)node["icon"]; }
+                                            else
+                                            {
+                                                n.agentid = -1;
+                                                n.agentcaps = 0;
+                                            }
+                                            n.name = (string)node["name"];
+                                            n.meshid = meshid;
+                                            if (node.ContainsKey("mtype"))
+                                            {
+                                                if (node["mtype"].GetType() == typeof(string)) { n.mtype = int.Parse((string)node["mtype"]); }
+                                                if (node["mtype"].GetType() == typeof(int)) { n.mtype = (int)node["mtype"]; }
+                                            }
                                             if (node.ContainsKey("users")) { n.users = (string[])((ArrayList)node["users"]).ToArray(typeof(string)); } else { n.users = null; }
-                                            if (node.ContainsKey("rdpport")) { n.rdpport = (int)node["rdpport"]; }
-                                            ulong nodeRights = 0;
+                                            if (node.ContainsKey("rdpport")) { n.rdpport = (int)node["rdpport"]; } else { n.rdpport = 3389; }
+                                            if (node.ContainsKey("conn")) { n.conn = (int)node["conn"]; } else { n.conn = 0; }
+                                            if (node.ContainsKey("icon")) { n.icon = (int)node["icon"]; }
+                                            if (n.icon == 0) { n.icon = 1; }
+                                            n.rights = 0;
+                                            n.links = new Dictionary<string, ulong>();
                                             if (node.ContainsKey("links"))
                                             {
                                                 Dictionary<string, object> links = ((Dictionary<string, object>)node["links"]);
                                                 if (links.ContainsKey(userid))
                                                 {
                                                     Dictionary<string, object> linksEx = ((Dictionary<string, object>)links[userid]);
-                                                    if (linksEx.ContainsKey("rights")) { nodeRights = (ulong)(int)linksEx["rights"]; }
+                                                    if (linksEx.ContainsKey("rights")) { n.rights = (ulong)(int)linksEx["rights"]; }
                                                 }
-
-                                                n.links = new Dictionary<string, ulong>();
                                                 foreach (string j in links.Keys)
                                                 {
                                                     Dictionary<string, object> linksEx = ((Dictionary<string, object>)links[j]);
@@ -424,276 +579,144 @@ namespace MeshCentralRouter
                                                     }
                                                 }
                                             }
-                                            n.rights = nodeRights;
-
-                                            // Compute rights on this device
-                                            ulong rights = n.rights; // Direct device rights
-                                            if (meshes.ContainsKey(n.meshid)) { rights |= meshes[n.meshid].rights; } // Device group rights
-                                            foreach (string i in n.links.Keys) { if (userGroups.ContainsKey(i)) { rights |= n.links[i]; } } // Take a look at group rights
-
-                                            if (rights == 0) {
-                                                // We have no rights to this device, remove it
-                                                nodes.Remove(n.nodeid);
-                                            } else {
-                                                // Update the node
-                                                nodes[n.nodeid] = n;
-                                            }
+                                            nodes2[n.nodeid] = n;
                                         }
-                                        if ((onNodesChanged != null) && (nodes != null)) onNodesChanged(false);
-                                    }
-                                    else
-                                    {
-                                        wc.SendString("{\"action\":\"nodes\"}");
-                                    }
-                                    break;
-                                }
-                            case "nodeconnect":
-                                {
-                                    if (nodes == null) return;
-                                    string nodeid = (string)ev["nodeid"];
-                                    if (nodes.ContainsKey(nodeid))
-                                    {
-                                        lock (nodes)
+                                        else
                                         {
-                                            NodeClass n = (NodeClass)nodes[nodeid];
-                                            if (ev.ContainsKey("conn")) { n.conn = (int)ev["conn"]; }
-                                            nodes[n.nodeid] = n;
-                                        }
-                                        if ((onNodesChanged != null) && (nodes != null)) onNodesChanged(false);
-                                    }
-                                    break;
-                                }
-                            case "usergroupchange":
-                                {
-                                    wc.SendString("{\"action\":\"usergroups\"}");
-                                    wc.SendString("{\"action\":\"nodes\"}");
-                                    break;
-                                }
-                        }
-                        break;
-                    }
-                case "meshes":
-                    {
-                        meshes = new Dictionary<string, MeshClass>();
-
-                        ArrayList meshList = (ArrayList)jsonAction["meshes"];
-                        for (int i = 0; i < meshList.Count; i++)
-                        {
-                            Dictionary<string, object> mesh = (Dictionary<string, object>)meshList[i];
-                            MeshClass m = new MeshClass();
-                            m.meshid = (string)mesh["_id"];
-                            m.name = (string)mesh["name"];
-                            if (mesh.ContainsKey("desc")) { m.desc = (string)mesh["desc"]; }
-                            m.rights = 0;
-                            m.links = new Dictionary<string, ulong>();
-
-                            Dictionary<string, object> links = ((Dictionary<string, object>)mesh["links"]);
-                            if (links.ContainsKey(userid))
-                            {
-                                Dictionary<string, object> urights = ((Dictionary<string, object>)links[userid]);
-                                if (urights != null)
-                                {
-                                    if (urights["rights"].GetType() == typeof(int)) { m.rights = (ulong)((int)urights["rights"]); }
-                                    if (urights["rights"].GetType() == typeof(Int64)) { m.rights = (ulong)((Int64)urights["rights"]); }
-                                }
-                            }
-
-                            foreach (string j in links.Keys)
-                            {
-                                Dictionary<string, object> urights = ((Dictionary<string, object>)links[j]);
-                                if (urights != null)
-                                {
-                                    if (urights["rights"].GetType() == typeof(int)) { m.links[j] = (ulong)((int)urights["rights"]); }
-                                    if (urights["rights"].GetType() == typeof(Int64)) { m.links[j] = (ulong)((Int64)urights["rights"]); }
-                                }
-                            }
-
-                            if (mesh["mtype"].GetType() == typeof(string)) { m.type = int.Parse((string)mesh["mtype"]); }
-                            if (mesh["mtype"].GetType() == typeof(int)) { m.type = (int)mesh["mtype"]; }
-                            meshes[m.meshid] = m;
-                        }
-
-                        break;
-                    }
-                case "nodes":
-                    {
-                        if (nodes == null) { nodes = new Dictionary<string, NodeClass>(); }
-                        Dictionary<string, NodeClass> nodes2 = new Dictionary<string, NodeClass>();
-                        lock (nodes)
-                        {
-                            Dictionary<string, object> groups = (Dictionary<string, object>)jsonAction["nodes"];
-                            foreach (string meshid in groups.Keys)
-                            {
-                                ArrayList nodesinMesh = (ArrayList)groups[meshid];
-                                for (int i = 0; i < nodesinMesh.Count; i++)
-                                {
-                                    Dictionary<string, object> node = (Dictionary<string, object>)nodesinMesh[i];
-                                    string nodeid = (string)node["_id"];
-                                    if (nodes.ContainsKey(nodeid))
-                                    {
-                                        NodeClass n = (NodeClass)nodes[nodeid];
-                                        n.nodeid = nodeid;
-                                        if (node.ContainsKey("agent")) {
-                                            n.agentid = (int)((Dictionary<string, object>)node["agent"])["id"];
-                                            n.agentcaps = (int)((Dictionary<string, object>)node["agent"])["caps"];
-                                        } else {
-                                            n.agentid = -1;
-                                            n.agentcaps = 0;
-                                        }
-                                        n.name = (string)node["name"];
-                                        n.meshid = meshid;
-                                        if (node.ContainsKey("mtype"))
-                                        {
-                                            if (node["mtype"].GetType() == typeof(string)) { n.mtype = int.Parse((string)node["mtype"]); }
-                                            if (node["mtype"].GetType() == typeof(int)) { n.mtype = (int)node["mtype"]; }
-                                        }
-                                        if (node.ContainsKey("users")) { n.users = (string[])((ArrayList)node["users"]).ToArray(typeof(string)); } else { n.users = null; }
-                                        if (node.ContainsKey("rdpport")) { n.rdpport = (int)node["rdpport"]; } else { n.rdpport = 3389; }
-                                        if (node.ContainsKey("conn")) { n.conn = (int)node["conn"]; } else { n.conn = 0; }
-                                        if (node.ContainsKey("icon")) { n.icon = (int)node["icon"]; }
-                                        if (n.icon == 0) { n.icon = 1; }
-                                        n.rights = 0;
-                                        n.links = new Dictionary<string, ulong>();
-                                        if (node.ContainsKey("links"))
-                                        {
-                                            Dictionary<string, object> links = ((Dictionary<string, object>)node["links"]);
-                                            if (links.ContainsKey(userid))
+                                            NodeClass n = new NodeClass();
+                                            n.nodeid = nodeid;
+                                            if (node.ContainsKey("agent"))
                                             {
-                                                Dictionary<string, object> linksEx = ((Dictionary<string, object>)links[userid]);
-                                                if (linksEx.ContainsKey("rights")) { n.rights = (ulong)(int)linksEx["rights"]; }
+                                                n.agentid = (int)((Dictionary<string, object>)node["agent"])["id"];
+                                                n.agentcaps = (int)((Dictionary<string, object>)node["agent"])["caps"];
                                             }
-                                            foreach (string j in links.Keys)
+                                            else
                                             {
-                                                Dictionary<string, object> linksEx = ((Dictionary<string, object>)links[j]);
-                                                if (linksEx.ContainsKey("rights"))
+                                                n.agentid = -1;
+                                                n.agentcaps = 0;
+                                            }
+                                            n.name = (string)node["name"];
+                                            n.meshid = meshid;
+
+                                            if (node.ContainsKey("mtype"))
+                                            {
+                                                if (node["mtype"].GetType() == typeof(string)) { n.mtype = int.Parse((string)node["mtype"]); }
+                                                if (node["mtype"].GetType() == typeof(int)) { n.mtype = (int)node["mtype"]; }
+                                            }
+                                            if (node.ContainsKey("users"))
+                                            {
+                                                if (node["users"].GetType() == typeof(ArrayList))
                                                 {
-                                                    n.links.Add(j, ulong.Parse(linksEx["rights"].ToString()));
+                                                    n.users = (string[])((ArrayList)node["users"]).ToArray(typeof(string));
+                                                }
+                                                else if (node["users"].GetType() == typeof(Dictionary<string, object>))
+                                                {
+                                                    Dictionary<string, object> users = (Dictionary<string, object>)node["users"];
+                                                    ArrayList users2 = new ArrayList();
+                                                    foreach (string u in users.Keys) { if (users[u].GetType() == typeof(string)) { users2.Add((string)users[u]); } }
+                                                    n.users = (string[])users2.ToArray(typeof(string));
+                                                }
+                                                else
+                                                {
+                                                    n.users = null;
                                                 }
                                             }
-                                        }
-                                        nodes2[n.nodeid] = n;
-                                    }
-                                    else
-                                    {
-                                        NodeClass n = new NodeClass();
-                                        n.nodeid = nodeid;
-                                        if (node.ContainsKey("agent")) {
-                                            n.agentid = (int)((Dictionary<string, object>)node["agent"])["id"];
-                                            n.agentcaps = (int)((Dictionary<string, object>)node["agent"])["caps"];
-                                        } else {
-                                            n.agentid = -1;
-                                            n.agentcaps = 0;
-                                        }
-                                        n.name = (string)node["name"];
-                                        n.meshid = meshid;
-
-                                        if (node.ContainsKey("mtype"))
-                                        {
-                                            if (node["mtype"].GetType() == typeof(string)) { n.mtype = int.Parse((string)node["mtype"]); }
-                                            if (node["mtype"].GetType() == typeof(int)) { n.mtype = (int)node["mtype"]; }
-                                        }
-                                        if (node.ContainsKey("users")) {
-                                            if (node["users"].GetType() == typeof(ArrayList)) {
-                                                n.users = (string[])((ArrayList)node["users"]).ToArray(typeof(string));
-                                            } else if (node["users"].GetType() == typeof(Dictionary<string, object>)) {
-                                                Dictionary<string, object> users = (Dictionary<string, object>)node["users"];
-                                                ArrayList users2 = new ArrayList();
-                                                foreach (string u in users.Keys) { if (users[u].GetType() == typeof(string)) { users2.Add((string)users[u]); } }
-                                                n.users = (string[])users2.ToArray(typeof(string));
-                                            } else {
+                                            else
+                                            {
                                                 n.users = null;
                                             }
-                                        } else {
-                                            n.users = null;
-                                        }
-                                        if (node.ContainsKey("rdpport")) { n.rdpport = (int)node["rdpport"]; } else { n.rdpport = 3389; }
-                                        if (node.ContainsKey("conn")) { n.conn = (int)node["conn"]; } else { n.conn = 0; }
-                                        if (node.ContainsKey("icon")) { n.icon = (int)node["icon"]; }
-                                        if (n.icon == 0) { n.icon = 1; }
-                                        n.rights = 0;
-                                        n.links = new Dictionary<string, ulong>();
-                                        if (node.ContainsKey("links"))
-                                        {
-                                            Dictionary<string, object> links = ((Dictionary<string, object>)node["links"]);
-                                            if (links.ContainsKey(userid))
+                                            if (node.ContainsKey("rdpport")) { n.rdpport = (int)node["rdpport"]; } else { n.rdpport = 3389; }
+                                            if (node.ContainsKey("conn")) { n.conn = (int)node["conn"]; } else { n.conn = 0; }
+                                            if (node.ContainsKey("icon")) { n.icon = (int)node["icon"]; }
+                                            if (n.icon == 0) { n.icon = 1; }
+                                            n.rights = 0;
+                                            n.links = new Dictionary<string, ulong>();
+                                            if (node.ContainsKey("links"))
                                             {
-                                                Dictionary<string, object> linksEx = ((Dictionary<string, object>)links[userid]);
-                                                if (linksEx.ContainsKey("rights")) { n.rights = (ulong)(int)linksEx["rights"]; }
-                                            }
-                                            foreach (string j in links.Keys)
-                                            {
-                                                Dictionary<string, object> linksEx = ((Dictionary<string, object>)links[j]);
-                                                if (linksEx.ContainsKey("rights"))
+                                                Dictionary<string, object> links = ((Dictionary<string, object>)node["links"]);
+                                                if (links.ContainsKey(userid))
                                                 {
-                                                    n.links.Add(j, ulong.Parse(linksEx["rights"].ToString()));
+                                                    Dictionary<string, object> linksEx = ((Dictionary<string, object>)links[userid]);
+                                                    if (linksEx.ContainsKey("rights")) { n.rights = (ulong)(int)linksEx["rights"]; }
+                                                }
+                                                foreach (string j in links.Keys)
+                                                {
+                                                    Dictionary<string, object> linksEx = ((Dictionary<string, object>)links[j]);
+                                                    if (linksEx.ContainsKey("rights"))
+                                                    {
+                                                        n.links.Add(j, ulong.Parse(linksEx["rights"].ToString()));
+                                                    }
                                                 }
                                             }
+                                            nodes2[n.nodeid] = n;
                                         }
-                                        nodes2[n.nodeid] = n;
                                     }
                                 }
                             }
+                            nodes = nodes2;
+                            if ((onNodesChanged != null) && (nodes != null)) onNodesChanged(true);
+                            break;
                         }
-                        nodes = nodes2;
-                        if ((onNodesChanged != null) && (nodes != null)) onNodesChanged(true);
-                        break;
-                    }
-                case "msg":
-                    {
-                        if (jsonAction.ContainsKey("type"))
+                    case "msg":
                         {
-                            string type = (string)jsonAction["type"];
-                            if ((type == "getclip") && (jsonAction.ContainsKey("data")) && (jsonAction.ContainsKey("nodeid")))
+                            if (jsonAction.ContainsKey("type"))
                             {
-                                // We requested the remote clipboard
-                                string nodeid = (string)jsonAction["nodeid"];
-                                string clipData = (string)jsonAction["data"];
-                                if (onClipboardData != null) { onClipboardData(nodeid, clipData); }
+                                string type = (string)jsonAction["type"];
+                                if ((type == "getclip") && (jsonAction.ContainsKey("data")) && (jsonAction.ContainsKey("nodeid")))
+                                {
+                                    // We requested the remote clipboard
+                                    string nodeid = (string)jsonAction["nodeid"];
+                                    string clipData = (string)jsonAction["data"];
+                                    if (onClipboardData != null) { onClipboardData(nodeid, clipData); }
+                                }
                             }
+                            break;
                         }
-                        break;
-                    }
-                case "twoFactorCookie":
-                    {
-                        if (jsonAction.ContainsKey("cookie"))
+                    case "twoFactorCookie":
                         {
-                            string cookie = (string)jsonAction["cookie"];
-                            if (onTwoFactorCookie != null) { onTwoFactorCookie(cookie); }
+                            if (jsonAction.ContainsKey("cookie"))
+                            {
+                                string cookie = (string)jsonAction["cookie"];
+                                if (onTwoFactorCookie != null) { onTwoFactorCookie(cookie); }
+                            }
+                            break;
                         }
-                        break;
-                    }
-                case "meshToolInfo":
-                    {
-                        if (onToolUpdate == null) return;
-                        if (jsonAction.ContainsKey("hash") && jsonAction.ContainsKey("url"))
+                    case "meshToolInfo":
                         {
-                            // MeshCentral Router hash on the server
-                            string hash = (string)jsonAction["hash"];
+                            if (onToolUpdate == null) return;
+                            if (jsonAction.ContainsKey("hash") && jsonAction.ContainsKey("url"))
+                            {
+                                // MeshCentral Router hash on the server
+                                string hash = (string)jsonAction["hash"];
 
-                            // Hash our own executable
-                            byte[] selfHash;
-                            using (var sha384 = SHA384Managed.Create()) { using (var stream = File.OpenRead(System.Reflection.Assembly.GetEntryAssembly().Location)) { selfHash = sha384.ComputeHash(stream); } }
-                            string selfExecutableHashHex = BitConverter.ToString(selfHash).Replace("-", string.Empty).ToLower();
+                                // Hash our own executable
+                                byte[] selfHash;
+                                using (var sha384 = SHA384Managed.Create()) { using (var stream = File.OpenRead(System.Reflection.Assembly.GetEntryAssembly().Location)) { selfHash = sha384.ComputeHash(stream); } }
+                                string selfExecutableHashHex = BitConverter.ToString(selfHash).Replace("-", string.Empty).ToLower();
 
-                            // Get login key
-                            string url = jsonAction["url"] + "&auth=" + authCookie;
-                            if (url.StartsWith("*/")) { url = "https://" + wsurl.Authority + url.Substring(1); }
-                            string loginkey = getValueFromQueryString(wsurl.Query, "key");
-                            if (loginkey != null) { url += ("&key=" + loginkey); }
+                                // Get login key
+                                string url = jsonAction["url"] + "&auth=" + authCookie;
+                                if (url.StartsWith("*/")) { url = "https://" + wsurl.Authority + url.Substring(1); }
+                                string loginkey = getValueFromQueryString(wsurl.Query, "key");
+                                if (loginkey != null) { url += ("&key=" + loginkey); }
 
-                            // Server TLS certificate hash
-                            string serverhash = null;
-                            if (jsonAction.ContainsKey("serverhash")) { serverhash = jsonAction["serverhash"].ToString(); }
+                                // Server TLS certificate hash
+                                string serverhash = null;
+                                if (jsonAction.ContainsKey("serverhash")) { serverhash = jsonAction["serverhash"].ToString(); }
 
-                            // If the hashes don't match, event the tool update with URL
-                            if (selfExecutableHashHex != hash) { onToolUpdate((string)url, (string)jsonAction["hash"], (int)jsonAction["size"], serverhash); }
+                                // If the hashes don't match, event the tool update with URL
+                                if (selfExecutableHashHex != hash) { onToolUpdate((string)url, (string)jsonAction["hash"], (int)jsonAction["size"], serverhash); }
+                            }
+                            break;
                         }
-                        break;
-                    }
-                default:
-                    {
-                        break;
-                    }
+                    default:
+                        {
+                            break;
+                        }
+                }
+            } catch (Exception ex)
+            {
+                if (debug) { try { File.AppendAllText("debug.log", ex.ToString() + "\r\n"); } catch (Exception) { } }
             }
         }
 

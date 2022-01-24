@@ -1,5 +1,5 @@
 ﻿/*
-Copyright 2009-2021 Intel Corporation
+Copyright 2009-2022 Intel Corporation
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -560,6 +560,7 @@ namespace MeshCentralRouter
         private void Meshcentral_onTwoFactorCookie(string cookie)
         {
             if (this.InvokeRequired) { this.Invoke(new MeshCentralServer.twoFactorCookieHandler(Meshcentral_onTwoFactorCookie), cookie); return; }
+            if (debug) { try { File.AppendAllText("debug.log", "Saving 2FA cookie\r\n"); } catch (Exception) { } }
             Settings.SetRegValue("TwoFactorCookie", cookie);
         }
 

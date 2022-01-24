@@ -48,6 +48,7 @@
             this.nextButton1 = new System.Windows.Forms.Button();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tokenRememberCheckBox = new System.Windows.Forms.CheckBox();
@@ -135,13 +136,13 @@
             this.settingsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.openMapFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveMapFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel5.SuspendLayout();
             this.mainPanel.SuspendLayout();
             this.mainTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
@@ -164,7 +165,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.trayIconContextMenuStrip.SuspendLayout();
             this.mappingsContextMenuStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // panel5
@@ -303,6 +303,13 @@
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
             this.label1.UseMnemonic = false;
+            // 
+            // pictureBox2
+            // 
+            resources.ApplyResources(this.pictureBox2, "pictureBox2");
+            this.pictureBox2.Image = global::MeshCentralRouter.Properties.Resources.MeshCentral;
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.TabStop = false;
             // 
             // tabPage2
             // 
@@ -958,13 +965,6 @@
             this.saveMapFileDialog.DefaultExt = "mcrouter";
             resources.ApplyResources(this.saveMapFileDialog, "saveMapFileDialog");
             // 
-            // pictureBox2
-            // 
-            resources.ApplyResources(this.pictureBox2, "pictureBox2");
-            this.pictureBox2.Image = global::MeshCentralRouter.Properties.Resources.MeshCentral;
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.TabStop = false;
-            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -984,6 +984,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -1009,7 +1010,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.trayIconContextMenuStrip.ResumeLayout(false);
             this.mappingsContextMenuStrip.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
         }
