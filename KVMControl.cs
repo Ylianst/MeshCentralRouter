@@ -22,6 +22,8 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.ComponentModel;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using System.Diagnostics;
 
 namespace MeshCentralRouter
 {
@@ -57,7 +59,58 @@ namespace MeshCentralRouter
         private long killNextKeyPress = 0;
 
 
-        private enum KvmCommands
+
+    //System level functions to be used for hook and unhook keyboard input  
+    private delegate IntPtr LowLevelKeyboardProc(int nCode, IntPtr wParam, IntPtr lParam);
+    [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+    private static extern IntPtr SetWindowsHookEx(int id, LowLevelKeyboardProc callback, IntPtr hMod, uint dwThreadId);
+    [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+    private static extern bool UnhookWindowsHookEx(IntPtr hook);
+    [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+    private static extern IntPtr CallNextHookEx(IntPtr hook, int nCode, IntPtr wp, IntPtr lp);
+    [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)] 
+    private static extern IntPtr GetModuleHandle(string name);
+    [DllImport("user32.dll", CharSet = CharSet.Auto)]
+    private static extern short GetAsyncKeyState(Keys key);
+    [DllImport("user32.dll")]
+    static extern IntPtr GetForegroundWindow();
+
+
+    [DllImport("gdi32.dll", ExactSpelling = true, SetLastError = true)] public static extern IntPtr CreateCompatibleDC(IntPtr hDC);
+    [DllImport("gdi32.dll", ExactSpelling = true)] public static extern IntPtr SelectObject(IntPtr hDC, IntPtr hObject);
+    [DllImport("gdi32.dll", ExactSpelling = true)] public static extern IntPtr DeleteObject(IntPtr hObject);
+    [DllImport("gdi32.dll")] private static extern bool BitBlt(IntPtr hdcDest, Int32 nXDest, Int32 nYDest, Int32 nWidth, Int32 nHeight, IntPtr hdcSrc, Int32 nXSrc, Int32 nYSrc, TernaryRasterOperations dwRop);
+    [DllImport("gdi32.dll")] private static extern bool StretchBlt(IntPtr hdcDest, int nXOriginDest, int nYOriginDest, int nWidthDest, int nHeightDest, IntPtr hdcSrc, int nXOriginSrc, int nYOriginSrc, int nWidthSrc, int nHeightSrc, TernaryRasterOperations dwRop);
+    [DllImport("gdi32.dll")] static extern bool SetStretchBltMode(IntPtr hdc, StretchMode iStretchMode);
+    [DllImport("gdi32.dll", ExactSpelling = true, SetLastError = true)] private static extern bool DeleteDC(IntPtr hdc);
+    public enum StretchMode
+    {
+      STRETCH_ANDSCANS = 1,
+      STRETCH_ORSCANS = 2,
+      STRETCH_DELETESCANS = 3,
+      STRETCH_HALFTONE = 4,
+    }
+
+    public enum TernaryRasterOperations
+    {
+      SRCCOPY = 0x00CC0020, /* dest = source*/
+      SRCPAINT = 0x00EE0086, /* dest = source OR dest*/
+      SRCAND = 0x008800C6, /* dest = source AND dest*/
+      SRCINVERT = 0x00660046, /* dest = source XOR dest*/
+      SRCERASE = 0x00440328, /* dest = source AND (NOT dest )*/
+      NOTSRCCOPY = 0x00330008, /* dest = (NOT source)*/
+      NOTSRCERASE = 0x001100A6, /* dest = (NOT src) AND (NOT dest) */
+      MERGECOPY = 0x00C000CA, /* dest = (source AND pattern)*/
+      MERGEPAINT = 0x00BB0226, /* dest = (NOT source) OR dest*/
+      PATCOPY = 0x00F00021, /* dest = pattern*/
+      PATPAINT = 0x00FB0A09, /* dest = DPSnoo*/
+      PATINVERT = 0x005A0049, /* dest = pattern XOR dest*/
+      DSTINVERT = 0x00550009, /* dest = (NOT dest)*/
+      BLACKNESS = 0x00000042, /* dest = BLACK*/
+      WHITENESS = 0x00FF0062, /* dest = WHITE*/
+    };
+
+    private enum KvmCommands
         {
             Nop = 0,
             Key = 1,
@@ -218,7 +271,7 @@ namespace MeshCentralRouter
                             ushort tile_y = (ushort)((buffer[off + 6] << 8) + buffer[off + 7]);
                             try { newtile = Image.FromStream(new System.IO.MemoryStream(buffer, off + 8, blen - 8)); } catch (Exception) { return blen; }
                             Rectangle r = new Rectangle((int)tile_x, (int)tile_y, newtile.Width, newtile.Height);
-                            Rectangle r3 = new Rectangle((int)((double)tile_x / (double)scalefactor) - 2, (int)((double)tile_y / (double)scalefactor) - 2, (int)((double)newtile.Width / (double)scalefactor) + 4, (int)((double)newtile.Height / (double)scalefactor) + 4);
+                            Rectangle r3 = new Rectangle((int)Math.Round((double)tile_x / (double)scalefactor) - 2, (int)Math.Round((double)tile_y / (double)scalefactor) - 2, (int)Math.Round((double)newtile.Width / (double)scalefactor) + 4, (int)Math.Round((double)newtile.Height / (double)scalefactor) + 4);
                             tilecount++;
 
                             // Winform mode
@@ -226,8 +279,21 @@ namespace MeshCentralRouter
                             {
                                 lock (desktop)
                                 {
-                                    desktopGraphics.DrawImage(newtile, new Rectangle((int)tile_x, (int)tile_y, newtile.Width, newtile.Height), new Rectangle(0, 0, newtile.Width, newtile.Height), GraphicsUnit.Pixel);
-                                    if (debugmode)
+                                    Graphics MemGraphics = Graphics.FromImage(newtile);
+
+                                    IntPtr hBitmap = ((Bitmap)newtile).GetHbitmap();
+                                    IntPtr memdc = MemGraphics.GetHdc();
+                                    IntPtr pOrig = SelectObject(memdc, hBitmap);
+                                    IntPtr dcDst = desktopGraphics.GetHdc();
+
+
+                                    bool bok = BitBlt(dcDst, (int)tile_x, (int)tile_y, (int)newtile.Width, (int)newtile.Height, memdc, (int)0, (int)0, TernaryRasterOperations.SRCCOPY);
+
+                                    IntPtr pNew = SelectObject(memdc, pOrig); // == hBitmap
+                                    DeleteObject(pNew);
+                                    desktopGraphics.ReleaseHdc(dcDst);
+                                    MemGraphics.ReleaseHdc(memdc);
+                                    if(debugmode)
                                     {
                                         desktopGraphics.DrawRectangle(RedPen, new Rectangle((int)tile_x, (int)tile_y, newtile.Width - 1, newtile.Height - 1));
                                         desktopGraphics.DrawString(string.Format("{0} / {1}kb", tilecount, blen / 2014), DebugFont, RedPen.Brush, new Point((int)tile_x, (int)tile_y));
@@ -362,7 +428,7 @@ namespace MeshCentralRouter
                     else
                     {
                         //g.DrawImage((Image)desktop, new Rectangle(0, 0, Width, Height), 0, 0, screenWidth, screenHeight, GraphicsUnit.Pixel);
-                        g.DrawImage((Image)desktop, e.ClipRectangle, (int)((double)e.ClipRectangle.Left * (double)scalefactor), (int)((double)e.ClipRectangle.Top * (double)scalefactor), (int)((double)e.ClipRectangle.Width * (double)scalefactor), (int)((double)e.ClipRectangle.Height * (double)scalefactor), GraphicsUnit.Pixel);
+                        g.DrawImage((Image)desktop, e.ClipRectangle, (float)((double)e.ClipRectangle.Left * (double)scalefactor), (float)((double)e.ClipRectangle.Top * (double)scalefactor), (float)((double)e.ClipRectangle.Width * (double)scalefactor), (float)((double)e.ClipRectangle.Height * (double)scalefactor), GraphicsUnit.Pixel);
                     }
                 }
             }
@@ -422,7 +488,7 @@ namespace MeshCentralRouter
 
             if (remoteKeyboardMap == true) { SendKey((byte)e.KeyCode, action); return; } // Use old key system that uses the remote keyboard mapping.
             string keycode = e.KeyCode.ToString();
-            if ((action == 0) && (e.Control == false) && (e.Alt == false) && (((e.KeyValue >= 48) && (e.KeyValue <= 57)) || (keycode.Length == 1) || (keycode.StartsWith("Oem") == true))) return;
+            if ((action == 0) && (e.Control == false) && (e.Alt == false) && (((e.KeyValue >= 48) && (e.KeyValue <= 57))|| ((e.KeyValue >= 96) && (e.KeyValue <= 105)) || (keycode.Length == 1) || (keycode.StartsWith("Oem") == true))) return;
             if ((e.Control == true) || (e.Alt == true)) { killNextKeyPress = DateTime.Now.Ticks; }
             SendKey((byte)e.KeyCode, action);
             e.Handled = true;
@@ -738,5 +804,60 @@ namespace MeshCentralRouter
 
             return false;
         }
+
+    // Structure contain information about low-level keyboard input event 
+    private struct KBDLLHOOKSTRUCT
+    {
+      public Keys key;
+      public int scanCode;
+      public int flags;
+      public int time;
+      public IntPtr extra;
     }
+
+
+
+    //Declaring Global objects     
+    private IntPtr ptrHook;
+    private LowLevelKeyboardProc objKeyboardProcess;
+
+    private IntPtr captureKey(int nCode, IntPtr wp, IntPtr lp)
+    {
+      bool bIsForegroundWindow = false;
+      try { bIsForegroundWindow = GetForegroundWindow() == this.ParentForm.Handle; } catch { }
+      if(nCode >= 0 && bIsForegroundWindow)
+      {
+        KBDLLHOOKSTRUCT objKeyInfo = (KBDLLHOOKSTRUCT)Marshal.PtrToStructure(lp, typeof(KBDLLHOOKSTRUCT));
+
+        // Disabling Windows keys 
+
+        if(objKeyInfo.key == Keys.RWin || objKeyInfo.key == Keys.LWin)
+        {
+          bool bKeyDown = wp == (IntPtr)0x0100/*WM_KEYDOWN*/;
+          SendKey(new KeyEventArgs((Keys)objKeyInfo.key), (byte)(bKeyDown ? 0 : 1));
+          //        SendKey(new KeyEventArgs((Keys)objKeyInfo.key), 0);
+          return (IntPtr)1; // if 0 is returned then All the above keys will be enabled
+                            //      return (IntPtr)0; // if 0 is returned then All the above keys will be enabled
+
+
+        }
+      }
+      return CallNextHookEx(ptrHook, nCode, wp, lp);
+    }
+
+    bool HasAltModifier(int flags)
+    {
+      return (flags & 0x20) == 0x20;
+    }
+
+    private void KVMControl_Load(object sender, EventArgs e)
+    {
+      ProcessModule objCurrentModule = Process.GetCurrentProcess().MainModule;
+      objKeyboardProcess = new LowLevelKeyboardProc(captureKey);
+      ptrHook = SetWindowsHookEx(13, objKeyboardProcess, GetModuleHandle(objCurrentModule.ModuleName), 0);
+    }
+
+    /* Code to Disable WinKey, Alt+Tab, Ctrl+Esc Ends Here */
+
+  }
 }
