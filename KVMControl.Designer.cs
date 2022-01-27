@@ -28,23 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // KVMControl
-            // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.SystemColors.Control;
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "KVMControl";
-            this.Size = new System.Drawing.Size(585, 364);
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.KVMControl_Paint);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KVMControl_KeyDown);
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.KVMControl_KeyPress);
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KVMControl_KeyUp);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.KVMControl_MouseDown);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.KVMControl_MouseMove);
-            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.KVMControl_MouseUp);
-            this.ResumeLayout(false);
+      this.SuspendLayout();
+      // 
+      // KVMControl
+      // 
+      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+      this.BackColor = System.Drawing.SystemColors.Control;
+      this.Margin = new System.Windows.Forms.Padding(4);
+      this.Name = "KVMControl";
+      this.Size = new System.Drawing.Size(585, 364);
+      this.Load += new System.EventHandler(this.KVMControl_Load);
+      this.Paint += new System.Windows.Forms.PaintEventHandler(this.KVMControl_Paint);
+      this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KVMControl_KeyDown);
+      this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.KVMControl_KeyPress);
+      this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KVMControl_KeyUp);
+      this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.KVMControl_MouseDown);
+      this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.KVMControl_MouseMove);
+      this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.KVMControl_MouseUp);
+      this.ResumeLayout(false);
 
         }
 
