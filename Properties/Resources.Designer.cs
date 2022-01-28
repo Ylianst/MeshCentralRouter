@@ -482,6 +482,15 @@ namespace MeshCentralRouter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Join.
+        /// </summary>
+        internal static string Join {
+            get {
+                return ResourceManager.GetString("Join", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Changing language will close this tool. Are you sure?.
         /// </summary>
         internal static string LanguagesChanging {
@@ -832,6 +841,15 @@ namespace MeshCentralRouter.Properties {
         internal static string SmsSent {
             get {
                 return ResourceManager.GetString("SmsSent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Split.
+        /// </summary>
+        internal static string Split {
+            get {
+                return ResourceManager.GetString("Split", resourceCulture);
             }
         }
         

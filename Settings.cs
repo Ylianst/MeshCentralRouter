@@ -37,7 +37,11 @@ namespace MeshCentralRouter
         /// <returns></returns>
         public static string GetRegValue(string name, string value)
         {
-            try { return Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\Open Source\MeshCentral Router", name, value).ToString(); } catch (Exception) { return value; }
+            try {
+                String v = (String)Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\Open Source\MeshCentral Router", name, value);
+                if (v == null) return value;
+                return v.ToString();
+            } catch (Exception) { return value; }
         }
         /// <summary>
         /// This function querys the registry. If the key is found it returns the value as a boolean

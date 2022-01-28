@@ -51,6 +51,7 @@ namespace MeshCentralRouter
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.updateTimer = new System.Windows.Forms.Timer(this.components);
             this.topPanel = new System.Windows.Forms.Panel();
+            this.splitButton = new System.Windows.Forms.Button();
             this.clipOutboundButton = new System.Windows.Forms.Button();
             this.clipInboundButton = new System.Windows.Forms.Button();
             this.statsButton = new System.Windows.Forms.Button();
@@ -75,6 +76,7 @@ namespace MeshCentralRouter
             // mainStatusStrip
             // 
             this.mainStatusStrip.BackColor = System.Drawing.SystemColors.Menu;
+            this.mainStatusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.mainStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mainToolStripStatusLabel,
             this.toolStripStatusLabel1});
@@ -101,6 +103,7 @@ namespace MeshCentralRouter
             // topPanel
             // 
             this.topPanel.BackColor = System.Drawing.SystemColors.Control;
+            this.topPanel.Controls.Add(this.splitButton);
             this.topPanel.Controls.Add(this.clipOutboundButton);
             this.topPanel.Controls.Add(this.clipInboundButton);
             this.topPanel.Controls.Add(this.statsButton);
@@ -111,6 +114,14 @@ namespace MeshCentralRouter
             this.topPanel.Controls.Add(this.connectButton);
             resources.ApplyResources(this.topPanel, "topPanel");
             this.topPanel.Name = "topPanel";
+            // 
+            // splitButton
+            // 
+            resources.ApplyResources(this.splitButton, "splitButton");
+            this.splitButton.Name = "splitButton";
+            this.splitButton.TabStop = false;
+            this.splitButton.UseVisualStyleBackColor = true;
+            this.splitButton.Click += new System.EventHandler(this.splitButton_Click);
             // 
             // clipOutboundButton
             // 
@@ -183,6 +194,7 @@ namespace MeshCentralRouter
             // 
             // consentContextMenuStrip
             // 
+            this.consentContextMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.consentContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.askConsentBarToolStripMenuItem,
             this.askConsentToolStripMenuItem,
@@ -277,6 +289,7 @@ namespace MeshCentralRouter
         private ToolStripMenuItem askConsentBarToolStripMenuItem;
         private ToolStripMenuItem askConsentToolStripMenuItem;
         private ToolStripMenuItem privacyBarToolStripMenuItem;
+        private Button splitButton;
     }
 }
 

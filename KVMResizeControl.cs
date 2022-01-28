@@ -47,6 +47,7 @@ namespace MeshCentralRouter
             CenterKvmControl(false);
         }
 
+        /*
         void KVM_StateChanged(object sender, EventArgs e)
         {
             if (InvokeRequired) { Invoke(new EventHandler(KVM_StateChanged), sender, e); return; }
@@ -55,6 +56,7 @@ namespace MeshCentralRouter
             //kvmControl.Visible = (kvmControl.State == KVMControl.ConnectState.Connected);
             if (StateChanged != null) StateChanged(this, e);
         }
+        */
 
         void KVM_DisplaysReceived(object sender, EventArgs e)
         {

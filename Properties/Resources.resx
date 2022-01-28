@@ -448,4 +448,10 @@
   <data name="ZipSelectedFiles" xml:space="preserve">
     <value>ZIP Selected Files</value>
   </data>
+  <data name="Join" xml:space="preserve">
+    <value>Join</value>
+  </data>
+  <data name="Split" xml:space="preserve">
+    <value>Split</value>
+  </data>
 </root>

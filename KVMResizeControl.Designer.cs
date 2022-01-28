@@ -89,14 +89,18 @@
             // 
             // kvmControl
             // 
+            this.kvmControl.AutoSendClipboard = false;
             this.kvmControl.BackColor = System.Drawing.Color.LightCoral;
             this.kvmControl.CompressionLevel = 60;
+            this.kvmControl.FrameRate = 100;
             this.kvmControl.Location = new System.Drawing.Point(33, 31);
             this.kvmControl.Margin = new System.Windows.Forms.Padding(4);
             this.kvmControl.Name = "kvmControl";
+            this.kvmControl.RemoteKeyboardMap = false;
             this.kvmControl.ScaleFactor = 1D;
             this.kvmControl.ScalingLevel = 1024;
             this.kvmControl.Size = new System.Drawing.Size(450, 314);
+            this.kvmControl.SwamMouseButtons = false;
             this.kvmControl.TabIndex = 14;
             this.kvmControl.DesktopSizeChanged += new System.EventHandler(this.kvmControl_DesktopSizeChanged);
             this.kvmControl.Resize += new System.EventHandler(this.kvmControl_Resize);
