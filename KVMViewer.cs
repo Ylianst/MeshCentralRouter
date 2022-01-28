@@ -90,7 +90,9 @@ namespace MeshCentralRouter
         private void KvmControl_ScreenAreaUpdated(Bitmap desktop, Rectangle r)
         {
             if (extraDisplays == null) return;
-            foreach (KVMViewerExtra x in extraDisplays) { x.UpdateScreenArea(desktop, r); }
+            foreach (KVMViewerExtra x in extraDisplays) {
+                if (x != null) { x.UpdateScreenArea(desktop, r); }
+            }
         }
 
         private void Parent_ClipboardChanged()

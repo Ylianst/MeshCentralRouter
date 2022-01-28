@@ -249,6 +249,7 @@ namespace MeshCentralRouter
                                 // Update extra displays if needed
                                 Rectangle r = new Rectangle((int)tile_x, (int)tile_y, newtile.Width, newtile.Height);
                                 Rectangle rx = new Rectangle(r.X + displayOrigin.X, r.Y + displayOrigin.Y, r.Width, r.Height);
+                                //Console.WriteLine(rx.ToString());
                                 if (ScreenAreaUpdated != null) ScreenAreaUpdated(desktop, rx);
 
                                 if (displayCrop == Rectangle.Empty)

@@ -54,8 +54,17 @@ namespace MeshCentralRouter
             if (kvmControl.displayCrop.IntersectsWith(r) == false) return;
             Rectangle r2 = new Rectangle(r.X, r.Y, r.Width, r.Height);
             r2.Intersect(kvmControl.displayCrop);
-            //kvmControl.Repaint(new Rectangle(r2.X - kvmControl.displayCrop.X, r2.Y - kvmControl.displayCrop.Y, r2.Width, r2.Height));
-            kvmControl.Repaint(null);
+            kvmControl.desktop = desktop;
+            if (kvmControl.ScaleFactor == 1)
+            {
+                Rectangle r3 = new Rectangle(r2.X - kvmControl.displayCrop.X, r2.Y - kvmControl.displayCrop.Y, r2.Width, r2.Height);
+                kvmControl.Repaint(r3);
+            }
+            else
+            {
+                Rectangle r3 = new Rectangle((int)(((double)(r2.X - kvmControl.displayCrop.X)) / kvmControl.ScaleFactor) - 2, (int)(((double)(r2.Y - kvmControl.displayCrop.Y)) / kvmControl.ScaleFactor) - 2, (int)(((double)r2.Width) / kvmControl.ScaleFactor) + 4, (int)(((double)r2.Height) / kvmControl.ScaleFactor) + 4);
+                kvmControl.Repaint(r3);
+            }
         }
 
         private void KvmControl_DesktopSizeChanged(object sender, EventArgs e)
