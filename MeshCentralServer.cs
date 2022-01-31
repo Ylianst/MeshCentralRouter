@@ -399,7 +399,7 @@ namespace MeshCentralRouter
                                                 if (node.ContainsKey("agent"))
                                                 {
                                                     n.agentid = (int)((Dictionary<string, object>)node["agent"])["id"];
-                                                    n.agentcaps = (int)((Dictionary<string, object>)node["agent"])["caps"];
+                                                    if (((Dictionary<string, object>)node["agent"]).ContainsKey("caps")) { n.agentcaps = (int)((Dictionary<string, object>)node["agent"])["caps"]; } else { n.agentcaps = 0; }
                                                 }
                                                 if (node.ContainsKey("conn")) { n.conn = (int)node["conn"]; }
                                                 n.icon = 1;
@@ -541,7 +541,7 @@ namespace MeshCentralRouter
                                             if (node.ContainsKey("agent"))
                                             {
                                                 n.agentid = (int)((Dictionary<string, object>)node["agent"])["id"];
-                                                n.agentcaps = (int)((Dictionary<string, object>)node["agent"])["caps"];
+                                                if (((Dictionary<string, object>)node["agent"]).ContainsKey("caps")) { n.agentcaps = (int)((Dictionary<string, object>)node["agent"])["caps"]; } else { n.agentcaps = 0; }
                                             }
                                             else
                                             {
@@ -588,7 +588,7 @@ namespace MeshCentralRouter
                                             if (node.ContainsKey("agent"))
                                             {
                                                 n.agentid = (int)((Dictionary<string, object>)node["agent"])["id"];
-                                                n.agentcaps = (int)((Dictionary<string, object>)node["agent"])["caps"];
+                                                if (((Dictionary<string, object>)node["agent"]).ContainsKey("caps")) { n.agentcaps = (int)((Dictionary<string, object>)node["agent"])["caps"]; } else { n.agentcaps = 0; }
                                             }
                                             else
                                             {
