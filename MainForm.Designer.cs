@@ -88,7 +88,7 @@
             this.devicesTabPage = new System.Windows.Forms.TabPage();
             this.devicesPanel = new System.Windows.Forms.Panel();
             this.cancelAutoCloseButton1 = new System.Windows.Forms.Button();
-            this.devicesListView = new System.Windows.Forms.ListView();
+            this.devicesListView = new ListViewExtended();
             this.nameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.stateColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.devicesContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -1093,7 +1093,7 @@
         private System.Windows.Forms.ToolStripMenuItem saveMappingsToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openMapFileDialog;
         private System.Windows.Forms.SaveFileDialog saveMapFileDialog;
-        private System.Windows.Forms.ListView devicesListView;
+        private ListViewExtended devicesListView;
         private System.Windows.Forms.ImageList devicesImageList;
         private System.Windows.Forms.ColumnHeader nameColumnHeader;
         private System.Windows.Forms.ColumnHeader stateColumnHeader;
