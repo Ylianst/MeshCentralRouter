@@ -43,6 +43,8 @@ namespace MeshCentralRouter
         public string lang = Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName;
         private bool splitMode = false;
         private KVMViewerExtra[] extraDisplays = null;
+        private System.Windows.Forms.Timer delayedConnectionTimer = null;
+        private bool localAutoReconnect = true;
 
         // Stats
         public long bytesIn = 0;
@@ -84,7 +86,19 @@ namespace MeshCentralRouter
             mainToolTip.SetToolTip(clipInboundButton, Translate.T(Properties.Resources.PullClipboardFromRemoteDevice, lang));
             mainToolTip.SetToolTip(zoomButton, Translate.T(Properties.Resources.ToggleZoomToFitMode, lang));
             mainToolTip.SetToolTip(statsButton, Translate.T(Properties.Resources.DisplayConnectionStatistics, lang));
+
+            // Load remote desktop settings
+            int CompressionLevel = 60;
+            try { CompressionLevel = int.Parse(Settings.GetRegValue("kvmCompression", "60")); } catch (Exception) { }
+            int ScalingLevel = 1024;
+            try { ScalingLevel = int.Parse(Settings.GetRegValue("kvmScaling", "1024")); } catch (Exception) { }
+            int FrameRate = 100;
+            try { FrameRate = int.Parse(Settings.GetRegValue("kvmFrameRate", "100")); } catch (Exception) { }
+            kvmControl.SetCompressionParams(CompressionLevel, ScalingLevel, FrameRate);
+            kvmControl.SwamMouseButtons = Settings.GetRegValue("kvmSwamMouseButtons", "0").Equals("1");
+            kvmControl.RemoteKeyboardMap = Settings.GetRegValue("kvmSwamMouseButtons", "0").Equals("1");
             kvmControl.AutoSendClipboard = Settings.GetRegValue("kvmAutoClipboard", "0").Equals("1");
+            kvmControl.AutoReconnect = Settings.GetRegValue("kvmAutoReconnect", "0").Equals("1");
         }
 
         private void KvmControl_ScreenAreaUpdated(Bitmap desktop, Rectangle r)
@@ -115,6 +129,25 @@ namespace MeshCentralRouter
                 lastClipboardTime = DateTime.Now;
                 lastClipboardSent = textData;
             }
+        }
+
+        public void TryAutoConnect()
+        {
+            if ((localAutoReconnect == false) || (kvmControl.AutoReconnect == false)) return;
+            if ((state == 0) && (wc == null) && (delayedConnectionTimer == null)) {
+                // Hold half a second before trying to connect
+                delayedConnectionTimer = new System.Windows.Forms.Timer(this.components);
+                delayedConnectionTimer.Tick += new EventHandler(updateTimerTick);
+                delayedConnectionTimer.Interval = 500;
+                delayedConnectionTimer.Enabled = true;
+            }
+        }
+
+        private void updateTimerTick(object sender, EventArgs e)
+        {
+            delayedConnectionTimer.Dispose();
+            delayedConnectionTimer = null;
+            if ((state == 0) && (wc == null)) { MenuItemConnect_Click(this, null); }
         }
 
         private void KvmControl_DesktopSizeChanged(object sender, EventArgs e)
@@ -318,6 +351,7 @@ namespace MeshCentralRouter
                 wc.Dispose();
                 wc = null;
                 UpdateStatus();
+                localAutoReconnect = false;
             }
             else
             {
@@ -325,6 +359,7 @@ namespace MeshCentralRouter
                 if (sender != null) { consentFlags = 0; }
                 MenuItemConnect_Click(null, null);
                 kvmControl.AttachKeyboard();
+                localAutoReconnect = true;
             }
             displayMessage(null);
         }
@@ -434,11 +469,21 @@ namespace MeshCentralRouter
                 form.SwamMouseButtons = kvmControl.SwamMouseButtons;
                 form.RemoteKeyboardMap = kvmControl.RemoteKeyboardMap;
                 form.AutoSendClipboard = kvmControl.AutoSendClipboard;
+                form.AutoReconnect = kvmControl.AutoReconnect;
                 if (form.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
                 {
                     kvmControl.SetCompressionParams(form.Compression, form.Scaling, form.FrameRate);
                     kvmControl.SwamMouseButtons = form.SwamMouseButtons;
                     kvmControl.RemoteKeyboardMap = form.RemoteKeyboardMap;
+                    kvmControl.AutoReconnect = form.AutoReconnect;
+
+                    Settings.SetRegValue("kvmCompression", kvmControl.CompressionLevel.ToString());
+                    Settings.SetRegValue("kvmScaling", kvmControl.ScalingLevel.ToString());
+                    Settings.SetRegValue("kvmFrameRate", kvmControl.FrameRate.ToString());
+                    Settings.SetRegValue("kvmSwamMouseButtons", kvmControl.SwamMouseButtons ? "1" : "0");
+                    Settings.SetRegValue("kvmRemoteKeyboardMap", kvmControl.RemoteKeyboardMap ? "1" : "0");
+                    Settings.SetRegValue("kvmAutoReconnect", kvmControl.AutoReconnect ? "1" : "0");
+
                     if (kvmControl.AutoSendClipboard != form.AutoSendClipboard)
                     {
                         kvmControl.AutoSendClipboard = form.AutoSendClipboard;

@@ -40,6 +40,7 @@ namespace MeshCentralRouter
         private bool swamMouseButtons = false;
         private bool remoteKeyboardMap = false;
         private bool autoSendClipboard = false;
+        public bool AutoReconnect = false;
         private double scalefactor = 1;
         public List<ushort> displays = new List<ushort>();
         public ushort currentDisp = 0;

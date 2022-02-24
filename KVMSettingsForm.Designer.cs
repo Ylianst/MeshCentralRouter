@@ -32,6 +32,7 @@
             this.cancelButton = new System.Windows.Forms.Button();
             this.okButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.autoSendClipboardCheckBox = new System.Windows.Forms.CheckBox();
             this.remoteKeyboardMapCheckBox = new System.Windows.Forms.CheckBox();
             this.swapMouseButtonsCheckBox = new System.Windows.Forms.CheckBox();
             this.frameRateComboBox = new System.Windows.Forms.ComboBox();
@@ -42,7 +43,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.autoSendClipboardCheckBox = new System.Windows.Forms.CheckBox();
+            this.autoReconnectCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -65,6 +66,7 @@
             // groupBox1
             // 
             resources.ApplyResources(this.groupBox1, "groupBox1");
+            this.groupBox1.Controls.Add(this.autoReconnectCheckBox);
             this.groupBox1.Controls.Add(this.autoSendClipboardCheckBox);
             this.groupBox1.Controls.Add(this.remoteKeyboardMapCheckBox);
             this.groupBox1.Controls.Add(this.swapMouseButtonsCheckBox);
@@ -76,6 +78,12 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
+            // 
+            // autoSendClipboardCheckBox
+            // 
+            resources.ApplyResources(this.autoSendClipboardCheckBox, "autoSendClipboardCheckBox");
+            this.autoSendClipboardCheckBox.Name = "autoSendClipboardCheckBox";
+            this.autoSendClipboardCheckBox.UseVisualStyleBackColor = true;
             // 
             // remoteKeyboardMapCheckBox
             // 
@@ -137,11 +145,11 @@
             resources.ApplyResources(this.label4, "label4");
             this.label4.Name = "label4";
             // 
-            // autoSendClipboardCheckBox
+            // autoReconnectCheckBox
             // 
-            resources.ApplyResources(this.autoSendClipboardCheckBox, "autoSendClipboardCheckBox");
-            this.autoSendClipboardCheckBox.Name = "autoSendClipboardCheckBox";
-            this.autoSendClipboardCheckBox.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.autoReconnectCheckBox, "autoReconnectCheckBox");
+            this.autoReconnectCheckBox.Name = "autoReconnectCheckBox";
+            this.autoReconnectCheckBox.UseVisualStyleBackColor = true;
             // 
             // KVMSettingsForm
             // 
@@ -182,5 +190,6 @@
         private System.Windows.Forms.CheckBox swapMouseButtonsCheckBox;
         private System.Windows.Forms.CheckBox remoteKeyboardMapCheckBox;
         private System.Windows.Forms.CheckBox autoSendClipboardCheckBox;
+        private System.Windows.Forms.CheckBox autoReconnectCheckBox;
     }
 }

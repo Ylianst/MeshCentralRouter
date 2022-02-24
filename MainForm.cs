@@ -647,6 +647,12 @@ namespace MeshCentralRouter
 
             // Setup any automatic mappings
             if ((fullRefresh == true) && (mappingsToSetup != null)) { setupMappings(); }
+
+            // Reconnect any auto-reconnect nodes
+            foreach (NodeClass node in meshcentral.nodes.Values)
+            {
+                if (((node.conn & 1) != 0) && (node.desktopViewer != null)) { node.desktopViewer.TryAutoConnect(); }
+            }
         }
 
         private void updateDeviceList()
