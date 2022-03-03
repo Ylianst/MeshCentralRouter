@@ -427,6 +427,16 @@ namespace MeshCentralRouter.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icon_monitor1 {
+            get {
+                object obj = ResourceManager.GetObject("icon-monitor1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap iconClipboardIn {
             get {
                 object obj = ResourceManager.GetObject("iconClipboardIn", resourceCulture);

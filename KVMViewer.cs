@@ -45,22 +45,13 @@ namespace MeshCentralRouter
         private KVMViewerExtra[] extraDisplays = null;
         private System.Windows.Forms.Timer delayedConnectionTimer = null;
         private bool localAutoReconnect = true;
+        private Dictionary<int, Button> displaySelectionButtons = new Dictionary<int, Button>();
 
         // Stats
         public long bytesIn = 0;
         public long bytesInCompressed = 0;
         public long bytesOut = 0;
         public long bytesOutCompressed = 0;
-
-        public class displayTag
-        {
-            public ushort num;
-            public string name;
-
-            public displayTag(ushort num, string name) { this.num = num; this.name = name; }
-
-            public override string ToString() { return name; }
-        }
 
         public KVMViewer(MainForm parent, MeshCentralServer server, NodeClass node)
         {
@@ -376,7 +367,7 @@ namespace MeshCentralRouter
             {
                 case 0: // Disconnected
                     mainToolStripStatusLabel.Text = Translate.T(Properties.Resources.Disconnected, lang);
-                    displaySelectComboBox.Visible = false;
+                    extraButtonsPanel.Visible = false;
                     kvmControl.Visible = false;
                     kvmControl.screenWidth = 0;
                     kvmControl.screenHeight = 0;
@@ -384,13 +375,13 @@ namespace MeshCentralRouter
                     break;
                 case 1: // Connecting
                     mainToolStripStatusLabel.Text = Translate.T(Properties.Resources.Connecting, lang);
-                    displaySelectComboBox.Visible = false;
+                    extraButtonsPanel.Visible = false;
                     kvmControl.Visible = false;
                     connectButton.Text = Translate.T(Properties.Resources.Disconnect, lang);
                     break;
                 case 2: // Setup
                     mainToolStripStatusLabel.Text = "Setup...";
-                    displaySelectComboBox.Visible = false;
+                    extraButtonsPanel.Visible = false;
                     kvmControl.Visible = false;
                     connectButton.Text = Translate.T(Properties.Resources.Disconnect, lang);
                     break;
@@ -515,35 +506,57 @@ namespace MeshCentralRouter
             resizeKvmControl.ZoomToFit = !resizeKvmControl.ZoomToFit;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void resizeKvmControl_DisplaysReceived(object sender, EventArgs e)
         {
             if (kvmControl == null || kvmControl.displays.Count == 0) return;
 
             if (kvmControl.displays.Count > 0)
             {
-                displaySelectComboBox.Visible = true;
-                displaySelectComboBox.Items.Clear();
+                extraButtonsPanel.Visible = true;
+                extraButtonsPanel.Controls.Clear();
+                displaySelectionButtons.Clear();
                 foreach (ushort displayNum in kvmControl.displays)
                 {
-                    displayTag t;
                     if (displayNum == 0xFFFF)
                     {
-                        t = new displayTag(displayNum, Translate.T(Properties.Resources.AllDisplays, lang));
-                        displaySelectComboBox.Items.Add(t);
+                        Button b = new Button();
+                        b.ImageList = displaySelectorImageList;
+                        b.ImageIndex = (kvmControl.currentDisp == displayNum) ? 2 : 3; // All displayes
+                        b.Width = 32;
+                        b.Height = 32;
+                        mainToolTip.SetToolTip(b, Translate.T(Properties.Resources.AllDisplays, lang));
+                        b.Click += new System.EventHandler(this.displaySelectComboBox_SelectionChangeCommitted);
+                        b.Tag = displayNum;
+                        b.Dock = DockStyle.Left;
+                        extraButtonsPanel.Controls.Add(b);
+                        displaySelectionButtons.Add(displayNum, b);
                     }
                     else
                     {
-                        t = new displayTag(displayNum, string.Format(Translate.T(Properties.Resources.DisplayX, lang), displayNum));
-                        displaySelectComboBox.Items.Add(t);
+                        Button b = new Button();
+                        b.ImageList = displaySelectorImageList;
+                        b.ImageIndex = (kvmControl.currentDisp == displayNum) ? 0 : 1; // One display grayed out
+                        b.Width = 32;
+                        b.Height = 32;
+                        mainToolTip.SetToolTip(b, string.Format(Translate.T(Properties.Resources.DisplayX, lang), displayNum));
+                        b.Click += new System.EventHandler(this.displaySelectComboBox_SelectionChangeCommitted);
+                        b.Tag = displayNum;
+                        b.Dock = DockStyle.Left;
+                        extraButtonsPanel.Controls.Add(b);
+                        displaySelectionButtons.Add(displayNum, b);
                     }
-
-                    if (kvmControl.currentDisp == displayNum) { displaySelectComboBox.SelectedItem = t; }
                 }
             }
             else
             {
-                displaySelectComboBox.Visible = false;
-                displaySelectComboBox.Items.Clear();
+                extraButtonsPanel.Visible = false;
+                extraButtonsPanel.Controls.Clear();
+                displaySelectionButtons.Clear();
             }
 
             // If there are many displays and all displays is selected, enable split/join button.
@@ -553,7 +566,10 @@ namespace MeshCentralRouter
         private void displaySelectComboBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
             if (splitMode) { splitButton_Click(this, null); }
-            if (kvmControl != null) { kvmControl.SendDisplay(((displayTag)displaySelectComboBox.SelectedItem).num); }
+            if (kvmControl != null) {
+                ushort displayNum = (ushort)((Button)sender).Tag;
+                kvmControl.SendDisplay(displayNum);
+            }
         }
 
         private void resizeKvmControl_TouchEnabledChanged(object sender, EventArgs e)
@@ -738,5 +754,7 @@ namespace MeshCentralRouter
                 }
             }
         }
+
+
     }
 }

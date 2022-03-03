@@ -120,33 +120,24 @@
   <data name="CIRA" xml:space="preserve">
     <value>CIRA</value>
   </data>
-  <data name="ToggleRemoteDesktopConnection" xml:space="preserve">
-    <value>Toggle remote desktop connection</value>
-  </data>
-  <data name="UnableToOpenFileX" xml:space="preserve">
-    <value>Unable to open file: {0}</value>
+  <data name="ChangeRemoteDesktopSettings" xml:space="preserve">
+    <value>Change remote desktop settings</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="MeshCentral" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\MeshCentral.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Gear20" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Gear20.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Connect" xml:space="preserve">
-    <value>Connect</value>
+  <data name="iconClipboardIn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon-clipboard-in.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="XBytes" xml:space="preserve">
-    <value>{0} Bytes</value>
+  <data name="ZipSelectedFiles" xml:space="preserve">
+    <value>ZIP Selected Files</value>
   </data>
   <data name="Denied" xml:space="preserve">
     <value>Denied</value>
   </data>
   <data name="InvalidUsernameOrPassword" xml:space="preserve">
     <value>Invalid username or password</value>
-  </data>
-  <data name="XbytesPersec" xml:space="preserve">
-    <value>{0} bytes/sec</value>
-  </data>
-  <data name="Slow" xml:space="preserve">
-    <value>Slow</value>
   </data>
   <data name="DisplayConnectionStatistics" xml:space="preserve">
     <value>Display connection statistics</value>
@@ -157,14 +148,14 @@
   <data name="Computer50" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\50-Computer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Almostdone" xml:space="preserve">
+    <value>Almost done</value>
+  </data>
   <data name="EmailSent" xml:space="preserve">
     <value>Email sent</value>
   </data>
-  <data name="PortXtoIPPortY" xml:space="preserve">
-    <value>Port {0} to {1}:{2}</value>
-  </data>
-  <data name="xminutesleft" xml:space="preserve">
-    <value>{0} minutes left</value>
+  <data name="Rename" xml:space="preserve">
+    <value>Rename</value>
   </data>
   <data name="FailedToStartRemoteTerminalSession" xml:space="preserve">
     <value>Failed to start remote terminal session</value>
@@ -175,8 +166,8 @@
   <data name="EmptyBanner" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Empty-Banner.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="PuttyAppName" xml:space="preserve">
-    <value>PuTTY SSH client</value>
+  <data name="ReceivedInvalidNetworkData" xml:space="preserve">
+    <value>Received invalid network data</value>
   </data>
   <data name="XMbytesPersec" xml:space="preserve">
     <value>{0} Mbytes/sec</value>
@@ -184,8 +175,8 @@
   <data name="refresh16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\refresh16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="NoToolsAllowed" xml:space="preserve">
-    <value>No tools allowed</value>
+  <data name="delete16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\delete16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SendCtrlAltDelToRemoteDevice" xml:space="preserve">
     <value>Send Ctrl-Alt-Del to remote device</value>
@@ -193,20 +184,23 @@
   <data name="Fast" xml:space="preserve">
     <value>Fast</value>
   </data>
-  <data name="xsecondsleft" xml:space="preserve">
-    <value>{0} seconds left</value>
+  <data name="RecordedSession" xml:space="preserve">
+    <value>, Recorded Session</value>
   </data>
   <data name="SearchPlaceHolder" xml:space="preserve">
     <value>Search</value>
   </data>
-  <data name="OverwriteOneFile" xml:space="preserve">
-    <value>Overwrite 1 file?</value>
+  <data name="SendTokenEmail" xml:space="preserve">
+    <value>Send token to registered email address?</value>
   </data>
   <data name="DontAskXDays" xml:space="preserve">
     <value>Don't ask for {0} days.</value>
   </data>
-  <data name="Rename" xml:space="preserve">
-    <value>Rename</value>
+  <data name="Stopped2" xml:space="preserve">
+    <value>Stopped</value>
+  </data>
+  <data name="MeshCentral" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MeshCentral.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Connecting" xml:space="preserve">
     <value>Connecting...</value>
@@ -214,11 +208,14 @@
   <data name="MeshCentralTitle" xml:space="preserve">
     <value>MeshCentral</value>
   </data>
+  <data name="folderzip" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\folderzip.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="FailedToStartRemoteDesktopSession" xml:space="preserve">
     <value>Failed to start remote desktop session</value>
   </data>
-  <data name="ReceivedInvalidNetworkData" xml:space="preserve">
-    <value>Received invalid network data</value>
+  <data name="Offline" xml:space="preserve">
+    <value>Offline</value>
   </data>
   <data name="EmailVerificationRequired" xml:space="preserve">
     <value>Email verification required</value>
@@ -229,20 +226,20 @@
   <data name="UnableToWriteFileX" xml:space="preserve">
     <value>Unable to write file: {0}</value>
   </data>
+  <data name="WinscpAppName" xml:space="preserve">
+    <value>WinSCP client</value>
+  </data>
   <data name="XKbytesPersec" xml:space="preserve">
     <value>{0} Kbytes/sec</value>
   </data>
   <data name="LanguagesChanging" xml:space="preserve">
     <value>Changing language will close this tool. Are you sure?</value>
   </data>
-  <data name="InvalidDownload" xml:space="preserve">
-    <value>Invalid download.</value>
+  <data name="Connected" xml:space="preserve">
+    <value>Connected</value>
   </data>
-  <data name="RemoveXItems" xml:space="preserve">
-    <value>Remove {0} items?</value>
-  </data>
-  <data name="ChangeRemoteDesktopSettings" xml:space="preserve">
-    <value>Change remote desktop settings</value>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
   </data>
   <data name="SendTokenSMS" xml:space="preserve">
     <value>Send token to registered phone number?</value>
@@ -256,17 +253,20 @@
   <data name="PushLocaClipboardToRemoteDevice" xml:space="preserve">
     <value>Push local clipboard to remote device</value>
   </data>
-  <data name="UnableToBindToLocalPort" xml:space="preserve">
-    <value>Unable to bind to local port</value>
+  <data name="xminutesleft" xml:space="preserve">
+    <value>{0} minutes left</value>
   </data>
-  <data name="iconClipboardIn" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon-clipboard-in.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ToggleRemoteDesktopConnection" xml:space="preserve">
+    <value>Toggle remote desktop connection</value>
   </data>
-  <data name="MC2Banner" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\MC2-Banner.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Local" xml:space="preserve">
+    <value>Local</value>
   </data>
-  <data name="ErrorUploadingFileX" xml:space="preserve">
-    <value>Error uploading file: {0}</value>
+  <data name="Join" xml:space="preserve">
+    <value>Join</value>
+  </data>
+  <data name="Relay" xml:space="preserve">
+    <value>Relay</value>
   </data>
   <data name="Disconnected" xml:space="preserve">
     <value>Disconnected</value>
@@ -280,8 +280,8 @@
   <data name="Medium" xml:space="preserve">
     <value>Medium</value>
   </data>
-  <data name="RemotePlus" xml:space="preserve">
-    <value>Remote - {0}</value>
+  <data name="PuttyAppName" xml:space="preserve">
+    <value>PuTTY SSH client</value>
   </data>
   <data name="PullClipboardFromRemoteDevice" xml:space="preserve">
     <value>Pull clipboard from remote device</value>
@@ -295,26 +295,23 @@
   <data name="PortXtoPortY" xml:space="preserve">
     <value>Port {0} to port {1}</value>
   </data>
-  <data name="VerySlow" xml:space="preserve">
-    <value>Very slow</value>
-  </data>
   <data name="Remove1Item" xml:space="preserve">
     <value>Remove 1 item?</value>
   </data>
-  <data name="ManyConnections" xml:space="preserve">
-    <value>, {0} connections.</value>
+  <data name="OverwriteOneFile" xml:space="preserve">
+    <value>Overwrite 1 file?</value>
   </data>
   <data name="IndividualDevices" xml:space="preserve">
     <value>(Individual Devices)</value>
   </data>
-  <data name="xinstall" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\xinstall.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Split" xml:space="preserve">
+    <value>Split</value>
   </data>
   <data name="CreateFolder" xml:space="preserve">
     <value>Create Folder</value>
   </data>
-  <data name="arrowright16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\arrowright16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="XBytes" xml:space="preserve">
+    <value>{0} Bytes</value>
   </data>
   <data name="Updating" xml:space="preserve">
     <value>Updating...</value>
@@ -334,8 +331,8 @@
   <data name="xhoursleft" xml:space="preserve">
     <value>{0} hours left</value>
   </data>
-  <data name="iconClipboardOut" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon-clipboard-out.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="InvalidDownload" xml:space="preserve">
+    <value>Invalid download.</value>
   </data>
   <data name="WaitingForUserToGrantAccess" xml:space="preserve">
     <value>Waiting for user to grant access...</value>
@@ -346,26 +343,29 @@
   <data name="AllDisplays" xml:space="preserve">
     <value>All Displays</value>
   </data>
-  <data name="HelpRelayMap" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\HelpRelayMap.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="xsecondsleft" xml:space="preserve">
+    <value>{0} seconds left</value>
   </data>
-  <data name="MeshCentralRouter" xml:space="preserve">
-    <value>MeshCentral Router</value>
+  <data name="xinstall" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\xinstall.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Disconnect" xml:space="preserve">
+    <value>Disconnect</value>
   </data>
   <data name="AMT" xml:space="preserve">
     <value>AMT</value>
   </data>
-  <data name="Local" xml:space="preserve">
-    <value>Local</value>
+  <data name="PortXtoIPPortY" xml:space="preserve">
+    <value>Port {0} to {1}:{2}</value>
   </data>
-  <data name="Relay" xml:space="preserve">
-    <value>Relay</value>
+  <data name="ErrorUploadingFileX" xml:space="preserve">
+    <value>Error uploading file: {0}</value>
   </data>
   <data name="icons01" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons01.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="UnableToConnect" xml:space="preserve">
-    <value>Unable to connect</value>
+  <data name="RemoveXItems" xml:space="preserve">
+    <value>Remove {0} items?</value>
   </data>
   <data name="Setup" xml:space="preserve">
     <value>Setup...</value>
@@ -376,14 +376,17 @@
   <data name="arrowleft16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\arrowleft16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Close" xml:space="preserve">
-    <value>Close</value>
+  <data name="UnableToConnect" xml:space="preserve">
+    <value>Unable to connect</value>
   </data>
-  <data name="AddXUsers" xml:space="preserve">
-    <value>, {0} users</value>
+  <data name="UnableToBindToLocalPort" xml:space="preserve">
+    <value>Unable to bind to local port</value>
   </data>
-  <data name="Disconnect" xml:space="preserve">
-    <value>Disconnect</value>
+  <data name="NoToolsAllowed" xml:space="preserve">
+    <value>No tools allowed</value>
+  </data>
+  <data name="arrowright16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrowright16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="LanguagesTitle" xml:space="preserve">
     <value>Languages</value>
@@ -391,14 +394,17 @@
   <data name="LocalPlus" xml:space="preserve">
     <value>Local - {0}</value>
   </data>
-  <data name="Gear20" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Gear20.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="XbytesPersec" xml:space="preserve">
+    <value>{0} bytes/sec</value>
   </data>
-  <data name="Offline" xml:space="preserve">
-    <value>Offline</value>
+  <data name="iconClipboardOut" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon-clipboard-out.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="RecordedSession" xml:space="preserve">
-    <value>, Recorded Session</value>
+  <data name="VerySlow" xml:space="preserve">
+    <value>Very slow</value>
+  </data>
+  <data name="MeshCentralRouter" xml:space="preserve">
+    <value>MeshCentral Router</value>
   </data>
   <data name="OneByte" xml:space="preserve">
     <value>{0} Byte</value>
@@ -409,14 +415,17 @@
   <data name="folderup16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\folderup16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="delete16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\delete16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="UnableToOpenFileX" xml:space="preserve">
+    <value>Unable to open file: {0}</value>
   </data>
-  <data name="WinscpAppName" xml:space="preserve">
-    <value>WinSCP client</value>
+  <data name="MC2Banner" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MC2-Banner.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="OneConnection" xml:space="preserve">
     <value>, 1 connection.</value>
+  </data>
+  <data name="Connect" xml:space="preserve">
+    <value>Connect</value>
   </data>
   <data name="TwoFactorAuthentication" xml:space="preserve">
     <value>Two-factor Authentication</value>
@@ -424,34 +433,28 @@
   <data name="Agent" xml:space="preserve">
     <value>Agent</value>
   </data>
-  <data name="Connected" xml:space="preserve">
-    <value>Connected</value>
+  <data name="ManyConnections" xml:space="preserve">
+    <value>, {0} connections.</value>
+  </data>
+  <data name="RemotePlus" xml:space="preserve">
+    <value>Remote - {0}</value>
   </data>
   <data name="ErrorDownloadingFileX" xml:space="preserve">
     <value>Error downloading file: {0}</value>
   </data>
-  <data name="Almostdone" xml:space="preserve">
-    <value>Almost done</value>
+  <data name="HelpRelayMap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HelpRelayMap.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Remote" xml:space="preserve">
     <value>Remote</value>
   </data>
-  <data name="SendTokenEmail" xml:space="preserve">
-    <value>Send token to registered email address?</value>
+  <data name="Slow" xml:space="preserve">
+    <value>Slow</value>
   </data>
-  <data name="Stopped2" xml:space="preserve">
-    <value>Stopped</value>
+  <data name="AddXUsers" xml:space="preserve">
+    <value>, {0} users</value>
   </data>
-  <data name="folderzip" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\folderzip.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ZipSelectedFiles" xml:space="preserve">
-    <value>ZIP Selected Files</value>
-  </data>
-  <data name="Join" xml:space="preserve">
-    <value>Join</value>
-  </data>
-  <data name="Split" xml:space="preserve">
-    <value>Split</value>
+  <data name="icon-monitor1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon-monitor1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

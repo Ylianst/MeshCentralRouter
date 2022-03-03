@@ -376,6 +376,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MeshServer.ico" />
+    <None Include="Resources\icon-monitor1.png" />
     <None Include="Resources\folderzip.png" />
     <None Include="Resources\arrowleft16.png" />
     <None Include="Resources\arrowright16.png" />
