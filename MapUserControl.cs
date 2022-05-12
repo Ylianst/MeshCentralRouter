@@ -31,6 +31,7 @@ namespace MeshCentralRouter
         public string remoteIP = null;
         public int remotePort;
         public int appId;
+        public string appIdStr;
         public NodeClass node;
         public MainForm parent;
         public MeshMapper mapper;
@@ -72,7 +73,7 @@ namespace MeshCentralRouter
         public void Start()
         {
             routingStatusLabel.Text = Translate.T(Properties.Resources.Starting);
-            appButton.Enabled = (appId != 0);
+            appButton.Enabled = (appId != 0) || (appIdStr != null);
             mapper = new MeshMapper();
             mapper.xdebug = xdebug;
             mapper.inaddrany = inaddrany;
@@ -110,7 +111,8 @@ namespace MeshCentralRouter
             if (protocol == 2) {
                 statemsg = "UDP: " + statemsg;
             } else {
-                if (appId == 1) { statemsg = "HTTP: " + statemsg; }
+                if ((appId == 0) && (appIdStr != null)) { statemsg = appIdStr + ": " + statemsg; }
+                else if (appId == 1) { statemsg = "HTTP: " + statemsg; }
                 else if (appId == 2) { statemsg = "HTTPS: " + statemsg; }
                 else if (appId == 3) { statemsg = "RDP: " + statemsg; }
                 else if (appId == 4) { statemsg = "PuTTY: " + statemsg; }
@@ -125,6 +127,28 @@ namespace MeshCentralRouter
             bool shift = false;
             if (Control.ModifierKeys == Keys.Shift) { shift = true; }
 
+            if (appId == 0)
+            {
+                if (appIdStr == null) return;
+                string appCmd = null;
+                List<String[]> apps = Settings.GetApplications();
+                foreach (String[] app in apps) { if (app[1].ToLower() == appIdStr.ToLower()) { appCmd = app[2]; } }
+                appCmd = appCmd.Replace("%P", mapper.localport.ToString()).Replace("%L", "127.0.0.1");
+                string appArgs = null;
+                int i = appCmd.IndexOf(' ');
+                if (i >= 0) { appArgs = appCmd.Substring(i + 1); appCmd = appCmd.Substring(0, i); }
+                if (appCmd != null)
+                {
+                    // Launch the process
+                    System.Diagnostics.Process proc = null;
+                    try { proc = System.Diagnostics.Process.Start(appCmd, appArgs); } catch (System.ComponentModel.Win32Exception) { }
+
+                    // Setup auto-exit
+                    if ((autoexit == true) && (parent.autoExitProc == null)) { parent.autoExitProc = proc; parent.SetAutoClose(); autoExitTimer.Enabled = true; }
+                    autoexit = false;
+                }
+                return;
+            }
             if (appId == 1) { System.Diagnostics.Process.Start("http://localhost:" + mapper.localport); }
             if (appId == 2) { System.Diagnostics.Process.Start("https://localhost:" + mapper.localport); }
             if (appId == 3)
@@ -153,6 +177,7 @@ namespace MeshCentralRouter
 
                 // Setup auto-exit
                 if ((autoexit == true) && (parent.autoExitProc == null)) { parent.autoExitProc = proc; parent.SetAutoClose(); autoExitTimer.Enabled = true; }
+                autoexit = false;
             }
             if (appId == 4)
             {
@@ -179,6 +204,7 @@ namespace MeshCentralRouter
 
                     // Setup auto-exit
                     if ((autoexit == true) && (parent.autoExitProc == null)) { parent.autoExitProc = proc; parent.SetAutoClose(); autoExitTimer.Enabled = true; }
+                    autoexit = false;
                 }
                 else
                 {
@@ -209,6 +235,7 @@ namespace MeshCentralRouter
 
                             // Setup auto-exit
                             if ((autoexit == true) && (parent.autoExitProc == null)) { parent.autoExitProc = proc; parent.SetAutoClose(); autoExitTimer.Enabled = true; }
+                            autoexit = false;
                         }
                     }
                 }
@@ -226,6 +253,7 @@ namespace MeshCentralRouter
 
                     // Setup auto-exit
                     if ((autoexit == true) && (parent.autoExitProc == null)) { parent.autoExitProc = proc; parent.SetAutoClose(); autoExitTimer.Enabled = true; }
+                    autoexit = false;
                 }
                 else
                 {
@@ -246,6 +274,7 @@ namespace MeshCentralRouter
 
                             // Setup auto-exit
                             if ((autoexit == true) && (parent.autoExitProc == null)) { parent.autoExitProc = proc; parent.SetAutoClose(); autoExitTimer.Enabled = true; }
+                            autoexit = false;
                         }
                     }
                 }

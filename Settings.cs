@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 using Microsoft.Win32;
+using System.Collections.Generic;
 using System;
 
 namespace MeshCentralRouter
@@ -52,6 +53,54 @@ namespace MeshCentralRouter
         public static bool GetRegValue(string name, bool value)
         {
             try { return bool.Parse(GetRegValue(name, value.ToString())); } catch (Exception) { return value; }
+        }
+
+        public static void SetApplications(List<string[]> apps)
+        {
+            ClearApplications();
+            using (RegistryKey key = Registry.CurrentUser.CreateSubKey(@"HKEY_CURRENT_USER\SOFTWARE\Open Source\MeshCentral Router\Applications", true))
+            {
+                foreach (string[] app in apps)
+                {
+                    using (RegistryKey skey = key.CreateSubKey(app[0]))
+                    {
+                        skey.SetValue("Protocol", app[1]);
+                        skey.SetValue("Command", app[2]);
+                    }
+                }
+            }
+        }
+
+        public static List<string[]> GetApplications()
+        {
+            List<string[]> apps = new List<string[]>();
+            using (RegistryKey key = Registry.CurrentUser.CreateSubKey(@"HKEY_CURRENT_USER\SOFTWARE\Open Source\MeshCentral Router\Applications\", false))
+            {
+                string[] keys = key.GetSubKeyNames();
+                foreach (string k in keys)
+                {
+                    using (RegistryKey key2 = Registry.CurrentUser.OpenSubKey(@"HKEY_CURRENT_USER\SOFTWARE\Open Source\MeshCentral Router\Applications\" + k, false))
+                    {
+                        string protocol = (string)key2.GetValue("Protocol");
+                        string command = (string)key2.GetValue("Command");
+                        String[] a = new string[3];
+                        a[0] = k;
+                        a[1] = protocol;
+                        a[2] = command;
+                        apps.Add(a);
+                    }
+                }
+            }
+            return apps;
+        }
+
+        //public static void DeleteSubKeyTree(RegistryKey key, string subkey) { if (key.OpenSubKey(subkey) == null) { return; } DeleteSubKeyTree(key, subkey); }
+
+        public static void ClearApplications()
+        {
+            RegistryKey key = Registry.CurrentUser.CreateSubKey(@"HKEY_CURRENT_USER\SOFTWARE\Open Source\MeshCentral Router", true);
+            key.DeleteSubKeyTree("Applications");
+            key.Close();
         }
     }
 }

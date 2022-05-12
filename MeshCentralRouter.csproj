@@ -94,6 +94,24 @@
     <Compile Include="AddRelayMapForm.designer.cs">
       <DependentUpon>AddRelayMapForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomAppsAddForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomAppsAddForm.Designer.cs">
+      <DependentUpon>CustomAppsAddForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomAppsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomAppsForm.Designer.cs">
+      <DependentUpon>CustomAppsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomAppsRunForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomAppsRunForm.Designer.cs">
+      <DependentUpon>CustomAppsRunForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FileConfirmOverwriteForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -273,6 +291,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddRelayMapForm.resx">
       <DependentUpon>AddRelayMapForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomAppsAddForm.resx">
+      <DependentUpon>CustomAppsAddForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomAppsForm.resx">
+      <DependentUpon>CustomAppsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomAppsRunForm.resx">
+      <DependentUpon>CustomAppsRunForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FileConfirmOverwriteForm.resx">
       <DependentUpon>FileConfirmOverwriteForm.cs</DependentUpon>

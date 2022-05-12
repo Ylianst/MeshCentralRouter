@@ -138,7 +138,6 @@
             resources.GetString("appComboBox.Items4"),
             resources.GetString("appComboBox.Items5")});
             this.appComboBox.Name = "appComboBox";
-            this.appComboBox.Sorted = true;
             this.appComboBox.SelectedIndexChanged += new System.EventHandler(this.appComboBox_SelectedIndexChanged);
             // 
             // label5
