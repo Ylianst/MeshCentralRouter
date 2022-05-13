@@ -46,6 +46,8 @@
             this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editButton = new System.Windows.Forms.Button();
+            this.runButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.appContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -90,6 +92,8 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.runButton);
+            this.groupBox1.Controls.Add(this.editButton);
             this.groupBox1.Controls.Add(this.removeButton);
             this.groupBox1.Controls.Add(this.addButton);
             this.groupBox1.Controls.Add(this.mainListView);
@@ -201,6 +205,28 @@
             this.addToolStripMenuItem.Text = "&Add...";
             this.addToolStripMenuItem.Click += new System.EventHandler(this.addButton_Click);
             // 
+            // editButton
+            // 
+            this.editButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.editButton.Location = new System.Drawing.Point(137, 185);
+            this.editButton.Name = "editButton";
+            this.editButton.Size = new System.Drawing.Size(75, 23);
+            this.editButton.TabIndex = 3;
+            this.editButton.Text = "Edit...";
+            this.editButton.UseVisualStyleBackColor = true;
+            this.editButton.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
+            // 
+            // runButton
+            // 
+            this.runButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.runButton.Location = new System.Drawing.Point(56, 185);
+            this.runButton.Name = "runButton";
+            this.runButton.Size = new System.Drawing.Size(75, 23);
+            this.runButton.TabIndex = 4;
+            this.runButton.Text = "Run...";
+            this.runButton.UseVisualStyleBackColor = true;
+            this.runButton.Click += new System.EventHandler(this.runToolStripMenuItem_Click);
+            // 
             // CustomAppsForm
             // 
             this.AcceptButton = this.okButton;
@@ -244,5 +270,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.Button editButton;
+        private System.Windows.Forms.Button runButton;
     }
 }

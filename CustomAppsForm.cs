@@ -78,6 +78,7 @@ namespace MeshCentralRouter
         private void UpdateInfo()
         {
             removeButton.Enabled = (mainListView.SelectedItems.Count > 0);
+            runButton.Enabled = editButton.Enabled = (mainListView.SelectedItems.Count == 1);
         }
 
         private void removeButton_Click(object sender, EventArgs e)

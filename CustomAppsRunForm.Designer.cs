@@ -168,6 +168,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "CustomAppsRunForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Test Application";
             this.Load += new System.EventHandler(this.CustomAppsRunForm_Load);
             this.groupBox1.ResumeLayout(false);
