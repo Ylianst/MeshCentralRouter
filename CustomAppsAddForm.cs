@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 
 namespace MeshCentralRouter
@@ -27,6 +21,11 @@ namespace MeshCentralRouter
             get { return commandTextBox.Text; }
             set { commandTextBox.Text = value; updateInfo(); }
         }
+        public string appArgs
+        {
+            get { return argsTextBox.Text; }
+            set { argsTextBox.Text = value; updateInfo(); }
+        }
 
         public CustomAppsAddForm()
         {
@@ -35,7 +34,7 @@ namespace MeshCentralRouter
 
         public void updateInfo()
         {
-            okButton.Enabled = (nameTextBox.Text.Length > 0) && (protocolTextBox.Text.Length > 0) && (commandTextBox.Text.Length > 0) && (nameTextBox.Text.IndexOf(' ') == -1) && (protocolTextBox.Text.IndexOf(' ') == -1);
+            okButton.Enabled = (nameTextBox.Text.Length > 0) && (protocolTextBox.Text.Length > 0) && (commandTextBox.Text.Length > 0) && (nameTextBox.Text.IndexOf(' ') == -1) && (protocolTextBox.Text.IndexOf(' ') == -1) && (File.Exists(commandTextBox.Text));
         }
 
         private void CustomAppsAddForm_Load(object sender, EventArgs e)

@@ -131,18 +131,13 @@ namespace MeshCentralRouter
             {
                 if (appIdStr == null) return;
                 string appCmd = null;
-                List<String[]> apps = Settings.GetApplications();
-                foreach (String[] app in apps) { if (app[1].ToLower() == appIdStr.ToLower()) { appCmd = app[2]; } }
-                appCmd = appCmd.Replace("%P", mapper.localport.ToString()).Replace("%L", "127.0.0.1");
                 string appArgs = null;
-                int i = appCmd.IndexOf(' ');
-                if (i >= 0) { appArgs = appCmd.Substring(i + 1); appCmd = appCmd.Substring(0, i); }
-                if (appCmd != null)
-                {
+                List<String[]> apps = Settings.GetApplications();
+                foreach (String[] app in apps) { if (app[1].ToLower() == appIdStr.ToLower()) { appCmd = app[2]; if (app[3] != null) { appArgs = app[3].Replace("%P", mapper.localport.ToString()).Replace("%L", "127.0.0.1").Replace("%N", "xxx"); } } }
+                if (appCmd != null) {
                     // Launch the process
                     System.Diagnostics.Process proc = null;
                     try { proc = System.Diagnostics.Process.Start(appCmd, appArgs); } catch (System.ComponentModel.Win32Exception) { }
-
                     // Setup auto-exit
                     if ((autoexit == true) && (parent.autoExitProc == null)) { parent.autoExitProc = proc; parent.SetAutoClose(); autoExitTimer.Enabled = true; }
                     autoexit = false;

@@ -13,21 +13,24 @@ namespace MeshCentralRouter
     public partial class CustomAppsRunForm : Form
     {
         private string command = null;
+        private string args = null;
 
-        public CustomAppsRunForm(string command)
+        public CustomAppsRunForm(string command, string args)
         {
             this.command = command;
+            this.args = args;
             InitializeComponent();
         }
 
-        public string getFinalCommand()
+        public string getFinalArgs()
         {
-            return command.Replace("%L", addressTextBox.Text).Replace("%P", portTextBox.Text);
+            return args.Replace("%L", addressTextBox.Text).Replace("%P", portTextBox.Text).Replace("%N", nameTextBox.Text);
         }
 
         public void UpdateInfo()
         {
-            commandTextBox.Text = getFinalCommand();
+            commandTextBox.Text = command;
+            argsTextBox.Text = getFinalArgs();
         }
 
         private void addressTextBox_TextChanged(object sender, EventArgs e)

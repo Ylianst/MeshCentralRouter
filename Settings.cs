@@ -66,6 +66,7 @@ namespace MeshCentralRouter
                     {
                         skey.SetValue("Protocol", app[1]);
                         skey.SetValue("Command", app[2]);
+                        skey.SetValue("Arguments", app[3]);
                     }
                 }
             }
@@ -83,18 +84,18 @@ namespace MeshCentralRouter
                     {
                         string protocol = (string)key2.GetValue("Protocol");
                         string command = (string)key2.GetValue("Command");
-                        String[] a = new string[3];
+                        string args = (string)key2.GetValue("Arguments");
+                        String[] a = new string[4];
                         a[0] = k;
                         a[1] = protocol;
                         a[2] = command;
+                        a[3] = args;
                         apps.Add(a);
                     }
                 }
             }
             return apps;
         }
-
-        //public static void DeleteSubKeyTree(RegistryKey key, string subkey) { if (key.OpenSubKey(subkey) == null) { return; } DeleteSubKeyTree(key, subkey); }
 
         public static void ClearApplications()
         {

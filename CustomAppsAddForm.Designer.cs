@@ -38,9 +38,11 @@
             this.commandTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.selectFileButton = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.label5 = new System.Windows.Forms.Label();
+            this.argsTextBox = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,7 +50,7 @@
             // 
             this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.okButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.okButton.Location = new System.Drawing.Point(244, 160);
+            this.okButton.Location = new System.Drawing.Point(244, 190);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
             this.okButton.TabIndex = 4;
@@ -61,7 +63,7 @@
             this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.cancelButton.Location = new System.Drawing.Point(325, 160);
+            this.cancelButton.Location = new System.Drawing.Point(325, 190);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 5;
@@ -116,14 +118,17 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(6, 74);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(54, 13);
+            this.label3.Size = new System.Drawing.Size(85, 13);
             this.label3.TabIndex = 10;
-            this.label3.Text = "Command";
+            this.label3.Text = "Executable Path";
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.argsTextBox);
             this.groupBox1.Controls.Add(this.selectFileButton);
             this.groupBox1.Controls.Add(this.nameTextBox);
             this.groupBox1.Controls.Add(this.label3);
@@ -131,29 +136,16 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.protocolTextBox);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 56);
+            this.groupBox1.Location = new System.Drawing.Point(12, 57);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(388, 98);
+            this.groupBox1.Size = new System.Drawing.Size(388, 127);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Application";
             // 
-            // label4
-            // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.Location = new System.Drawing.Point(12, 9);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(388, 44);
-            this.label4.TabIndex = 13;
-            this.label4.Text = "Enter a friendly name, protocol (like HTTP, RDP, VNC) and the command line and ar" +
-    "guments to run the application. In the command line, use %L for address and %P f" +
-    "or connection port.";
-            // 
             // selectFileButton
             // 
-            this.selectFileButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.selectFileButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.selectFileButton.Location = new System.Drawing.Point(360, 71);
             this.selectFileButton.Name = "selectFileButton";
             this.selectFileButton.Size = new System.Drawing.Size(21, 20);
@@ -162,11 +154,40 @@
             this.selectFileButton.UseVisualStyleBackColor = true;
             this.selectFileButton.Click += new System.EventHandler(this.selectFileButton_Click);
             // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.Location = new System.Drawing.Point(12, 9);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(388, 45);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "Enter a friendly name, protocol (like HTTP, RDP, VNC) and the command line and ar" +
+    "guments to run the application. In the arguments, use %L for address, %P for con" +
+    "nection port and %N for computer name.";
+            // 
             // openFileDialog
             // 
             this.openFileDialog.DefaultExt = "exe";
-            this.openFileDialog.Filter = "Executable|*.exe";
+            this.openFileDialog.Filter = "Executable|*.exe|All Files|*.*";
             this.openFileDialog.Title = "Select Application Executable";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 100);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(57, 13);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "Arguments";
+            // 
+            // argsTextBox
+            // 
+            this.argsTextBox.Location = new System.Drawing.Point(116, 97);
+            this.argsTextBox.Name = "argsTextBox";
+            this.argsTextBox.Size = new System.Drawing.Size(265, 20);
+            this.argsTextBox.TabIndex = 14;
+            this.argsTextBox.TextChanged += new System.EventHandler(this.nameTextBox_TextChanged);
             // 
             // CustomAppsAddForm
             // 
@@ -174,7 +195,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(412, 195);
+            this.ClientSize = new System.Drawing.Size(412, 225);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.okButton);
@@ -207,5 +228,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button selectFileButton;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox argsTextBox;
     }
 }
