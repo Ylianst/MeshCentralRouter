@@ -1023,6 +1023,7 @@ namespace MeshCentralRouter
             // Set automatic port map values
             if (authLoginUrl2 != null)
             {
+                string autoName = null;
                 string autoNodeId = null;
                 string autoRemoteIp = null;
                 int autoRemotePort = 0;
@@ -1034,6 +1035,7 @@ namespace MeshCentralRouter
                 try
                 {
                     // Automatic mappings
+                    autoName = getValueFromQueryString(authLoginUrl.Query, "name");
                     autoNodeId = getValueFromQueryString(authLoginUrl2.Query, "nodeid");
                     autoRemoteIp = getValueFromQueryString(authLoginUrl2.Query, "remoteip");
                     int.TryParse(getValueFromQueryString(authLoginUrl2.Query, "remoteport"), out autoRemotePort);
@@ -1048,6 +1050,7 @@ namespace MeshCentralRouter
                 if (((autoRemotePort != 0) && (autoProtocol != 0) && (autoNodeId != null)) || ((autoNodeId != null) && ((autoAppId == 6) || (autoAppId == 7))))
                 {
                     Dictionary<string, object> map = new Dictionary<string, object>();
+                    if (autoName != null) { map.Add("name", HttpUtility.UrlDecode(autoName)); }
                     map.Add("nodeId", autoNodeId);
                     if (autoRemoteIp != null) { map.Add("remoteIP", autoRemoteIp); }
                     map.Add("remotePort", autoRemotePort);
