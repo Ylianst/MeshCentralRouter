@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MeshCentralRouter
@@ -15,53 +8,66 @@ namespace MeshCentralRouter
         public ProxySettings()
         {
             InitializeComponent();
-            useManualProxySettings.Checked = Settings.GetRegValue("Use_Manual_Http_proxy", false);
-            manualHttpProxyHost.Text = Settings.GetRegValue("Manual_Http_proxy_host", "");
-            manualHttpProxyPort.Text = Settings.GetRegValue("Manual_Http_proxy_port", "");
-            manualHttpProxyUsername.Text = Settings.GetRegValue("Manual_Http_proxy_username", "");
-            manualHttpProxyPassword.Text = Settings.GetRegValue("Manual_Http_proxy_password", "");
-            checkbox_refresh_form();
+            manualProxyCheckBox.Checked = Settings.GetRegValue("ManualProxy", false);
+            string host = Settings.GetRegValue("ProxyHost", "");
+            if (host != "") { host += ":" + Settings.GetRegValue("ProxyPort", 443); }
+            hostTextBox.Text = host;
+            authComboBox.SelectedIndex = Settings.GetRegValue("ProxyAuth", 0);
+            usernameTextBox.Text = Settings.GetRegValue("ProxyUsername", "");
+            passwordTextBox.Text = Settings.GetRegValue("ProxyPassword", "");
+            UpdateInfo();
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void UpdateInfo()
         {
+            hostTextBox.Enabled = manualProxyCheckBox.Checked;
+            usernameTextBox.Enabled = passwordTextBox.Enabled = (manualProxyCheckBox.Checked && (authComboBox.SelectedIndex == 1));
 
+            bool ok = true;
+            if (manualProxyCheckBox.Checked == true)
+            {
+                string portStr = "";
+                string hostStr = hostTextBox.Text;
+                int i = hostStr.IndexOf(':');
+                if (i >= 0) { portStr = hostStr.Substring(i + 1); hostStr = hostStr.Substring(0, i); }
+                int port = 0;
+                int.TryParse(portStr, out port);
+                if ((hostStr.Length == 0) || (port < 1) || (port > 65535)) { ok = false; }
+            }
+            okButton.Enabled = ok;
         }
 
-        private void SaveProxyConfig_Click(object sender, EventArgs e)
+        private void manualProxyCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            Settings.SetRegValue("Use_Manual_Http_proxy", useManualProxySettings.Checked);
-            Settings.SetRegValue("Manual_Http_proxy_host", manualHttpProxyHost.Text);
-            Settings.SetRegValue("Manual_Http_proxy_port", manualHttpProxyPort.Text);
-            Settings.SetRegValue("Manual_Http_proxy_username", manualHttpProxyUsername.Text);
-            Settings.SetRegValue("Manual_Http_proxy_password", manualHttpProxyPassword.Text);
+            UpdateInfo();
+        }
+
+        private void okButton_Click(object sender, EventArgs e)
+        {
+            Settings.SetRegValue("ManualProxy", manualProxyCheckBox.Checked);
+            if (manualProxyCheckBox.Checked == true) {
+                string hostStr = hostTextBox.Text;
+                string portStr = "";
+                int i = hostStr.IndexOf(':');
+                if (i >= 0) { portStr = hostStr.Substring(i + 1); hostStr = hostStr.Substring(0, i); }
+                int port = 0;
+                int.TryParse(portStr, out port);
+                Settings.SetRegValue("ProxyHost", hostStr);
+                Settings.SetRegValue("ProxyPort", port);
+                Settings.SetRegValue("ProxyAuth", authComboBox.SelectedIndex);
+                Settings.SetRegValue("ProxyUsername", (authComboBox.SelectedIndex == 1) ? usernameTextBox.Text : "");
+                Settings.SetRegValue("ProxyPassword", (authComboBox.SelectedIndex == 1) ? passwordTextBox.Text : "");
+            } else {
+                Settings.SetRegValue("ProxyHost", "");
+                Settings.SetRegValue("ProxyPort", "");
+                Settings.SetRegValue("ProxyAuth", 0);
+                Settings.SetRegValue("ProxyUsername", "");
+                Settings.SetRegValue("ProxyPassword", "");
+            }
             DialogResult = DialogResult.OK;
         }
 
-        private void checkbox_refresh_form()
-        {
-            if (useManualProxySettings.Checked)
-            {
-                manualHttpProxyHost.ReadOnly = false;
-                manualHttpProxyPort.ReadOnly = false;
-                manualHttpProxyUsername.ReadOnly = false;
-                manualHttpProxyPassword.ReadOnly = false;
-            }
-            else
-            {
-                manualHttpProxyHost.ReadOnly = true;
-                manualHttpProxyPort.ReadOnly = true;
-                manualHttpProxyUsername.ReadOnly = true;
-                manualHttpProxyPassword.ReadOnly = true;
-            }
-        }
-
-        private void useManualProxySettings_CheckedChanged(object sender, EventArgs e)
-        {
-            checkbox_refresh_form();    
-        }
-
-        private void cancel_Click(object sender, EventArgs e)
+        private void cancelButton_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
         }

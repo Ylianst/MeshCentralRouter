@@ -78,24 +78,28 @@ namespace MeshCentralRouter
 
         public static Uri GetProxy(Uri url)
         {
-            // Manual http proxy with optional basic auth. Other auth type would be difficult to support as proxy authentication is done manually within the websocketclient
-            if(Settings.GetRegValue("Use_Manual_Http_proxy", false))
+            // Manual http proxy with optional basic auth
+            if (Settings.GetRegValue("ManualProxy", false))
             {
                 string proxyStr = "";
-                string proxyUserName = Settings.GetRegValue("Manual_Http_proxy_username", "");
-                string proxyPassword = Settings.GetRegValue("Manual_Http_proxy_password", "");
-
-                if (proxyUserName.Length > 0 && proxyPassword.Length > 0)
+                string proxyUserName = null;
+                string proxyPassword = null;
+                if (Settings.GetRegValue("ProxyAuth", 0) == 1)
                 {
-                    proxyStr = "http://" + proxyUserName + ":" + proxyPassword + "@" + Settings.GetRegValue("Manual_Http_proxy_host", "") + ":" + Settings.GetRegValue("Manual_Http_proxy_port", "");
+                    proxyUserName = Settings.GetRegValue("ProxyUsername", "");
+                    proxyPassword = Settings.GetRegValue("ProxyPassword", "");
+                }
+                if ((proxyUserName != null) && (proxyPassword != null))
+                {
+                    proxyStr = "http://" + proxyUserName + ":" + proxyPassword + "@" + Settings.GetRegValue("ProxyHost", "") + ":" + Settings.GetRegValue("ProxyPort", 0);
                 }
                 else
                 {
-                    proxyStr = "http://" + Settings.GetRegValue("Manual_Http_proxy_host", "") + ":" + Settings.GetRegValue("Manual_Http_proxy_port", "");
-
+                    proxyStr = "http://" + Settings.GetRegValue("ProxyHost", "") + ":" + Settings.GetRegValue("ProxyPort", "");
                 }
                 return new Uri(proxyStr);
             }
+
             // Check if we need to use a HTTP proxy (Auto-proxy way)
             try
             {
@@ -104,10 +108,7 @@ namespace MeshCentralRouter
                 if ((x != null) && (x.GetType() == typeof(string)))
                 {
                     string proxyStr = GetProxyForUrlUsingPac("http" + ((url.Port == 80) ? "" : "s") + "://" + url.Host + ":" + url.Port, x.ToString());
-                    if (proxyStr != null)
-                    {
-                        return new Uri("http://" + proxyStr);
-                    }
+                    if (proxyStr != null) { return new Uri("http://" + proxyStr); }
                 }
             }
             catch (Exception) { }
@@ -150,5 +151,5 @@ namespace MeshCentralRouter
             }
         }
     }
-    
+
 }

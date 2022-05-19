@@ -161,7 +161,7 @@ namespace MeshCentralRouter
 
         private async Task ConnectAsync(Uri url)
         {
-            if (state != ConnectionStates.Disconnected) return false;
+            if (state != ConnectionStates.Disconnected) return;
             SetState(ConnectionStates.Connecting);
             this.url = url;
             if (tlsCertFingerprint != null) { this.tlsCertFingerprint = tlsCertFingerprint.ToUpper(); }
@@ -500,7 +500,8 @@ namespace MeshCentralRouter
 
         private void PongTimerCallback(object state) { SendPong(null, 0, 0); }
 
-        private void ConnectTimerCallback(object state) {
+        private void ConnectTimerCallback(object state)
+        {
             // Switch from C# sockets to native sockets
             if ((nativeWebSocketFirst == false) && (this.state == ConnectionStates.Connecting))
             {

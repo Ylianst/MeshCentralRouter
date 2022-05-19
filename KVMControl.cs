@@ -285,8 +285,8 @@ namespace MeshCentralRouter
                             ushort tile_x = (ushort)((buffer[off + 4] << 8) + buffer[off + 5]);
                             ushort tile_y = (ushort)((buffer[off + 6] << 8) + buffer[off + 7]);
                             try { newtile = Image.FromStream(new System.IO.MemoryStream(buffer, off + 8, blen - 8)); } catch (Exception) { return blen; }
-                            Rectangle r = new Rectangle((int)tile_x, (int)tile_y, newtile.Width, newtile.Height);
-                            Rectangle r3 = new Rectangle((int)Math.Round((double)tile_x / (double)scalefactor) - 2, (int)Math.Round((double)tile_y / (double)scalefactor) - 2, (int)Math.Round((double)newtile.Width / (double)scalefactor) + 4, (int)Math.Round((double)newtile.Height / (double)scalefactor) + 4);
+                            //Rectangle r = new Rectangle((int)tile_x, (int)tile_y, newtile.Width, newtile.Height);
+                            //Rectangle r3 = new Rectangle((int)Math.Round((double)tile_x / (double)scalefactor) - 2, (int)Math.Round((double)tile_y / (double)scalefactor) - 2, (int)Math.Round((double)newtile.Width / (double)scalefactor) + 4, (int)Math.Round((double)newtile.Height / (double)scalefactor) + 4);
                             tilecount++;
 
                             // Winform mode
@@ -949,6 +949,9 @@ namespace MeshCentralRouter
     private void KVMControl_Load(object sender, EventArgs e)
     {
         controlLoaded = true;
+        ProcessModule objCurrentModule = Process.GetCurrentProcess().MainModule;
+        objKeyboardProcess = new LowLevelKeyboardProc(captureKey);
+        ptrHook = SetWindowsHookEx(13, objKeyboardProcess, GetModuleHandle(objCurrentModule.ModuleName), 0);
     }
 
     //Declaring Global objects     
@@ -983,15 +986,6 @@ namespace MeshCentralRouter
     {
       return (flags & 0x20) == 0x20;
     }
-
-    private void KVMControl_Load(object sender, EventArgs e)
-    {
-      ProcessModule objCurrentModule = Process.GetCurrentProcess().MainModule;
-      objKeyboardProcess = new LowLevelKeyboardProc(captureKey);
-      ptrHook = SetWindowsHookEx(13, objKeyboardProcess, GetModuleHandle(objCurrentModule.ModuleName), 0);
-    }
-
-    /* Code to Disable WinKey, Alt+Tab, Ctrl+Esc Ends Here */
 
   }
 }

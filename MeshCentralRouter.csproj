@@ -129,6 +129,7 @@
     </Compile>
     <Compile Include="ProxySettings.Designer.cs">
       <DependentUpon>ProxySettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="ListViewExtended.cs">
       <SubType>Component</SubType>
     </Compile>
