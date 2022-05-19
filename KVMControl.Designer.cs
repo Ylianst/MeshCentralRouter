@@ -46,7 +46,6 @@
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.KVMControl_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.KVMControl_MouseUp);
             this.ResumeLayout(false);
-
         }
 
         #endregion

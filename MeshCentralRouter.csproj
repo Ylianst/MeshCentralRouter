@@ -124,6 +124,9 @@
     <Compile Include="FileDialogMsgForm.Designer.cs">
       <DependentUpon>FileDialogMsgForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ListViewExtended.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="KVMViewerExtra.cs">
       <SubType>Form</SubType>
     </Compile>
