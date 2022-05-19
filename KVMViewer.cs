@@ -41,22 +41,17 @@ namespace MeshCentralRouter
         private string lastClipboardSent = null;
         private DateTime lastClipboardTime = DateTime.MinValue;
         public string lang = Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName;
+        private bool splitMode = false;
+        private KVMViewerExtra[] extraDisplays = null;
+        private System.Windows.Forms.Timer delayedConnectionTimer = null;
+        private bool localAutoReconnect = true;
+        private Dictionary<int, Button> displaySelectionButtons = new Dictionary<int, Button>();
 
         // Stats
         public long bytesIn = 0;
         public long bytesInCompressed = 0;
         public long bytesOut = 0;
         public long bytesOutCompressed = 0;
-
-        public class displayTag
-        {
-            public ushort num;
-            public string name;
-
-            public displayTag(ushort num, string name) { this.num = num; this.name = name; }
-
-            public override string ToString() { return name; }
-        }
 
         public KVMViewer(MainForm parent, MeshCentralServer server, NodeClass node)
         {
@@ -69,6 +64,7 @@ namespace MeshCentralRouter
             kvmControl = resizeKvmControl.KVM;
             kvmControl.parent = this;
             kvmControl.DesktopSizeChanged += KvmControl_DesktopSizeChanged;
+            kvmControl.ScreenAreaUpdated += KvmControl_ScreenAreaUpdated;
             resizeKvmControl.ZoomToFit = true;
             UpdateStatus();
             this.MouseWheel += MainForm_MouseWheel;
@@ -81,7 +77,27 @@ namespace MeshCentralRouter
             mainToolTip.SetToolTip(clipInboundButton, Translate.T(Properties.Resources.PullClipboardFromRemoteDevice, lang));
             mainToolTip.SetToolTip(zoomButton, Translate.T(Properties.Resources.ToggleZoomToFitMode, lang));
             mainToolTip.SetToolTip(statsButton, Translate.T(Properties.Resources.DisplayConnectionStatistics, lang));
+
+            // Load remote desktop settings
+            int CompressionLevel = 60;
+            try { CompressionLevel = int.Parse(Settings.GetRegValue("kvmCompression", "60")); } catch (Exception) { }
+            int ScalingLevel = 1024;
+            try { ScalingLevel = int.Parse(Settings.GetRegValue("kvmScaling", "1024")); } catch (Exception) { }
+            int FrameRate = 100;
+            try { FrameRate = int.Parse(Settings.GetRegValue("kvmFrameRate", "100")); } catch (Exception) { }
+            kvmControl.SetCompressionParams(CompressionLevel, ScalingLevel, FrameRate);
+            kvmControl.SwamMouseButtons = Settings.GetRegValue("kvmSwamMouseButtons", "0").Equals("1");
+            kvmControl.RemoteKeyboardMap = Settings.GetRegValue("kvmSwamMouseButtons", "0").Equals("1");
             kvmControl.AutoSendClipboard = Settings.GetRegValue("kvmAutoClipboard", "0").Equals("1");
+            kvmControl.AutoReconnect = Settings.GetRegValue("kvmAutoReconnect", "0").Equals("1");
+        }
+
+        private void KvmControl_ScreenAreaUpdated(Bitmap desktop, Rectangle r)
+        {
+            if (extraDisplays == null) return;
+            foreach (KVMViewerExtra x in extraDisplays) {
+                if (x != null) { x.UpdateScreenArea(desktop, r); }
+            }
         }
 
         private void Parent_ClipboardChanged()
@@ -104,6 +120,25 @@ namespace MeshCentralRouter
                 lastClipboardTime = DateTime.Now;
                 lastClipboardSent = textData;
             }
+        }
+
+        public void TryAutoConnect()
+        {
+            if ((localAutoReconnect == false) || (kvmControl.AutoReconnect == false)) return;
+            if ((state == 0) && (wc == null) && (delayedConnectionTimer == null)) {
+                // Hold half a second before trying to connect
+                delayedConnectionTimer = new System.Windows.Forms.Timer(this.components);
+                delayedConnectionTimer.Tick += new EventHandler(updateTimerTick);
+                delayedConnectionTimer.Interval = 500;
+                delayedConnectionTimer.Enabled = true;
+            }
+        }
+
+        private void updateTimerTick(object sender, EventArgs e)
+        {
+            delayedConnectionTimer.Dispose();
+            delayedConnectionTimer = null;
+            if ((state == 0) && (wc == null)) { MenuItemConnect_Click(this, null); }
         }
 
         private void KvmControl_DesktopSizeChanged(object sender, EventArgs e)
@@ -301,10 +336,13 @@ namespace MeshCentralRouter
             if (wc != null)
             {
                 // Disconnect
+                if (splitMode) { splitButton_Click(this, null); }
+                splitButton.Visible = false;
                 state = 0;
                 wc.Dispose();
                 wc = null;
                 UpdateStatus();
+                localAutoReconnect = false;
             }
             else
             {
@@ -312,6 +350,7 @@ namespace MeshCentralRouter
                 if (sender != null) { consentFlags = 0; }
                 MenuItemConnect_Click(null, null);
                 kvmControl.AttachKeyboard();
+                localAutoReconnect = true;
             }
             displayMessage(null);
         }
@@ -328,7 +367,7 @@ namespace MeshCentralRouter
             {
                 case 0: // Disconnected
                     mainToolStripStatusLabel.Text = Translate.T(Properties.Resources.Disconnected, lang);
-                    displaySelectComboBox.Visible = false;
+                    extraButtonsPanel.Visible = false;
                     kvmControl.Visible = false;
                     kvmControl.screenWidth = 0;
                     kvmControl.screenHeight = 0;
@@ -336,13 +375,13 @@ namespace MeshCentralRouter
                     break;
                 case 1: // Connecting
                     mainToolStripStatusLabel.Text = Translate.T(Properties.Resources.Connecting, lang);
-                    displaySelectComboBox.Visible = false;
+                    extraButtonsPanel.Visible = false;
                     kvmControl.Visible = false;
                     connectButton.Text = Translate.T(Properties.Resources.Disconnect, lang);
                     break;
                 case 2: // Setup
                     mainToolStripStatusLabel.Text = "Setup...";
-                    displaySelectComboBox.Visible = false;
+                    extraButtonsPanel.Visible = false;
                     kvmControl.Visible = false;
                     connectButton.Text = Translate.T(Properties.Resources.Disconnect, lang);
                     break;
@@ -392,6 +431,9 @@ namespace MeshCentralRouter
 
             // Save window location
             Settings.SetRegValue("kvmlocation", Location.X + "," + Location.Y + "," + Size.Width + "," + Size.Height);
+
+            // Close any extra windows
+            extraScreenClosed();
         }
 
         private void toolStripMenuItem2_DropDownOpening(object sender, EventArgs e)
@@ -418,11 +460,21 @@ namespace MeshCentralRouter
                 form.SwamMouseButtons = kvmControl.SwamMouseButtons;
                 form.RemoteKeyboardMap = kvmControl.RemoteKeyboardMap;
                 form.AutoSendClipboard = kvmControl.AutoSendClipboard;
+                form.AutoReconnect = kvmControl.AutoReconnect;
                 if (form.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
                 {
                     kvmControl.SetCompressionParams(form.Compression, form.Scaling, form.FrameRate);
                     kvmControl.SwamMouseButtons = form.SwamMouseButtons;
                     kvmControl.RemoteKeyboardMap = form.RemoteKeyboardMap;
+                    kvmControl.AutoReconnect = form.AutoReconnect;
+
+                    Settings.SetRegValue("kvmCompression", kvmControl.CompressionLevel.ToString());
+                    Settings.SetRegValue("kvmScaling", kvmControl.ScalingLevel.ToString());
+                    Settings.SetRegValue("kvmFrameRate", kvmControl.FrameRate.ToString());
+                    Settings.SetRegValue("kvmSwamMouseButtons", kvmControl.SwamMouseButtons ? "1" : "0");
+                    Settings.SetRegValue("kvmRemoteKeyboardMap", kvmControl.RemoteKeyboardMap ? "1" : "0");
+                    Settings.SetRegValue("kvmAutoReconnect", kvmControl.AutoReconnect ? "1" : "0");
+
                     if (kvmControl.AutoSendClipboard != form.AutoSendClipboard)
                     {
                         kvmControl.AutoSendClipboard = form.AutoSendClipboard;
@@ -454,41 +506,70 @@ namespace MeshCentralRouter
             resizeKvmControl.ZoomToFit = !resizeKvmControl.ZoomToFit;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void resizeKvmControl_DisplaysReceived(object sender, EventArgs e)
         {
             if (kvmControl == null || kvmControl.displays.Count == 0) return;
 
             if (kvmControl.displays.Count > 0)
             {
-                displaySelectComboBox.Visible = true;
-                displaySelectComboBox.Items.Clear();
+                extraButtonsPanel.Visible = true;
+                extraButtonsPanel.Controls.Clear();
+                displaySelectionButtons.Clear();
                 foreach (ushort displayNum in kvmControl.displays)
                 {
-                    displayTag t;
                     if (displayNum == 0xFFFF)
                     {
-                        t = new displayTag(displayNum, Translate.T(Properties.Resources.AllDisplays, lang));
-                        displaySelectComboBox.Items.Add(t);
+                        Button b = new Button();
+                        b.ImageList = displaySelectorImageList;
+                        b.ImageIndex = (kvmControl.currentDisp == displayNum) ? 2 : 3; // All displayes
+                        b.Width = 32;
+                        b.Height = 32;
+                        mainToolTip.SetToolTip(b, Translate.T(Properties.Resources.AllDisplays, lang));
+                        b.Click += new System.EventHandler(this.displaySelectComboBox_SelectionChangeCommitted);
+                        b.Tag = displayNum;
+                        b.Dock = DockStyle.Left;
+                        extraButtonsPanel.Controls.Add(b);
+                        displaySelectionButtons.Add(displayNum, b);
                     }
                     else
                     {
-                        t = new displayTag(displayNum, string.Format(Translate.T(Properties.Resources.DisplayX, lang), displayNum));
-                        displaySelectComboBox.Items.Add(t);
+                        Button b = new Button();
+                        b.ImageList = displaySelectorImageList;
+                        b.ImageIndex = (kvmControl.currentDisp == displayNum) ? 0 : 1; // One display grayed out
+                        b.Width = 32;
+                        b.Height = 32;
+                        mainToolTip.SetToolTip(b, string.Format(Translate.T(Properties.Resources.DisplayX, lang), displayNum));
+                        b.Click += new System.EventHandler(this.displaySelectComboBox_SelectionChangeCommitted);
+                        b.Tag = displayNum;
+                        b.Dock = DockStyle.Left;
+                        extraButtonsPanel.Controls.Add(b);
+                        displaySelectionButtons.Add(displayNum, b);
                     }
-
-                    if (kvmControl.currentDisp == displayNum) { displaySelectComboBox.SelectedItem = t; }
                 }
             }
             else
             {
-                displaySelectComboBox.Visible = false;
-                displaySelectComboBox.Items.Clear();
+                extraButtonsPanel.Visible = false;
+                extraButtonsPanel.Controls.Clear();
+                displaySelectionButtons.Clear();
             }
+
+            // If there are many displays and all displays is selected, enable split/join button.
+            splitButton.Visible = ((kvmControl.currentDisp == 65535) && (kvmControl.displays.Count > 1));
         }
 
         private void displaySelectComboBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            if (kvmControl != null) kvmControl.SendDisplay(((displayTag)displaySelectComboBox.SelectedItem).num);
+            if (splitMode) { splitButton_Click(this, null); }
+            if (kvmControl != null) {
+                ushort displayNum = (ushort)((Button)sender).Tag;
+                kvmControl.SendDisplay(displayNum);
+            }
         }
 
         private void resizeKvmControl_TouchEnabledChanged(object sender, EventArgs e)
@@ -630,5 +711,50 @@ namespace MeshCentralRouter
         {
             if (wc != null) { e.Cancel = true; }
         }
+
+        public void extraScreenClosed()
+        {
+            if (splitMode) { splitButton_Click(this, null); }
+        }
+
+        private void splitButton_Click(object sender, EventArgs e)
+        {
+            if (splitMode)
+            {
+                kvmControl.cropDisplay(Point.Empty, Rectangle.Empty);
+                splitButton.Text = Translate.T(Properties.Resources.Split, lang);
+                splitMode = false;
+                if (extraDisplays != null)
+                {
+                    // Close all extra displays
+                    for (int i = 0; i < extraDisplays.Length; i++)
+                    {
+                        KVMViewerExtra extraDisplay = extraDisplays[i];
+                        extraDisplay.Close();
+                    }
+                    extraDisplays = null;
+                }
+            }
+            else if ((kvmControl.displayInfo != null) && (kvmControl.displayInfo.Length > 1))
+            {
+                int minx = 0;
+                int miny = 0;
+                foreach (Rectangle r in kvmControl.displayInfo) { if (r.X < minx) { minx = r.X; } if (r.Y < miny) { miny = r.Y; } }
+                kvmControl.cropDisplay(new Point(minx, miny), kvmControl.displayInfo[0]);
+                splitButton.Text = Translate.T(Properties.Resources.Join, lang);
+                splitMode = true;
+
+                // Open extra displays
+                extraDisplays = new KVMViewerExtra[kvmControl.displayInfo.Length - 1];
+                for (int i = 1; i < kvmControl.displayInfo.Length; i++)
+                {
+                    KVMViewerExtra extraDisplay = new KVMViewerExtra(parent, this, node, kvmControl, i);
+                    extraDisplays[i - 1] = extraDisplay;
+                    extraDisplay.Show(parent);
+                }
+            }
+        }
+
+
     }
 }

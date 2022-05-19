@@ -30,7 +30,7 @@ namespace MeshCentralRouter
     public partial class KVMControl : UserControl
     {
         private bool remotepause = true;
-        private Bitmap desktop = null;
+        public Bitmap desktop = null;
         private Graphics desktopGraphics = null;
         public uint screenWidth = 0;
         public uint screenHeight = 0;
@@ -42,6 +42,7 @@ namespace MeshCentralRouter
         private bool swamMouseButtons = false;
         private bool remoteKeyboardMap = false;
         private bool autoSendClipboard = false;
+        public bool AutoReconnect = false;
         private double scalefactor = 1;
         public List<ushort> displays = new List<ushort>();
         public ushort currentDisp = 0;
@@ -51,13 +52,17 @@ namespace MeshCentralRouter
         public double DpiX = 96;
         public double DpiY = 96;
         public KVMViewer parent = null;
+        public KVMViewerExtra parentEx = null;
         private readonly KVMControlHook ControlHook;
         private readonly KVMControlHook.KVMCallback KeyboardCallback;
         private bool isHookWanted;
         private bool isHookPriority;
         private bool keyboardIsAttached;
         private long killNextKeyPress = 0;
-
+        private bool controlLoaded = false;
+        public Rectangle[] displayInfo = null;
+        public Rectangle displayCrop = Rectangle.Empty;
+        public Point displayOrigin = Point.Empty;
 
 
     //System level functions to be used for hook and unhook keyboard input  
@@ -132,6 +137,7 @@ namespace MeshCentralRouter
             Jumbo = 27,
             Disconnect = 59,
             Alert = 65,
+            DisplayInfo = 82,
             KeyUnicode = 85,
             MouseCursor = 88
         }
@@ -154,6 +160,9 @@ namespace MeshCentralRouter
         [Description("Fires when it receives the display list.")]
         public event EventHandler DisplaysReceived;
 
+        public delegate void ScreenAreaUpdatedHandler(Bitmap desktop, Rectangle r);
+        public event ScreenAreaUpdatedHandler ScreenAreaUpdated;
+
         public enum ConnectState
         {
             Disconnected,
@@ -171,8 +180,14 @@ namespace MeshCentralRouter
         public double ScaleFactor { get { return scalefactor; } set { scalefactor = value; } }
 
         public void SetCompressionParams(int level, int scaling, int framerate) { compressionlevel = level; scalinglevel = scaling; frameRate = framerate; SendCompressionLevel(); }
-        public int DesktopWidth { get { return (int)screenWidth; } }
-        public int DesktopHeight { get { return (int)screenHeight; } }
+        public int DesktopWidth
+        {
+            get { if (displayCrop == Rectangle.Empty) { return (int)screenWidth; } else { return displayCrop.Width; } }
+        }
+        public int DesktopHeight
+        {
+            get { if (displayCrop == Rectangle.Empty) { return (int)screenHeight; } else { return displayCrop.Height; } }
+        }
 
         // Debug
         public int bytesent = 0;
@@ -299,7 +314,41 @@ namespace MeshCentralRouter
                                         desktopGraphics.DrawString(string.Format("{0} / {1}kb", tilecount, blen / 2014), DebugFont, RedPen.Brush, new Point((int)tile_x, (int)tile_y));
                                     }
                                 }
-                                if (scalefactor == 1) Invalidate(r, false); else Invalidate(r3, false);
+
+                                // Update extra displays if needed
+                                Rectangle r = new Rectangle((int)tile_x, (int)tile_y, newtile.Width, newtile.Height);
+                                Rectangle rx = new Rectangle(r.X + displayOrigin.X, r.Y + displayOrigin.Y, r.Width, r.Height);
+                                //Console.WriteLine(rx.ToString());
+                                if (ScreenAreaUpdated != null) ScreenAreaUpdated(desktop, rx);
+
+                                if (displayCrop == Rectangle.Empty)
+                                {
+                                    if (scalefactor == 1)
+                                    {
+                                        Invalidate(r, false);
+                                    }
+                                    else
+                                    {
+                                        Rectangle r3 = new Rectangle((int)((double)tile_x / (double)scalefactor) - 2, (int)((double)tile_y / (double)scalefactor) - 2, (int)((double)newtile.Width / (double)scalefactor) + 4, (int)((double)newtile.Height / (double)scalefactor) + 4);
+                                        Invalidate(r3, false);
+                                    }
+                                }
+                                else if (displayCrop.IntersectsWith(rx) == true)
+                                {
+                                    Rectangle r2 = new Rectangle(rx.X, rx.Y, rx.Width, rx.Height);
+                                    r2.Intersect(displayCrop);
+
+                                    if (scalefactor == 1)
+                                    {
+                                        Rectangle r3 = new Rectangle(r2.X - displayCrop.X, r2.Y - displayCrop.Y, r2.Width, r2.Height);
+                                        Invalidate(r, false);
+                                    }
+                                    else
+                                    {
+                                        Rectangle r3 = new Rectangle((int)((double)(r2.X - displayCrop.X) / (double)scalefactor) - 2, (int)((double)(r2.Y - displayCrop.Y) / (double)scalefactor) - 2, (int)((double)r2.Width / (double)scalefactor) + 4, (int)((double)r2.Height / (double)scalefactor) + 4);
+                                        Invalidate(r3, false);
+                                    }
+                                }
                             }
 
                             return blen + jumboHeaderSize;
@@ -355,6 +404,31 @@ namespace MeshCentralRouter
                             ChangeMouseCursor(buffer[off + 4]);
                             break;
                         }
+                    case KvmCommands.DisplayInfo:
+                        {
+                            if ((blen < 4) || (((blen - 4) % 10) != 0)) break;
+                            int screenCount = ((blen - 4) / 10);
+                            int ptr = off + 4;
+                            Rectangle[] xDisplayInfo = new Rectangle[screenCount];
+
+                            for (var i = 0; i < screenCount; i++)
+                            {
+                                int id = ((buffer[ptr + 0] << 8) + buffer[ptr + 1]);
+                                int x = ((buffer[ptr + 2] << 8) + buffer[ptr + 3]);
+                                int y = ((buffer[ptr + 4] << 8) + buffer[ptr + 5]);
+                                int w = ((buffer[ptr + 6] << 8) + buffer[ptr + 7]);
+                                int h = ((buffer[ptr + 8] << 8) + buffer[ptr + 9]);
+                                if (x > 32766) { x -= 65536; }
+                                if (y > 32766) { y -= 65536; }
+                                Rectangle r = new Rectangle(x, y, w, h);
+                                xDisplayInfo[id - 1] = r;
+                                ptr += 10;
+                            }
+
+                            // Set display information
+                            displayInfo = xDisplayInfo;
+                            break;
+                        }
                     default:
                         {
                             // MessageBox.Show("Should never happen!");
@@ -399,6 +473,11 @@ namespace MeshCentralRouter
             Invalidate(region);
         }
 
+        public void Repaint(Rectangle rect)
+        {
+            Invalidate(rect);
+        }
+
         protected override void OnPaintBackground(PaintEventArgs e)
         {
             // Do not paint background.
@@ -421,14 +500,28 @@ namespace MeshCentralRouter
             {
                 lock (desktop)
                 {
-                    if (scalefactor == 1)
+                    if (displayCrop == Rectangle.Empty) // No cropping
                     {
-                        g.DrawImage(desktop, e.ClipRectangle, e.ClipRectangle, GraphicsUnit.Pixel);
+                        if (scalefactor == 1)
+                        {
+                            g.DrawImage(desktop, e.ClipRectangle, e.ClipRectangle, GraphicsUnit.Pixel);
+                        }
+                        else
+                        {
+                            g.DrawImage((Image)desktop, e.ClipRectangle, (int)((double)e.ClipRectangle.Left * (double)scalefactor), (int)((double)e.ClipRectangle.Top * (double)scalefactor), (int)((double)e.ClipRectangle.Width * (double)scalefactor), (int)((double)e.ClipRectangle.Height * (double)scalefactor), GraphicsUnit.Pixel);
+                        }
                     }
                     else
                     {
-                        //g.DrawImage((Image)desktop, new Rectangle(0, 0, Width, Height), 0, 0, screenWidth, screenHeight, GraphicsUnit.Pixel);
-                        g.DrawImage((Image)desktop, e.ClipRectangle, (float)((double)e.ClipRectangle.Left * (double)scalefactor), (float)((double)e.ClipRectangle.Top * (double)scalefactor), (float)((double)e.ClipRectangle.Width * (double)scalefactor), (float)((double)e.ClipRectangle.Height * (double)scalefactor), GraphicsUnit.Pixel);
+                        if (scalefactor == 1) // Cropping in effect, this is when we show different displays in different windows
+                        {
+                            g.DrawImage(desktop, e.ClipRectangle, new Rectangle(e.ClipRectangle.X - displayOrigin.X + displayCrop.X, e.ClipRectangle.Y - displayOrigin.Y + displayCrop.Y, e.ClipRectangle.Width, e.ClipRectangle.Height), GraphicsUnit.Pixel);
+                        }
+                        else
+                        {
+                            Rectangle srcRect = new Rectangle((int)((double)(e.ClipRectangle.Left) * (double)scalefactor) - displayOrigin.X + displayCrop.X, (int)((double)(e.ClipRectangle.Top) * (double)scalefactor) - displayOrigin.Y + displayCrop.Y, (int)((double)e.ClipRectangle.Width * (double)scalefactor), (int)((double)e.ClipRectangle.Height * (double)scalefactor));
+                            g.DrawImage((Image)desktop, e.ClipRectangle, srcRect, GraphicsUnit.Pixel);
+                        }
                     }
                 }
             }
@@ -545,8 +638,16 @@ namespace MeshCentralRouter
                 }
             }
 
-            LastX = (short)((double)e.X * (double)scalefactor);
-            LastY = (short)((double)e.Y * (double)scalefactor);
+            if (displayCrop == Rectangle.Empty)
+            {
+                LastX = (short)((double)e.X * (double)scalefactor);
+                LastY = (short)((double)e.Y * (double)scalefactor);
+            }
+            else
+            {
+                LastX = (short)((int)((double)e.X * (double)scalefactor) - displayOrigin.X + displayCrop.X);
+                LastY = (short)((int)((double)e.Y * (double)scalefactor) - displayOrigin.Y + displayCrop.Y);
+            }
 
             BinaryWriter bw = GetBinaryWriter();
             bw.Write(IPAddress.HostToNetworkOrder((short)KvmCommands.Mouse));
@@ -629,9 +730,16 @@ namespace MeshCentralRouter
             //if (state == ConnectState.Disconnected) return;
             try
             {
-                parent.bytesOut += buffer.Length;
-                parent.bytesOutCompressed += parent.wc.SendBinary(buffer, 0, buffer.Length);
-                bytesent += buffer.Length;
+                if (parent != null)
+                {
+                    parent.bytesOut += buffer.Length;
+                    parent.bytesOutCompressed += parent.wc.SendBinary(buffer, 0, buffer.Length);
+                    bytesent += buffer.Length;
+                }
+                else if (parentEx != null)
+                {
+                    parentEx.mainKvmControl.Send(buffer);
+                }
             }
             catch (Exception) { }
         }
@@ -641,9 +749,16 @@ namespace MeshCentralRouter
             //if (state == ConnectState.Disconnected) return;
             try
             {
-                parent.bytesOut += str.Length;
-                parent.bytesOutCompressed += parent.wc.SendString(str);
-                bytesent += str.Length;
+                if (parent != null)
+                {
+                    parent.bytesOut += str.Length;
+                    parent.bytesOutCompressed += parent.wc.SendString(str);
+                    bytesent += str.Length;
+                }
+                else if (parentEx != null)
+                {
+                    parentEx.mainKvmControl.Send(str);
+                }
             }
             catch (Exception) { }
         }
@@ -660,6 +775,10 @@ namespace MeshCentralRouter
                     bytesent += (int)((MemoryStream)bw.BaseStream).Length;
                 }
                 catch (Exception) { }
+            }
+            else if (parentEx != null)
+            {
+                parentEx.mainKvmControl.Send(bw);
             }
             RecycleBinaryWriter(bw);
         }
@@ -815,7 +934,22 @@ namespace MeshCentralRouter
       public IntPtr extra;
     }
 
+    public void cropDisplay(Point o, Rectangle r)
+    {
+        if (IsDisposed || Disposing) return;
+        displayCrop = r;
+        displayOrigin = o;
+        if (controlLoaded)
+        {
+            Invoke(new SetSizeHandler(SetSize));
+            Invalidate();
+        }
+    }
 
+    private void KVMControl_Load(object sender, EventArgs e)
+    {
+        controlLoaded = true;
+    }
 
     //Declaring Global objects     
     private IntPtr ptrHook;

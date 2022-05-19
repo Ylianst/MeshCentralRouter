@@ -94,6 +94,24 @@
     <Compile Include="AddRelayMapForm.designer.cs">
       <DependentUpon>AddRelayMapForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomAppsAddForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomAppsAddForm.Designer.cs">
+      <DependentUpon>CustomAppsAddForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomAppsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomAppsForm.Designer.cs">
+      <DependentUpon>CustomAppsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomAppsRunForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomAppsRunForm.Designer.cs">
+      <DependentUpon>CustomAppsRunForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FileConfirmOverwriteForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,6 +126,12 @@
     </Compile>
     <Compile Include="ListViewExtended.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="KVMViewerExtra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KVMViewerExtra.Designer.cs">
+      <DependentUpon>KVMViewerExtra.cs</DependentUpon>
     </Compile>
     <Compile Include="LocalPipe.cs" />
     <Compile Include="SshUsernameForm.cs">
@@ -271,11 +295,23 @@
     <EmbeddedResource Include="AddRelayMapForm.resx">
       <DependentUpon>AddRelayMapForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CustomAppsAddForm.resx">
+      <DependentUpon>CustomAppsAddForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomAppsForm.resx">
+      <DependentUpon>CustomAppsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomAppsRunForm.resx">
+      <DependentUpon>CustomAppsRunForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FileConfirmOverwriteForm.resx">
       <DependentUpon>FileConfirmOverwriteForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FileDialogMsgForm.resx">
       <DependentUpon>FileDialogMsgForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KVMViewerExtra.resx">
+      <DependentUpon>KVMViewerExtra.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SshUsernameForm.resx">
       <DependentUpon>SshUsernameForm.cs</DependentUpon>
@@ -370,6 +406,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MeshServer.ico" />
+    <None Include="Resources\icon-monitor1.png" />
     <None Include="Resources\folderzip.png" />
     <None Include="Resources\arrowleft16.png" />
     <None Include="Resources\arrowright16.png" />

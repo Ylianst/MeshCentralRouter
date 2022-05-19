@@ -136,6 +136,8 @@
             this.settingsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.openMapFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveMapFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.customAppsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.customAppsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel5.SuspendLayout();
             this.mainPanel.SuspendLayout();
             this.mainTabControl.SuspendLayout();
@@ -515,7 +517,8 @@
             this.sortByNameToolStripMenuItem,
             this.sortByGroupToolStripMenuItem,
             this.toolStripMenuItem4,
-            this.settingsToolStripMenuItem});
+            this.settingsToolStripMenuItem,
+            this.customAppsToolStripMenuItem1});
             this.mainContextMenuStrip.Name = "mainContextMenuStrip";
             resources.ApplyResources(this.mainContextMenuStrip, "mainContextMenuStrip");
             // 
@@ -928,7 +931,8 @@
             this.openMappingsToolStripMenuItem,
             this.saveMappingsToolStripMenuItem,
             this.toolStripMenuItem5,
-            this.settingsToolStripMenuItem1});
+            this.settingsToolStripMenuItem1,
+            this.customAppsToolStripMenuItem});
             this.mappingsContextMenuStrip.Name = "mappingsContextMenuStrip";
             resources.ApplyResources(this.mappingsContextMenuStrip, "mappingsContextMenuStrip");
             // 
@@ -964,6 +968,18 @@
             // 
             this.saveMapFileDialog.DefaultExt = "mcrouter";
             resources.ApplyResources(this.saveMapFileDialog, "saveMapFileDialog");
+            // 
+            // customAppsToolStripMenuItem
+            // 
+            this.customAppsToolStripMenuItem.Name = "customAppsToolStripMenuItem";
+            resources.ApplyResources(this.customAppsToolStripMenuItem, "customAppsToolStripMenuItem");
+            this.customAppsToolStripMenuItem.Click += new System.EventHandler(this.customAppsToolStripMenuItem_Click);
+            // 
+            // customAppsToolStripMenuItem1
+            // 
+            this.customAppsToolStripMenuItem1.Name = "customAppsToolStripMenuItem1";
+            resources.ApplyResources(this.customAppsToolStripMenuItem1, "customAppsToolStripMenuItem1");
+            this.customAppsToolStripMenuItem1.Click += new System.EventHandler(this.customAppsToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -1121,6 +1137,8 @@
         private System.Windows.Forms.ToolStripMenuItem askConsentToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem privacyBarToolStripMenuItem;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.ToolStripMenuItem customAppsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem customAppsToolStripMenuItem1;
     }
 }
 
