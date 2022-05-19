@@ -326,6 +326,7 @@ namespace MeshCentralRouter
             if (File.Exists(Path.Combine(selfExe.Directory.FullName, @"customization\logo.png"))) { try { pictureBox2.Image = pictureBox6.Image = (Bitmap)Image.FromFile(Path.Combine(selfExe.Directory.FullName, @"customization\logo.png")); showLicense = false; } catch (Exception) { } }
             if (File.Exists(Path.Combine(selfExe.Directory.FullName, @"customization\bottombanner.png"))) { try { pictureBox3.Image = pictureBox4.Image = pictureBox5.Image = pictureBox7.Image = (Bitmap)Image.FromFile(Path.Combine(selfExe.Directory.FullName, @"customization\bottombanner.png")); showLicense = false; } catch (Exception) { } }
             licenseLinkLabel.Visible = showLicense;
+            proxySettings.Visible = true;
             try
             {
                 if (File.Exists(Path.Combine(selfExe.Directory.FullName, @"customization\customize.txt")))
@@ -2164,6 +2165,12 @@ namespace MeshCentralRouter
         private void devicesListView_Click(object sender, EventArgs e)
         {
             cancelAutoClose();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ProxySettings form = new ProxySettings();
+            if (form.ShowDialog(this) == DialogResult.OK) {  }
         }
 
         private void customAppsToolStripMenuItem_Click(object sender, EventArgs e)

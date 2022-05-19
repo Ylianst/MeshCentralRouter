@@ -49,6 +49,7 @@ namespace MeshCentralRouter
         private bool accmask = false;
         private int acclen = 0;
         private bool proxyInUse = false;
+        private Uri proxyUri = null;
         private string tlsCertFingerprint = null;
         private string tlsCertFingerprint2 = null;
         //private ConnectionErrors lastError = ConnectionErrors.NoError;
@@ -160,6 +161,13 @@ namespace MeshCentralRouter
 
         private async Task ConnectAsync(Uri url)
         {
+            if (state != ConnectionStates.Disconnected) return false;
+            SetState(ConnectionStates.Connecting);
+            this.url = url;
+            if (tlsCertFingerprint != null) { this.tlsCertFingerprint = tlsCertFingerprint.ToUpper(); }
+            Log("Websocket Start, URL=" + ((url == null) ? "(NULL)" : url.ToString()));
+
+            proxyUri = Win32Api.GetProxy(url);
             if (CTS != null) CTS.Dispose();
             CTS = new CancellationTokenSource();
             try { await ws.ConnectAsync(url, CTS.Token); } catch (Exception) { SetState(0); return; }
@@ -188,7 +196,6 @@ namespace MeshCentralRouter
             this.url = url;
             if (tlsCertFingerprint != null) { this.tlsCertFingerprint = tlsCertFingerprint.ToUpper(); }
             if (tlsCertFingerprint2 != null) { this.tlsCertFingerprint2 = tlsCertFingerprint2.ToUpper(); }
-
             if (nativeWebSocketFirst) { try { ws = new ClientWebSocket(); } catch (Exception) { } }
             if (ws != null)
             {
@@ -279,7 +286,17 @@ namespace MeshCentralRouter
             {
                 // Send proxy connection request
                 wsrawstream = wsclient.GetStream();
-                byte[] proxyRequestBuf = UTF8Encoding.UTF8.GetBytes("CONNECT " + url.Host + ":" + url.Port + " HTTP/1.1\r\nHost: " + url.Host + ":" + url.Port + "\r\n\r\n");
+
+                string userCreds = proxyUri.UserInfo;
+                string basicAuth = "";
+                if (userCreds.Length > 0)
+                {
+                    // Base64 encode for basic authentication
+                    userCreds = System.Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes(userCreds));
+                    basicAuth = "\r\nProxy-Authorization: Basic " + userCreds;
+                }
+
+                byte[] proxyRequestBuf = UTF8Encoding.UTF8.GetBytes("CONNECT " + url.Host + ":" + url.Port + " HTTP/1.1\r\nHost: " + url.Host + ":" + url.Port + basicAuth + "\r\n\r\n");
                 wsrawstream.Write(proxyRequestBuf, 0, proxyRequestBuf.Length);
                 wsrawstream.BeginRead(readBuffer, readBufferLen, readBuffer.Length - readBufferLen, new AsyncCallback(OnProxyResponseSink), this);
             }

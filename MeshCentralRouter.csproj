@@ -18,6 +18,10 @@
     </FileUpgradeFlags>
     <OldToolsVersion>3.5</OldToolsVersion>
     <UpgradeBackupLocation />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -30,12 +34,8 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile />
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -124,6 +124,11 @@
     <Compile Include="FileDialogMsgForm.Designer.cs">
       <DependentUpon>FileDialogMsgForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProxySettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProxySettings.Designer.cs">
+      <DependentUpon>ProxySettings.cs</DependentUpon>
     <Compile Include="ListViewExtended.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -309,6 +314,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FileDialogMsgForm.resx">
       <DependentUpon>FileDialogMsgForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProxySettings.resx">
+      <DependentUpon>ProxySettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KVMViewerExtra.resx">
       <DependentUpon>KVMViewerExtra.cs</DependentUpon>
