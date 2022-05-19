@@ -51,10 +51,11 @@ namespace MeshCentralRouter
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.updateTimer = new System.Windows.Forms.Timer(this.components);
             this.topPanel = new System.Windows.Forms.Panel();
+            this.extraButtonsPanel = new System.Windows.Forms.Panel();
+            this.splitButton = new System.Windows.Forms.Button();
             this.clipOutboundButton = new System.Windows.Forms.Button();
             this.clipInboundButton = new System.Windows.Forms.Button();
             this.statsButton = new System.Windows.Forms.Button();
-            this.displaySelectComboBox = new System.Windows.Forms.ComboBox();
             this.settingsButton = new System.Windows.Forms.Button();
             this.zoomButton = new System.Windows.Forms.Button();
             this.cadButton = new System.Windows.Forms.Button();
@@ -67,6 +68,7 @@ namespace MeshCentralRouter
             this.consoleTimer = new System.Windows.Forms.Timer(this.components);
             this.mainToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.resizeKvmControl = new MeshCentralRouter.KVMResizeControl();
+            this.displaySelectorImageList = new System.Windows.Forms.ImageList(this.components);
             this.mainStatusStrip.SuspendLayout();
             this.topPanel.SuspendLayout();
             this.consentContextMenuStrip.SuspendLayout();
@@ -75,6 +77,7 @@ namespace MeshCentralRouter
             // mainStatusStrip
             // 
             this.mainStatusStrip.BackColor = System.Drawing.SystemColors.Menu;
+            this.mainStatusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.mainStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mainToolStripStatusLabel,
             this.toolStripStatusLabel1});
@@ -101,16 +104,30 @@ namespace MeshCentralRouter
             // topPanel
             // 
             this.topPanel.BackColor = System.Drawing.SystemColors.Control;
+            this.topPanel.Controls.Add(this.extraButtonsPanel);
+            this.topPanel.Controls.Add(this.splitButton);
             this.topPanel.Controls.Add(this.clipOutboundButton);
             this.topPanel.Controls.Add(this.clipInboundButton);
             this.topPanel.Controls.Add(this.statsButton);
-            this.topPanel.Controls.Add(this.displaySelectComboBox);
             this.topPanel.Controls.Add(this.settingsButton);
             this.topPanel.Controls.Add(this.zoomButton);
             this.topPanel.Controls.Add(this.cadButton);
             this.topPanel.Controls.Add(this.connectButton);
             resources.ApplyResources(this.topPanel, "topPanel");
             this.topPanel.Name = "topPanel";
+            // 
+            // extraButtonsPanel
+            // 
+            resources.ApplyResources(this.extraButtonsPanel, "extraButtonsPanel");
+            this.extraButtonsPanel.Name = "extraButtonsPanel";
+            // 
+            // splitButton
+            // 
+            resources.ApplyResources(this.splitButton, "splitButton");
+            this.splitButton.Name = "splitButton";
+            this.splitButton.TabStop = false;
+            this.splitButton.UseVisualStyleBackColor = true;
+            this.splitButton.Click += new System.EventHandler(this.splitButton_Click);
             // 
             // clipOutboundButton
             // 
@@ -138,14 +155,6 @@ namespace MeshCentralRouter
             this.statsButton.TabStop = false;
             this.statsButton.UseVisualStyleBackColor = true;
             this.statsButton.Click += new System.EventHandler(this.statsButton_Click);
-            // 
-            // displaySelectComboBox
-            // 
-            this.displaySelectComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            resources.ApplyResources(this.displaySelectComboBox, "displaySelectComboBox");
-            this.displaySelectComboBox.Name = "displaySelectComboBox";
-            this.displaySelectComboBox.TabStop = false;
-            this.displaySelectComboBox.SelectionChangeCommitted += new System.EventHandler(this.displaySelectComboBox_SelectionChangeCommitted);
             // 
             // settingsButton
             // 
@@ -183,6 +192,7 @@ namespace MeshCentralRouter
             // 
             // consentContextMenuStrip
             // 
+            this.consentContextMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.consentContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.askConsentBarToolStripMenuItem,
             this.askConsentToolStripMenuItem,
@@ -231,6 +241,15 @@ namespace MeshCentralRouter
             this.resizeKvmControl.Enter += new System.EventHandler(this.resizeKvmControl_Enter);
             this.resizeKvmControl.Leave += new System.EventHandler(this.resizeKvmControl_Leave);
             // 
+            // displaySelectorImageList
+            // 
+            this.displaySelectorImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("displaySelectorImageList.ImageStream")));
+            this.displaySelectorImageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.displaySelectorImageList.Images.SetKeyName(0, "icon-monitor1.png");
+            this.displaySelectorImageList.Images.SetKeyName(1, "icon-monitor1b.png");
+            this.displaySelectorImageList.Images.SetKeyName(2, "icon-monitor2.png");
+            this.displaySelectorImageList.Images.SetKeyName(3, "icon-monitor2b.png");
+            // 
             // KVMViewer
             // 
             resources.ApplyResources(this, "$this");
@@ -266,7 +285,6 @@ namespace MeshCentralRouter
         private Button cadButton;
         private Button zoomButton;
         private Button settingsButton;
-        private ComboBox displaySelectComboBox;
         private Label consoleMessage;
         private Timer consoleTimer;
         private Button statsButton;
@@ -277,6 +295,9 @@ namespace MeshCentralRouter
         private ToolStripMenuItem askConsentBarToolStripMenuItem;
         private ToolStripMenuItem askConsentToolStripMenuItem;
         private ToolStripMenuItem privacyBarToolStripMenuItem;
+        private Button splitButton;
+        private Panel extraButtonsPanel;
+        private ImageList displaySelectorImageList;
     }
 }
 

@@ -427,6 +427,16 @@ namespace MeshCentralRouter.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icon_monitor1 {
+            get {
+                object obj = ResourceManager.GetObject("icon-monitor1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap iconClipboardIn {
             get {
                 object obj = ResourceManager.GetObject("iconClipboardIn", resourceCulture);
@@ -478,6 +488,15 @@ namespace MeshCentralRouter.Properties {
         internal static string InvalidUsernameOrPassword {
             get {
                 return ResourceManager.GetString("InvalidUsernameOrPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Join.
+        /// </summary>
+        internal static string Join {
+            get {
+                return ResourceManager.GetString("Join", resourceCulture);
             }
         }
         
@@ -832,6 +851,15 @@ namespace MeshCentralRouter.Properties {
         internal static string SmsSent {
             get {
                 return ResourceManager.GetString("SmsSent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Split.
+        /// </summary>
+        internal static string Split {
+            get {
+                return ResourceManager.GetString("Split", resourceCulture);
             }
         }
         

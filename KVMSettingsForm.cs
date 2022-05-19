@@ -1,5 +1,5 @@
 ﻿/*
-Copyright 2009-2021 Intel Corporation
+Copyright 2009-2022 Intel Corporation
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -25,6 +25,7 @@ namespace MeshCentralRouter
         {
             InitializeComponent();
             Translate.TranslateControl(this);
+            qualityComboBox.Items.Add(new DropListItem(100, "100%"));
             qualityComboBox.Items.Add(new DropListItem(90, "90%"));
             qualityComboBox.Items.Add(new DropListItem(80, "80%"));
             qualityComboBox.Items.Add(new DropListItem(70, "70%"));
@@ -76,17 +77,18 @@ namespace MeshCentralRouter
             get { return ((DropListItem)qualityComboBox.SelectedItem).value; }
             set
             {
-                if (value >= 90) { qualityComboBox.SelectedIndex = 0; return; }
-                if (value >= 80) { qualityComboBox.SelectedIndex = 1; return; }
-                if (value >= 70) { qualityComboBox.SelectedIndex = 2; return; }
-                if (value >= 60) { qualityComboBox.SelectedIndex = 3; return; }
-                if (value >= 50) { qualityComboBox.SelectedIndex = 4; return; }
-                if (value >= 40) { qualityComboBox.SelectedIndex = 5; return; }
-                if (value >= 30) { qualityComboBox.SelectedIndex = 6; return; }
-                if (value >= 20) { qualityComboBox.SelectedIndex = 7; return; }
-                if (value >= 10) { qualityComboBox.SelectedIndex = 8; return; }
-                if (value >= 5) { qualityComboBox.SelectedIndex = 9; return; }
-                qualityComboBox.SelectedIndex = 10;
+                if (value >= 100) { qualityComboBox.SelectedIndex = 0; return; }
+                if (value >= 90) { qualityComboBox.SelectedIndex = 1; return; }
+                if (value >= 80) { qualityComboBox.SelectedIndex = 2; return; }
+                if (value >= 70) { qualityComboBox.SelectedIndex = 3; return; }
+                if (value >= 60) { qualityComboBox.SelectedIndex = 4; return; }
+                if (value >= 50) { qualityComboBox.SelectedIndex = 5; return; }
+                if (value >= 40) { qualityComboBox.SelectedIndex = 6; return; }
+                if (value >= 30) { qualityComboBox.SelectedIndex = 7; return; }
+                if (value >= 20) { qualityComboBox.SelectedIndex = 8; return; }
+                if (value >= 10) { qualityComboBox.SelectedIndex = 9; return; }
+                if (value >= 5) { qualityComboBox.SelectedIndex = 10; return; }
+                qualityComboBox.SelectedIndex = 11;
             }
         }
 
@@ -133,6 +135,12 @@ namespace MeshCentralRouter
         {
             get { return autoSendClipboardCheckBox.Checked; }
             set { autoSendClipboardCheckBox.Checked = value; }
+        }
+
+        public bool AutoReconnect
+        {
+            get { return autoReconnectCheckBox.Checked; }
+            set { autoReconnectCheckBox.Checked = value; }
         }
 
         private void okButton_Click(object sender, EventArgs e)

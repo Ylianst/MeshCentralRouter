@@ -1,5 +1,5 @@
 ﻿/*
-Copyright 2009-2021 Intel Corporation
+Copyright 2009-2022 Intel Corporation
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@ limitations under the License.
 
 using System;
 using System.Windows.Forms;
+using System.Collections.Generic;
 
 namespace MeshCentralRouter
 {
@@ -43,13 +44,25 @@ namespace MeshCentralRouter
             if (x == 3) { return 4; } // PuTTY
             if (x == 4) { return 3; } // RDP
             if (x == 5) { return 5; } // WinSCP
-            return x;
+            return 0;
+        }
+        public string getAppIdStr()
+        {
+            int x = (int)appComboBox.SelectedIndex;
+            if (x < 6) { return null; } // Custom or pre-defined
+            return apps[x - 6][1];
         }
         public NodeClass getNode() { return (NodeClass)nodeComboBox.SelectedItem; }
         public void setNode(NodeClass node) { selectedNode = node; }
 
+        private List<String[]> apps = null;
+
         private void AddPortMapForm_Load(object sender, EventArgs e)
         {
+            // Add any custom applications
+            apps = Settings.GetApplications();
+            if (apps != null) { foreach (String[] app in apps) { appComboBox.Items.Add(app[0]); } }
+
             if (selectedNode == null)
             {
                 // Fill the groups

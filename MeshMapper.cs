@@ -1,5 +1,5 @@
 ﻿/*
-Copyright 2009-2021 Intel Corporation
+Copyright 2009-2022 Intel Corporation
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -49,8 +49,6 @@ namespace MeshCentralRouter
 
         public delegate void onStateMsgChangedHandler(string statemsg);
         public event onStateMsgChangedHandler onStateMsgChanged;
-
-   
 
         // Starts the routing server, called when the start button is pressed
         public void start(MeshCentralServer parent, int protocol, int localPort, string url, int remotePort, string remoteIP)
@@ -192,7 +190,6 @@ namespace MeshCentralRouter
             Uri wsurl = new Uri(url + "&auth=" + Uri.EscapeDataString(parent.authCookie));
             Debug("#" + counter + ": Connecting web socket to: " + wsurl.ToString());
             wc.debug = xdebug;
-            wc.Start(wsurl, certhash);
             wc.tag = client;
             wc.id = counter;
             wc.tunneling = false;
@@ -200,6 +197,8 @@ namespace MeshCentralRouter
             wc.onBinaryData += Wc_onBinaryData;
             wc.onStringData += Wc_onStringData;
             wc.onSendOk += Wc_onSendOk;
+            wc.TLSCertCheck = webSocketClient.TLSCertificateCheck.Fingerprint;
+            wc.Start(wsurl, certhash, null);
         }
 
         private void ConnectWS(UdpClient client, int counter)
@@ -208,7 +207,6 @@ namespace MeshCentralRouter
             Uri wsurl = new Uri(url + "&auth=" + Uri.EscapeDataString(parent.authCookie));
             Debug("#" + counter + ": Connecting web socket to: " + wsurl.ToString());
             wc.debug = xdebug;
-            wc.Start(wsurl, certhash);
             wc.tag = client;
             wc.id = counter;
             wc.tunneling = false;
@@ -216,6 +214,8 @@ namespace MeshCentralRouter
             wc.onBinaryData += Wc_onBinaryData;
             wc.onStringData += Wc_onStringData;
             wc.onSendOk += Wc_onSendOk;
+            wc.TLSCertCheck = webSocketClient.TLSCertificateCheck.Fingerprint;
+            wc.Start(wsurl, certhash, null);
         }
 
         private void Wc_onSendOk(webSocketClient sender)

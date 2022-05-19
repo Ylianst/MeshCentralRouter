@@ -37,6 +37,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "KVMControl";
             this.Size = new System.Drawing.Size(585, 364);
+            this.Load += new System.EventHandler(this.KVMControl_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.KVMControl_Paint);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KVMControl_KeyDown);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.KVMControl_KeyPress);
@@ -45,7 +46,6 @@
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.KVMControl_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.KVMControl_MouseUp);
             this.ResumeLayout(false);
-
         }
 
         #endregion

@@ -1473,6 +1473,12 @@
   <data name="settingsToolStripMenuItem.Text" xml:space="preserve">
     <value>S&amp;ettings...</value>
   </data>
+  <data name="customAppsToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>185, 22</value>
+  </data>
+  <data name="customAppsToolStripMenuItem1.Text" xml:space="preserve">
+    <value>&amp;Custom Apps...</value>
+  </data>
   <data name="mainContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>219, 146</value>
   </data>
@@ -4348,6 +4354,12 @@ Click "Add" to get started.</value>
   <data name="settingsToolStripMenuItem1.Text" xml:space="preserve">
     <value>S&amp;ettings...</value>
   </data>
+  <data name="customAppsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>168, 22</value>
+  </data>
+  <data name="customAppsToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Custom Apps...</value>
+  </data>
   <data name="mappingsContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>194, 82</value>
   </data>
@@ -6299,6 +6311,18 @@ Click "Add" to get started.</value>
   </data>
   <data name="&gt;&gt;saveMapFileDialog.Type" xml:space="preserve">
     <value>System.Windows.Forms.SaveFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;customAppsToolStripMenuItem.Name" xml:space="preserve">
+    <value>customAppsToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;customAppsToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;customAppsToolStripMenuItem1.Name" xml:space="preserve">
+    <value>customAppsToolStripMenuItem1</value>
+  </data>
+  <data name="&gt;&gt;customAppsToolStripMenuItem1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>
