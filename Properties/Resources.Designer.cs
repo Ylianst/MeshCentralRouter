@@ -537,6 +537,24 @@ namespace MeshCentralRouter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Locked to host: {0}..
+        /// </summary>
+        internal static string LockedToHost {
+            get {
+                return ResourceManager.GetString("LockedToHost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Locked to server id: {0}..
+        /// </summary>
+        internal static string LockedToServerId {
+            get {
+                return ResourceManager.GetString("LockedToServerId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to , {0} connections..
         /// </summary>
         internal static string ManyConnections {
@@ -833,6 +851,15 @@ namespace MeshCentralRouter.Properties {
         internal static string Setup {
             get {
                 return ResourceManager.GetString("Setup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This executable is locked to only connect to {0}..
+        /// </summary>
+        internal static string SignedExecutableServerLockError {
+            get {
+                return ResourceManager.GetString("SignedExecutableServerLockError", resourceCulture);
             }
         }
         

@@ -15,20 +15,40 @@ limitations under the License.
 */
 
 using System;
+using System.Collections.Specialized;
 using System.IO;
 using System.Text;
+using System.Web;
 using System.Windows.Forms;
 
 namespace MeshCentralRouter
 {
     static class Program
     {
+        public static string LockToHostname = null;
+        public static string LockToServerId = null;
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
         static void Main(string[] args)
         {
+            // If this application is signed, get the URL of the signature, this will be used to lock this application to a server.
+            Uri signedUrl = WinCrypt.GetSignatureUrl(System.Reflection.Assembly.GetEntryAssembly().Location);
+            if (signedUrl != null)
+            {
+                NameValueCollection urlArguments = HttpUtility.ParseQueryString(signedUrl.Query);
+                if (urlArguments["serverid"] != null)
+                {
+                    LockToServerId = urlArguments["serverid"];
+                    LockToHostname = signedUrl.Host;
+                }
+            }
+
+            LockToHostname = "central.mesh.meshcentral.com";
+            LockToServerId = "D99362D5ED8BAEA8BF9E743B34B242256370C460FD66CB62373C6CFCB204D6D707403E396CF0EF6DC2B3A42F735135FD";
+
             Uri authLoginUrl = null;
 
             // Setup settings & visual style

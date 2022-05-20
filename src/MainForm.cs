@@ -269,6 +269,15 @@ namespace MeshCentralRouter
             // Set automatic port map values
             if (authLoginUrl != null)
             {
+                // Check if we are locked to a server
+                if ((Program.LockToHostname != null) && (Program.LockToHostname != authLoginUrl.Host))
+                {
+                    forceExit = true;
+                    MessageBox.Show(string.Format(Properties.Resources.SignedExecutableServerLockError, Program.LockToHostname), Properties.Resources.MeshCentralRouter, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Application.Exit();
+                    return;
+                }
+
                 string autoName = null;
                 string autoNodeId = null;
                 string autoRemoteIp = null;
@@ -507,6 +516,30 @@ namespace MeshCentralRouter
 
         private void nextButton1_Click(object sender, EventArgs e)
         {
+            // Check if we are locked to a server
+            if (Program.LockToHostname != null)
+            {
+                bool ok = true;
+                if (authLoginUrl != null)
+                {
+                    ok = (Program.LockToHostname == authLoginUrl.Host);
+                }
+                else
+                {
+                    string host = serverNameComboBox.Text;
+                    int i = host.IndexOf("?key=");
+                    if (i >= 0) { host = host.Substring(0, i);  }
+                    i = host.IndexOf(":");
+                    if (i >= 0) { host = host.Substring(0, i); }
+                    ok = (Program.LockToHostname == host);
+                }
+                if (ok == false)
+                {
+                    MessageBox.Show(string.Format(Properties.Resources.SignedExecutableServerLockError, Program.LockToHostname), Properties.Resources.MeshCentralRouter, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+
             // Attempt to login
             addButton.Enabled = false;
             addRelayButton.Enabled = false;
@@ -1063,6 +1096,13 @@ namespace MeshCentralRouter
             if (this.InvokeRequired) { this.Invoke(new LocalPipeServerOnArgsHandler(LocalPipeServer_onArgs), args); return; }
 
             Uri authLoginUrl2 = new Uri(args);
+
+            // Check if we are locked to a server
+            if ((Program.LockToHostname != null) && (Program.LockToHostname != authLoginUrl2.Host))
+            {
+                MessageBox.Show(string.Format(Properties.Resources.SignedExecutableServerLockError, Program.LockToHostname), Properties.Resources.MeshCentralRouter, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             // Set automatic port map values
             if (authLoginUrl2 != null)

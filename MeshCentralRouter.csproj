@@ -295,6 +295,7 @@
     </Compile>
     <Compile Include="src\WebSocketClient.cs" />
     <Compile Include="src\Win32Api.cs" />
+    <Compile Include="src\WinCrypt.cs" />
     <EmbeddedResource Include="src\AddPortMapForm.resx">
       <DependentUpon>AddPortMapForm.cs</DependentUpon>
     </EmbeddedResource>
