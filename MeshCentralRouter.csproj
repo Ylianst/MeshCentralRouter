@@ -13,7 +13,7 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <StartupObject>MeshCentralRouter.Program</StartupObject>
-    <ApplicationIcon>MeshServer.ico</ApplicationIcon>
+    <ApplicationIcon>src\MeshServer.ico</ApplicationIcon>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>3.5</OldToolsVersion>
@@ -82,179 +82,179 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddPortMapForm.cs">
+    <Compile Include="src\AddPortMapForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddPortMapForm.Designer.cs">
+    <Compile Include="src\AddPortMapForm.Designer.cs">
       <DependentUpon>AddPortMapForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddRelayMapForm.cs">
+    <Compile Include="src\AddRelayMapForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddRelayMapForm.designer.cs">
+    <Compile Include="src\AddRelayMapForm.designer.cs">
       <DependentUpon>AddRelayMapForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomAppsAddForm.cs">
+    <Compile Include="src\CustomAppsAddForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CustomAppsAddForm.Designer.cs">
+    <Compile Include="src\CustomAppsAddForm.Designer.cs">
       <DependentUpon>CustomAppsAddForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomAppsForm.cs">
+    <Compile Include="src\CustomAppsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CustomAppsForm.Designer.cs">
+    <Compile Include="src\CustomAppsForm.Designer.cs">
       <DependentUpon>CustomAppsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomAppsRunForm.cs">
+    <Compile Include="src\CustomAppsRunForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CustomAppsRunForm.Designer.cs">
+    <Compile Include="src\CustomAppsRunForm.Designer.cs">
       <DependentUpon>CustomAppsRunForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="FileConfirmOverwriteForm.cs">
+    <Compile Include="src\FileConfirmOverwriteForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FileConfirmOverwriteForm.Designer.cs">
+    <Compile Include="src\FileConfirmOverwriteForm.Designer.cs">
       <DependentUpon>FileConfirmOverwriteForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="FileDialogMsgForm.cs">
+    <Compile Include="src\FileDialogMsgForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FileDialogMsgForm.Designer.cs">
+    <Compile Include="src\FileDialogMsgForm.Designer.cs">
       <DependentUpon>FileDialogMsgForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProxySettings.cs">
+    <Compile Include="src\ProxySettings.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProxySettings.Designer.cs">
+    <Compile Include="src\ProxySettings.Designer.cs">
       <DependentUpon>ProxySettings.cs</DependentUpon>
     </Compile>
-    <Compile Include="ListViewExtended.cs">
+    <Compile Include="src\ListViewExtended.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="KVMViewerExtra.cs">
+    <Compile Include="src\KVMViewerExtra.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="KVMViewerExtra.Designer.cs">
+    <Compile Include="src\KVMViewerExtra.Designer.cs">
       <DependentUpon>KVMViewerExtra.cs</DependentUpon>
     </Compile>
-    <Compile Include="LocalPipe.cs" />
-    <Compile Include="SshUsernameForm.cs">
+    <Compile Include="src\LocalPipe.cs" />
+    <Compile Include="src\SshUsernameForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SshUsernameForm.Designer.cs">
+    <Compile Include="src\SshUsernameForm.Designer.cs">
       <DependentUpon>SshUsernameForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AppLaunchForm.cs">
+    <Compile Include="src\AppLaunchForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AppLaunchForm.Designer.cs">
+    <Compile Include="src\AppLaunchForm.Designer.cs">
       <DependentUpon>AppLaunchForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="DeviceSettingsForm.cs">
+    <Compile Include="src\DeviceSettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DeviceSettingsForm.Designer.cs">
+    <Compile Include="src\DeviceSettingsForm.Designer.cs">
       <DependentUpon>DeviceSettingsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="FileDeletePromptForm.cs">
+    <Compile Include="src\FileDeletePromptForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FileDeletePromptForm.Designer.cs">
+    <Compile Include="src\FileDeletePromptForm.Designer.cs">
       <DependentUpon>FileDeletePromptForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="FilenamePromptForm.cs">
+    <Compile Include="src\FilenamePromptForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FilenamePromptForm.Designer.cs">
+    <Compile Include="src\FilenamePromptForm.Designer.cs">
       <DependentUpon>FilenamePromptForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="FileTransferStatusForm.cs">
+    <Compile Include="src\FileTransferStatusForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FileTransferStatusForm.Designer.cs">
+    <Compile Include="src\FileTransferStatusForm.Designer.cs">
       <DependentUpon>FileTransferStatusForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="FileViewer.cs">
+    <Compile Include="src\FileViewer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FileViewer.Designer.cs">
+    <Compile Include="src\FileViewer.Designer.cs">
       <DependentUpon>FileViewer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Settings.cs" />
-    <Compile Include="InstallForm.cs">
+    <Compile Include="src\Settings.cs" />
+    <Compile Include="src\InstallForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="InstallForm.Designer.cs">
+    <Compile Include="src\InstallForm.Designer.cs">
       <DependentUpon>InstallForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="KVMControlHook.cs" />
-    <Compile Include="KVMKeyboardHook.cs" />
-    <Compile Include="KVMControl.cs">
+    <Compile Include="src\KVMControlHook.cs" />
+    <Compile Include="src\KVMKeyboardHook.cs" />
+    <Compile Include="src\KVMControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="KVMControl.Designer.cs">
+    <Compile Include="src\KVMControl.Designer.cs">
       <DependentUpon>KVMControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="KVMResizeControl.cs">
+    <Compile Include="src\KVMResizeControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="KVMResizeControl.Designer.cs">
+    <Compile Include="src\KVMResizeControl.Designer.cs">
       <DependentUpon>KVMResizeControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="KVMSettingsForm.cs">
+    <Compile Include="src\KVMSettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="KVMSettingsForm.Designer.cs">
+    <Compile Include="src\KVMSettingsForm.Designer.cs">
       <DependentUpon>KVMSettingsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MappingStats.cs">
+    <Compile Include="src\MappingStats.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MappingStats.Designer.cs">
+    <Compile Include="src\MappingStats.Designer.cs">
       <DependentUpon>MappingStats.cs</DependentUpon>
     </Compile>
-    <Compile Include="KVMStats.cs">
+    <Compile Include="src\KVMStats.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="KVMStats.Designer.cs">
+    <Compile Include="src\KVMStats.Designer.cs">
       <DependentUpon>KVMStats.cs</DependentUpon>
     </Compile>
-    <Compile Include="KVMViewer.cs">
+    <Compile Include="src\KVMViewer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="KVMViewer.Designer.cs">
+    <Compile Include="src\KVMViewer.Designer.cs">
       <DependentUpon>KVMViewer.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainForm.cs">
+    <Compile Include="src\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
+    <Compile Include="src\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MappingHelpForm.cs">
+    <Compile Include="src\MappingHelpForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MappingHelpForm.Designer.cs">
+    <Compile Include="src\MappingHelpForm.Designer.cs">
       <DependentUpon>MappingHelpForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="DeviceUserControl.cs">
+    <Compile Include="src\DeviceUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="DeviceUserControl.Designer.cs">
+    <Compile Include="src\DeviceUserControl.Designer.cs">
       <DependentUpon>DeviceUserControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="MapUserControl.cs">
+    <Compile Include="src\MapUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MapUserControl.Designer.cs">
+    <Compile Include="src\MapUserControl.Designer.cs">
       <DependentUpon>MapUserControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="MeshCentralServer.cs" />
-    <Compile Include="MeshDiscovery.cs" />
-    <Compile Include="MeshMapper.cs" />
-    <Compile Include="NodeClass.cs" />
+    <Compile Include="src\MeshCentralServer.cs" />
+    <Compile Include="src\MeshDiscovery.cs" />
+    <Compile Include="src\MeshMapper.cs" />
+    <Compile Include="src\NodeClass.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -262,119 +262,119 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="altPortForm.cs">
+    <Compile Include="src\altPortForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="altPortForm.Designer.cs">
+    <Compile Include="src\altPortForm.Designer.cs">
       <DependentUpon>altPortForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="rdpPortForm.cs">
+    <Compile Include="src\rdpPortForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="rdpPortForm.Designer.cs">
+    <Compile Include="src\rdpPortForm.Designer.cs">
       <DependentUpon>rdpPortForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ServerUserControl.cs">
+    <Compile Include="src\ServerUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ServerUserControl.Designer.cs">
+    <Compile Include="src\ServerUserControl.Designer.cs">
       <DependentUpon>ServerUserControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="SettingsForm.cs">
+    <Compile Include="src\SettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SettingsForm.Designer.cs">
+    <Compile Include="src\SettingsForm.Designer.cs">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Translate.cs" />
-    <Compile Include="UpdateForm.cs">
+    <Compile Include="src\Translate.cs" />
+    <Compile Include="src\UpdateForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UpdateForm.Designer.cs">
+    <Compile Include="src\UpdateForm.Designer.cs">
       <DependentUpon>UpdateForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="WebSocketClient.cs" />
-    <Compile Include="Win32Api.cs" />
-    <EmbeddedResource Include="AddPortMapForm.resx">
+    <Compile Include="src\WebSocketClient.cs" />
+    <Compile Include="src\Win32Api.cs" />
+    <EmbeddedResource Include="src\AddPortMapForm.resx">
       <DependentUpon>AddPortMapForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddRelayMapForm.resx">
+    <EmbeddedResource Include="src\AddRelayMapForm.resx">
       <DependentUpon>AddRelayMapForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomAppsAddForm.resx">
+    <EmbeddedResource Include="src\CustomAppsAddForm.resx">
       <DependentUpon>CustomAppsAddForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomAppsForm.resx">
+    <EmbeddedResource Include="src\CustomAppsForm.resx">
       <DependentUpon>CustomAppsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomAppsRunForm.resx">
+    <EmbeddedResource Include="src\CustomAppsRunForm.resx">
       <DependentUpon>CustomAppsRunForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FileConfirmOverwriteForm.resx">
+    <EmbeddedResource Include="src\FileConfirmOverwriteForm.resx">
       <DependentUpon>FileConfirmOverwriteForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FileDialogMsgForm.resx">
+    <EmbeddedResource Include="src\FileDialogMsgForm.resx">
       <DependentUpon>FileDialogMsgForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProxySettings.resx">
+    <EmbeddedResource Include="src\ProxySettings.resx">
       <DependentUpon>ProxySettings.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="KVMViewerExtra.resx">
+    <EmbeddedResource Include="src\KVMViewerExtra.resx">
       <DependentUpon>KVMViewerExtra.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SshUsernameForm.resx">
+    <EmbeddedResource Include="src\SshUsernameForm.resx">
       <DependentUpon>SshUsernameForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AppLaunchForm.resx">
+    <EmbeddedResource Include="src\AppLaunchForm.resx">
       <DependentUpon>AppLaunchForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DeviceSettingsForm.resx">
+    <EmbeddedResource Include="src\DeviceSettingsForm.resx">
       <DependentUpon>DeviceSettingsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FileDeletePromptForm.resx">
+    <EmbeddedResource Include="src\FileDeletePromptForm.resx">
       <DependentUpon>FileDeletePromptForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FilenamePromptForm.resx">
+    <EmbeddedResource Include="src\FilenamePromptForm.resx">
       <DependentUpon>FilenamePromptForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FileTransferStatusForm.resx">
+    <EmbeddedResource Include="src\FileTransferStatusForm.resx">
       <DependentUpon>FileTransferStatusForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FileViewer.resx">
+    <EmbeddedResource Include="src\FileViewer.resx">
       <DependentUpon>FileViewer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="InstallForm.resx">
+    <EmbeddedResource Include="src\InstallForm.resx">
       <DependentUpon>InstallForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="KVMControl.resx">
+    <EmbeddedResource Include="src\KVMControl.resx">
       <DependentUpon>KVMControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="KVMResizeControl.resx">
+    <EmbeddedResource Include="src\KVMResizeControl.resx">
       <DependentUpon>KVMResizeControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="KVMSettingsForm.resx">
+    <EmbeddedResource Include="src\KVMSettingsForm.resx">
       <DependentUpon>KVMSettingsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MappingStats.resx">
+    <EmbeddedResource Include="src\MappingStats.resx">
       <DependentUpon>MappingStats.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="KVMStats.resx">
+    <EmbeddedResource Include="src\KVMStats.resx">
       <DependentUpon>KVMStats.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="KVMViewer.resx">
+    <EmbeddedResource Include="src\KVMViewer.resx">
       <DependentUpon>KVMViewer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
+    <EmbeddedResource Include="src\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="MappingHelpForm.resx">
+    <EmbeddedResource Include="src\MappingHelpForm.resx">
       <DependentUpon>MappingHelpForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DeviceUserControl.resx">
+    <EmbeddedResource Include="src\DeviceUserControl.resx">
       <DependentUpon>DeviceUserControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MapUserControl.resx">
+    <EmbeddedResource Include="src\MapUserControl.resx">
       <DependentUpon>MapUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -382,19 +382,19 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="altPortForm.resx">
+    <EmbeddedResource Include="src\altPortForm.resx">
       <DependentUpon>altPortForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="rdpPortForm.resx">
+    <EmbeddedResource Include="src\rdpPortForm.resx">
       <DependentUpon>rdpPortForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ServerUserControl.resx">
+    <EmbeddedResource Include="src\ServerUserControl.resx">
       <DependentUpon>ServerUserControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SettingsForm.resx">
+    <EmbeddedResource Include="src\SettingsForm.resx">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UpdateForm.resx">
+    <EmbeddedResource Include="src\UpdateForm.resx">
       <DependentUpon>UpdateForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.manifest">
@@ -414,7 +414,8 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="MeshServer.ico" />
+    <Content Include="src\MeshServer.ico" />
+    <None Include="readme.md" />
     <None Include="Resources\icon-monitor1.png" />
     <None Include="Resources\folderzip.png" />
     <None Include="Resources\arrowleft16.png" />
