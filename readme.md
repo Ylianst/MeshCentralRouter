@@ -1,7 +1,7 @@
 MeshCentral Router
 ==================
 
-For more information, [visit MeshCommander.com/MeshCentral2](http://www.meshcommander.com/meshcentral2).
+For more information, [visit MeshCommander.com](http://www.meshcentral.com).
 
 Download the [full PDF user's guide](http://info.meshcentral.com/downloads/MeshCentral2/MeshCentral2RouterUserGuide-0.0.2.pdf) with more information on using the MeshCentral Router.
 
