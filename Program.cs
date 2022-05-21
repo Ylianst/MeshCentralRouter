@@ -46,9 +46,6 @@ namespace MeshCentralRouter
                 }
             }
 
-            LockToHostname = "central.mesh.meshcentral.com";
-            LockToServerId = "D99362D5ED8BAEA8BF9E743B34B242256370C460FD66CB62373C6CFCB204D6D707403E396CF0EF6DC2B3A42F735135FD";
-
             Uri authLoginUrl = null;
 
             // Setup settings & visual style
@@ -64,6 +61,14 @@ namespace MeshCentralRouter
             {
                 if (arg.Length > 3 && string.Compare(arg.Substring(0, 3), "-l:", true) == 0) {
                     try { System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(arg.Substring(3)); } catch (ArgumentException) { }
+                }
+                if ((arg.Length == 5) && (string.Compare(arg.Substring(0, 5), "-info", true) == 0))
+                {
+                    string dialogText = string.Format(Properties.Resources.Version, System.Reflection.Assembly.GetExecutingAssembly().ImageRuntimeVersion);
+                    if (LockToHostname != null) { dialogText += "\r\n" + string.Format(Properties.Resources.LockedToHost, LockToHostname); }
+                    if (LockToServerId != null) { dialogText += "\r\n" + string.Format(Properties.Resources.LockedToServerId, LockToServerId); }
+                    MessageBox.Show(dialogText, Properties.Resources.MeshCentralRouter);
+                    return;
                 }
                 if (arg.Length > 11 && arg.Substring(0, 11).ToLower() == "mcrouter://") { authLoginUrl = new Uri(arg); }
             }

@@ -466,4 +466,7 @@
   <data name="SignedExecutableServerLockError" xml:space="preserve">
     <value>This executable is locked to only connect to {0}.</value>
   </data>
+  <data name="Version" xml:space="preserve">
+    <value>Version {0}</value>
+  </data>
 </root>
