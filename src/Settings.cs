@@ -67,7 +67,7 @@ namespace MeshCentralRouter
         public static void SetApplications(List<string[]> apps)
         {
             ClearApplications();
-            using (RegistryKey key = Registry.CurrentUser.CreateSubKey(@"HKEY_CURRENT_USER\SOFTWARE\Open Source\MeshCentral Router\Applications", true))
+            using (RegistryKey key = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\Open Source\MeshCentral Router\Applications", true))
             {
                 foreach (string[] app in apps)
                 {
@@ -84,12 +84,12 @@ namespace MeshCentralRouter
         public static List<string[]> GetApplications()
         {
             List<string[]> apps = new List<string[]>();
-            using (RegistryKey key = Registry.CurrentUser.CreateSubKey(@"HKEY_CURRENT_USER\SOFTWARE\Open Source\MeshCentral Router\Applications\", false))
+            using (RegistryKey key = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\Open Source\MeshCentral Router\Applications\", false))
             {
                 string[] keys = key.GetSubKeyNames();
                 foreach (string k in keys)
                 {
-                    using (RegistryKey key2 = Registry.CurrentUser.OpenSubKey(@"HKEY_CURRENT_USER\SOFTWARE\Open Source\MeshCentral Router\Applications\" + k, false))
+                    using (RegistryKey key2 = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Open Source\MeshCentral Router\Applications\" + k, false))
                     {
                         string protocol = (string)key2.GetValue("Protocol");
                         string command = (string)key2.GetValue("Command");
@@ -108,7 +108,7 @@ namespace MeshCentralRouter
 
         public static void ClearApplications()
         {
-            RegistryKey key = Registry.CurrentUser.CreateSubKey(@"HKEY_CURRENT_USER\SOFTWARE\Open Source\MeshCentral Router", true);
+            RegistryKey key = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\Open Source\MeshCentral Router", true);
             key.DeleteSubKeyTree("Applications");
             key.Close();
         }
