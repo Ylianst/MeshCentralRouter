@@ -676,8 +676,11 @@ namespace MeshCentralRouter
                         {
                             if (jsonAction.ContainsKey("cookie"))
                             {
-                                string cookie = (string)jsonAction["cookie"];
-                                if (onTwoFactorCookie != null) { onTwoFactorCookie(cookie); }
+                                if (jsonAction["cookie"] == null) return;
+                                if (jsonAction["cookie"].GetType() != typeof(string)) return;
+                                string cookie = null;
+                                try { cookie = (string)jsonAction["cookie"]; } catch (Exception) { }
+                                if ((cookie != null) && (onTwoFactorCookie != null)) { onTwoFactorCookie(cookie); }
                             }
                             break;
                         }

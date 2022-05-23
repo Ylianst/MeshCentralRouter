@@ -1076,6 +1076,7 @@ namespace MeshCentralRouter
                 cookieRefreshTimer.Enabled = true;
 
                 // If we need to remember the 2nd factor, ask for a cookie now.
+                if (debug) { try { File.AppendAllText("debug.log", "Requesting 2FA cookie\r\n"); } catch (Exception) { } }
                 if (tokenRememberCheckBox.Checked) { meshcentral.sendCommand("{\"action\":\"twoFactorCookie\"}"); }
 
                 // Setup single instance pipe server
