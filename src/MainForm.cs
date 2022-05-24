@@ -49,6 +49,7 @@ namespace MeshCentralRouter
         public bool forceExit = false;
         public bool sendEmailToken = false;
         public bool sendSMSToken = false;
+        public bool allowUpdates = true;
         public Uri authLoginUrl = null;
         public Process installProcess = null;
         public string acceptableCertHash = null;
@@ -229,6 +230,7 @@ namespace MeshCentralRouter
                 if (arg.ToLower() == "-oldstyle") { deviceListViewMode = false; }
                 if (arg.ToLower() == "-install") { hookRouter(); forceExit = true; return; }
                 if (arg.ToLower() == "-uninstall") { unHookRouter(); forceExit = true; return; }
+                if (arg.ToLower() == "-noupdate") { allowUpdates = false; return; }
                 if (arg.ToLower() == "-debug") { debug = true; }
                 if (arg.ToLower() == "-tlsdump") { tlsdump = true; }
                 if (arg.ToLower() == "-ignorecert") { ignoreCert = true; }
@@ -554,7 +556,7 @@ namespace MeshCentralRouter
             meshcentral.onLoginTokenChanged += Meshcentral_onLoginTokenChanged;
             meshcentral.onClipboardData += Meshcentral_onClipboardData;
             meshcentral.onTwoFactorCookie += Meshcentral_onTwoFactorCookie;
-            //meshcentral.onToolUpdate += Meshcentral_onToolUpdate;
+            if (allowUpdates) { meshcentral.onToolUpdate += Meshcentral_onToolUpdate; }
             if (lastBadConnectCert != null)
             {
                 meshcentral.okCertHash = lastBadConnectCert.GetCertHashString();
@@ -632,7 +634,7 @@ namespace MeshCentralRouter
             meshcentral.onLoginTokenChanged += Meshcentral_onLoginTokenChanged;
             meshcentral.onClipboardData += Meshcentral_onClipboardData;
             meshcentral.onTwoFactorCookie += Meshcentral_onTwoFactorCookie;
-            meshcentral.onToolUpdate += Meshcentral_onToolUpdate;
+            if (allowUpdates) { meshcentral.onToolUpdate += Meshcentral_onToolUpdate; }
             meshcentral.okCertHash = lastBadConnectCert.GetCertHashString();
 
             Uri serverurl = null;
@@ -1405,7 +1407,7 @@ namespace MeshCentralRouter
             meshcentral.onLoginTokenChanged += Meshcentral_onLoginTokenChanged;
             meshcentral.onClipboardData += Meshcentral_onClipboardData;
             meshcentral.onTwoFactorCookie += Meshcentral_onTwoFactorCookie;
-            meshcentral.onToolUpdate += Meshcentral_onToolUpdate;
+            if (allowUpdates) { meshcentral.onToolUpdate += Meshcentral_onToolUpdate; }
             if (sendEmailToken == true)
             {
                 sendEmailToken = false;

@@ -262,7 +262,7 @@ namespace MeshCentralRouter
                             wc.SendString("{\"action\":\"nodes\"}");
                             wc.SendString("{\"action\":\"authcookie\"}");
                             wc.SendString("{\"action\":\"logincookie\"}");
-                            wc.SendString("{\"action\":\"meshToolInfo\",\"name\":\"MeshCentralRouter\"}");
+                            if (onToolUpdate != null) { wc.SendString("{\"action\":\"meshToolInfo\",\"name\":\"MeshCentralRouter\"}"); }
                             break;
                         }
                     case "authcookie":
@@ -708,7 +708,10 @@ namespace MeshCentralRouter
                                 if (jsonAction.ContainsKey("serverhash")) { serverhash = jsonAction["serverhash"].ToString(); }
 
                                 // If the hashes don't match, event the tool update with URL
-                                if (selfExecutableHashHex != hash) { onToolUpdate((string)url, (string)jsonAction["hash"], (int)jsonAction["size"], serverhash); }
+                                if (selfExecutableHashHex != hash) {
+                                    if (debug) { try { File.AppendAllText("debug.log", "Self-executable hash mismatch, update available.\r\n"); } catch (Exception) { } }
+                                    onToolUpdate((string)url, (string)jsonAction["hash"], (int)jsonAction["size"], serverhash);
+                                }
                             }
                             break;
                         }
