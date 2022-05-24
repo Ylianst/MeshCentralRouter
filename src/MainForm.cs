@@ -1881,7 +1881,7 @@ namespace MeshCentralRouter
                     if (x.ContainsKey("remoteIP")) { map.remoteIP = (string)x["remoteIP"]; }
                     map.remotePort = (int)x["remotePort"];
                     map.appId = (int)x["appId"];
-                    if (x["appIdStr"] != null) { map.appIdStr = (string)x["appIdStr"]; }
+                    if (x.ContainsKey("appIdStr")) { map.appIdStr = (string)x["appIdStr"]; }
                     if (x.ContainsKey("autoExit")) { map.autoexit = (bool)x["autoExit"]; }
                     map.node = node;
                     if (authLoginUrl != null) { map.host = authLoginUrl.Host + ":" + ((authLoginUrl.Port > 0) ? authLoginUrl.Port : 443) + authLoginUrl.AbsolutePath.Replace("/control.ashx", ""); } else { map.host = serverNameComboBox.Text; }
