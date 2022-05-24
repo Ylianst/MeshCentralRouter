@@ -38,6 +38,12 @@ namespace MeshCentralRouter
             set { systemTrayCheckBox.Checked = value; }
         }
 
+        public bool CheckForUpdates
+        {
+            get { return checkForUpdatedCheckBox.Checked; }
+            set { checkForUpdatedCheckBox.Checked = value; }
+        }
+
         private void okButton_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;

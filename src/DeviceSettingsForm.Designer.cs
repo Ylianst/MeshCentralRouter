@@ -38,6 +38,7 @@
             this.exp_KeyboardHookCheckBox = new System.Windows.Forms.CheckBox();
             this.exp_KeyboardHookPriorityCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.checkForUpdatedCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -45,6 +46,7 @@
             // groupBox1
             // 
             resources.ApplyResources(this.groupBox1, "groupBox1");
+            this.groupBox1.Controls.Add(this.checkForUpdatedCheckBox);
             this.groupBox1.Controls.Add(this.systemTrayCheckBox);
             this.groupBox1.Controls.Add(this.doubleClickComboBox);
             this.groupBox1.Controls.Add(this.label1);
@@ -113,6 +115,12 @@
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.TabStop = false;
             // 
+            // checkForUpdatedCheckBox
+            // 
+            resources.ApplyResources(this.checkForUpdatedCheckBox, "checkForUpdatedCheckBox");
+            this.checkForUpdatedCheckBox.Name = "checkForUpdatedCheckBox";
+            this.checkForUpdatedCheckBox.UseVisualStyleBackColor = true;
+            // 
             // DeviceSettingsForm
             // 
             this.AcceptButton = this.okButton;
@@ -146,5 +154,6 @@
         private System.Windows.Forms.CheckBox exp_KeyboardHookCheckBox;
         private System.Windows.Forms.CheckBox exp_KeyboardHookPriorityCheckBox;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.CheckBox checkForUpdatedCheckBox;
     }
 }

@@ -49,7 +49,7 @@ namespace MeshCentralRouter
         public bool forceExit = false;
         public bool sendEmailToken = false;
         public bool sendSMSToken = false;
-        public bool allowUpdates = true;
+        public bool allowUpdates = Settings.GetRegValue("CheckForUpdates", true);
         public Uri authLoginUrl = null;
         public Process installProcess = null;
         public string acceptableCertHash = null;
@@ -1566,10 +1566,14 @@ namespace MeshCentralRouter
             SettingsForm f = new SettingsForm();
             f.BindAllInterfaces = inaddrany;
             f.ShowSystemTray = (notifyIcon.Visible == true);
+            f.CheckForUpdates = Settings.GetRegValue("CheckForUpdates", true);
 
             if (f.ShowDialog(this) == DialogResult.OK)
             {
                 inaddrany = f.BindAllInterfaces;
+                Settings.SetRegValue("CheckForUpdates", f.CheckForUpdates);
+                allowUpdates = f.CheckForUpdates;
+
                 if (f.ShowSystemTray)
                 {
                     notifyIcon.Visible = true;
@@ -2158,9 +2162,12 @@ namespace MeshCentralRouter
             f.ShowSystemTray = (notifyIcon.Visible == true);
             f.Exp_KeyboardHookPriority = Settings.GetRegValue("Exp_KeyboardHookPriority", false);
             f.Exp_KeyboardHook = Settings.GetRegValue("Exp_KeyboardHook", false);
+            f.CheckForUpdates = Settings.GetRegValue("CheckForUpdates", true);
 
             if (f.ShowDialog(this) == DialogResult.OK)
             {
+                Settings.SetRegValue("CheckForUpdates", f.CheckForUpdates);
+                allowUpdates = f.CheckForUpdates;
                 deviceDoubleClickAction = f.deviceDoubleClickAction;
                 Settings.SetRegValue("DevDoubleClickClickAction", deviceDoubleClickAction.ToString());
                 Settings.SetRegValue("Exp_KeyboardHook", f.Exp_KeyboardHook.ToString().ToLower());

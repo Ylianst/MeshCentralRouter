@@ -53,10 +53,13 @@ namespace MeshCentralRouter
                 if (lines[5] != "") { mainLabel.Text = lines[5]; }
             }
             catch (Exception) { }
+
+            checkForUpdatedCheckBox.Checked = Settings.GetRegValue("CheckForUpdates", true);
         }
 
         private void okButton_Click(object sender, EventArgs e)
         {
+            Settings.SetRegValue("CheckForUpdates", checkForUpdatedCheckBox.Checked);
             DownloadUpdate();
         }
 
@@ -165,5 +168,9 @@ namespace MeshCentralRouter
             return Result.ToString();
         }
 
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            Settings.SetRegValue("CheckForUpdates", checkForUpdatedCheckBox.Checked);
+        }
     }
 }

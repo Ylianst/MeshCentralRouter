@@ -35,6 +35,7 @@
             this.updateProgressBar = new System.Windows.Forms.ProgressBar();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.mainLabel = new System.Windows.Forms.Label();
+            this.checkForUpdatedCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -45,6 +46,7 @@
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
             // okButton
             // 
@@ -79,12 +81,19 @@
             resources.ApplyResources(this.mainLabel, "mainLabel");
             this.mainLabel.Name = "mainLabel";
             // 
+            // checkForUpdatedCheckBox
+            // 
+            resources.ApplyResources(this.checkForUpdatedCheckBox, "checkForUpdatedCheckBox");
+            this.checkForUpdatedCheckBox.Name = "checkForUpdatedCheckBox";
+            this.checkForUpdatedCheckBox.UseVisualStyleBackColor = true;
+            // 
             // UpdateForm
             // 
             this.AcceptButton = this.okButton;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
+            this.Controls.Add(this.checkForUpdatedCheckBox);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.cancelButton);
@@ -95,6 +104,7 @@
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -106,5 +116,6 @@
         private System.Windows.Forms.Label mainLabel;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ProgressBar updateProgressBar;
+        private System.Windows.Forms.CheckBox checkForUpdatedCheckBox;
     }
 }

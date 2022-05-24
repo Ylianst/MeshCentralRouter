@@ -40,6 +40,12 @@ namespace MeshCentralRouter
             set { systemTrayCheckBox.Checked = value; }
         }
 
+        public bool CheckForUpdates
+        {
+            get { return checkForUpdatedCheckBox.Checked; }
+            set { checkForUpdatedCheckBox.Checked = value; }
+        }
+
         public bool Exp_KeyboardHook
         {
             get { return exp_KeyboardHookCheckBox.Checked; }
