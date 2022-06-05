@@ -75,6 +75,7 @@ namespace MeshCentralRouter
         public TLSCertificateCheck TLSCertCheck = TLSCertificateCheck.Verify;
         public X509Certificate2 tlsCert = null;
         public X509Certificate2 failedTlsCert = null;
+        public X509Certificate2 clientAuthCert = null;
         static public bool nativeWebSocketFirst = false;
         private SemaphoreSlim receiveLock = new SemaphoreSlim(1, 1);
 
@@ -199,7 +200,8 @@ namespace MeshCentralRouter
             if (nativeWebSocketFirst) { try { ws = new ClientWebSocket(); } catch (Exception) { } }
             if (ws != null)
             {
-                // Use Windows native websockets
+                // Use Windows native websocket
+                if (clientAuthCert != null) { ws.Options.ClientCertificates.Add(clientAuthCert); }
                 Log("Websocket (native) Start, URL=" + ((url == null) ? "(NULL)" : url.ToString()));
                 if (extraHeaders != null) { foreach (var key in extraHeaders.Keys) { ws.Options.SetRequestHeader(key, extraHeaders[key]); } }
                 Task t = ConnectAsync(url);
@@ -304,9 +306,14 @@ namespace MeshCentralRouter
             {
                 // Start TLS connection
                 Log("Websocket TCP connected, doing TLS...");
-                wsstream = new SslStream(wsclient.GetStream(), false, VerifyServerCertificate, null);
+                wsstream = new SslStream(wsclient.GetStream(), false, VerifyServerCertificate, LocalCertificateSelectionCallback);
                 try { wsstream.BeginAuthenticateAsClient(url.Host, null, System.Security.Authentication.SslProtocols.Tls12, false, new AsyncCallback(OnTlsSetupSink), this); } catch (Exception) { Dispose(); }
             }
+        }
+
+        private X509Certificate LocalCertificateSelectionCallback(object sender, string targetHost, X509CertificateCollection localCertificates, X509Certificate remoteCertificate, string[] acceptableIssuers)
+        {
+            return clientAuthCert;
         }
 
         private void OnProxyResponseSink(IAsyncResult ar)
@@ -333,7 +340,7 @@ namespace MeshCentralRouter
                     // All good, start TLS setup.
                     readBufferLen = 0;
                     Log("Websocket TCP connected, doing TLS...");
-                    wsstream = new SslStream(wsrawstream, false, VerifyServerCertificate, null);
+                    wsstream = new SslStream(wsrawstream, false, VerifyServerCertificate, LocalCertificateSelectionCallback);
                     try { wsstream.BeginAuthenticateAsClient(url.Host, null, System.Security.Authentication.SslProtocols.Tls12, false, new AsyncCallback(OnTlsSetupSink), this); } catch (Exception) { Dispose(); }
                 }
                 else

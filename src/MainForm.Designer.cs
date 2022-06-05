@@ -35,7 +35,7 @@
             this.mainTabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.proxySettings = new System.Windows.Forms.Button();
+            this.connectionSettings = new System.Windows.Forms.Button();
             this.installButton = new System.Windows.Forms.Button();
             this.stateLabel = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
@@ -203,7 +203,7 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.proxySettings);
+            this.panel1.Controls.Add(this.connectionSettings);
             this.panel1.Controls.Add(this.installButton);
             this.panel1.Controls.Add(this.stateLabel);
             this.panel1.Controls.Add(this.label28);
@@ -221,12 +221,12 @@
             resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Name = "panel1";
             // 
-            // proxySettings
+            // connectionSettings
             // 
-            resources.ApplyResources(this.proxySettings, "proxySettings");
-            this.proxySettings.Name = "proxySettings";
-            this.proxySettings.UseVisualStyleBackColor = true;
-            this.proxySettings.Click += new System.EventHandler(this.button1_Click);
+            resources.ApplyResources(this.connectionSettings, "connectionSettings");
+            this.connectionSettings.Name = "connectionSettings";
+            this.connectionSettings.UseVisualStyleBackColor = true;
+            this.connectionSettings.Click += new System.EventHandler(this.button1_Click);
             // 
             // installButton
             // 
@@ -1146,7 +1146,7 @@
         private System.Windows.Forms.ToolStripMenuItem askConsentToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem privacyBarToolStripMenuItem;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Button proxySettings;
+        private System.Windows.Forms.Button connectionSettings;
         private System.Windows.Forms.ToolStripMenuItem customAppsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem customAppsToolStripMenuItem1;
     }

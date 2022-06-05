@@ -124,11 +124,11 @@
     <Compile Include="src\FileDialogMsgForm.Designer.cs">
       <DependentUpon>FileDialogMsgForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="src\ProxySettings.cs">
+    <Compile Include="src\ConnectionSettings.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\ProxySettings.Designer.cs">
-      <DependentUpon>ProxySettings.cs</DependentUpon>
+    <Compile Include="src\ConnectionSettings.Designer.cs">
+      <DependentUpon>ConnectionSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="src\ListViewExtended.cs">
       <SubType>Component</SubType>
@@ -317,8 +317,8 @@
     <EmbeddedResource Include="src\FileDialogMsgForm.resx">
       <DependentUpon>FileDialogMsgForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\ProxySettings.resx">
-      <DependentUpon>ProxySettings.cs</DependentUpon>
+    <EmbeddedResource Include="src\ConnectionSettings.resx">
+      <DependentUpon>ConnectionSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\KVMViewerExtra.resx">
       <DependentUpon>KVMViewerExtra.cs</DependentUpon>

@@ -337,7 +337,7 @@ namespace MeshCentralRouter
             if (File.Exists(Path.Combine(selfExe.Directory.FullName, @"customization\logo.png"))) { try { pictureBox2.Image = pictureBox6.Image = (Bitmap)Image.FromFile(Path.Combine(selfExe.Directory.FullName, @"customization\logo.png")); showLicense = false; } catch (Exception) { } }
             if (File.Exists(Path.Combine(selfExe.Directory.FullName, @"customization\bottombanner.png"))) { try { pictureBox3.Image = pictureBox4.Image = pictureBox5.Image = pictureBox7.Image = (Bitmap)Image.FromFile(Path.Combine(selfExe.Directory.FullName, @"customization\bottombanner.png")); showLicense = false; } catch (Exception) { } }
             licenseLinkLabel.Visible = showLicense;
-            proxySettings.Visible = true;
+            connectionSettings.Visible = true;
             try
             {
                 if (File.Exists(Path.Combine(selfExe.Directory.FullName, @"customization\customize.txt")))
@@ -583,7 +583,7 @@ namespace MeshCentralRouter
                     serverurl = new Uri(urlstring);
                 }
                 catch (Exception) { }
-                meshcentral.connect(serverurl, null, null, null);
+                meshcentral.connect(serverurl, null, null, null, getClientAuthCertificate());
             }
             else
             {
@@ -593,12 +593,12 @@ namespace MeshCentralRouter
                     string hostname = serverNameComboBox.Text.Substring(0, keyIndex);
                     string loginkey = serverNameComboBox.Text.Substring(keyIndex + 5);
                     try { serverurl = new Uri("wss://" + hostname + "/control.ashx?key=" + loginkey); } catch (Exception) { }
-                    meshcentral.connect(serverurl, userNameTextBox.Text, passwordTextBox.Text, twoFactorCookie);
+                    meshcentral.connect(serverurl, userNameTextBox.Text, passwordTextBox.Text, twoFactorCookie, getClientAuthCertificate());
                 }
                 else
                 {
                     try { serverurl = new Uri("wss://" + serverNameComboBox.Text + "/control.ashx"); } catch (Exception) { }
-                    meshcentral.connect(serverurl, userNameTextBox.Text, passwordTextBox.Text, twoFactorCookie);
+                    meshcentral.connect(serverurl, userNameTextBox.Text, passwordTextBox.Text, twoFactorCookie, getClientAuthCertificate());
                 }
             }
         }
@@ -645,7 +645,7 @@ namespace MeshCentralRouter
                 string urlstring = "wss://" + authLoginUrl.Host + ":" + ((authLoginUrl.Port > 0) ? authLoginUrl.Port : 443) + authLoginUrl.LocalPath + "?auth=" + getValueFromQueryString(authLoginUrl.Query, "c");
                 if (loginkey != null) { urlstring += ("&key=" + loginkey); }
                 serverurl = new Uri(urlstring);
-                meshcentral.connect(serverurl, null, null, null);
+                meshcentral.connect(serverurl, null, null, null, getClientAuthCertificate());
             }
             else
             {
@@ -658,12 +658,12 @@ namespace MeshCentralRouter
                     string hostname = serverNameComboBox.Text.Substring(0, keyIndex);
                     string loginkey = serverNameComboBox.Text.Substring(keyIndex + 5);
                     try { serverurl = new Uri("wss://" + hostname + "/control.ashx?key=" + loginkey); } catch (Exception) { }
-                    meshcentral.connect(serverurl, userNameTextBox.Text, passwordTextBox.Text, twoFactorCookie);
+                    meshcentral.connect(serverurl, userNameTextBox.Text, passwordTextBox.Text, twoFactorCookie, getClientAuthCertificate());
                 }
                 else
                 {
                     try { serverurl = new Uri("wss://" + serverNameComboBox.Text + "/control.ashx"); } catch (Exception) { }
-                    meshcentral.connect(serverurl, userNameTextBox.Text, passwordTextBox.Text, twoFactorCookie);
+                    meshcentral.connect(serverurl, userNameTextBox.Text, passwordTextBox.Text, twoFactorCookie, getClientAuthCertificate());
                 }
             }
         }
@@ -1411,16 +1411,16 @@ namespace MeshCentralRouter
             if (sendEmailToken == true)
             {
                 sendEmailToken = false;
-                meshcentral.connect(serverurl, userNameTextBox.Text, passwordTextBox.Text, "**email**");
+                meshcentral.connect(serverurl, userNameTextBox.Text, passwordTextBox.Text, "**email**", getClientAuthCertificate());
             }
             else if (sendSMSToken == true)
             {
                 sendSMSToken = false;
-                meshcentral.connect(serverurl, userNameTextBox.Text, passwordTextBox.Text, "**sms**");
+                meshcentral.connect(serverurl, userNameTextBox.Text, passwordTextBox.Text, "**sms**", getClientAuthCertificate());
             }
             else
             {
-                meshcentral.connect(serverurl, userNameTextBox.Text, passwordTextBox.Text, tokenTextBox.Text.Replace(" ", ""));
+                meshcentral.connect(serverurl, userNameTextBox.Text, passwordTextBox.Text, tokenTextBox.Text.Replace(" ", ""), getClientAuthCertificate());
             }
         }
 
@@ -2219,7 +2219,7 @@ namespace MeshCentralRouter
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ProxySettings form = new ProxySettings();
+            ConnectionSettings form = new ConnectionSettings();
             if (form.ShowDialog(this) == DialogResult.OK) {  }
         }
 
@@ -2229,6 +2229,31 @@ namespace MeshCentralRouter
             if (f.ShowDialog(this) == DialogResult.OK) {
                 Settings.SetApplications(f.getApplications());
             }
+        }
+
+        private X509Certificate2 getClientAuthCertificate()
+        {
+            X509Certificate2 r = null;
+            string clientCertThumbPrint = Settings.GetRegValue("ClientAuthCert", "");
+            if (clientCertThumbPrint == "") return null;
+
+            // Setup list of possible client authentication certificates
+            using (X509Store CertificateStore = new X509Store(StoreName.My, StoreLocation.CurrentUser))
+            {
+                // Open the certificate stores
+                CertificateStore.Open(OpenFlags.ReadOnly);
+
+                // Load the list of trusted root certificates
+                foreach (X509Certificate2 cert in CertificateStore.Certificates)
+                {
+                    if ((cert.HasPrivateKey) && (cert.Thumbprint == clientCertThumbPrint)) { r = cert; }
+                }
+
+                // Close the certificate stores
+                CertificateStore.Close();
+            }
+
+            return r;
         }
 
         /*

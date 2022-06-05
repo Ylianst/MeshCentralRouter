@@ -136,7 +136,7 @@ namespace MeshCentralRouter
         }
 
         // Starts the routing server, called when the start button is pressed
-        public void connect(Uri wsurl, string user, string pass, string token)
+        public void connect(Uri wsurl, string user, string pass, string token, X509Certificate2 clientAuthCert)
         {
             JSON.MaxJsonLength = 217483647;
             this.user = user;
@@ -153,6 +153,7 @@ namespace MeshCentralRouter
             }
 
             wc = new webSocketClient();
+            wc.clientAuthCert = clientAuthCert;
             wc.extraHeaders = extraHeaders;
             wc.onStateChanged += new webSocketClient.onStateChangedHandler(changeStateEx);
             wc.onStringData += new webSocketClient.onStringDataHandler(processServerData);

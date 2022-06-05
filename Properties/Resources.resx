@@ -469,4 +469,7 @@
   <data name="Version" xml:space="preserve">
     <value>Version {0}</value>
   </data>
+  <data name="None" xml:space="preserve">
+    <value>None</value>
+  </data>
 </root>
