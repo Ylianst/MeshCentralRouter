@@ -679,7 +679,8 @@ namespace MeshCentralRouter
         {
             if (this.InvokeRequired) { this.Invoke(new MeshCentralServer.toolUpdateHandler(Meshcentral_onToolUpdate), url, hash, size, serverhash); return; }
             UpdateForm f = new UpdateForm(url, hash, size, args, serverhash);
-            if (f.ShowDialog(this) == DialogResult.OK) { }
+            forceExit = true;
+            if (f.ShowDialog(this) != DialogResult.OK) { forceExit = !notifyIcon.Visible; }
         }
 
         private void Meshcentral_onLoginTokenChanged()
