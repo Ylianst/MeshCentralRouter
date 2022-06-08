@@ -35,6 +35,7 @@ namespace MeshCentralRouter
 {
     public partial class MainForm : Form
     {
+        private int initialHeight;
         public int currentPanel = 0;
         public DateTime refreshTime = DateTime.Now;
         public MeshCentralServer meshcentral = null;
@@ -108,6 +109,7 @@ namespace MeshCentralRouter
             }
             catch (Exception) { }
         }
+
         public void unHookRouter()
         {
             try { Registry.ClassesRoot.DeleteSubKeyTree("mcrouter"); } catch (Exception) { }
@@ -158,6 +160,7 @@ namespace MeshCentralRouter
                 return bx.CompareTo(ax);
             }
         }
+
         public class DeviceGroupComparer : IComparer
         {
             public int Compare(Object a, Object b)
@@ -195,7 +198,6 @@ namespace MeshCentralRouter
             return false;
         }
 
-
         public MainForm(string[] args)
         {
             // Set TLS 1.2
@@ -226,6 +228,7 @@ namespace MeshCentralRouter
             notifyIcon.Visible = Settings.GetRegValue("NotifyIcon", false);
 
             title = this.Text;
+            initialHeight = this.Height;
 
             int argflags = 0;
             string update = null;
@@ -255,7 +258,11 @@ namespace MeshCentralRouter
             }
             autoLogin = (argflags == 7);
             this.MinimizeBox = !notifyIcon.Visible;
-            //this.ShowInTaskbar = !notifyIcon.Visible;
+            this.MinimumSize = new Size(this.Width, initialHeight);
+            this.MaximumSize = new Size(this.Width, 1080);
+            this.MaximizeBox = false;
+            this.ResizeEnd += MainForm_ResizeEnd;
+            this.devicesListView.Dock = DockStyle.Fill;
 
             if (update != null)
             {
@@ -384,7 +391,19 @@ namespace MeshCentralRouter
         private void setPanel(int newPanel)
         {
             if (currentPanel == newPanel) return;
-            if (newPanel == 4) { updatePanel4(); }
+            if (newPanel == 4)
+            {
+                this.Height = Settings.GetRegValue("WindowHeight", this.Height);
+                this.FormBorderStyle = FormBorderStyle.Sizable;
+
+                updatePanel4();
+            }
+            else
+            {
+                this.Height = initialHeight;
+                this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            }
+
             panel1.Visible = (newPanel == 1);
             panel2.Visible = (newPanel == 2);
             panel3.Visible = (newPanel == 3);
@@ -1570,7 +1589,6 @@ namespace MeshCentralRouter
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Normal;
-            this.ShowInTaskbar = true;
             this.Visible = true;
             SetForegroundWindow(this.Handle.ToInt32());
             this.Focus();
@@ -1593,13 +1611,11 @@ namespace MeshCentralRouter
                 if (f.ShowSystemTray)
                 {
                     notifyIcon.Visible = true;
-                    this.ShowInTaskbar = false;
                     this.MinimizeBox = false;
                 }
                 else
                 {
                     notifyIcon.Visible = false;
-                    this.ShowInTaskbar = true;
                     this.MinimizeBox = true;
                 }
             }
@@ -2247,6 +2263,11 @@ namespace MeshCentralRouter
             }
         }
 
+        private void MainForm_ResizeEnd(object sender, EventArgs e)
+        {
+            Settings.SetRegValue("WindowHeight", this.Height);
+        }
+        
         private X509Certificate2 getClientAuthCertificate()
         {
             X509Certificate2 r = null;
