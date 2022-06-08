@@ -36,6 +36,7 @@ namespace MeshCentralRouter
     public partial class MainForm : Form
     {
         private int initialHeight;
+        private int argflags;
         public int currentPanel = 0;
         public DateTime refreshTime = DateTime.Now;
         public MeshCentralServer meshcentral = null;
@@ -230,7 +231,7 @@ namespace MeshCentralRouter
             title = this.Text;
             initialHeight = this.Height;
 
-            int argflags = 0;
+            argflags = 0;
             string update = null;
             string delete = null;
             foreach (string arg in this.args)
@@ -400,7 +401,7 @@ namespace MeshCentralRouter
             }
             else
             {
-                if (currentPanel == 4)
+                if (currentPanel == 4 && (argflags & 4) != 4)
                     passwordTextBox.Text = "";
 
                 this.Height = initialHeight;
