@@ -172,6 +172,9 @@ namespace MeshCentralRouter
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         private static extern Int32 SendMessage(IntPtr hWnd, int msg, int wParam, [MarshalAs(UnmanagedType.LPWStr)]string lParam);
 
+        [DllImport("User32.dll")]
+        public static extern Int32 SetForegroundWindow(int hWnd);
+
         private bool RemoteCertificateValidationCallback(object sender, X509Certificate certificate, X509Chain chain, System.Net.Security.SslPolicyErrors sslPolicyErrors)
         {
             if (meshcentral.ignoreCert) return true;
@@ -220,6 +223,8 @@ namespace MeshCentralRouter
 
             serverNameComboBox.Text = Settings.GetRegValue("ServerName", "");
             userNameTextBox.Text = Settings.GetRegValue("UserName", "");
+            notifyIcon.Visible = Settings.GetRegValue("NotifyIcon", false);
+
             title = this.Text;
 
             int argflags = 0;
@@ -236,7 +241,7 @@ namespace MeshCentralRouter
                 if (arg.ToLower() == "-ignorecert") { ignoreCert = true; }
                 if (arg.ToLower() == "-all") { inaddrany = true; }
                 if (arg.ToLower() == "-inaddrany") { inaddrany = true; }
-                if (arg.ToLower() == "-tray") { notifyIcon.Visible = true; this.ShowInTaskbar = false; this.MinimizeBox = false; }
+                if (arg.ToLower() == "-tray") { notifyIcon.Visible = true; }
                 if (arg.ToLower() == "-native") { webSocketClient.nativeWebSocketFirst = true; }
                 if (arg.Length > 6 && arg.Substring(0, 6).ToLower() == "-host:") { serverNameComboBox.Text = arg.Substring(6); argflags |= 1; }
                 if (arg.Length > 6 && arg.Substring(0, 6).ToLower() == "-user:") { userNameTextBox.Text = arg.Substring(6); argflags |= 2; }
@@ -249,6 +254,8 @@ namespace MeshCentralRouter
                 if (arg.ToLower() == "-localfiles") { FileViewer fileViewer = new FileViewer(meshcentral, null); fileViewer.Show(); }
             }
             autoLogin = (argflags == 7);
+            this.MinimizeBox = !notifyIcon.Visible;
+            //this.ShowInTaskbar = !notifyIcon.Visible;
 
             if (update != null)
             {
@@ -488,13 +495,13 @@ namespace MeshCentralRouter
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            forceExit = true;
+            forceExit = !notifyIcon.Visible;
             Application.Exit();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if ((notifyIcon.Visible == true) && (forceExit == false)) { e.Cancel = true; Visible = false; }
+            if ((notifyIcon.Visible == true && currentPanel == 4) && (forceExit == false)) { e.Cancel = true; Visible = false; }
             Settings.SetRegValue("Location", Location.X + "," + Location.Y);
         }
 
@@ -1544,7 +1551,13 @@ namespace MeshCentralRouter
 
         private void notifyIcon_DoubleClick(object sender, EventArgs e)
         {
-            if (this.Visible == false) { this.Visible = true; } else { this.Visible = false; this.Focus(); }
+            if (this.Visible == false)
+            {
+                this.WindowState = FormWindowState.Normal;
+                this.Visible = true;
+                SetForegroundWindow(this.Handle.ToInt32());
+                this.Focus();
+            } else { this.Visible = false; }
         }
 
         private void exitToolStripMenuItem_Click_1(object sender, EventArgs e)
@@ -1556,7 +1569,9 @@ namespace MeshCentralRouter
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Normal;
+            this.ShowInTaskbar = true;
             this.Visible = true;
+            SetForegroundWindow(this.Handle.ToInt32());
             this.Focus();
         }
 
@@ -2009,6 +2024,7 @@ namespace MeshCentralRouter
             if (((node.conn & 1) == 0) && (node.mtype != 3)) { return; } // Agent not connected on this device & not local device
             QuickMap(1, 443, 2, node); // HTTPS
         }
+
         private void rdpToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (devicesListView.SelectedItems.Count != 1) { return; }
@@ -2167,6 +2183,7 @@ namespace MeshCentralRouter
             if (f.ShowDialog(this) == DialogResult.OK)
             {
                 Settings.SetRegValue("CheckForUpdates", f.CheckForUpdates);
+                Settings.SetRegValue("NotifyIcon", f.ShowSystemTray);
                 allowUpdates = f.CheckForUpdates;
                 deviceDoubleClickAction = f.deviceDoubleClickAction;
                 Settings.SetRegValue("DevDoubleClickClickAction", deviceDoubleClickAction.ToString());
@@ -2176,13 +2193,11 @@ namespace MeshCentralRouter
                 if (f.ShowSystemTray)
                 {
                     notifyIcon.Visible = true;
-                    this.ShowInTaskbar = false;
                     this.MinimizeBox = false;
                 }
                 else
                 {
                     notifyIcon.Visible = false;
-                    this.ShowInTaskbar = true;
                     this.MinimizeBox = true;
                 }
             }
