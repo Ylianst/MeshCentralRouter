@@ -556,7 +556,7 @@ namespace MeshCentralRouter
                 {
                     string host = serverNameComboBox.Text;
                     int i = host.IndexOf("?key=");
-                    if (i >= 0) { host = host.Substring(0, i);  }
+                    if (i >= 0) { host = host.Substring(0, i); }
                     i = host.IndexOf(":");
                     if (i >= 0) { host = host.Substring(0, i); }
                     ok = (Program.LockToHostname == host);
@@ -737,15 +737,15 @@ namespace MeshCentralRouter
             }
         }
 
-    class GroupComparer : IComparer
-    {
-      public int Compare(object objA, object objB)
-      {
-        return ((ListViewGroup)objA).Header.CompareTo(((ListViewGroup)objB).Header);
-      }
-    }
+        class GroupComparer : IComparer
+        {
+            public int Compare(object objA, object objB)
+            {
+                return ((ListViewGroup)objA).Header.CompareTo(((ListViewGroup)objB).Header);
+            }
+        }
 
-    private void updateDeviceList()
+        private void updateDeviceList()
         {
             string search = searchTextBox.Text.ToLower();
             if (deviceListViewMode)
@@ -784,42 +784,42 @@ namespace MeshCentralRouter
                             device.SubItems[0].Text = node.name;
                         }
 
-            // *** Flynn Grouping start
-            bool bGroupExisting = false;
-            for(int i = 0; i < devicesListView.Groups.Count; i++)
-              if(devicesListView.Groups[i].Header == node.mesh.name)
-              {
-                bGroupExisting = true;
-                node.listitem.Group = devicesListView.Groups[i];
-                break;
-              }
-            if(!bGroupExisting)
-            {
-              ListViewGroup grp = devicesListView.Groups.Add(devicesListView.Groups.Count.ToString(), node.mesh.name);
-              node.listitem.Group = grp;
+                        // *** Flynn Grouping start
+                        bool bGroupExisting = false;
+                        for (int i = 0; i < devicesListView.Groups.Count; i++)
+                            if ((node.mesh != null && devicesListView.Groups[i].Header == node.mesh.name) || (node.mesh == null && devicesListView.Groups[i].Header == ""))
+                            {
+                                bGroupExisting = true;
+                                node.listitem.Group = devicesListView.Groups[i];
+                                break;
+                            }
+                        if (!bGroupExisting)
+                        {
+                            ListViewGroup grp = devicesListView.Groups.Add(devicesListView.Groups.Count.ToString(), ((node.mesh == null) ? "" : node.mesh.name));
+                            node.listitem.Group = grp;
 
-              ListViewGroup[] groups = new ListViewGroup[this.devicesListView.Groups.Count];
+                            ListViewGroup[] groups = new ListViewGroup[this.devicesListView.Groups.Count];
 
-              this.devicesListView.Groups.CopyTo(groups, 0);
+                            this.devicesListView.Groups.CopyTo(groups, 0);
 
-              Array.Sort(groups, new GroupComparer());
+                            Array.Sort(groups, new GroupComparer());
 
-              this.devicesListView.BeginUpdate();
-              this.devicesListView.Groups.Clear();
-              this.devicesListView.Groups.AddRange(groups);
-              this.devicesListView.EndUpdate();
+                            this.devicesListView.BeginUpdate();
+                            this.devicesListView.Groups.Clear();
+                            this.devicesListView.Groups.AddRange(groups);
+                            this.devicesListView.EndUpdate();
 
-              foreach(ListViewGroup lvg in devicesListView.Groups)
-              {
-                if(lvg.Header == "Repos")
-                  ListViewExtended.setGrpState(lvg, ListViewGroupState.Collapsible | ListViewGroupState.Normal);
-                else
-                  ListViewExtended.setGrpState(lvg, ListViewGroupState.Collapsible | ListViewGroupState.Collapsed);
-              }
-            }
-            // *** Flynn Groupng end
+                            foreach (ListViewGroup lvg in devicesListView.Groups)
+                            {
+                                if (lvg.Header == "Repos")
+                                    ListViewExtended.setGrpState(lvg, ListViewGroupState.Collapsible | ListViewGroupState.Normal);
+                                else
+                                    ListViewExtended.setGrpState(lvg, ListViewGroupState.Collapsible | ListViewGroupState.Collapsed);
+                            }
+                        }
+                        // *** Flynn Groupng end
 
-            bool connVisible = ((showOfflineDevicesToolStripMenuItem.Checked) || ((node.conn & 1) != 0)) || (node.mtype == 3);
+                        bool connVisible = ((showOfflineDevicesToolStripMenuItem.Checked) || ((node.conn & 1) != 0)) || (node.mtype == 3);
                         int imageIndex = (node.icon - 1) * 2;
                         if (((node.conn & 1) == 0) && (node.mtype != 3)) { imageIndex++; }
                         device.ImageIndex = imageIndex;
@@ -2258,7 +2258,8 @@ namespace MeshCentralRouter
         private void customAppsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CustomAppsForm f = new CustomAppsForm(Settings.GetApplications());
-            if (f.ShowDialog(this) == DialogResult.OK) {
+            if (f.ShowDialog(this) == DialogResult.OK)
+            {
                 Settings.SetApplications(f.getApplications());
             }
         }
