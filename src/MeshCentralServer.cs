@@ -90,11 +90,11 @@ namespace MeshCentralRouter
 
         public static void saveToRegistry(string name, string value)
         {
-            try { Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\OpenSource\MeshRouter", name, value); } catch (Exception) { }
+            try { Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\Open Source\MeshCentral Router", name, value); } catch (Exception) { }
         }
         public static string loadFromRegistry(string name)
         {
-            try { return Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\OpenSource\MeshRouter", name, "").ToString(); } catch (Exception) { return ""; }
+            try { return Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\Open Source\MeshCentral Router", name, "").ToString(); } catch (Exception) { return ""; }
         }
 
         public static string GetProxyForUrlUsingPac(string DestinationUrl, string PacUri)
