@@ -400,6 +400,9 @@ namespace MeshCentralRouter
             }
             else
             {
+                if (currentPanel == 4)
+                    passwordTextBox.Text = "";
+
                 this.Height = initialHeight;
                 this.FormBorderStyle = FormBorderStyle.FixedSingle;
             }
