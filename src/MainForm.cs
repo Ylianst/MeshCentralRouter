@@ -762,6 +762,7 @@ namespace MeshCentralRouter
                 {
                     foreach (NodeClass node in meshcentral.nodes.Values)
                     {
+
                         if (node.agentid == -1) { continue; }
                         ListViewItem device;
                         if (node.listitem == null)
@@ -779,9 +780,11 @@ namespace MeshCentralRouter
                         }
 
                         if ((node.meshid != null) && meshcentral.meshes.ContainsKey(node.meshid)) { node.mesh = (MeshClass)meshcentral.meshes[node.meshid]; }
+                        string meshName = (node.mesh != null) ? node.mesh.name : Properties.Resources.IndividualDevices;
+
                         if ((showGroupNamesToolStripMenuItem.Checked) && (node.mesh != null))
                         {
-                            device.SubItems[0].Text = node.mesh.name + " - " + node.name;
+                            device.SubItems[0].Text = meshName + " - " + node.name;
                         }
                         else
                         {
@@ -791,12 +794,16 @@ namespace MeshCentralRouter
                         // *** Flynn Grouping start
                         bool bGroupExisting = false;
                         for (int i = 0; i < devicesListView.Groups.Count; i++)
-                            if ((node.mesh != null && devicesListView.Groups[i].Header == node.mesh.name) || (node.mesh == null && devicesListView.Groups[i].Header == ""))
+                        {
+                            // if ((node.mesh != null && devicesListView.Groups[i].Header == node.mesh.name) || (node.mesh == null && devicesListView.Groups[i].Header == ""))
+                            if (devicesListView.Groups[i].Header == meshName)
                             {
                                 bGroupExisting = true;
                                 node.listitem.Group = devicesListView.Groups[i];
                                 break;
                             }
+                        }
+                        
                         if (!bGroupExisting)
                         {
                             ListViewGroup grp = devicesListView.Groups.Add(devicesListView.Groups.Count.ToString(), ((node.mesh == null) ? "" : node.mesh.name));
@@ -821,7 +828,33 @@ namespace MeshCentralRouter
                                     ListViewExtended.setGrpState(lvg, ListViewGroupState.Collapsible | ListViewGroupState.Collapsed);
                             }
                         }
-                        // *** Flynn Groupng end
+
+                        if (!bGroupExisting)
+                        {
+                            ListViewGroup grp = devicesListView.Groups.Add(devicesListView.Groups.Count.ToString(), meshName);
+                            node.listitem.Group = grp;
+                            ListViewGroup[] groups = new ListViewGroup[this.devicesListView.Groups.Count];
+                            this.devicesListView.Groups.CopyTo(groups, 0);
+                            Array.Sort(groups, new GroupComparer());
+
+                            this.devicesListView.BeginUpdate();
+                            this.devicesListView.Groups.Clear();
+                            this.devicesListView.Groups.AddRange(groups);
+                            this.devicesListView.EndUpdate();
+
+                            foreach (ListViewGroup lvg in devicesListView.Groups)
+                            {
+                                if (lvg.Header == "Repos")
+                                {
+                                    ListViewExtended.setGrpState(lvg, ListViewGroupState.Collapsible | ListViewGroupState.Normal);
+                                }
+                                else
+                                {
+                                    ListViewExtended.setGrpState(lvg, ListViewGroupState.Collapsible | ListViewGroupState.Collapsed);
+                                }
+                            }
+                        }
+                        // *** Flynn Grouping end
 
                         bool connVisible = ((showOfflineDevicesToolStripMenuItem.Checked) || ((node.conn & 1) != 0)) || (node.mtype == 3);
                         int imageIndex = (node.icon - 1) * 2;
@@ -2256,7 +2289,7 @@ namespace MeshCentralRouter
         private void button1_Click(object sender, EventArgs e)
         {
             ConnectionSettings form = new ConnectionSettings();
-            if (form.ShowDialog(this) == DialogResult.OK) {  }
+            if (form.ShowDialog(this) == DialogResult.OK) { }
         }
 
         private void customAppsToolStripMenuItem_Click(object sender, EventArgs e)
