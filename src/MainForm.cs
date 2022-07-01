@@ -35,6 +35,8 @@ namespace MeshCentralRouter
 {
     public partial class MainForm : Form
     {
+        private int initialHeight;
+        private int argflags;
         public int currentPanel = 0;
         public DateTime refreshTime = DateTime.Now;
         public MeshCentralServer meshcentral = null;
@@ -108,6 +110,7 @@ namespace MeshCentralRouter
             }
             catch (Exception) { }
         }
+
         public void unHookRouter()
         {
             try { Registry.ClassesRoot.DeleteSubKeyTree("mcrouter"); } catch (Exception) { }
@@ -158,6 +161,7 @@ namespace MeshCentralRouter
                 return bx.CompareTo(ax);
             }
         }
+
         public class DeviceGroupComparer : IComparer
         {
             public int Compare(Object a, Object b)
@@ -171,6 +175,9 @@ namespace MeshCentralRouter
         private const int EM_SETCUEBANNER = 0x1501;
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         private static extern Int32 SendMessage(IntPtr hWnd, int msg, int wParam, [MarshalAs(UnmanagedType.LPWStr)]string lParam);
+
+        [DllImport("User32.dll")]
+        public static extern Int32 SetForegroundWindow(int hWnd);
 
         private bool RemoteCertificateValidationCallback(object sender, X509Certificate certificate, X509Chain chain, System.Net.Security.SslPolicyErrors sslPolicyErrors)
         {
@@ -191,7 +198,6 @@ namespace MeshCentralRouter
             }
             return false;
         }
-
 
         public MainForm(string[] args)
         {
@@ -220,9 +226,12 @@ namespace MeshCentralRouter
 
             serverNameComboBox.Text = Settings.GetRegValue("ServerName", "");
             userNameTextBox.Text = Settings.GetRegValue("UserName", "");
-            title = this.Text;
+            notifyIcon.Visible = Settings.GetRegValue("NotifyIcon", false);
 
-            int argflags = 0;
+            title = this.Text;
+            initialHeight = this.Height;
+
+            argflags = 0;
             string update = null;
             string delete = null;
             foreach (string arg in this.args)
@@ -236,7 +245,7 @@ namespace MeshCentralRouter
                 if (arg.ToLower() == "-ignorecert") { ignoreCert = true; }
                 if (arg.ToLower() == "-all") { inaddrany = true; }
                 if (arg.ToLower() == "-inaddrany") { inaddrany = true; }
-                if (arg.ToLower() == "-tray") { notifyIcon.Visible = true; this.ShowInTaskbar = false; this.MinimizeBox = false; }
+                if (arg.ToLower() == "-tray") { notifyIcon.Visible = true; }
                 if (arg.ToLower() == "-native") { webSocketClient.nativeWebSocketFirst = true; }
                 if (arg.Length > 6 && arg.Substring(0, 6).ToLower() == "-host:") { serverNameComboBox.Text = arg.Substring(6); argflags |= 1; }
                 if (arg.Length > 6 && arg.Substring(0, 6).ToLower() == "-user:") { userNameTextBox.Text = arg.Substring(6); argflags |= 2; }
@@ -249,6 +258,12 @@ namespace MeshCentralRouter
                 if (arg.ToLower() == "-localfiles") { FileViewer fileViewer = new FileViewer(meshcentral, null); fileViewer.Show(); }
             }
             autoLogin = (argflags == 7);
+            this.MinimizeBox = !notifyIcon.Visible;
+            this.MinimumSize = new Size(this.Width, initialHeight);
+            this.MaximumSize = new Size(this.Width, 1080);
+            this.MaximizeBox = false;
+            this.ResizeEnd += MainForm_ResizeEnd;
+            this.devicesListView.Dock = DockStyle.Fill;
 
             if (update != null)
             {
@@ -377,7 +392,22 @@ namespace MeshCentralRouter
         private void setPanel(int newPanel)
         {
             if (currentPanel == newPanel) return;
-            if (newPanel == 4) { updatePanel4(); }
+            if (newPanel == 4)
+            {
+                this.Height = Settings.GetRegValue("WindowHeight", this.Height);
+                this.FormBorderStyle = FormBorderStyle.Sizable;
+
+                updatePanel4();
+            }
+            else
+            {
+                if (currentPanel == 4 && (argflags & 4) != 4)
+                    passwordTextBox.Text = "";
+
+                this.Height = initialHeight;
+                this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            }
+
             panel1.Visible = (newPanel == 1);
             panel2.Visible = (newPanel == 2);
             panel3.Visible = (newPanel == 3);
@@ -488,13 +518,13 @@ namespace MeshCentralRouter
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            forceExit = true;
+            forceExit = !notifyIcon.Visible;
             Application.Exit();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if ((notifyIcon.Visible == true) && (forceExit == false)) { e.Cancel = true; Visible = false; }
+            if ((notifyIcon.Visible == true && currentPanel == 4) && (forceExit == false)) { e.Cancel = true; Visible = false; }
             Settings.SetRegValue("Location", Location.X + "," + Location.Y);
         }
 
@@ -672,7 +702,8 @@ namespace MeshCentralRouter
         {
             if (this.InvokeRequired) { this.Invoke(new MeshCentralServer.toolUpdateHandler(Meshcentral_onToolUpdate), url, hash, size, serverhash); return; }
             UpdateForm f = new UpdateForm(url, hash, size, args, serverhash);
-            if (f.ShowDialog(this) == DialogResult.OK) { }
+            forceExit = true;
+            if (f.ShowDialog(this) != DialogResult.OK) { forceExit = !notifyIcon.Visible; }
         }
 
         private void Meshcentral_onLoginTokenChanged()
@@ -764,11 +795,37 @@ namespace MeshCentralRouter
                         bool bGroupExisting = false;
                         for (int i = 0; i < devicesListView.Groups.Count; i++)
                         {
+                            // if ((node.mesh != null && devicesListView.Groups[i].Header == node.mesh.name) || (node.mesh == null && devicesListView.Groups[i].Header == ""))
                             if (devicesListView.Groups[i].Header == meshName)
                             {
                                 bGroupExisting = true;
                                 node.listitem.Group = devicesListView.Groups[i];
                                 break;
+                            }
+                        }
+                        
+                        if (!bGroupExisting)
+                        {
+                            ListViewGroup grp = devicesListView.Groups.Add(devicesListView.Groups.Count.ToString(), ((node.mesh == null) ? "" : node.mesh.name));
+                            node.listitem.Group = grp;
+
+                            ListViewGroup[] groups = new ListViewGroup[this.devicesListView.Groups.Count];
+
+                            this.devicesListView.Groups.CopyTo(groups, 0);
+
+                            Array.Sort(groups, new GroupComparer());
+
+                            this.devicesListView.BeginUpdate();
+                            this.devicesListView.Groups.Clear();
+                            this.devicesListView.Groups.AddRange(groups);
+                            this.devicesListView.EndUpdate();
+
+                            foreach (ListViewGroup lvg in devicesListView.Groups)
+                            {
+                                if (lvg.Header == "Repos")
+                                    ListViewExtended.setGrpState(lvg, ListViewGroupState.Collapsible | ListViewGroupState.Normal);
+                                else
+                                    ListViewExtended.setGrpState(lvg, ListViewGroupState.Collapsible | ListViewGroupState.Collapsed);
                             }
                         }
 
@@ -1551,7 +1608,13 @@ namespace MeshCentralRouter
 
         private void notifyIcon_DoubleClick(object sender, EventArgs e)
         {
-            if (this.Visible == false) { this.Visible = true; } else { this.Visible = false; this.Focus(); }
+            if (this.Visible == false)
+            {
+                this.WindowState = FormWindowState.Normal;
+                this.Visible = true;
+                SetForegroundWindow(this.Handle.ToInt32());
+                this.Focus();
+            } else { this.Visible = false; }
         }
 
         private void exitToolStripMenuItem_Click_1(object sender, EventArgs e)
@@ -1564,6 +1627,7 @@ namespace MeshCentralRouter
         {
             this.WindowState = FormWindowState.Normal;
             this.Visible = true;
+            SetForegroundWindow(this.Handle.ToInt32());
             this.Focus();
         }
 
@@ -1584,13 +1648,11 @@ namespace MeshCentralRouter
                 if (f.ShowSystemTray)
                 {
                     notifyIcon.Visible = true;
-                    this.ShowInTaskbar = false;
                     this.MinimizeBox = false;
                 }
                 else
                 {
                     notifyIcon.Visible = false;
-                    this.ShowInTaskbar = true;
                     this.MinimizeBox = true;
                 }
             }
@@ -2016,6 +2078,7 @@ namespace MeshCentralRouter
             if (((node.conn & 1) == 0) && (node.mtype != 3)) { return; } // Agent not connected on this device & not local device
             QuickMap(1, 443, 2, node); // HTTPS
         }
+
         private void rdpToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (devicesListView.SelectedItems.Count != 1) { return; }
@@ -2174,6 +2237,7 @@ namespace MeshCentralRouter
             if (f.ShowDialog(this) == DialogResult.OK)
             {
                 Settings.SetRegValue("CheckForUpdates", f.CheckForUpdates);
+                Settings.SetRegValue("NotifyIcon", f.ShowSystemTray);
                 allowUpdates = f.CheckForUpdates;
                 deviceDoubleClickAction = f.deviceDoubleClickAction;
                 Settings.SetRegValue("DevDoubleClickClickAction", deviceDoubleClickAction.ToString());
@@ -2183,13 +2247,11 @@ namespace MeshCentralRouter
                 if (f.ShowSystemTray)
                 {
                     notifyIcon.Visible = true;
-                    this.ShowInTaskbar = false;
                     this.MinimizeBox = false;
                 }
                 else
                 {
                     notifyIcon.Visible = false;
-                    this.ShowInTaskbar = true;
                     this.MinimizeBox = true;
                 }
             }
@@ -2239,6 +2301,11 @@ namespace MeshCentralRouter
             }
         }
 
+        private void MainForm_ResizeEnd(object sender, EventArgs e)
+        {
+            Settings.SetRegValue("WindowHeight", this.Height);
+        }
+        
         private X509Certificate2 getClientAuthCertificate()
         {
             X509Certificate2 r = null;

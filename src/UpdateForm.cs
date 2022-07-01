@@ -140,7 +140,8 @@ namespace MeshCentralRouter
                     } else {
                         updateMessage(Translate.T(Properties.Resources.Updating), 0);
                         Process.Start(System.Reflection.Assembly.GetEntryAssembly().Location + ".update.exe", "-update:" + System.Reflection.Assembly.GetEntryAssembly().Location + " " + string.Join(" ", args));
-                        Application.Exit();
+
+                        if (this.InvokeRequired) { this.Invoke((MethodInvoker)delegate { Application.Exit(); }); } else { Application.Exit(); }
                     }
                 }
             }
