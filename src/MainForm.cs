@@ -524,7 +524,7 @@ namespace MeshCentralRouter
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if ((notifyIcon.Visible == true && currentPanel == 4) && (forceExit == false)) { e.Cancel = true; Visible = false; }
+            if ((notifyIcon.Visible == true) && (currentPanel == 4) && (forceExit == false)) { e.Cancel = true; Visible = false; }
             Settings.SetRegValue("Location", Location.X + "," + Location.Y);
         }
 
@@ -757,12 +757,12 @@ namespace MeshCentralRouter
                 devicesListView.SuspendLayout();
                 devicesListView.Items.Clear();
 
+                bool bGroupChanged = false;
                 ArrayList controlsToAdd = new ArrayList();
                 if (meshcentral.nodes != null)
                 {
                     foreach (NodeClass node in meshcentral.nodes.Values)
                     {
-
                         if (node.agentid == -1) { continue; }
                         ListViewItem device;
                         if (node.listitem == null)
@@ -779,82 +779,39 @@ namespace MeshCentralRouter
                             device.SubItems[1].Text = node.getStateString();
                         }
 
+                        // Fetch the device group name
                         if ((node.meshid != null) && meshcentral.meshes.ContainsKey(node.meshid)) { node.mesh = (MeshClass)meshcentral.meshes[node.meshid]; }
                         string meshName = (node.mesh != null) ? node.mesh.name : Properties.Resources.IndividualDevices;
 
-                        if ((showGroupNamesToolStripMenuItem.Checked) && (node.mesh != null))
-                        {
+                        // Set the device name
+                        if ((showGroupNamesToolStripMenuItem.Checked) && (node.mesh != null)) {
                             device.SubItems[0].Text = meshName + " - " + node.name;
-                        }
-                        else
-                        {
+                        } else {
                             device.SubItems[0].Text = node.name;
                         }
 
-                        // *** Flynn Grouping start
+                        // See if this device can be added to an existing group
                         bool bGroupExisting = false;
                         for (int i = 0; i < devicesListView.Groups.Count; i++)
                         {
                             // if ((node.mesh != null && devicesListView.Groups[i].Header == node.mesh.name) || (node.mesh == null && devicesListView.Groups[i].Header == ""))
-                            if (devicesListView.Groups[i].Header == meshName)
+                            if (((string)devicesListView.Groups[i].Tag) == node.meshid)
                             {
                                 bGroupExisting = true;
                                 node.listitem.Group = devicesListView.Groups[i];
+                                devicesListView.Groups[i].Header = meshName; // Set this again just in case the device group name changed
                                 break;
                             }
                         }
-                        
-                        if (!bGroupExisting)
-                        {
-                            ListViewGroup grp = devicesListView.Groups.Add(devicesListView.Groups.Count.ToString(), ((node.mesh == null) ? "" : node.mesh.name));
-                            node.listitem.Group = grp;
 
-                            ListViewGroup[] groups = new ListViewGroup[this.devicesListView.Groups.Count];
-
-                            this.devicesListView.Groups.CopyTo(groups, 0);
-
-                            Array.Sort(groups, new GroupComparer());
-
-                            this.devicesListView.BeginUpdate();
-                            this.devicesListView.Groups.Clear();
-                            this.devicesListView.Groups.AddRange(groups);
-                            this.devicesListView.EndUpdate();
-
-                            foreach (ListViewGroup lvg in devicesListView.Groups)
-                            {
-                                if (lvg.Header == "Repos")
-                                    ListViewExtended.setGrpState(lvg, ListViewGroupState.Collapsible | ListViewGroupState.Normal);
-                                else
-                                    ListViewExtended.setGrpState(lvg, ListViewGroupState.Collapsible | ListViewGroupState.Collapsed);
-                            }
-                        }
-
+                        // If a device group does not exist, create it
                         if (!bGroupExisting)
                         {
                             ListViewGroup grp = devicesListView.Groups.Add(devicesListView.Groups.Count.ToString(), meshName);
+                            grp.Tag = node.meshid;
                             node.listitem.Group = grp;
-                            ListViewGroup[] groups = new ListViewGroup[this.devicesListView.Groups.Count];
-                            this.devicesListView.Groups.CopyTo(groups, 0);
-                            Array.Sort(groups, new GroupComparer());
-
-                            this.devicesListView.BeginUpdate();
-                            this.devicesListView.Groups.Clear();
-                            this.devicesListView.Groups.AddRange(groups);
-                            this.devicesListView.EndUpdate();
-
-                            foreach (ListViewGroup lvg in devicesListView.Groups)
-                            {
-                                if (lvg.Header == "Repos")
-                                {
-                                    ListViewExtended.setGrpState(lvg, ListViewGroupState.Collapsible | ListViewGroupState.Normal);
-                                }
-                                else
-                                {
-                                    ListViewExtended.setGrpState(lvg, ListViewGroupState.Collapsible | ListViewGroupState.Collapsed);
-                                }
-                            }
+                            bGroupChanged = true;
                         }
-                        // *** Flynn Grouping end
 
                         bool connVisible = ((showOfflineDevicesToolStripMenuItem.Checked) || ((node.conn & 1) != 0)) || (node.mtype == 3);
                         int imageIndex = (node.icon - 1) * 2;
@@ -876,6 +833,25 @@ namespace MeshCentralRouter
                             bool userSearchMatch = false;
                             if (node.users != null) { foreach (string user in node.users) { if (user.ToLower().IndexOf(userSearch) >= 0) { userSearchMatch = true; } } }
                             if (connVisible && ((userSearch == "") || userSearchMatch)) { controlsToAdd.Add(device); }
+                        }
+                    }
+
+                    // If groups have changes update them
+                    if (bGroupChanged)
+                    {
+                        ListViewGroup[] groups = new ListViewGroup[this.devicesListView.Groups.Count];
+                        this.devicesListView.Groups.CopyTo(groups, 0);
+                        Array.Sort(groups, new GroupComparer());
+
+                        this.devicesListView.BeginUpdate();
+                        this.devicesListView.Groups.Clear();
+                        this.devicesListView.Groups.AddRange(groups);
+                        this.devicesListView.EndUpdate();
+
+                        foreach (ListViewGroup lvg in devicesListView.Groups)
+                        {
+                            ListViewExtended.setGrpState(lvg, ListViewGroupState.Collapsible | ListViewGroupState.Normal);
+                            //ListViewExtended.setGrpState(lvg, ListViewGroupState.Collapsible | ListViewGroupState.Collapsed);
                         }
                     }
 
