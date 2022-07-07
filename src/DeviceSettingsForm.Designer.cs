@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DeviceSettingsForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.checkForUpdatedCheckBox = new System.Windows.Forms.CheckBox();
             this.systemTrayCheckBox = new System.Windows.Forms.CheckBox();
             this.doubleClickComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -38,7 +39,7 @@
             this.exp_KeyboardHookCheckBox = new System.Windows.Forms.CheckBox();
             this.exp_KeyboardHookPriorityCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.checkForUpdatedCheckBox = new System.Windows.Forms.CheckBox();
+            this.collapseCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -46,12 +47,19 @@
             // groupBox1
             // 
             resources.ApplyResources(this.groupBox1, "groupBox1");
+            this.groupBox1.Controls.Add(this.collapseCheckBox);
             this.groupBox1.Controls.Add(this.checkForUpdatedCheckBox);
             this.groupBox1.Controls.Add(this.systemTrayCheckBox);
             this.groupBox1.Controls.Add(this.doubleClickComboBox);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
+            // 
+            // checkForUpdatedCheckBox
+            // 
+            resources.ApplyResources(this.checkForUpdatedCheckBox, "checkForUpdatedCheckBox");
+            this.checkForUpdatedCheckBox.Name = "checkForUpdatedCheckBox";
+            this.checkForUpdatedCheckBox.UseVisualStyleBackColor = true;
             // 
             // systemTrayCheckBox
             // 
@@ -115,11 +123,11 @@
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.TabStop = false;
             // 
-            // checkForUpdatedCheckBox
+            // collapseCheckBox
             // 
-            resources.ApplyResources(this.checkForUpdatedCheckBox, "checkForUpdatedCheckBox");
-            this.checkForUpdatedCheckBox.Name = "checkForUpdatedCheckBox";
-            this.checkForUpdatedCheckBox.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.collapseCheckBox, "collapseCheckBox");
+            this.collapseCheckBox.Name = "collapseCheckBox";
+            this.collapseCheckBox.UseVisualStyleBackColor = true;
             // 
             // DeviceSettingsForm
             // 
@@ -155,5 +163,6 @@
         private System.Windows.Forms.CheckBox exp_KeyboardHookPriorityCheckBox;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.CheckBox checkForUpdatedCheckBox;
+        private System.Windows.Forms.CheckBox collapseCheckBox;
     }
 }

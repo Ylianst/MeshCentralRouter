@@ -52,6 +52,7 @@ namespace MeshCentralRouter
         public bool sendEmailToken = false;
         public bool sendSMSToken = false;
         public bool allowUpdates = Settings.GetRegValue("CheckForUpdates", true);
+        public bool collapseDeviceGroup = Settings.GetRegValue("CollapseDeviceGroups", true);
         public Uri authLoginUrl = null;
         public Process installProcess = null;
         public string acceptableCertHash = null;
@@ -727,7 +728,7 @@ namespace MeshCentralRouter
                 }
             }
 
-            updateDeviceList(); // Update list of devices
+            updateDeviceList(false); // Update list of devices
             addArgMappings();
             reconnectUdpMaps();
 
@@ -749,7 +750,7 @@ namespace MeshCentralRouter
             }
         }
 
-        private void updateDeviceList()
+        private void updateDeviceList(bool forceGroupChanged)
         {
             string search = searchTextBox.Text.ToLower();
             if (deviceListViewMode)
@@ -757,7 +758,7 @@ namespace MeshCentralRouter
                 devicesListView.SuspendLayout();
                 devicesListView.Items.Clear();
 
-                bool bGroupChanged = false;
+                bool bGroupChanged = forceGroupChanged;
                 ArrayList controlsToAdd = new ArrayList();
                 if (meshcentral.nodes != null)
                 {
@@ -850,8 +851,14 @@ namespace MeshCentralRouter
 
                         foreach (ListViewGroup lvg in devicesListView.Groups)
                         {
-                            ListViewExtended.setGrpState(lvg, ListViewGroupState.Collapsible | ListViewGroupState.Normal);
-                            //ListViewExtended.setGrpState(lvg, ListViewGroupState.Collapsible | ListViewGroupState.Collapsed);
+                            if (collapseDeviceGroup)
+                            {
+                                ListViewExtended.setGrpState(lvg, ListViewGroupState.Collapsible | ListViewGroupState.Collapsed);
+                            }
+                            else
+                            {
+                                ListViewExtended.setGrpState(lvg, ListViewGroupState.Collapsible | ListViewGroupState.Normal);
+                            }
                         }
                     }
 
@@ -1639,7 +1646,7 @@ namespace MeshCentralRouter
             if (deviceListViewMode)
             {
                 // Filter devices
-                updateDeviceList();
+                updateDeviceList(false);
             }
             else
             {
@@ -1813,14 +1820,14 @@ namespace MeshCentralRouter
         {
             showGroupNamesToolStripMenuItem.Checked = !showGroupNamesToolStripMenuItem.Checked;
             Settings.SetRegValue("Show Group Names", showGroupNamesToolStripMenuItem.Checked ? "1" : "0");
-            updateDeviceList();
+            updateDeviceList(false);
         }
 
         private void hideOfflineDevicesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showOfflineDevicesToolStripMenuItem.Checked = !showOfflineDevicesToolStripMenuItem.Checked;
             Settings.SetRegValue("Show Offline Devices", showOfflineDevicesToolStripMenuItem.Checked ? "1" : "0");
-            updateDeviceList();
+            updateDeviceList(false);
         }
 
         private void sortByNameToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1828,7 +1835,7 @@ namespace MeshCentralRouter
             sortByNameToolStripMenuItem.Checked = true;
             sortByGroupToolStripMenuItem.Checked = false;
             Settings.SetRegValue("Device Sort", "Name");
-            updateDeviceList();
+            updateDeviceList(false);
         }
 
         private void sortByGroupToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1836,7 +1843,7 @@ namespace MeshCentralRouter
             sortByNameToolStripMenuItem.Checked = false;
             sortByGroupToolStripMenuItem.Checked = true;
             Settings.SetRegValue("Device Sort", "Group");
-            updateDeviceList();
+            updateDeviceList(false);
         }
 
         private void installButton_Click(object sender, EventArgs e)
@@ -2209,9 +2216,13 @@ namespace MeshCentralRouter
             f.Exp_KeyboardHookPriority = Settings.GetRegValue("Exp_KeyboardHookPriority", false);
             f.Exp_KeyboardHook = Settings.GetRegValue("Exp_KeyboardHook", false);
             f.CheckForUpdates = Settings.GetRegValue("CheckForUpdates", true);
+            collapseDeviceGroup = f.CollapseDeviceGroups = Settings.GetRegValue("CollapseDeviceGroups", true);
 
             if (f.ShowDialog(this) == DialogResult.OK)
             {
+                bool updateDevices = (collapseDeviceGroup != f.CollapseDeviceGroups);
+                collapseDeviceGroup = f.CollapseDeviceGroups;
+                Settings.SetRegValue("CollapseDeviceGroups", f.CollapseDeviceGroups);
                 Settings.SetRegValue("CheckForUpdates", f.CheckForUpdates);
                 Settings.SetRegValue("NotifyIcon", f.ShowSystemTray);
                 allowUpdates = f.CheckForUpdates;
@@ -2230,6 +2241,7 @@ namespace MeshCentralRouter
                     notifyIcon.Visible = false;
                     this.MinimizeBox = true;
                 }
+                if (updateDevices) { updateDeviceList(true); }
             }
         }
 

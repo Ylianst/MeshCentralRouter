@@ -46,6 +46,12 @@ namespace MeshCentralRouter
             set { checkForUpdatedCheckBox.Checked = value; }
         }
 
+        public bool CollapseDeviceGroups
+        {
+            get { return collapseCheckBox.Checked; }
+            set { collapseCheckBox.Checked = value; }
+        }
+
         public bool Exp_KeyboardHook
         {
             get { return exp_KeyboardHookCheckBox.Checked; }
