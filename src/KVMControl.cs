@@ -564,15 +564,9 @@ namespace MeshCentralRouter
                 if ((t - killNextKeyPress) < 10) { killNextKeyPress = 0; return; }
             }
 
+            // I am not sure why keys below 32 can't be sent using unicode, but sending 8 (backspace) with SendKey() results is two backspaces, so not a good thing.
             ushort c = (ushort)e.KeyChar;
-            if (c < 32)
-            {
-                SendKey((byte)c, 0);
-            }
-            else
-            {
-                SendUnicodeKey(c, 0);
-            }
+            if ((c < 32) && (c != 8)) { SendKey((byte)c, 0); } else { SendUnicodeKey(c, 0); }
         }
 
         private void SendKey(KeyEventArgs e, byte action)
