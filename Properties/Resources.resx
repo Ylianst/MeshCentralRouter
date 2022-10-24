@@ -472,4 +472,10 @@
   <data name="None" xml:space="preserve">
     <value>None</value>
   </data>
+  <data name="MessageSent" xml:space="preserve">
+    <value>Message Sent</value>
+  </data>
+  <data name="SendTokenMSG" xml:space="preserve">
+    <value>Send token to registered messaging application?</value>
+  </data>
 </root>

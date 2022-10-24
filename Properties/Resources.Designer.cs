@@ -611,6 +611,15 @@ namespace MeshCentralRouter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Message Sent.
+        /// </summary>
+        internal static string MessageSent {
+            get {
+                return ResourceManager.GetString("MessageSent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MQTT.
         /// </summary>
         internal static string MQTT {
@@ -842,6 +851,15 @@ namespace MeshCentralRouter.Properties {
         internal static string SendTokenEmail {
             get {
                 return ResourceManager.GetString("SendTokenEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send token to registered messaging application?.
+        /// </summary>
+        internal static string SendTokenMSG {
+            get {
+                return ResourceManager.GetString("SendTokenMSG", resourceCulture);
             }
         }
         

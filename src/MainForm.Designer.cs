@@ -52,6 +52,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.msgTokenButton = new System.Windows.Forms.Button();
             this.tokenRememberCheckBox = new System.Windows.Forms.CheckBox();
             this.emailTokenButton = new System.Windows.Forms.Button();
             this.smsTokenButton = new System.Windows.Forms.Button();
@@ -331,6 +332,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.msgTokenButton);
             this.panel2.Controls.Add(this.tokenRememberCheckBox);
             this.panel2.Controls.Add(this.emailTokenButton);
             this.panel2.Controls.Add(this.smsTokenButton);
@@ -344,6 +346,13 @@
             this.panel2.Controls.Add(this.label2);
             resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Name = "panel2";
+            // 
+            // msgTokenButton
+            // 
+            resources.ApplyResources(this.msgTokenButton, "msgTokenButton");
+            this.msgTokenButton.Name = "msgTokenButton";
+            this.msgTokenButton.UseVisualStyleBackColor = true;
+            this.msgTokenButton.Click += new System.EventHandler(this.msgTokenButton_Click);
             // 
             // tokenRememberCheckBox
             // 
@@ -1149,6 +1158,7 @@
         private System.Windows.Forms.Button connectionSettings;
         private System.Windows.Forms.ToolStripMenuItem customAppsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem customAppsToolStripMenuItem1;
+        private System.Windows.Forms.Button msgTokenButton;
     }
 }
 

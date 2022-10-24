@@ -46,6 +46,8 @@ namespace MeshCentralRouter
         public bool disconnectEmail2FASent = false;
         public bool disconnectSms2FA = false;
         public bool disconnectSms2FASent = false;
+        public bool disconnectMsg2FA = false;
+        public bool disconnectMsg2FASent = false;
         public X509Certificate2 disconnectCert;
         public string authCookie = null;
         public string rauthCookie = null;
@@ -247,6 +249,8 @@ namespace MeshCentralRouter
                             if (jsonAction.ContainsKey("email2fasent")) { disconnectEmail2FASent = (bool)jsonAction["email2fasent"]; } else { disconnectEmail2FASent = false; }
                             if (jsonAction.ContainsKey("sms2fa")) { disconnectSms2FA = (bool)jsonAction["sms2fa"]; } else { disconnectSms2FA = false; }
                             if (jsonAction.ContainsKey("sms2fasent")) { disconnectSms2FASent = (bool)jsonAction["sms2fasent"]; } else { disconnectSms2FASent = false; }
+                            if (jsonAction.ContainsKey("msg2fa")) { disconnectMsg2FA = (bool)jsonAction["msg2fa"]; } else { disconnectMsg2FA = false; }
+                            if (jsonAction.ContainsKey("msg2fasent")) { disconnectMsg2FASent = (bool)jsonAction["msg2fasent"]; } else { disconnectMsg2FASent = false; }
                             if (jsonAction.ContainsKey("twoFactorCookieDays") && (jsonAction["twoFactorCookieDays"].GetType() == typeof(int))) { twoFactorCookieDays = (int)jsonAction["twoFactorCookieDays"]; }
                             break;
                         }

@@ -51,6 +51,7 @@ namespace MeshCentralRouter
         public bool forceExit = false;
         public bool sendEmailToken = false;
         public bool sendSMSToken = false;
+        public bool sendMsgToken = false;
         public bool allowUpdates = Settings.GetRegValue("CheckForUpdates", true);
         public bool collapseDeviceGroup = Settings.GetRegValue("CollapseDeviceGroups", true);
         public Uri authLoginUrl = null;
@@ -990,10 +991,12 @@ namespace MeshCentralRouter
                 if (meshcentral.disconnectMsg == "tokenrequired")
                 {
                     emailTokenButton.Visible = (meshcentral.disconnectEmail2FA == true) && (meshcentral.disconnectEmail2FASent == false);
-                    tokenEmailSentLabel.Visible = (meshcentral.disconnectEmail2FASent == true) || (meshcentral.disconnectSms2FASent == true);
+                    tokenEmailSentLabel.Visible = (meshcentral.disconnectEmail2FASent == true) || (meshcentral.disconnectSms2FASent == true) || (meshcentral.disconnectMsg2FASent == true);
                     smsTokenButton.Visible = ((meshcentral.disconnectSms2FA == true) && (meshcentral.disconnectSms2FASent == false));
+                    msgTokenButton.Visible = ((meshcentral.disconnectMsg2FA == true) && (meshcentral.disconnectMsg2FASent == false));
                     if (meshcentral.disconnectEmail2FASent) { tokenEmailSentLabel.Text = Translate.T(Properties.Resources.EmailSent); }
                     if (meshcentral.disconnectSms2FASent) { tokenEmailSentLabel.Text = Translate.T(Properties.Resources.SmsSent); }
+                    if (meshcentral.disconnectMsg2FASent) { tokenEmailSentLabel.Text = Translate.T(Properties.Resources.MessageSent); }
                     if ((meshcentral.disconnectEmail2FA == true) && (meshcentral.disconnectEmail2FASent == false))
                     {
                         smsTokenButton.Left = emailTokenButton.Left + emailTokenButton.Width + 5;
@@ -1406,7 +1409,7 @@ namespace MeshCentralRouter
 
         private void nextButton2_Click(object sender, EventArgs e)
         {
-            if ((tokenTextBox.Text.Replace(" ", "") == "") && (sendEmailToken == false) && (sendSMSToken == false)) return;
+            if ((tokenTextBox.Text.Replace(" ", "") == "") && (sendEmailToken == false) && (sendSMSToken == false) && (sendMsgToken == false)) return;
 
             // Attempt to login with token
             addButton.Enabled = false;
@@ -1464,6 +1467,11 @@ namespace MeshCentralRouter
             {
                 sendSMSToken = false;
                 meshcentral.connect(serverurl, userNameTextBox.Text, passwordTextBox.Text, "**sms**", getClientAuthCertificate());
+            }
+            else if (sendMsgToken == true)
+            {
+                sendMsgToken = false;
+                meshcentral.connect(serverurl, userNameTextBox.Text, passwordTextBox.Text, "**msg**", getClientAuthCertificate());
             }
             else
             {
@@ -1779,6 +1787,7 @@ namespace MeshCentralRouter
             {
                 sendEmailToken = true;
                 sendSMSToken = false;
+                sendMsgToken = false;
                 nextButton2_Click(this, null);
             }
         }
@@ -1789,6 +1798,18 @@ namespace MeshCentralRouter
             {
                 sendEmailToken = false;
                 sendSMSToken = true;
+                sendMsgToken = false;
+                nextButton2_Click(this, null);
+            }
+        }
+
+        private void msgTokenButton_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show(this, Translate.T(Properties.Resources.SendTokenMSG), Translate.T(Properties.Resources.TwoFactorAuthentication), MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            {
+                sendEmailToken = false;
+                sendSMSToken = false;
+                sendMsgToken = true;
                 nextButton2_Click(this, null);
             }
         }
