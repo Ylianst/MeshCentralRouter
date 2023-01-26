@@ -2136,7 +2136,7 @@ namespace MeshCentralRouter
             if (devicesListView.SelectedItems.Count != 1) { return; }
             ListViewItem selecteditem = devicesListView.SelectedItems[0];
             NodeClass node = (NodeClass)selecteditem.Tag;
-            if (((node.conn & 1) == 0) && (node.mtype != 3)) { return; } // Agent not connected on this device & not local device
+            if (((node.conn & 1) != 0) || (node.mtype == 3)) { return; } // Agent connected on this device or local device
             // List of actions : https://github.com/Ylianst/MeshCentral/blob/f5db131693386147731f2ec93b9378bf035b5861/agents/meshcore.js#L1110
             //                   https://github.com/Ylianst/MeshCentral/blob/f5db131693386147731f2ec93b9378bf035b5861/amtmanager.js#L347
             //                   https://github.com/Ylianst/MeshCentral/blob/f5db131693386147731f2ec93b9378bf035b5861/meshuser.js#L5285
