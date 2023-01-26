@@ -2045,6 +2045,7 @@ namespace MeshCentralRouter
             if (devicesListView.SelectedItems.Count != 1) { e.Cancel = true; return; } // Device not selected
             ListViewItem selecteditem = devicesListView.SelectedItems[0];
             NodeClass node = (NodeClass)selecteditem.Tag;
+            wolToolStripMenuItem.Visible = false;
             if (((node.conn & 1) == 0) && (node.mtype != 3))
             { // Agent not connected on this device and not local device
                 addMapToolStripMenuItem.Visible = false;
