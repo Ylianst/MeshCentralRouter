@@ -4087,6 +4087,29 @@ namespace MeshCentralRouter
             }
         },
         {
+            "Wake Up...",
+            new Dictionary<string, string>() {
+                {"de","Wach auf..."},
+                {"hi","जगाना..."},
+                {"fr","Reveiller..."},
+                {"zh-chs","醒来..."},
+                {"fi","herätä..."},
+                {"tr","uyanmak..."},
+                {"cs","vzbudit..."},
+                {"ja","起きろ..."},
+                {"es","despertar..."},
+                {"pl","budzić się..."},
+                {"pt","acordar..."},
+                {"nl","word wakker..."},
+                {"pt-br","acordar..."},
+                {"sv","vakna..."},
+                {"da","Vågn op..."},
+                {"ko","깨우다..."},
+                {"it","svegliati..."},
+                {"ru","просыпайся..."}
+            }
+        },
+        {
             "Remote Desktop...",
             new Dictionary<string, string>() {
                 {"de","Remotedesktop..."},
