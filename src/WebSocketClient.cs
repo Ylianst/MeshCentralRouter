@@ -289,12 +289,11 @@ namespace MeshCentralRouter
                 // Send proxy connection request
                 wsrawstream = wsclient.GetStream();
 
-                string userCreds = proxyUri.UserInfo;
                 string basicAuth = "";
-                if (userCreds.Length > 0)
+                if (proxyUri?.UserInfo != null)
                 {
                     // Base64 encode for basic authentication
-                    userCreds = System.Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes(userCreds));
+                    string userCreds = System.Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes(proxyUri.UserInfo));
                     basicAuth = "\r\nProxy-Authorization: Basic " + userCreds;
                 }
 
