@@ -1413,7 +1413,8 @@ namespace MeshCentralRouter
         transferStatusForm.transferCompleted();
       }
 
-      remoteFolder = strDownloadRel; // Zurücksetzen
+      if (downloadActive)
+        remoteFolder = strDownloadRel; // Zurücksetzen
       remoteRefresh();
     }
 
