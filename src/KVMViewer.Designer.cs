@@ -51,6 +51,7 @@ namespace MeshCentralRouter
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.updateTimer = new System.Windows.Forms.Timer(this.components);
             this.topPanel = new System.Windows.Forms.Panel();
+            this.openRemoteFilesButton = new System.Windows.Forms.Button();
             this.extraButtonsPanel = new System.Windows.Forms.Panel();
             this.splitButton = new System.Windows.Forms.Button();
             this.clipOutboundButton = new System.Windows.Forms.Button();
@@ -104,6 +105,7 @@ namespace MeshCentralRouter
             // topPanel
             // 
             this.topPanel.BackColor = System.Drawing.SystemColors.Control;
+            this.topPanel.Controls.Add(this.openRemoteFilesButton);
             this.topPanel.Controls.Add(this.extraButtonsPanel);
             this.topPanel.Controls.Add(this.splitButton);
             this.topPanel.Controls.Add(this.clipOutboundButton);
@@ -115,6 +117,14 @@ namespace MeshCentralRouter
             this.topPanel.Controls.Add(this.connectButton);
             resources.ApplyResources(this.topPanel, "topPanel");
             this.topPanel.Name = "topPanel";
+            // 
+            // openRemoteFilesButton
+            // 
+            resources.ApplyResources(this.openRemoteFilesButton, "openRemoteFilesButton");
+            this.openRemoteFilesButton.Name = "openRemoteFilesButton";
+            this.openRemoteFilesButton.TabStop = false;
+            this.openRemoteFilesButton.UseVisualStyleBackColor = true;
+            this.openRemoteFilesButton.Click += new System.EventHandler(this.openRemoteFilesButton_Click);
             // 
             // extraButtonsPanel
             // 
@@ -298,6 +308,7 @@ namespace MeshCentralRouter
         private Button splitButton;
         private Panel extraButtonsPanel;
         private ImageList displaySelectorImageList;
+        private Button openRemoteFilesButton;
     }
 }
 
