@@ -526,7 +526,10 @@ namespace MeshCentralRouter
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+// ignore close-to-tray on debug-builds
+#if !DEBUG
             if ((notifyIcon.Visible == true) && (currentPanel == 4) && (forceExit == false)) { e.Cancel = true; Visible = false; }
+#endif
             Settings.SetRegValue("Location", Location.X + "," + Location.Y);
         }
 
@@ -1709,13 +1712,22 @@ namespace MeshCentralRouter
 
         public void QuickMap(int protocol, int port, int appId, NodeClass node)
         {
+            NodeClass tmpNode = node;
+            if (node.mesh.relayid != null)
+            {
+                if (!meshcentral.nodes.ContainsKey(node.mesh.relayid))
+                    return;
+                
+                tmpNode = meshcentral.nodes[node.mesh.relayid];
+            }
+
             // See if we already have the right port mapping
             foreach (Control c in mapPanel.Controls)
             {
                 if (c.GetType() == typeof(MapUserControl))
                 {
                     MapUserControl cc = (MapUserControl)c;
-                    if ((cc.protocol == protocol) && (cc.remotePort == port) && (cc.appId == appId) && (cc.node == node))
+                    if ((cc.remoteIP == node.host) && (cc.protocol == protocol) && (cc.remotePort == port) && (cc.appId == appId) && (cc.node == tmpNode))
                     {
                         // Found a match
                         cc.appButton_Click(this, null);
@@ -1729,11 +1741,17 @@ namespace MeshCentralRouter
             map.xdebug = debug;
             map.inaddrany = false; // Loopback only
             map.protocol = protocol; // 1 = TCP, 2 = UDP
+            if (node.mesh.relayid != null)
+            {
+                map.name = node.name;
+                map.remoteIP = node.host;
+            }
+
             map.localPort = 0; // Any
             map.remotePort = port; // HTTP
             map.appId = appId; // 0 = Custom, 1 = HTTP, 2 = HTTPS, 3 = RDP, 4 = PuTTY, 5 = WinSCP
             map.appIdStr = null;
-            map.node = node;
+            map.node = tmpNode;
             if (authLoginUrl != null) { map.host = authLoginUrl.Host + ":" + ((authLoginUrl.Port > 0) ? authLoginUrl.Port : 443) + authLoginUrl.AbsolutePath.Replace("/control.ashx", ""); } else { map.host = serverNameComboBox.Text; }
             map.certhash = meshcentral.wshash;
             map.parent = this;
