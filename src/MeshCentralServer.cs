@@ -494,6 +494,7 @@ namespace MeshCentralRouter
                                 m.meshid = (string)mesh["_id"];
                                 m.name = (string)mesh["name"];
                                 if (mesh.ContainsKey("desc")) { m.desc = (string)mesh["desc"]; }
+                                if (mesh.ContainsKey("relayid")) { m.relayid = (string)mesh["relayid"]; }
                                 m.rights = 0;
                                 m.links = new Dictionary<string, ulong>();
 
@@ -602,6 +603,7 @@ namespace MeshCentralRouter
                                             }
                                             n.name = (string)node["name"];
                                             n.meshid = meshid;
+                                            if (node.ContainsKey("host")) { n.host = (string)node["host"]; }
 
                                             if (node.ContainsKey("mtype"))
                                             {

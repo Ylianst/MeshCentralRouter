@@ -568,13 +568,24 @@ namespace MeshCentralRouter
             if (c >= 32) { SendUnicodeKey(c, 0); }
         }
 
+        private static readonly Keys[] ignoreKeys = {
+            // 0-9 (KeyCode: 48-57)
+            Keys.D0, Keys.D1, Keys.D2, Keys.D3, Keys.D4, Keys.D5, Keys.D6, Keys.D7, Keys.D8, Keys.D9,
+            // NumPad 0-9 (KeyCode: 96-105)
+            Keys.NumPad0, Keys.NumPad1, Keys.NumPad2, Keys.NumPad3, Keys.NumPad4, Keys.NumPad5, Keys.NumPad6, Keys.NumPad7, Keys.NumPad8, Keys.NumPad9,
+            // Special-Keys
+            Keys.Space, Keys.Divide, Keys.Multiply, Keys.Subtract, Keys.Add, Keys.Decimal,
+            // Oem-Keys
+            Keys.Oem1, Keys.Oem2, Keys.Oem3, Keys.Oem4, Keys.Oem5, Keys.Oem6, Keys.Oem7, Keys.Oem8, Keys.Oem102, Keys.OemSemicolon, Keys.Oemplus, Keys.Oemcomma,
+            Keys.OemMinus, Keys.OemPeriod, Keys.OemQuestion, Keys.Oemtilde, Keys.OemOpenBrackets, Keys.OemPipe, Keys.OemCloseBrackets, Keys.OemQuotes
+        };
         private void SendKey(KeyEventArgs e, byte action)
         {
             //if (state != ConnectState.Connected) return;
 
             if (remoteKeyboardMap == true) { SendKey((byte)e.KeyCode, action); return; } // Use old key system that uses the remote keyboard mapping.
             string keycode = e.KeyCode.ToString();
-            if ((action == 0) && (e.Control == false) && (e.Alt == false) && (((e.KeyValue >= 48) && (e.KeyValue <= 57))|| ((e.KeyValue >= 96) && (e.KeyValue <= 105)) || (keycode.Length == 1) || (keycode.StartsWith("Oem") == true))) return;
+            if ((action == 0) && (e.Control == false) && (e.Alt == false) && (Array.IndexOf(ignoreKeys, e.KeyCode) > -1 || (keycode.Length == 1))) return;
             if ((e.Control == true) || (e.Alt == true)) { killNextKeyPress = DateTime.Now.Ticks; }
             SendKey((byte)e.KeyCode, action);
             e.Handled = true;

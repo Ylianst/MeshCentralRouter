@@ -397,6 +397,7 @@ namespace MeshCentralRouter
             }
 
             cadButton.Enabled = (state == 3);
+            openRemoteFilesButton.Enabled = (state == 3 && (node.agentcaps & 4) != 0);
             if ((kvmControl.AutoSendClipboard) && ((server.features2 & 0x1000) == 0)) // 0x1000 Clipboard Set
             {
                 clipInboundButton.Visible = false;
@@ -755,6 +756,20 @@ namespace MeshCentralRouter
             }
         }
 
+        private void openRemoteFilesButton_Click(object sender, EventArgs e)
+        {
+            if ((node.conn & 1) == 0) { return; } // Agent not connected on this device
 
+            if (node.fileViewer == null)
+            {
+                node.fileViewer = new FileViewer(server, node);
+                node.fileViewer.Show();
+                node.fileViewer.MenuItemConnect_Click(null, null);
+            }
+            else
+            {
+                node.fileViewer.Focus();
+            }
+        }
     }
 }

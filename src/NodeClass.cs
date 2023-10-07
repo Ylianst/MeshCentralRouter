@@ -25,6 +25,7 @@ namespace MeshCentralRouter
         public int icon;
         public string nodeid;
         public string meshid;
+        public string host;
         public int agentid;
         public int agentcaps;
         public int conn;
@@ -60,6 +61,7 @@ namespace MeshCentralRouter
         public string name;
         public string meshid;
         public string desc;
+        public string relayid;
         public int type;
         public ulong rights;
         public Dictionary<string, ulong> links;

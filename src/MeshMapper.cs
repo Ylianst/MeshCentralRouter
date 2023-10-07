@@ -167,7 +167,7 @@ namespace MeshCentralRouter
             TcpClient client = null;
             try
             {
-                client = listener.EndAcceptTcpClient(ar);
+                client = listener?.EndAcceptTcpClient(ar);
             }
             catch (Exception) { exit = true; }
 
@@ -179,7 +179,7 @@ namespace MeshCentralRouter
 
             try
             {
-                listener.BeginAcceptTcpClient(new AsyncCallback(AcceptTcpClientSink), null);
+                listener?.BeginAcceptTcpClient(new AsyncCallback(AcceptTcpClientSink), null);
             }
             catch (Exception) { exit = true; }
         }
