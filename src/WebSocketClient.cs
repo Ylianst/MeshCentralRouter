@@ -209,8 +209,29 @@ namespace MeshCentralRouter
             else
             {
                 // Use C# coded websockets
-                Uri proxyUri = Win32Api.GetProxy(url);
+                Uri proxyUri = null;
                 Log("Websocket Start, URL=" + ((url == null) ? "(NULL)" : url.ToString()));
+
+                // Check if we need to use a HTTP proxy (Auto-proxy way)
+                try
+                {
+                    RegistryKey registryKey = Registry.CurrentUser.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings", true);
+                    Object x = registryKey.GetValue("AutoConfigURL", null);
+                    if ((x != null) && (x.GetType() == typeof(string)))
+                    {
+                        string proxyStr = GetProxyForUrlUsingPac("http" + ((url.Port == 80) ? "" : "s") + "://" + url.Host + ":" + url.Port, x.ToString());
+                        if (proxyStr != null) { proxyUri = new Uri("http://" + proxyStr); }
+                    }
+                }
+                catch (Exception) { proxyUri = null; }
+
+                // Check if we need to use a HTTP proxy (Normal way)
+                if (proxyUri == null)
+                {
+                    var proxy = System.Net.HttpWebRequest.GetSystemWebProxy();
+                    proxyUri = proxy.GetProxy(url);
+                    if ((url.Host.ToLower() == proxyUri.Host.ToLower()) && (url.Port == proxyUri.Port)) { proxyUri = null; }
+                }
 
                 if (proxyUri != null)
                 {
@@ -267,8 +288,7 @@ namespace MeshCentralRouter
             {
                 // Send proxy connection request
                 wsrawstream = wsclient.GetStream();
-                Uri proxyUri = Win32Api.GetProxy(url);
-                string userCreds = proxyUri.UserInfo;
+
                 string basicAuth = "";
                 if (proxyUri?.UserInfo != null)
                 {

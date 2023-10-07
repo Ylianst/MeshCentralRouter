@@ -679,8 +679,7 @@
             this.rdpToolStripMenuItem,
             this.sshToolStripMenuItem,
             this.scpToolStripMenuItem,
-            this.wolToolStripMenuItem,
-            });
+            this.wolToolStripMenuItem});
             this.devicesContextMenuStrip.Name = "devicesContextMenuStrip";
             resources.ApplyResources(this.devicesContextMenuStrip, "devicesContextMenuStrip");
             this.devicesContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.devicesContextMenuStrip_Opening);
