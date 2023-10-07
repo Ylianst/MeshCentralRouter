@@ -2063,24 +2063,43 @@ namespace MeshCentralRouter
             if (devicesListView.SelectedItems.Count != 1) { e.Cancel = true; return; } // Device not selected
             ListViewItem selecteditem = devicesListView.SelectedItems[0];
             NodeClass node = (NodeClass)selecteditem.Tag;
-            if (((node.conn & 1) == 0) && (node.mtype != 3)) { e.Cancel = true; return; } // Agent not connected on this device
-            if (node.agentid < 6)
-            {
-                // Windows OS
+            wolToolStripMenuItem.Visible = false;
+            if (((node.conn & 1) == 0) && (node.mtype != 3))
+            { // Agent not connected on this device and not local device
+                addMapToolStripMenuItem.Visible = false;
+                addRelayMapToolStripMenuItem.Visible = false;
+                remoteDesktopToolStripMenuItem.Visible = false;
+                remoteFilesToolStripMenuItem.Visible = false;
+                httpToolStripMenuItem.Visible = false;
+                httpsToolStripMenuItem.Visible = false;
+                rdpToolStripMenuItem.Visible = false;
                 sshToolStripMenuItem.Visible = false;
                 scpToolStripMenuItem.Visible = false;
-                rdpToolStripMenuItem.Visible = true;
+                wolToolStripMenuItem.Visible = true; // Wol not allowed for local devices
             }
-            else
-            {
-                // Other OS
-                sshToolStripMenuItem.Visible = true;
-                scpToolStripMenuItem.Visible = true;
-                rdpToolStripMenuItem.Visible = false;
+            else{  // Agent connected or local device
+                if (node.agentid < 6)
+                {
+                    // Windows OS
+                    sshToolStripMenuItem.Visible = false;
+                    scpToolStripMenuItem.Visible = false;
+                    rdpToolStripMenuItem.Visible = true;
+                }
+                else
+                {
+                    // Other OS
+                    sshToolStripMenuItem.Visible = true;
+                    scpToolStripMenuItem.Visible = true;
+                    rdpToolStripMenuItem.Visible = false;
+                }
+                addMapToolStripMenuItem.Visible = true;
+                httpToolStripMenuItem.Visible = true;
+                httpsToolStripMenuItem.Visible = true;
+                addRelayMapToolStripMenuItem.Visible = (node.mtype != 3); // Relay mappings are not allowed for local devices
+                remoteDesktopToolStripMenuItem.Visible = ((node.agentcaps & 1) != 0); // Only display remote desktop if it's supported by the agent (1 = Desktop)
+                remoteFilesToolStripMenuItem.Visible = ((node.agentcaps & 4) != 0); // Only display remote desktop if it's supported by the agent (4 = Files)
             }
-            addRelayMapToolStripMenuItem.Visible = (node.mtype != 3); // Relay mappings are not allowed for local devices
-            remoteDesktopToolStripMenuItem.Visible = ((node.agentcaps & 1) != 0); // Only display remote desktop if it's supported by the agent (1 = Desktop)
-            remoteFilesToolStripMenuItem.Visible = ((node.agentcaps & 4) != 0); // Only display remote desktop if it's supported by the agent (4 = Files)
+            
         }
 
         private void httpToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2128,6 +2147,18 @@ namespace MeshCentralRouter
             NodeClass node = (NodeClass)selecteditem.Tag;
             if (((node.conn & 1) == 0) && (node.mtype != 3)) { return; } // Agent not connected on this device & not local device
             QuickMap(1, 22, 5, node); // WinSCP
+        }
+        
+        private void wolToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (devicesListView.SelectedItems.Count != 1) { return; }
+            ListViewItem selecteditem = devicesListView.SelectedItems[0];
+            NodeClass node = (NodeClass)selecteditem.Tag;
+            if (((node.conn & 1) != 0) || (node.mtype == 3)) { return; } // Agent connected on this device or local device
+            // List of actions : https://github.com/Ylianst/MeshCentral/blob/f5db131693386147731f2ec93b9378bf035b5861/agents/meshcore.js#L1110
+            //                   https://github.com/Ylianst/MeshCentral/blob/f5db131693386147731f2ec93b9378bf035b5861/amtmanager.js#L347
+            //                   https://github.com/Ylianst/MeshCentral/blob/f5db131693386147731f2ec93b9378bf035b5861/meshuser.js#L5285
+            meshcentral.sendCommand("{ \"action\": \"wakedevices\", \"nodeids\": [\"" + node.nodeid + "\"]}");
         }
 
         private void addMapToolStripMenuItem_Click(object sender, EventArgs e)

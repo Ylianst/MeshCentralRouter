@@ -1695,6 +1695,12 @@
   <data name="remoteFilesToolStripMenuItem.Text" xml:space="preserve">
     <value>Remote Files...</value>
   </data>
+  <data name="wolToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>198, 24</value>
+  </data>
+  <data name="wolToolStripMenuItem.Text" xml:space="preserve">
+    <value>Wake Up...</value>
+  </data>
   <data name="httpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>198, 24</value>
   </data>
@@ -6241,6 +6247,12 @@ Click "Add" to get started.</value>
     <value>remoteFilesToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;remoteFilesToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;wolToolStripMenuItem.Name" xml:space="preserve">
+    <value>wolToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;wolToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;httpToolStripMenuItem.Name" xml:space="preserve">

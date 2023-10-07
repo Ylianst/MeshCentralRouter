@@ -108,6 +108,7 @@
             this.rdpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.scpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.wolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.devicesImageList = new System.Windows.Forms.ImageList(this.components);
             this.noSearchResultsLabel = new System.Windows.Forms.Label();
             this.noDevicesLabel = new System.Windows.Forms.Label();
@@ -677,7 +678,9 @@
             this.httpsToolStripMenuItem,
             this.rdpToolStripMenuItem,
             this.sshToolStripMenuItem,
-            this.scpToolStripMenuItem});
+            this.scpToolStripMenuItem,
+            this.wolToolStripMenuItem,
+            });
             this.devicesContextMenuStrip.Name = "devicesContextMenuStrip";
             resources.ApplyResources(this.devicesContextMenuStrip, "devicesContextMenuStrip");
             this.devicesContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.devicesContextMenuStrip_Opening);
@@ -762,6 +765,12 @@
             this.scpToolStripMenuItem.Name = "scpToolStripMenuItem";
             resources.ApplyResources(this.scpToolStripMenuItem, "scpToolStripMenuItem");
             this.scpToolStripMenuItem.Click += new System.EventHandler(this.scpToolStripMenuItem_Click);
+            // 
+            // wolToolStripMenuItem
+            // 
+            this.wolToolStripMenuItem.Name = "wolToolStripMenuItem";
+            resources.ApplyResources(this.wolToolStripMenuItem, "wolToolStripMenuItem");
+            this.wolToolStripMenuItem.Click += new System.EventHandler(this.wolToolStripMenuItem_Click);
             // 
             // devicesImageList
             // 
@@ -1137,6 +1146,7 @@
         private System.Windows.Forms.ToolStripMenuItem rdpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sshToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem scpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem wolToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addMapToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addRelayMapToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
