@@ -1,0 +1,22 @@
+
+name: dotnet
+
+on: [push, pull_request, fork, workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: microsoft/setup-msbuild@v1.1
+
+    - name: Build
+      run: |
+        msbuild /t:Restore
+        msbuild -p:Configuration=Release -p:OutputPath=../dist
+        
+    - name: 'Upload Artifacts'
+      uses: actions/upload-artifact@v3
+      with:
+        name: artifacts
+        path: dist
