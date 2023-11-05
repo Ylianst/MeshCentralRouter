@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Version>1.8.0</Version>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net472</TargetFramework>
+    <ApplicationIcon>MeshServer.ico</ApplicationIcon>
+    <AssemblyTitle>MeshCentral Router</AssemblyTitle>
+    <Company>Open Source</Company>
+    <Product>MeshCentral Router</Product>
+    <Copyright>Apache 2.0 license</Copyright>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+</Project>
