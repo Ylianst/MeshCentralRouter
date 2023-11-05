@@ -19,7 +19,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
-using System.Web.Script.Serialization;
+using System.Text.Json;
 
 namespace MeshCentralRouter
 {
@@ -39,7 +39,6 @@ namespace MeshCentralRouter
         public bool xdebug = false;
         public bool inaddrany = false;
         private TcpListener listener = null;
-        private JavaScriptSerializer JSON = new JavaScriptSerializer();
 
         // Stats
         public long bytesToServer = 0;
@@ -289,8 +288,8 @@ namespace MeshCentralRouter
                 Debug("#" + sender.id + ": Websocket got text frame: " + data);
 
                 // Parse the received JSON
-                Dictionary<string, object> jsonAction = new Dictionary<string, object>();
-                try { jsonAction = JSON.Deserialize<Dictionary<string, object>>(data); } catch (Exception) { }
+                Dictionary<string, object> jsonAction = null;
+                try { jsonAction = JsonHelper.Parse(data); } catch (Exception) { }
                 if ((jsonAction == null) || (jsonAction["ctrlChannel"].GetType() != typeof(string)) || ((string)jsonAction["ctrlChannel"] != "102938")) return;
 
                 string actiontype = jsonAction["type"].ToString();

@@ -23,7 +23,7 @@ using System.Collections;
 using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Security.Cryptography;
-using System.Web.Script.Serialization;
+using System.Text.Json;
 
 namespace MeshCentralRouter
 {
@@ -462,8 +462,7 @@ namespace MeshCentralRouter
       if(state != 3) return;
 
       // Parse the received JSON
-      Dictionary<string, object> jsonAction = new Dictionary<string, object>();
-      jsonAction = new JavaScriptSerializer().Deserialize<Dictionary<string, object>>(data);
+      var jsonAction = JsonHelper.Parse(data);
       if(jsonAction == null) return;
 
       if(jsonAction.ContainsKey("action") && (jsonAction["action"].GetType() == typeof(string)))
@@ -562,8 +561,7 @@ namespace MeshCentralRouter
       if(data[offset] == 123)
       {
         // Parse the received JSON
-        Dictionary<string, object> jsonAction = new Dictionary<string, object>();
-        jsonAction = new JavaScriptSerializer().Deserialize<Dictionary<string, object>>(UTF8Encoding.UTF8.GetString(data, offset, length));
+        var jsonAction = JsonHelper.Parse(UTF8Encoding.UTF8.GetString(data, offset, length));
         if(jsonAction == null) return;
         int reqid = 0;
         if(jsonAction.ContainsKey("reqid")) { reqid = (int)jsonAction["reqid"]; }

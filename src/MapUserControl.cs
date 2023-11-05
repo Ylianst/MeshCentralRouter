@@ -144,8 +144,8 @@ namespace MeshCentralRouter
                 }
                 return;
             }
-            if (appId == 1) { System.Diagnostics.Process.Start("http://localhost:" + mapper.localport); }
-            if (appId == 2) { System.Diagnostics.Process.Start("https://localhost:" + mapper.localport); }
+            if (appId == 1) { Shell.Start("http://localhost:" + mapper.localport); }
+            if (appId == 2) { Shell.Start("https://localhost:" + mapper.localport); }
             if (appId == 3)
             {
                 System.Diagnostics.Process proc = null;

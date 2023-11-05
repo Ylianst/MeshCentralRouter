@@ -19,8 +19,8 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Security.Cryptography;
-using System.Web.Script.Serialization;
 using System.Threading;
+using System.Text.Json;
 
 namespace MeshCentralRouter
 {
@@ -289,8 +289,7 @@ namespace MeshCentralRouter
             if (state != 3) return;
 
             // Parse the received JSON
-            Dictionary<string, object> jsonAction = new Dictionary<string, object>();
-            jsonAction = new JavaScriptSerializer().Deserialize<Dictionary<string, object>>(data);
+            var jsonAction = JsonHelper.Parse(data);
             if ((jsonAction == null) || (jsonAction.ContainsKey("type") == false) || (jsonAction["type"].GetType() != typeof(string))) return;
 
             string action = jsonAction["type"].ToString();

@@ -20,11 +20,11 @@ using System.Web;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
-using System.Deployment.Application;
 using System.Collections.Specialized;
-using System.Web.Script.Serialization;
 using System.Security.Cryptography.X509Certificates;
 using Microsoft.Win32;
+using System.Text.Json;
+using Newtonsoft.Json;
 
 namespace MeshCentralRouter
 {
@@ -64,7 +64,6 @@ namespace MeshCentralRouter
         public int twoFactorCookieDays = 0;
         public Dictionary<string, ulong> userRights = null;
         public Dictionary<string, string> userGroups = null;
-        private JavaScriptSerializer JSON = new JavaScriptSerializer();
         public int features = 0; // Bit flags of server features
         public int features2 = 0; // Bit flags of server features
 
@@ -125,22 +124,9 @@ namespace MeshCentralRouter
             }
         }
 
-        // Parse the URL query parameters and returns a collection
-        public static NameValueCollection GetQueryStringParameters()
-        {
-            NameValueCollection nameValueTable = new NameValueCollection();
-            if (ApplicationDeployment.IsNetworkDeployed)
-            {
-                string queryString = ApplicationDeployment.CurrentDeployment.ActivationUri.Query;
-                nameValueTable = HttpUtility.ParseQueryString(queryString);
-            }
-            return (nameValueTable);
-        }
-
         // Starts the routing server, called when the start button is pressed
         public void connect(Uri wsurl, string user, string pass, string token, X509Certificate2 clientAuthCert)
         {
-            JSON.MaxJsonLength = 217483647;
             this.user = user;
             this.pass = pass;
             this.token = token;
@@ -210,10 +196,10 @@ namespace MeshCentralRouter
             if (debug) { try { File.AppendAllText("debug.log", "ServerData-" + data + "\r\n"); } catch (Exception) { } }
 
             // Parse the received JSON
-            Dictionary<string, object> jsonAction = new Dictionary<string, object>();
+            Dictionary<string, object> jsonAction = null;
             try
             {
-                jsonAction = JSON.Deserialize<Dictionary<string, object>>(data);
+                jsonAction = JsonHelper.Parse(data);
             } catch (Exception ex) {
                 if (debug) {
                     try {
@@ -701,7 +687,7 @@ namespace MeshCentralRouter
 
                                 // Hash our own executable
                                 byte[] selfHash;
-                                using (var sha384 = SHA384Managed.Create()) { using (var stream = File.OpenRead(System.Reflection.Assembly.GetEntryAssembly().Location)) { selfHash = sha384.ComputeHash(stream); } }
+                                using (var sha384 = SHA384Managed.Create()) { using (var stream = File.OpenRead(Environment.ProcessPath)) { selfHash = sha384.ComputeHash(stream); } }
                                 string selfExecutableHashHex = BitConverter.ToString(selfHash).Replace("-", string.Empty).ToLower();
 
                                 // Get login key

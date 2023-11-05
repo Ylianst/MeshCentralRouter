@@ -1,0 +1,19 @@
+
+name: dotnet
+
+on: [push, pull_request, fork, workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Build
+      run: dotnet publish -c Release -o dist
+        
+    - name: 'Upload Artifacts'
+      uses: actions/upload-artifact@v3
+      with:
+        name: artifacts
+        path: dist

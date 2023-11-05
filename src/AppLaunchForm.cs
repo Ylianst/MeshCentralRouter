@@ -87,7 +87,7 @@ namespace MeshCentralRouter
 
         private void appLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start(appLinkLabel.Text);
+            Shell.Start(appLinkLabel.Text);
         }
 
         private void applicationComboBox_SelectedIndexChanged(object sender, EventArgs e)

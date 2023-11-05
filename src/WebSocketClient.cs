@@ -230,7 +230,7 @@ namespace MeshCentralRouter
                 {
                     var proxy = System.Net.HttpWebRequest.GetSystemWebProxy();
                     proxyUri = proxy.GetProxy(url);
-                    if ((url.Host.ToLower() == proxyUri.Host.ToLower()) && (url.Port == proxyUri.Port)) { proxyUri = null; }
+                    if ((url.Host.ToLower() == proxyUri?.Host.ToLower()) && (url.Port == proxyUri?.Port)) { proxyUri = null; }
                 }
 
                 if (proxyUri != null)
