@@ -1510,7 +1510,7 @@ namespace MeshCentralRouter
 
         private void licenseLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://www.apache.org/licenses/LICENSE-2.0.html");
+            Shell.Start("https://www.apache.org/licenses/LICENSE-2.0.html");
         }
 
         private void backButton3_Click(object sender, EventArgs e)
@@ -1591,7 +1591,7 @@ namespace MeshCentralRouter
                 {
                     serverurl = new Uri("https://" + serverNameComboBox.Text + "?login=" + meshcentral.loginCookie);
                 }
-                System.Diagnostics.Process.Start(serverurl.ToString());
+                Shell.Start(serverurl.ToString());
             }
         }
 
@@ -1999,7 +1999,7 @@ namespace MeshCentralRouter
                             {
                                 string lanuchString = (string)x["launch"];
                                 lanuchString = lanuchString.Replace("{port}", x["localPort"].ToString());
-                                System.Diagnostics.Process.Start(lanuchString);
+                                Shell.Start(lanuchString);
                             }
                             catch (Exception) { }
                         }
