@@ -8,12 +8,9 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v4
-    - uses: microsoft/setup-msbuild@v1.1
 
     - name: Build
-      run: |
-        msbuild /t:Restore
-        msbuild -p:Configuration=Release -p:OutputPath=../dist
+      run: dotnet publish -c Release -o dist
         
     - name: 'Upload Artifacts'
       uses: actions/upload-artifact@v3

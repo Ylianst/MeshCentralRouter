@@ -18,7 +18,6 @@ using System;
 using System.IO;
 using System.Net;
 using System.Text;
-using System.Reflection;
 using System.Diagnostics;
 using System.Net.Security;
 using System.Windows.Forms;
@@ -47,7 +46,7 @@ namespace MeshCentralRouter
 
             try
             {
-                FileInfo selfExe = new FileInfo(Assembly.GetExecutingAssembly().Location);
+                FileInfo selfExe = new FileInfo(Environment.ProcessPath);
                 string[] lines = File.ReadAllLines(Path.Combine(selfExe.Directory.FullName, @"customization\customize.txt"));
                 if (lines[4] != "") { this.Text = lines[4]; }
                 if (lines[5] != "") { mainLabel.Text = lines[5]; }
@@ -115,7 +114,7 @@ namespace MeshCentralRouter
                 using (HttpWebResponse webResponse = (HttpWebResponse)webRequest.EndGetResponse(asyncResult))
                 {
                     byte[] buffer = new byte[4096];
-                    FileStream fileStream = File.OpenWrite(System.Reflection.Assembly.GetEntryAssembly().Location + ".update.exe");
+                    FileStream fileStream = File.OpenWrite(Environment.ProcessPath + ".update.exe");
                     using (Stream input = webResponse.GetResponseStream())
                     {
                         int size = input.Read(buffer, 0, buffer.Length);
@@ -132,14 +131,14 @@ namespace MeshCentralRouter
 
                     // Hash the resulting file
                     byte[] downloadHash;
-                    using (var sha384 = SHA384Managed.Create()) { using (var stream = File.OpenRead(System.Reflection.Assembly.GetEntryAssembly().Location + ".update.exe")) { downloadHash = sha384.ComputeHash(stream); } }
+                    using (var sha384 = SHA384Managed.Create()) { using (var stream = File.OpenRead(Environment.ProcessPath + ".update.exe")) { downloadHash = sha384.ComputeHash(stream); } }
                     string downloadHashHex = BitConverter.ToString(downloadHash).Replace("-", string.Empty).ToLower();
                     if (downloadHashHex != hash) {
                         updateMessage(Translate.T(Properties.Resources.InvalidDownload), 2);
-                        File.Delete(System.Reflection.Assembly.GetEntryAssembly().Location + ".update.exe");
+                        File.Delete(Environment.ProcessPath + ".update.exe");
                     } else {
                         updateMessage(Translate.T(Properties.Resources.Updating), 0);
-                        Process.Start(System.Reflection.Assembly.GetEntryAssembly().Location + ".update.exe", "-update:" + System.Reflection.Assembly.GetEntryAssembly().Location + " " + string.Join(" ", args));
+                        Process.Start(Environment.ProcessPath + ".update.exe", "-update:" + Environment.ProcessPath + " " + string.Join(" ", args));
 
                         if (this.InvokeRequired) { this.Invoke((MethodInvoker)delegate { Application.Exit(); }); } else { Application.Exit(); }
                     }

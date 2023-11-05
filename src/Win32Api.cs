@@ -118,7 +118,7 @@ namespace MeshCentralRouter
             {
                 // Check if we need to use a HTTP proxy (Normal way)
                 proxyUri = System.Net.HttpWebRequest.GetSystemWebProxy().GetProxy(url);
-                if ((url.Host.ToLower() == proxyUri.Host.ToLower()) && (url.Port == proxyUri.Port)) { return null; }
+                if ((url.Host.ToLower() == proxyUri?.Host?.ToLower()) && (url.Port == proxyUri?.Port)) { return null; }
             }
             catch (Exception) { }
 

@@ -35,7 +35,7 @@ namespace MeshCentralRouter
         static void Main(string[] args)
         {
             // If this application is signed, get the URL of the signature, this will be used to lock this application to a server.
-            Uri signedUrl = WinCrypt.GetSignatureUrl(System.Reflection.Assembly.GetEntryAssembly().Location);
+            Uri signedUrl = WinCrypt.GetSignatureUrl(Environment.ProcessPath);
             if (signedUrl != null)
             {
                 NameValueCollection urlArguments = HttpUtility.ParseQueryString(signedUrl.Query);
@@ -64,7 +64,7 @@ namespace MeshCentralRouter
                 }
                 if ((arg.Length == 5) && (string.Compare(arg.Substring(0, 5), "-info", true) == 0))
                 {
-                    string dialogText = string.Format(Properties.Resources.Version, System.Reflection.Assembly.GetExecutingAssembly().ImageRuntimeVersion);
+                    string dialogText = string.Format(Properties.Resources.Version, Application.ProductVersion);
                     if (LockToHostname != null) { dialogText += "\r\n" + string.Format(Properties.Resources.LockedToHost, LockToHostname); }
                     if (LockToServerId != null) { dialogText += "\r\n" + string.Format(Properties.Resources.LockedToServerId, LockToServerId); }
                     MessageBox.Show(dialogText, Properties.Resources.MeshCentralRouter);

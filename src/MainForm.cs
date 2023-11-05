@@ -24,12 +24,12 @@ using System.Windows.Forms;
 using System.Security.Principal;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using System.Web.Script.Serialization;
 using System.Security.Cryptography.X509Certificates;
 using Microsoft.Win32;
 using System.Drawing;
 using System.Text;
 using System.Web;
+using System.Text.Json;
 
 namespace MeshCentralRouter
 {
@@ -1912,8 +1912,7 @@ namespace MeshCentralRouter
         private int loadMappingFile(string data, int mode)
         {
             int argFlags = 3;
-            Dictionary<string, object> jsonAction = new Dictionary<string, object>();
-            jsonAction = new JavaScriptSerializer().Deserialize<Dictionary<string, object>>(data);
+            var jsonAction = JsonHelper.Parse(data);
             if ((jsonAction == null) || (jsonAction["hostname"].GetType() != typeof(string)) || (jsonAction["username"].GetType() != typeof(string))) return 0;
             if (mode == 1)
             {
