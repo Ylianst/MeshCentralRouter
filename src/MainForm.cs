@@ -30,6 +30,7 @@ using Microsoft.Win32;
 using System.Drawing;
 using System.Text;
 using System.Web;
+using System.Threading.Tasks;
 
 namespace MeshCentralRouter
 {
@@ -1131,8 +1132,8 @@ namespace MeshCentralRouter
                 cookieRefreshTimer.Enabled = true;
 
                 // If we need to remember the 2nd factor, ask for a cookie now.
-                if (debug) { try { File.AppendAllText("debug.log", "Requesting 2FA cookie\r\n"); } catch (Exception) { } }
-                if (tokenRememberCheckBox.Checked) { meshcentral.sendCommand("{\"action\":\"twoFactorCookie\"}"); }
+                if (debug) { try { File.AppendAllText("debug.log", "Requesting 2FA cookie in 2 and half seconds time\r\n"); } catch (Exception) { } }
+                if (tokenRememberCheckBox.Checked) { Task.Delay(2500).ContinueWith((task) => { meshcentral.sendCommand("{\"action\":\"twoFactorCookie\"}"); }); }
 
                 // Setup single instance pipe server
                 if (authLoginUrl != null)
