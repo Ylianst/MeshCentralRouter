@@ -3379,7 +3379,7 @@ namespace MeshCentralRouter
         {
             "Alternative Port",
             new Dictionary<string, string>() {
-                {"de","Alternativer Hafen"},
+                {"de","Alternativer Port"},
                 {"hi","वैकल्पिक बंदरगाह"},
                 {"fr","Port alternatif"},
                 {"zh-chs","替代端口"},
@@ -4585,7 +4585,7 @@ namespace MeshCentralRouter
         {
             "Local Port",
             new Dictionary<string, string>() {
-                {"de","Lokaler Hafen"},
+                {"de","Lokaler Port"},
                 {"hi","स्थानीय बंदरगाह"},
                 {"fr","Port local"},
                 {"zh-chs","本地端口"},
