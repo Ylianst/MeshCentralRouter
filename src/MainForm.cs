@@ -119,23 +119,37 @@ namespace MeshCentralRouter
             try { Registry.ClassesRoot.DeleteSubKeyTree("mcrouter"); } catch (Exception) { }
         }
 
+        private void unHookRouterEx()
+        {
+            if (IsAdministrator() == false)
+            {
+                // Restart program and run as admin
+                var exeName = System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
+                ProcessStartInfo startInfo = new ProcessStartInfo(exeName, "-uninstall");
+                startInfo.Verb = "runas";
+                try { installProcess = System.Diagnostics.Process.Start(startInfo); } catch (Exception) { return; }
+                installTimer.Enabled = true;
+            }
+            else
+            {
+                unHookRouter();
+            }
+        }
+
         private void hookRouterEx()
         {
             if (IsAdministrator() == false)
             {
-
                 // Restart program and run as admin
                 var exeName = System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
                 ProcessStartInfo startInfo = new ProcessStartInfo(exeName, "-install");
                 startInfo.Verb = "runas";
                 try { installProcess = System.Diagnostics.Process.Start(startInfo); } catch (Exception) { return; }
                 installTimer.Enabled = true;
-                installButton.Visible = false;
             }
             else
             {
                 hookRouter();
-                installButton.Visible = !isRouterHooked();
             }
         }
 
@@ -144,7 +158,15 @@ namespace MeshCentralRouter
             if ((installProcess == null) || (installProcess.HasExited == true))
             {
                 installTimer.Enabled = false;
-                installButton.Visible = !isRouterHooked();
+                installButton.Visible = true;
+                if (isRouterHooked())
+                {
+                    installButton.Text = "Uninstall";
+                }
+                else
+                {
+                    installButton.Text = "Install";
+                }
             }
         }
 
@@ -342,7 +364,16 @@ namespace MeshCentralRouter
             }
 
             // Check MeshCentral .mcrouter hook
-            installButton.Visible = !isRouterHooked();
+            installButton.Visible = true;
+            if (isRouterHooked())
+            {
+                installButton.Text = "Uninstall";
+            }
+            else
+            {
+                installButton.Text = "Install";
+            }
+
 
             // Right click action
             deviceDoubleClickAction = int.Parse(Settings.GetRegValue("DevDoubleClickClickAction", "0"));
@@ -1888,8 +1919,15 @@ namespace MeshCentralRouter
 
         private void installButton_Click(object sender, EventArgs e)
         {
-            InstallForm form = new InstallForm();
-            if (form.ShowDialog(this) == DialogResult.OK) { hookRouterEx(); }
+            if (isRouterHooked())
+            {
+                UninstallForm form = new UninstallForm();
+                if (form.ShowDialog(this) == DialogResult.OK) { unHookRouterEx(); }
+            } else
+            {
+                InstallForm form = new InstallForm();
+                if (form.ShowDialog(this) == DialogResult.OK) { hookRouterEx(); }
+            }
         }
 
         private void ChangeLanguage(string lang)
