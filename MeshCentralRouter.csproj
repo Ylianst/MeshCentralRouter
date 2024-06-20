@@ -131,6 +131,12 @@
     <Compile Include="src\ConnectionSettings.Designer.cs">
       <DependentUpon>ConnectionSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="src\UninstallForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\UninstallForm.Designer.cs">
+      <DependentUpon>UninstallForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="src\ListViewExtended.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -320,6 +326,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="src\ConnectionSettings.resx">
       <DependentUpon>ConnectionSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\UninstallForm.resx">
+      <DependentUpon>UninstallForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="src\KVMViewerExtra.resx">
       <DependentUpon>KVMViewerExtra.cs</DependentUpon>
