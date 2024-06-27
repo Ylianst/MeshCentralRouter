@@ -304,7 +304,6 @@ namespace MeshCentralRouter
             this.rightListView.SmallImageList = this.fileIconImageList;
             this.rightListView.UseCompatibleStateImageBehavior = false;
             this.rightListView.View = System.Windows.Forms.View.Details;
-            this.rightListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.rightListView_ColumnWidthChanged);
             this.rightListView.SelectedIndexChanged += new System.EventHandler(this.rightListView_SelectedIndexChanged);
             this.rightListView.DragDrop += new System.Windows.Forms.DragEventHandler(this.rightListView_DragDrop);
             this.rightListView.DragEnter += new System.Windows.Forms.DragEventHandler(this.rightListView_DragEnter);
@@ -411,7 +410,6 @@ namespace MeshCentralRouter
             this.leftListView.SmallImageList = this.fileIconImageList;
             this.leftListView.UseCompatibleStateImageBehavior = false;
             this.leftListView.View = System.Windows.Forms.View.Details;
-            this.leftListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.leftListView_ColumnWidthChanged);
             this.leftListView.SelectedIndexChanged += new System.EventHandler(this.leftListView_SelectedIndexChanged);
             this.leftListView.DragDrop += new System.Windows.Forms.DragEventHandler(this.leftListView_DragDrop);
             this.leftListView.DragEnter += new System.Windows.Forms.DragEventHandler(this.leftListView_DragEnter);
