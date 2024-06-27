@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -603,6 +603,15 @@
   <metadata name="statusStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>381, 17</value>
   </metadata>
+  <data name="mainToolStripStatusLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>675, 17</value>
+  </data>
+  <data name="mainToolStripStatusLabel.Text" xml:space="preserve">
+    <value>---</value>
+  </data>
+  <data name="mainToolStripStatusLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
   <data name="statusStrip.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 480</value>
   </data>
@@ -626,15 +635,6 @@
   </data>
   <data name="&gt;&gt;statusStrip.ZOrder" xml:space="preserve">
     <value>4</value>
-  </data>
-  <data name="mainToolStripStatusLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>675, 17</value>
-  </data>
-  <data name="mainToolStripStatusLabel.Text" xml:space="preserve">
-    <value>---</value>
-  </data>
-  <data name="mainToolStripStatusLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
   </data>
   <data name="consoleMessage.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
@@ -706,7 +706,7 @@
     <value>Name</value>
   </data>
   <data name="columnHeader3.Width" type="System.Int32, mscorlib">
-    <value>220</value>
+    <value>143</value>
   </data>
   <data name="columnHeader4.Text" xml:space="preserve">
     <value>Size</value>
@@ -716,6 +716,12 @@
   </data>
   <data name="columnHeader4.Width" type="System.Int32, mscorlib">
     <value>80</value>
+  </data>
+  <data name="columnHeader5.Text" xml:space="preserve">
+    <value>Date Modified</value>
+  </data>
+  <data name="columnHeader5.Width" type="System.Int32, mscorlib">
+    <value>150</value>
   </data>
   <metadata name="remoteContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>640, 17</value>
@@ -727,7 +733,7 @@
     <value>&amp;Rename</value>
   </data>
   <data name="compressToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>136, 22</value>
   </data>
   <data name="compressToolStripMenuItem.Text" xml:space="preserve">
     <value>Compress...</value>
@@ -748,7 +754,7 @@
     <value>R&amp;efresh</value>
   </data>
   <data name="remoteContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 120</value>
+    <value>137, 98</value>
   </data>
   <data name="&gt;&gt;remoteContextMenuStrip.Name" xml:space="preserve">
     <value>remoteContextMenuStrip</value>
@@ -773,7 +779,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAC+
-        CQAAAk1TRnQBSQFMAgEBAwEAAcABAAHAAQABEAEAARABAAT/AREBAAj/AUIBTQE2BwABNgMAASgDAAFA
+        CQAAAk1TRnQBSQFMAgEBAwEAAcgBAAHIAQABEAEAARABAAT/AREBAAj/AUIBTQE2BwABNgMAASgDAAFA
         AwABEAMAAQEBAAEQBgABCDoAATABcwHKAWYBygFmAbUBexIAARABQgEQAUIBEAFCARABQgEQAUIBEAFC
         ARABQgEQAUIBEAFCARABQgEQAUIBEAFCARABQkYAAcoBZgHKAWYBygFmAcoBZgHKAWYBygFmAcoBZgHK
         AWYBygFmAcoBZgHKAWYBygFmATABcwYAARABQgHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7
@@ -831,6 +837,27 @@
   </data>
   <data name="&gt;&gt;rightListView.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="remoteLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="remoteLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="remoteLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="remoteLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="remoteLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 13</value>
+  </data>
+  <data name="remoteLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="remoteLabel.Text" xml:space="preserve">
+    <value>Remote</value>
   </data>
   <data name="&gt;&gt;remoteLabel.Name" xml:space="preserve">
     <value>remoteLabel</value>
@@ -892,6 +919,72 @@
   <data name="&gt;&gt;rightPanel.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="columnHeader1.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="columnHeader1.Width" type="System.Int32, mscorlib">
+    <value>144</value>
+  </data>
+  <data name="columnHeader2.Text" xml:space="preserve">
+    <value>Size</value>
+  </data>
+  <data name="columnHeader2.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="columnHeader2.Width" type="System.Int32, mscorlib">
+    <value>80</value>
+  </data>
+  <data name="columnHeader6.Text" xml:space="preserve">
+    <value>Date Modified</value>
+  </data>
+  <data name="columnHeader6.Width" type="System.Int32, mscorlib">
+    <value>150</value>
+  </data>
+  <metadata name="localContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>830, 17</value>
+  </metadata>
+  <data name="renameToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 22</value>
+  </data>
+  <data name="renameToolStripMenuItem1.Text" xml:space="preserve">
+    <value>&amp;Rename</value>
+  </data>
+  <data name="deleteToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 22</value>
+  </data>
+  <data name="deleteToolStripMenuItem1.Text" xml:space="preserve">
+    <value>&amp;Delete</value>
+  </data>
+  <data name="toolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>114, 6</value>
+  </data>
+  <data name="refreshToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 22</value>
+  </data>
+  <data name="refreshToolStripMenuItem1.Text" xml:space="preserve">
+    <value>R&amp;efresh</value>
+  </data>
+  <data name="localContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>118, 76</value>
+  </data>
+  <data name="&gt;&gt;localContextMenuStrip.Name" xml:space="preserve">
+    <value>localContextMenuStrip</value>
+  </data>
+  <data name="&gt;&gt;localContextMenuStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="leftListView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="leftListView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 50</value>
+  </data>
+  <data name="leftListView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>320, 388</value>
+  </data>
+  <data name="leftListView.TabIndex" type="System.Int32, mscorlib">
+    <value>199</value>
+  </data>
   <data name="&gt;&gt;leftListView.Name" xml:space="preserve">
     <value>leftListView</value>
   </data>
@@ -902,6 +995,48 @@
     <value>leftPanel</value>
   </data>
   <data name="&gt;&gt;leftListView.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="localLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="localLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="localLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="localLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>33, 13</value>
+  </data>
+  <data name="localLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="localLabel.Text" xml:space="preserve">
+    <value>Local</value>
+  </data>
+  <data name="&gt;&gt;localLabel.Name" xml:space="preserve">
+    <value>localLabel</value>
+  </data>
+  <data name="&gt;&gt;localLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;localLabel.Parent" xml:space="preserve">
+    <value>leftTopPanel</value>
+  </data>
+  <data name="&gt;&gt;localLabel.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="leftTopPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="leftTopPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="leftTopPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>320, 50</value>
+  </data>
+  <data name="leftTopPanel.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
   <data name="&gt;&gt;leftTopPanel.Name" xml:space="preserve">
@@ -969,177 +1104,6 @@
   </data>
   <data name="mainTableLayoutPanel.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
     <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="panel1" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="rightPanel" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="leftPanel" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,50,Absolute,30,Percent,50" /&gt;&lt;Rows Styles="Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
-  </data>
-  <data name="remoteLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="remoteLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="remoteLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="remoteLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
-  </data>
-  <data name="remoteLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 13</value>
-  </data>
-  <data name="remoteLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="remoteLabel.Text" xml:space="preserve">
-    <value>Remote</value>
-  </data>
-  <data name="&gt;&gt;remoteLabel.Name" xml:space="preserve">
-    <value>remoteLabel</value>
-  </data>
-  <data name="&gt;&gt;remoteLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;remoteLabel.Parent" xml:space="preserve">
-    <value>rightTopPanel</value>
-  </data>
-  <data name="&gt;&gt;remoteLabel.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="columnHeader1.Text" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="columnHeader1.Width" type="System.Int32, mscorlib">
-    <value>220</value>
-  </data>
-  <data name="columnHeader2.Text" xml:space="preserve">
-    <value>Size</value>
-  </data>
-  <data name="columnHeader2.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="columnHeader2.Width" type="System.Int32, mscorlib">
-    <value>80</value>
-  </data>
-  <metadata name="localContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>830, 17</value>
-  </metadata>
-  <data name="localContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>118, 76</value>
-  </data>
-  <data name="&gt;&gt;localContextMenuStrip.Name" xml:space="preserve">
-    <value>localContextMenuStrip</value>
-  </data>
-  <data name="&gt;&gt;localContextMenuStrip.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="leftListView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="leftListView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 50</value>
-  </data>
-  <data name="leftListView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>320, 388</value>
-  </data>
-  <data name="leftListView.TabIndex" type="System.Int32, mscorlib">
-    <value>199</value>
-  </data>
-  <data name="&gt;&gt;leftListView.Name" xml:space="preserve">
-    <value>leftListView</value>
-  </data>
-  <data name="&gt;&gt;leftListView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;leftListView.Parent" xml:space="preserve">
-    <value>leftPanel</value>
-  </data>
-  <data name="&gt;&gt;leftListView.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="renameToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>117, 22</value>
-  </data>
-  <data name="renameToolStripMenuItem1.Text" xml:space="preserve">
-    <value>&amp;Rename</value>
-  </data>
-  <data name="deleteToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>117, 22</value>
-  </data>
-  <data name="deleteToolStripMenuItem1.Text" xml:space="preserve">
-    <value>&amp;Delete</value>
-  </data>
-  <data name="toolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>114, 6</value>
-  </data>
-  <data name="refreshToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>117, 22</value>
-  </data>
-  <data name="refreshToolStripMenuItem1.Text" xml:space="preserve">
-    <value>R&amp;efresh</value>
-  </data>
-  <data name="&gt;&gt;localLabel.Name" xml:space="preserve">
-    <value>localLabel</value>
-  </data>
-  <data name="&gt;&gt;localLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;localLabel.Parent" xml:space="preserve">
-    <value>leftTopPanel</value>
-  </data>
-  <data name="&gt;&gt;localLabel.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="leftTopPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="leftTopPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="leftTopPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>320, 50</value>
-  </data>
-  <data name="leftTopPanel.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;leftTopPanel.Name" xml:space="preserve">
-    <value>leftTopPanel</value>
-  </data>
-  <data name="&gt;&gt;leftTopPanel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;leftTopPanel.Parent" xml:space="preserve">
-    <value>leftPanel</value>
-  </data>
-  <data name="&gt;&gt;leftTopPanel.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="localLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="localLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="localLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
-  </data>
-  <data name="localLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>33, 13</value>
-  </data>
-  <data name="localLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="localLabel.Text" xml:space="preserve">
-    <value>Local</value>
-  </data>
-  <data name="&gt;&gt;localLabel.Name" xml:space="preserve">
-    <value>localLabel</value>
-  </data>
-  <data name="&gt;&gt;localLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;localLabel.Parent" xml:space="preserve">
-    <value>leftTopPanel</value>
-  </data>
-  <data name="&gt;&gt;localLabel.ZOrder" xml:space="preserve">
-    <value>5</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -1694,6 +1658,18 @@
   </data>
   <data name="&gt;&gt;refreshToolStripMenuItem1.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;columnHeader5.Name" xml:space="preserve">
+    <value>columnHeader5</value>
+  </data>
+  <data name="&gt;&gt;columnHeader5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;columnHeader6.Name" xml:space="preserve">
+    <value>columnHeader6</value>
+  </data>
+  <data name="&gt;&gt;columnHeader6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>FileViewer</value>

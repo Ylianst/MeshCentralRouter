@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright 2009-2021 Intel Corporation
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -88,7 +88,7 @@ namespace MeshCentralRouter
       this.server = server;
       UpdateStatus();
 
-      rightListView.Columns[0].Width = rightListView.Width - rightListView.Columns[1].Width - 22;
+      rightListView.Columns[0].Width = rightListView.Width - rightListView.Columns[1].Width - 150;
 
       // Load the local path from the registry
       string lp = Settings.GetRegValue("LocalPath", "");
@@ -141,9 +141,10 @@ namespace MeshCentralRouter
           foreach(FileInfo file in files)
           {
             if(file.Attributes.HasFlag(FileAttributes.Hidden)) continue;
-            string[] si = new string[2];
+            string[] si = new string[3];
             si[0] = file.Name;
             si[1] = "" + file.Length;
+            si[2] = file.LastWriteTime.ToString("dd-MM-yyyy hh:mm:ss tt");  // Add the date information
             ListViewItem x = new ListViewItem(si, 2);
             x.Tag = file;
             leftListView.Items.Add(x);
@@ -268,9 +269,10 @@ namespace MeshCentralRouter
           if(fileIcon == 3)
           {
             // File
-            string[] si = new string[2];
+            string[] si = new string[3];
             si[0] = fileName;
             si[1] = "" + fileSize;
+            si[2] = fileDate != null ? DateTime.TryParse(fileDate, out DateTime parsedDate) ? parsedDate.ToString("dd-MM-yyyy hh:mm:ss tt") : "" : ""; // Add the date information
             sortlist.Add(new ListViewItem(si, 2)); // File
           }
         }
@@ -1054,9 +1056,9 @@ namespace MeshCentralRouter
 
     private void rightListView_Resize(object sender, EventArgs e)
     {
-      if(rightListView.Columns[0].Width != (rightListView.Width - rightListView.Columns[1].Width - 22))
+      if(rightListView.Columns[0].Width != (rightListView.Width - rightListView.Columns[1].Width - 150))
       {
-        rightListView.Columns[0].Width = rightListView.Width - rightListView.Columns[1].Width - 22;
+        rightListView.Columns[0].Width = rightListView.Width - rightListView.Columns[1].Width - 150;
       }
     }
 
@@ -1067,9 +1069,9 @@ namespace MeshCentralRouter
       bRightCWChangedBusy=true;
       try
       {
-        if(rightListView.Columns[0].Width != (rightListView.Width - rightListView.Columns[1].Width - 22))
+        if(rightListView.Columns[0].Width != (rightListView.Width - rightListView.Columns[1].Width - 150))
         {
-          rightListView.Columns[0].Width = rightListView.Width - rightListView.Columns[1].Width - 22;
+          rightListView.Columns[0].Width = rightListView.Width - rightListView.Columns[1].Width - 150;
         }
       }
       catch { }
@@ -1078,9 +1080,9 @@ namespace MeshCentralRouter
 
     private void leftListView_Resize(object sender, EventArgs e)
     {
-      if(leftListView.Columns[0].Width != (leftListView.Width - leftListView.Columns[1].Width - 22))
+      if(leftListView.Columns[0].Width != (leftListView.Width - leftListView.Columns[1].Width - 150))
       {
-        leftListView.Columns[0].Width = leftListView.Width - leftListView.Columns[1].Width - 22;
+        leftListView.Columns[0].Width = leftListView.Width - leftListView.Columns[1].Width - 150;
       }
     }
 
@@ -1091,9 +1093,9 @@ namespace MeshCentralRouter
       bLeftCWChangedBusy=true;
       try
       {
-        if(leftListView.Columns[0].Width != (leftListView.Width - leftListView.Columns[1].Width - 22))
+        if(leftListView.Columns[0].Width != (leftListView.Width - leftListView.Columns[1].Width - 150))
         {
-          leftListView.Columns[0].Width = leftListView.Width - leftListView.Columns[1].Width - 22;
+          leftListView.Columns[0].Width = leftListView.Width - leftListView.Columns[1].Width - 150;
         }
       }
       catch { }

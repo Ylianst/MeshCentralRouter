@@ -1,4 +1,4 @@
-﻿using System.Windows.Forms;
+using System.Windows.Forms;
 
 namespace MeshCentralRouter
 {
@@ -81,6 +81,8 @@ namespace MeshCentralRouter
             this.refreshToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.leftTopPanel = new System.Windows.Forms.Panel();
             this.localLabel = new System.Windows.Forms.Label();
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.topPanel.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.mainTableLayoutPanel.SuspendLayout();
@@ -291,7 +293,8 @@ namespace MeshCentralRouter
             this.rightListView.AllowDrop = true;
             this.rightListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader3,
-            this.columnHeader4});
+            this.columnHeader4,
+            this.columnHeader5});
             this.rightListView.ContextMenuStrip = this.remoteContextMenuStrip;
             resources.ApplyResources(this.rightListView, "rightListView");
             this.rightListView.FullRowSelect = true;
@@ -397,7 +400,8 @@ namespace MeshCentralRouter
             this.leftListView.AllowDrop = true;
             this.leftListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
-            this.columnHeader2});
+            this.columnHeader2,
+            this.columnHeader6});
             this.leftListView.ContextMenuStrip = this.localContextMenuStrip;
             resources.ApplyResources(this.leftListView, "leftListView");
             this.leftListView.FullRowSelect = true;
@@ -472,6 +476,14 @@ namespace MeshCentralRouter
             // 
             resources.ApplyResources(this.localLabel, "localLabel");
             this.localLabel.Name = "localLabel";
+            // 
+            // columnHeader5
+            // 
+            resources.ApplyResources(this.columnHeader5, "columnHeader5");
+            // 
+            // columnHeader6
+            // 
+            resources.ApplyResources(this.columnHeader6, "columnHeader6");
             // 
             // FileViewer
             // 
@@ -552,6 +564,8 @@ namespace MeshCentralRouter
         private ToolStripMenuItem refreshToolStripMenuItem1;
         private ToolStripMenuItem compressToolStripMenuItem;
         private Button remoteZipButton;
+        private ColumnHeader columnHeader5;
+        private ColumnHeader columnHeader6;
     }
 }
 
