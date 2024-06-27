@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DeviceSettingsForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.collapseCheckBox = new System.Windows.Forms.CheckBox();
             this.checkForUpdatedCheckBox = new System.Windows.Forms.CheckBox();
             this.systemTrayCheckBox = new System.Windows.Forms.CheckBox();
             this.doubleClickComboBox = new System.Windows.Forms.ComboBox();
@@ -39,7 +40,6 @@
             this.exp_KeyboardHookCheckBox = new System.Windows.Forms.CheckBox();
             this.exp_KeyboardHookPriorityCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.collapseCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -54,6 +54,12 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
+            // 
+            // collapseCheckBox
+            // 
+            resources.ApplyResources(this.collapseCheckBox, "collapseCheckBox");
+            this.collapseCheckBox.Name = "collapseCheckBox";
+            this.collapseCheckBox.UseVisualStyleBackColor = true;
             // 
             // checkForUpdatedCheckBox
             // 
@@ -79,7 +85,8 @@
             resources.GetString("doubleClickComboBox.Items4"),
             resources.GetString("doubleClickComboBox.Items5"),
             resources.GetString("doubleClickComboBox.Items6"),
-            resources.GetString("doubleClickComboBox.Items7")});
+            resources.GetString("doubleClickComboBox.Items7"),
+            resources.GetString("doubleClickComboBox.Items8")});
             resources.ApplyResources(this.doubleClickComboBox, "doubleClickComboBox");
             this.doubleClickComboBox.Name = "doubleClickComboBox";
             // 
@@ -122,12 +129,6 @@
             this.groupBox2.Controls.Add(this.exp_KeyboardHookCheckBox);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.TabStop = false;
-            // 
-            // collapseCheckBox
-            // 
-            resources.ApplyResources(this.collapseCheckBox, "collapseCheckBox");
-            this.collapseCheckBox.Name = "collapseCheckBox";
-            this.collapseCheckBox.UseVisualStyleBackColor = true;
             // 
             // DeviceSettingsForm
             // 
