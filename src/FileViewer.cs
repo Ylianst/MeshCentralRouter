@@ -133,7 +133,11 @@ namespace MeshCentralRouter
           DirectoryInfo[] directories = localFolder.GetDirectories();
           foreach(DirectoryInfo directory in directories)
           {
-            ListViewItem x = new ListViewItem(directory.Name, 1);
+            string[] si = new string[3];
+            si[0] = directory.Name;
+            si[1] = "";  // Skipping size of directory because it is very compute consuming
+            si[2] = directory.LastWriteTime.ToString("dd-MM-yyyy hh:mm:ss tt");  // Add the date information
+            ListViewItem x = new ListViewItem(si, 1);
             x.Tag = directory;
             leftListView.Items.Add(x);
           }
@@ -239,11 +243,19 @@ namespace MeshCentralRouter
           }
           if(fileIcon == 1)
           {
-            sortlist.Add(new ListViewItem(fileName, 0)); // Drive
+            string[] si = new string[3];
+            si[0] = fileName;
+            si[1] = "";  // Skipping size of directory because it is very compute consuming
+            si[2] = fileDate != null ? DateTime.TryParse(fileDate, out DateTime parsedDate) ? parsedDate.ToString("dd-MM-yyyy hh:mm:ss tt") : "" : "";
+            sortlist.Add(new ListViewItem(si, 0)); // Drive
           }
           else if(fileIcon == 2)
           {
-            sortlist.Add(new ListViewItem(fileName, 1)); // Folder
+            string[] si = new string[3];
+            si[0] = fileName;
+            si[1] = "";  // Skipping size of directory because it is very compute consuming
+            si[2] = fileDate != null ? DateTime.TryParse(fileDate, out DateTime parsedDate) ? parsedDate.ToString("dd-MM-yyyy hh:mm:ss tt") : "" : "";
+            sortlist.Add(new ListViewItem(si, 1)); // Folder
           }
         }
         sortlist.Sort(new ListViewItemSortClass());
