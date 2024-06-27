@@ -90,10 +90,6 @@ namespace MeshCentralRouter
 
       rightListView.Columns[0].Width = rightListView.Width - rightListView.Columns[1].Width - 150;
 
-      // Add the new Date Modified column
-      rightListView.Columns.Add(new ColumnHeader() { Text = "Date Modified", Width = 150 });
-      leftListView.Columns.Add(new ColumnHeader() { Text = "Date Modified", Width = 150 });
-
       // Load the local path from the registry
       string lp = Settings.GetRegValue("LocalPath", "");
       if((lp != "") && (Directory.Exists(lp))) { localFolder = new DirectoryInfo(lp); }
