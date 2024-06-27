@@ -1062,44 +1062,12 @@ namespace MeshCentralRouter
       }
     }
 
-    bool bRightCWChangedBusy = false;
-    private void rightListView_ColumnWidthChanged(object sender, ColumnWidthChangedEventArgs e)
-    {
-      if(bRightCWChangedBusy) return;
-      bRightCWChangedBusy=true;
-      try
-      {
-        if(rightListView.Columns[0].Width != (rightListView.Width - rightListView.Columns[1].Width - 150))
-        {
-          rightListView.Columns[0].Width = rightListView.Width - rightListView.Columns[1].Width - 150;
-        }
-      }
-      catch { }
-      bRightCWChangedBusy = false;
-    }
-
     private void leftListView_Resize(object sender, EventArgs e)
     {
       if(leftListView.Columns[0].Width != (leftListView.Width - leftListView.Columns[1].Width - 150))
       {
         leftListView.Columns[0].Width = leftListView.Width - leftListView.Columns[1].Width - 150;
       }
-    }
-
-    bool bLeftCWChangedBusy = false;
-    private void leftListView_ColumnWidthChanged(object sender, ColumnWidthChangedEventArgs e)
-    {
-      if(bLeftCWChangedBusy) return;
-      bLeftCWChangedBusy=true;
-      try
-      {
-        if(leftListView.Columns[0].Width != (leftListView.Width - leftListView.Columns[1].Width - 150))
-        {
-          leftListView.Columns[0].Width = leftListView.Width - leftListView.Columns[1].Width - 150;
-        }
-      }
-      catch { }
-      bLeftCWChangedBusy = false;
     }
 
     private void updateTimer_Tick(object sender, EventArgs e)
