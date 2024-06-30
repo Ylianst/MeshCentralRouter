@@ -229,7 +229,7 @@ namespace MeshCentralRouter
             string[] si = new string[3];
             si[0] = directory.Name;
             si[1] = "";  // Skipping size of directory because it is very compute consuming
-            si[2] = directory.LastWriteTime.ToString("MM/dd/yyyy hh:mm:ss tt");  // Add the date information
+            si[2] = directory.LastWriteTime.ToString(System.Globalization.CultureInfo.CurrentCulture);  // Add the date information
             ListViewItem x = new ListViewItem(si, 1);
             x.Tag = directory;
             leftListView.Items.Add(x);
@@ -241,7 +241,7 @@ namespace MeshCentralRouter
             string[] si = new string[3];
             si[0] = file.Name;
             si[1] = "" + file.Length;
-            si[2] = file.LastWriteTime.ToString("MM/dd/yyyy hh:mm:ss tt");  // Add the date information
+            si[2] = file.LastWriteTime.ToString(System.Globalization.CultureInfo.CurrentCulture);  // Add the date information
             ListViewItem x = new ListViewItem(si, 2);
             x.Tag = file;
             leftListView.Items.Add(x);
@@ -339,7 +339,7 @@ namespace MeshCentralRouter
             string[] si = new string[3];
             si[0] = fileName;
             si[1] = ""; // Skipping size of directory because it is very compute consuming
-            si[2] = fileDate != null ? DateTime.TryParse(fileDate, out DateTime parsedDate) ? parsedDate.ToString("MM/dd/yyyy hh:mm:ss tt") : "" : "";
+            si[2] = fileDate != null ? DateTime.TryParse(fileDate, out DateTime parsedDate) ? parsedDate.ToString(System.Globalization.CultureInfo.CurrentCulture) : "" : ""; // Add the date information
             sortlist.Add(new ListViewItem(si, 0)); // Drive
           }
           else if(fileIcon == 2)
@@ -347,7 +347,7 @@ namespace MeshCentralRouter
             string[] si = new string[3];
             si[0] = fileName;
             si[1] = ""; // Skipping size of directory because it is very compute consuming
-            si[2] = fileDate != null ? DateTime.TryParse(fileDate, out DateTime parsedDate) ? parsedDate.ToString("MM/dd/yyyy hh:mm:ss tt") : "" : "";
+            si[2] = fileDate != null ? DateTime.TryParse(fileDate, out DateTime parsedDate) ? parsedDate.ToString(System.Globalization.CultureInfo.CurrentCulture) : "" : ""; // Add the date information
             sortlist.Add(new ListViewItem(si, 1)); // Folder
           }
         }
@@ -377,8 +377,8 @@ namespace MeshCentralRouter
             string[] si = new string[3];
             si[0] = fileName;
             si[1] = "" + fileSize;
-            si[2] = fileDate != null ? DateTime.TryParse(fileDate, out DateTime parsedDate) ? parsedDate.ToString("MM/dd/yyyy hh:mm:ss tt") : "" : ""; // Add the date information
-                        sortlist.Add(new ListViewItem(si, 2)); // File
+            si[2] = fileDate != null ? DateTime.TryParse(fileDate, out DateTime parsedDate) ? parsedDate.ToString(System.Globalization.CultureInfo.CurrentCulture) : "" : ""; // Add the date information
+            sortlist.Add(new ListViewItem(si, 2)); // File
           }
         }
         sortlist.Sort(new ListViewItemSortClass());
