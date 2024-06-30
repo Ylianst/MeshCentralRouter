@@ -43,6 +43,8 @@ namespace MeshCentralRouter
     private static string rndString = getRandomString(12);
     private bool skipExistingFiles = false;
     private FileDialogMsgForm msgForm = null;
+    private bool localSortAscending = true;
+    private bool remoteSortAscending = true;
 
     // Stats
     public long bytesIn = 0;
@@ -93,9 +95,100 @@ namespace MeshCentralRouter
       // Load the local path from the registry
       string lp = Settings.GetRegValue("LocalPath", "");
       if((lp != "") && (Directory.Exists(lp))) { localFolder = new DirectoryInfo(lp); }
+
+      // Add ColumnClick event handlers
+      leftListView.ColumnClick += new ColumnClickEventHandler(LeftListView_ColumnClick);
+      rightListView.ColumnClick += new ColumnClickEventHandler(RightListView_ColumnClick);
     }
 
-    public bool updateLocalFileView()
+    private void LeftListView_ColumnClick(object sender, ColumnClickEventArgs e)
+    {
+        if (localFolder == null) return;
+
+        if (e.Column == 1) // Size column
+        {
+            localSortAscending = !localSortAscending;
+            leftListView.ListViewItemSorter = new ListViewItemComparer(e.Column, localSortAscending, isNumeric: true);
+        }
+        else if (e.Column == 2) // Date column
+        {
+            localSortAscending = !localSortAscending;
+            leftListView.ListViewItemSorter = new ListViewItemComparer(e.Column, localSortAscending, isDate: true);
+        }
+        else // Name column or other columns
+        {
+            localSortAscending = !localSortAscending;
+            leftListView.ListViewItemSorter = new ListViewItemComparer(e.Column, localSortAscending);
+        }
+    }
+
+    private void RightListView_ColumnClick(object sender, ColumnClickEventArgs e)
+    {
+        if (remoteFolderList == null) return;
+
+        if (e.Column == 1) // Size column
+        {
+            remoteSortAscending = !remoteSortAscending;
+            rightListView.ListViewItemSorter = new ListViewItemComparer(e.Column, remoteSortAscending, isNumeric: true);
+        }
+        else if (e.Column == 2) // Date column
+        {
+            remoteSortAscending = !remoteSortAscending;
+            rightListView.ListViewItemSorter = new ListViewItemComparer(e.Column, remoteSortAscending, isDate: true);
+        }
+        else // Name column or other columns
+        {
+            remoteSortAscending = !remoteSortAscending;
+            rightListView.ListViewItemSorter = new ListViewItemComparer(e.Column, remoteSortAscending);
+        }
+    }
+
+    public class ListViewItemComparer : IComparer
+    {
+        private int col;
+        private bool ascending;
+        private bool isNumeric;
+        private bool isDate;
+
+        public ListViewItemComparer(int column, bool ascending, bool isNumeric = false, bool isDate = false)
+        {
+            this.col = column;
+            this.ascending = ascending;
+            this.isNumeric = isNumeric;
+            this.isDate = isDate;
+        }
+
+        public int Compare(object x, object y)
+        {
+            int returnVal = 0;
+            ListViewItem item1 = (ListViewItem)x;
+            ListViewItem item2 = (ListViewItem)y;
+
+            if (isNumeric)
+            {
+                long size1 = long.Parse(item1.SubItems[col].Text == "" ? "0" : item1.SubItems[col].Text);
+                long size2 = long.Parse(item2.SubItems[col].Text == "" ? "0" : item2.SubItems[col].Text);
+                returnVal = size1.CompareTo(size2);
+            }
+            else if (isDate)
+            {
+                DateTime date1 = DateTime.Parse(item1.SubItems[col].Text);
+                DateTime date2 = DateTime.Parse(item2.SubItems[col].Text);
+                returnVal = date1.CompareTo(date2);
+            }
+            else
+            {
+                returnVal = String.Compare(item1.SubItems[col].Text, item2.SubItems[col].Text);
+            }
+
+            if (!ascending) returnVal = -returnVal;
+
+            return returnVal;
+        }
+    }
+
+
+        public bool updateLocalFileView()
     {
       // Save the list of selected items
       List<String> selectedItems = new List<String>();
@@ -136,7 +229,7 @@ namespace MeshCentralRouter
             string[] si = new string[3];
             si[0] = directory.Name;
             si[1] = "";  // Skipping size of directory because it is very compute consuming
-            si[2] = directory.LastWriteTime.ToString("dd-MM-yyyy hh:mm:ss tt");  // Add the date information
+            si[2] = directory.LastWriteTime.ToString("MM/dd/yyyy hh:mm:ss tt");  // Add the date information
             ListViewItem x = new ListViewItem(si, 1);
             x.Tag = directory;
             leftListView.Items.Add(x);
@@ -148,7 +241,7 @@ namespace MeshCentralRouter
             string[] si = new string[3];
             si[0] = file.Name;
             si[1] = "" + file.Length;
-            si[2] = file.LastWriteTime.ToString("dd-MM-yyyy hh:mm:ss tt");  // Add the date information
+            si[2] = file.LastWriteTime.ToString("MM/dd/yyyy hh:mm:ss tt");  // Add the date information
             ListViewItem x = new ListViewItem(si, 2);
             x.Tag = file;
             leftListView.Items.Add(x);
@@ -245,16 +338,16 @@ namespace MeshCentralRouter
           {
             string[] si = new string[3];
             si[0] = fileName;
-            si[1] = "";  // Skipping size of directory because it is very compute consuming
-            si[2] = fileDate != null ? DateTime.TryParse(fileDate, out DateTime parsedDate) ? parsedDate.ToString("dd-MM-yyyy hh:mm:ss tt") : "" : "";
+            si[1] = ""; // Skipping size of directory because it is very compute consuming
+            si[2] = fileDate != null ? DateTime.TryParse(fileDate, out DateTime parsedDate) ? parsedDate.ToString("MM/dd/yyyy hh:mm:ss tt") : "" : "";
             sortlist.Add(new ListViewItem(si, 0)); // Drive
           }
           else if(fileIcon == 2)
           {
             string[] si = new string[3];
             si[0] = fileName;
-            si[1] = "";  // Skipping size of directory because it is very compute consuming
-            si[2] = fileDate != null ? DateTime.TryParse(fileDate, out DateTime parsedDate) ? parsedDate.ToString("dd-MM-yyyy hh:mm:ss tt") : "" : "";
+            si[1] = ""; // Skipping size of directory because it is very compute consuming
+            si[2] = fileDate != null ? DateTime.TryParse(fileDate, out DateTime parsedDate) ? parsedDate.ToString("MM/dd/yyyy hh:mm:ss tt") : "" : "";
             sortlist.Add(new ListViewItem(si, 1)); // Folder
           }
         }
@@ -284,8 +377,8 @@ namespace MeshCentralRouter
             string[] si = new string[3];
             si[0] = fileName;
             si[1] = "" + fileSize;
-            si[2] = fileDate != null ? DateTime.TryParse(fileDate, out DateTime parsedDate) ? parsedDate.ToString("dd-MM-yyyy hh:mm:ss tt") : "" : ""; // Add the date information
-            sortlist.Add(new ListViewItem(si, 2)); // File
+            si[2] = fileDate != null ? DateTime.TryParse(fileDate, out DateTime parsedDate) ? parsedDate.ToString("MM/dd/yyyy hh:mm:ss tt") : "" : ""; // Add the date information
+                        sortlist.Add(new ListViewItem(si, 2)); // File
           }
         }
         sortlist.Sort(new ListViewItemSortClass());
