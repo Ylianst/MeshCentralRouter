@@ -61,6 +61,7 @@ namespace MeshCentralRouter
             this.rightListView = new System.Windows.Forms.ListView();
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.remoteContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.renameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.compressToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -74,6 +75,7 @@ namespace MeshCentralRouter
             this.leftListView = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.localContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.renameToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -81,8 +83,6 @@ namespace MeshCentralRouter
             this.refreshToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.leftTopPanel = new System.Windows.Forms.Panel();
             this.localLabel = new System.Windows.Forms.Label();
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.topPanel.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.mainTableLayoutPanel.SuspendLayout();
@@ -298,7 +298,6 @@ namespace MeshCentralRouter
             this.rightListView.ContextMenuStrip = this.remoteContextMenuStrip;
             resources.ApplyResources(this.rightListView, "rightListView");
             this.rightListView.FullRowSelect = true;
-            this.rightListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.rightListView.HideSelection = false;
             this.rightListView.Name = "rightListView";
             this.rightListView.SmallImageList = this.fileIconImageList;
@@ -318,6 +317,10 @@ namespace MeshCentralRouter
             // columnHeader4
             // 
             resources.ApplyResources(this.columnHeader4, "columnHeader4");
+            // 
+            // columnHeader5
+            // 
+            resources.ApplyResources(this.columnHeader5, "columnHeader5");
             // 
             // remoteContextMenuStrip
             // 
@@ -404,7 +407,6 @@ namespace MeshCentralRouter
             this.leftListView.ContextMenuStrip = this.localContextMenuStrip;
             resources.ApplyResources(this.leftListView, "leftListView");
             this.leftListView.FullRowSelect = true;
-            this.leftListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.leftListView.HideSelection = false;
             this.leftListView.Name = "leftListView";
             this.leftListView.SmallImageList = this.fileIconImageList;
@@ -424,6 +426,10 @@ namespace MeshCentralRouter
             // columnHeader2
             // 
             resources.ApplyResources(this.columnHeader2, "columnHeader2");
+            // 
+            // columnHeader6
+            // 
+            resources.ApplyResources(this.columnHeader6, "columnHeader6");
             // 
             // localContextMenuStrip
             // 
@@ -474,14 +480,6 @@ namespace MeshCentralRouter
             // 
             resources.ApplyResources(this.localLabel, "localLabel");
             this.localLabel.Name = "localLabel";
-            // 
-            // columnHeader5
-            // 
-            resources.ApplyResources(this.columnHeader5, "columnHeader5");
-            // 
-            // columnHeader6
-            // 
-            resources.ApplyResources(this.columnHeader6, "columnHeader6");
             // 
             // FileViewer
             // 
