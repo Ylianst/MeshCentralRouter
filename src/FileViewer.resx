@@ -779,7 +779,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAC+
-        CQAAAk1TRnQBSQFMAgEBAwEAAcgBAAHIAQABEAEAARABAAT/AREBAAj/AUIBTQE2BwABNgMAASgDAAFA
+        CQAAAk1TRnQBSQFMAgEBAwEAAdABAAHQAQABEAEAARABAAT/AREBAAj/AUIBTQE2BwABNgMAASgDAAFA
         AwABEAMAAQEBAAEQBgABCDoAATABcwHKAWYBygFmAbUBexIAARABQgEQAUIBEAFCARABQgEQAUIBEAFC
         ARABQgEQAUIBEAFCARABQgEQAUIBEAFCARABQkYAAcoBZgHKAWYBygFmAcoBZgHKAWYBygFmAcoBZgHK
         AWYBygFmAcoBZgHKAWYBygFmATABcwYAARABQgHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7
@@ -1587,6 +1587,12 @@
   <data name="&gt;&gt;columnHeader4.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;columnHeader5.Name" xml:space="preserve">
+    <value>columnHeader5</value>
+  </data>
+  <data name="&gt;&gt;columnHeader5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;renameToolStripMenuItem.Name" xml:space="preserve">
     <value>renameToolStripMenuItem</value>
   </data>
@@ -1635,6 +1641,12 @@
   <data name="&gt;&gt;columnHeader2.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;columnHeader6.Name" xml:space="preserve">
+    <value>columnHeader6</value>
+  </data>
+  <data name="&gt;&gt;columnHeader6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;renameToolStripMenuItem1.Name" xml:space="preserve">
     <value>renameToolStripMenuItem1</value>
   </data>
@@ -1658,18 +1670,6 @@
   </data>
   <data name="&gt;&gt;refreshToolStripMenuItem1.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;columnHeader5.Name" xml:space="preserve">
-    <value>columnHeader5</value>
-  </data>
-  <data name="&gt;&gt;columnHeader5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;columnHeader6.Name" xml:space="preserve">
-    <value>columnHeader6</value>
-  </data>
-  <data name="&gt;&gt;columnHeader6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>FileViewer</value>
