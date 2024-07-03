@@ -70,7 +70,7 @@ namespace MeshCentralRouter
             this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fileIconImageList = new System.Windows.Forms.ImageList(this.components);
             this.rightTopPanel = new System.Windows.Forms.Panel();
-            this.remoteLabel = new System.Windows.Forms.Label();
+            this.remoteDirectoryPath = new System.Windows.Forms.ToolStrip();
             this.leftPanel = new System.Windows.Forms.Panel();
             this.leftListView = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -82,7 +82,7 @@ namespace MeshCentralRouter
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.refreshToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.leftTopPanel = new System.Windows.Forms.Panel();
-            this.localLabel = new System.Windows.Forms.Label();
+            this.localDirectoryPath = new System.Windows.Forms.ToolStrip();
             this.topPanel.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.mainTableLayoutPanel.SuspendLayout();
@@ -373,20 +373,22 @@ namespace MeshCentralRouter
             // 
             // rightTopPanel
             // 
+            this.rightTopPanel.Controls.Add(this.remoteDirectoryPath);
             this.rightTopPanel.Controls.Add(this.remoteZipButton);
             this.rightTopPanel.Controls.Add(this.remoteDeleteButton);
             this.rightTopPanel.Controls.Add(this.remoteRootButton);
             this.rightTopPanel.Controls.Add(this.remoteNewFolderButton);
             this.rightTopPanel.Controls.Add(this.remoteRefreshButton);
             this.rightTopPanel.Controls.Add(this.remoteUpButton);
-            this.rightTopPanel.Controls.Add(this.remoteLabel);
             resources.ApplyResources(this.rightTopPanel, "rightTopPanel");
             this.rightTopPanel.Name = "rightTopPanel";
             // 
-            // remoteLabel
+            // remoteDirectoryPath
             // 
-            resources.ApplyResources(this.remoteLabel, "remoteLabel");
-            this.remoteLabel.Name = "remoteLabel";
+            resources.ApplyResources(this.remoteDirectoryPath, "remoteDirectoryPath");
+            this.remoteDirectoryPath.GripMargin = new System.Windows.Forms.Padding(0);
+            this.remoteDirectoryPath.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.remoteDirectoryPath.Name = "remoteDirectoryPath";
             // 
             // leftPanel
             // 
@@ -467,19 +469,22 @@ namespace MeshCentralRouter
             // 
             // leftTopPanel
             // 
+            this.leftTopPanel.Controls.Add(this.localDirectoryPath);
             this.leftTopPanel.Controls.Add(this.localDeleteButton);
             this.leftTopPanel.Controls.Add(this.localNewFolderButton);
             this.leftTopPanel.Controls.Add(this.localRootButton);
             this.leftTopPanel.Controls.Add(this.localRefreshButton);
             this.leftTopPanel.Controls.Add(this.localUpButton);
-            this.leftTopPanel.Controls.Add(this.localLabel);
             resources.ApplyResources(this.leftTopPanel, "leftTopPanel");
             this.leftTopPanel.Name = "leftTopPanel";
             // 
-            // localLabel
+            // localDirectoryPath
             // 
-            resources.ApplyResources(this.localLabel, "localLabel");
-            this.localLabel.Name = "localLabel";
+            resources.ApplyResources(this.localDirectoryPath, "localDirectoryPath");
+            this.localDirectoryPath.GripMargin = new System.Windows.Forms.Padding(0);
+            this.localDirectoryPath.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.localDirectoryPath.Name = "localDirectoryPath";
+            this.localDirectoryPath.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStrip1_ItemClicked);
             // 
             // FileViewer
             // 
@@ -528,9 +533,7 @@ namespace MeshCentralRouter
         private Panel leftPanel;
         private ListView leftListView;
         private Panel rightTopPanel;
-        private Label remoteLabel;
         private Panel leftTopPanel;
-        private Label localLabel;
         private ColumnHeader columnHeader3;
         private ColumnHeader columnHeader4;
         private ImageList fileIconImageList;
@@ -562,5 +565,7 @@ namespace MeshCentralRouter
         private Button remoteZipButton;
         private ColumnHeader columnHeader5;
         private ColumnHeader columnHeader6;
+        private ToolStrip remoteDirectoryPath;
+        private ToolStrip localDirectoryPath;
     }
 }
