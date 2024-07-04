@@ -223,7 +223,7 @@
     <value>rightTopPanel</value>
   </data>
   <data name="&gt;&gt;remoteRefreshButton.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="remoteUpButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -253,7 +253,7 @@
     <value>rightTopPanel</value>
   </data>
   <data name="&gt;&gt;remoteUpButton.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="localRefreshButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -280,7 +280,7 @@
     <value>leftTopPanel</value>
   </data>
   <data name="&gt;&gt;localRefreshButton.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="localUpButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -307,7 +307,7 @@
     <value>leftTopPanel</value>
   </data>
   <data name="&gt;&gt;localUpButton.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="remoteNewFolderButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -337,7 +337,7 @@
     <value>rightTopPanel</value>
   </data>
   <data name="&gt;&gt;remoteNewFolderButton.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="remoteRootButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -367,7 +367,7 @@
     <value>rightTopPanel</value>
   </data>
   <data name="&gt;&gt;remoteRootButton.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="localRootButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -397,7 +397,7 @@
     <value>leftTopPanel</value>
   </data>
   <data name="&gt;&gt;localRootButton.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="remoteDeleteButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -427,7 +427,7 @@
     <value>rightTopPanel</value>
   </data>
   <data name="&gt;&gt;remoteDeleteButton.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="downloadButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -514,7 +514,7 @@
     <value>leftTopPanel</value>
   </data>
   <data name="&gt;&gt;localDeleteButton.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="localNewFolderButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -544,7 +544,7 @@
     <value>leftTopPanel</value>
   </data>
   <data name="&gt;&gt;localNewFolderButton.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="remoteZipButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -574,7 +574,7 @@
     <value>rightTopPanel</value>
   </data>
   <data name="&gt;&gt;remoteZipButton.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="topPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -603,15 +603,6 @@
   <metadata name="statusStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>381, 17</value>
   </metadata>
-  <data name="mainToolStripStatusLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>675, 17</value>
-  </data>
-  <data name="mainToolStripStatusLabel.Text" xml:space="preserve">
-    <value>---</value>
-  </data>
-  <data name="mainToolStripStatusLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
   <data name="statusStrip.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 480</value>
   </data>
@@ -635,6 +626,15 @@
   </data>
   <data name="&gt;&gt;statusStrip.ZOrder" xml:space="preserve">
     <value>4</value>
+  </data>
+  <data name="mainToolStripStatusLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>675, 17</value>
+  </data>
+  <data name="mainToolStripStatusLabel.Text" xml:space="preserve">
+    <value>---</value>
+  </data>
+  <data name="mainToolStripStatusLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
   </data>
   <data name="consoleMessage.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
@@ -702,130 +702,6 @@
   <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="columnHeader3.Text" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="columnHeader3.Width" type="System.Int32, mscorlib">
-    <value>143</value>
-  </data>
-  <data name="columnHeader4.Text" xml:space="preserve">
-    <value>Size</value>
-  </data>
-  <data name="columnHeader4.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="columnHeader4.Width" type="System.Int32, mscorlib">
-    <value>80</value>
-  </data>
-  <data name="columnHeader5.Text" xml:space="preserve">
-    <value>Date Modified</value>
-  </data>
-  <data name="columnHeader5.Width" type="System.Int32, mscorlib">
-    <value>150</value>
-  </data>
-  <metadata name="remoteContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>640, 17</value>
-  </metadata>
-  <data name="renameToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>136, 22</value>
-  </data>
-  <data name="renameToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Rename</value>
-  </data>
-  <data name="compressToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>136, 22</value>
-  </data>
-  <data name="compressToolStripMenuItem.Text" xml:space="preserve">
-    <value>Compress...</value>
-  </data>
-  <data name="deleteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>136, 22</value>
-  </data>
-  <data name="deleteToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Delete</value>
-  </data>
-  <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>133, 6</value>
-  </data>
-  <data name="refreshToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>136, 22</value>
-  </data>
-  <data name="refreshToolStripMenuItem.Text" xml:space="preserve">
-    <value>R&amp;efresh</value>
-  </data>
-  <data name="remoteContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>137, 98</value>
-  </data>
-  <data name="&gt;&gt;remoteContextMenuStrip.Name" xml:space="preserve">
-    <value>remoteContextMenuStrip</value>
-  </data>
-  <data name="&gt;&gt;remoteContextMenuStrip.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="rightListView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="rightListView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 50</value>
-  </data>
-  <data name="rightListView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>320, 388</value>
-  </data>
-  <metadata name="fileIconImageList.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>497, 17</value>
-  </metadata>
-  <data name="fileIconImageList.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
-    <value>
-        AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
-        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
-        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAC+
-        CQAAAk1TRnQBSQFMAgEBAwEAAdABAAHQAQABEAEAARABAAT/AREBAAj/AUIBTQE2BwABNgMAASgDAAFA
-        AwABEAMAAQEBAAEQBgABCDoAATABcwHKAWYBygFmAbUBexIAARABQgEQAUIBEAFCARABQgEQAUIBEAFC
-        ARABQgEQAUIBEAFCARABQgEQAUIBEAFCARABQkYAAcoBZgHKAWYBygFmAcoBZgHKAWYBygFmAcoBZgHK
-        AWYBygFmAcoBZgHKAWYBygFmATABcwYAARABQgHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7
-        Ad4BewHeAXsB3gF7ARABQkYAATABcwEwAXMBMAFzATABcwEwAXMBygFmAcoBZgHKAWYBygFmAcoBZgHK
-        AWYBygFmAcoBZgYAARABQgHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7
-        ARABQkYAATABcwEwAXMBMAFzATABcwEwAXMBygFmAcoBZgHKAWYBygFmAcoBZgHKAWYBygFmAcoBZgYA
-        ARABQgHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7ARABQiQAAVsBawFR
-        AUYBUQFGAVEBRgFRAUYBUQFGAVEBRgFRAUYBUQFGAVEBRgFRAUYBUQFGAVEBRgFRAUYBUQFGAVsBawIA
-        ATABcwEwAXMBMAFzATABcwEwAXMBygFmAcoBZgHKAWYBygFmAcoBZgHKAWYBygFmAcoBZgYAAfcBXgHe
-        AXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7AfcBXiQAAVEBRgFRAUYBUQFG
-        AVEBRgFRAUYBUQFGAVEBRgFRAUYBUQFGAVEBRgFRAUYBUQFGAVsBawFRAUYBUQFGAVEBRgIAATABcwG1
-        AXsBMAFzATABcwEwAXMBygFmAcoBZgHKAWYBMAFzAcoBZgHKAWYBtQF7AcoBZgYAAfcBXgHeAXsB3gF7
-        Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7AfcBXiQAAVEBRgFRAUYBWwFrAVsBawFb
-        AWsBWwFrAVsBawFbAWsBWwFrAVsBawFbAWsBUQFGAVEBRgFRAUYBUQFGAVEBRgIAATABcwG1AXsBtQF7
-        ATABcwEwAXMBygFmAcoBZgHKAWYBMAFzATABcwEwAXMBtQF7AcoBZgYAAfcBXgHeAXsB3gF7Ad4BewHe
-        AXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7AfcBXiQAAVEBRgFRAUYBWwFrAVsBawFbAWsBWwFr
-        AVsBawFbAWsBWwFrAVsBawFbAWsBUQFGAVEBRgFRAUYBUQFGAVEBRgIAATABcwG1AXsBtQF7AbUBewEw
-        AXMBygFmAcoBZgHKAWYBMAFzATABcwEwAXMBtQF7AcoBZgYAAfcBXgHeAXsB3gF7Ad4BewHeAXsB3gF7
-        Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7AfcBXiQAAVEBRgFbAWsBWwFrAVsBawFbAWsBWwFrAVsBawFb
-        AWsBWwFrAVsBawFbAWsBUQFGAVEBRgFRAUYBUQFGAVEBRgIAATABcwG1AXsBtQF7AbUBewG1AXsBygFm
-        AcoBZgHKAWYBMAFzATABcwEwAXMBMAFzAcoBZgYAAfcBXgHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHe
-        AXsB3gF7Ad4BewHeAXsB3gF7AfcBXiQAAVEBRgFbAWsBWwFrAf4BewH+AXsB/gF7Af4BewH+AXsB/gF7
-        Af4BewH+AXsB/gF7Af4BewFbAWsBWwFrAVEBRgIAATABcwG1AXsBtQF7AbUBewG1AXsBygFmAcoBZgHK
-        AWYBtQF7ATABcwEwAXMBygFmATABcwYAAfcBXgHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7
-        Ad4BewHeAXsB3gF7AfcBXiQAAVsBawFbAWsBUQFGAVEBRgFRAUYBUQFGAVEBRgFRAUYBUQFGAVEBRgFR
-        AUYBUQFGAVEBRgFRAUYBWwFrAVsBawIAATABcwG1AXsBtQF7AbUBewG1AXsBygFmATABcwEwAXMBtQF7
-        AbUBewG1AXsBygFmCAAB9wFeAd4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHe
-        AXsB9wFeJgABWwFrAVsBawFbAWsBWwFrAf4BewH+AXsB/gF7Af4BewH+AXsB/gF7AVsBawFbAWsBWwFr
-        AVsBawQAATABcwG1AXsBtQF7AbUBewG1AXsBygFmATABcwEwAXMBtQF7AbUBewG1AXsBygFmCAAB9wFe
-        Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB9wFeLAABWwFrAVsBawFb
-        AWsBWwFrAVsBawFbAWsBWwFrAVsBawoAATABcwG1AXsBtQF7AbUBewG1AXsBygFmATABcwEwAXMBtQF7
-        AbUBewG1AXsBygFmCAAB9wFeAd4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB9wFeAfcBXgH3
-        AV4B9wFeRgABMAFzAbUBewG1AXsBtQF7ATABcwHKAWYBMAFzAbUBewG1AXsBtQF7AbUBewHKAWYIAAH3
-        AV4B3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewH3AV4B3gF7AfcBXkgAATABcwG1AXsBMAFz
-        ATABcwG1AXsBMAFzAbUBewG1AXsBtQF7AbUBewG1AXsBMAFzCAAB9wFeAd4BewHeAXsB3gF7Ad4BewHe
-        AXsB3gF7Ad4BewHeAXsB9wFeAfcBXkoAATABcwEwAXMBMAFzATABcwEwAXMBMAFzATABcwEwAXMBMAFz
-        AcoBZgEwAXMBtQF7CAAB9wFeAfcBXgH3AV4B9wFeAfcBXgH3AV4B9wFeAfcBXgH3AV4B9wFeKgABQgFN
-        AT4HAAE+AwABKAMAAUADAAEQAwABAQEAAQEFAAGAFwAD/wEAAv8B8AH/AYABAwIAAv8BgAEDAYABAwIA
-        Av8BgAEDAYABAwIAAv8BgAEDAYABAwQAAYABAwGAAQMEAAGAAQMBgAEDBAABgAEDAYABAwQAAYABAwGA
-        AQMEAAGAAQMBgAEDBAABgAEDAYABAwQAAYABBwGAAQMCAAGAAQEBgAEHAYABAwIAAfABDwGAAQcBgAED
-        AgAC/wGAAQcBgAEHAgAC/wGAAQcBgAEPAgAC/wGAAQcBgAEfAgAL
-</value>
-  </data>
-  <data name="rightListView.TabIndex" type="System.Int32, mscorlib">
-    <value>299</value>
-  </data>
   <data name="&gt;&gt;rightListView.Name" xml:space="preserve">
     <value>rightListView</value>
   </data>
@@ -837,51 +713,6 @@
   </data>
   <data name="&gt;&gt;rightListView.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="remoteLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="remoteLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="remoteLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="remoteLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
-  </data>
-  <data name="remoteLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 13</value>
-  </data>
-  <data name="remoteLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="remoteLabel.Text" xml:space="preserve">
-    <value>Remote</value>
-  </data>
-  <data name="&gt;&gt;remoteLabel.Name" xml:space="preserve">
-    <value>remoteLabel</value>
-  </data>
-  <data name="&gt;&gt;remoteLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;remoteLabel.Parent" xml:space="preserve">
-    <value>rightTopPanel</value>
-  </data>
-  <data name="&gt;&gt;remoteLabel.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="rightTopPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="rightTopPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="rightTopPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>320, 50</value>
-  </data>
-  <data name="rightTopPanel.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
   </data>
   <data name="&gt;&gt;rightTopPanel.Name" xml:space="preserve">
     <value>rightTopPanel</value>
@@ -943,27 +774,6 @@
   <metadata name="localContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>830, 17</value>
   </metadata>
-  <data name="renameToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>117, 22</value>
-  </data>
-  <data name="renameToolStripMenuItem1.Text" xml:space="preserve">
-    <value>&amp;Rename</value>
-  </data>
-  <data name="deleteToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>117, 22</value>
-  </data>
-  <data name="deleteToolStripMenuItem1.Text" xml:space="preserve">
-    <value>&amp;Delete</value>
-  </data>
-  <data name="toolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>114, 6</value>
-  </data>
-  <data name="refreshToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>117, 22</value>
-  </data>
-  <data name="refreshToolStripMenuItem1.Text" xml:space="preserve">
-    <value>R&amp;efresh</value>
-  </data>
   <data name="localContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>118, 76</value>
   </data>
@@ -982,6 +792,58 @@
   <data name="leftListView.Size" type="System.Drawing.Size, System.Drawing">
     <value>320, 388</value>
   </data>
+  <metadata name="fileIconImageList.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>497, 17</value>
+  </metadata>
+  <data name="fileIconImageList.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
+        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
+        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAC+
+        CQAAAk1TRnQBSQFMAgEBAwEAAfABAAHwAQABEAEAARABAAT/AREBAAj/AUIBTQE2BwABNgMAASgDAAFA
+        AwABEAMAAQEBAAEQBgABCDoAATABcwHKAWYBygFmAbUBexIAARABQgEQAUIBEAFCARABQgEQAUIBEAFC
+        ARABQgEQAUIBEAFCARABQgEQAUIBEAFCARABQkYAAcoBZgHKAWYBygFmAcoBZgHKAWYBygFmAcoBZgHK
+        AWYBygFmAcoBZgHKAWYBygFmATABcwYAARABQgHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7
+        Ad4BewHeAXsB3gF7ARABQkYAATABcwEwAXMBMAFzATABcwEwAXMBygFmAcoBZgHKAWYBygFmAcoBZgHK
+        AWYBygFmAcoBZgYAARABQgHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7
+        ARABQkYAATABcwEwAXMBMAFzATABcwEwAXMBygFmAcoBZgHKAWYBygFmAcoBZgHKAWYBygFmAcoBZgYA
+        ARABQgHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7ARABQiQAAVsBawFR
+        AUYBUQFGAVEBRgFRAUYBUQFGAVEBRgFRAUYBUQFGAVEBRgFRAUYBUQFGAVEBRgFRAUYBUQFGAVsBawIA
+        ATABcwEwAXMBMAFzATABcwEwAXMBygFmAcoBZgHKAWYBygFmAcoBZgHKAWYBygFmAcoBZgYAAfcBXgHe
+        AXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7AfcBXiQAAVEBRgFRAUYBUQFG
+        AVEBRgFRAUYBUQFGAVEBRgFRAUYBUQFGAVEBRgFRAUYBUQFGAVsBawFRAUYBUQFGAVEBRgIAATABcwG1
+        AXsBMAFzATABcwEwAXMBygFmAcoBZgHKAWYBMAFzAcoBZgHKAWYBtQF7AcoBZgYAAfcBXgHeAXsB3gF7
+        Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7AfcBXiQAAVEBRgFRAUYBWwFrAVsBawFb
+        AWsBWwFrAVsBawFbAWsBWwFrAVsBawFbAWsBUQFGAVEBRgFRAUYBUQFGAVEBRgIAATABcwG1AXsBtQF7
+        ATABcwEwAXMBygFmAcoBZgHKAWYBMAFzATABcwEwAXMBtQF7AcoBZgYAAfcBXgHeAXsB3gF7Ad4BewHe
+        AXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7AfcBXiQAAVEBRgFRAUYBWwFrAVsBawFbAWsBWwFr
+        AVsBawFbAWsBWwFrAVsBawFbAWsBUQFGAVEBRgFRAUYBUQFGAVEBRgIAATABcwG1AXsBtQF7AbUBewEw
+        AXMBygFmAcoBZgHKAWYBMAFzATABcwEwAXMBtQF7AcoBZgYAAfcBXgHeAXsB3gF7Ad4BewHeAXsB3gF7
+        Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7AfcBXiQAAVEBRgFbAWsBWwFrAVsBawFbAWsBWwFrAVsBawFb
+        AWsBWwFrAVsBawFbAWsBUQFGAVEBRgFRAUYBUQFGAVEBRgIAATABcwG1AXsBtQF7AbUBewG1AXsBygFm
+        AcoBZgHKAWYBMAFzATABcwEwAXMBMAFzAcoBZgYAAfcBXgHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHe
+        AXsB3gF7Ad4BewHeAXsB3gF7AfcBXiQAAVEBRgFbAWsBWwFrAf4BewH+AXsB/gF7Af4BewH+AXsB/gF7
+        Af4BewH+AXsB/gF7Af4BewFbAWsBWwFrAVEBRgIAATABcwG1AXsBtQF7AbUBewG1AXsBygFmAcoBZgHK
+        AWYBtQF7ATABcwEwAXMBygFmATABcwYAAfcBXgHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7
+        Ad4BewHeAXsB3gF7AfcBXiQAAVsBawFbAWsBUQFGAVEBRgFRAUYBUQFGAVEBRgFRAUYBUQFGAVEBRgFR
+        AUYBUQFGAVEBRgFRAUYBWwFrAVsBawIAATABcwG1AXsBtQF7AbUBewG1AXsBygFmATABcwEwAXMBtQF7
+        AbUBewG1AXsBygFmCAAB9wFeAd4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHe
+        AXsB9wFeJgABWwFrAVsBawFbAWsBWwFrAf4BewH+AXsB/gF7Af4BewH+AXsB/gF7AVsBawFbAWsBWwFr
+        AVsBawQAATABcwG1AXsBtQF7AbUBewG1AXsBygFmATABcwEwAXMBtQF7AbUBewG1AXsBygFmCAAB9wFe
+        Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB9wFeLAABWwFrAVsBawFb
+        AWsBWwFrAVsBawFbAWsBWwFrAVsBawoAATABcwG1AXsBtQF7AbUBewG1AXsBygFmATABcwEwAXMBtQF7
+        AbUBewG1AXsBygFmCAAB9wFeAd4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB9wFeAfcBXgH3
+        AV4B9wFeRgABMAFzAbUBewG1AXsBtQF7ATABcwHKAWYBMAFzAbUBewG1AXsBtQF7AbUBewHKAWYIAAH3
+        AV4B3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewH3AV4B3gF7AfcBXkgAATABcwG1AXsBMAFz
+        ATABcwG1AXsBMAFzAbUBewG1AXsBtQF7AbUBewG1AXsBMAFzCAAB9wFeAd4BewHeAXsB3gF7Ad4BewHe
+        AXsB3gF7Ad4BewHeAXsB9wFeAfcBXkoAATABcwEwAXMBMAFzATABcwEwAXMBMAFzATABcwEwAXMBMAFz
+        AcoBZgEwAXMBtQF7CAAB9wFeAfcBXgH3AV4B9wFeAfcBXgH3AV4B9wFeAfcBXgH3AV4B9wFeKgABQgFN
+        AT4HAAE+AwABKAMAAUADAAEQAwABAQEAAQEFAAGAFwAD/wEAAv8B8AH/AYABAwIAAv8BgAEDAYABAwIA
+        Av8BgAEDAYABAwIAAv8BgAEDAYABAwQAAYABAwGAAQMEAAGAAQMBgAEDBAABgAEDAYABAwQAAYABAwGA
+        AQMEAAGAAQMBgAEDBAABgAEDAYABAwQAAYABBwGAAQMCAAGAAQEBgAEHAYABAwIAAfABDwGAAQcBgAED
+        AgAC/wGAAQcBgAEHAgAC/wGAAQcBgAEPAgAC/wGAAQcBgAEfAgAL
+</value>
+  </data>
   <data name="leftListView.TabIndex" type="System.Int32, mscorlib">
     <value>199</value>
   </data>
@@ -997,35 +859,23 @@
   <data name="&gt;&gt;leftListView.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="localLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="localLabel.AutoSize" type="System.Boolean, mscorlib">
+  <metadata name="localDirectoryPath.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 43</value>
+  </metadata>
+  <metadata name="localDirectoryPath.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
+  </metadata>
+  <data name="&gt;&gt;localDirectoryPath.Name" xml:space="preserve">
+    <value>localDirectoryPath</value>
   </data>
-  <data name="localLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
+  <data name="&gt;&gt;localDirectoryPath.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="localLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>33, 13</value>
-  </data>
-  <data name="localLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="localLabel.Text" xml:space="preserve">
-    <value>Local</value>
-  </data>
-  <data name="&gt;&gt;localLabel.Name" xml:space="preserve">
-    <value>localLabel</value>
-  </data>
-  <data name="&gt;&gt;localLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;localLabel.Parent" xml:space="preserve">
+  <data name="&gt;&gt;localDirectoryPath.Parent" xml:space="preserve">
     <value>leftTopPanel</value>
   </data>
-  <data name="&gt;&gt;localLabel.ZOrder" xml:space="preserve">
-    <value>5</value>
+  <data name="&gt;&gt;localDirectoryPath.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="leftTopPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -1104,6 +954,231 @@
   </data>
   <data name="mainTableLayoutPanel.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
     <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="panel1" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="rightPanel" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="leftPanel" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,50,Absolute,30,Percent,50" /&gt;&lt;Rows Styles="Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="columnHeader3.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="columnHeader3.Width" type="System.Int32, mscorlib">
+    <value>143</value>
+  </data>
+  <data name="columnHeader4.Text" xml:space="preserve">
+    <value>Size</value>
+  </data>
+  <data name="columnHeader4.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="columnHeader4.Width" type="System.Int32, mscorlib">
+    <value>80</value>
+  </data>
+  <data name="columnHeader5.Text" xml:space="preserve">
+    <value>Date Modified</value>
+  </data>
+  <data name="columnHeader5.Width" type="System.Int32, mscorlib">
+    <value>150</value>
+  </data>
+  <metadata name="remoteContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>640, 17</value>
+  </metadata>
+  <data name="remoteContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>137, 98</value>
+  </data>
+  <data name="&gt;&gt;remoteContextMenuStrip.Name" xml:space="preserve">
+    <value>remoteContextMenuStrip</value>
+  </data>
+  <data name="&gt;&gt;remoteContextMenuStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="rightListView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="rightListView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 50</value>
+  </data>
+  <data name="rightListView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>320, 388</value>
+  </data>
+  <data name="rightListView.TabIndex" type="System.Int32, mscorlib">
+    <value>299</value>
+  </data>
+  <data name="&gt;&gt;rightListView.Name" xml:space="preserve">
+    <value>rightListView</value>
+  </data>
+  <data name="&gt;&gt;rightListView.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rightListView.Parent" xml:space="preserve">
+    <value>rightPanel</value>
+  </data>
+  <data name="&gt;&gt;rightListView.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="renameToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>136, 22</value>
+  </data>
+  <data name="renameToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Rename</value>
+  </data>
+  <data name="compressToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>136, 22</value>
+  </data>
+  <data name="compressToolStripMenuItem.Text" xml:space="preserve">
+    <value>Compress...</value>
+  </data>
+  <data name="deleteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>136, 22</value>
+  </data>
+  <data name="deleteToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Delete</value>
+  </data>
+  <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>133, 6</value>
+  </data>
+  <data name="refreshToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>136, 22</value>
+  </data>
+  <data name="refreshToolStripMenuItem.Text" xml:space="preserve">
+    <value>R&amp;efresh</value>
+  </data>
+  <metadata name="remoteDirectoryPath.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>122, 43</value>
+  </metadata>
+  <metadata name="remoteDirectoryPath.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="&gt;&gt;remoteDirectoryPath.Name" xml:space="preserve">
+    <value>remoteDirectoryPath</value>
+  </data>
+  <data name="&gt;&gt;remoteDirectoryPath.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;remoteDirectoryPath.Parent" xml:space="preserve">
+    <value>rightTopPanel</value>
+  </data>
+  <data name="&gt;&gt;remoteDirectoryPath.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="rightTopPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="rightTopPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="rightTopPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>320, 50</value>
+  </data>
+  <data name="rightTopPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;rightTopPanel.Name" xml:space="preserve">
+    <value>rightTopPanel</value>
+  </data>
+  <data name="&gt;&gt;rightTopPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rightTopPanel.Parent" xml:space="preserve">
+    <value>rightPanel</value>
+  </data>
+  <data name="&gt;&gt;rightTopPanel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <metadata name="remoteDirectoryPath.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>122, 43</value>
+  </metadata>
+  <metadata name="remoteDirectoryPath.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="remoteDirectoryPath.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 8pt</value>
+  </data>
+  <data name="remoteDirectoryPath.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="remoteDirectoryPath.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>0, 22</value>
+  </data>
+  <data name="remoteDirectoryPath.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 0, 0, 0</value>
+  </data>
+  <data name="remoteDirectoryPath.Size" type="System.Drawing.Size, System.Drawing">
+    <value>320, 22</value>
+  </data>
+  <data name="remoteDirectoryPath.TabIndex" type="System.Int32, mscorlib">
+    <value>206</value>
+  </data>
+  <data name="remoteDirectoryPath.Text" xml:space="preserve">
+    <value>toolStrip1</value>
+  </data>
+  <data name="&gt;&gt;remoteDirectoryPath.Name" xml:space="preserve">
+    <value>remoteDirectoryPath</value>
+  </data>
+  <data name="&gt;&gt;remoteDirectoryPath.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;remoteDirectoryPath.Parent" xml:space="preserve">
+    <value>rightTopPanel</value>
+  </data>
+  <data name="&gt;&gt;remoteDirectoryPath.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="renameToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 22</value>
+  </data>
+  <data name="renameToolStripMenuItem1.Text" xml:space="preserve">
+    <value>&amp;Rename</value>
+  </data>
+  <data name="deleteToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 22</value>
+  </data>
+  <data name="deleteToolStripMenuItem1.Text" xml:space="preserve">
+    <value>&amp;Delete</value>
+  </data>
+  <data name="toolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>114, 6</value>
+  </data>
+  <data name="refreshToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 22</value>
+  </data>
+  <data name="refreshToolStripMenuItem1.Text" xml:space="preserve">
+    <value>R&amp;efresh</value>
+  </data>
+  <metadata name="localDirectoryPath.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 43</value>
+  </metadata>
+  <metadata name="localDirectoryPath.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="localDirectoryPath.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 8pt</value>
+  </data>
+  <data name="localDirectoryPath.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="localDirectoryPath.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>0, 22</value>
+  </data>
+  <data name="localDirectoryPath.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 0, 0, 0</value>
+  </data>
+  <data name="localDirectoryPath.Size" type="System.Drawing.Size, System.Drawing">
+    <value>320, 22</value>
+  </data>
+  <data name="localDirectoryPath.TabIndex" type="System.Int32, mscorlib">
+    <value>105</value>
+  </data>
+  <data name="localDirectoryPath.Text" xml:space="preserve">
+    <value>toolStrip1</value>
+  </data>
+  <data name="&gt;&gt;localDirectoryPath.Name" xml:space="preserve">
+    <value>localDirectoryPath</value>
+  </data>
+  <data name="&gt;&gt;localDirectoryPath.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;localDirectoryPath.Parent" xml:space="preserve">
+    <value>leftTopPanel</value>
+  </data>
+  <data name="&gt;&gt;localDirectoryPath.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

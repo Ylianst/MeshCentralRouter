@@ -24,6 +24,7 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Web.Script.Serialization;
+using System.Linq;
 
 namespace MeshCentralRouter
 {
@@ -99,7 +100,86 @@ namespace MeshCentralRouter
       // Add ColumnClick event handlers
       leftListView.ColumnClick += new ColumnClickEventHandler(LeftListView_ColumnClick);
       rightListView.ColumnClick += new ColumnClickEventHandler(RightListView_ColumnClick);
+
+      // Update the path display for the first time
+      UpdateLocalPathDisplay();
     }
+
+    private void UpdateLocalPathDisplay()
+    {
+        localDirectoryPath.Items.Clear();
+        ToolStripLabel fixedLabel = new ToolStripLabel("Local -");
+        localDirectoryPath.Items.Add(fixedLabel);
+        if (localFolder == null)
+        {
+            return;
+        }
+
+        string[] parts = localFolder.FullName.Split(Path.DirectorySeparatorChar);
+        for (int i = 0; i < parts.Length; i++)
+        {
+            ToolStripButton dirButton = new ToolStripButton(parts[i]);
+            int index = i; // Local copy for the lambda
+            dirButton.Click += (sender, e) => LocalPathButtonClicked(parts.Take(index + 1).ToArray());
+            localDirectoryPath.Items.Add(dirButton);
+
+            if (i < parts.Length - 1)
+            {
+                ToolStripLabel separatorLabel = new ToolStripLabel(" / ");
+                localDirectoryPath.Items.Add(separatorLabel);
+            }
+        }
+    }
+
+    private void UpdateRemotePathDisplay()
+    {
+        remoteDirectoryPath.Items.Clear();
+        ToolStripLabel fixedLabel = new ToolStripLabel("Remote -");
+        remoteDirectoryPath.Items.Add(fixedLabel);
+        if (remoteFolder == null)
+        {
+            return;
+        }
+
+        string[] parts = remoteFolder.Split(new char[] { '/', '\\' }, StringSplitOptions.RemoveEmptyEntries);
+        for (int i = 0; i < parts.Length; i++)
+        {
+            ToolStripButton dirButton = new ToolStripButton(parts[i]);
+            int index = i; // Local copy for the lambda
+            dirButton.Click += (sender, e) => RemotePathButtonClicked(parts.Take(index + 1).ToArray());
+            remoteDirectoryPath.Items.Add(dirButton);
+
+            if (i < parts.Length - 1)
+            {
+                ToolStripLabel separatorLabel = new ToolStripLabel(" / ");
+                remoteDirectoryPath.Items.Add(separatorLabel);
+            }
+        }
+    }
+
+
+    private void LocalPathButtonClicked(string[] parts)
+    {
+        string path = string.Join(Path.DirectorySeparatorChar.ToString(), parts);
+        DirectoryInfo old = localFolder;
+        localFolder = new DirectoryInfo(path);
+        if (updateLocalFileView() == false)
+        {
+            localFolder = old;
+            updateLocalFileView();
+        }
+        Settings.SetRegValue("LocalPath", (localFolder == null) ? "" : localFolder.FullName);
+        UpdateLocalPathDisplay();
+    }
+
+    private void RemotePathButtonClicked(string[] parts)
+    {
+        string path = string.Join(Path.DirectorySeparatorChar.ToString(), parts);
+        string old = remoteFolder;
+        remoteFolder = path;
+        requestRemoteFolder(path); // This will also call UpdateRemotePathDisplay
+    }
+
 
     private void LeftListView_ColumnClick(object sender, ColumnClickEventArgs e)
     {
@@ -211,8 +291,8 @@ namespace MeshCentralRouter
             leftListView.Items.Add(x);
           }
           localUpButton.Enabled = false;
-          localLabel.Text = Translate.T(Properties.Resources.Local);
-          mainToolTip.SetToolTip(localLabel, Translate.T(Properties.Resources.Local));
+          //localLabel.Text = Translate.T(Properties.Resources.Local);
+          //mainToolTip.SetToolTip(localLabel, Translate.T(Properties.Resources.Local));
         }
         catch(Exception) { return false; }
       }
@@ -247,8 +327,8 @@ namespace MeshCentralRouter
             leftListView.Items.Add(x);
           }
           localUpButton.Enabled = true;
-          localLabel.Text = string.Format(Translate.T(Properties.Resources.LocalPlus), localFolder.FullName);
-          mainToolTip.SetToolTip(localLabel, string.Format(Translate.T(Properties.Resources.LocalPlus), localFolder.FullName));
+          //localLabel.Text = string.Format(Translate.T(Properties.Resources.LocalPlus), localFolder.FullName);
+          //mainToolTip.SetToolTip(localLabel, string.Format(Translate.T(Properties.Resources.LocalPlus), localFolder.FullName));
         }
         catch(Exception) { return false; }
       }
@@ -283,20 +363,20 @@ namespace MeshCentralRouter
 
       if((remoteFolder == null) || (remoteFolder == ""))
       {
-        remoteLabel.Text = Translate.T(Properties.Resources.Remote);
-        mainToolTip.SetToolTip(remoteLabel, Translate.T(Properties.Resources.Remote));
+        //remoteLabel.Text = Translate.T(Properties.Resources.Remote);
+        //mainToolTip.SetToolTip(remoteLabel, Translate.T(Properties.Resources.Remote));
       }
       else
       {
         if(node.agentid < 5)
         {
-          remoteLabel.Text = string.Format(Translate.T(Properties.Resources.RemotePlus), remoteFolder.Replace("/", "\\"));
-          mainToolTip.SetToolTip(remoteLabel, string.Format(Translate.T(Properties.Resources.RemotePlus), remoteFolder.Replace("/", "\\")));
+          //remoteLabel.Text = string.Format(Translate.T(Properties.Resources.RemotePlus), remoteFolder.Replace("/", "\\"));
+          //mainToolTip.SetToolTip(remoteLabel, string.Format(Translate.T(Properties.Resources.RemotePlus), remoteFolder.Replace("/", "\\")));
         }
         else
         {
-          remoteLabel.Text = string.Format(Translate.T(Properties.Resources.RemotePlus), remoteFolder);
-          mainToolTip.SetToolTip(remoteLabel, string.Format(Translate.T(Properties.Resources.RemotePlus), remoteFolder));
+          //remoteLabel.Text = string.Format(Translate.T(Properties.Resources.RemotePlus), remoteFolder);
+          //mainToolTip.SetToolTip(remoteLabel, string.Format(Translate.T(Properties.Resources.RemotePlus), remoteFolder));
         }
       }
 
@@ -494,6 +574,8 @@ namespace MeshCentralRouter
       string cmd = "{\"action\":\"ls\",\"reqid\":1,\"path\":\"" + path.Replace("\\", "/") + "\"}";
       byte[] bincmd = UTF8Encoding.UTF8.GetBytes(cmd);
       wc.SendBinary(bincmd, 0, bincmd.Length);
+      remoteFolder = path; // Update remote folder path immediately
+      UpdateRemotePathDisplay();
     }
 
     private void requestCreateFolder(string path)
@@ -1056,6 +1138,7 @@ namespace MeshCentralRouter
           if(updateLocalFileView() == false) { localFolder = old; updateLocalFileView(); }
           Settings.SetRegValue("LocalPath", (localFolder == null) ? "" : localFolder.FullName);
         }
+        UpdateLocalPathDisplay();
       }
     }
 
@@ -1064,6 +1147,7 @@ namespace MeshCentralRouter
       localFolder = localFolder.Parent;
       Settings.SetRegValue("LocalPath", (localFolder == null) ? "" : localFolder.FullName);
       updateLocalFileView();
+      UpdateLocalPathDisplay();
     }
 
     private void rightListView_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -1089,11 +1173,14 @@ namespace MeshCentralRouter
 
     private void remoteUpButton_Click(object sender, EventArgs e)
     {
-      string r = remoteFolder;
-      if(r.EndsWith("/")) { r = r.Substring(0, r.Length - 1); }
-      int i = r.LastIndexOf("/");
-      if(i >= 0) { r = r.Substring(0, i + 1); } else { r = ""; }
-      requestRemoteFolder(r);
+      //string r = remoteFolder;
+      //if(r.EndsWith("/")) { r = r.Substring(0, r.Length - 1); }
+      if (remoteFolder.EndsWith("/")) { remoteFolder = remoteFolder.Substring(0, remoteFolder.Length - 1); }
+      int i = remoteFolder.LastIndexOf("/");
+      //if(i >= 0) { r = r.Substring(0, i + 1); } else { r = ""; }
+      if (i >= 0) { remoteFolder = remoteFolder.Substring(0, i + 1); } else { remoteFolder = ""; }
+      //requestRemoteFolder(r);
+      requestRemoteFolder(remoteFolder); // This will also call UpdateRemotePathDisplay
     }
 
     private void leftRefreshButton_Click(object sender, EventArgs e)
@@ -1139,11 +1226,13 @@ namespace MeshCentralRouter
       localFolder = null;
       Settings.SetRegValue("LocalPath", "");
       updateLocalFileView();
+      UpdateLocalPathDisplay();
     }
 
     private void remoteRootButton_Click(object sender, EventArgs e)
     {
       requestRemoteFolder("");
+      //UpdateRemotePathDisplay();
     }
 
     private void rightListView_SelectedIndexChanged(object sender, EventArgs e)
@@ -2157,9 +2246,14 @@ namespace MeshCentralRouter
         localRefresh();
       }
     }
-  }
 
-  public class Fle
+        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+    }
+
+    public class Fle
   {
     public String Path = "";
     public String Name = "";
