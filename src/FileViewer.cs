@@ -568,17 +568,24 @@ namespace MeshCentralRouter
       updateTransferButtons();
     }
 
-    private void requestRemoteFolder(string path)
-    {
-      // Send LS command
-      string cmd = "{\"action\":\"ls\",\"reqid\":1,\"path\":\"" + path.Replace("\\", "/") + "\"}";
-      byte[] bincmd = UTF8Encoding.UTF8.GetBytes(cmd);
-      wc.SendBinary(bincmd, 0, bincmd.Length);
-      remoteFolder = path; // Update remote folder path immediately
-      UpdateRemotePathDisplay();
-    }
+        private void requestRemoteFolder(string path)
+        {
+            try
+            {
+                remoteFolder = path; // Update remote folder path immediately
+                // Send LS command
+                string cmd = "{\"action\":\"ls\",\"reqid\":1,\"path\":\"" + path.Replace("\\", "/") + "\"}";
+                byte[] bincmd = UTF8Encoding.UTF8.GetBytes(cmd);
+                wc.SendBinary(bincmd, 0, bincmd.Length);
+                UpdateRemotePathDisplay();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred while requesting remote folder: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
-    private void requestCreateFolder(string path)
+        private void requestCreateFolder(string path)
     {
       // Send MKDIR command
       string cmd = "{\"action\":\"mkdir\",\"reqid\":2,\"path\":\"" + path.Replace("\\", "/") + "\"}";
@@ -1584,307 +1591,331 @@ namespace MeshCentralRouter
 
     private void downloadButton_Click(object sender, EventArgs e)
     {
-      downloadButton_ClickFlynn(sender, e);
-      return;
-      // If a transfer is currently active, ignore this.
-      if(uploadActive || downloadActive || (transferStatusForm != null)) return;
+        downloadButton_ClickFlynn(sender, e);
+        return;
+        // If a transfer is currently active, ignore this.
+        if(uploadActive || downloadActive || (transferStatusForm != null)) return;
 
-      // If any files are going to be overwritten
-      int overWriteCount = 0;
-      foreach(ListViewItem l in rightListView.SelectedItems)
-      {
-        if(l.ImageIndex == 2)
+        // If any files are going to be overwritten
+        int overWriteCount = 0;
+        foreach(ListViewItem l in rightListView.SelectedItems)
         {
-          string filename = l.Text;
-
-          foreach(ListViewItem l2 in leftListView.Items)
-          {
-            if(l2.ImageIndex == 2)
+            if(l.ImageIndex == 2)
             {
-              string filename2 = l2.Text;
-              if(node.agentid < 5) { filename = filename.ToLower(); filename2 = filename2.ToLower(); }
-              if(filename.Equals(filename2)) { overWriteCount++; }
+                string filename = l.Text;
+
+                foreach(ListViewItem l2 in leftListView.Items)
+                {
+                    if(l2.ImageIndex == 2)
+                    {
+                        string filename2 = l2.Text;
+                        if(node.agentid < 5) { filename = filename.ToLower(); filename2 = filename2.ToLower(); }
+                        if(filename.Equals(filename2)) { overWriteCount++; }
+                    }
+                }
             }
-          }
         }
-      }
 
-      skipExistingFiles = true;
-      if(overWriteCount > 0)
-      {
-        FileConfirmOverwriteForm f = new FileConfirmOverwriteForm();
-        if(overWriteCount == 1) { f.mainTextLabel = String.Format(Translate.T(Properties.Resources.OverwriteOneFile), overWriteCount); } else { f.mainTextLabel = String.Format(Translate.T(Properties.Resources.OverwriteXfiles), overWriteCount); }
-        if(f.ShowDialog(this) != DialogResult.OK) return;
-        skipExistingFiles = f.skipExistingFiles;
-      }
-
-      // Perform the download
-      downloadFileArrayPtr = 0;
-      downloadFileArray = new ArrayList();
-      downloadFileSizeArray = new ArrayList();
-      foreach(ListViewItem l in rightListView.SelectedItems)
-      {
-        if(l.ImageIndex == 2)
+        skipExistingFiles = true;
+        if(overWriteCount > 0)
         {
-          if(skipExistingFiles == false)
-          {
-            downloadFileArray.Add(l.Text);
-            downloadFileSizeArray.Add(int.Parse(l.SubItems[1].Text));
-          }
-          else
-          {
-            bool overwrite = false;
-            string filename = l.Text;
-            foreach(ListViewItem l2 in leftListView.Items)
-            {
-              if(l2.ImageIndex == 2)
-              {
-                string filename2 = l2.Text;
-                if(node.agentid < 5) { filename = filename.ToLower(); filename2 = filename2.ToLower(); }
-                if(filename.Equals(filename2)) { overwrite = true; }
-              }
-            }
-            if(overwrite == false)
-            {
-              downloadFileArray.Add(l.Text);
-              downloadFileSizeArray.Add(int.Parse(l.SubItems[1].Text));
-            }
-          }
+            FileConfirmOverwriteForm f = new FileConfirmOverwriteForm();
+            if(overWriteCount == 1) { f.mainTextLabel = String.Format(Translate.T(Properties.Resources.OverwriteOneFile), overWriteCount); } else { f.mainTextLabel = String.Format(Translate.T(Properties.Resources.OverwriteXfiles), overWriteCount); }
+            if(f.ShowDialog(this) != DialogResult.OK) return;
+            skipExistingFiles = f.skipExistingFiles;
         }
-      }
-      if(downloadFileArray.Count == 0) return;
-      downloadLocalPath = localFolder;
-      downloadRemotePath = remoteFolder;
-      downloadActive = true;
-      downloadStop = false;
 
-      // Show transfer status dialog
-      transferStatusForm = new FileTransferStatusForm(this);
-      transferStatusForm.Show(this);
+        // Perform the download
+        downloadFileArrayPtr = 0;
+        downloadFileArray = new ArrayList();
+        downloadFileSizeArray = new ArrayList();
+        foreach(ListViewItem l in rightListView.SelectedItems)
+        {
+            if(l.ImageIndex == 2)
+            {
+                if(skipExistingFiles == false)
+                {
+                    downloadFileArray.Add(l.Text);
+                    downloadFileSizeArray.Add(int.Parse(l.SubItems[1].Text));
+                }
+                else
+                {
+                    bool overwrite = false;
+                    string filename = l.Text;
+                    foreach(ListViewItem l2 in leftListView.Items)
+                    {
+                        if(l2.ImageIndex == 2)
+                        {
+                            string filename2 = l2.Text;
+                            if(node.agentid < 5) { filename = filename.ToLower(); filename2 = filename2.ToLower(); }
+                            if(filename.Equals(filename2)) { overwrite = true; }
+                        }
+                    }
+                    if(overwrite == false)
+                    {
+                        downloadFileArray.Add(l.Text);
+                        downloadFileSizeArray.Add(int.Parse(l.SubItems[1].Text));
+                    }
+                }
+            }
+        }
+        if(downloadFileArray.Count == 0) return;
+        downloadLocalPath = localFolder;
+        downloadRemotePath = remoteFolder;
+        downloadActive = true;
+        downloadStop = false;
 
-      downloadNextFile();
+        // Show transfer status dialog
+        transferStatusForm = new FileTransferStatusForm(this);
+        transferStatusForm.Show(this);
+
+        downloadNextFile();
     }
 
     private void downloadButton_ClickFlynn(object sender, EventArgs e)
     {
-      // If a transfer is currently active, ignore this.
-      if(uploadActive || downloadActive || (transferStatusForm != null)) return;
+        // If a transfer is currently active, ignore this.
+        if(uploadActive || downloadActive || (transferStatusForm != null)) return;
 
-      strDownloadRel = remoteFolder;
+        strDownloadRel = remoteFolder;
 
-      // Perform the download
-      downloadFileArrayPtr = 0;
-      downloadFileArray = new ArrayList();
-      downloadFileSizeArray = new ArrayList();
+        // Perform the download
+        downloadFileArrayPtr = 0;
+        downloadFileArray = new ArrayList();
+        downloadFileSizeArray = new ArrayList();
 
-      bDontupdateRemoteFileView = true;
+        bDontupdateRemoteFileView = true;
 
-      foreach(ListViewItem l in rightListView.SelectedItems)
-      {
-        if(l.ImageIndex == 1) // Folder
+        foreach(ListViewItem l in rightListView.SelectedItems)
         {
-          RekursivelyCollectDownloadFiles(strDownloadRel+"/"+l.Text);
-        }
-        else if(l.ImageIndex == 2) // File
-        {
-          if(skipExistingFiles == false)
-          {
-            downloadFileArray.Add(strDownloadRel+"/"+l.Text);
-            downloadFileSizeArray.Add(int.Parse(l.SubItems[1].Text));
-          }
-          else
-          {
-            bool overwrite = false;
-            string filename = l.Text;
-            foreach(ListViewItem l2 in leftListView.Items)
+            if(l.ImageIndex == 1) // Folder
             {
-              if(l2.ImageIndex == 2)
-              {
-                string filename2 = l2.Text;
-                if(node.agentid < 5) { filename = filename.ToLower(); filename2 = filename2.ToLower(); }
-                if(filename.Equals(filename2)) { overwrite = true; }
-              }
+                RekursivelyCollectDownloadFiles(strDownloadRel+"/"+l.Text);
             }
-            if(overwrite == false)
+            else if(l.ImageIndex == 2) // File
             {
-              downloadFileArray.Add(strDownloadRel+"/"+l.Text);
-              downloadFileSizeArray.Add(int.Parse(l.SubItems[1].Text));
+                if(skipExistingFiles == false)
+                {
+                    downloadFileArray.Add(strDownloadRel+"/"+l.Text);
+                    downloadFileSizeArray.Add(int.Parse(l.SubItems[1].Text));
+                }
+                else
+                {
+                    bool overwrite = false;
+                    string filename = l.Text;
+                    foreach(ListViewItem l2 in leftListView.Items)
+                    {
+                        if(l2.ImageIndex == 2)
+                        {
+                            string filename2 = l2.Text;
+                            if(node.agentid < 5) { filename = filename.ToLower(); filename2 = filename2.ToLower(); }
+                            if(filename.Equals(filename2)) { overwrite = true; }
+                        }
+                    }
+                    if(overwrite == false)
+                    {
+                        downloadFileArray.Add(strDownloadRel+"/"+l.Text);
+                        downloadFileSizeArray.Add(int.Parse(l.SubItems[1].Text));
+                    }
+                }
             }
-          }
         }
-      }
-      bDontupdateRemoteFileView = false;
+        bDontupdateRemoteFileView = false;
 
-      #region SKIP existing?
-      downloadLocalPath = localFolder;
-      // If any files are going to be overwritten
-      int overWriteCount = 0;
-      for(int i = 0; i < downloadFileArray.Count; i++)
-      {
-        string localFilePath;
-        String strDownloadFileString = (string)downloadFileArray[downloadFileArrayPtr];
-        if(strDownloadRel.Length > 0)
-        {
-          strDownloadFileString = strDownloadFileString.Substring(strDownloadRel.Length);
-          if(strDownloadFileString.StartsWith("/")) strDownloadFileString = strDownloadFileString.Substring(1);
-        }
-        localFilePath = Path.Combine(downloadLocalPath.FullName, strDownloadFileString.Replace("/", "\\"));
-
-        if(File.Exists(localFilePath) && new System.IO.FileInfo(localFilePath).Length.Equals(downloadFileSizeArray[i])) { overWriteCount++; }
-      }
-
-      skipExistingFiles = true;
-      if(overWriteCount > 0)
-      {
-        FileConfirmOverwriteForm f = new FileConfirmOverwriteForm();
-        if(overWriteCount == 1) { f.mainTextLabel = String.Format(Translate.T(Properties.Resources.OverwriteOneFile), overWriteCount); } else { f.mainTextLabel = String.Format(Translate.T(Properties.Resources.OverwriteXfiles), overWriteCount); }
-        if(f.ShowDialog(this) != DialogResult.OK) return;
-        skipExistingFiles = f.skipExistingFiles;
-      }
-
-      if(skipExistingFiles)
-      {
+        #region SKIP existing?
+        downloadLocalPath = localFolder;
+        // If any files are going to be overwritten
+        int overWriteCount = 0;
         for(int i = 0; i < downloadFileArray.Count; i++)
         {
-          string localFilePath;
-          String strDownloadFileString = (string)downloadFileArray[downloadFileArrayPtr];
-          if(strDownloadRel.Length > 0)
-          {
-            strDownloadFileString = strDownloadFileString.Substring(strDownloadRel.Length);
-            if(strDownloadFileString.StartsWith("/")) strDownloadFileString = strDownloadFileString.Substring(1);
-          }
-          localFilePath = Path.Combine(downloadLocalPath.FullName, strDownloadFileString.Replace("/", "\\"));
+            string localFilePath;
+            String strDownloadFileString = (string)downloadFileArray[downloadFileArrayPtr];
+            if(strDownloadRel.Length > 0)
+            {
+                strDownloadFileString = strDownloadFileString.Substring(strDownloadRel.Length);
+                if(strDownloadFileString.StartsWith("/")) strDownloadFileString = strDownloadFileString.Substring(1);
+            }
+            localFilePath = Path.Combine(downloadLocalPath.FullName, strDownloadFileString.Replace("/", "\\"));
 
-          if(File.Exists(localFilePath) && new System.IO.FileInfo(localFilePath).Length.Equals(downloadFileSizeArray[i]))
-          {
-            downloadFileArray.RemoveAt(i);
-            downloadFileSizeArray.RemoveAt(i);
-            i--;
-          }
+            if(File.Exists(localFilePath) && new System.IO.FileInfo(localFilePath).Length.Equals(downloadFileSizeArray[i])) { overWriteCount++; }
         }
-      }
 
+        skipExistingFiles = true;
+        if(overWriteCount > 0)
+        {
+            FileConfirmOverwriteForm f = new FileConfirmOverwriteForm();
+            if(overWriteCount == 1) { f.mainTextLabel = String.Format(Translate.T(Properties.Resources.OverwriteOneFile), overWriteCount); } else { f.mainTextLabel = String.Format(Translate.T(Properties.Resources.OverwriteXfiles), overWriteCount); }
+            if(f.ShowDialog(this) != DialogResult.OK) return;
+            skipExistingFiles = f.skipExistingFiles;
+        }
 
+        if(skipExistingFiles)
+        {
+            for(int i = 0; i < downloadFileArray.Count; i++)
+            {
+                string localFilePath;
+                String strDownloadFileString = (string)downloadFileArray[downloadFileArrayPtr];
+                if(strDownloadRel.Length > 0)
+                {
+                    strDownloadFileString = strDownloadFileString.Substring(strDownloadRel.Length);
+                    if(strDownloadFileString.StartsWith("/")) strDownloadFileString = strDownloadFileString.Substring(1);
+                }
+                localFilePath = Path.Combine(downloadLocalPath.FullName, strDownloadFileString.Replace("/", "\\"));
 
+                if(File.Exists(localFilePath) && new System.IO.FileInfo(localFilePath).Length.Equals(downloadFileSizeArray[i]))
+                {
+                    downloadFileArray.RemoveAt(i);
+                    downloadFileSizeArray.RemoveAt(i);
+                    i--;
+                }
+            }
+        }
 
+        #endregion
 
-      #endregion
+        if(downloadFileArray.Count == 0) return;
+        downloadLocalPath = localFolder;
+        downloadRemotePath = remoteFolder;
+        downloadActive = true;
+        downloadStop = false;
 
+        // Show transfer status dialog
+        transferStatusForm = new FileTransferStatusForm(this);
+        transferStatusForm.Show(this);
 
-
-      if(downloadFileArray.Count == 0) return;
-      downloadLocalPath = localFolder;
-      downloadRemotePath = remoteFolder;
-      downloadActive = true;
-      downloadStop = false;
-
-      // Show transfer status dialog
-      transferStatusForm = new FileTransferStatusForm(this);
-      transferStatusForm.Show(this);
-
-      downloadNextFile();
+        downloadNextFile();
     }
 
     private void RekursivelyCollectDownloadFiles(String strFolder)
     {
-      requestRemoteFolder(strFolder);
-      DateTime to = DateTime.Now.AddSeconds(5);
-      while(DateTime.Now < to && remoteFolder != strFolder)
-        Application.DoEvents();
-      List<Fle> FileList = new List<Fle>();
-      for(int i = 0; i < remoteFolderList.Count; i++)
-      {
-        Dictionary<string, object> fileItem = (Dictionary<string, object>)remoteFolderList[i];
-        Fle file = new Fle();
-        file.Size = -1;
-        file.Path = strFolder.Replace("//", "/");
-        if(fileItem.ContainsKey("t")) { file.Icon = (int)fileItem["t"]; }
-        if(fileItem.ContainsKey("n")) { file.Name = (string)fileItem["n"]; }
-        if(fileItem.ContainsKey("d")) { file.Date = (string)fileItem["d"]; }
-        if(fileItem.ContainsKey("s"))
+        try
         {
-          if(fileItem["s"].GetType() == typeof(System.Int32)) { file.Size = (int)fileItem["s"]; }
-          if(fileItem["s"].GetType() == typeof(System.Int64)) { file.Size = (long)fileItem["s"]; }
-        }
-        FileList.Add(file); // Folder
-      }
+            // Normalize the folder path
+            string normalizedFolder = strFolder.Replace("//", "/");
 
-      for(int i = 0; i < FileList.Count; i++)
-      {
-        Fle file = FileList[i];
-        if(file.Icon == 2) // Folder
-        {
-          RekursivelyCollectDownloadFiles(file.Path+"/"+file.Name);
+            // Check for recursive loop before requesting remote folder
+            if (remoteFolder != null && normalizedFolder.StartsWith(remoteFolder))
+            {
+                MessageBox.Show("Potential recursive loop detected in folder: " + normalizedFolder, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Request the remote folder
+            requestRemoteFolder(normalizedFolder);
+            DateTime to = DateTime.Now.AddSeconds(5);
+            while(DateTime.Now < to && (remoteFolderList == null || remoteFolder != normalizedFolder))
+                Application.DoEvents();
+
+            if (remoteFolderList == null)
+            {
+                MessageBox.Show("Failed to retrieve the folder list for: " + normalizedFolder, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Collect files and folders from the current folder
+            List<Fle> FileList = new List<Fle>();
+            for(int i = 0; i < remoteFolderList.Count; i++)
+            {
+                Dictionary<string, object> fileItem = (Dictionary<string, object>)remoteFolderList[i];
+                Fle file = new Fle();
+                file.Size = -1;
+                file.Path = normalizedFolder;
+                if(fileItem.ContainsKey("t")) { file.Icon = (int)fileItem["t"]; }
+                if(fileItem.ContainsKey("n")) { file.Name = (string)fileItem["n"]; }
+                if(fileItem.ContainsKey("d")) { file.Date = (string)fileItem["d"]; }
+                if(fileItem.ContainsKey("s"))
+                {
+                        if(fileItem["s"].GetType() == typeof(System.Int32)) { file.Size = (int)fileItem["s"]; }
+                        if(fileItem["s"].GetType() == typeof(System.Int64)) { file.Size = (long)fileItem["s"]; }
+                }
+                            FileList.Add(file); //Folder
+            }
+
+            foreach (var file in FileList)
+            {
+                if (file.Icon == 2) // Folder
+                {
+                    string subFolder = file.Path + "/" + file.Name;
+                    // Recursively collect files from the subfolder
+                    RekursivelyCollectDownloadFiles(subFolder);
+                }
+                else if(file.Icon == 3) // File
+                {
+                    downloadFileArray.Add(file.Path+"/"+file.Name);
+                    downloadFileSizeArray.Add(file.Size);
+                }
+            }
         }
-        else if(file.Icon == 3) // File
+        catch (Exception ex)
         {
-          if(true) // Abfrage Skip
-          {
-            downloadFileArray.Add(file.Path+"/"+file.Name);
-            downloadFileSizeArray.Add(file.Size);
-          }
+            MessageBox.Show("An error occurred while collecting files: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
-      }
     }
 
     String strDownloadRel = "";
     private void downloadNextFile()
     {
-      if((downloadFileArray == null) || (downloadFileArray.Count == 0)) return;
-
-      string localFilePath;
-      String strDownloadFileString = (string)downloadFileArray[downloadFileArrayPtr];
-      if(strDownloadRel.Length > 0)
-      {
-        strDownloadFileString = strDownloadFileString.Substring(strDownloadRel.Length);
-        if(strDownloadFileString.StartsWith("/")) strDownloadFileString = strDownloadFileString.Substring(1);
-      }
-      localFilePath = Path.Combine(downloadLocalPath.FullName, strDownloadFileString.Replace("/", "\\"));
-      if(!Directory.Exists(Path.GetDirectoryName(localFilePath))) Directory.CreateDirectory(Path.GetDirectoryName(localFilePath));
-      try { downloadFileStream = File.OpenWrite(localFilePath); }
-      catch(Exception)
-      {
-        // Download error, show it in the dialog
-        FileInfo f = new FileInfo(localFilePath);
-        if(transferStatusForm != null) { transferStatusForm.addErrorMessage(String.Format(Translate.T(Properties.Resources.UnableToWriteFileX), f.Name)); }
-
-        // Unable to download the file, skip it.
-        if(downloadFileArray.Count > downloadFileArrayPtr + 1)
+        try
         {
-          // Download the next file
-          downloadFileArrayPtr++;
-          downloadNextFile();
+            if((downloadFileArray == null) || (downloadFileArray.Count == 0)) return;
+
+            string localFilePath;
+            String strDownloadFileString = (string)downloadFileArray[downloadFileArrayPtr];
+            if(strDownloadRel.Length > 0)
+            {
+                strDownloadFileString = strDownloadFileString.Substring(strDownloadRel.Length);
+                if(strDownloadFileString.StartsWith("/")) strDownloadFileString = strDownloadFileString.Substring(1);
+            }
+            localFilePath = Path.Combine(downloadLocalPath.FullName, strDownloadFileString.Replace("/", "\\"));
+            if(!Directory.Exists(Path.GetDirectoryName(localFilePath))) Directory.CreateDirectory(Path.GetDirectoryName(localFilePath));
+            try { downloadFileStream = File.OpenWrite(localFilePath); }
+            catch(Exception)
+            {
+                // Download error, show it in the dialog
+                FileInfo f = new FileInfo(localFilePath);
+                if(transferStatusForm != null) { transferStatusForm.addErrorMessage(String.Format(Translate.T(Properties.Resources.UnableToWriteFileX), f.Name)); }
+
+                // Unable to download the file, skip it.
+                if(downloadFileArray.Count > downloadFileArrayPtr + 1)
+                {
+                    // Download the next file
+                    downloadFileArrayPtr++;
+                    downloadNextFile();
+                }
+                else
+                {
+                    // Done with all files
+                    downloadActive = false;
+                    downloadStop = false;
+                    downloadFileArrayPtr = -1;
+                    downloadFileArray = null;
+                    downloadLocalPath = null;
+                    downloadRemotePath = null;
+                    closeTransferDialog();
+                    localRefresh();
+                }
+                return;
+            }
+
+            if(downloadFileSizeArray[downloadFileArrayPtr].GetType() == typeof(System.Int32)) { downloadFileSize = (int)downloadFileSizeArray[downloadFileArrayPtr]; }
+            if(downloadFileSizeArray[downloadFileArrayPtr].GetType() == typeof(System.Int64)) { downloadFileSize = (long)downloadFileSizeArray[downloadFileArrayPtr]; }
+
+            downloadFilePtr = 0;
+            downloadFileStartTime = DateTime.Now;
+
+            string r;
+            if(downloadRemotePath.EndsWith("/")) { r = downloadRemotePath + Path.GetFileName((String)downloadFileArray[downloadFileArrayPtr]); } else { r = downloadRemotePath + "/" + Path.GetFileName((String)downloadFileArray[downloadFileArrayPtr]); }
+            r=(String)downloadFileArray[downloadFileArrayPtr];
+            // Send DOWNLOAD command
+            string cmd = "{\"action\":\"download\",\"sub\":\"start\",\"id\":" + (downloadFileArrayPtr + 1000) + ",\"path\":\"" + r + "\"}";
+            byte[] bincmd = UTF8Encoding.UTF8.GetBytes(cmd);
+            wc.SendBinary(bincmd, 0, bincmd.Length);
         }
-        else
+        catch (Exception ex)
         {
-          // Done with all files
-          downloadActive = false;
-          downloadStop = false;
-          downloadFileArrayPtr = -1;
-          downloadFileArray = null;
-          downloadLocalPath = null;
-          downloadRemotePath = null;
-          closeTransferDialog();
-          localRefresh();
+            MessageBox.Show("An error occurred while starting the download: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
-        return;
-      }
-
-      if(downloadFileSizeArray[downloadFileArrayPtr].GetType() == typeof(System.Int32)) { downloadFileSize = (int)downloadFileSizeArray[downloadFileArrayPtr]; }
-      if(downloadFileSizeArray[downloadFileArrayPtr].GetType() == typeof(System.Int64)) { downloadFileSize = (long)downloadFileSizeArray[downloadFileArrayPtr]; }
-
-      downloadFilePtr = 0;
-      downloadFileStartTime = DateTime.Now;
-
-      string r;
-      if(downloadRemotePath.EndsWith("/")) { r = downloadRemotePath + Path.GetFileName((String)downloadFileArray[downloadFileArrayPtr]); } else { r = downloadRemotePath + "/" + Path.GetFileName((String)downloadFileArray[downloadFileArrayPtr]); }
-      r=(String)downloadFileArray[downloadFileArrayPtr];
-      // Send DOWNLOAD command
-      string cmd = "{\"action\":\"download\",\"sub\":\"start\",\"id\":" + (downloadFileArrayPtr + 1000) + ",\"path\":\"" + r + "\"}";
-      byte[] bincmd = UTF8Encoding.UTF8.GetBytes(cmd);
-      wc.SendBinary(bincmd, 0, bincmd.Length);
     }
-
     private void downloadGotBinaryData(byte[] data, int offset, int length)
     {
       if((length < 4) || (downloadFileStream == null)) return;
