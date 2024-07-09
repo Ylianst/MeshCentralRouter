@@ -133,6 +133,7 @@ namespace MeshCentralRouter
 
     private void UpdateRemotePathDisplay()
     {
+        if (bDontupdateRemoteFileView) return;
         remoteDirectoryPath.Items.Clear();
         ToolStripLabel fixedLabel = new ToolStripLabel("Remote -");
         remoteDirectoryPath.Items.Add(fixedLabel);
@@ -574,8 +575,6 @@ namespace MeshCentralRouter
       string cmd = "{\"action\":\"ls\",\"reqid\":1,\"path\":\"" + path.Replace("\\", "/") + "\"}";
       byte[] bincmd = UTF8Encoding.UTF8.GetBytes(cmd);
       wc.SendBinary(bincmd, 0, bincmd.Length);
-      remoteFolder = path; // Update remote folder path immediately
-      UpdateRemotePathDisplay();
     }
 
     private void requestCreateFolder(string path)
@@ -917,6 +916,7 @@ namespace MeshCentralRouter
           if(jsonAction.ContainsKey("path")) { remoteFolder = (string)jsonAction["path"]; }
           if(jsonAction.ContainsKey("dir")) { remoteFolderList = (ArrayList)jsonAction["dir"]; }
           updateRemoteFileView();
+          UpdateRemotePathDisplay();
         }
       }
       else
@@ -1577,100 +1577,18 @@ namespace MeshCentralRouter
         transferStatusForm.transferCompleted();
       }
 
-      if (downloadActive)
-        remoteFolder = strDownloadRel; // Zurücksetzen
+      remoteFolder = strDownloadRel;
       remoteRefresh();
     }
 
     private void downloadButton_Click(object sender, EventArgs e)
     {
-      downloadButton_ClickFlynn(sender, e);
-      return;
-      // If a transfer is currently active, ignore this.
-      if(uploadActive || downloadActive || (transferStatusForm != null)) return;
-
-      // If any files are going to be overwritten
-      int overWriteCount = 0;
-      foreach(ListViewItem l in rightListView.SelectedItems)
-      {
-        if(l.ImageIndex == 2)
-        {
-          string filename = l.Text;
-
-          foreach(ListViewItem l2 in leftListView.Items)
-          {
-            if(l2.ImageIndex == 2)
-            {
-              string filename2 = l2.Text;
-              if(node.agentid < 5) { filename = filename.ToLower(); filename2 = filename2.ToLower(); }
-              if(filename.Equals(filename2)) { overWriteCount++; }
-            }
-          }
-        }
-      }
-
-      skipExistingFiles = true;
-      if(overWriteCount > 0)
-      {
-        FileConfirmOverwriteForm f = new FileConfirmOverwriteForm();
-        if(overWriteCount == 1) { f.mainTextLabel = String.Format(Translate.T(Properties.Resources.OverwriteOneFile), overWriteCount); } else { f.mainTextLabel = String.Format(Translate.T(Properties.Resources.OverwriteXfiles), overWriteCount); }
-        if(f.ShowDialog(this) != DialogResult.OK) return;
-        skipExistingFiles = f.skipExistingFiles;
-      }
-
-      // Perform the download
-      downloadFileArrayPtr = 0;
-      downloadFileArray = new ArrayList();
-      downloadFileSizeArray = new ArrayList();
-      foreach(ListViewItem l in rightListView.SelectedItems)
-      {
-        if(l.ImageIndex == 2)
-        {
-          if(skipExistingFiles == false)
-          {
-            downloadFileArray.Add(l.Text);
-            downloadFileSizeArray.Add(int.Parse(l.SubItems[1].Text));
-          }
-          else
-          {
-            bool overwrite = false;
-            string filename = l.Text;
-            foreach(ListViewItem l2 in leftListView.Items)
-            {
-              if(l2.ImageIndex == 2)
-              {
-                string filename2 = l2.Text;
-                if(node.agentid < 5) { filename = filename.ToLower(); filename2 = filename2.ToLower(); }
-                if(filename.Equals(filename2)) { overwrite = true; }
-              }
-            }
-            if(overwrite == false)
-            {
-              downloadFileArray.Add(l.Text);
-              downloadFileSizeArray.Add(int.Parse(l.SubItems[1].Text));
-            }
-          }
-        }
-      }
-      if(downloadFileArray.Count == 0) return;
-      downloadLocalPath = localFolder;
-      downloadRemotePath = remoteFolder;
-      downloadActive = true;
-      downloadStop = false;
-
-      // Show transfer status dialog
-      transferStatusForm = new FileTransferStatusForm(this);
-      transferStatusForm.Show(this);
-
-      downloadNextFile();
-    }
-
-    private void downloadButton_ClickFlynn(object sender, EventArgs e)
-    {
       // If a transfer is currently active, ignore this.
       if(uploadActive || downloadActive || (transferStatusForm != null)) return;
 
       strDownloadRel = remoteFolder;
+
+      skipExistingFiles = false;
 
       // Perform the download
       downloadFileArrayPtr = 0;
@@ -1687,30 +1605,8 @@ namespace MeshCentralRouter
         }
         else if(l.ImageIndex == 2) // File
         {
-          if(skipExistingFiles == false)
-          {
             downloadFileArray.Add(strDownloadRel+"/"+l.Text);
-            downloadFileSizeArray.Add(int.Parse(l.SubItems[1].Text));
-          }
-          else
-          {
-            bool overwrite = false;
-            string filename = l.Text;
-            foreach(ListViewItem l2 in leftListView.Items)
-            {
-              if(l2.ImageIndex == 2)
-              {
-                string filename2 = l2.Text;
-                if(node.agentid < 5) { filename = filename.ToLower(); filename2 = filename2.ToLower(); }
-                if(filename.Equals(filename2)) { overwrite = true; }
-              }
-            }
-            if(overwrite == false)
-            {
-              downloadFileArray.Add(strDownloadRel+"/"+l.Text);
-              downloadFileSizeArray.Add(int.Parse(l.SubItems[1].Text));
-            }
-          }
+            downloadFileSizeArray.Add(int.Parse(l.SubItems[1].Text));          
         }
       }
       bDontupdateRemoteFileView = false;
@@ -1722,7 +1618,7 @@ namespace MeshCentralRouter
       for(int i = 0; i < downloadFileArray.Count; i++)
       {
         string localFilePath;
-        String strDownloadFileString = (string)downloadFileArray[downloadFileArrayPtr];
+        String strDownloadFileString = (string)downloadFileArray[i];
         if(strDownloadRel.Length > 0)
         {
           strDownloadFileString = strDownloadFileString.Substring(strDownloadRel.Length);
@@ -1730,15 +1626,18 @@ namespace MeshCentralRouter
         }
         localFilePath = Path.Combine(downloadLocalPath.FullName, strDownloadFileString.Replace("/", "\\"));
 
-        if(File.Exists(localFilePath) && new System.IO.FileInfo(localFilePath).Length.Equals(downloadFileSizeArray[i])) { overWriteCount++; }
+        if(File.Exists(localFilePath) && (new System.IO.FileInfo(localFilePath).Length == Convert.ToInt64(downloadFileSizeArray[i]))) { overWriteCount++; }
       }
 
-      skipExistingFiles = true;
       if(overWriteCount > 0)
       {
         FileConfirmOverwriteForm f = new FileConfirmOverwriteForm();
         if(overWriteCount == 1) { f.mainTextLabel = String.Format(Translate.T(Properties.Resources.OverwriteOneFile), overWriteCount); } else { f.mainTextLabel = String.Format(Translate.T(Properties.Resources.OverwriteXfiles), overWriteCount); }
-        if(f.ShowDialog(this) != DialogResult.OK) return;
+        if (f.ShowDialog(this) != DialogResult.OK)
+        {
+          remoteFolder = strDownloadRel;
+          return;
+        }
         skipExistingFiles = f.skipExistingFiles;
       }
 
@@ -1747,7 +1646,7 @@ namespace MeshCentralRouter
         for(int i = 0; i < downloadFileArray.Count; i++)
         {
           string localFilePath;
-          String strDownloadFileString = (string)downloadFileArray[downloadFileArrayPtr];
+          String strDownloadFileString = (string)downloadFileArray[i];
           if(strDownloadRel.Length > 0)
           {
             strDownloadFileString = strDownloadFileString.Substring(strDownloadRel.Length);
@@ -1755,7 +1654,7 @@ namespace MeshCentralRouter
           }
           localFilePath = Path.Combine(downloadLocalPath.FullName, strDownloadFileString.Replace("/", "\\"));
 
-          if(File.Exists(localFilePath) && new System.IO.FileInfo(localFilePath).Length.Equals(downloadFileSizeArray[i]))
+          if(File.Exists(localFilePath) && (new System.IO.FileInfo(localFilePath).Length == Convert.ToInt64(downloadFileSizeArray[i])))
           {
             downloadFileArray.RemoveAt(i);
             downloadFileSizeArray.RemoveAt(i);
