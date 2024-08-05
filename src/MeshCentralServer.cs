@@ -67,6 +67,7 @@ namespace MeshCentralRouter
         private JavaScriptSerializer JSON = new JavaScriptSerializer();
         public int features = 0; // Bit flags of server features
         public int features2 = 0; // Bit flags of server features
+        public Dictionary<string, object> serverinfo = null;
 
         public int connectionState { get { return constate; } }
 
@@ -257,7 +258,7 @@ namespace MeshCentralRouter
                     case "serverinfo":
                         {
                             // Get the bit flags of server features
-                            Dictionary<string, object> serverinfo = (Dictionary<string, object>)jsonAction["serverinfo"];
+                            serverinfo = (Dictionary<string, object>)jsonAction["serverinfo"];
                             if (serverinfo.ContainsKey("features") && (serverinfo["features"].GetType() == typeof(int))) { features = (int)serverinfo["features"]; }
                             if (serverinfo.ContainsKey("features2") && (serverinfo["features2"].GetType() == typeof(int))) { features2 = (int)serverinfo["features2"]; }
 
