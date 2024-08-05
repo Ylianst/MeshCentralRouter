@@ -70,6 +70,7 @@ namespace MeshCentralRouter
             this.mainToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.resizeKvmControl = new MeshCentralRouter.KVMResizeControl();
             this.displaySelectorImageList = new System.Windows.Forms.ImageList(this.components);
+            this.chatButton = new System.Windows.Forms.Button();
             this.mainStatusStrip.SuspendLayout();
             this.topPanel.SuspendLayout();
             this.consentContextMenuStrip.SuspendLayout();
@@ -105,6 +106,7 @@ namespace MeshCentralRouter
             // topPanel
             // 
             this.topPanel.BackColor = System.Drawing.SystemColors.Control;
+            this.topPanel.Controls.Add(this.chatButton);
             this.topPanel.Controls.Add(this.openRemoteFilesButton);
             this.topPanel.Controls.Add(this.extraButtonsPanel);
             this.topPanel.Controls.Add(this.splitButton);
@@ -260,6 +262,15 @@ namespace MeshCentralRouter
             this.displaySelectorImageList.Images.SetKeyName(2, "icon-monitor2.png");
             this.displaySelectorImageList.Images.SetKeyName(3, "icon-monitor2b.png");
             // 
+            // chatButton
+            // 
+            this.chatButton.ContextMenuStrip = this.consentContextMenuStrip;
+            resources.ApplyResources(this.chatButton, "chatButton");
+            this.chatButton.Name = "chatButton";
+            this.chatButton.TabStop = false;
+            this.chatButton.UseVisualStyleBackColor = true;
+            this.chatButton.Click += new System.EventHandler(this.chatButton_Click);
+            // 
             // KVMViewer
             // 
             resources.ApplyResources(this, "$this");
@@ -309,6 +320,7 @@ namespace MeshCentralRouter
         private Panel extraButtonsPanel;
         private ImageList displaySelectorImageList;
         private Button openRemoteFilesButton;
+        private Button chatButton;
     }
 }
 

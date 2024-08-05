@@ -121,31 +121,13 @@
     <value>17, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="mainToolStripStatusLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1029, 17</value>
-  </data>
-  <data name="mainToolStripStatusLabel.Text" xml:space="preserve">
-    <value>---</value>
-  </data>
-  <data name="mainToolStripStatusLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="toolStripStatusLabel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>13, 17</value>
-  </data>
-  <data name="toolStripStatusLabel1.Text" xml:space="preserve">
-    <value>v</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="toolStripStatusLabel1.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="mainStatusStrip.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 727</value>
   </data>
   <data name="mainStatusStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>1044, 22</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="mainStatusStrip.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
   </data>
@@ -164,16 +146,73 @@
   <data name="&gt;&gt;mainStatusStrip.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="mainToolStripStatusLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1029, 17</value>
+  </data>
+  <data name="mainToolStripStatusLabel.Text" xml:space="preserve">
+    <value>---</value>
+  </data>
+  <data name="mainToolStripStatusLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="toolStripStatusLabel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>13, 17</value>
+  </data>
+  <data name="toolStripStatusLabel1.Text" xml:space="preserve">
+    <value>v</value>
+  </data>
+  <data name="toolStripStatusLabel1.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <metadata name="updateTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>154, 17</value>
   </metadata>
+  <metadata name="consentContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>518, 17</value>
+  </metadata>
+  <data name="consentContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>172, 70</value>
+  </data>
+  <data name="&gt;&gt;consentContextMenuStrip.Name" xml:space="preserve">
+    <value>consentContextMenuStrip</value>
+  </data>
+  <data name="&gt;&gt;consentContextMenuStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="chatButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chatButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>380, 3</value>
+  </data>
+  <data name="chatButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 26</value>
+  </data>
+  <data name="chatButton.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="chatButton.Text" xml:space="preserve">
+    <value>Chat</value>
+  </data>
+  <data name="&gt;&gt;chatButton.Name" xml:space="preserve">
+    <value>chatButton</value>
+  </data>
+  <data name="&gt;&gt;chatButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chatButton.Parent" xml:space="preserve">
+    <value>topPanel</value>
+  </data>
+  <data name="&gt;&gt;chatButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="openRemoteFilesButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="openRemoteFilesButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>192, 3</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="openRemoteFilesButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
   </data>
@@ -196,19 +235,19 @@
     <value>topPanel</value>
   </data>
   <data name="&gt;&gt;openRemoteFilesButton.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="extraButtonsPanel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
   <data name="extraButtonsPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>380, 2</value>
+    <value>474, 2</value>
   </data>
   <data name="extraButtonsPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
   </data>
   <data name="extraButtonsPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>401, 27</value>
+    <value>307, 27</value>
   </data>
   <data name="extraButtonsPanel.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -223,7 +262,7 @@
     <value>topPanel</value>
   </data>
   <data name="&gt;&gt;extraButtonsPanel.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="splitButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -256,7 +295,7 @@
     <value>topPanel</value>
   </data>
   <data name="&gt;&gt;splitButton.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="clipOutboundButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -286,8 +325,11 @@
     <value>topPanel</value>
   </data>
   <data name="&gt;&gt;clipOutboundButton.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
+  <metadata name="mainToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>399, 17</value>
+  </metadata>
   <data name="clipInboundButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
@@ -306,9 +348,6 @@
   <data name="clipInboundButton.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
-  <metadata name="mainToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>399, 17</value>
-  </metadata>
   <data name="clipInboundButton.ToolTip" xml:space="preserve">
     <value>Pull clipboard from remote device</value>
   </data>
@@ -322,7 +361,7 @@
     <value>topPanel</value>
   </data>
   <data name="&gt;&gt;clipInboundButton.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="statsButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -352,7 +391,7 @@
     <value>topPanel</value>
   </data>
   <data name="&gt;&gt;statsButton.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="settingsButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -379,7 +418,7 @@
     <value>topPanel</value>
   </data>
   <data name="&gt;&gt;settingsButton.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="zoomButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -406,7 +445,7 @@
     <value>topPanel</value>
   </data>
   <data name="&gt;&gt;zoomButton.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="cadButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -436,37 +475,7 @@
     <value>topPanel</value>
   </data>
   <data name="&gt;&gt;cadButton.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <metadata name="consentContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>518, 17</value>
-  </metadata>
-  <data name="askConsentBarToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>171, 22</value>
-  </data>
-  <data name="askConsentBarToolStripMenuItem.Text" xml:space="preserve">
-    <value>Ask Consent + Bar</value>
-  </data>
-  <data name="askConsentToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>171, 22</value>
-  </data>
-  <data name="askConsentToolStripMenuItem.Text" xml:space="preserve">
-    <value>Ask Consent</value>
-  </data>
-  <data name="privacyBarToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>171, 22</value>
-  </data>
-  <data name="privacyBarToolStripMenuItem.Text" xml:space="preserve">
-    <value>Privacy Bar</value>
-  </data>
-  <data name="consentContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 70</value>
-  </data>
-  <data name="&gt;&gt;consentContextMenuStrip.Name" xml:space="preserve">
-    <value>consentContextMenuStrip</value>
-  </data>
-  <data name="&gt;&gt;consentContextMenuStrip.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>9</value>
   </data>
   <data name="connectButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -493,7 +502,7 @@
     <value>topPanel</value>
   </data>
   <data name="&gt;&gt;connectButton.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="topPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -521,6 +530,24 @@
   </data>
   <data name="&gt;&gt;topPanel.ZOrder" xml:space="preserve">
     <value>3</value>
+  </data>
+  <data name="askConsentBarToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>171, 22</value>
+  </data>
+  <data name="askConsentBarToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ask Consent + Bar</value>
+  </data>
+  <data name="askConsentToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>171, 22</value>
+  </data>
+  <data name="askConsentToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ask Consent</value>
+  </data>
+  <data name="privacyBarToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>171, 22</value>
+  </data>
+  <data name="privacyBarToolStripMenuItem.Text" xml:space="preserve">
+    <value>Privacy Bar</value>
   </data>
   <data name="consoleMessage.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -561,6 +588,9 @@
   <metadata name="consoleTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>275, 17</value>
   </metadata>
+  <metadata name="mainToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>399, 17</value>
+  </metadata>
   <data name="resizeKvmControl.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
@@ -577,7 +607,7 @@
     <value>resizeKvmControl</value>
   </data>
   <data name="&gt;&gt;resizeKvmControl.Type" xml:space="preserve">
-    <value>MeshCentralRouter.KVMResizeControl, MeshCentralRouter, Version=1.8.8475.33354, Culture=neutral, PublicKeyToken=null</value>
+    <value>MeshCentralRouter.KVMResizeControl, MeshCentralRouter, Version=1.8.8972.19153, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;resizeKvmControl.Parent" xml:space="preserve">
     <value>$this</value>
@@ -593,7 +623,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAADs
-        DgAAAk1TRnQBSQFMAgEBBAEAATABAAEwAQABEAEAARABAAT/AREBAAj/AUIBTQE2BwABNgMAASgDAAFA
+        DgAAAk1TRnQBSQFMAgEBBAEAATgBAAE4AQABEAEAARABAAT/AREBAAj/AUIBTQE2BwABNgMAASgDAAFA
         AwABIAMAAQEBAAEQBgABEP8A/wD/AP8A/wD/AP8A/wAiAAH3AV4BpQEUAaUBFAGlARQBpQEUAaUBFAGl
         ARQB9wFeEAAB9wFeAaUBFAGlARQBpQEUAaUBFAGlARQBpQEUAfcBXhAAAfcBXgGlARQBpQEUAaUBFAGl
         ARQBpQEUAaUBFAH3AV4QAAH3AV4BpQEUAaUBFAGlARQBpQEUAaUBFAGlARQB9wFeEAAB3gF7ARgBYwFr

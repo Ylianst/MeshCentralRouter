@@ -21,6 +21,8 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Web.Script.Serialization;
 using System.Threading;
+using System.Diagnostics;
+using System.IO;
 
 namespace MeshCentralRouter
 {
@@ -769,6 +771,40 @@ namespace MeshCentralRouter
             else
             {
                 node.fileViewer.Focus();
+            }
+        }
+
+        private void chatButton_Click(object sender, EventArgs e)
+        {
+            if (kvmControl == null) return;
+            server.sendCommand("{\"action\":\"meshmessenger\",\"nodeid\":\"" + node.nodeid + "\"}");
+            string url = "https://" + server.serverinfo["name"];
+            if (server.serverinfo.TryGetValue("domainsuffix", out var value) && value is string domainSuffix && !string.IsNullOrEmpty(domainSuffix))
+            {
+                url += "/" + domainSuffix;
+            }
+            url += "/messenger?id=meshmessenger/" + Uri.EscapeDataString(node.nodeid) + "/" + Uri.EscapeDataString(server.userid) + "&title=" + node.name;
+            if ((server.authCookie != null) && (server.authCookie != "")) { url += "&auth=" + server.authCookie; }
+            try
+            {
+                if (server.debug) { try { File.AppendAllText("debug.log", "Opening chat window locally using ProcessStartInfo\r\n"); } catch (Exception) { } }
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = url,
+                    UseShellExecute = true
+                });
+            }
+            catch (Exception)
+            {
+                try
+                {
+                    if (server.debug) { try { File.AppendAllText("debug.log", "Opening chat window locally using cmd\r\n"); } catch (Exception) { } }
+                    Process.Start(new ProcessStartInfo("cmd", $"/c start {url}") { CreateNoWindow = true });
+                }
+                catch (Exception)
+                {
+                    if (server.debug) { try { File.AppendAllText("debug.log", "Failed to open chat window locally\r\n"); } catch (Exception) { } }
+                }
             }
         }
     }
