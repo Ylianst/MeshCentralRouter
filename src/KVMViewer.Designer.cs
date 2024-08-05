@@ -51,6 +51,11 @@ namespace MeshCentralRouter
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.updateTimer = new System.Windows.Forms.Timer(this.components);
             this.topPanel = new System.Windows.Forms.Panel();
+            this.chatButton = new System.Windows.Forms.Button();
+            this.consentContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.askConsentBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.askConsentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.privacyBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openRemoteFilesButton = new System.Windows.Forms.Button();
             this.extraButtonsPanel = new System.Windows.Forms.Panel();
             this.splitButton = new System.Windows.Forms.Button();
@@ -61,16 +66,11 @@ namespace MeshCentralRouter
             this.zoomButton = new System.Windows.Forms.Button();
             this.cadButton = new System.Windows.Forms.Button();
             this.connectButton = new System.Windows.Forms.Button();
-            this.consentContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.askConsentBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.askConsentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.privacyBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.consoleMessage = new System.Windows.Forms.Label();
             this.consoleTimer = new System.Windows.Forms.Timer(this.components);
             this.mainToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.resizeKvmControl = new MeshCentralRouter.KVMResizeControl();
             this.displaySelectorImageList = new System.Windows.Forms.ImageList(this.components);
-            this.chatButton = new System.Windows.Forms.Button();
+            this.resizeKvmControl = new MeshCentralRouter.KVMResizeControl();
             this.mainStatusStrip.SuspendLayout();
             this.topPanel.SuspendLayout();
             this.consentContextMenuStrip.SuspendLayout();
@@ -119,6 +119,44 @@ namespace MeshCentralRouter
             this.topPanel.Controls.Add(this.connectButton);
             resources.ApplyResources(this.topPanel, "topPanel");
             this.topPanel.Name = "topPanel";
+            // 
+            // chatButton
+            // 
+            this.chatButton.ContextMenuStrip = this.consentContextMenuStrip;
+            resources.ApplyResources(this.chatButton, "chatButton");
+            this.chatButton.Name = "chatButton";
+            this.chatButton.TabStop = false;
+            this.chatButton.UseVisualStyleBackColor = true;
+            this.chatButton.Click += new System.EventHandler(this.chatButton_Click);
+            // 
+            // consentContextMenuStrip
+            // 
+            this.consentContextMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.consentContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.askConsentBarToolStripMenuItem,
+            this.askConsentToolStripMenuItem,
+            this.privacyBarToolStripMenuItem});
+            this.consentContextMenuStrip.Name = "consentContextMenuStrip";
+            resources.ApplyResources(this.consentContextMenuStrip, "consentContextMenuStrip");
+            this.consentContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.consentContextMenuStrip_Opening);
+            // 
+            // askConsentBarToolStripMenuItem
+            // 
+            this.askConsentBarToolStripMenuItem.Name = "askConsentBarToolStripMenuItem";
+            resources.ApplyResources(this.askConsentBarToolStripMenuItem, "askConsentBarToolStripMenuItem");
+            this.askConsentBarToolStripMenuItem.Click += new System.EventHandler(this.askConsentBarToolStripMenuItem_Click);
+            // 
+            // askConsentToolStripMenuItem
+            // 
+            this.askConsentToolStripMenuItem.Name = "askConsentToolStripMenuItem";
+            resources.ApplyResources(this.askConsentToolStripMenuItem, "askConsentToolStripMenuItem");
+            this.askConsentToolStripMenuItem.Click += new System.EventHandler(this.askConsentToolStripMenuItem_Click);
+            // 
+            // privacyBarToolStripMenuItem
+            // 
+            this.privacyBarToolStripMenuItem.Name = "privacyBarToolStripMenuItem";
+            resources.ApplyResources(this.privacyBarToolStripMenuItem, "privacyBarToolStripMenuItem");
+            this.privacyBarToolStripMenuItem.Click += new System.EventHandler(this.privacyBarToolStripMenuItem_Click);
             // 
             // openRemoteFilesButton
             // 
@@ -202,35 +240,6 @@ namespace MeshCentralRouter
             this.connectButton.UseVisualStyleBackColor = true;
             this.connectButton.Click += new System.EventHandler(this.MenuItemDisconnect_Click);
             // 
-            // consentContextMenuStrip
-            // 
-            this.consentContextMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.consentContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.askConsentBarToolStripMenuItem,
-            this.askConsentToolStripMenuItem,
-            this.privacyBarToolStripMenuItem});
-            this.consentContextMenuStrip.Name = "consentContextMenuStrip";
-            resources.ApplyResources(this.consentContextMenuStrip, "consentContextMenuStrip");
-            this.consentContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.consentContextMenuStrip_Opening);
-            // 
-            // askConsentBarToolStripMenuItem
-            // 
-            this.askConsentBarToolStripMenuItem.Name = "askConsentBarToolStripMenuItem";
-            resources.ApplyResources(this.askConsentBarToolStripMenuItem, "askConsentBarToolStripMenuItem");
-            this.askConsentBarToolStripMenuItem.Click += new System.EventHandler(this.askConsentBarToolStripMenuItem_Click);
-            // 
-            // askConsentToolStripMenuItem
-            // 
-            this.askConsentToolStripMenuItem.Name = "askConsentToolStripMenuItem";
-            resources.ApplyResources(this.askConsentToolStripMenuItem, "askConsentToolStripMenuItem");
-            this.askConsentToolStripMenuItem.Click += new System.EventHandler(this.askConsentToolStripMenuItem_Click);
-            // 
-            // privacyBarToolStripMenuItem
-            // 
-            this.privacyBarToolStripMenuItem.Name = "privacyBarToolStripMenuItem";
-            resources.ApplyResources(this.privacyBarToolStripMenuItem, "privacyBarToolStripMenuItem");
-            this.privacyBarToolStripMenuItem.Click += new System.EventHandler(this.privacyBarToolStripMenuItem_Click);
-            // 
             // consoleMessage
             // 
             resources.ApplyResources(this.consoleMessage, "consoleMessage");
@@ -242,6 +251,15 @@ namespace MeshCentralRouter
             this.consoleTimer.Interval = 5000;
             this.consoleTimer.Tick += new System.EventHandler(this.consoleTimer_Tick);
             // 
+            // displaySelectorImageList
+            // 
+            this.displaySelectorImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("displaySelectorImageList.ImageStream")));
+            this.displaySelectorImageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.displaySelectorImageList.Images.SetKeyName(0, "icon-monitor1.png");
+            this.displaySelectorImageList.Images.SetKeyName(1, "icon-monitor1b.png");
+            this.displaySelectorImageList.Images.SetKeyName(2, "icon-monitor2.png");
+            this.displaySelectorImageList.Images.SetKeyName(3, "icon-monitor2b.png");
+            // 
             // resizeKvmControl
             // 
             this.resizeKvmControl.BackColor = System.Drawing.Color.Gray;
@@ -252,24 +270,6 @@ namespace MeshCentralRouter
             this.resizeKvmControl.DisplaysReceived += new System.EventHandler(this.resizeKvmControl_DisplaysReceived);
             this.resizeKvmControl.Enter += new System.EventHandler(this.resizeKvmControl_Enter);
             this.resizeKvmControl.Leave += new System.EventHandler(this.resizeKvmControl_Leave);
-            // 
-            // displaySelectorImageList
-            // 
-            this.displaySelectorImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("displaySelectorImageList.ImageStream")));
-            this.displaySelectorImageList.TransparentColor = System.Drawing.Color.Transparent;
-            this.displaySelectorImageList.Images.SetKeyName(0, "icon-monitor1.png");
-            this.displaySelectorImageList.Images.SetKeyName(1, "icon-monitor1b.png");
-            this.displaySelectorImageList.Images.SetKeyName(2, "icon-monitor2.png");
-            this.displaySelectorImageList.Images.SetKeyName(3, "icon-monitor2b.png");
-            // 
-            // chatButton
-            // 
-            this.chatButton.ContextMenuStrip = this.consentContextMenuStrip;
-            resources.ApplyResources(this.chatButton, "chatButton");
-            this.chatButton.Name = "chatButton";
-            this.chatButton.TabStop = false;
-            this.chatButton.UseVisualStyleBackColor = true;
-            this.chatButton.Click += new System.EventHandler(this.chatButton_Click);
             // 
             // KVMViewer
             // 

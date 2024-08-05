@@ -779,6 +779,10 @@ namespace MeshCentralRouter
             if (kvmControl == null) return;
             server.sendCommand("{\"action\":\"meshmessenger\",\"nodeid\":\"" + node.nodeid + "\"}");
             string url = "https://" + server.serverinfo["name"];
+            if (server.serverinfo.TryGetValue("port", out var value1) && value1 is int portNumber && portNumber != 443)
+            {
+                url += ":" + portNumber;
+            }
             if (server.serverinfo.TryGetValue("domainsuffix", out var value) && value is string domainSuffix && !string.IsNullOrEmpty(domainSuffix))
             {
                 url += "/" + domainSuffix;

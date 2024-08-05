@@ -121,13 +121,31 @@
     <value>17, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="mainToolStripStatusLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1029, 17</value>
+  </data>
+  <data name="mainToolStripStatusLabel.Text" xml:space="preserve">
+    <value>---</value>
+  </data>
+  <data name="mainToolStripStatusLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="toolStripStatusLabel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>13, 17</value>
+  </data>
+  <data name="toolStripStatusLabel1.Text" xml:space="preserve">
+    <value>v</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="toolStripStatusLabel1.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="mainStatusStrip.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 727</value>
   </data>
   <data name="mainStatusStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>1044, 22</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="mainStatusStrip.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
   </data>
@@ -146,30 +164,30 @@
   <data name="&gt;&gt;mainStatusStrip.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="mainToolStripStatusLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1029, 17</value>
-  </data>
-  <data name="mainToolStripStatusLabel.Text" xml:space="preserve">
-    <value>---</value>
-  </data>
-  <data name="mainToolStripStatusLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="toolStripStatusLabel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>13, 17</value>
-  </data>
-  <data name="toolStripStatusLabel1.Text" xml:space="preserve">
-    <value>v</value>
-  </data>
-  <data name="toolStripStatusLabel1.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <metadata name="updateTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>154, 17</value>
   </metadata>
   <metadata name="consentContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>518, 17</value>
   </metadata>
+  <data name="askConsentBarToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>171, 22</value>
+  </data>
+  <data name="askConsentBarToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ask Consent + Bar</value>
+  </data>
+  <data name="askConsentToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>171, 22</value>
+  </data>
+  <data name="askConsentToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ask Consent</value>
+  </data>
+  <data name="privacyBarToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>171, 22</value>
+  </data>
+  <data name="privacyBarToolStripMenuItem.Text" xml:space="preserve">
+    <value>Privacy Bar</value>
+  </data>
   <data name="consentContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>172, 70</value>
   </data>
@@ -184,7 +202,7 @@
     <value>NoControl</value>
   </data>
   <data name="chatButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>380, 3</value>
+    <value>286, 3</value>
   </data>
   <data name="chatButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>89, 26</value>
@@ -209,6 +227,9 @@
   </data>
   <data name="openRemoteFilesButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
+  </data>
+  <data name="openRemoteFilesButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="openRemoteFilesButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>192, 3</value>
@@ -327,9 +348,6 @@
   <data name="&gt;&gt;clipOutboundButton.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <metadata name="mainToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>399, 17</value>
-  </metadata>
   <data name="clipInboundButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
@@ -348,6 +366,9 @@
   <data name="clipInboundButton.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
+  <metadata name="mainToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>399, 17</value>
+  </metadata>
   <data name="clipInboundButton.ToolTip" xml:space="preserve">
     <value>Pull clipboard from remote device</value>
   </data>
@@ -397,7 +418,7 @@
     <value>NoControl</value>
   </data>
   <data name="settingsButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>286, 3</value>
+    <value>380, 3</value>
   </data>
   <data name="settingsButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>89, 26</value>
@@ -531,24 +552,6 @@
   <data name="&gt;&gt;topPanel.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="askConsentBarToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>171, 22</value>
-  </data>
-  <data name="askConsentBarToolStripMenuItem.Text" xml:space="preserve">
-    <value>Ask Consent + Bar</value>
-  </data>
-  <data name="askConsentToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>171, 22</value>
-  </data>
-  <data name="askConsentToolStripMenuItem.Text" xml:space="preserve">
-    <value>Ask Consent</value>
-  </data>
-  <data name="privacyBarToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>171, 22</value>
-  </data>
-  <data name="privacyBarToolStripMenuItem.Text" xml:space="preserve">
-    <value>Privacy Bar</value>
-  </data>
   <data name="consoleMessage.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -588,33 +591,6 @@
   <metadata name="consoleTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>275, 17</value>
   </metadata>
-  <metadata name="mainToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>399, 17</value>
-  </metadata>
-  <data name="resizeKvmControl.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="resizeKvmControl.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 32</value>
-  </data>
-  <data name="resizeKvmControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1044, 695</value>
-  </data>
-  <data name="resizeKvmControl.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;resizeKvmControl.Name" xml:space="preserve">
-    <value>resizeKvmControl</value>
-  </data>
-  <data name="&gt;&gt;resizeKvmControl.Type" xml:space="preserve">
-    <value>MeshCentralRouter.KVMResizeControl, MeshCentralRouter, Version=1.8.8972.19153, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;resizeKvmControl.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;resizeKvmControl.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <metadata name="displaySelectorImageList.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>752, 17</value>
   </metadata>
@@ -623,7 +599,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAADs
-        DgAAAk1TRnQBSQFMAgEBBAEAATgBAAE4AQABEAEAARABAAT/AREBAAj/AUIBTQE2BwABNgMAASgDAAFA
+        DgAAAk1TRnQBSQFMAgEBBAEAAUgBAAFIAQABEAEAARABAAT/AREBAAj/AUIBTQE2BwABNgMAASgDAAFA
         AwABIAMAAQEBAAEQBgABEP8A/wD/AP8A/wD/AP8A/wAiAAH3AV4BpQEUAaUBFAGlARQBpQEUAaUBFAGl
         ARQB9wFeEAAB9wFeAaUBFAGlARQBpQEUAaUBFAGlARQBpQEUAfcBXhAAAfcBXgGlARQBpQEUAaUBFAGl
         ARQBpQEUAaUBFAH3AV4QAAH3AV4BpQEUAaUBFAGlARQBpQEUAaUBFAGlARQB9wFeEAAB3gF7ARgBYwFr
@@ -688,6 +664,30 @@
         ARwB5wEcAecBHAHvAT0BQgFNAT4HAAE+AwABKAMAAUADAAEgAwABAQEAAQEGAAEBFgAD/4EAAfABDwHw
         AQ8B8AEPAfABDwHwAQ8B8AEPAfABDwHwAQ8B/AE/AfwBPwH8AT8B/AE/aAAL
 </value>
+  </data>
+  <data name="resizeKvmControl.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="resizeKvmControl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 32</value>
+  </data>
+  <data name="resizeKvmControl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1044, 695</value>
+  </data>
+  <data name="resizeKvmControl.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;resizeKvmControl.Name" xml:space="preserve">
+    <value>resizeKvmControl</value>
+  </data>
+  <data name="&gt;&gt;resizeKvmControl.Type" xml:space="preserve">
+    <value>MeshCentralRouter.KVMResizeControl, MeshCentralRouter, Version=1.8.8983.22465, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;resizeKvmControl.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;resizeKvmControl.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -1122,6 +1122,9 @@
         AADwAAAAAA8AAPAAAAAADwAA8AAAAAAPAADwAAAAAB8AAPAAAAAD/wAA+AAAAf//AAD4AAH///8AAPgB
         /////wAA/P//////AAA=
 </value>
+  </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
