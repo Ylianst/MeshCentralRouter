@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
 using Microsoft.Win32;
+using System.Linq;
 
 namespace MeshCentralRouter
 {
@@ -150,7 +151,20 @@ namespace MeshCentralRouter
             {
                 System.Diagnostics.Process proc = null;
                 string cmd = System.Environment.GetFolderPath(System.Environment.SpecialFolder.System) + "\\mstsc.exe";
-                string tfile = Path.Combine(Path.GetTempPath(), "MeshRdpFile.rdp");
+                // Remove invalid characters from node.name for use with filename.rdp
+                char[] invalidChars = Path.GetInvalidFileNameChars();
+                string name = new string(node.name.Where(c => !invalidChars.Contains(c)).ToArray());
+                name = name.Trim().TrimEnd('.');
+                if (string.IsNullOrEmpty(name))
+                {
+                    name = "MeshRdpFile";
+                }
+                if (name.Length > 255)
+                {
+                    name = name.Substring(0, 255);
+                }
+                name = name + ".rdp";
+                string tfile = Path.Combine(Path.GetTempPath(), name);
                 string[] f = null;
                 try { if (File.Exists(tfile)) f = File.ReadAllLines(tfile); } catch (Exception) { }
                 if (f != null)
