@@ -2115,6 +2115,7 @@ namespace MeshCentralRouter
                 sshToolStripMenuItem.Visible = false;
                 scpToolStripMenuItem.Visible = false;
                 wolToolStripMenuItem.Visible = true; // Wol not allowed for local devices
+                chatToolStripMenuItem.Visible = false;
             }
             else{  // Agent connected or local device
                 if (node.agentid < 6)
@@ -2134,6 +2135,7 @@ namespace MeshCentralRouter
                 addMapToolStripMenuItem.Visible = true;
                 httpToolStripMenuItem.Visible = true;
                 httpsToolStripMenuItem.Visible = true;
+                chatToolStripMenuItem.Visible = true;
                 addRelayMapToolStripMenuItem.Visible = (node.mtype != 3); // Relay mappings are not allowed for local devices
                 remoteDesktopToolStripMenuItem.Visible = ((node.agentcaps & 1) != 0); // Only display remote desktop if it's supported by the agent (1 = Desktop)
                 remoteFilesToolStripMenuItem.Visible = ((node.agentcaps & 4) != 0); // Only display remote desktop if it's supported by the agent (4 = Files)
@@ -2426,6 +2428,47 @@ namespace MeshCentralRouter
             }
 
             return r;
+        }
+
+        private void chatToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (devicesListView.SelectedItems.Count != 1) { return; }
+            ListViewItem selecteditem = devicesListView.SelectedItems[0];
+            NodeClass node = (NodeClass)selecteditem.Tag;
+            if (((node.conn & 1) == 0) && (node.mtype != 3)) { return; } // Agent not connected on this device & not local device
+            meshcentral.sendCommand("{\"action\":\"meshmessenger\",\"nodeid\":\"" + node.nodeid + "\"}");
+            string url = "https://" + meshcentral.serverinfo["name"];
+            if (meshcentral.serverinfo.TryGetValue("port", out var value1) && value1 is int portNumber && portNumber != 443)
+            {
+                url += ":" + portNumber;
+            }
+            if (meshcentral.serverinfo.TryGetValue("domainsuffix", out var value) && value is string domainSuffix && !string.IsNullOrEmpty(domainSuffix))
+            {
+                url += "/" + domainSuffix;
+            }
+            url += "/messenger?id=meshmessenger/" + Uri.EscapeDataString(node.nodeid) + "/" + Uri.EscapeDataString(meshcentral.userid) + "&title=" + node.name;
+            if ((meshcentral.authCookie != null) && (meshcentral.authCookie != "")) { url += "&auth=" + meshcentral.authCookie; }
+            try
+            {
+                if (meshcentral.debug) { try { File.AppendAllText("debug.log", "Opening chat window locally using ProcessStartInfo\r\n"); } catch (Exception) { } }
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = url,
+                    UseShellExecute = true
+                });
+            }
+            catch (Exception)
+            {
+                try
+                {
+                    if (meshcentral.debug) { try { File.AppendAllText("debug.log", "Opening chat window locally using cmd\r\n"); } catch (Exception) { } }
+                    Process.Start(new ProcessStartInfo("cmd", $"/c start {url}") { CreateNoWindow = true });
+                }
+                catch (Exception)
+                {
+                    if (meshcentral.debug) { try { File.AppendAllText("debug.log", "Failed to open chat window locally\r\n"); } catch (Exception) { } }
+                }
+            }
         }
 
         /*
