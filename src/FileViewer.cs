@@ -1539,7 +1539,7 @@ namespace MeshCentralRouter
     private void uploadNextPart(bool dataPriming)
     {
       if(uploadActive == false) return;
-      byte[] buffer = new byte[16385];
+      byte[] buffer = new byte[65565];
       int len = uploadFileStream.Read(buffer, 1, buffer.Length - 1);
       if(dataPriming && (len == 0)) return;
       uploadFilePtr += len;

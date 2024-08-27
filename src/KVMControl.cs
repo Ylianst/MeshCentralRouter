@@ -965,7 +965,9 @@ namespace MeshCentralRouter
     private IntPtr captureKey(int nCode, IntPtr wp, IntPtr lp)
     {
       bool bIsForegroundWindow = false;
-      try { bIsForegroundWindow = GetForegroundWindow() == this.ParentForm.Handle; } catch { }
+      if(this.ParentForm != null) {
+        try { bIsForegroundWindow = GetForegroundWindow() == this.ParentForm.Handle; } catch { }
+      }
       if(nCode >= 0 && bIsForegroundWindow)
       {
         KBDLLHOOKSTRUCT objKeyInfo = (KBDLLHOOKSTRUCT)Marshal.PtrToStructure(lp, typeof(KBDLLHOOKSTRUCT));
