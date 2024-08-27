@@ -1577,7 +1577,7 @@ namespace MeshCentralRouter
         transferStatusForm.transferCompleted();
       }
 
-      remoteFolder = strDownloadRel;
+      if (downloadActive) remoteFolder = strDownloadRel;
       remoteRefresh();
     }
 
