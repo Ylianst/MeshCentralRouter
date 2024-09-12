@@ -1745,7 +1745,7 @@ namespace MeshCentralRouter
         public void QuickMap(int protocol, int port, int appId, NodeClass node)
         {
             NodeClass tmpNode = node;
-            if (node.mesh.relayid != null)
+            if (node.mesh != null && node.mesh.relayid != null)
             {
                 if (!meshcentral.nodes.ContainsKey(node.mesh.relayid))
                     return;
@@ -1759,7 +1759,8 @@ namespace MeshCentralRouter
                 if (c.GetType() == typeof(MapUserControl))
                 {
                     MapUserControl cc = (MapUserControl)c;
-                    if ((cc.remoteIP == node.host) && (cc.protocol == protocol) && (cc.remotePort == port) && (cc.appId == appId) && (cc.node == tmpNode))
+                    if ((cc.protocol == protocol) && (cc.remotePort == port) && (cc.appId == appId) &&
+                        (cc.node == tmpNode || cc.node == node) && (tmpNode == node || cc.remoteIP == node.host))
                     {
                         // Found a match
                         cc.appButton_Click(this, null);
@@ -1773,7 +1774,7 @@ namespace MeshCentralRouter
             map.xdebug = debug;
             map.inaddrany = false; // Loopback only
             map.protocol = protocol; // 1 = TCP, 2 = UDP
-            if (node.mesh.relayid != null)
+            if (node.mesh != null && node.mesh.relayid != null)
             {
                 map.name = node.name;
                 map.remoteIP = node.host;
@@ -1784,43 +1785,6 @@ namespace MeshCentralRouter
             map.appId = appId; // 0 = Custom, 1 = HTTP, 2 = HTTPS, 3 = RDP, 4 = PuTTY, 5 = WinSCP
             map.appIdStr = null;
             map.node = tmpNode;
-            if (authLoginUrl != null) { map.host = authLoginUrl.Host + ":" + ((authLoginUrl.Port > 0) ? authLoginUrl.Port : 443) + authLoginUrl.AbsolutePath.Replace("/control.ashx", ""); } else { map.host = serverNameComboBox.Text; }
-            map.certhash = meshcentral.wshash;
-            map.parent = this;
-            map.Dock = DockStyle.Top;
-            map.Start();
-            mapPanel.Controls.Add(map);
-            noMapLabel.Visible = false;
-            map.appButton_Click(this, null);
-        }
-
-        public void QuickMap(int protocol, int port, string appIdStr, NodeClass node)
-        {
-            // See if we already have the right port mapping
-            foreach (Control c in mapPanel.Controls)
-            {
-                if (c.GetType() == typeof(MapUserControl))
-                {
-                    MapUserControl cc = (MapUserControl)c;
-                    if ((cc.protocol == protocol) && (cc.remotePort == port) && (cc.appIdStr == appIdStr) && (cc.node == node))
-                    {
-                        // Found a match
-                        cc.appButton_Click(this, null);
-                        return;
-                    }
-                }
-            }
-
-            // Add a new port map
-            MapUserControl map = new MapUserControl();
-            map.xdebug = debug;
-            map.inaddrany = false; // Loopback only
-            map.protocol = protocol; // 1 = TCP, 2 = UDP
-            map.localPort = 0; // Any
-            map.remotePort = port; // HTTP
-            map.appId = 0; // 0 = Custom, 1 = HTTP, 2 = HTTPS, 3 = RDP, 4 = PuTTY, 5 = WinSCP
-            map.appIdStr = appIdStr;
-            map.node = node;
             if (authLoginUrl != null) { map.host = authLoginUrl.Host + ":" + ((authLoginUrl.Port > 0) ? authLoginUrl.Port : 443) + authLoginUrl.AbsolutePath.Replace("/control.ashx", ""); } else { map.host = serverNameComboBox.Text; }
             map.certhash = meshcentral.wshash;
             map.parent = this;
