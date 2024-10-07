@@ -1971,6 +1971,31 @@ namespace MeshCentralRouter
                 }
                 else
                 {
+
+                    // See if we already have the right port mapping
+                    NodeClass tmpNode = node;
+                    if (node.mesh != null && node.mesh.relayid != null)
+                    {
+                        if (!meshcentral.nodes.ContainsKey(node.mesh.relayid))
+                            return;
+
+                        tmpNode = meshcentral.nodes[node.mesh.relayid];
+                    }
+                    foreach (Control c in mapPanel.Controls)
+                    {
+                        if (c.GetType() == typeof(MapUserControl))
+                        {
+                            MapUserControl cc = (MapUserControl)c;
+                            if ((cc.protocol == (int)x["protocol"]) && (cc.remotePort == (int)x["remotePort"]) && (cc.appId == appId) &&
+                                (cc.node == tmpNode || cc.node == node) && (tmpNode == node || cc.remoteIP == node.host))
+                            {
+                                // Found a match
+                                cc.appButton_Click(this, null);
+                                return;
+                            }
+                        }
+                    }
+
                     // Add a new port map
                     MapUserControl map = new MapUserControl();
                     map.xdebug = debug;
