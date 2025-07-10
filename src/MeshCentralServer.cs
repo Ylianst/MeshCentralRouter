@@ -68,6 +68,7 @@ namespace MeshCentralRouter
         public int features = 0; // Bit flags of server features
         public int features2 = 0; // Bit flags of server features
         public Dictionary<string, object> serverinfo = null;
+        public Dictionary<string, object> userinfo = null;
 
         public int connectionState { get { return constate; } }
 
@@ -206,6 +207,23 @@ namespace MeshCentralRouter
             }
         }
 
+        // Return the number of 2nd factor for this account
+        public int CountTwoFactorAuths()
+        {
+            if (userinfo == null) return -1;
+            int authFactorCount = 0;
+            object val;
+            if (userinfo.TryGetValue("otpsecret", out val) && Convert.ToInt32(val) == 1) authFactorCount++;
+            if (userinfo.TryGetValue("otpduo", out val) && Convert.ToInt32(val) == 1) authFactorCount++;
+            if (userinfo.TryGetValue("otpdev", out val) && Convert.ToInt32(val) == 1) authFactorCount++;
+            if (userinfo.TryGetValue("otphkeys", out val) && Convert.ToInt32(val) > 0) authFactorCount += Convert.ToInt32(val);
+            if ((features & 0x00800000) != 0 && userinfo.TryGetValue("otpekey", out val) && Convert.ToInt32(val) == 1) authFactorCount++;
+            if ((features & 0x02000000) != 0 && (features & 0x04000000) != 0 && userinfo.TryGetValue("phone", out val) && val != null) authFactorCount++;
+            if ((features2 & 0x02000000) != 0 && (features2 & 0x04000000) != 0 && userinfo.TryGetValue("msghandle", out val) && val != null) authFactorCount++;
+            if (authFactorCount > 0 && userinfo.TryGetValue("otpkeys", out val) && Convert.ToInt32(val) > 0 && (features2 & 0x40000) == 0) authFactorCount++;
+            return authFactorCount;
+        }
+
         public void processServerData(webSocketClient sender, string data, int orglen)
         {
             if (debug) { try { File.AppendAllText("debug.log", "ServerData-" + data + "\r\n"); } catch (Exception) { } }
@@ -292,7 +310,7 @@ namespace MeshCentralRouter
                         }
                     case "userinfo":
                         {
-                            Dictionary<string, object> userinfo = (Dictionary<string, object>)jsonAction["userinfo"];
+                            userinfo = (Dictionary<string, object>)jsonAction["userinfo"];
                             userid = (string)userinfo["_id"];
                             if (userinfo.ContainsKey("name")) { username = (string)userinfo["name"]; }
                             userRights = new Dictionary<string, ulong>();
@@ -308,6 +326,19 @@ namespace MeshCentralRouter
                                     }
                                 }
                             }
+
+                            int twoFactorCount = -1;
+                            try { twoFactorCount = CountTwoFactorAuths(); } catch (Exception) { }
+                            if (debug) {
+                                try { File.AppendAllText("debug.log", "CountTwoFactorAuths-" + twoFactorCount + "\r\n"); } catch (Exception) { }
+                            }
+                            // If no 2FA is setup and feature flag set, set message and change state
+                            if (twoFactorCount == 0 && (features & 0x00040000) != 0)
+                            {
+                                disconnectMsg = "2fasetuprequired";
+                                changeState(0);
+                            }
+
                             break;
                         }
                     case "usergroups":

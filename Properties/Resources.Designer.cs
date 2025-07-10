@@ -981,6 +981,15 @@ namespace MeshCentralRouter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Complete 2FA setup online first.
+        /// </summary>
+        internal static string TwoFactorSetupRequired {
+            get {
+                return ResourceManager.GetString("TwoFactorSetupRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unable to bind to local port.
         /// </summary>
         internal static string UnableToBindToLocalPort {

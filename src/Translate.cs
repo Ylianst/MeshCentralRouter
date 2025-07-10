@@ -4920,6 +4920,29 @@ namespace MeshCentralRouter
                 {"it","Avanzamento del trasferimento"},
                 {"ru","Прогресс передачи"}
             }
+        },
+        {
+            "Complete 2FA setup online first",
+            new Dictionary<string, string>() {
+                {"de","Vervollständigen Sie zunächst die 2FA-Einrichtung online"},
+                {"hi","पहले ऑनलाइन 2FA सेटअप पूरा करें"},
+                {"fr","Terminez d'abord la configuration 2FA en ligne"},
+                {"zh-chs","首先在线完成 2FA 设置"},
+                {"fi","Suorita ensin 2FA-asennus verkossa"},
+                {"tr","Önce çevrimiçi 2FA kurulumunu tamamlayın"},
+                {"cs","Nejprve dokončete nastavení 2FA online"},
+                {"ja","まずオンラインで2FAのセットアップを完了してください"},
+                {"es","Complete primero la configuración de 2FA en línea"},
+                {"pl","Najpierw zakończ konfigurację 2FA online"},
+                {"pt","Primeiro, conclua a configuração do 2FA online"},
+                {"nl","Voltooi eerst de online 2FA-instelling"},
+                {"pt-br","Primeiro, conclua a configuração do 2FA online"},
+                {"sv","Slutför först 2FA-inställningen online"},
+                {"da","Færdiggør først 2FA-opsætningen online"},
+                {"ko","먼저 온라인으로 2FA 설정을 완료하세요."},
+                {"it","Completa prima la configurazione di 2FA online"},
+                {"ru","Сначала завершите настройку 2FA онлайн"}
+            }
         }
         };
         // *** TRANSLATION TABLE END ***

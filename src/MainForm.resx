@@ -204,6 +204,9 @@
   <data name="stateLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>241, 225</value>
   </data>
+  <data name="stateLabel.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>241, 0</value>
+  </data>
   <data name="stateLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>88, 13</value>
   </data>
@@ -1474,7 +1477,7 @@
     <value>NoControl</value>
   </data>
   <data name="cancelAutoCloseButton1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 176</value>
+    <value>6, 164</value>
   </data>
   <data name="cancelAutoCloseButton1.Size" type="System.Drawing.Size, System.Drawing">
     <value>168, 35</value>
@@ -1519,19 +1522,19 @@
     <value>Segoe UI, 9pt, style=Bold</value>
   </data>
   <data name="addMapToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>170, 22</value>
   </data>
   <data name="addMapToolStripMenuItem.Text" xml:space="preserve">
     <value>Add &amp;Map...</value>
   </data>
   <data name="addRelayMapToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>170, 22</value>
   </data>
   <data name="addRelayMapToolStripMenuItem.Text" xml:space="preserve">
     <value>Add &amp;Relay Map...</value>
   </data>
   <data name="toolStripMenuItem3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 6</value>
+    <value>167, 6</value>
   </data>
   <data name="askConsentBarToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>171, 22</value>
@@ -1552,61 +1555,61 @@
     <value>Privacy Bar</value>
   </data>
   <data name="remoteDesktopToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>170, 22</value>
   </data>
   <data name="remoteDesktopToolStripMenuItem.Text" xml:space="preserve">
     <value>Remote Desktop...</value>
   </data>
   <data name="remoteFilesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>170, 22</value>
   </data>
   <data name="remoteFilesToolStripMenuItem.Text" xml:space="preserve">
     <value>Remote Files...</value>
   </data>
   <data name="httpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>170, 22</value>
   </data>
   <data name="httpToolStripMenuItem.Text" xml:space="preserve">
     <value>HTTP</value>
   </data>
   <data name="httpsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>170, 22</value>
   </data>
   <data name="httpsToolStripMenuItem.Text" xml:space="preserve">
     <value>HTTPS</value>
   </data>
   <data name="rdpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>170, 22</value>
   </data>
   <data name="rdpToolStripMenuItem.Text" xml:space="preserve">
     <value>RDP</value>
   </data>
   <data name="sshToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>170, 22</value>
   </data>
   <data name="sshToolStripMenuItem.Text" xml:space="preserve">
     <value>SSH</value>
   </data>
   <data name="scpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>170, 22</value>
   </data>
   <data name="scpToolStripMenuItem.Text" xml:space="preserve">
     <value>SCP</value>
   </data>
   <data name="wolToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>170, 22</value>
   </data>
   <data name="wolToolStripMenuItem.Text" xml:space="preserve">
     <value>Wake Up...</value>
   </data>
   <data name="chatToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>170, 22</value>
   </data>
   <data name="chatToolStripMenuItem.Text" xml:space="preserve">
     <value>Chat</value>
   </data>
   <data name="devicesContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 274</value>
+    <value>171, 252</value>
   </data>
   <data name="&gt;&gt;devicesContextMenuStrip.Name" xml:space="preserve">
     <value>devicesContextMenuStrip</value>
@@ -1622,7 +1625,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAADg
-        HQAAAk1TRnQBSQFMAgEBEAEAAUABAQFAAQEBEAEAARABAAT/ARkBAAj/AUIBTQE2BwABNgMAASgDAAFA
+        HQAAAk1TRnQBSQFMAgEBEAEAAVgBAQFYAQEBEAEAARABAAT/ARkBAAj/AUIBTQE2BwABNgMAASgDAAFA
         AwABUAMAAQEBAAEYBgABPP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AJYAA/0D+AP3A/sD/yEAA/0D+gP5
         A/wD/xgAAfoB+wH6A/4qAAP9A/8tAAP7A88D1QPbA88D1AO+A9QYAAP8A90D4APjA90D4APUA+MSAAP8
         AZEBjwF9AU4BaAEhAfQB9QH0JAAD/gPRA8YD+ioAAcYCxwHPAtAB2ALZA90DywPBA68DmgP3FQAD2APd
@@ -1768,7 +1771,7 @@
     <value>devicesListView</value>
   </data>
   <data name="&gt;&gt;devicesListView.Type" xml:space="preserve">
-    <value>MeshCentralRouter.ListViewExtended, MeshCentralRouter, Version=1.8.8984.19540, Culture=neutral, PublicKeyToken=null</value>
+    <value>MeshCentralRouter.ListViewExtended, MeshCentralRouter, Version=1.8.9322.36929, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;devicesListView.Parent" xml:space="preserve">
     <value>devicesPanel</value>
@@ -1789,7 +1792,7 @@
     <value>2, 88</value>
   </data>
   <data name="noSearchResultsLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>358, 52</value>
+    <value>346, 52</value>
   </data>
   <data name="noSearchResultsLabel.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -1828,7 +1831,7 @@
     <value>2, 88</value>
   </data>
   <data name="noDevicesLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>358, 52</value>
+    <value>346, 52</value>
   </data>
   <data name="noDevicesLabel.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -1951,7 +1954,7 @@
     <value>6, 79</value>
   </data>
   <data name="noMapLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>430, 52</value>
+    <value>418, 52</value>
   </data>
   <data name="noMapLabel.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -5940,9 +5943,6 @@ Click "Add" to get started.</value>
         AADAPwAAwD8AAMA/AADAPwAA
 </value>
   </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="$this.Text" xml:space="preserve">
     <value> MeshCentral Router</value>
   </data>
@@ -5993,6 +5993,18 @@ Click "Add" to get started.</value>
   </data>
   <data name="&gt;&gt;customAppsToolStripMenuItem1.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nameColumnHeader.Name" xml:space="preserve">
+    <value>nameColumnHeader</value>
+  </data>
+  <data name="&gt;&gt;nameColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;stateColumnHeader.Name" xml:space="preserve">
+    <value>stateColumnHeader</value>
+  </data>
+  <data name="&gt;&gt;stateColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;addMapToolStripMenuItem.Name" xml:space="preserve">
     <value>addMapToolStripMenuItem</value>
@@ -6076,6 +6088,12 @@ Click "Add" to get started.</value>
     <value>wolToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;wolToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chatToolStripMenuItem.Name" xml:space="preserve">
+    <value>chatToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;chatToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;devicesImageList.Name" xml:space="preserve">
@@ -6167,24 +6185,6 @@ Click "Add" to get started.</value>
   </data>
   <data name="&gt;&gt;saveMapFileDialog.Type" xml:space="preserve">
     <value>System.Windows.Forms.SaveFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;chatToolStripMenuItem.Name" xml:space="preserve">
-    <value>chatToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;chatToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nameColumnHeader.Name" xml:space="preserve">
-    <value>nameColumnHeader</value>
-  </data>
-  <data name="&gt;&gt;nameColumnHeader.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;stateColumnHeader.Name" xml:space="preserve">
-    <value>stateColumnHeader</value>
-  </data>
-  <data name="&gt;&gt;stateColumnHeader.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>

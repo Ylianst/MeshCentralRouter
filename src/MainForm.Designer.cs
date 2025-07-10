@@ -91,6 +91,9 @@
             this.devicesTabPage = new System.Windows.Forms.TabPage();
             this.devicesPanel = new System.Windows.Forms.Panel();
             this.cancelAutoCloseButton1 = new System.Windows.Forms.Button();
+            this.devicesListView = new MeshCentralRouter.ListViewExtended();
+            this.nameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.stateColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.devicesContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addRelayMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -106,6 +109,7 @@
             this.sshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.scpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.wolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.chatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.devicesImageList = new System.Windows.Forms.ImageList(this.components);
             this.noSearchResultsLabel = new System.Windows.Forms.Label();
             this.noDevicesLabel = new System.Windows.Forms.Label();
@@ -138,10 +142,6 @@
             this.customAppsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openMapFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveMapFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.chatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.devicesListView = new MeshCentralRouter.ListViewExtended();
-            this.nameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.stateColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel5.SuspendLayout();
             this.mainPanel.SuspendLayout();
             this.mainTabControl.SuspendLayout();
@@ -635,6 +635,37 @@
             this.cancelAutoCloseButton1.Click += new System.EventHandler(this.cancelAutoCloseButton_Click);
             this.cancelAutoCloseButton1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             // 
+            // devicesListView
+            // 
+            this.devicesListView.BackColor = System.Drawing.SystemColors.Window;
+            this.devicesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.nameColumnHeader,
+            this.stateColumnHeader});
+            this.devicesListView.ContextMenuStrip = this.devicesContextMenuStrip;
+            this.devicesListView.FullRowSelect = true;
+            this.devicesListView.GridLines = true;
+            this.devicesListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.devicesListView.HideSelection = false;
+            this.devicesListView.LargeImageList = this.devicesImageList;
+            resources.ApplyResources(this.devicesListView, "devicesListView");
+            this.devicesListView.MultiSelect = false;
+            this.devicesListView.Name = "devicesListView";
+            this.devicesListView.SmallImageList = this.devicesImageList;
+            this.devicesListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.devicesListView.UseCompatibleStateImageBehavior = false;
+            this.devicesListView.View = System.Windows.Forms.View.Details;
+            this.devicesListView.Click += new System.EventHandler(this.devicesListView_Click);
+            this.devicesListView.DoubleClick += new System.EventHandler(this.devicesListView_DoubleClick);
+            this.devicesListView.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
+            // 
+            // nameColumnHeader
+            // 
+            resources.ApplyResources(this.nameColumnHeader, "nameColumnHeader");
+            // 
+            // stateColumnHeader
+            // 
+            resources.ApplyResources(this.stateColumnHeader, "stateColumnHeader");
+            // 
             // devicesContextMenuStrip
             // 
             this.devicesContextMenuStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
@@ -741,6 +772,12 @@
             this.wolToolStripMenuItem.Name = "wolToolStripMenuItem";
             resources.ApplyResources(this.wolToolStripMenuItem, "wolToolStripMenuItem");
             this.wolToolStripMenuItem.Click += new System.EventHandler(this.wolToolStripMenuItem_Click);
+            // 
+            // chatToolStripMenuItem
+            // 
+            this.chatToolStripMenuItem.Name = "chatToolStripMenuItem";
+            resources.ApplyResources(this.chatToolStripMenuItem, "chatToolStripMenuItem");
+            this.chatToolStripMenuItem.Click += new System.EventHandler(this.chatToolStripMenuItem_Click);
             // 
             // devicesImageList
             // 
@@ -977,43 +1014,6 @@
             // 
             this.saveMapFileDialog.DefaultExt = "mcrouter";
             resources.ApplyResources(this.saveMapFileDialog, "saveMapFileDialog");
-            // 
-            // chatToolStripMenuItem
-            // 
-            this.chatToolStripMenuItem.Name = "chatToolStripMenuItem";
-            resources.ApplyResources(this.chatToolStripMenuItem, "chatToolStripMenuItem");
-            this.chatToolStripMenuItem.Click += new System.EventHandler(this.chatToolStripMenuItem_Click);
-            // 
-            // devicesListView
-            // 
-            this.devicesListView.BackColor = System.Drawing.SystemColors.Window;
-            this.devicesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.nameColumnHeader,
-            this.stateColumnHeader});
-            this.devicesListView.ContextMenuStrip = this.devicesContextMenuStrip;
-            this.devicesListView.FullRowSelect = true;
-            this.devicesListView.GridLines = true;
-            this.devicesListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.devicesListView.HideSelection = false;
-            this.devicesListView.LargeImageList = this.devicesImageList;
-            resources.ApplyResources(this.devicesListView, "devicesListView");
-            this.devicesListView.MultiSelect = false;
-            this.devicesListView.Name = "devicesListView";
-            this.devicesListView.SmallImageList = this.devicesImageList;
-            this.devicesListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this.devicesListView.UseCompatibleStateImageBehavior = false;
-            this.devicesListView.View = System.Windows.Forms.View.Details;
-            this.devicesListView.Click += new System.EventHandler(this.devicesListView_Click);
-            this.devicesListView.DoubleClick += new System.EventHandler(this.devicesListView_DoubleClick);
-            this.devicesListView.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
-            // 
-            // nameColumnHeader
-            // 
-            resources.ApplyResources(this.nameColumnHeader, "nameColumnHeader");
-            // 
-            // stateColumnHeader
-            // 
-            resources.ApplyResources(this.stateColumnHeader, "stateColumnHeader");
             // 
             // MainForm
             // 

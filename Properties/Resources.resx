@@ -478,4 +478,7 @@
   <data name="SendTokenMSG" xml:space="preserve">
     <value>Send token to registered messaging application?</value>
   </data>
+  <data name="TwoFactorSetupRequired" xml:space="preserve">
+    <value>Complete 2FA setup online first</value>
+  </data>
 </root>
