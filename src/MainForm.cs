@@ -1993,7 +1993,7 @@ namespace MeshCentralRouter
                         if (c.GetType() == typeof(MapUserControl))
                         {
                             MapUserControl cc = (MapUserControl)c;
-                            if ((cc.protocol == (int)x["protocol"]) && (cc.remotePort == (int)x["remotePort"]) && (cc.appId == appId) &&
+                            if ((cc.protocol == (int)x["protocol"]) && (cc.remotePort == (int)x["remotePort"]) && (cc.localPort == (int)x["localPort"]) && (cc.appId == appId) &&
                                 (cc.node == tmpNode || cc.node == node) && (tmpNode == node || cc.remoteIP == node.host))
                             {
                                 // Found a match
