@@ -46,6 +46,7 @@ namespace MeshCentralRouter
     private FileDialogMsgForm msgForm = null;
     private bool localSortAscending = true;
     private bool remoteSortAscending = true;
+    private const int DirectoryNameCharacterLimit = 10;
 
     // Stats
     public long bytesIn = 0;
@@ -118,7 +119,9 @@ namespace MeshCentralRouter
         string[] parts = localFolder.FullName.Split(Path.DirectorySeparatorChar);
         for (int i = 0; i < parts.Length; i++)
         {
-            ToolStripButton dirButton = new ToolStripButton(parts[i]);
+            string displayText = parts[i].Length > DirectoryNameCharacterLimit ?
+               parts[i].Substring(0, DirectoryNameCharacterLimit) + "..." : parts[i];
+            ToolStripButton dirButton = new ToolStripButton(displayText);
             int index = i; // Local copy for the lambda
             dirButton.Click += (sender, e) => LocalPathButtonClicked(parts.Take(index + 1).ToArray());
             localDirectoryPath.Items.Add(dirButton);
@@ -145,7 +148,9 @@ namespace MeshCentralRouter
         string[] parts = remoteFolder.Split(new char[] { '/', '\\' }, StringSplitOptions.RemoveEmptyEntries);
         for (int i = 0; i < parts.Length; i++)
         {
-            ToolStripButton dirButton = new ToolStripButton(parts[i]);
+            string displayText = parts[i].Length > DirectoryNameCharacterLimit ?
+                parts[i].Substring(0, DirectoryNameCharacterLimit) + "..." : parts[i];
+            ToolStripButton dirButton = new ToolStripButton(displayText);
             int index = i; // Local copy for the lambda
             dirButton.Click += (sender, e) => RemotePathButtonClicked(parts.Take(index + 1).ToArray());
             remoteDirectoryPath.Items.Add(dirButton);
@@ -157,7 +162,6 @@ namespace MeshCentralRouter
             }
         }
     }
-
 
     private void LocalPathButtonClicked(string[] parts)
     {
@@ -180,7 +184,6 @@ namespace MeshCentralRouter
         remoteFolder = path;
         requestRemoteFolder(path); // This will also call UpdateRemotePathDisplay
     }
-
 
     private void LeftListView_ColumnClick(object sender, ColumnClickEventArgs e)
     {
