@@ -1298,7 +1298,9 @@ namespace MeshCentralRouter
             {
                 if (c == noMapLabel) continue;
                 MapUserControl map = (MapUserControl)c;
-                if ((map.protocol == 2) && (map.mapper.totalConnectCounter == 0))
+                // Only restart UDP maps whose tunnel is down. A bound map that is connecting or tunneling has state 1,
+                // restarting it would re-bind the same local port and fail.
+                if ((map.protocol == 2) && ((map.mapper == null) || (map.mapper.state != 1)))
                 {
                     // This is an unconnected UDP map, check if the target node is connected.
                     foreach (NodeClass n in meshcentral.nodes.Values)

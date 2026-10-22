@@ -39,6 +39,8 @@ namespace MeshCentralRouter
         public bool xdebug = false;
         public bool inaddrany = false;
         private TcpListener listener = null;
+        private UdpClient udpClient = null;
+        private webSocketClient udpWebSocket = null;
         private JavaScriptSerializer JSON = new JavaScriptSerializer();
 
         // Stats
@@ -93,10 +95,11 @@ namespace MeshCentralRouter
                 {
                     IPEndPoint udpEndPoint = new IPEndPoint(inaddrany ? IPAddress.Any : IPAddress.Loopback, localPort);
                     UdpClient client = new UdpClient(udpEndPoint);
+                    udpClient = client;
                     localport = ((IPEndPoint)client.Client.LocalEndPoint).Port;
                     state = 1;
                     UpdateInfo();
-                    ConnectWS(client, ++connectCounter);
+                    udpWebSocket = ConnectWS(client, ++connectCounter);
                 }
                 catch (Exception ex) {
                     Debug(ex.ToString());
@@ -133,6 +136,9 @@ namespace MeshCentralRouter
                 listener.Stop();
                 listener = null;
             }
+            // Release the UDP socket and its tunnel, otherwise the local port stays bound after the map is closed or restarted
+            if (udpClient != null) { try { udpClient.Close(); } catch (Exception) { } udpClient = null; }
+            if (udpWebSocket != null) { try { udpWebSocket.Dispose(); } catch (Exception) { } udpWebSocket = null; }
             localport = 0;
             state = 0;
             UpdateInfo();
@@ -201,7 +207,7 @@ namespace MeshCentralRouter
             wc.Start(wsurl, certhash, null);
         }
 
-        private void ConnectWS(UdpClient client, int counter)
+        private webSocketClient ConnectWS(UdpClient client, int counter)
         {
             webSocketClient wc = new webSocketClient();
             Uri wsurl = new Uri(url + "&auth=" + Uri.EscapeDataString(parent.authCookie));
@@ -216,6 +222,7 @@ namespace MeshCentralRouter
             wc.onSendOk += Wc_onSendOk;
             wc.TLSCertCheck = webSocketClient.TLSCertificateCheck.Fingerprint;
             wc.Start(wsurl, certhash, null);
+            return wc;
         }
 
         private void Wc_onSendOk(webSocketClient sender)
@@ -249,6 +256,8 @@ namespace MeshCentralRouter
                             ShutdownClients((TcpClient)sender.tag, null, sender, sender.id);
                         } else if (sender.tag.GetType() == typeof(UdpClient)) {
                             ShutdownClients(null, (UdpClient)sender.tag, sender, sender.id);
+                            // The UDP tunnel is gone, mark this map stopped so reconnectUdpMaps() can restart it
+                            if (sender == udpWebSocket) { udpClient = null; udpWebSocket = null; localport = 0; state = 0; UpdateInfo(); }
                         }
                         break;
                     }
@@ -282,6 +291,8 @@ namespace MeshCentralRouter
                     UdpClient uclient = (UdpClient)sender.tag;
                     try { uclient.BeginReceive(new AsyncCallback(UClientEndReadWS), new object[] { this, sender, uclient }); } catch (Exception) { }
                     sender.tunneling = true;
+                    totalConnectCounter++;
+                    UpdateInfo();
                 }
             }
             else if (sender.tunneling == true)

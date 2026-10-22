@@ -75,6 +75,7 @@ namespace MeshCentralRouter
         {
             routingStatusLabel.Text = Translate.T(Properties.Resources.Starting);
             appButton.Enabled = (appId != 0) || (appIdStr != null);
+            if (mapper != null) { mapper.onStateMsgChanged -= Mapper_onStateMsgChanged; mapper.stop(); } // Don't orphan a previous mapper that still holds the local port
             mapper = new MeshMapper();
             mapper.xdebug = xdebug;
             mapper.inaddrany = inaddrany;
