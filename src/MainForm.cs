@@ -313,7 +313,7 @@ namespace MeshCentralRouter
             autoLogin = (argflags == 7);
             this.MinimizeBox = !notifyIcon.Visible;
             this.MinimumSize = new Size(this.Width, initialHeight);
-            this.MaximumSize = new Size(this.Width, 1080);
+            this.MaximumSize = Size.Empty;
             this.MaximizeBox = false;
             this.ResizeEnd += MainForm_ResizeEnd;
             this.devicesListView.Dock = DockStyle.Fill;
@@ -429,6 +429,9 @@ namespace MeshCentralRouter
             // Check if Windows SSH is present
             FileInfo nativeSshPath = new FileInfo(Path.Combine(Environment.SystemDirectory, "OpenSSH\\ssh.exe"));
             if (nativeSshPath.Exists) { this.nativeSshPath = nativeSshPath; }
+            InitializeModernAppearance();
+            initialHeight = this.Height;
+            this.MinimumSize = this.Size;
 
             // Listen to clipboard events
             nextClipboardViewer = Win32Api.SetClipboardViewer(this.Handle);
@@ -456,8 +459,9 @@ namespace MeshCentralRouter
             if (currentPanel == newPanel) return;
             if (newPanel == 4)
             {
-                this.Height = Settings.GetRegValue("WindowHeight", this.Height);
+                this.Height = Math.Max(initialHeight, Math.Min(Screen.FromControl(this).WorkingArea.Height, Settings.GetRegValue("WindowHeight", this.Height)));
                 this.FormBorderStyle = FormBorderStyle.Sizable;
+                this.MaximizeBox = true;
 
                 updatePanel4();
             }
@@ -466,8 +470,10 @@ namespace MeshCentralRouter
                 if (currentPanel == 4 && (argflags & 4) != 4)
                     passwordTextBox.Text = "";
 
+                this.WindowState = FormWindowState.Normal;
                 this.Height = initialHeight;
                 this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                this.MaximizeBox = false;
             }
 
             panel1.Visible = (newPanel == 1);
@@ -475,6 +481,7 @@ namespace MeshCentralRouter
             panel3.Visible = (newPanel == 3);
             panel4.Visible = (newPanel == 4);
             currentPanel = newPanel;
+            UpdateModernHeader();
 
             // Setup stuff
             if (newPanel == 1) { tokenRememberCheckBox.Checked = false; }
@@ -816,124 +823,11 @@ namespace MeshCentralRouter
 
         private void updateDeviceList(bool forceGroupChanged)
         {
+            if (meshcentral == null) return;
             string search = searchTextBox.Text.ToLower();
             if (deviceListViewMode)
             {
-                devicesListView.SuspendLayout();
-                devicesListView.Items.Clear();
-
-                bool bGroupChanged = forceGroupChanged;
-                ArrayList controlsToAdd = new ArrayList();
-                if (meshcentral.nodes != null)
-                {
-                    foreach (NodeClass node in meshcentral.nodes.Values)
-                    {
-                        if (node.agentid == -1) { continue; }
-                        ListViewItem device;
-                        if (node.listitem == null)
-                        {
-                            device = new ListViewItem(node.name);
-                            device.SubItems.Add(node.getStateString());
-                            device.Tag = node;
-                            node.listitem = device;
-                        }
-                        else
-                        {
-                            device = node.listitem;
-                            device.SubItems[0].Text = node.name;
-                            device.SubItems[1].Text = node.getStateString();
-                        }
-
-                        // Fetch the device group name
-                        if ((node.meshid != null) && meshcentral.meshes.ContainsKey(node.meshid)) { node.mesh = (MeshClass)meshcentral.meshes[node.meshid]; }
-                        string meshName = (node.mesh != null) ? node.mesh.name : Properties.Resources.IndividualDevices;
-
-                        // Set the device name
-                        if ((showGroupNamesToolStripMenuItem.Checked) && (node.mesh != null)) {
-                            device.SubItems[0].Text = meshName + " - " + node.name;
-                        } else {
-                            device.SubItems[0].Text = node.name;
-                        }
-
-                        // See if this device can be added to an existing group
-                        bool bGroupExisting = false;
-                        for (int i = 0; i < devicesListView.Groups.Count; i++)
-                        {
-                            // if ((node.mesh != null && devicesListView.Groups[i].Header == node.mesh.name) || (node.mesh == null && devicesListView.Groups[i].Header == ""))
-                            if (((string)devicesListView.Groups[i].Tag) == node.meshid)
-                            {
-                                bGroupExisting = true;
-                                node.listitem.Group = devicesListView.Groups[i];
-                                devicesListView.Groups[i].Header = meshName; // Set this again just in case the device group name changed
-                                break;
-                            }
-                        }
-
-                        // If a device group does not exist, create it
-                        if (!bGroupExisting)
-                        {
-                            ListViewGroup grp = devicesListView.Groups.Add(devicesListView.Groups.Count.ToString(), meshName);
-                            grp.Tag = node.meshid;
-                            node.listitem.Group = grp;
-                            bGroupChanged = true;
-                        }
-
-                        bool connVisible = ((showOfflineDevicesToolStripMenuItem.Checked) || ((node.conn & 1) != 0)) || (node.mtype == 3);
-                        int imageIndex = (node.icon - 1) * 2;
-                        if (((node.conn & 1) == 0) && (node.mtype != 3)) { imageIndex++; }
-                        device.ImageIndex = imageIndex;
-
-                        string userSearch = null;
-                        string lowerSearch = search.ToLower();
-                        if (lowerSearch.StartsWith("u:")) { userSearch = lowerSearch.Substring(2); }
-                        if (lowerSearch.StartsWith("user:")) { userSearch = lowerSearch.Substring(5); }
-                        if (userSearch == null)
-                        {
-                            // Normal search
-                            if (connVisible && ((search == "") || (device.SubItems[0].Text.ToLower().IndexOf(search) >= 0))) { controlsToAdd.Add(device); }
-                        }
-                        else
-                        {
-                            // User search
-                            bool userSearchMatch = false;
-                            if (node.users != null) { foreach (string user in node.users) { if (user.ToLower().IndexOf(userSearch) >= 0) { userSearchMatch = true; } } }
-                            if (connVisible && ((userSearch == "") || userSearchMatch)) { controlsToAdd.Add(device); }
-                        }
-                    }
-
-                    // If groups have changes update them
-                    if (bGroupChanged)
-                    {
-                        ListViewGroup[] groups = new ListViewGroup[this.devicesListView.Groups.Count];
-                        this.devicesListView.Groups.CopyTo(groups, 0);
-                        Array.Sort(groups, new GroupComparer());
-
-                        this.devicesListView.BeginUpdate();
-                        this.devicesListView.Groups.Clear();
-                        this.devicesListView.Groups.AddRange(groups);
-                        this.devicesListView.EndUpdate();
-
-                        foreach (ListViewGroup lvg in devicesListView.Groups)
-                        {
-                            if (collapseDeviceGroup)
-                            {
-                                ListViewExtended.setGrpState(lvg, ListViewGroupState.Collapsible | ListViewGroupState.Collapsed);
-                            }
-                            else
-                            {
-                                ListViewExtended.setGrpState(lvg, ListViewGroupState.Collapsible | ListViewGroupState.Normal);
-                            }
-                        }
-                    }
-
-                    // Add all controls at once to make it fast.
-                    if (controlsToAdd.Count > 0)
-                    {
-                        devicesListView.Items.AddRange((ListViewItem[])controlsToAdd.ToArray(typeof(ListViewItem)));
-                    }
-                }
-
-                devicesListView.ResumeLayout();
+                updateDeviceListView(forceGroupChanged, search);
             }
             else
             {
@@ -1134,6 +1028,7 @@ namespace MeshCentralRouter
                     if (c.GetType() == typeof(MapUserControl)) { ((MapUserControl)c).Dispose(); }
                 }
                 mapPanel.Controls.Clear();
+                mapPanel.Controls.Add(noMapLabel);
                 noMapLabel.Visible = true;
 
                 // Clean up all devices (old style)
@@ -1145,6 +1040,7 @@ namespace MeshCentralRouter
 
                 // Clean up all devices (new style)
                 devicesListView.Items.Clear();
+                devicesListView.Groups.Clear();
                 noSearchResultsLabel.Visible = false;
                 noDevicesLabel.Visible = true;
                 if ((meshcentral != null) && (meshcentral.nodes != null))
@@ -1212,6 +1108,7 @@ namespace MeshCentralRouter
                     this.Text = title + " - " + userNameTextBox.Text;
                 }
                 cookieRefreshTimer.Enabled = true;
+                UpdateModernHeader();
 
                 // If we need to remember the 2nd factor, ask for a cookie now.
                 if (debug) { try { File.AppendAllText("debug.log", "Requesting 2FA cookie in 2 and half seconds time\r\n"); } catch (Exception) { } }
@@ -1777,6 +1674,7 @@ namespace MeshCentralRouter
         {
             cancelAutoClose();
             searchTextBox.Visible = (devicesTabControl.SelectedIndex == 0);
+            if (modernSearchFrame != null) { modernSearchFrame.Visible = devicesTabControl.SelectedIndex == 0; }
             if (devicesTabControl.SelectedIndex == 0)
             {
                 menuLabel.ContextMenuStrip = mainContextMenuStrip;
