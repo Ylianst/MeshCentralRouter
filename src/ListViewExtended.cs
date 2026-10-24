@@ -10,6 +10,10 @@ namespace MeshCentralRouter
 {
     public class ListViewExtended : ListView
     {
+        public ListViewExtended()
+        {
+            DoubleBuffered = true;
+        }
         private const int LVM_FIRST = 0x1000;                    // ListView messages
         private const int LVM_SETGROUPINFO = (LVM_FIRST + 147);  // ListView messages Setinfo on Group
         private const int WM_LBUTTONUP = 0x0202;                 // Windows message left button
@@ -37,7 +41,7 @@ namespace MeshCentralRouter
         /// Windows 95/98/Me: SendMessageW is supported by the Microsoft Layer for Unicode (MSLU). To use this, you must add certain files to your application, as outlined in Microsoft Layer for Unicode on Windows 95/98/Me Systems.
         /// </returns>
         [DllImport("User32.dll"), Description("Sends the specified message to a window or windows. The SendMessage function calls the window procedure for the specified window and does not return until the window procedure has processed the message. To send a message and return immediately, use the SendMessageCallback or SendNotifyMessage function. To post a message to a thread's message queue and return immediately, use the PostMessage or PostThreadMessage function.")]
-        private static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, LVGROUP lParam);
+        private static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, ref LVGROUP lParam);
 
         private static int? GetGroupID(ListViewGroup lstvwgrp)
         {
@@ -73,20 +77,18 @@ namespace MeshCentralRouter
                 LVGROUP group = new LVGROUP();
                 group.CbSize = Marshal.SizeOf(group);
                 group.State = state;
+                group.StateMask = (int)(ListViewGroupState.Collapsible | ListViewGroupState.Collapsed);
                 group.Mask = ListViewGroupMask.State;
                 if (GrpId != null)
                 {
                     group.IGroupId = GrpId.Value;
-                    SendMessage(lstvwgrp.ListView.Handle, LVM_SETGROUPINFO, GrpId.Value, group);
-                    SendMessage(lstvwgrp.ListView.Handle, LVM_SETGROUPINFO, GrpId.Value, group);
+                    SendMessage(lstvwgrp.ListView.Handle, LVM_SETGROUPINFO, GrpId.Value, ref group);
                 }
                 else
                 {
                     group.IGroupId = gIndex;
-                    SendMessage(lstvwgrp.ListView.Handle, LVM_SETGROUPINFO, gIndex, group);
-                    SendMessage(lstvwgrp.ListView.Handle, LVM_SETGROUPINFO, gIndex, group);
+                    SendMessage(lstvwgrp.ListView.Handle, LVM_SETGROUPINFO, gIndex, ref group);
                 }
-                lstvwgrp.ListView.Refresh();
             }
         }
 
@@ -109,12 +111,12 @@ namespace MeshCentralRouter
                 if (GrpId != null)
                 {
                     group.IGroupId = GrpId.Value;
-                    SendMessage(lstvwgrp.ListView.Handle, LVM_SETGROUPINFO, GrpId.Value, group);
+                    SendMessage(lstvwgrp.ListView.Handle, LVM_SETGROUPINFO, GrpId.Value, ref group);
                 }
                 else
                 {
                     group.IGroupId = gIndex;
-                    SendMessage(lstvwgrp.ListView.Handle, LVM_SETGROUPINFO, gIndex, group);
+                    SendMessage(lstvwgrp.ListView.Handle, LVM_SETGROUPINFO, gIndex, ref group);
                 }
             }
         }

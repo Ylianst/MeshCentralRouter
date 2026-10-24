@@ -43,6 +43,7 @@ namespace MeshCentralRouter
         public bool inaddrany = false;
         public MappingStats stats = null;
         public bool autoexit = false;
+        private int displayedIcon = -1;
 
         public static void saveToRegistry(string name, string value)
         {
@@ -56,6 +57,38 @@ namespace MeshCentralRouter
         public MapUserControl()
         {
             InitializeComponent();
+            ModernTheme.Apply(this);
+            ModernTheme.StyleButton(appButton, true);
+            ModernTheme.StyleMenu(mainContextMenuStrip);
+            BorderStyle = BorderStyle.FixedSingle;
+            int spacing = (int)Math.Round(12 * DeviceDpi / 96.0);
+            Height = spacing * 7;
+            Padding = new Padding(spacing);
+            Controls.Clear();
+            TableLayoutPanel layout = new TableLayoutPanel { Dock = DockStyle.Fill, ColumnCount = 4, RowCount = 2, BackColor = ModernTheme.Surface };
+            layout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, spacing * 4));
+            layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
+            layout.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+            layout.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+            layout.RowStyles.Add(new RowStyle(SizeType.Percent, 50));
+            layout.RowStyles.Add(new RowStyle(SizeType.Percent, 50));
+            devicePictureBox.Dock = DockStyle.Fill;
+            devicePictureBox.SizeMode = PictureBoxSizeMode.CenterImage;
+            deviceNameLabel.Dock = routingStatusLabel.Dock = DockStyle.Fill;
+            deviceNameLabel.TextAlign = routingStatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            deviceNameLabel.Font = ModernTheme.StrongFont;
+            deviceNameLabel.AutoEllipsis = routingStatusLabel.AutoEllipsis = true;
+            routingStatusLabel.ForeColor = ModernTheme.Muted;
+            appButton.Anchor = closeButton.Anchor = AnchorStyles.Right;
+            layout.Controls.Add(devicePictureBox, 0, 0);
+            layout.SetRowSpan(devicePictureBox, 2);
+            layout.Controls.Add(deviceNameLabel, 1, 0);
+            layout.Controls.Add(routingStatusLabel, 1, 1);
+            layout.Controls.Add(appButton, 2, 0);
+            layout.SetRowSpan(appButton, 2);
+            layout.Controls.Add(closeButton, 3, 0);
+            layout.SetRowSpan(closeButton, 2);
+            Controls.Add(layout);
         }
 
         public void UpdateInfo()
@@ -68,7 +101,11 @@ namespace MeshCentralRouter
             {
                 deviceNameLabel.Text = node.name;
             }
-            devicePictureBox.Image = deviceImageList.Images[node.icon - 1];
+            if (displayedIcon != node.icon)
+            {
+                displayedIcon = node.icon;
+                devicePictureBox.Image = deviceImageList.Images[node.icon - 1];
+            }
         }
 
         public void Start()
